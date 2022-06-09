@@ -52,7 +52,8 @@ class UserEducation(models.Model):
     EndYear = models.DateField()
     TotalExamplesPassed = models.IntegerField(default=0)
     GPA = models.FloatField(default=0.0)
-
+    def __str__(self):
+        return str(self.UserId)+" | "+str(self.University)
 
 class UserLanguages(models.Model):
     Level_Choice = {
