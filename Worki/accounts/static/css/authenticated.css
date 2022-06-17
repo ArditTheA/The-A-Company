@@ -1,0 +1,120 @@
+body {
+    background-color: rgb(221, 221, 221);
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+#header-border {
+    background-color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#worki-image {
+    margin-left: 40px;
+    height: 40px;
+}
+
+#jobs-and-profile {
+    float: right;
+    display: flex;
+    align-items: center;
+}
+
+.jobs-icon-button {
+    margin-right: 20px;
+    height: 40px;
+}
+
+#profile-image-button {
+    margin-right: 40px;
+    cursor: pointer;
+    height: 40px;
+}
+
+.dropdown {
+    border: #bbb 1.4px solid; 
+    height: 100%; 
+    float: right;
+    text-align: center; 
+    font-size: 19px; 
+    background-color: white; 
+    border-radius: 16px;
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: .5s ease;
+}
+
+.dropdown-content {
+    padding: 18px 80px;
+}
+
+.dropdown-mid-content {
+    padding: 0px 80px;
+}
+
+.dropdown-content-text {
+    text-decoration: none;
+    color: gray;
+}
+
+.dropdown-content-text:hover {
+    color: black;
+}
+
+.showDropdown{
+    height: auto;
+    opacity: 1;
+}
+
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+    #worki-image {
+        margin-left: 30px;
+        height: 38px;
+    }
+    .jobs-icon-button {
+        height: 38px;
+    }
+    #profile-image-button {
+        margin-right: 30px;
+        height: 38px;
+    }
+}
+
+@media screen and (max-width: 767px) and (min-width: 481px) {
+    #worki-image {
+        margin-left: 20px;
+        height: 36px;
+    }
+    .jobs-icon-button {
+        height: 36px;
+        margin-right: 12px;
+    }
+    #profile-image-button {
+        margin-right: 20px;
+        height: 36px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    
+    #worki-image {
+        margin-left: 10px;
+        height: 30px;
+    } 
+    .jobs-icon-button {
+        height: 30px;
+        margin-right: 20px;
+    }
+    #profile-image-button {
+        margin-right: 10px;
+        height: 30px;
+    }
+}
