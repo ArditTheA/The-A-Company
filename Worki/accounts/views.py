@@ -7,6 +7,11 @@ from django.contrib.auth.forms import PasswordChangeForm
 from .forms import LoginForm, RegisterForm
 
 
+
+
+
+
+
 class passChange(PasswordChangeView):
     from_class=PasswordChangeForm
     success_url = reverse_lazy('home')

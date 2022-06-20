@@ -1,22 +1,10 @@
 from distutils.command.upload import upload
+from hashlib import blake2b
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
 from datetime import datetime
 
-class CustomUser(AbstractUser):
-    sex_choice=[
-        ("M","Male"),
-        ("F","Female"),
-    ]
-    username=models.CharField(max_length=255,null=True,blank=True)
-    email = models.EmailField(_('email'), unique=True,null=False,blank=False)
-    profile = models.ImageField(null=True,upload_to="profile")
-    cover = models.ImageField(null=True,upload_to="covers")
-    sex = models.CharField(choices=sex_choice,max_length=10,null=True)
-    ProfileSetup = models.BooleanField(default=False)
-    def __str__(self):
-        return self.email+" "+ self.first_name+" "+ self.last_name
 
 class Country(models.Model):
     Country = models.CharField(max_length=255)
@@ -33,6 +21,21 @@ class City(models.Model):
     def __str__(self):
         return str(self.Name)+" | "+str(self.Country)
 
+class CustomUser(AbstractUser):
+    sex_choice=[
+        ("M","Male"),
+        ("F","Female"),
+    ]
+    username=models.CharField(max_length=255,null=True,blank=True)
+    email = models.EmailField(_('email'), unique=True,null=False,blank=False)
+    profile = models.ImageField(null=True,upload_to="profile")
+    cover = models.ImageField(null=True,upload_to="covers")
+    sex = models.CharField(choices=sex_choice,max_length=10,null=True)
+    ProfileSetup = models.BooleanField(default=False)
+    City = models.ForeignKey(City,on_delete=models.CASCADE,null=True,blank=True)
+    PhoneNumber= models.CharField(max_length=255,null=True,blank=True)
+    def __str__(self):
+        return self.email+" "+ self.first_name+" "+ self.last_name
 
 
 
