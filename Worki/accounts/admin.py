@@ -1,4 +1,7 @@
+from django.apps import apps
 from django.contrib import admin
-from .models import CustomUser
-# Register your models here.
-admin.site.register(CustomUser)
+
+app = apps.get_app_config('accounts')
+
+for model_name, model in app.models.items():
+    admin.site.register(model)  
