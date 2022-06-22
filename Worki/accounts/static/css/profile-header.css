@@ -6,8 +6,8 @@ body {
 
 .profile-header {
     margin: 20px 40px 20px 40px;
-    border-radius: 40px; 
     background-color: white;
+    border-radius: 40px;
 }
 
 .profile-image-and-edit {
@@ -25,42 +25,90 @@ body {
 }
 
 .profile-image {
-    vertical-align: middle; 
-    margin-top: -80px;
+    vertical-align: middle;
+    margin-top: -80px; 
     border-radius: 50%;
 }
 
 #plus-icon {
     position: absolute;
+    border-radius: 50%;
     right: 0;
     bottom: 0;
-    border-radius: 200px;
     background-color: #939598;
     color: #F1F1F1;
-    font-size: 40px;
+    font-size: 35px;
     border: none;
 }
 
+
 .pro-img {
-    margin: 0;
-    padding: 0;
-    display: block;
-    border-radius: 40px;
+    background-image: url({{}});
+    background-color: #cccccc;
+    height: 250px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     width: 100%;
+    border-radius: 40px;
 }
 
 .second-part-profile-header {
     padding: 0px 60px 60px 60px;
+
 }
 
 .profile-name {
     margin-top: 20px;
-    font-size: 46px;
+    font-size: 45px;
     color: #000000;
+}
+
+.edit-button {
+    width: 30px;
+    height: 30px;
+    vertical-align: middle; 
 }
 
 .profile-birthplace {
     margin-top: 15px;
     color: #858585;
-    font-size: 23px;
+    font-size: 20px;
+}
+
+@media screen and (max-width: 480px) {
+    .profile-header {
+        margin: 10px 10px 10px 10px;
+        border-radius: 20px;
+    }
+    .pro-img {
+        height: 80px;
+        border-radius: 20px;
+    }
+    .second-part-profile-header {
+        padding: 0px 20px 20px 20px;
+    }
+    .profile-image-and-edit {
+    }
+    .profile-image {
+        width: 60px;
+        height: 60px;
+        margin-top: -30px;
+    }
+    #plus-icon {
+        font-size: 15px;
+    }
+    .edit-button {
+        width: 15px;
+        height: 15px;
+        vertical-align: middle;
+    }
+    .profile-name {
+        font-size: 20px;
+        margin-top: 10px;
+    }
+    .profile-birthplace {
+        font-size: 10px;
+        margin-top: 5px;
+    }
 }

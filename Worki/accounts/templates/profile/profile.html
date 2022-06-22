@@ -1,10 +1,21 @@
 {% extends 'base.html'%}
 {% load static %}
 {% block content %}
-
+<style>
+    .hero-image {
+    background-image: url({{user.cover.url}});
+    background-color: #cccccc;
+    height: 250px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 40px;
+    
+  }
+</style>
 <div class="profile-header">
-    <div>
-    <img class="pro-img" src="{{user.cover.url}}" alt="">
+    <div class="hero-image">
+    <img class="pro-img" src="" alt="">
 
     </div>
     <div class="second-part-profile-header">
@@ -14,11 +25,15 @@
                 <a href="" title="Add Profile Picture"><i id="plus-icon" class="fa-solid fa-circle-plus"></i></a>
             </div>
             <div>
-            <a href="" title="Edit Profile"><img src="{% static 'img/Ikona_edit-01 56.png'%}" alt=""></a>
+            <a href="" title="Edit Profile"><img class="edit-button" src="{% static 'img/Ikona_edit-01 56.png'%}" alt=""></a>
             </div>
         </div>
         <div class="profile-name">{{ user.first_name }} {{user.last_name}} </div>
         <div class="profile-birthplace">{{user.City}}</div>
+    </div>
+
+    <div class="proile_exp">
+
     </div>
 
 {% endblock content%}

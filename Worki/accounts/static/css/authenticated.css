@@ -37,7 +37,7 @@ body {
     margin-right: 40px;
     cursor: pointer;
     height: 40px;
-    
+    border-radius: 50%;
 }
 .profilePic{
     border-radius: 15%;
