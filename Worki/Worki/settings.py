@@ -26,7 +26,7 @@ SECRET_KEY = '0x-zrhf@)(t)%-630q&s&9g_c^lvh_9cehy@7vx==@bxgn_s_='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.0.180','127.0.0.1']
+ALLOWED_HOSTS = ['*']
 SOCIALACCOUNT_LOGIN_ON_GET=True
 
 # Application definition
