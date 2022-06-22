@@ -1,4 +1,5 @@
 from distutils.command.upload import upload
+from email.policy import default
 from hashlib import blake2b
 from django.db import models
 from django.contrib.auth.models import AbstractUser
@@ -28,15 +29,15 @@ class CustomUser(AbstractUser):
     ]
     username=models.CharField(max_length=255,null=True,blank=True)
     email = models.EmailField(_('email'), unique=True,null=False,blank=False)
-    profile = models.ImageField(null=True,upload_to="profile")
-    cover = models.ImageField(null=True,upload_to="covers")
+    profile = models.ImageField(upload_to="profile",default="download.jpg")
+    cover = models.ImageField(upload_to="cover",default="default.png")
     sex = models.CharField(choices=sex_choice,max_length=10,null=True)
     ProfileSetup = models.BooleanField(default=False)
     City = models.ForeignKey(City,on_delete=models.CASCADE,null=True,blank=True)
     PhoneNumber= models.CharField(max_length=255,null=True,blank=True)
     def __str__(self):
         return self.email+" "+ self.first_name+" "+ self.last_name
-
+    
 
 
 class Languages(models.Model):
@@ -121,7 +122,7 @@ class Jobs(models.Model):
 
     Status = models.CharField(max_length=20,choices=Stat,default="Open")
     PostDate = models.DateField(default=datetime.now())
-    # UserId = models.ForeignKey(User,on_delete=models.CASCADE)
+    UserId = models.ForeignKey(CustomUser,on_delete=models.CASCADE, null=True,blank=True)
     Approved = models.BooleanField(default=False)
 
     def __str__(self):

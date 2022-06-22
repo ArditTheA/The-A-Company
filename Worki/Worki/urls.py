@@ -14,15 +14,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from re import template
+
+from django import views
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path,include
+from django_countries import settings
 
-
+assert isinstance(settings.STATIC_ROOT, object)
 from accounts.views import LoginView, RegisterView,HomeTemp
 from django.contrib.auth import views as auth_views
 from django.contrib.auth import views as userViews
 from accounts.views import *
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', LoginView.as_view(), name='login'),
@@ -32,16 +36,19 @@ urlpatterns = [
     path('',HomeTemp,name='home'),
     # forget password
 
-    path('reset_password/', auth_views.PasswordResetView.as_view(template_name="registration/password_reset.html"), name="reset_password"),
+    path('reset_password/',password_reset_request, name="reset_password"),
 
-    path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name="registration/password_reset_sent.html"), name="password_reset_done"),
+    path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name="accounts/password_reset_sent.html"), name="password_reset_done"),
 
-    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name="registration/password_reset_form.html"),name="password_reset_confirm"),
+    path('password_reset_confirm/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name="accounts/password_reset_form.html"),name="password_reset_confirm"),
 
-    path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name="registration/password_reset_done.html"), name="password_reset_complete"),
+    path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name="accounts/password_reset_done.html"), name="password_reset_complete"),
     
-    path("password/change/",passChange.as_view(template_name="registration/change_password.html"),name="password_change"),
+    path("password/change/",passChange.as_view(template_name="accounts/change_password.html"),name="password_change"),
 
+    #profile
 
+    path("profile/",profile,name="profile"),
     
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

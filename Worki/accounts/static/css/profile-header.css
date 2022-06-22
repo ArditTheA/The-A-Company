@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Spline+Sans&display=swap');
+
+body {
+    font-family: 'Spline Sans', sans-serif;
+}
+
+.profile-header {
+    margin: 20px 40px 20px 40px;
+    border-radius: 40px; 
+    background-color: white;
+}
+
+.profile-image-and-edit {
+    width: 100%; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: flex-end;
+}
+
+.profile-image-and-add-button {
+    display: flex;
+    align-items: center;
+    position: relative;
+    display: inline-block;
+}
+
+.profile-image {
+    vertical-align: middle; 
+    margin-top: -80px;
+    border-radius: 50%;
+}
+
+#plus-icon {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    border-radius: 200px;
+    background-color: #939598;
+    color: #F1F1F1;
+    font-size: 40px;
+    border: none;
+}
+
+.pro-img {
+    margin: 0;
+    padding: 0;
+    display: block;
+    border-radius: 40px;
+    width: 100%;
+}
+
+.second-part-profile-header {
+    padding: 0px 60px 60px 60px;
+}
+
+.profile-name {
+    margin-top: 20px;
+    font-size: 46px;
+    color: #000000;
+}
+
+.profile-birthplace {
+    margin-top: 15px;
+    color: #858585;
+    font-size: 23px;
+}

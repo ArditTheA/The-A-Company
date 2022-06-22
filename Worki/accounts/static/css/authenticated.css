@@ -30,18 +30,21 @@ body {
 .jobs-icon-button {
     margin-right: 20px;
     height: 40px;
+    vertical-align: middle;
 }
 
 #profile-image-button {
     margin-right: 40px;
     cursor: pointer;
     height: 40px;
+    
+}
+.profilePic{
+    border-radius: 15%;
 }
 
 .dropdown {
-    border: #bbb 1.4px solid; 
-    height: 100%; 
-    float: right;
+    border: #bbb 1.4px solid;
     text-align: center; 
     font-size: 19px; 
     background-color: white; 
@@ -50,10 +53,13 @@ body {
     opacity: 0;
     overflow: hidden;
     transition: .5s ease;
+    position: absolute;
+    z-index: 1;
+    right: 0;
 }
 
 .dropdown-content {
-    padding: 18px 80px;
+    padding: 20px 80px;
 }
 
 .dropdown-mid-content {
@@ -72,6 +78,8 @@ body {
 .showDropdown{
     height: auto;
     opacity: 1;
+    position: absolute;
+    right: 0;
 }
 
 @media screen and (max-width: 1024px) and (min-width: 768px) {

@@ -27,7 +27,7 @@ SECRET_KEY = '0x-zrhf@)(t)%-630q&s&9g_c^lvh_9cehy@7vx==@bxgn_s_='
 DEBUG = True
 
 ALLOWED_HOSTS = ['192.168.0.180','127.0.0.1']
-
+SOCIALACCOUNT_LOGIN_ON_GET=True
 
 # Application definition
 
@@ -130,8 +130,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = 'static/'
-
+STATIC_URL = '/static/'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 # New configs
 
