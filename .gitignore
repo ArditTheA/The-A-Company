@@ -3,10 +3,11 @@
 *.pot
 *.pyc
 __pycache__
-# Backup files # 
 db.sqlite3
-db.sqlite3-journal
+Worki\db.sqlite3
 media
+
+# Backup files # 
 *.bak 
 
 # If you are using PyCharm # 
