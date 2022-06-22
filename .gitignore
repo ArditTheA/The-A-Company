@@ -4,6 +4,7 @@
 *.pyc
 __pycache__
 # Backup files # 
+db.sqlite3
 *.bak 
 
 # If you are using PyCharm # 
