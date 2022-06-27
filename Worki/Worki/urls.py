@@ -34,6 +34,7 @@ urlpatterns = [
     path('logout/', userViews.LogoutView.as_view(template_name='home/home.html'), name='logout'),
     path('accounts/', include('allauth.urls')),
     path('',HomeTemp,name='home'),
+    path("TermsAndCondition/",Terms,name="terms"),
     # forget password
 
     path('reset_password/',password_reset_request, name="reset_password"),

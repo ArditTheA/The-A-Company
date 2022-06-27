@@ -38,6 +38,7 @@ body {
     cursor: pointer;
     height: 40px;
     border-radius: 50%;
+    width: 40px;
 }
 .profilePic{
     border-radius: 15%;
@@ -112,17 +113,24 @@ body {
 }
 
 @media screen and (max-width: 480px) {
-    
+    #header-border {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
     #worki-image {
         margin-left: 10px;
-        height: 30px;
+        height: 25px;
     } 
     .jobs-icon-button {
         height: 30px;
-        margin-right: 20px;
+        margin-right: 25px;
     }
     #profile-image-button {
         margin-right: 10px;
-        height: 30px;
+        height: 25px;
     }
+}
+header#header-border {
+    padding-top: 15px;
+    padding-bottom: 15px;
 }

@@ -21,7 +21,8 @@ def profile(request):
     
     return render(request,"profile/profile.html")
 
-
+def Terms(request):
+    return render(request,"accounts/Terms.html")
 class passChange(PasswordChangeView):
     from_class=PasswordChangeForm
     success_url = reverse_lazy('home')
