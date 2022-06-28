@@ -1,39 +1,69 @@
 {% extends 'base.html'%}
 {% load static %}
-{% block content %}
-<style>
-    .hero-image {
-    background-image: url({{user.cover.url}});
-    background-color: #cccccc;
-    height: 250px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-radius: 40px;
-    
-  }
-</style>
-<div class="profile-header">
-    <div class="hero-image">
-    
+{% block content%}
+    <link rel="stylesheet" href="{% static 'css/authenticated.css' %}">
+    <link rel="stylesheet" href="{% static 'css/profile-header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/edit-profile.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
-    </div>
-    <div class="second-part-profile-header">
-        <div class="profile-image-and-edit">
-            <div class="profile-image-and-add-button">
-                <a href="" title="Profile Picture" ><img class="profile-image" width="160" height="160" src="{{ user.profile.url }}" alt=""></a>
-                <a href="" title="Add Profile Picture"><i id="plus-icon" class="fa-solid fa-circle-plus"></i></a>
+        
+       <div class="profile-header">
+            <div id="example1">
+            <img class="pro-img" src="{{ user.cover.url }}" alt="">
             </div>
-            <div>
-            <a href="" title="Edit Profile"><img class="edit-button" src="{% static 'img/Ikona_edit-01 56.png'%}" alt=""></a>
+            <div class="second-part-profile-header">
+                <div class="profile-image-and-edit">
+                    <div class="profile-image-and-add-button">
+                        <a href="" title="Profile Picture" ><img class="profile-image" width="160" height="160" src="{{ user.profile.url }}" alt=""></a>
+                        <a href="" title="Add Profile Picture"><img src="{% static 'img/Asset 3.png' %}" width="30" height="30" id="plus-icon" alt=""></a>
+                    </div>
+
+                    <img  class="edit-button" title="Edit Profile"  src="{% static 'img/Ikona_edit-01 56.png' %}" alt="">
+                
+                </div>
+                <div class="profile-name"><span class="profile-firstname">{{ user.first_name }}</span> <span class="profile-surname">{{ user.last_name }}</span></div>
+                <div class="profile-birthplace"><span class="profile-city">{{ user.City.Name }}</span><span>,{{ user.City.Country }}</div>
             </div>
         </div>
-        <div class="profile-name">{{ user.first_name }} {{user.last_name}} </div>
-        <div class="profile-birthplace">{{user.City}}</div>
-    </div>
+        <div class="modal-bg">
+            <div class="container">
+                <div class="under-container">
+                    <div class="exit-img">
+                    <img class="exit-button" src="{% static 'img/Vector 81 (1).png' %}" alt="">
+                    </div>
+                    <h1 id="title">Edit Profile</h1>
+                    <form method="POST" action="" class="sign-up-form">
+                        <div style="margin: 0;">
+                        <p class="paragraph-of-name paragraphs-stats">First name</p>
+                        <input name="fname" type="text" class="name-input mutual-stats font-fam" ></input>
+                        </div>
+                        <div>
+                        <p class="paragraph-of-surname paragraphs-stats">Last name</p>
+                        <input name="lname" type="text" class="surname-input mutual-stats font-fam"
+                        ></input>
+                        </div>
+                        <div>
+                        <p class="paragraph-of-country paragraphs-stats">Country of residence</p>
+                        <input name="country" type="text" class="country-input mutual-stats font-fam"
+                        ></input>
+                        </div>
+                        <div>
+                        <p class="paragraph-of-city paragraphs-stats">City of residence</p>
+                        <input name="city" type="text" id="password" class="city-input font-fam"
+                        ></input>
+                        </div>
+                        <div class="save-button">
+                            <input name="save" type="button" class="save-submit-input font-fam" value="Save">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <script src="{% static 'js/profile_dropdown.js' %}"></script>
 
-    <div class="proile_exp">
+    <script src="{% static 'js/edit-button.js' %}"></script>
 
-    </div>
+    <script src="{% static 'js/change-profile.js' %}"></script>
 
-{% endblock content%}
+    <script src="{% static 'js/exit-button.js' %}"></script>
+{% endblock content %}

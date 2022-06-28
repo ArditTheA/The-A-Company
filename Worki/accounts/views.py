@@ -17,6 +17,7 @@ from django.db.models.query_utils import Q
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
+from django.views.generic.edit import UpdateView
 def profile(request):
     
     return render(request,"profile/profile.html")
@@ -79,3 +80,15 @@ def password_reset_request(request):
         'password_form':password_form
     }
     return render(request,'accounts/password_reset.html',context)
+
+
+
+
+
+#profile
+
+#Edit
+class EditMainInfo(UpdateView):
+    model: CustomUser
+    template_name="profile/Edit.html"
+    fields=["first_name","last_name",'City']
