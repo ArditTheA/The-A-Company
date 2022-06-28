@@ -5,7 +5,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
 from datetime import datetime
-
+from django.urls import reverse 
 
 class Country(models.Model):
     Country = models.CharField(max_length=255)
@@ -20,7 +20,7 @@ class City(models.Model):
     Name = models.CharField(max_length=255)
 
     def __str__(self):
-        return str(self.Name)+" | "+str(self.Country)
+        return str(self.Name)
 
 class CustomUser(AbstractUser):
     sex_choice=[
@@ -34,11 +34,13 @@ class CustomUser(AbstractUser):
     sex = models.CharField(choices=sex_choice,max_length=10,null=True)
     ProfileSetup = models.BooleanField(default=False)
     City = models.ForeignKey(City,on_delete=models.CASCADE,null=True,blank=True)
+    Country = models.ForeignKey(Country,on_delete=models.CASCADE,null=True, blank=True)
     PhoneNumber= models.CharField(max_length=255,null=True,blank=True)
     def __str__(self):
         return self.email+" "+ self.first_name+" "+ self.last_name
     
-
+    def get_absolute_url(self):
+        return reverse("profile", kwargs={"pk": self.pk})
 
 class Languages(models.Model):
     Language = models.CharField(max_length=255)

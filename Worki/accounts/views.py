@@ -9,7 +9,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from requests import request
 from django.core.mail import send_mail,BadHeaderError
 from django.http import HttpResponse
-from accounts.models import CustomUser
+from accounts.models import *
 from .forms import LoginForm, RegisterForm
 from django.contrib.auth.forms import PasswordResetForm
 from django.template.loader import render_to_string
@@ -18,6 +18,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.views.generic.edit import UpdateView
+from accounts.forms import *
 def profile(request):
     
     return render(request,"profile/profile.html")
@@ -85,10 +86,10 @@ def password_reset_request(request):
 
 
 
-#profile
 
 #Edit
 class EditMainInfo(UpdateView):
-    model: CustomUser
-    template_name="profile/Edit.html"
-    fields=["first_name","last_name",'City']
+    model= CustomUser
+    form_class= EditProf
+    template_name="profile/profile.html"
+

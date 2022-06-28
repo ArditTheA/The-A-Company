@@ -22,7 +22,7 @@
                 
                 </div>
                 <div class="profile-name"><span class="profile-firstname">{{ user.first_name }}</span> <span class="profile-surname">{{ user.last_name }}</span></div>
-                <div class="profile-birthplace"><span class="profile-city">{{ user.City.Name }}</span><span>,{{ user.City.Country }}</div>
+                <div class="profile-birthplace"><span class="profile-city">{{ user.City }}</span><span>,{{ user.Country }}</div>
             </div>
         </div>
         <div class="modal-bg">
@@ -32,30 +32,32 @@
                     <img class="exit-button" src="{% static 'img/Vector 81 (1).png' %}" alt="">
                     </div>
                     <h1 id="title">Edit Profile</h1>
-                    <form method="POST" action="" class="sign-up-form">
-                        <div style="margin: 0;">
-                        <p class="paragraph-of-name paragraphs-stats">First name</p>
-                        <input name="fname" type="text" class="name-input mutual-stats font-fam" ></input>
+                    <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                           <div style="margin: 0;">
+                           <p class="paragraph-of-name paragraphs-stats">First name</p>
+                           {{form.first_name}}
+                           </div>
+                           <div>
+                           <p class="paragraph-of-surname paragraphs-stats">Last name</p>
+                           {{form.last_name}}
+                           </div>
+                           <div>
+                           <p class="paragraph-of-country paragraphs-stats">Country of residence</p>
+                           {{form.Country}}
+                           </div>
+                           <div>
+                           <p class="paragraph-of-city paragraphs-stats">City of residence</p>
+                           {{form.City }}
+                           </div>
+                           
+                        
+                          <div class="save-button">
+                            <input name="save" type="submit" class="save-submit-input font-fam" value="Save">
                         </div>
-                        <div>
-                        <p class="paragraph-of-surname paragraphs-stats">Last name</p>
-                        <input name="lname" type="text" class="surname-input mutual-stats font-fam"
-                        ></input>
-                        </div>
-                        <div>
-                        <p class="paragraph-of-country paragraphs-stats">Country of residence</p>
-                        <input name="country" type="text" class="country-input mutual-stats font-fam"
-                        ></input>
-                        </div>
-                        <div>
-                        <p class="paragraph-of-city paragraphs-stats">City of residence</p>
-                        <input name="city" type="text" id="password" class="city-input font-fam"
-                        ></input>
-                        </div>
-                        <div class="save-button">
-                            <input name="save" type="button" class="save-submit-input font-fam" value="Save">
-                        </div>
-                    </form>
+                   
+                </form> 
                 </div>
             </div>
         </div>

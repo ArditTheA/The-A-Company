@@ -1,9 +1,23 @@
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import get_user_model
 from django import forms
+from accounts.models import *
 
+class EditProf(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = {"first_name","last_name","City","Country"}
+        
+       
 
-
+        widgets = {
+            "first_name": forms.TextInput(attrs={'class':'name-input mutual-stats font-fam'}),
+            
+            "last_name": forms.TextInput(attrs={'class':'surname-input mutual-stats font-fam'}), 
+            "City": forms.Select(attrs={'class':'city-input font-fam'}),
+            
+            "Country": forms.Select(attrs={'class':'city-input font-fam'}),
+        }
 class RegisterForm(UserCreationForm):
     class Meta:
         model = get_user_model()
