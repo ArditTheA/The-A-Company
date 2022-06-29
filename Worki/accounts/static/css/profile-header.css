@@ -26,7 +26,9 @@ body {
 
 .profile-image {
     vertical-align: middle;
-    margin-top: -80px; 
+    margin-top: -80px;
+    width: 160px;
+    height: 160px;
     border-radius: 50%;
 }
 
@@ -35,80 +37,161 @@ body {
     border-radius: 50%;
     right: 0;
     bottom: 0;
-    background-color: #939598;
-    color: #F1F1F1;
-    font-size: 35px;
-    border: none;
+    background-color: #F1F1F1;
+    width: 30px;
+    height: 30px;
 }
 
+.example1 {
+    height: 250px;
+}
 
 .pro-img {
+    height: 100%;
     background-image: url({{}});
     background-color: #cccccc;
-    height: 250px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
     width: 100%;
     border-radius: 40px;
+    vertical-align: middle;
 }
 
 .second-part-profile-header {
-    padding: 0px 60px 60px 60px;
-
+    padding: 0px 40px 40px 40px;
 }
 
 .profile-name {
     margin-top: 20px;
-    font-size: 45px;
+    font-size: 40px;          /* 20 18  font-sizes*/
     color: #000000;
 }
 
 .edit-button {
     width: 30px;
     height: 30px;
-    vertical-align: middle; 
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.profile-birthplace, .profile-birthplace1 {
+    margin-top: 15px;
+    color: #858585;
 }
 
 .profile-birthplace {
-    margin-top: 15px;
-    color: #858585;
     font-size: 20px;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 1024px) and (min-width: 768px) {
     .profile-header {
-        margin: 10px 10px 10px 10px;
+        margin: 20px 30px 20px 30px;
+    }
+    .pro-img {
+        background-image: url({{}});
+        background-color: #cccccc;
+        height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 100%;
+        border-radius: 30px;
+    }
+    .second-part-profile-header {
+    padding: 0px 30px 30px 30px;
+}
+    .profile-image {
+        width: 130px;
+        height: 130px;
+        margin-top: -60px;
+    }
+    #plus-icon {
+        height: 26px;
+        width: 26px;
+    }
+    .edit-button {
+        width: 26px;
+        height: 26px;
+    }
+    .profile-name {
+        font-size: 34px;
+        margin-top: 15px;
+    }
+    .profile-birthplace {
+        font-size: 17px;
+        margin-top: 15px;
+    }
+}
+
+@media screen and (max-width: 767px) and (min-width: 481px) {
+    .profile-header {
+        margin: 20px;
         border-radius: 20px;
     }
     .pro-img {
-        height: 80px;
+        height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 100%;
         border-radius: 20px;
     }
     .second-part-profile-header {
         padding: 0px 20px 20px 20px;
     }
-    .profile-image-and-edit {
-    }
     .profile-image {
-        width: 60px;
-        height: 60px;
-        margin-top: -30px;
+        width: 100px;
+        height: 100px;
+        margin-top: -50px;
     }
     #plus-icon {
-        font-size: 15px;
+        height: 22px;
+        width: 22px;
     }
     .edit-button {
-        width: 15px;
-        height: 15px;
-        vertical-align: middle;
+        width: 22px;
+        height: 22px;
     }
     .profile-name {
-        font-size: 20px;
+        font-size: 30px;
         margin-top: 10px;
     }
     .profile-birthplace {
-        font-size: 10px;
-        margin-top: 5px;
+        font-size: 15px;
+        margin-top: 10px;
+
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .profile-header {
+        margin: 10px 10px 10px 10px;
+        border-radius: 15px;
+    }
+    .pro-img {
+        border-radius: 15px;
+    }
+    .second-part-profile-header {
+        padding: 0px 20px 20px 20px;
+    }
+    .profile-image {
+        width: 80px;
+        height: 80px;
+        margin-top: -40px;
+    }
+    #plus-icon {
+        width: 20px;
+        height: 20px;
+    }
+    .edit-button {
+        width: 20px;
+        height: 20px;
+        vertical-align: middle;
+    }
+    .profile-name {
+        font-size: 26px;
+        margin-top: 10px;
+    }
+    .profile-birthplace {
+        font-size: 13px;
+        margin-top: 10px;
     }
 }
