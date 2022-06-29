@@ -1,23 +1,26 @@
 var editButton = document.querySelector(".edit-button");
 var modalBg = document.querySelector(".modal-bg");
+var bg_change_profile_picture = document.querySelector(".bg-change-profile-picture");
 
 editButton.addEventListener("click", function() {
     modalBg.style.display = "flex";
 });
 
-window.onclick = function(event) {
+window.addEventListener('click', function(event) {
     if (event.target == modalBg) {
-      modalBg.style.display = "none";
+        modalBg.style.display = "none";
     }
-}
-
-
+});
 
                 // OR //
 
 
-/*  window.addEventListener('click', function(event) {
-        if (event.target == modalBg) {
-            modalBg.style.display = "none";
-        }
-    })  */
+/* window.onclick = function(event) {
+    if (event.target == modalBg) {
+      modalBg.style.display = "none";
+    }
+} */
+
+
+
+                

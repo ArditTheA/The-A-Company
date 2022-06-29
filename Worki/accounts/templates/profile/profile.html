@@ -1,35 +1,59 @@
-{% extends 'base.html'%}
+{% extends 'base.html' %}
+
+<!DOCTYPE html>
 {% load static %}
-{% block content%}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authenticated Header</title>
     <link rel="stylesheet" href="{% static 'css/authenticated.css' %}">
-    <link rel="stylesheet" href="{% static 'css/profile-header.css' %}">
-    <link rel="stylesheet" href="{% static 'css/edit-profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/profile-header.css'%}">
+    <link rel="stylesheet" href="{% static 'css/edit-profile.css'%}">
+    <link rel="stylesheet" href="{% static 'css/add-profile-picture.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
+</head>
+
+       <style>
+        
+        select{
+            border-radius: 30px;
+    padding: 10px 0px 10px 10px;
+    font-size: 18px;
+    border: 0.5px solid #9E9E9E;
+    background-color: white;
+    width: 100%;
+    box-sizing: border-box;
+        }
+       </style>
         
        <div class="profile-header">
             <div id="example1">
-            <img class="pro-img" src="{{ user.cover.url }}" alt="">
+            <img class="pro-img" src="{% static 'img/end-web-01 2 (1).png' %}" alt="">
             </div>
             <div class="second-part-profile-header">
                 <div class="profile-image-and-edit">
                     <div class="profile-image-and-add-button">
-                        <a href="" title="Profile Picture" ><img class="profile-image" width="160" height="160" src="{{ user.profile.url }}" alt=""></a>
-                        <a href="" title="Add Profile Picture"><img src="{% static 'img/Asset 3.png' %}" width="30" height="30" id="plus-icon" alt=""></a>
+                        <a href="" title="Profile Picture" ><img class="profile-image" src="{{ user.profile.url }}" alt=""></a>
+                        <img src="{% static 'img/Asset 3.png' %}" title="Add Profile" id="plus-icon" alt="">
                     </div>
 
-                    <img  class="edit-button" title="Edit Profile"  src="{% static 'img/Ikona_edit-01 56.png' %}" alt="">
+                    <img class="edit-button" title="Edit Profile" src="{% static 'img/Ikona_edit-01.png' %}" alt="">
                 
                 </div>
-                <div class="profile-name"><span class="profile-firstname">{{ user.first_name }}</span> <span class="profile-surname">{{ user.last_name }}</span></div>
-                <div class="profile-birthplace"><span class="profile-city">{{ user.City }}</span><span>,{{ user.Country }}</div>
+                <div class="profile-name"><span class="profile-firstname">{{user.first_name}}</span> <span class="profile-surname">{{ user.last_name  }}</span></div>
+                <div class="profile-birthplace"><span class="profile-city">{{ user.City }}</span><span>,</span> <span class="profile-country">{{ user.Country}}</span>
+                </div>
             </div>
         </div>
         <div class="modal-bg">
             <div class="container">
                 <div class="under-container">
-                    <div class="exit-img">
-                    <img class="exit-button" src="{% static 'img/Vector 81 (1).png' %}" alt="">
+                    <div class="exit-img exit-img-edit-profile">
+                    <img class="exit-button exit-button-edit-profile" src="{% static 'img/Vector 81 (1).png' %}" alt="">
                     </div>
                     <h1 id="title">Edit Profile</h1>
                     <form method="post" enctype="multipart/form-data">
@@ -44,13 +68,16 @@
                            {{form.last_name}}
                            </div>
                            <div>
-                           <p class="paragraph-of-country paragraphs-stats">Country of residence</p>
+                           <p class="paragraph-of-country paragraphs-stats">Country</p>
                            {{form.Country}}
+
                            </div>
                            <div>
                            <p class="paragraph-of-city paragraphs-stats">City of residence</p>
                            {{form.City }}
+                           
                            </div>
+
                            
                         
                           <div class="save-button">
@@ -61,11 +88,50 @@
                 </div>
             </div>
         </div>
-    <script src="{% static 'js/profile_dropdown.js' %}"></script>
+        <div class="bg-change-profile-picture">
+            <div class="change-profile-picture">
+                <div class="exit-img exit-img-profile-picture">
+                    <img class="exit-button exit-button-profile-picture" src="{% static 'img/Vector 81 (1).png'%}" alt="">
+                </div>
+                <h2 class="change-profile-picture-title">Edit Profile Picture</h2>
+                <div class="div-of-changed-picture">
+                    <img class="changed-picture" src="{{user.profile.url}}" title="Profile Picture" alt="">
+                </div>
+                
+                    
+                       <form class="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                   <!-- <input class="form-control upload_profile_pic" accept="image/*" id="id_profile" type="file" name="userfile" class="form-control" style="color: #fff;" >  -->
+                            <div style="display: none;">
+                            {{form.first_name}}
+                            {{form.last_name}}
+                            {{form.cover}}
+                            {{form.City}}
+                            {{form.Country}}
+                            </div>
+                            {{form.profile}}
+                           <div class="save-button">
+                            <input name="save" type="submit" class="save-submit-input font-fam" value="Save">
+                        </div>
+
+                       </form>
+                    
+               
+            </div>
+        </div>
+</body>
+
+    <script src="{% static 'js/profile_dropdown.js'"></script>
 
     <script src="{% static 'js/edit-button.js' %}"></script>
 
     <script src="{% static 'js/change-profile.js' %}"></script>
 
-    <script src="{% static 'js/exit-button.js' %}"></script>
+    <script src="{% static 'js/exit-button.js'%}"></script>
+
+    <script src="{% static 'js/edit-button.js' %}"></script>
+    
+    <script src="{% static 'js/add-button.js' %}"></script>
+
+</html>
 {% endblock content %}

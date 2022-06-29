@@ -16,7 +16,6 @@ class Country(models.Model):
 
 
 class City(models.Model):
-    Country = models.ForeignKey(Country, on_delete=models.CASCADE)
     Name = models.CharField(max_length=255)
 
     def __str__(self):

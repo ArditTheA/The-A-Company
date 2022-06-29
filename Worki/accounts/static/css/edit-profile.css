@@ -85,7 +85,7 @@ body {
 }
 
 .exit-img {
-    margin-bottom: 40px;
+    padding-bottom: 40px;
 }
 
 .exit-button {
@@ -191,52 +191,7 @@ body {
 }
 
 @media screen and (max-width: 1024px) and (min-width: 768px) {
-    .container {
-        padding: 25px 35px 35px 35px;
-    }
-    .under-container {
-        width: 360px;
-    }
-    #title {
-        font-size: 36px;
-        width: 300px;
-        padding-bottom: 35px;
-    }
-    .mutual-stats, .city-input {
-        font-size: 17px;
-    }
-    .paragraphs-stats {
-        font-size: 15px;
-    }
-    .save-button {
-        padding-top: 35px;
-    }
-    .save-submit-input {
-        font-size: 17px;
-        padding: 8px 24px;
-    }
-    .exit-img {
-        margin-bottom: 35px;
-    }
-    .exit-button {
-        width: 17px;
-        height: 17px;
-    }
-    .first-paragraph, .second-paragraph {
-        padding-top: 18px;
-        padding-bottom: 18px;
-    }
-    .third-paragraph {
-        padding-top: 18px;
-    }
-    .first-paragraph, .second-paragraph, .third-paragraph {
-        font-size: 14px;
-    }
-    .name-input, .surname-input, .email-input, .password-input, .sign-up-submit-input, .sign-up-google {
-        font-size: 17px;
-        padding-top: 9px;
-        padding-bottom: 9px;
-    }
+    
 }
 
 @media screen and (max-width: 767px) and (min-width: 481px) {
@@ -245,7 +200,7 @@ body {
     }
 
     .under-container {
-        width: 320px;
+        width: 350px;
     }
     #title {
         font-size: 32px;
@@ -266,7 +221,7 @@ body {
         padding: 7px 21px;
     }
     .exit-img {
-        margin-bottom: 30px;
+        margin-bottom: 0;
     }
     .exit-button {
         width: 16px;
@@ -313,6 +268,7 @@ body {
         font-size: 30px;
         width: 100%;
         padding-bottom: 25px;
+        padding-top: 25px;
     }
     .mutual-stats {
         font-size: 14px;
@@ -328,7 +284,7 @@ body {
         padding: 7px 21px;
     }
     .exit-img {
-        margin-bottom: 25px;
+        padding-bottom: 0;
     }
     .exit-button {
         width: 14px;
