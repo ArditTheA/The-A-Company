@@ -8,18 +8,18 @@ from datetime import datetime
 from django.urls import reverse 
 
 class Country(models.Model):
-    Country = models.CharField(max_length=255)
+    country = models.CharField(max_length=255)
 
     def __str__(self):
-        return self.Country
+        return self.country
 
 
 
 class City(models.Model):
-    Name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
 
     def __str__(self):
-        return str(self.Name)
+        return str(self.name)
 
 class CustomUser(AbstractUser):
     sex_choice=[
@@ -31,10 +31,10 @@ class CustomUser(AbstractUser):
     profile = models.ImageField(upload_to="profile",default="download.jpg")
     cover = models.ImageField(upload_to="cover",default="default.png")
     sex = models.CharField(choices=sex_choice,max_length=10,null=True)
-    ProfileSetup = models.BooleanField(default=False)
-    City = models.ForeignKey(City,on_delete=models.CASCADE,null=True,blank=True)
-    Country = models.ForeignKey(Country,on_delete=models.CASCADE,null=True, blank=True)
-    PhoneNumber= models.CharField(max_length=255,null=True,blank=True)
+    profileSetup = models.BooleanField(default=False)
+    city = models.ForeignKey(City,on_delete=models.CASCADE,null=True,blank=True)
+    country = models.ForeignKey(Country,on_delete=models.CASCADE,null=True, blank=True)
+    phone_number= models.CharField(max_length=255,null=True,blank=True)
     def __str__(self):
         return self.email+" "+ self.first_name+" "+ self.last_name
     
@@ -42,55 +42,60 @@ class CustomUser(AbstractUser):
         return reverse("profile", kwargs={"pk": self.pk})
 
 class Languages(models.Model):
-    Language = models.CharField(max_length=255)
+    Llanguage = models.CharField(max_length=255)
 
     def __str__(self):
-        return self.Language
+        return self.language
 
 
 # Create your models here.
 
 class University(models.Model):
-    Name = models.CharField(max_length=500)
-    Location = models.ForeignKey(City,on_delete=models.CASCADE,default=1)
+    name = models.CharField(max_length=500)
+    location = models.ForeignKey(City,on_delete=models.CASCADE,default=1)
     def __str__(self):
-        return str(self.Name)+" | "+str(self.Location)
+        return str(self.name)+" | "+str(self.location)
 
 class UserExperiece(models.Model):
-    UserId = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    Title = models.CharField(max_length=500)
-    Company = models.CharField(max_length=255)
-    # Country = models.ForeignKey(country_names)
-    City = models.ForeignKey(City, on_delete=models.CASCADE)
-    StartDate = models.DateField()
-    EndDate = models.DateField(null=True)
+    user_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    title = models.CharField(max_length=500)
+    company = models.CharField(max_length=255)
+    Country = models.ForeignKey(Country,on_delete=models.CASCADE)
+    city = models.ForeignKey(City, on_delete=models.CASCADE)
+    start_date = models.DateField()
+    end_date = models.DateField(null=True)
 
     def __str__(self):
-        return str(self.UserId)+" : "+str(self.Title)
+        return str(self.user_id)+" : "+str(self.title)
 
 
 class UserEducation(models.Model):
-    UserId = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    University = models.ForeignKey(University, on_delete=models.CASCADE)
-    Degree = models.CharField(max_length=255)
-    FieldOfStudy = models.CharField(max_length=255)
-    StartYear = models.DateField()
-    EndYear = models.DateField()
-    TotalExamplesPassed = models.IntegerField(default=0)
+    user_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    university = models.ForeignKey(University, on_delete=models.CASCADE)
+    degree = models.CharField(max_length=255)
+    field_of_study = models.CharField(max_length=255)
+    start_year = models.DateField()
+    end_year = models.DateField()
+    total_examples_passed = models.IntegerField(default=0)
     GPA = models.FloatField(default=0.0)
     def __str__(self):
-        return str(self.UserId)+" | "+str(self.University)
+        return str(self.user_id)+" | "+str(self.university)
 
 class UserLanguages(models.Model):
     Level_Choice = {
-        ("Advanced", "Advanced")
+        ("Elementary proficiency", "Elementary proficiency"),
+        ("Limited working proficiency","Limited working proficiency"),
+        ("Professional working proficiency","Professional working proficiency"),
+        ("Full professional proficiency","Full professional proficiency"),
+        ("Native or bilingual proficiency","Native or bilingual proficiency")
+
     }
-    UserId = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    Language = models.ForeignKey(Languages, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    language = models.ForeignKey(Languages, on_delete=models.CASCADE)
     level = models.CharField(max_length=255, choices=Level_Choice)
 
     def __str__(self):
-        return str(self.UserId)+" | " + str(self.Language)+" | "+str(self.level)
+        return str(self.user_id)+" | " + str(self.language)+" | "+str(self.level)
 
 class Jobs(models.Model):
     TypeofWork = {
@@ -106,38 +111,38 @@ class Jobs(models.Model):
         ("Open","Open"),
         ("Close","Close"),
     }
-    JobTitle = models.CharField(max_length=255)
-    Company = models.CharField(max_length=255)
-    City = models.ForeignKey(City,on_delete=models.CASCADE)
-    SalaryPerHour = models.IntegerField()
-    TypeOfWork = models.CharField(max_length=50,choices=TypeofWork)
-    HourPerWork = models.IntegerField(default=0)
-    StartDate = models.DateField()
-    EndDate = models.DateField()
-    Housing = models.CharField(max_length=50,choices=Housing_type)
-    HousingCostPWeek = models.IntegerField()
-    Program = models.CharField(max_length=50,choices=Program_Type)
-    ProgramCost = models.IntegerField()
-    Logo = models.ImageField()
-    Description = models.TextField()
+    job_title = models.CharField(max_length=255)
+    company = models.CharField(max_length=255)
+    city = models.ForeignKey(City,on_delete=models.CASCADE)
+    salary_per_hour = models.IntegerField()
+    type_of_work = models.CharField(max_length=50,choices=TypeofWork)
+    hour_per_work = models.IntegerField(default=0)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    housing = models.CharField(max_length=50,choices=Housing_type)
+    housing_cost_per_week = models.IntegerField()
+    program = models.CharField(max_length=50,choices=Program_Type)
+    programCost = models.IntegerField()
+    logo = models.ImageField()
+    description = models.TextField()
 
-    Status = models.CharField(max_length=20,choices=Stat,default="Open")
-    PostDate = models.DateField(default=datetime.now())
-    UserId = models.ForeignKey(CustomUser,on_delete=models.CASCADE, null=True,blank=True)
-    Approved = models.BooleanField(default=False)
+    status = models.CharField(max_length=20,choices=Stat,default="Open")
+    postDate = models.DateField(default=datetime.now())
+    user_id = models.ForeignKey(CustomUser,on_delete=models.CASCADE, null=True,blank=True)
+    spproved = models.BooleanField(default=False)
 
     def __str__(self):
-        return str(self.JobTitle)+" | "+str(self.Company)
+        return str(self.job_title)+" | "+str(self.company)
 
 class Application(models.Model):
     Stat_type={
         ("Pennding","Pennding"),
         ("Read","Read")
     }
-    JobsId= models.ForeignKey(Jobs,on_delete=models.CASCADE)
-    UserId = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
-    ApplyDate = models.DateField()
-    Status = models.CharField(max_length=50,choices=Stat_type)
+    job_id= models.ForeignKey(Jobs,on_delete=models.CASCADE)
+    user_id = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
+    apply_date = models.DateField()
+    status = models.CharField(max_length=50,choices=Stat_type)
 
     def __str__(self):
-        return str(self.JobsId)+" | "+str(self.UserId)+" | "+str(self.ApplyDate)
+        return str(self.job_id)+" | "+str(self.user_id)+" | "+str(self.apply_date)

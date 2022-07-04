@@ -11,6 +11,7 @@
     <title>Authenticated Header</title>
     <link rel="stylesheet" href="{% static 'css/authenticated.css' %}">
     <link rel="stylesheet" href="{% static 'css/profile-header.css'%}">
+    <link rel="stylesheet" href="{% static 'css/edit.css'%}">
     <link rel="stylesheet" href="{% static 'css/edit-profile.css'%}">
     <link rel="stylesheet" href="{% static 'css/add-profile-picture.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -45,7 +46,7 @@
                 
                 </div>
                 <div class="profile-name"><span class="profile-firstname">{{user.first_name}}</span> <span class="profile-surname">{{ user.last_name  }}</span></div>
-                <div class="profile-birthplace"><span class="profile-city">{{ user.City }}</span><span>,</span> <span class="profile-country">{{ user.Country}}</span>
+                <div class="profile-birthplace"><span class="profile-city">{{ user.city }}</span><span>,</span> <span class="profile-country">{{ user.country}}</span>
                 </div>
             </div>
         </div>
@@ -69,16 +70,17 @@
                            </div>
                            <div>
                            <p class="paragraph-of-country paragraphs-stats">Country</p>
-                           {{form.Country}}
+                           {{form.country}}
 
                            </div>
                            <div>
                            <p class="paragraph-of-city paragraphs-stats">City of residence</p>
-                           {{form.City }}
+                           {{ form.city }}
                            
                            </div>
 
-                           
+
+                        
                         
                           <div class="save-button">
                             <input name="save" type="submit" class="save-submit-input font-fam" value="Save">
@@ -99,27 +101,58 @@
                 </div>
                 
                     
-                       <form class="" method="POST" enctype="multipart/form-data">
-                        {% csrf_token %}
-                   <!-- <input class="form-control upload_profile_pic" accept="image/*" id="id_profile" type="file" name="userfile" class="form-control" style="color: #fff;" >  -->
-                            <div style="display: none;">
-                            {{form.first_name}}
-                            {{form.last_name}}
-                            {{form.cover}}
-                            {{form.City}}
-                            {{form.Country}}
+                        <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                           <div style="display:none;">
+                                {{form.first_name}}
+                                {{form.last_name}}
+                                {{form.city}}
+                                {{form.country}}
                             </div>
-                            {{form.profile}}
-                           <div class="save-button">
+                           {{form.profile}}
+
+                        
+                        
+                          <div class="save-button">
                             <input name="save" type="submit" class="save-submit-input font-fam" value="Save">
                         </div>
-
-                       </form>
+                   
+                </form> 
                     
                
             </div>
         </div>
-</body>
+        
+        <div class="experience-main-div">
+            <div style="display: flex; flex-direction: column;">
+                <div class="experience-div">
+                    <div class="experience-paragraph-img-rows">
+                        <div class="aaa">
+                            <p class="experience-paragraph">Experience</p>
+                        {% for i in usExp %}
+                        <div class="experience-rows-img">
+                            <img class="amazon-img" src="{% static 'img/Logo (8).png' %}" alt="">
+                            <div class="experience-rows">
+                            <div class="experience-first-row">{{i.title}}</div>
+                            <div class="experience-second-row">{{i.company}}</div>
+                            <div class="experience-third-row">{{i.city}}, {{i.country}}</div>
+                            <div class="experience-fourth-row">{{i.start_date}}, {% if i.start_date == i.end_date %}Present{% elif i.end_date == null %} Present{{ i.end_date }} {% else %}  {{i.end_date}}{% endif %}</div>
+                            </div>
+                        </div>
+                        <br>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="add-and-edit-experience">
+                    <a href="../html/edit-experience.html"><img class="add-experience" title="Add Experience" src="{% static 'img/Vector 80.png' %}" alt=""></a>
+                    <img class="edit-experience" title="Edit Experience" src="{% static 'img/Ikona_edit-01.png' %}" alt="">
+                </div>
+            </div>
+            
+        </div>
+        </div>
+        
 
     <script src="{% static 'js/profile_dropdown.js'"></script>
 

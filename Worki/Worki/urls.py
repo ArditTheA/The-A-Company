@@ -49,7 +49,7 @@ urlpatterns = [
 
     #profile
 
-    path("profile/Edit/<int:pk>/",EditMainInfo.as_view(),name="profile"),
+    path("profile/",update_profile,name="profile"),
     
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

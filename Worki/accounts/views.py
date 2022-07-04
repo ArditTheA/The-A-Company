@@ -86,10 +86,31 @@ def password_reset_request(request):
 
 
 
-
+############################### Profile ##################################################
 #Edit
-class EditMainInfo(UpdateView):
-    model= CustomUser
-    form_class= EditProf
-    template_name="profile/profile.html"
+# class EditMainInfo(UpdateView):
+#     model= CustomUser
+#     form_class= EditProf
+#     template_name="profile/profile.html"
 
+
+def update_profile(request):
+    user_id = request.user.id
+    usExp = UserExperiece.objects.filter(user_id = user_id)
+    Cu = CustomUser.objects.get(id = user_id)
+    form = EditProf(request.POST or None,request.FILES or None,instance= Cu)
+    if form.is_valid():
+        form.save()
+        return redirect('profile')
+
+  
+
+    return render(request,'profile/profile.html',
+        {"usExp":usExp,
+        "form":form
+        })
+
+
+# def get_user_exp(request):
+#     usExp = UserExperiece.objects.filter(user_id = request.user.id)
+#     return render(request,{"usExp":usExp})
