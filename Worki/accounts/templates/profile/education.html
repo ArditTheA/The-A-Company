@@ -50,7 +50,7 @@
     <div class="add-experience">
         <div class="under-container">
             <div class="exit-img exit-img-edit-profile">
-                <a href="{% url 'editExprience'%}">
+                <a href="{% url 'editEdu'%}">
                     <img class="exit-button exit-button-edit-profile" src="{% static 'img/Vector 81 (1).png' %}" alt="">
                 </a>
             </div>
@@ -58,38 +58,41 @@
             <form method="POST" action="" class="sign-up-form">
                 {% csrf_token %}
                 <div style="display: none;">
-                    {{for_usExp.user_id}}
+                    {{edit.user_id}}
                 </div>
                 <div class="div-of-job-experience">
-                    <p class="paragraph-of-name paragraphs-stats">Job title *</p>
-                    {{for_usExp.title}}
+                    <p class="paragraph-of-name paragraphs-stats">University *</p>
+                    {{edit.university}}
                 </div>
 
                 <div>
-                    <p class="paragraph-of-surname paragraphs-stats">Company *</p>
-                    {{for_usExp.company}}
+                    <p class="paragraph-of-surname paragraphs-stats">Degree *</p>
+                    {{edit.degree}}
                 </div>
                 <div>
-                    <p class="paragraph-of-country paragraphs-stats">Country *</p>
-                    {{for_usExp.Country}}
+                    <p class="paragraph-of-country paragraphs-stats">Field Of Study *</p>
+                    {{edit.field_of_study}}
                 </div>
                 <div>
-                    <p class="paragraph-of-city paragraphs-stats">City *</p>
-                    {{for_usExp.city_usExp}}
+                    <p class="paragraph-of-country paragraphs-stats">Total Examp Passed *</p>
+                    {{edit.total_examples_passed}}
                 </div>
+                <div>
+                    <p class="paragraph-of-country paragraphs-stats">GPA *</p>
+                    {{edit.GPA}}
+                </div>
+                
                 <div>
 
                     <div style="display: flex; justify-content: space-between;">
                         <div style="width: 48%;">
                             <p class="paragraphs-stats paragraph-of-start-date">Start date</p>
-                            <input type="date" name="start_date" class="start-date-input mutual-stats font-fam"
-                                required="" id="id_start_date">
+                            {{edit.start_year}}
                         </div>
                         <div style="width: 48%;
                     float: right;">
                             <p class="paragraphs-stats paragraph-of-end-date">End date</p>
-                            <input type="date" name="end_date" class="end-date-input mutual-stats font-fam" 
-                                id="id_end_date">
+                            {{edit.end_year}}
                         </div>
                     </div>
                     </div>

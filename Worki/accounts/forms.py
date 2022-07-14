@@ -29,8 +29,8 @@ class add_user_edu(ModelForm):
         widgets ={
             "degree": forms.TextInput(attrs={'class':'name-input mutual-stats font-fam'}),
             "field_of_study": forms.TextInput(attrs={'class':'name-input mutual-stats font-fam'}),
-            "start_date": forms.DateInput(attrs={"class":"start-date-input mutual-stats font-fam","type":"date"}),
-            "end_date": forms.DateInput(attrs={"class":"end-date-input mutual-stats font-fam","type":"date","required":"false"}),
+            "start_year": forms.DateInput(attrs={"class":"start-date-input mutual-stats font-fam","type":"date"}),
+            "end_year": forms.DateInput(attrs={"class":"end-date-input mutual-stats font-fam","type":"date"}),
             "total_examples_passed": forms.NumberInput(attrs={'class':'name-input mutual-stats font-fam'}),
             "GPA": forms.NumberInput(attrs={'class':'name-input mutual-stats font-fam'}),
 

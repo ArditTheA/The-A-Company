@@ -164,7 +164,9 @@ def Edit_user_expId(request,pk):
 def Edit_user_edu(request):
     user_id = request.user.id
     userEdu = UserEducation.objects.filter(user_id = user_id)
-    edit = EditUserEdu(request.POST or None)
+    edit = add_user_edu(request.POST or None)
+    
+
     if edit.is_valid():
         edit.save()
         return redirect("editEdu")
@@ -191,7 +193,13 @@ def Edit_user_EduId(request,pk):
 def Edit_user_language(request):
     user_id = request.user.id
     User_lang = UserLanguages.objects.filter(user_id=user_id)
-    return render(request,"profile/language.html",{"User_lang":User_lang})
+    edit = add_user_language(request.POST or None)
+    if edit.is_valid():
+        edit.save()
+        return redirect("editLanguage")
+    if(user_id != ''):
+        edit.initial['user_id']=user_id
+    return render(request,"profile/language.html",{"User_lang":User_lang,"edit":edit})
 
 def Edit_User_langId(request,pk):
     user_id = request.user.id
