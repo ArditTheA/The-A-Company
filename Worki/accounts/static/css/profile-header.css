@@ -4,10 +4,37 @@ body {
     font-family: 'Spline Sans', sans-serif;
 }
 
+select {
+    border-radius: 30px;
+    padding: 10px 0px 10px 10px;
+    font-size: 18px;
+    border: 0.5px solid #9E9E9E;
+    background-color: white;
+    width: 100%;
+    box-sizing: border-box;
+}
+
 .profile-header {
     margin: 20px 40px 20px 40px;
     background-color: white;
     border-radius: 40px;
+    position: relative;
+}
+
+#example1:hover {  /*  =>  main-div   */
+    filter: brightness(0.92);
+}
+
+.edit-button-cover {
+    display: none;
+}
+
+.pro-img:hover + .edit-button-cover {
+    display: inline-block;
+}
+  
+.edit-button-cover:hover {
+    display: block;
 }
 
 .profile-image-and-edit {
@@ -44,21 +71,34 @@ body {
     cursor: pointer;
 }
 
+.edit-button-cover {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 40px;
+    top: 30px;
+    cursor: pointer;
+}
+
+
 .example1 {
     height: 250px;
 }
 
 .pro-img {
-    height: 100%;
+    height: 250px;
     background-image: url({{}});
     background-color: #cccccc;
     width: 100%;
     border-radius: 40px;
     vertical-align: middle;
+    object-fit: cover;
+    background-size: cover;
 }
 
 .second-part-profile-header {
     padding: 0px 40px 40px 40px;
+    position: relative;
 }
 
 .profile-name {
@@ -74,6 +114,9 @@ body {
     cursor: pointer;
 }
 
+.edit-button-cover {
+    position: absolute;
+}
 .profile-birthplace, .profile-birthplace1 {
     margin-top: 15px;
     color: #858585;
@@ -83,19 +126,123 @@ body {
     font-size: 20px;
 }
 
+.plus-icon-experience {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+.experience {
+    font-family: 'Spline Sans', sans-serif;
+}
+.experience-education-img {
+    width: 60px;
+    height: 60px;
+    vertical-align: middle;
+    margin-top: 0;
+    margin-right: 30px;
+}
+.experience-education-languages {
+    margin: 20px 40px 20px 40px; 
+    border-radius: 40px; 
+    background-color: white;
+}
+.different_exp {
+    position: relative
+}
+.experience-div, .education-div {
+    display: flex; 
+    align-items: flex-start; 
+    justify-content: space-between; 
+    width: 100%;
+}
+.experience-paragraph {
+    margin: 0; 
+    font-size: 20px; 
+    margin-bottom: 0; 
+}
+.experience-paragraph-img-rows {
+    width: 100%;
+    display: flex; 
+    flex-direction: column; 
+    padding: 40px 0px 40px 40px;
+}
+.experience-rows-img {
+    height: 100%; 
+    display: flex;
+    margin-top: 40px;
+}
+.experience-rows {
+    display: flex; 
+    flex-direction: column; 
+    margin: 0;
+}
+.two-imgs-experience {
+    position: absolute; 
+    right: 40px;
+}
+.language-rate {
+    margin-top: 5px;
+}
+.experience-first-row {
+    margin-top: 0; 
+    font-size: 20px; 
+    color: #131419; 
+    padding-bottom: 5px;
+}
+.experience-second-row {
+    margin: 0; 
+    font-size: 18px; 
+    padding-bottom: 5px; 
+    color: #1877F2;
+}
+.experience-third-row {
+    font-size: 18px; 
+    padding-bottom: 5px; 
+    color: #858585;
+}
+.experience-fourth-row {
+    font-size: 18px; 
+    color: #858585;
+}
+.add-and-edit-experience {
+    display: flex; 
+    padding-right: 40px; 
+    padding-top: 40px;
+}
+.add-experience-button {
+    width: 30px;
+    height: 30px; 
+    margin-right: 12px; 
+    cursor: pointer;
+}
+.margin-right-back-icon {
+    margin-right: 20px;
+    color: #939598;
+}
+.edit-experience {
+    width: 30px; 
+    height: 30px; 
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.plus-button-exp {
+    margin-right: 0;
+}
+.exp-experience {
+}
+
+.back-icon {
+height: 30px; 
+vertical-align: middle; 
+margin-right: 20px;
+}
+
 @media screen and (max-width: 1024px) and (min-width: 768px) {
     .profile-header {
         margin: 20px 30px 20px 30px;
     }
     .pro-img {
-        background-image: url({{}});
-        background-color: #cccccc;
-        height: 100%;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        width: 100%;
-        border-radius: 30px;
     }
     .profile-image-and-add-button {
     }
@@ -108,26 +255,22 @@ body {
         padding: 0px 0px 30px 0px;
         width: 100%;
     }
-    .profile-image {
-        margin-top: -70px;
-    }
     #plus-icon {
-        height: 26px;
-        width: 26px;
     }
     .edit-button {
-        width: 26px;
-        height: 26px;
-        margin-top: 15px;
+        position: absolute;
+        right: 40px;
+        bottom: 30px;
     }
     .profile-name {
         margin-top: 0px;
-        margin-top: 15px;
         text-align: center;
+        margin-top: 15px;
+        margin-bottom: 15px;
     }
     .profile-birthplace {
-        margin-top: 15px;
         text-align: center;
+        margin-top: 0;
     }
 }
 
@@ -158,14 +301,16 @@ body {
         height: 140px;
     }
     #plus-icon {
-        height: 22px;
-        width: 22px;
+        height: 26px;
+        width: 26px;
     }
     .edit-button {
-        width: 22px;
-        height: 22px;
-        margin-top: 10px;
-    }
+        position: absolute;
+        right: 30px;
+        bottom: 20px;
+        width: 26px;
+        height: 26px;
+    }    
     .profile-name {
         margin-top: 10px;
         text-align: center;
@@ -174,12 +319,53 @@ body {
         margin-top: 10px;
         text-align: center;
     }
+    .experience-education-languages {
+        margin: 0px 20px 20px 20px; 
+    }
+    .experience-paragraph-img-rows {
+        padding: 30px 0px 30px 30px;
+    }
+    .experience-rows-img {
+        margin-top: 30px;
+    }
+    .add-experience-button {
+        width: 26px;
+        height: 26px;
+    }
+    .edit-experience {
+        width: 26px;
+        height: 26px;
+    }
+    
+    .experience-education-img {
+    margin-right: 25px;
+    }
+    .add-and-edit-experience {
+        padding-top: 30px;
+        padding-right: 30px;
+    }
+    .second-experience-div {
+        margin-top: 20px;
+    }
+    .second-rows-img {
+        margin-top: 10px;
+    }
+    .back-icon {
+        width: 26px;
+        height: 26px;
+    }
+    .two-imgs-experience {
+        position: absolute; 
+        right: 30px;    
+    }
 }
 
 @media screen and (max-width: 480px) {
+    .profile-header, .experience-div {
+        border-radius: 20px;
+    }
     .profile-header {
-        margin: 10px 10px 10px 10px;
-        border-radius: 15px;
+        margin: 10px;
     }
     .profile-image-and-edit {
         display: flex;
@@ -190,31 +376,89 @@ body {
         border-radius: 15px;
     }
     .second-part-profile-header {
-        padding: 0px 0px 15px 0px;
+        padding: 0px 0px 20px 0px;
     }
     .profile-image {
         width: 100px;
         height: 100px;
         margin-top: -50px;
     }
-    #plus-icon {
-        width: 20px;
-        height: 20px;
+    #plus-icon, .add-experience-button {
+        width: 22px;
+        height: 22px;
     }
     .edit-button {
-        width: 20px;
-        height: 20px;
         vertical-align: middle;
         margin-top: 10px;
+        position: absolute;
+        right: 30px;
+        bottom: 20px;
+    }
+    .edit-button, .edit-experience {
+        width: 22px;
+        height: 22px;
     }
     .profile-name {
-        font-size: 26px;
+        font-size: 30px;
         margin-top: 10px;
         text-align: center;
     }
     .profile-birthplace {
-        font-size: 13px;
+        font-size: 16px;
         margin-top: 10px;
         text-align: center;
+    }
+    .experience-education-languages {
+        margin: 0px 10px 10px 10px; 
+        border-radius: 20px;
+    }
+    .experience-paragraph-img-rows {
+        padding: 30px 0px 30px 30px;
+    }
+    .experience-paragraph {
+        margin-bottom: 30px;
+    }
+    .add-and-edit-experience {
+        padding-right: 30px;
+        padding-top: 30px;
+    }
+    .experience-education-img {
+        margin-right: 20px;
+    }
+    .back-icon {
+        height: 22px;
+    }
+    .second-experience-div {
+        margin-top: 10px;
+    }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+    .experience-education-languages {
+        margin: 0px 30px 20px 30px; 
+    }
+    .experience-paragraph-img-rows {
+        padding: 40px 0px 40px 40px;
+    }
+    .experience-rows-img {
+        margin-top: 30px;
+    }
+    .add-experience-button {
+        width: 28px;
+        height: 28px;
+    }
+    .edit-experience {
+        width: 28px;
+        height: 28px;
+    }
+    .experience-education-img {
+        margin-right: 30px;
+        }
+    .add-and-edit-experience {
+        padding-top: 40px;
+        padding-right: 40px;
+    }
+    .back-icon {
+        width: 28px;
     }
 }

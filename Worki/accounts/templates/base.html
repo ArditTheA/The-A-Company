@@ -12,11 +12,11 @@
     <link rel="stylesheet" href="{% static 'css/profile-header.css'%}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     {% if user.is_authenticated %}
-    <header id="header-border">
-        <img id="worki-image" src="{% static 'img/Worki_Logo.png'%}" title="Worki_Logo">
+    <header class="header-border">
+        <a href="{% url 'home'%}"><img id="worki-image" src="{% static 'img/Worki_Logo_Black.png' %}" title="Worki"></a>
         <div id="jobs-and-profile">
-          <a href="#"><img class="jobs-icon-button" title="Jobs" src="{% static 'img/JOBS_icon.png'%}"></a>
-            <img src="{{user.profile.url}}" id="profile-image-button" class="profilePic"title="Profile" alt="">
+        <a href="#"><img class="jobs-icon-button" title="Jobs" src="{% static 'img/JOBS_Icon.png' %}"></a>
+            <img src="{{user.profile.url}}" id="profile-image-button" title="Profile" alt="">
         </div>
     </header>
     <div class="dropdown">
@@ -26,9 +26,12 @@
      </div>
     {% else %}
          <header id="header-border">
-            <img id="worki-image" src="{% static 'img/Worki_Logo.png'%}" alt="" title="Worki_Logo">
+            <a href="{% url 'home'%}">
+                <img id="worki-image" src="{% static 'img/Worki_Logo_Black.png' %}" title="Worki">
+            </a>
+            
             <div id="img-and-buttons">
-                <a href="#"><img class="jobs-icon-button" title="Jobs" src="{% static 'img/JOBS_icon copy 1.png'%}" alt=""></a>
+                <img class="jobs-icon-button" title="Jobs" src="{% static 'img/JOBS_Icon.png'%}" alt="">
                 <a href="{% url 'login' %}"><button id="sign-in-button">Sign in</button></a> 
                 <a href="{% url 'register' %}"><button id="sign-up-button">Create Account</button></a>
             </div>

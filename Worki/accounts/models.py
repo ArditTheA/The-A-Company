@@ -1,6 +1,7 @@
 from distutils.command.upload import upload
 from email.policy import default
 from hashlib import blake2b
+from tkinter.tix import Tree
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
@@ -17,6 +18,7 @@ class Country(models.Model):
 
 class City(models.Model):
     name = models.CharField(max_length=255)
+    country = models.ForeignKey(Country,on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.name)
@@ -42,7 +44,7 @@ class CustomUser(AbstractUser):
         return reverse("profile", kwargs={"pk": self.pk})
 
 class Languages(models.Model):
-    Llanguage = models.CharField(max_length=255)
+    language = models.CharField(max_length=255)
 
     def __str__(self):
         return self.language
@@ -61,9 +63,9 @@ class UserExperiece(models.Model):
     title = models.CharField(max_length=500)
     company = models.CharField(max_length=255)
     Country = models.ForeignKey(Country,on_delete=models.CASCADE)
-    city = models.ForeignKey(City, on_delete=models.CASCADE)
+    city_usExp = models.ForeignKey(City, on_delete=models.CASCADE)
     start_date = models.DateField()
-    end_date = models.DateField(null=True)
+    end_date = models.DateField(null=True,blank=True)
 
     def __str__(self):
         return str(self.user_id)+" : "+str(self.title)
@@ -75,7 +77,7 @@ class UserEducation(models.Model):
     degree = models.CharField(max_length=255)
     field_of_study = models.CharField(max_length=255)
     start_year = models.DateField()
-    end_year = models.DateField()
+    end_year = models.DateField(null=True,blank=True)
     total_examples_passed = models.IntegerField(default=0)
     GPA = models.FloatField(default=0.0)
     def __str__(self):
@@ -113,7 +115,7 @@ class Jobs(models.Model):
     }
     job_title = models.CharField(max_length=255)
     company = models.CharField(max_length=255)
-    city = models.ForeignKey(City,on_delete=models.CASCADE)
+    city_j = models.ForeignKey(City,on_delete=models.CASCADE)
     salary_per_hour = models.IntegerField()
     type_of_work = models.CharField(max_length=50,choices=TypeofWork)
     hour_per_work = models.IntegerField(default=0)

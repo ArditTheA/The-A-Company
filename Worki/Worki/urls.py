@@ -35,6 +35,10 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('',HomeTemp,name='home'),
     path("TermsAndCondition/",Terms,name="terms"),
+
+
+
+            
     # forget password
 
     path('reset_password/',password_reset_request, name="reset_password"),
@@ -47,9 +51,16 @@ urlpatterns = [
     
     path("password/change/",passChange.as_view(template_name="accounts/change_password.html"),name="password_change"),
 
-    #profile
 
+
+    #profile
     path("profile/",update_profile,name="profile"),
-    
+    path("profile/Experience",Edit_user_exp,name="editExprience"),    
+    path("profile/Experience/<int:pk>",Edit_user_expId,name="editExprienceId"),    
+    path("profile/Education/",Edit_user_edu,name="editEdu"),
+    path("profile/Education/<int:pk>/",Edit_user_EduId,name="editEduId"),
+    path("profile/language/",Edit_user_language,name="editLanguage"),
+    path("profile/language/<int:pk>/",Edit_User_langId,name="editLanguageId"),
+
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

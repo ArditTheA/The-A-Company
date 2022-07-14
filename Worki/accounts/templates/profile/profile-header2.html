@@ -1,0 +1,175 @@
+{% extends 'base.html'%}
+{% block content %}
+{% load static %}
+
+    
+
+    <link rel="stylesheet" href="{% static 'css/authenticated.css'%}">
+    <link rel="stylesheet" href="{% static 'css/profile-header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/edit-profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/add-profile-picture.css'%}">
+    <link rel="stylesheet" href="{% static 'css/experience-font-family.css'%}">
+    <link rel="stylesheet" href="{% static 'css/add-experience.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+
+
+
+
+<div class="profile-header">
+    <div id="example1">
+    <img class="pro-img" src="{{user.cover.url}}" alt="">
+    <img class="edit-button-cover" title="Edit Cover" src="{% static 'img/Ikona_edit-01.png'%}" alt="">
+    </div>
+    <div class="second-part-profile-header">
+        <div class="profile-image-and-edit">
+            <div class="profile-image-and-add-button">
+                <a href="" title="Profile Picture" ><img class="profile-image" src="{{user.profile.url}}" alt=""></a>
+                <img src="{% static 'img/Asset 3.png'%}" title="Add Profile" id="plus-icon" alt="">
+            </div>
+
+            <img class="edit-button" title="Edit Profile" src="{% static 'img/Ikona_edit-01.png'%}" alt="">
+        </div>
+        <div class="profile-name"><span class="profile-firstname">{{user.first_name}}</span> <span class="profile-surname">{{user.last_name}}</span></div>
+        <div class="profile-birthplace"><span class="profile-city">{{user.city}}</span><span>,</span> <span class="profile-country">{{user.country}}</span>
+        </div>
+    </div>
+</div>
+
+<div class="experience-main-div">
+<div class="experience-div">
+    <div class="experience-paragraph-img-rows">
+        <div class="aaa">
+        <p class="experience-paragraph">Experience</p>
+        {% for i in usExp%}
+        <div class="experience-rows-img">
+            <img class="amazon-img" src="{% static 'img/Logo (9).png'%}" alt="">
+            <div class="experience-rows">
+                <div class="experience-first-row">{{i.title}}</div>
+                <div class="experience-second-row">{{i.company}}</div>
+                <div class="experience-third-row">{{i.city_usExp}}, {{i.Csountry}}</div>
+                <div class="experience-fourth-row">{{i.start_date}}, {% if i.start_date == i.end_date %}Present{% elif i.end_date == null %} Present {% else %}  {{i.end_date}}{% endif %}</div>
+                </div>
+        </div><br>
+        {% endfor %}
+    </div>
+    </div>
+    <div class="add-and-edit-experience">
+        <img class="add-experience-button" title="Add Experience" src="{% static 'img/Vector 80.png'%}" alt="">
+        <img class="edit-experience" title="Edit Experience" src="{% static 'img/Ikona_edit-01.png'%}" alt="">
+    </div>
+</div>
+
+</div>
+
+
+<div class="edit-profile-bg">
+    <div class="container-edit-profile">
+        <div class="under-container-edit-profile">
+            <div class="exit-img exit-img-edit-profile">
+            <img class="exit-button exit-button-edit-profile" src="{% static 'img/Vector 81 (1).png'%}" alt="">
+            </div>
+            <h1 id="title">Edit Profile</h1>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                       <div style="margin: 0;">
+                       <p class="paragraph-of-name paragraphs-stats">First name</p>
+                       {{form.first_name}}
+                       </div>
+                       <div>
+                       <p class="paragraph-of-surname paragraphs-stats">Last name</p>
+                       {{form.last_name}}
+                       </div>
+                       <div>
+                       <p class="paragraph-of-country paragraphs-stats">Country</p>
+                       {{form.country}}
+
+                       </div>
+                       <div>
+                       <p class="paragraph-of-city paragraphs-stats">City of residence</p>
+                       {{ form.city }}
+                       
+                       </div>
+
+
+                    
+                    
+                      <div class="save-button">
+                        <input name="save" type="submit" class="save-submit-input font-fam" value="Save">
+                    </div>
+               
+            </form> 
+        </div>
+    </div>
+</div>
+<div class="bg-change-profile-picture">
+    <div class="change-profile-picture">
+        <div class="exit-img exit-img-profile-picture">
+            <img class="exit-button exit-button-profile-picture" src="{% static 'img/Vector 81 (1).png'%}" alt="">
+        </div>
+        <h2 class="change-profile-picture-title">Edit Profile Picture</h2>
+        <div class="div-of-changed-picture">
+            <img class="changed-picture" src="{{user.profile.url}}" title="Profile Picture" alt="">
+        </div>
+        
+            
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+                   <div style="display:none;">
+                        {{form.first_name}}
+                        {{form.last_name}}
+                        {{form.city}}
+                        {{form.country}}
+                    </div>
+                   {{form.profile}}
+
+                
+                
+                  <div class="save-button">
+                    <input name="save" type="submit" class="save-submit-input font-fam" value="Save">
+                </div>
+           
+        </form> 
+            
+    </div>+
+</div>
+
+<div class="bg-add-experience">
+<div class="add-experience">
+    <div class="under-container">
+        <div class="exit-img exit-img-edit-profile">
+            <a href="">
+                <img class="exit-button exit-button-edit-profile" src="{% static 'img/Vector 81 (1).png'%}" alt="">
+            </a>
+        </div>    
+        <h1 id="title-experience">Edit Experience</h1>
+        <form method="POST" action="" class="sign-up-form">
+            {% csrf_token %}
+            <div style="display:none;">
+                {{form}}
+            </div>
+            {{for_usExp}}
+            <button type="submit"></button>
+        </form>
+    </div>
+</div>
+</div>
+
+    <script src="{% static 'js/profile_dropdown.js' %}"></script>
+
+    <script src="{% static 'js/edit-button.js'%}"></script>
+
+    <script src="{% static 'js/change-profile.js' %}"></script>
+
+    <script src="{% static 'js/exit-button.js'%}"></script>
+
+    <script src="{% static 'js/edit-button.js'%}"></script>
+    
+    <script src="{% static 'js/add-button.js'%}"></script>
+
+    <script src="{% static 'js/add-experience-button.js'%}"></script>
+
+</html>
+{% endblock content %}

@@ -62,7 +62,7 @@ def password_reset_request(request):
                     email_template_name='accounts/password_reset_email.txt'
                     parameter ={
                         'email':user.email,
-                        'domain': '192.168.0.180',
+                        'domain': 'worki.global',
                         'site_name': 'Worki',
                         'uid':urlsafe_base64_encode(force_bytes(user.pk)),
                         'token':default_token_generator.make_token(user),
@@ -87,30 +87,121 @@ def password_reset_request(request):
 
 
 ############################### Profile ##################################################
-#Edit
-# class EditMainInfo(UpdateView):
-#     model= CustomUser
-#     form_class= EditProf
-#     template_name="profile/profile.html"
-
 
 def update_profile(request):
     user_id = request.user.id
     usExp = UserExperiece.objects.filter(user_id = user_id)
+    usEdu = UserEducation.objects.filter(user_id=user_id)
+    usLang = UserLanguages.objects.filter(user_id=user_id)
     Cu = CustomUser.objects.get(id = user_id)
     form = EditProf(request.POST or None,request.FILES or None,instance= Cu)
-    if form.is_valid():
+    for_usExp = add_user_Exp(request.POST or None)
+    form_usLang = add_user_language(request.POST or None)
+    form_usEdu = add_user_edu(request.POST or None)
+
+    if for_usExp.is_valid() or form.is_valid() or form_usLang.is_valid() or form_usEdu.is_valid():
         form.save()
-        return redirect('profile')
+        if for_usExp.is_valid():
+            for_usExp.save()
+        if form_usLang.is_valid():
+            form_usLang.save()
+        if form_usEdu.is_valid():
+            form_usEdu.save()
+        return redirect("profile")
+    
 
+    if (user_id != ''):
+        
+        for_usExp.initial['user_id'] = Cu.id
+        form_usLang.initial['user_id'] = Cu.id
+        form_usEdu.initial['user_id'] = Cu.id
   
-
     return render(request,'profile/profile.html',
         {"usExp":usExp,
-        "form":form
+        "usEdu":usEdu,
+        "form":form,
+        "for_usExp":for_usExp,
+        "usLang":usLang,
+        "form_usLang":form_usLang,
+        "form_usEdu":form_usEdu,
         })
 
 
-# def get_user_exp(request):
-#     usExp = UserExperiece.objects.filter(user_id = request.user.id)
-#     return render(request,{"usExp":usExp})
+################Edit user Experience ####################333
+
+def Edit_user_exp(request):
+    user_id = request.user.id
+    userExp = UserExperiece.objects.filter(user_id = request.user.id)
+    
+    for_usExp = add_user_Exp(request.POST or None)
+    
+    if for_usExp.is_valid():
+        for_usExp.save()
+        
+        return redirect("editExprience")
+    
+    if (user_id != ''):
+        
+        for_usExp.initial["user_id"]=user_id
+
+    return render(request,"profile/experiences.html",{"userExp":userExp,"for_usExp":for_usExp})
+def Edit_user_expId(request,pk):
+    user_id = request.user.id
+    userExp = UserExperiece.objects.filter(user_id=user_id)
+    usExp = UserExperiece.objects.get(id = pk)
+    edit = EditExperience(request.POST or None, instance=usExp)
+    
+    if edit.is_valid():
+        edit.save()
+        return redirect("editExprience")
+    
+    return render(request,"profile/expreriencesId.html",{"userExp":userExp,"edit":edit})
+
+
+ 
+
+################ Edit profile Education ##############3
+def Edit_user_edu(request):
+    user_id = request.user.id
+    userEdu = UserEducation.objects.filter(user_id = user_id)
+    edit = EditUserEdu(request.POST or None)
+    if edit.is_valid():
+        edit.save()
+        return redirect("editEdu")
+    if(user_id != ''):
+        edit.initial['user_id'] = user_id
+    return render(request,"profile/education.html",{"edit":edit,"userEdu":userEdu})
+
+def Edit_user_EduId(request,pk):
+    user_id = request.user.id
+    userEdu = UserEducation.objects.filter(user_id=user_id)
+    usEdu = UserEducation.objects.get(id= pk)
+    edit = EditUserEdu(request.POST or None,instance=usEdu)
+    if edit.is_valid():
+        edit.save()
+        return redirect("editEdu")
+    if(user_id != ''):
+        edit.initial['user_id']=user_id
+    return render(request,"profile/educationId.html",{"edit":edit,"userEdu":userEdu})
+
+
+
+
+############# Edit Profile Language ##############
+def Edit_user_language(request):
+    user_id = request.user.id
+    User_lang = UserLanguages.objects.filter(user_id=user_id)
+    return render(request,"profile/language.html",{"User_lang":User_lang})
+
+def Edit_User_langId(request,pk):
+    user_id = request.user.id
+    User_lang = UserLanguages.objects.filter(user_id=user_id)
+    usL = UserLanguages.objects.get(id=pk)
+    edit = EditUserLang(request.POST or None,instance=usL)
+    if edit.is_valid():
+        edit.save()
+        return redirect("editLanguage")
+    if(user_id != ''):
+        edit.initial['user_id'] = user_id
+
+    return render(request,"profile/languageId.html",{"edit":edit,"User_lang":User_lang})

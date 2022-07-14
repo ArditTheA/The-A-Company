@@ -15,7 +15,7 @@ cityEdit.value = city.textContent;
 countryEdit.value = country.textContent;
 
 var saveButton = document.querySelector(".save-submit-input");
-var modalBg = document.querySelector(".modal-bg");
+var modalBg = document.querySelector(".edit-profile-bg");
 
 saveButton.addEventListener('click', function() {
     nameP.textContent = nameEdit.value;

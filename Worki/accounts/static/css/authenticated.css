@@ -54,6 +54,7 @@ body {
     transition: .5s ease;
     position: absolute;
     right: 0;
+    z-index: 2;
 }
 
 .dropdown-content {

@@ -1,6 +1,6 @@
 var addButton = document.querySelector("#plus-icon");
 var editButton = document.querySelector(".edit-button");
-var modalBg = document.querySelector(".modal-bg");
+var modalBg = document.querySelector(".edit-profile-bg");
 var container = document.querySelector(".container");
 var change_profile_picture = document.querySelector(".change-profile-picture");
 
