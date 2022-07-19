@@ -1,14 +1,11 @@
 {% extends 'base.html'%}
 {% load static %}
 {% block content %}
-
-
-
 <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Authenticated Header</title>
-<link rel="stylesheet" href="{% static 'css/authenticated.css' %}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="{% static 'css/authenticated.css' %}">
 <link rel="stylesheet" href="{% static 'css/profile-header.css' %}">
 <link rel="stylesheet" href="{% static 'css/edit-profile.css' %}">
 <link rel="stylesheet" href="{% static 'css/add-profile-picture.css' %}">
@@ -18,76 +15,42 @@
 <link rel="stylesheet" href="{% static 'css/edit-cover.css' %}">
 
 
-
-<div class="profile-header">
-    <div id="example1">
-        <img class="pro-img" src="{{user.cover.url}}" alt="">
-        <img class="edit-button-cover" title="Edit Cover Picture" src="{% static 'img/Ikona_edit-01 56.png' %}" alt="">
-    </div>
-    <div class="second-part-profile-header">
-        <div class="profile-image-and-edit">
-            <div class="profile-image-and-add-button">
-                <a href="" title="Profile Picture"><img class="profile-image" src="{{user.profile.url}}" alt=""></a>
-                <img src="{% static 'img/Asset 3.png' %}" title="Add Profile" id="plus-icon" alt="">
+       
+        
+       <div class="profile-header">
+            <div id="example1">
+            <img class="pro-img" src="{{user.cover.url}}" alt="">
+            <img class="edit-button-cover" title="Edit Cover Picture" src="{% static 'img/Ikona_edit-01 56.png' %}" alt="">
             </div>
+            <div class="second-part-profile-header">
+                <div class="profile-image-and-edit">
+                    <div class="profile-image-and-add-button">
+                        <a href="" title="Profile Picture" ><img class="profile-image" src="{{user.profile.url}}" alt=""></a>
+                        <img src="{% static 'img/Asset 3.png' %}" title="Add Profile" id="plus-icon" alt="">
+                    </div>
 
-            <img class="edit-button" title="Edit Profile" src="{% static 'img/Ikona_edit-01 56.png' %}" alt="">
-        </div>
-        <div class="profile-name"><span class="profile-firstname">{{user.first_name}}</span> <span
-                class="profile-surname">{{user.last_name}}</span></div>
-        <div class="profile-birthplace"><span class="profile-city">{{user.city}}</span><span>,</span> <span
-                class="profile-country">{{user.country}}</span>
-        </div>
-    </div>
-</div>
-
-
-
-<div class="experience-main-div experience-education-languages">
-    <div class="experience-div">
-        <div class="experience-paragraph-img-rows">
-            <div class="aaa">
-            <p class="experience-paragraph">Experience</p>
-            {% for i in usExp %}
-            <div class="experience-rows-img">
-                <img class="experience-education-img" src="{% static 'img/Logo (9).png' %}" alt="">
-                <div class="experience-rows">
-                <div class="experience-first-row">{{i.title}}</div>
-                <div class="experience-second-row">{{i.company}}</div>
-                <div class="experience-third-row">{{i.city_usExp}}, {{i.Country}}</div>
-                <div class="experience-fourth-row">{{i.start_date|date:'d-m-Y'}}, {% if i.start_date == i.end_date%}Present
-                    {%elif i.end_date == null %} Present {% else %} {{i.end_date|date:'d-m-Y'}}{% endif %}  </div>
+                    <img class="edit-button" title="Edit Profile" src="{% static 'img/Ikona_edit-01 56.png' %}" alt="">
+                </div>
+                <div class="profile-name"><span class="profile-firstname">{{user.first_name}}</span> <span class="profile-surname">{{user.last_name}}</span></div>
+                <div class="profile-birthplace"><span class="profile-city">{{user.city}}</span><span>,</span> <span class="profile-country">{{user.country}}</span>
                 </div>
             </div>
-            {% endfor %}
         </div>
-        </div>
-        <div class="add-and-edit-experience">
-            <img class="add-experience-button" title="Add Experience" src="{% static 'img/Vector 80.png'%}" alt="">
-            <a href="{% url 'editExprience' %}"><img class="edit-experience" title="Edit Experience" src="{% static 'img/Ikona_edit-01 56.png'%}" alt=""></a>
-        </div>
-    </div>
 
-    </div>
-
-    <div class="languages-main-div experience-education-languages">
-        <div class="education-div">
+        <div class="experience-main-div experience-education-languages">
+        <div class="experience-div">
             <div class="experience-paragraph-img-rows">
                 <div class="aaa">
-                <p class="experience-paragraph">Education</p>
-                {% for i in usEdu%}
+                <p class="experience-paragraph">Experience</p>
+                {% for i in usExp%}
                 <div class="experience-rows-img">
-                    <img class="experience-education-img" src="{% static 'img/USF_Logo 2.png'%}" alt="">
+                    <img class="experience-education-img" src="{% static 'img/Logo (8).png' %}" alt="">
                     <div class="experience-rows">
-                    <div class="experience-first-row">{{i.university.name}}</div>
-                    <div class="experience-second-row">{{i.degree}}, {{i.field_of_study}}</div>
-                    <div class="experience-third-row">{{i.start_year|date:'d-m-Y'}} -
-                        {% if i.end_year == null%}
-                        Present
-                        {% else %}
-                        {{i.end_year |date:'d-m-Y'}}
-                        {% endif%}</div>
-                    <div class="experience-fourth-row">{{i.university.location}}, {{i.university.location.country}}</div>
+                    <div class="experience-first-row">{{i.title}}</div>
+                    <div class="experience-second-row">{{i.company}}</div>
+                    <div class="experience-third-row">{{i.city_usExp}}, {{i.Country}}</div>
+                    <div class="experience-fourth-row">{{i.start_date|date:'d-m-Y'}}, {% if i.start_date == i.end_date%}Present
+                        {%elif i.end_date == null %} Present {% else %} {{i.end_date|date:'d-m-Y'}}{% endif %} </div>
                     </div>
                 </div>
                 {% endfor %}
@@ -95,216 +58,328 @@
             </div>
             <div class="add-and-edit-experience">
                 <img class="add-experience-button" title="Add Experience" src="{% static 'img/Vector 80.png' %}" alt="">
-            <a href="{% url 'editEdu' %}"><img class="edit-experience" title="Edit Experience" src="{% static 'img/Ikona_edit-01 56.png' %}" alt=""></a>
+                <a href="{% url 'editExprience' %}"><img class="edit-experience" title="Edit Experience" src="{% static 'img/Ikona_edit-01 56.png' %}" alt=""></a>
             </div>
-        </div>   
-    </div>
+        </div>
 
-    <div class="experience-education-languages languages-main-div">
-        <div class="education-div">
-            <div class="experience-paragraph-img-rows">
-                <div class="aaa">
-                <p class="experience-paragraph">Languages</p>
-                {% for i in usLang %}
-                <div class="experience-rows-img">
-                    <div class="experience-rows">
-                        <div class="experience-first-row">{{i.language}}</div>
-                        <div class="experience-third-row">{{i.level}}</div>
-
+        </div>
+        <div class="languages-main-div experience-education-languages">
+            <div class="education-div">
+                <div class="experience-paragraph-img-rows">
+                    <div class="aaa">
+                    <p class="experience-paragraph">Education</p>
+                    {% for i in usEdu%}
+                    <div class="experience-rows-img">
+                        <img class="experience-education-img" src="{% static 'img/USF_Logo 2.png' %}" alt="">
+                        <div class="experience-rows">
+                        <div class="experience-first-row">{{i.university.name}}</div>
+                        <div class="experience-second-row">{{i.degree}}, {{i.field_of_study}}</div>
+                        <div class="experience-third-row">{{i.start_year|date:'d-m-Y'}} -
+                            {% if i.end_year == null%}
+                            Present
+                            {% else %}
+                            {{i.end_year |date:'d-m-Y'}}
+                            {% endif%}</div>
+                        <div class="experience-fourth-row">{{i.university.location}}, {{i.university.location.country}}</div>
+                        </div>
                     </div>
-                </div><br>
-                {% endfor %}
-            </div>
-            </div>
-            <div class="add-and-edit-experience">
-                <img class="add-experience-button" title="Add Experience" src="{% static 'img/Vector 80.png' %}" alt="">
-                <a href="{%url 'editLanguage'%}"><img class="edit-experience" title="Edit Experience" src="{% static 'img/Ikona_edit-01 56.png' %}" alt=""></a>
-            </div>
-        </div>   
-    </div>
-
-
-
-<div class="bg-cover-edit">
-    <div class="cover-edit">
-        <div class="exit-img exit-img-cover-picture">
-            <img class="exit-button exit-button-cover-picture" src="{% static 'img/Vector 81 (1).png' %}" alt="">
+                    {% endfor %}
+                </div>
+                </div>
+                <div class="add-and-edit-experience">
+                    <img class="add-experience-button add-education-button" title="Add Education" src="{% static 'img/Vector 80.png' %}" alt="">
+                    <a href="{% url 'editEdu' %}"><img class="edit-experience" title="Edit Education" src="{% static 'img/Ikona_edit-01 56.png' %}" alt=""></a>
+                </div>
+            </div>   
         </div>
-        <h2 class="change-cover-picture-title">Edit Cover Picture</h2>
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="div-of-changed-cover">
-                <div style="display: none;">
-                    {{ form.city }}
-                    {{form.country}}
-                    {{form.last_name}}
-                    {{form.first_name}}
+        <div class="experience-education-languages languages-main-div">
+            <div class="languages-div">
+                <div class="languages-paragraphs-div">
+                    <div class="experience-paragraph language-paragraph">Languages</div>
+                    {% for i in usLang %}
+                    <div style="" class="experience-rows-img-languages">
+                        <div class="education-second-paragraph">{{i.language}}</div>
+                        <div class="language-rate">{{i.level}}</div>
+                    </div>
+                    {% endfor %}
                 </div>
-
-                <label for="id_cover">
-                    <img class="changed-cover" height="250" src="{{user.cover.url}}" title="Profile Cover" alt="">
-                </label>
-                {{form.cover}}
+                <div class="add-and-edit-experience">
+                    <img class="add-experience-button add-languages-button" id="" title="Add Language" src="{% static 'img/Vector 80.png' %}" alt="">
+                    <a href="languages.html">
+                    <img class="edit-experience" title="Edit Languages" src="{% static 'img/Ikona_edit-01 56.png' %}" alt=""></a>
+                </div>
             </div>
-
-            <div class="save-button">
-                <input name="save" type="submit" class="save-submit-input save-cover font-fam" value="Save">
-            </div>
-        </form>
-    </div>
-</div>
-
-<div class="edit-profile-bg">
-    <div class="container-edit-profile">
-        <div class="under-container-edit-profile">
-            <div class="exit-img exit-img-edit-profile">
-                <img class="exit-button exit-button-edit-profile" src="{% static 'img/Vector 81 (1).png' %}" alt="">
-            </div>
-            <h1 id="title">Edit Profile</h1>
-            <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-
-                <div style="margin: 0;">
-                    <p class="paragraph-of-name paragraphs-stats">First name</p>
-                    {{form.first_name}}
-                </div>
-                <div>
-                    <p class="paragraph-of-surname paragraphs-stats">Last name</p>
-                    {{form.last_name}}
-                </div>
-                <div>
-                    <p class="paragraph-of-country paragraphs-stats">Country</p>
-                    {{form.country}}
-
-                </div>
-                <div>
-                    <p class="paragraph-of-city paragraphs-stats">City of residence</p>
-                    {{ form.city }}
-
-                </div>
-                <div class="save-button">
-                    <input name="save" type="submit" class="save-submit-input font-fam" value="Save">
-                </div>
-
-            </form>
         </div>
-    </div>
-</div>
-<div class="bg-change-profile-picture">
-    <div class="change-profile-picture">
-        <div class="exit-img exit-img-profile-picture">
-            <img class="exit-button exit-button-profile-picture" src="{% static 'img/Vector 81 (1).png'%}" alt="">
-        </div>
-        <h2 class="change-profile-picture-title">Edit Profile Picture</h2>
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="div-of-changed-cover">
-                <div style="display: none;">
-                    {{ form.city }}
-                    {{form.country}}
-                    {{form.last_name}}
-                    {{form.first_name}}
+
+        <div class="bg-cover-edit">
+            <div class="cover-edit">
+                <div class="exit-img exit-img-cover-picture">
+                    <div>
+                        <img title="Exit" class="exit-button exit-button-cover-picture" src="{% static 'img/Vector 81 (1).png' %}" alt="">
+                    </div>
                 </div>
+                <h2 class="change-cover-picture-title">Edit Cover Picture</h2>
 
-                <label for="id_profile">
-                    <img class="changed-profile" height="250" src="{{user.profile.url}}" title="Profile Cover" alt="">
-
-                </label>
-                {{form.profile}}
-
-
-
-            </div>
-
-
-            <div class="save-button">
-                <input name="save" type="submit" class="save-submit-input save-cover font-fam" value="Save">
-            </div>
-        </form>
-    </div>
-</div>
-
-<div class="bg-add-and-edit bg-add-experience">
-    <div class="add-experience">
-        <div class="under-container">
-            <div class="exit-img exit-img-edit-profile">
-                <a href="{% url 'profile'%}">
-                    <img class="exit-button exit-button-edit-profile" src="{% static 'img/Vector 81 (1).png' %}" alt="">
-                </a>
-            </div>
-            <h1 id="title-experience">Add Experience</h1>
-            <form method="POST" action="" class="sign-up-form">
-                {% csrf_token %}
-                <div style="display: none;">
-                    {{for_usExp.user_id}}
-                </div>
-                <div class="div-of-job-experience">
-                    <p class="paragraph-of-name paragraphs-stats">Job title *</p>
-                    {{for_usExp.title}}
-                </div>
-
-                <div>
-                    <p class="paragraph-of-surname paragraphs-stats">Company *</p>
-                    {{for_usExp.company}}
-                </div>
-                <div>
-                    <p class="paragraph-of-country paragraphs-stats">Country *</p>
-                    {{for_usExp.Country}}
-                </div>
-                <div>
-                    <p class="paragraph-of-city paragraphs-stats">City *</p>
-                    {{for_usExp.city_usExp}}
-                </div>
-                <div>
-
-                    <div style="display: flex; justify-content: space-between;">
-                        <div style="width: 48%;">
-                            <p class="paragraphs-stats paragraph-of-start-date">Start date</p>
-                            <input type="date" name="start_date" class="start-date-input mutual-stats font-fam"
-                                required="" id="id_start_date">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="div-of-changed-cover">
+                        <div style="display: none;">
+                            {{ form.city }}
+                            {{form.country}}
+                            {{form.last_name}}
+                            {{form.first_name}}
                         </div>
-                        <div style="width: 48%;
-                    float: right;">
-                            <p class="paragraphs-stats paragraph-of-end-date">End date</p>
-                            <input type="date" name="end_date" class="end-date-input mutual-stats font-fam" 
-                                id="id_end_date">
+        
+                        <label for="id_cover">
+                            <img class="changed-cover" height="250" src="{{user.cover.url}}" title="Profile Cover" alt="">
+                        </label>
+                        {{form.cover}}
+                    </div>
+        
+                    <div class="save-button">
+                        <input name="save" type="submit" class="save-submit-input save-cover font-fam" value="Save">
+                    </div>
+                </form>
+
+                
+            </div>
+        </div>
+        
+        <div class="edit-profile-bg">
+            <div class="container-edit-profile">
+                <div class="under-container-edit-profile">
+                    <div class="exit-img exit-img-edit-profile">
+                    <img title="Exit" class="exit-button exit-button-edit-profile editprofile" src="{% static 'img/Vector 81 (1).png' %}" alt="">
+                    </div>
+                    <h1 id="title" class="edit-profile-title">Edit Profile</h1>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+        
+                        <div style="margin: 0;">
+                            <p class="paragraph-of-name paragraphs-stats">First name</p>
+                            {{form.first_name}}
                         </div>
+                        <div>
+                            <p class="paragraph-of-surname paragraphs-stats">Last name</p>
+                            {{form.last_name}}
+                        </div>
+                        <div>
+                            <p class="paragraph-of-country paragraphs-stats">Country</p>
+                            {{form.country}}
+        
+                        </div>
+                        <div>
+                            <p class="paragraph-of-city paragraphs-stats">City of residence</p>
+                            {{ form.city }}
+        
+                        </div>
+                        <div class="save-button">
+                            <input name="save" type="submit" class="save-submit-input font-fam" value="Save">
+                        </div>
+        
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="bg-change-profile-picture">
+            <div class="change-profile-picture">
+                <div class="exit-img exit-img-profile-picture">
+                    <div>
+                        <img title="Exit" class="exit-button exit-button-profile-picture" src="{% static 'img/Vector 81 (1).png' %}" alt="">
+                    </div>
+                </div>
+                <h2 class="change-profile-picture-title">Edit Profile Picture</h2>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="div-of-changed-cover">
+                        <div style="display: none;">
+                            {{ form.city }}
+                            {{form.country}}
+                            {{form.last_name}}
+                            {{form.first_name}}
+                        </div>
+        
+                        <label for="id_profile">
+                            <img class="changed-profile" height="250" src="{{user.profile.url}}" title="Profile Cover" alt="">
+        
+                        </label>
+                        {{form.profile}}
+        
+        
+        
+                    </div>
+        
+        
+                    <div class="save-button">
+                        <input name="save" type="submit" class="save-submit-input save-cover font-fam" value="Save">
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    <div class="bg-add-and-edit">
+        <div class="add-experience">
+            <div class="under-container">
+                <div class="exit-img exit-img-edit-profile">
+                        <img title="Exit" class="exit-button exit-button-edit-profile exp" src="{% static 'img/Vector 81 (1).png' %}" alt="">
+                </div>    
+                <h1 id="title-experience">Add Experience</h1>
+                <form method="POST" action="" class="sign-up-form">
+                    {% csrf_token %}
+                    <div style="display: none;">
+                        {{form}}
+                        {{for_usExp.user_id}}
+                    </div>
+                    <div class="div-of-job-experience">
+                        <p class="paragraph-of-name paragraphs-stats">Job title *</p>
+                        {{for_usExp.title}}
+                    </div>
+    
+                    <div>
+                        <p class="paragraph-of-surname paragraphs-stats">Company *</p>
+                        {{for_usExp.company}}
+                    </div>
+                    <div>
+                        <p class="paragraph-of-country paragraphs-stats">Country *</p>
+                        {{for_usExp.Country}}
+                    </div>
+                    <div>
+                        <p class="paragraph-of-city paragraphs-stats">City *</p>
+                        {{for_usExp.city_usExp}}
+                    </div>
+                    <div>
+    
+                        <div style="display: flex; justify-content: space-between;">
+                            <div style="width: 48%;">
+                                <p class="paragraphs-stats paragraph-of-start-date">Start date</p>
+                                <input type="date" name="start_date" class="start-date-input mutual-stats font-fam"
+                                    required="" id="id_start_date">
+                            </div>
+                            <div style="width: 48%;
+                        float: right;">
+                                <p class="paragraphs-stats paragraph-of-end-date">End date</p>
+                                <input type="date" name="end_date" class="end-date-input mutual-stats font-fam" 
+                                    id="id_end_date">
+                            </div>
+                        </div>
+                        <div class="save-button">
+                            <input name="save" type="submit" class="save-submit-input save-picture font-fam" value="Save">
+    
+                        </div>
+                </form>
+            </div>
+        </div>
+        </div>    
+        <div class="add-languages">
+            <div class="under-container">
+                <div class="exit-img exit-img-edit-profile">
+                        <img title="Exit" class="exit-button exit-button-languages" src="{% static 'img/Vector 81 (1).png' %}" alt="">
+                </div>    
+                <h1 id="title-experience">Add Languages</h1>
+                <form method="POST" action="" class="sign-up-form">
+                    {% csrf_token %}
+                    <div style="display:none;">
+                        {{form}}
+                        {{form_usLang.user_id}}
+                    </div>
+
+                    <div class="div-of-job-experience">
+                    <p class="paragraph-of-name paragraphs-stats">Language *</p>
+                    {{form_usLang.language}}
+                    </div>
+                    
+                    <div>
+                    <p class="paragraph-of-surname paragraphs-stats">Level *</p>
+                    {{form_usLang.level}}
                     </div>
                     <div class="save-button">
-                        <input name="save" type="submit" class="save-submit-input save-picture font-fam" value="Save">
-
+                    <a href=""><input name="save" type="submit" class="save-submit-input font-fam" value="Save"></a>
                     </div>
-            </form>
+                </form>
+            </div>
         </div>
+        <div class="add-education">
+            <div class="under-container">
+                <div class="exit-img exit-img-edit-profile">
+                        <img title="Exit" class="exit-button exit-button-edit-profile" src="{% static 'img/Vector 81 (1).png' %}" alt="">
+                </div>    
+                <h1 id="title-experience">Add Education</h1>
+                <form method="POST" action="" class="sign-up-form">
+                    {% csrf_token %}
+                    <div style="display: none;">
+                        {{form}}
+                        {{form_usEdu.user_id}}
+                    </div>
+                    <div class="div-of-job-experience">
+                    <p class="paragraph-of-name paragraphs-stats">University *</p>
+                    {{form_usEdu.university}}
+                    </div>
+                    
+                    <div>
+                    <p class="paragraph-of-surname paragraphs-stats">Field of study *</p>
+                    {{form_usEdu.field_of_study}}
+                    </div>
+                    <div >
+                        <p class="paragraph-of-surname paragraphs-stats">Degree</p>
+                        {{form_usEdu.degree}}
+                    </div>
+                    <div>
+                        <p class="paragraph-of-surname paragraphs-stats">Total Examp Passed</p>
+                        {{form_usEdu.total_examples_passed}}
+                    </div>
+                    <div>
+                        <p class="paragraph-of-surname paragraphs-stats">GPA</p>
+                        {{form_usEdu.GPA}}
+                    </div>
+                    <div>
+                    
+                    <div style="display: flex; justify-content: space-between;">
+                    <div style="width: 48%;">
+                    <p class="paragraphs-stats paragraph-of-start-date">University start year *</p>
+                    {{form_usEdu.start_year}}
+                    </div>
+                    <div style="width: 48%;
+                    float: right;">
+                    <p class="paragraphs-stats paragraph-of-end-date">University end year *</p>
+                    {{form_usEdu.end_year}}
+                    </div>
+                    </div>
+
+
+                    
+                    <div class="save-button">
+                    <a href=""><input name="save" type="submit" class="save-submit-input font-fam" value="Save"></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        </div>    
     </div>
-</div>
 
+    <script src="{% static 'js/js.js' %}"></script>
 
+    <script src="{% static 'js/profile_dropdown.js' %}"></script>
 
+    <script src="{% static 'js/edit-button.js' %}"></script>
 
+    <script src="{% static 'js/change-profile.js' %}"></script>
 
-<script src="{% static 'js/profile_dropdown.js' %}"></script>
-<script src="{% static 'js/js.js' %}"></script>
+    <script src="{% static 'js/exit-button.js' %}"></script>
 
-<script src="{% static 'js/edit-button.js' %}"></script>
+    <script src="{% static 'js/edit-button.js' %}"></script>
+    
+    <script src="{% static 'js/add-button.js' %}"></script>
 
-<script src="{% static 'js/change-profile.js' %}"></script>
+    <script src="{% static 'js/edit-experience-button.js' %}"></script>
 
-<script src="{% static 'js/exit-button.js' %}"></script>
+    <script src="{% static 'js/edit-cover.js' %}"></script>
 
-<script src="{% static 'js/edit-button.js' %}"></script>
-
-<script src="{% static 'js/add-button.js' %}"></script>
-
-<script src="{% static 'js/add-experience-button.js' %}"></script>
-
-<script src="{% static 'js/edit-experience-button.js' %}"></script>
-
-<script src="{% static 'js/edit-cover.js' %}"></script>
-
-
-
-
+    <script src="{% static 'js/add-experience-education-language.js' %}"></script>
+    
 
 
 {% endblock content %}
+
+
+
+ 

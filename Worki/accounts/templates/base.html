@@ -1,4 +1,6 @@
 {% load static %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +13,14 @@
     <link rel="stylesheet" href="{% static 'css/non-authenticated.css'%}">
     <link rel="stylesheet" href="{% static 'css/profile-header.css'%}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/authenticated.css' %}">
+<link rel="stylesheet" href="{% static 'css/profile-header.css' %}">
+<link rel="stylesheet" href="{% static 'css/edit-profile.css' %}">
+<link rel="stylesheet" href="{% static 'css/add-profile-picture.css' %}">
+<link rel="stylesheet" href="{% static 'css/experience-font-family.css' %}">
+<link rel="stylesheet" href="{% static 'css/add-experience.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+<link rel="stylesheet" href="{% static 'css/edit-cover.css' %}">
     {% if user.is_authenticated %}
     <header class="header-border">
         <a href="{% url 'home'%}"><img id="worki-image" src="{% static 'img/Worki_Logo_Black.png' %}" title="Worki"></a>
@@ -21,7 +31,7 @@
     </header>
     <div class="dropdown">
         <div class="dropdown-content" ><a href="{% url 'profile'  %}" class="dropdown-content-text">My profile</a></div>
-        <div class="dropdown-mid-content"><a href="" class="dropdown-content-text">My jobs</a></div>
+        <div class="dropdown-mid-content"><a href="{% url 'postedJob'%}" class="dropdown-content-text">My jobs</a></div>
         <div class="dropdown-content"><a href="{% url 'logout' %}" class="dropdown-content-text">Sign out</a></div>
      </div>
     {% else %}
@@ -31,7 +41,7 @@
             </a>
             
             <div id="img-and-buttons">
-                <img class="jobs-icon-button" title="Jobs" src="{% static 'img/JOBS_Icon.png'%}" alt="">
+                <a href="{% url 'jobs' %}><img class="jobs-icon-button" title="Jobs" src="{% static 'img/JOBS_Icon.png'%}" alt=""></a>
                 <a href="{% url 'login' %}"><button id="sign-in-button">Sign in</button></a> 
                 <a href="{% url 'register' %}"><button id="sign-up-button">Create Account</button></a>
             </div>

@@ -5,3 +5,9 @@ profile.addEventListener("click", function() {
    dropdown.classList.toggle("showDropdown");
 });
 
+window.addEventListener('click', function(event) {
+   if (event.target == dropdown) {
+      dropdown.style.display = "none";
+   }
+});
+

@@ -10,8 +10,8 @@ window.addEventListener('click', function(event) {
     if (event.target == bg_change_profile_picture) {
         bg_change_profile_picture.style.display = "none";
     }
-})
-
-exit_button.addEventListener('click', function() {
-    bg_change_profile_picture.style.display = "none";
 });
+
+/*exit_button.addEventListener('click', function() {
+    bg_change_profile_picture.style.display = "none";
+}); */

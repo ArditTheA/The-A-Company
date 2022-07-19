@@ -8,7 +8,6 @@ var surnameEdit = document.querySelector(".surname-input");
 var cityEdit = document.querySelector(".city-input");
 var countryEdit = document.querySelector(".country-input");
 
-
 nameEdit.value = nameP.textContent;
 surnameEdit.value = surname.textContent;
 cityEdit.value = city.textContent;

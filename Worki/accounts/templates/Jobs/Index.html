@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% for i in job %}
+    {{i.job_title}} |
+    {{i.company}} |
+    {{i.city_j}} |
+    {{i.salary_per_hour}} |
+    {{i.type_of_work}} |
+    {{i.hour_per_work}} |
+    {{i.start_date}} |
+    {{i.end_date}} |
+        {{i.housing}}
+        <br>
+{% endfor %}
+
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_table}}
+    <input name="submit" type="submit" class="sign-up-submit-input font-fam" value="Create account">
+
+</form>
+
+{% endblock content %}

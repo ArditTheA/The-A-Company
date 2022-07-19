@@ -48,7 +48,7 @@
 
             <p class="second-paragraph same-color-of-paragraphs">or</p>
             <div class="input-form">
-                <a href="" class="sign-up-google mutual-stats">
+                <a href="{% provider_login_url 'google' %}" class="sign-up-google mutual-stats">
                     <div>Create account with Google</div>
                 </a>
                 <img class="icon" src="{% static 'img/google-01 8.png'%}">
@@ -64,10 +64,3 @@
 <script src="{% static 'js/password_icon.js' %}"></script>
 
 </html>  
-{% comment %}
-  <h2>Sign Up</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Sign Up</button>
-</form>  {% endcomment %}

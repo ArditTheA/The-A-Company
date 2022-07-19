@@ -93,6 +93,7 @@ body {
     display: none;
 }
 
+
 @media screen and (max-width: 480px) {
     .bg-change-profile-picture {
         background-color: #f1f1f1;
@@ -110,8 +111,6 @@ body {
     }
     .change-profile-picture-title {
         font-size: 30px;
-        padding-bottom: 25px;
-        padding-top: 25px;
     }
     .changed-picture {
         width: 100px;

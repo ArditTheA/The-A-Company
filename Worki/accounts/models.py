@@ -131,7 +131,7 @@ class Jobs(models.Model):
     status = models.CharField(max_length=20,choices=Stat,default="Open")
     postDate = models.DateField(default=datetime.now())
     user_id = models.ForeignKey(CustomUser,on_delete=models.CASCADE, null=True,blank=True)
-    spproved = models.BooleanField(default=False)
+    approved = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.job_title)+" | "+str(self.company)

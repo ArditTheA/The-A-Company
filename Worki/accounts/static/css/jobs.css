@@ -1,0 +1,69 @@
+.jobs-buttons {
+    display: flex;
+    margin: 20px 0px 0px 40px;
+}
+
+.applied-button-jobs {
+    margin-right: 20px;
+    border: solid  1.2px;
+    color: white;
+    background-color: #1877F2;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+    height: 36px;
+}
+.posted-button-jobs {
+    color: #65676B;
+    background-color: white;
+    border: solid  1.2px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 20px;
+    padding: 0px 30px 0px 30px;
+    border: none;
+    height: 36px;
+
+}
+.first-row-jobs, .first-row-second-div {
+    color: #131419; 
+    padding-bottom: 10px;
+}
+.first-row-jobs {
+    font-size: 24px;
+}
+.first-row-second-div {
+    font-size: 20px;
+}
+.second-row-jobs {
+    font-size: 20px;
+    padding-bottom: 5px; 
+    color: #1877F2;
+}
+.second-row-second-div {
+    font-size: 17px;
+    color: #858585;
+}
+.right-jobs-rows-img {
+    margin-left: 10px;
+}
+.jobs-third-row, .first-row-jobs-third-row-second-div {
+    margin-top: 50px;
+}
+.jobs-third-row-second-div {
+    font-size: 20px;
+}
+.first-row-jobs-third-row-second-div {
+    color: #131419; 
+}
+.jobs-mutual-margin-rows {
+    margin-top: 15px;
+}
+.second-div-second-paragraph {
+    font-size: 17px;
+}
+.second-div-second-paragraph {
+    color: #858585;
+}

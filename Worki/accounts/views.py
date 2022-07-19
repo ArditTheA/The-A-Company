@@ -1,5 +1,5 @@
 from inspect import Parameter
-import re
+from django.contrib.auth import login
 from django.contrib.auth import views as auth_views
 from django.shortcuts import redirect, render
 from django.views import generic
@@ -45,10 +45,20 @@ class LogoutView(auth_views.LogoutView):
 class RegisterView(generic.CreateView):
     form_class = RegisterForm
     template_name = 'accounts/register.html'
-    success_url = reverse_lazy('login')
+    
 
 
-
+def registration(request):
+    if request.POST:
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+                
+            return redirect('home')
+    else:
+        form = RegisterForm()
+    return render(request,"accounts/register.html",{"form":form})
 
 def password_reset_request(request):
     if request.method == "POST":
@@ -81,8 +91,6 @@ def password_reset_request(request):
         'password_form':password_form
     }
     return render(request,'accounts/password_reset.html',context)
-
-
 
 
 
@@ -213,3 +221,41 @@ def Edit_User_langId(request,pk):
         edit.initial['user_id'] = user_id
 
     return render(request,"profile/languageId.html",{"edit":edit,"User_lang":User_lang})
+
+
+
+
+
+###########################################################################
+#----------------------------JOBS-----------------------------------------#
+###########################################################################
+
+
+#------------------------Get Posted Jobs----------------------------------#
+
+def getPostedJobs(request):
+    uid = request.user.id
+    order_l =["-postDate"]
+    form = add_Jobs(request.POST or None, request.FILES or None)
+    if request.method == "POST":
+        if form.is_valid():
+            form.save()
+            return redirect("profile")
+    if(uid != ''):
+        form.initial["user_id"]=uid 
+       
+    job = Jobs.objects.filter(status="Open").order_by(*order_l)
+    return render(request,"Jobs/Index.html",{"job":job,"form":form})
+
+def getPostedJob(request):
+    uid = request.user.id
+    job = Jobs.objects.filter(user_id = uid)
+    return render(request,"Jobs/Index.html",{"job":job})
+
+def getApplyedJobs(request):
+    user_id = request.user.id
+    job = Application.objects.filter(user_id =user_id)
+    return render(request,"Jobs/Index.html",{"job":job})
+
+
+

@@ -30,15 +30,13 @@ from accounts.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', LoginView.as_view(), name='login'),
-    path('register/', RegisterView.as_view(), name='register'),
+    path('register/', registration, name='register'),
     path('logout/', userViews.LogoutView.as_view(template_name='home/home.html'), name='logout'),
     path('accounts/', include('allauth.urls')),
     path('',HomeTemp,name='home'),
     path("TermsAndCondition/",Terms,name="terms"),
 
-
-
-            
+     
     # forget password
 
     path('reset_password/',password_reset_request, name="reset_password"),
@@ -61,6 +59,11 @@ urlpatterns = [
     path("profile/Education/<int:pk>/",Edit_user_EduId,name="editEduId"),
     path("profile/language/",Edit_user_language,name="editLanguage"),
     path("profile/language/<int:pk>/",Edit_User_langId,name="editLanguageId"),
+
+    #JOBS
+    path("Jobs/",getPostedJobs,name="jobs"),
+    path("My/Jobs",getPostedJob,name="postedJob"),
+    path("Jobs/Applied/",getApplyedJobs,name="appliedJob"),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

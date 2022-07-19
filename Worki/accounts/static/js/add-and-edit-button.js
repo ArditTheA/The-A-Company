@@ -1,8 +1,8 @@
-var addButton = document.querySelector("#plus-icon");
-var editButton = document.querySelector(".edit-button");
-var modalBg = document.querySelector(".edit-profile-bg");
-var container = document.querySelector(".container");
-var change_profile_picture = document.querySelector(".change-profile-picture");
+var addButton = document.getElementById("plus-icon");
+var editButton = document.getElementsByClassName("edit-button");
+var modalBg = document.getElementsByClassName("edit-profile-bg");
+var container = document.getElementsByClassName("container");
+var change_profile_picture = document.getElementsByClassName("change-profile-picture");
 
 addButton.addEventListener("click", function() {
     modalBg.style.display = "flex";

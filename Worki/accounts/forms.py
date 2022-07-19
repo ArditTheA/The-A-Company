@@ -1,10 +1,12 @@
 from dataclasses import field, fields
 from pyexpat import model
+from tkinter import Widget
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import get_user_model
 from django import forms
 from accounts.models import *
 from django.forms import ModelForm
+
 
 class add_user_Exp(ModelForm):
     class Meta:
@@ -107,6 +109,17 @@ class EditUserLang(ModelForm):
             "level",
         }
 
+
+
+
+
+
+
+
+#####################################################################
+#-------------------------Authenticated-----------------------------#
+#####################################################################
+
 class RegisterForm(UserCreationForm):
     class Meta:
         model = get_user_model()
@@ -121,3 +134,32 @@ class RegisterForm(UserCreationForm):
 
 class LoginForm(AuthenticationForm):
     username = forms.CharField(label='Email / Username')
+
+
+
+#####################################################################
+#-------------------------JOBS--------------------------------------#
+#####################################################################
+
+
+class add_Jobs(ModelForm):
+    class Meta:
+        model = Jobs
+        # fields = ["job_title","company",'city_j',"salary_per_hour","type_of_work","hour_per_work","start_date",
+        #           "end_date","housing","housing_cost_per_week","program","programCost","logo","description","status",
+        #           "postDate","user_id","approved"]
+        fields = "__all__"
+        widgets ={
+            "job_title": forms.TextInput(attrs={'class':'name-input mutual-stats font-fam'}),
+            "company": forms.TextInput(attrs={'class':'name-input mutual-stats font-fam'}),
+            "start_date": forms.DateInput(attrs={"class":"start-date-input mutual-stats font-fam","type":"date"}),
+            "end_date": forms.DateInput(attrs={"class":"end-date-input mutual-stats font-fam","type":"date"}),
+            "housing_cost_per_week": forms.NumberInput(attrs={'class':'name-input mutual-stats font-fam'}),
+            "programCost": forms.NumberInput(attrs={'class':'name-input mutual-stats font-fam'}),
+            # "program": forms.TextInput(attrs={'class':'name-input mutual-stats font-fam'}),
+            "description": forms.TextInput(attrs={'class':'name-input mutual-stats font-fam'}),
+            "postDate": forms.DateInput(attrs={"class":"start-date-input mutual-stats font-fam","type":"date","disabled":"disabled"}),
+            "user_id":forms.Select(attrs={"disabled":"disabled"}),
+            "approved":forms.CheckboxInput(attrs={"disabled":"disabled"})
+
+        }
