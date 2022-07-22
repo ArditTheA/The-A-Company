@@ -52,10 +52,10 @@ body {
 .edit-experience-pop-up::-webkit-scrollbar {
     display: none;
 }
-
 .add-education::-webkit-scrollbar { 
     display: none;
 }
+
 
 #title-experience {
     width: 300px;

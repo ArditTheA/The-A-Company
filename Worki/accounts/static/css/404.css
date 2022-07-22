@@ -1,0 +1,144 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.h{
+    
+
+
+font-family: 'Spline Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 60px;
+
+/* or 70px */
+
+text-align: center;
+
+color: #1877F2;
+
+text-shadow: 0px 0px 0px #399EAC;
+}
+
+.second-paragraph .sign-in-submit-input {
+    text-align: center;
+}
+
+.sign-in-submit-input {
+    padding: 10px 0px;
+    border-radius: 30px;
+    background-color: #1877F2;
+    color: white;
+    font-size: 18px;
+    width: 33%;
+    text-align: center;
+    cursor: pointer;
+    border: 0.5px solid #1877F2;
+}
+
+.sign-in-submit-input:focus {
+    outline: none;
+}
+.p{
+    font-family: 'Spline Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 24px;
+line-height: 28px;
+text-align: center;
+
+color: #757575;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+#notfound {
+  height: 90vh;
+}
+
+#notfound .notfound {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.notfound {
+  max-width: 767px;
+  width: 100%;
+  line-height: 1.4;
+  padding: 0px 15px;
+}
+
+.notfound .notfound-404 {
+  position: relative;
+  height: 150px;
+  line-height: 150px;
+  margin-bottom: 25px;
+}
+
+.notfound .notfound-404 h1 {
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 186px;
+  font-weight: 900;
+  margin: 0px;
+  text-transform: uppercase;
+  -webkit-text-fill-color: transparent;
+  background-size: cover;
+  background-position: center;
+  width: 150px;
+}
+
+.notfound h2 {
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.notfound p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 0px;
+  text-transform: uppercase;
+}
+
+.notfound a {
+  font-family: 'Titillium Web', sans-serif;
+  display: inline-block;
+  text-transform: uppercase;
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  background: #5c91fe;
+  padding: 10px 40px;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 1px;
+  margin-top: 15px;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
+}
+
+.notfound a:hover {
+  opacity: 0.8;
+}
+
+@media only screen and (max-width: 767px) {
+  .notfound .notfound-404 {
+    line-height: 110px;
+  }
+  .notfound .notfound-404 h1 {
+    font-size: 120px;
+  }
+  .h{
+    font-size: 30px;
+  }
+}

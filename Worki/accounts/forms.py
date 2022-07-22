@@ -110,12 +110,6 @@ class EditUserLang(ModelForm):
         }
 
 
-
-
-
-
-
-
 #####################################################################
 #-------------------------Authenticated-----------------------------#
 #####################################################################
@@ -145,9 +139,6 @@ class LoginForm(AuthenticationForm):
 class add_Jobs(ModelForm):
     class Meta:
         model = Jobs
-        # fields = ["job_title","company",'city_j',"salary_per_hour","type_of_work","hour_per_work","start_date",
-        #           "end_date","housing","housing_cost_per_week","program","programCost","logo","description","status",
-        #           "postDate","user_id","approved"]
         fields = "__all__"
         widgets ={
             "job_title": forms.TextInput(attrs={'class':'name-input mutual-stats font-fam'}),
@@ -156,10 +147,12 @@ class add_Jobs(ModelForm):
             "end_date": forms.DateInput(attrs={"class":"end-date-input mutual-stats font-fam","type":"date"}),
             "housing_cost_per_week": forms.NumberInput(attrs={'class':'name-input mutual-stats font-fam'}),
             "programCost": forms.NumberInput(attrs={'class':'name-input mutual-stats font-fam'}),
-            # "program": forms.TextInput(attrs={'class':'name-input mutual-stats font-fam'}),
-            "description": forms.TextInput(attrs={'class':'name-input mutual-stats font-fam'}),
+            "hour_per_work": forms.NumberInput(attrs={'class':'name-input mutual-stats font-fam'}),
+            "salary_per_hour": forms.NumberInput(attrs={'class':'name-input mutual-stats font-fam'}),
+            "description": forms.Textarea(attrs={'class':'name-input mutual-stats font-fam',"rows":5,"cols":33}),
             "postDate": forms.DateInput(attrs={"class":"start-date-input mutual-stats font-fam","type":"date","disabled":"disabled"}),
             "user_id":forms.Select(attrs={"disabled":"disabled"}),
-            "approved":forms.CheckboxInput(attrs={"disabled":"disabled"})
-
+            "approved":forms.CheckboxInput(attrs={"disabled":"disabled"}),
+            "status":forms.Select(attrs={"disabled":"disabled"})
+            
         }

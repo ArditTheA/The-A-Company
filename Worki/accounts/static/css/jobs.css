@@ -1,13 +1,15 @@
+
 .jobs-buttons {
     display: flex;
+    align-items: center;
     margin: 20px 0px 0px 40px;
 }
-
-.applied-button-jobs {
-    margin-right: 20px;
+.mutual-padding-of-div {
+    padding-right: 20px;
+}
+.applied-button-jobs, .applied-button-posted-jobs {
     border: solid  1.2px;
     color: white;
-    background-color: #1877F2;
     cursor: pointer;
     font-size: 18px;
     border-radius: 20px;
@@ -15,9 +17,38 @@
     padding-right: 30px;
     height: 36px;
 }
-.posted-button-jobs {
+.applied-button-jobs, .posted-button-posted-jobs {
+    color: white;
+    background-color: #1877F2;
+    border: none;
+}
+.posted-button-jobs, .applied-button-posted-jobs {
     color: #65676B;
     background-color: white;
+}
+.plus-jobs-posted {
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 36px;
+    font-size: 28px;
+}
+.plus-icon-jobs {
+    color: red;
+}
+.applied-button-posted-jobs {
+    border: none;
+}
+.outline-none:focus {
+    outline: none;
+}
+.first-button-plus-jobs {
+    padding-right: 20px;
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+}
+
+.posted-button-jobs, .posted-button-posted-jobs {
     border: solid  1.2px;
     cursor: pointer;
     font-size: 18px;
@@ -25,8 +56,22 @@
     padding: 0px 30px 0px 30px;
     border: none;
     height: 36px;
-
 }
+.jobs-left, .right-jobs {
+    overflow-y: scroll;
+    height: 85vh;
+    margin-bottom: 20px;
+}
+
+.jobs-left::-webkit-scrollbar {
+    display: none;
+}
+.right-jobs::-webkit-scrollbar {
+    display: none;
+}
+.jobs-left-content {
+}
+
 .first-row-jobs, .first-row-second-div {
     color: #131419; 
     padding-bottom: 10px;
@@ -66,4 +111,15 @@
 }
 .second-div-second-paragraph {
     color: #858585;
+}
+.here-link {
+    color: #1877F2;
+    text-decoration-color: #1877F2;
+}
+.second-part {
+    height: 400px;
+    overflow-y: scroll;
+}
+.second-part::-webkit-scrollbar {
+    display: none;
 }

@@ -25,7 +25,7 @@
     <header class="header-border">
         <a href="{% url 'home'%}"><img id="worki-image" src="{% static 'img/Worki_Logo_Black.png' %}" title="Worki"></a>
         <div id="jobs-and-profile">
-        <a href="#"><img class="jobs-icon-button" title="Jobs" src="{% static 'img/JOBS_Icon.png' %}"></a>
+        <a href=""><img class="jobs-icon-button" title="Jobs" src="{% static 'img/JOBS_Icon.png' %}"></a>
             <img src="{{user.profile.url}}" id="profile-image-button" title="Profile" alt="">
         </div>
     </header>
@@ -41,7 +41,7 @@
             </a>
             
             <div id="img-and-buttons">
-                <a href="{% url 'jobs' %}><img class="jobs-icon-button" title="Jobs" src="{% static 'img/JOBS_Icon.png'%}" alt=""></a>
+                <a ><img class="jobs-icon-button" title="Jobs" src="{% static 'img/JOBS_Icon.png'%}" alt=""></a>
                 <a href="{% url 'login' %}"><button id="sign-in-button">Sign in</button></a> 
                 <a href="{% url 'register' %}"><button id="sign-up-button">Create Account</button></a>
             </div>

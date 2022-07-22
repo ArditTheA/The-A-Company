@@ -1,0 +1,51 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Jobs</title>
+    <link rel="stylesheet" href="{% static 'css/authenticated.css'%}">
+    <link rel="stylesheet" href="{% static 'css/jobs.css'%}">
+    <link rel="stylesheet" href="{% static 'css/profile-header.css'%}">
+
+
+    <div class="jobs-buttons">
+        <div class="mutual-padding-of-div plus-div">
+           <a href=""><img title="Add a Job" class="plus-icon-jobs" style="width: 18px; height: 18px; vertical-align: middle; border-radius: 50%; padding: 8px; background-color: white;" src="{% static 'img/add.png'%}" alt=""></a>
+        </div>
+        <div class="mutual-padding-of-div">
+            <button title="Posted Jobs" class="posted-button-posted-jobs outline-none">Applied</button></div>
+            <a href="{% url 'postedJob' %}"><button title="Applied Jobs" class="applied-button-posted-jobs outline-none">Posted</button></a></div>
+        <div>
+        
+    </div>
+     
+    <div class="jobs-main-div" style="display: flex; justify-content: space-between; width: 100%;">
+        <div class="jobs-left" style="display: flex; flex-direction: column; width: 50%; position: relative;">
+            {% for i in app %}
+                <a href="{% url 'appliedJobId' i.id %}" style="text-decoration: none;">
+                <div class="jobs-rows-img" style="padding: 30px 0px 30px 30px; margin-right: 10px; margin-top: 20px; background-color: white;">
+                    <img class="experience-education-img" src="{{i.job_id.logo.url}}" alt="logo">
+                    <div class="experience-rows">
+                    <div class="experience-first-row">{{i.job_id.job_title}}</div>
+                    <div class="experience-second-row">{{i.job_id.company}}</div>
+                    <div class="experience-third-row">{{i.job_id.city_j}}, {{i.city_j.country}}</div>
+                    <div class="experience-fourth-row">{{i.job_id.program}}</div>
+                    </div>
+                </div>
+                </a>
+            {% endfor %}
+            
+            
+        </div>
+        
+    </div>
+
+
+    <script src="{% static 'js/profile_dropdown.js'%}"></script>
+    <script src="{% static 'js/js.js'%}"></script>
+
+{% endblock content %}
+
+

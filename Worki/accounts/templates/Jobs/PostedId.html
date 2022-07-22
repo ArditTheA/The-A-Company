@@ -1,0 +1,96 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Jobs</title>
+    <link rel="stylesheet" href="{% static 'css/authenticated.css'%}">
+    <link rel="stylesheet" href="{% static 'css/jobs.css'%}">
+    <link rel="stylesheet" href="{% static 'css/profile-header.css'%}">
+
+    {% if jobId.user_id == user%}
+    <div class="jobs-buttons">
+        <div class="mutual-padding-of-div plus-div">
+           <a href=""><img title="Add a Job" class="plus-icon-jobs" style="width: 18px; height: 18px; vertical-align: middle; border-radius: 50%; padding: 8px; background-color: white;" src="{% static 'img/add.png'%}" alt=""></a>
+        </div>
+        <div class="mutual-padding-of-div">
+        <a href="jobs-applied.html"><button title="Applied Jobs" class="applied-button-posted-jobs outline-none">Applied</button></a></div>
+        <div>
+        <button title="Posted Jobs" class="posted-button-posted-jobs outline-none">Posted</button></div>
+    </div>
+     
+    <div class="jobs-main-div" style="display: flex; justify-content: space-between; width: 100%;">
+        <div class="jobs-left" style="display: flex; flex-direction: column; width: 50%; position: relative;">
+            {% for i in job %}
+            <a href="{% url 'postedJobId' i.id %}" class="experience-rows" style="text-decoration: none;">
+                <div class="jobs-rows-img" style="padding: 30px 0px 30px 30px; margin-right: 10px; margin-top: 20px; background-color: white;">
+                    <img class="experience-education-img" src="{{i.logo.url}}" alt="">
+                    <img title="Edit Job" style="width: 30px; height: 30px; position: absolute; right: 0; margin-right: 40px;" src="{% static 'img/Ikona_edit-01 56.png'%}" alt="">
+                    <div class="experience-rows">
+                    <div class="experience-first-row">{{i.job_title}}</div>
+                    <div class="experience-second-row">{{i.company}}</div>
+                    <div class="experience-third-row">{{i.city_j}}, {{i.city_j.country}}</div>
+                    <div class="experience-fourth-row">50 applicants · {{i.status}}</div>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+            
+            
+        </div>
+        <div class="right-jobs" style="display: flex; flex-direction: column; width: 50%;">
+            <div class="right-jobs-rows-img" style="padding: 30px 0px 30px 30px; margin-left: 10px; background-color: white;">
+                <div class="experience-rows">
+                <div class="first-row-jobs">{{jobId.job_title}}</div>
+                <div class="second-row-jobs">{{jobId.company}}&nbsp;&nbsp;<span style="color: #858585;">·&nbsp;&nbsp;{{jobId.city_j}}, {{jobId.city_j.country}}&nbsp;·&nbsp;23 applicants</span></div>
+                <div style="" class="experience-third-row jobs-third-row">${{jobId.salary_per_hour}}/hour</div>
+                <div style="" class="experience-fourth-row jobs-mutual-margin-rows">{{jobId.type_of_work}} · {{jobId.hour_per_work}} hours/week</div>
+                <div style="margin-top: 20px;" class="experience-fourth-row jobs-mutual-margin-rows">{{jobId.start_date|date:'d-m-Y'}} - {{jobId.end_date|date:'d-m-Y'}}</div>
+                <div style="margin-top: 5px; margin-top: 20px;" class="experience-fourth-row jobs-mutual-margin-rows">{{jobId.housing}} · ${{jobId.housing_cost_per_week}}/week</div>
+                <div style="margin-top: 5px; margin-top: 20px;" class="experience-fourth-row jobs-mutual-margin-rows">{{jobId.program}} · Program Cost: ${{jobId.programCost}}</div>
+                <div style="margin-top: 5px; margin-top: 20px; height: 100%;" class="experience-fourth-row jobs-mutual-margin-rows">Posted on: {{jobId.postDate|date:'d-m-Y'}}</div>
+                </div>                
+            </div>
+            <div class="right-jobs-rows-img-second" style="padding: 30px 0px 0px 30px; margin-left: 10px; background-color: white; margin-top: 20px;">
+                <div class="experience-rows">
+                <div class="first-row-jobs first-row-second-div">Work and Travel</div>
+                <div class="second-row-second-div">
+                <div style="padding-bottom: 10px;">{{jobId.description}}</div>
+                
+                
+                                
+            </div>
+        </div>  </div>
+ 
+        {% else %}
+
+    <link rel="stylesheet" href="{% static 'css/404.css'%}">
+
+        <div id="notfound">
+            <div class="notfound">
+                <h1 class="h" >Oops! This job does not <br>
+                     belong you Sorry!</h1>
+                <div class="notfound-404">
+                    <img src="{% static 'img/oopss.png'%}">
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <p class="p">Sorry but the page you are looking for does not exist, have been removed or you dont have permission for this page</p>
+                <input name="submit" type="submit" class="sign-in-submit-input font-fam" value="Back to Jobs" onClick="history.go(-1);">
+            </div>
+        </div>
+
+
+        {% endif %}
+    
+
+    <script src="{% static 'js/profile_dropdown.js'%}"></script>
+    <script src="{% static 'js/js.js'%}"></script>
+
+{% endblock content %}
+
+

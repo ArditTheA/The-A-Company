@@ -7,6 +7,8 @@ from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
 from datetime import datetime
 from django.urls import reverse 
+from django.utils import timezone
+today = timezone.now
 
 class Country(models.Model):
     country = models.CharField(max_length=255)
@@ -129,7 +131,7 @@ class Jobs(models.Model):
     description = models.TextField()
 
     status = models.CharField(max_length=20,choices=Stat,default="Open")
-    postDate = models.DateField(default=datetime.now())
+    postDate = models.DateField(default=today)
     user_id = models.ForeignKey(CustomUser,on_delete=models.CASCADE, null=True,blank=True)
     approved = models.BooleanField(default=False)
 

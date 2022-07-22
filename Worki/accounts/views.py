@@ -19,6 +19,7 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.views.generic.edit import UpdateView
 from accounts.forms import *
+from django.contrib.auth.decorators import login_required
 def profile(request):
     
     return render(request,"profile/profile.html")
@@ -235,27 +236,48 @@ def Edit_User_langId(request,pk):
 
 def getPostedJobs(request):
     uid = request.user.id
+    
     order_l =["-postDate"]
-    form = add_Jobs(request.POST or None, request.FILES or None)
+    job = Jobs.objects.filter(status="Open").order_by(*order_l)
+    return render(request,"Jobs/Posted.html",{"job":job})
+
+def getPostedJobsId(request,pk):
+    uid = request.user.id
+    
+    order_l =["-postDate"]
+    job = Jobs.objects.filter(status="Open").order_by(*order_l)
+    try:
+        jobId = Jobs.objects.get(id=pk)
+        return render(request,"Jobs/PostedId.html",{"job":job,"jobId":jobId})
+
+    except:
+        return render(request,"404/404.html")
+
+def getApplyedJobs(request):
+    uid = request.user.id
+    app = Application.objects.filter(user_id =uid)
+    
+    return render(request,"Jobs/applied.html",{"app":app})
+
+
+def getAppliedJobsId(request,pk):
+    uid = request.user.id
+    app = Application.objects.filter(user_id = uid).order_by("-apply_date")
+    
+    try:
+        apply = Application.objects.get(id=pk)
+        return render(request,"Jobs/appliedId.html",{"app":app,"apply":apply})
+    except:
+        return render(request,"404/404.html")
+    
+#---------------------------------Add Job ---------------------------------------------#
+@login_required
+def addJob(request):
+    uid = request.user.id
+    form = add_Jobs(request.POST or None,request.FILES or None)
     if request.method == "POST":
         if form.is_valid():
             form.save()
-            return redirect("profile")
-    if(uid != ''):
-        form.initial["user_id"]=uid 
-       
-    job = Jobs.objects.filter(status="Open").order_by(*order_l)
-    return render(request,"Jobs/Index.html",{"job":job,"form":form})
-
-def getPostedJob(request):
-    uid = request.user.id
-    job = Jobs.objects.filter(user_id = uid)
-    return render(request,"Jobs/Index.html",{"job":job})
-
-def getApplyedJobs(request):
-    user_id = request.user.id
-    job = Application.objects.filter(user_id =user_id)
-    return render(request,"Jobs/Index.html",{"job":job})
-
-
-
+    if uid !="":
+        form.initial["user_id"]=uid
+    return render (request,"Jobs/add.html",{"form":form})

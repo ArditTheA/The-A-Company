@@ -1,0 +1,50 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Jobs</title>
+    <link rel="stylesheet" href="{% static 'css/authenticated.css'%}">
+    <link rel="stylesheet" href="{% static 'css/jobs.css'%}">
+    <link rel="stylesheet" href="{% static 'css/profile-header.css'%}">
+
+
+    <div class="jobs-buttons">
+        <div class="mutual-padding-of-div plus-div">
+           <a href=""><img title="Add a Job" class="plus-icon-jobs" style="width: 18px; height: 18px; vertical-align: middle; border-radius: 50%; padding: 8px; background-color: white;" src="{% static 'img/add.png'%}" alt=""></a>
+        </div>
+        <div class="mutual-padding-of-div">
+        <a href="{% url 'appliedJob'%}"><button title="Applied Jobs" class="applied-button-posted-jobs outline-none">Applied</button></a></div>
+        <div>
+        <a href="{% url 'postedJob' %}"><button title="Posted Jobs" class="posted-button-posted-jobs outline-none">Posted</button></a></div>
+    </div>
+     
+    <div class="jobs-main-div" style="display: flex; justify-content: space-between; width: 100%;">
+        <div class="jobs-left" style="display: flex; flex-direction: column; width: 50%; position: relative;">
+            {% for i in job %}
+                <a href="{% url 'postedJobId' i.id %}" style="text-decoration: none;">
+                <div class="jobs-rows-img" style="padding: 30px 0px 30px 30px; margin-right: 10px; margin-top: 20px; background-color: white;">
+                    <img class="experience-education-img" src="{{i.logo.url}}" alt="">
+                    <img title="Edit Job" style="width: 30px; height: 30px; position: absolute; right: 0; margin-right: 40px;" src="{% static 'img/Ikona_edit-01 56.png'%}" alt="">
+                    <div class="experience-rows">
+                    <div class="experience-first-row">{{i.job_title}}</div>
+                    <div class="experience-second-row">{{i.company}}</div>
+                    <div class="experience-third-row">{{i.city_j}}, {{i.city_j.country}}</div>
+                    <div class="experience-fourth-row">50 applicants · {{i.status}}</div>
+                    </div>
+                </div>
+                </a>
+            {% endfor %}
+            
+            
+        </div>
+        
+    </div>
+
+
+    <script src="{% static 'js/profile_dropdown.js'%}"></script>
+
+{% endblock content %}
+
+
