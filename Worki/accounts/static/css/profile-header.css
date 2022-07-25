@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Spline+Sans&display=swap');
 
+
+
 body {
     font-family: 'Spline Sans', sans-serif;
+    scrollbar-width: none;
 }
 
 select {
@@ -70,9 +73,7 @@ select {
     height: 30px;
     cursor: pointer;
 }
-
-#example1 {
-}
+    
 
 .pro-img {
     height: 18vw;

@@ -228,7 +228,7 @@ def Edit_User_langId(request,pk):
 
 
 ###########################################################################
-#----------------------------JOBS-----------------------------------------#
+#----------------------------Profile JOBS---------------------------------#
 ###########################################################################
 
 
@@ -238,7 +238,7 @@ def getPostedJobs(request):
     uid = request.user.id
     
     order_l =["-postDate"]
-    job = Jobs.objects.filter(status="Open").order_by(*order_l)
+    job = Jobs.objects.filter(user_id = uid).order_by(*order_l)
     return render(request,"Jobs/Posted.html",{"job":job})
 
 def getPostedJobsId(request,pk):
@@ -279,7 +279,7 @@ def addJob(request):
         if form.is_valid():
 
             form.save() 
-            print(form.cleaned_data)
+            
             return redirect('postedJob')
     if uid !="":
         form.initial["user_id"]=uid
@@ -298,3 +298,14 @@ def addJobDes(request,pk):
     else:
         form()
     return render(request,"Jobs/Description.html")
+
+
+
+#########################################################################################
+#---------------------------------Main Jobs---------------------------------------------#
+#########################################################################################
+
+
+def getJobs(request):    
+    job = Jobs.objects.filter(status == "Open").filter("-postDate")
+    return render(request,"MainJobs/index.html",{"job":job})
