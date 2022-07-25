@@ -24,10 +24,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '0x-zrhf@)(t)%-630q&s&9g_c^lvh_9cehy@7vx==@bxgn_s_='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 SILENCED_SYSTEM_CHECKS = ["auth.W004"]
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['localhost',"Worki","3.95.229.133"]
 SOCIALACCOUNT_LOGIN_ON_GET=True
 
 # Application definition
