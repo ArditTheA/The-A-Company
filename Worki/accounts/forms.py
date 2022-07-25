@@ -150,9 +150,8 @@ class add_Jobs(ModelForm):
             "hour_per_work": forms.NumberInput(attrs={'class':'name-input mutual-stats font-fam'}),
             "salary_per_hour": forms.NumberInput(attrs={'class':'name-input mutual-stats font-fam'}),
             "description": forms.Textarea(attrs={'class':'name-input mutual-stats font-fam',"rows":5,"cols":33}),
-            "postDate": forms.DateInput(attrs={"class":"start-date-input mutual-stats font-fam","type":"date","disabled":"disabled"}),
-            "user_id":forms.Select(attrs={"disabled":"disabled"}),
+            "postDate": forms.DateInput(attrs={"class":"start-date-input mutual-stats font-fam","type":"date"}),  
             "approved":forms.CheckboxInput(attrs={"disabled":"disabled"}),
-            "status":forms.Select(attrs={"disabled":"disabled"})
+            
             
         }

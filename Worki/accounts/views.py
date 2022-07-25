@@ -248,7 +248,7 @@ def getPostedJobsId(request,pk):
     job = Jobs.objects.filter(status="Open").order_by(*order_l)
     try:
         jobId = Jobs.objects.get(id=pk)
-        return render(request,"Jobs/PostedId.html",{"job":job,"jobId":jobId})
+        return render(request,"Jobs/PostedId.html",{"job":job,"jobId":jobId,"postId":jobId})
 
     except:
         return render(request,"404/404.html")
@@ -278,6 +278,7 @@ def addJob(request):
     if request.method == "POST":
         if form.is_valid():
             form.save()
+            return redirect('postedJob')
     if uid !="":
         form.initial["user_id"]=uid
     return render (request,"Jobs/add.html",{"form":form})
