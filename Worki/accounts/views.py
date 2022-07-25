@@ -277,8 +277,24 @@ def addJob(request):
     form = add_Jobs(request.POST or None,request.FILES or None)
     if request.method == "POST":
         if form.is_valid():
-            form.save()
+
+            form.save() 
+            print(form.cleaned_data)
             return redirect('postedJob')
     if uid !="":
         form.initial["user_id"]=uid
+
     return render (request,"Jobs/add.html",{"form":form})
+
+def addJobDes(request,pk):
+    postId = pk
+    
+    post = Jobs.objects.get(id = postId)
+    form = addJobDes(request.POST or None,instace=post)
+    if request.method == "POST":
+        if form.is_valid():
+            form.save()
+            return render("postedJob")
+    else:
+        form()
+    return render(request,"Jobs/Description.html")

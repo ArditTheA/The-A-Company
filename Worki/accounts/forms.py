@@ -139,8 +139,9 @@ class LoginForm(AuthenticationForm):
 class add_Jobs(ModelForm):
     class Meta:
         model = Jobs
-        fields = "__all__"
+        fields ="__all__"
         widgets ={
+            
             "job_title": forms.TextInput(attrs={'class':'name-input mutual-stats font-fam'}),
             "company": forms.TextInput(attrs={'class':'name-input mutual-stats font-fam'}),
             "start_date": forms.DateInput(attrs={"class":"start-date-input mutual-stats font-fam","type":"date"}),
@@ -149,9 +150,14 @@ class add_Jobs(ModelForm):
             "programCost": forms.NumberInput(attrs={'class':'name-input mutual-stats font-fam'}),
             "hour_per_work": forms.NumberInput(attrs={'class':'name-input mutual-stats font-fam'}),
             "salary_per_hour": forms.NumberInput(attrs={'class':'name-input mutual-stats font-fam'}),
-            "description": forms.Textarea(attrs={'class':'name-input mutual-stats font-fam',"rows":5,"cols":33}),
+            
             "postDate": forms.DateInput(attrs={"class":"start-date-input mutual-stats font-fam","type":"date"}),  
             "approved":forms.CheckboxInput(attrs={"disabled":"disabled"}),
             
             
         }
+
+class addJobDes(ModelForm):
+    class Meta:
+        model = Jobs
+        fields = {"description"}

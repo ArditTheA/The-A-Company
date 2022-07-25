@@ -1,12 +1,90 @@
 {% extends 'base.html'%}
 {% load static %}
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/add-job.css'%}">
+<div class="container-add-a-job">
+    <form method="POST" enctype="multipart/form-data" class="register-form">
+        {% csrf_token %}
+        <div class="inside-the-container">
+            <h1 class="mid title-font-size f-title">Got an open spot?</h1>
+            <h1 class="mid title-font-size f-title">Post your job here!</h1>
+<!--             
+            <div style="display: none;">
+                {{form.user_id}}
+                {{form.postDate}}
+                {{form.approved}}
+                {{form.description}}
+                {{form.status}}
+            </div>
+            <div class="form-group first-form-group">
+                <label class="disabled margin-top-bottom">Job title *</label>
+                {{form.job_title}}
+            </div>
+            <div class="form-group" style="margin: 0;">
+                <label class="margin-top-bottom">Company *</label>
+                {{form.company}}
+            </div>
+            <div class="form-group" style="margin: 0;">
+                <label class="margin-top-bottom">City *</label>
+                {{form.city_j}}
+            </div>
+            <div class="form-group" style="margin: 0;">
+                <label class="margin-top-bottom">Salary Per Hour *</label>
+                {{form.salary_per_hour}}
+            </div>
+            <div class="form-group" style="margin: 0;">
+                <label class="margin-top-bottom">Type Of Work *</label>
+                {{form.type_of_work}}
+            </div>
+            <div class="form-group" style="margin: 0;">
+                <label class="margin-top-bottom">Hour Per Week *</label>
+                {{form.hour_per_work}}
+            </div>
+            <div class="form-group" style="margin: 0;">
+                <label class="margin-top-bottom">Start Date *</label>
+                {{form.start_date}}
+            </div>
+            <div class="form-group" style="margin: 0;">
+                <label class="margin-top-bottom">End Date *</label>
+                {{form.end_date}}
+            </div>
+            <div class="form-group" style="margin: 0;">
+                <label class="margin-top-bottom">Housing *</label>
+                {{form.housing}}
+            </div>
+            <div class="form-group" style="margin: 0;">
+                <label class="margin-top-bottom">Housing Cost Per Week *</label>
+                {{form.housing_cost_per_week}}
+            </div>
+            <div class="form-group" style="margin: 0;">
+                <label class="margin-top-bottom">Program *</label>
+                {{form.program}}
+            </div>
+            <div class="form-group" style="margin: 0;">
+                <label class="margin-top-bottom">Type Of Work *</label>
+                {{form.type_of_work}}
+            </div>
+            <div class="form-group" style="margin: 0;">
+                <label class="margin-top-bottom">Program Cost *</label>
+                {{form.programCost}}
+            </div> -->
+                
+            {{form}}
+                
+            <!-- <div class="margin-top-bottom margin-left-bottom" >Logo *</div>
+            <div class="form-group upload" style="margin: 0;">
+                <label class="logo-label" for="id_logo">
+                    <div style="cursor: pointer;" class="upload-file-div">Upload your file</div>
+                </label>
+                <input type="file" name="logo" accept="image/*"  style="display:none;"required="" id="id_logo">
+                
+            </div> -->
 
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{form}}
-    <button title="Posted Jobs" type="submit" class="posted-button-posted-jobs outline-none">Applied</button>
-</form>
-
+            <div style="width: 100%; display: flex; justify-content: space-between;">
+                <button  class="btn back-button">Back</button>
+                <button type="submit" class="btn submit-button">Next</button>
+            </div>
+    </form>
+</div>
 
 {% endblock content%}

@@ -128,7 +128,7 @@ class Jobs(models.Model):
     program = models.CharField(max_length=50,choices=Program_Type)
     programCost = models.IntegerField()
     logo = models.ImageField()
-    description = models.TextField()
+    description = models.TextField(null=True,blank=True)
 
     status = models.CharField(max_length=20,choices=Stat,default="Open")
     postDate = models.DateField(default=today)
@@ -136,7 +136,7 @@ class Jobs(models.Model):
     approved = models.BooleanField(default=False)
 
     def __str__(self):
-        return str(self.job_title)+" | "+str(self.company)
+        return str(self.id)
 
 class Application(models.Model):
     Stat_type={
