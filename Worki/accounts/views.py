@@ -20,6 +20,14 @@ from django.utils.http import urlsafe_base64_encode
 from django.views.generic.edit import UpdateView
 from accounts.forms import *
 from django.contrib.auth.decorators import login_required
+
+
+#####
+from django.core import serializers
+import json
+from django.shortcuts import HttpResponse
+from django.views.generic import View
+from django.http import JsonResponse
 def profile(request):
     
     return render(request,"profile/profile.html")
@@ -297,15 +305,37 @@ def addJobDes(request,pk):
             return render("postedJob")
     else:
         form()
-    return render(request,"Jobs/Description.html")
+    return render(request,"Jobs/addDescription.html")
 
 
 
 #########################################################################################
 #---------------------------------Main Jobs---------------------------------------------#
 #########################################################################################
+class AjaxHandler(View):
+    
+    def get(self,request):
+        job = Jobs.objects.filter(user_id=request.user.id)
+        post_id=request.headers.get('text')
+        
+        if request.headers.get('X-Requested-With')== 'XMLHttpRequest':
+            job=Jobs.objects.filter(id=post_id).values_list('description', flat=True).first()
+            title = Jobs.objects.filter(id=post_id).values_list('job_title', flat=True).first()
+            start_date = Jobs.objects.filter(id=post_id).values_list('start_date',flat=True).first()
+            end_date = Jobs.objects.filter(id=post_id).values_list('end_date',flat=True).first()
+            city_j = Jobs.objects.filter(id=post_id).values_list('city_j',flat=True).first()
+            number = job
+            cityy=City.objects.filter(id=1).values_list("city",flat=True).first()
+            return JsonResponse({"number":number,"title":title,"city_j":cityy,"start_date":start_date,"end_date":end_date})
+        return render(request,"Jobs/Posted.html",{"job":job})
 
 
-def getJobs(request):    
-    job = Jobs.objects.filter(status == "Open").filter("-postDate")
-    return render(request,"MainJobs/index.html",{"job":job})
+# def is_ajax(request):
+#     return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
+
+
+
+def getJobsss(request):
+    job = Jobs.objects.filter(user_id=request.user.id)
+    return render(request,"Jobs/Posted.html",{"job":job})
+

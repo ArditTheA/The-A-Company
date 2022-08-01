@@ -23,7 +23,7 @@ class City(models.Model):
     country = models.ForeignKey(Country,on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.name)
+        return str(self.name)+", "+str(self.country)
 
 class CustomUser(AbstractUser):
     sex_choice=[

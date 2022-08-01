@@ -61,11 +61,14 @@ urlpatterns = [
     path("profile/language/<int:pk>/",Edit_User_langId,name="editLanguageId"),
 
     #JOBS
-    path("Jobs/Posted",getPostedJobs,name="postedJob"),
-    path("My/Jobs/<int:pk>",getPostedJobsId,name="postedJobId"),
+    # path("Jobs/Posted",getPostedJobs,name="postedJob"),
+    # path("My/Jobs/<int:pk>",getPostedJobsId,name="postedJobId"),
     path("Jobs/Applied/",getApplyedJobs,name="appliedJob"),
     path("Jobs/Applied/<int:pk>",getAppliedJobsId,name="appliedJobId"),
-    path("Jobs/Add",addJob,name="addJob"),
+    # path("Jobs/Add",addJob,name="addJob"),
+    path("Jobs/",AjaxHandler.as_view(),name="postedJob"),
+    path("Jobs/<int:pk>",AjaxHandler.as_view(),name="postedJobi"),
+
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
