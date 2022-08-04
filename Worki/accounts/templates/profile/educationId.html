@@ -61,6 +61,7 @@
                 </div>
                 <h1 id="title-experience" class="second-title-experience">Edit Education</h1>
                 <form method="POST" action="" class="sign-up-form">
+                    {% csrf_token %}
                     <div class="div-of-job-experience">
                     <p class="paragraph-of-name paragraphs-stats">University *</p>
                     {{edit.university}}
