@@ -1,0 +1,151 @@
+@media screen and (max-width: 970px) and (min-width: 768px) {
+
+    .experience-first-row {
+        width: 100px;
+    }
+
+}
+
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+    .jobs-main-div {
+        margin-left: -10px;
+        margin-right: -10px;
+    }
+    .edit-job-button {
+        width: 28px;
+        height: 28px;
+    }
+}
+@media screen and (max-width: 767px) and (min-width: 481px) {
+
+    .right-jobs-main-div {
+        display: none;
+        width: 100%;
+    }
+    .right-jobs {
+        margin-bottom: 20px;
+        height: 100vh;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .jobs-left {
+        width: 100%;
+    }
+    .exit-job-description {
+        margin-bottom: 30px;
+        display: block;
+    }
+    .jobs-rows-img {
+        margin: 0px 10px 20px 20px;
+    }
+    .last-job-margin-bottom {
+        margin-bottom: -10px;
+    }
+    .right-jobs-rows-img-second {
+        margin-top: 20px;
+    }
+    .different-background-jobs {
+        background-color: white;
+    }
+    .mutual-padding-of-div {
+        padding-right: 20px;
+    }
+
+    .edit-job-button {
+        width: 26px;
+        height: 26px;
+        margin-right: 40px;
+    }
+    .jobs-rows-img {
+        padding-left: 30px;
+    }
+
+    .jobs-buttons {
+        margin: 0;
+        margin-top: 20px;
+        display: flex;
+        justify-content: flex-start;
+        margin-left: 20px;
+    }
+    .right-jobs-rows-img, .right-jobs-rows-img-second  {
+        margin-right: 10px;
+    };
+}
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 480px) {
+    body {
+    }
+    .jobs-main-div {
+     }
+    .newDiv {
+    }
+    .right-jobs-main-div {
+        display: none;
+        width: 100%;
+    }
+    .right-jobs {
+        margin-top: -10px;
+        height: 100vh;
+        margin-bottom: 10px;
+    }
+    .jobs-left {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .exit-job-description {
+        margin-bottom: 30px;
+        display: block;
+    }
+    .jobs-rows-img {
+        margin: 0px 0px 10px 10px;
+    }
+    .last-job-margin-bottom {
+        margin-bottom: -10px;
+    }
+    .right-jobs-rows-img-second {
+        margin-top: 10px;
+    }
+    .different-background-jobs {
+        background-color: white;
+    }
+    .mutual-padding-of-div {
+        padding-right: 10px;
+
+    }
+
+    .edit-job-button {
+        width: 22px;
+        height: 22px;
+        margin-right: 20px;
+    }
+    .jobs-rows-img {
+        padding-left: 20px;
+    }
+
+    .jobs-buttons {
+        margin: 0;
+        margin-top: 20px;
+        display: flex;
+        justify-content: flex-start;
+        margin-left: 10px;
+    }
+    .right-jobs-rows-img, .right-jobs-rows-img-second  {
+        margin-right: 10px;
+    };
+};
+
+
+
+
+
+

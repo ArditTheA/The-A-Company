@@ -1,10 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Spline+Sans&display=swap');
 
-
-
 body {
     font-family: 'Spline Sans', sans-serif;
-    scrollbar-width: none;
+}
+
+.profile-header {
+    margin: 20px 40px 20px 40px;
+    background-color: white;
+    border-radius: 40px;
+    position: relative;
 }
 
 select {
@@ -15,13 +19,7 @@ select {
     background-color: white;
     width: 100%;
     box-sizing: border-box;
-}
-
-.profile-header {
-    margin: 20px 40px 20px 40px;
-    background-color: white;
-    border-radius: 40px;
-    position: relative;
+    -webkit-appearance: none;
 }
 
 #example1:hover {  /*  =>  main-div   */
@@ -35,15 +33,15 @@ select {
 .pro-img:hover + .edit-button-cover {
     display: inline-block;
 }
-  
+
 .edit-button-cover:hover {
     display: block;
 }
 
 .profile-image-and-edit {
-    width: 100%; 
-    display: flex; 
-    justify-content: space-between; 
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
     align-items: flex-end;
 }
 
@@ -73,7 +71,9 @@ select {
     height: 30px;
     cursor: pointer;
 }
-    
+
+#example1 {
+}
 
 .pro-img {
     height: 18vw;
@@ -91,8 +91,8 @@ select {
     width: 30px;
     height: 30px;
     position: fixed;
-    right: 3vw;
-    top: 2.5vw;
+    right: 40px;
+    top: 40px;
     cursor: pointer;
 }
 
@@ -143,23 +143,24 @@ select {
     border-radius: 10px;
 }
 .experience-education-languages {
-    margin: 20px 40px 20px 40px; 
-    border-radius: 40px; 
+    margin: 20px 40px 20px 40px;
+    border-radius: 40px;
     background-color: white;
 }
 .different_exp {
     position: relative
 }
 .experience-div, .education-div, .languages-div {
-    display: flex; 
-    align-items: flex-start; 
-    justify-content: space-between; 
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
     width: 100%;
 }
 .experience-paragraph {
-    margin: 0; 
-    font-size: 20px; 
+    margin: 0;
+    font-size: 20px;
 }
+
 .education-paragraphs-div {
 
 }
@@ -171,14 +172,14 @@ select {
 
 .experience-paragraph-img-rows {
     width: 100%;
-    display: flex; 
-    flex-direction: column; 
+    display: flex;
+    flex-direction: column;
     padding: 40px 0px 40px 40px;
 }
 
 .languages-paragraph-img-rows {
     width: 100%;
-    display: flex; 
+    display: flex;
     flex-direction: column;
     padding-top: 40px;
 }
@@ -188,7 +189,7 @@ select {
 }
 
 .experience-rows-img {
-    height: 100%; 
+    height: 100%;
     display: flex;
     margin-top: 40px;
 }
@@ -196,11 +197,9 @@ select {
     margin-top: 20px;
 }
 .jobs-rows-img, .right-jobs-rows-img, .right-jobs-rows-img-second {
-    background-color: #E7F1FE;
     display: flex;
     border-radius: 40px;
 }
-
 .jobs-rows-img {
     margin-left: 40px;
 }
@@ -211,12 +210,12 @@ select {
 }
 
 .experience-rows {
-    display: flex; 
-    flex-direction: column; 
+    display: flex;
+    flex-direction: column;
     margin: 0;
 }
 .two-imgs-experience {
-    position: absolute; 
+    position: absolute;
     right: 40px;
 }
 .experience-rows-img-languages {
@@ -226,35 +225,35 @@ select {
     color: #9E9E9E;
 }
 .experience-first-row {
-    margin-top: 0; 
-    font-size: 20px; 
-    color: #131419; 
+    margin-top: 0;
+    font-size: 24px;
+    color: #131419;
     padding-bottom: 5px;
 }
 .experience-second-row {
-    margin: 0; 
-    font-size: 18px; 
-    padding-bottom: 5px; 
+    margin: 0;
+    font-size: 22px;
+    padding-bottom: 5px;
     color: #1877F2;
 }
 .experience-third-row {
-    font-size: 18px; 
-    padding-bottom: 5px; 
+    font-size: 20px;
+    padding-bottom: 5px;
     color: #858585;
 }
 .experience-fourth-row {
-    font-size: 18px; 
+    font-size: 20px;
     color: #858585;
 }
 .add-and-edit-experience {
-    display: flex; 
-    padding-right: 40px; 
+    display: flex;
+    padding-right: 40px;
     padding-top: 40px;
 }
 .add-experience-button {
     width: 30px;
-    height: 30px; 
-    margin-right: 12px; 
+    height: 30px;
+    margin-right: 12px;
     cursor: pointer;
 }
 .margin-right-back-icon {
@@ -262,8 +261,8 @@ select {
     color: #939598;
 }
 .edit-experience {
-    width: 30px; 
-    height: 30px; 
+    width: 30px;
+    height: 30px;
     cursor: pointer;
     vertical-align: middle;
 }
@@ -275,8 +274,8 @@ select {
 }
 
 .back-icon {
-height: 30px; 
-vertical-align: middle; 
+height: 30px;
+vertical-align: middle;
 margin-right: 20px;
 }
 
@@ -356,7 +355,7 @@ margin-right: 20px;
         bottom: 20px;
         width: 26px;
         height: 26px;
-    }    
+    }
     .profile-name {
         margin-top: 10px;
         text-align: center;
@@ -366,7 +365,7 @@ margin-right: 20px;
         text-align: center;
     }
     .experience-education-languages {
-        margin: 20px; 
+        margin: 20px;
     }
     .experience-paragraph-img-rows {
         padding: 30px 0px 30px 30px;
@@ -382,10 +381,10 @@ margin-right: 20px;
         width: 26px;
         height: 26px;
     }
-    
+
 
     .experience-education-img {
-    margin-right: 25px;
+        margin-right: 30px;
     }
     .add-and-edit-experience {
         padding-top: 30px;
@@ -402,7 +401,7 @@ margin-right: 20px;
         height: 26px;
     }
     .two-imgs-experience {
-        position: absolute; 
+        position: absolute;
         right: 30px;
     }
     .languages-paragraphs-div {
@@ -428,6 +427,7 @@ margin-right: 20px;
     .second-part-profile-header {
         padding: 0px 0px 20px 0px;
     }
+
     .profile-image {
         width: 100px;
         height: 100px;
@@ -459,7 +459,7 @@ margin-right: 20px;
         text-align: center;
     }
     .experience-education-languages {
-        margin: 0px 10px 10px 10px; 
+        margin: 0px 10px 10px 10px;
         border-radius: 20px;
     }
     .experience-paragraph-img-rows {
@@ -484,11 +484,20 @@ margin-right: 20px;
     .languages-paragraphs-div {
         padding: 30px 0px 30px 30px;
     }
+    .experience-first-row {
+        font-size: 20px;
+    }
+    .experience-second-row {
+        font-size: 19px;
+    }
+    .experience-third-row, .experience-fourth-row {
+        font-size: 18px;
+    }
 }
 
 @media screen and (max-width: 1024px) and (min-width: 768px) {
     .experience-education-languages {
-        margin: 20px 30px 20px 30px; 
+        margin: 20px 30px 20px 30px;
     }
     .experience-paragraph-img-rows {
         padding: 40px 0px 40px 40px;

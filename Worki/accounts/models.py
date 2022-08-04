@@ -23,7 +23,7 @@ class City(models.Model):
     country = models.ForeignKey(Country,on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.name)+", "+str(self.country)
+        return str(self.name)
 
 class CustomUser(AbstractUser):
     sex_choice=[
@@ -118,6 +118,7 @@ class Jobs(models.Model):
     job_title = models.CharField(max_length=255)
     company = models.CharField(max_length=255)
     city_j = models.ForeignKey(City,on_delete=models.CASCADE)
+    country_j = models.ForeignKey(Country,on_delete=models.CASCADE)
     salary_per_hour = models.IntegerField()
     type_of_work = models.CharField(max_length=50,choices=TypeofWork)
     hour_per_work = models.IntegerField(default=0)
@@ -134,6 +135,11 @@ class Jobs(models.Model):
     postDate = models.DateField(default=today)
     user_id = models.ForeignKey(CustomUser,on_delete=models.CASCADE, null=True,blank=True)
     approved = models.BooleanField(default=False)
+
+    applicant = models.ManyToManyField(CustomUser, related_name="applicant", blank=True)
+
+    def total_applicant(self):
+        return self.applicant.count()
 
     def __str__(self):
         return str(self.id)

@@ -142,22 +142,50 @@ class add_Jobs(ModelForm):
         fields ="__all__"
         widgets ={
             
-            "job_title": forms.TextInput(attrs={'class':'name-input mutual-stats font-fam'}),
-            "company": forms.TextInput(attrs={'class':'name-input mutual-stats font-fam'}),
-            "start_date": forms.DateInput(attrs={"class":"start-date-input mutual-stats font-fam","type":"date"}),
-            "end_date": forms.DateInput(attrs={"class":"end-date-input mutual-stats font-fam","type":"date"}),
-            "housing_cost_per_week": forms.NumberInput(attrs={'class':'name-input mutual-stats font-fam'}),
-            "programCost": forms.NumberInput(attrs={'class':'name-input mutual-stats font-fam'}),
-            "hour_per_work": forms.NumberInput(attrs={'class':'name-input mutual-stats font-fam'}),
-            "salary_per_hour": forms.NumberInput(attrs={'class':'name-input mutual-stats font-fam'}),
+            "job_title": forms.TextInput(attrs={'class':'name-input mutual-stats font-fam next-none'}),
+            "company": forms.TextInput(attrs={'class':'name-input mutual-stats font-fam next-none'}),
+            "start_date": forms.DateInput(attrs={"class":"start-date-input mutual-stats font-fam next-none","type":"date"}),
+            "end_date": forms.DateInput(attrs={"class":"end-date-input mutual-stats font-fam next-none","type":"date"}),
+            "housing_cost_per_week": forms.NumberInput(attrs={'class':'name-input mutual-stats font-fam  next-none'}),
+            "programCost": forms.NumberInput(attrs={'class':'name-input mutual-stats font-fam next-none'}),
+            "hour_per_work": forms.NumberInput(attrs={'class':'name-input mutual-stats font-fam next-none'}),
+            "salary_per_hour": forms.NumberInput(attrs={'class':'name-input mutual-stats font-fam next-none'}),
             
-            "postDate": forms.DateInput(attrs={"class":"start-date-input mutual-stats font-fam","type":"date"}),  
+            "postDate": forms.DateInput(attrs={"class":"start-date-input mutual-stats font-fam next-none","type":"date"}),
             "approved":forms.CheckboxInput(attrs={"disabled":"disabled"}),
-            
-            
+            "city_j":forms.Select(attrs={"class":"next-none"}),
+            "type_of_work":forms.Select(attrs={"class":"next-none"}),
+            "housing":forms.Select(attrs={"class":"next-none"}),
+            "program":forms.Select(attrs={"class":"next-none"}),
+            "country_j": forms.Select(attrs={"class": "next-none"}),
+            "description": forms.Textarea(attrs={"class": "scroll inner-text second-next-none", "style": "display: none;"})
+
         }
 
-class addJobDes(ModelForm):
+
+class editjob(ModelForm):
     class Meta:
         model = Jobs
-        fields = {"description"}
+        fields = "__all__"
+        widgets={
+            "job_title": forms.TextInput(attrs={'class':'name-input mutual-stats font-fam next-none'}),
+            "company": forms.TextInput(attrs={'class':'name-input mutual-stats font-fam next-none'}),
+            "start_date": forms.DateInput(attrs={"class":"start-date-input mutual-stats font-fam next-none","type":"date"}),
+            "end_date": forms.DateInput(attrs={"class":"end-date-input mutual-stats font-fam next-none","type":"date"}),
+            "housing_cost_per_week": forms.NumberInput(attrs={'class':'name-input mutual-stats font-fam  next-none'}),
+            "programCost": forms.NumberInput(attrs={'class':'name-input mutual-stats font-fam next-none'}),
+            "hour_per_work": forms.NumberInput(attrs={'class':'name-input mutual-stats font-fam next-none'}),
+            "salary_per_hour": forms.NumberInput(attrs={'class':'name-input mutual-stats font-fam next-none'}),
+
+            "postDate": forms.DateInput(attrs={"class":"start-date-input mutual-stats font-fam next-none","type":"date"}),
+            "approved":forms.CheckboxInput(attrs={"disabled":"disabled"}),
+            "city_j":forms.Select(attrs={"class":"next-none"}),
+            "type_of_work":forms.Select(attrs={"class":"next-none"}),
+            "housing":forms.Select(attrs={"class":"next-none"}),
+            "program":forms.Select(attrs={"class":"next-none"}),
+            "country_j": forms.Select(attrs={"class": "next-none"}),
+            "description":forms.Textarea(attrs={"class":"scroll inner-text second-next-none","style":"display: none;"})
+
+
+
+        }

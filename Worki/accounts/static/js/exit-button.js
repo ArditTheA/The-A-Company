@@ -23,8 +23,8 @@ exitBtn.addEventListener('click', function() {
 
 var exitButton = document.querySelectorAll(".exit-button");
 
-for (i = 0; i < exitButton.length; i++){
-    exitButton[i].addEventListener('click', function(event){
-        event.target.parentElement.parentElement.parentElement.parentElement.style.display = "none";
+for (let i = 0; i < exitButton.length; i++){
+    exitButton[i].addEventListener('click', function(){
+        exitButton[i].parentElement.parentElement.parentElement.parentElement.style.display = "none";
     });
 };

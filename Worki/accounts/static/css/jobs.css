@@ -1,19 +1,21 @@
 
 textarea {
-    
-    height:80vh;
+    height:auto;
     resize: none;
     border:none;
     width:85%;
     background-color: white;
     font-size: 18px;
-    color: #858585;
+    color: #757575;
     overflow: scroll;
     font-family: 'Spline Sans', sans-serif;
+    padding: 5px;
+    box-sizing: border-box;
 }
 .scroll::-webkit-scrollbar { width: 0 !important }
 .scroll { overflow: -moz-scrollbars-none; }
 .scroll { -ms-overflow-style: none; }
+
 .jobs-buttons {
     display: flex;
     align-items: center;
@@ -21,6 +23,9 @@ textarea {
 }
 .mutual-padding-of-div {
     padding-right: 20px;
+}
+.jobs-rows-img {
+    cursor: pointer;
 }
 .applied-button-jobs, .applied-button-posted-jobs {
     border: solid  1.2px;
@@ -31,6 +36,9 @@ textarea {
     padding-left: 30px;
     padding-right: 30px;
     height: 36px;
+}
+.right-jobs-main-div {
+    width: 50%;
 }
 .applied-button-jobs, .posted-button-posted-jobs {
     color: white;
@@ -46,9 +54,6 @@ textarea {
     padding-right: 0px;
     width: 36px;
     font-size: 28px;
-}
-.plus-icon-jobs {
-    color: red;
 }
 .applied-button-posted-jobs {
     border: none;
@@ -73,9 +78,20 @@ textarea {
     height: 36px;
 }
 .jobs-left, .right-jobs {
-    overflow-y: scroll;
-    height: 85vh;
     margin-bottom: 20px;
+    overflow-y: scroll;
+    height: 86vh;
+}
+.right-jobs {
+    flex-direction: column;
+}
+.plus-icon-jobs {
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    border-radius: 50%;
+    padding: 8px;
+    background-color: white;
 }
 
 .jobs-left::-webkit-scrollbar {
@@ -86,9 +102,24 @@ textarea {
 }
 .jobs-left-content {
 }
+.edit-job-button {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 0;
+    margin-right: 30px;
+    cursor: pointer;
+    background-color:transparent;
+    border:0px;
+}
+
+.exit-job-description {
+    margin-bottom: 50px;
+    display: none;
+}
 
 .first-row-jobs, .first-row-second-div {
-    color: #131419; 
+    color: #131419;
     padding-bottom: 10px;
 }
 .first-row-jobs {
@@ -98,16 +129,38 @@ textarea {
     font-size: 20px;
 }
 .second-row-jobs {
-    font-size: 20px;
-    padding-bottom: 5px; 
+    font-size: 22px;
     color: #1877F2;
 }
-.second-row-second-div {
-    font-size: 17px;
+.second-row-second-div, .second-div-second-paragraph {
+    font-size: 20px;
     color: #858585;
+    line-height: 35px;
+}
+.jobs-rows-img {
+    padding: 30px;
+    background-color: white;
+}
+.margin-top-jobs-rows-img {
+    margin-top: 20px;
 }
 .right-jobs-rows-img {
+    font-size: 20px;
+}
+.right-jobs-rows-img-second {
+    padding: 30px;
     margin-left: 10px;
+    background-color: white;
+    margin-top: 20px;
+}
+.text-decoration-none {
+    text-decoration: none;
+}
+.same-background-jobs {
+    background-color: white;
+}
+.different-background-jobs {
+    background-color: #E7F1FE;
 }
 .jobs-third-row, .first-row-jobs-third-row-second-div {
     margin-top: 50px;
@@ -116,16 +169,13 @@ textarea {
     font-size: 20px;
 }
 .first-row-jobs-third-row-second-div {
-    color: #131419; 
+    color: #131419;
 }
 .jobs-mutual-margin-rows {
     margin-top: 15px;
 }
-.second-div-second-paragraph {
-    font-size: 17px;
-}
-.second-div-second-paragraph {
-    color: #858585;
+.first-paragraph-second-div, .second-div-second-paragraph {
+    line-height: 35px;
 }
 .here-link {
     color: #1877F2;
@@ -137,4 +187,15 @@ textarea {
 }
 .second-part::-webkit-scrollbar {
     display: none;
+}
+.jobs-left {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+    width: 50%;
+    position: relative;
+}
+
+@media screen {
+
 }

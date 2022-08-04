@@ -63,11 +63,10 @@ urlpatterns = [
     #JOBS
     # path("Jobs/Posted",getPostedJobs,name="postedJob"),
     # path("My/Jobs/<int:pk>",getPostedJobsId,name="postedJobId"),
-    path("Jobs/Applied/",getApplyedJobs,name="appliedJob"),
-    path("Jobs/Applied/<int:pk>",getAppliedJobsId,name="appliedJobId"),
-    # path("Jobs/Add",addJob,name="addJob"),
-    path("Jobs/",AjaxHandler.as_view(),name="postedJob"),
-    path("Jobs/<int:pk>",AjaxHandler.as_view(),name="postedJobi"),
+    path("Jobs/Add",addJob,name="addJob"),
+    path("Jobs/Edit/<int:pk>",editJob,name="editJob"),
+    path("Jobs/Posted",AjaxHandler.as_view(),name="postedJob"),
+    path("Jobs/Applied",AppliedJobs.as_view(),name="appliedJob"),
 
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
