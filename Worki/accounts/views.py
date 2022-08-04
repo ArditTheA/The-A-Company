@@ -258,7 +258,7 @@ def editJob(request, pk):
     form = editjob(request.POST or None, request.FILES or None, instance=job)
     if form.is_valid():
         form.save()
-        return render("postedJob")
+        return redirect("postedJob")
     return render(request, "Jobs/edit.html", {"form": form})
 
 
