@@ -1,4 +1,4 @@
-async function getNumber(id) {
+function() {
 
         var select = document.getElementById('select'+id)
         var elements = document.getElementsByClassName('pixel'); // get all elements

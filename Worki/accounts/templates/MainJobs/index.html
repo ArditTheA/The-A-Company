@@ -1,0 +1,283 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Jobs</title>
+<link rel="stylesheet" href="{% static 'css/authenticated.css'%}">
+<link rel="stylesheet" href="{% static 'css/jobs.css'%}">
+<link rel="stylesheet" href="{% static 'css/profile-header.css'%}">
+<link rel="stylesheet" href="{% static 'css/posted-jobs-media-queries.css'%}">
+
+<div class="jobs-buttons">
+        <div class="mutual-padding-of-div plus-div">
+            <select class="applied-button-posted-jobs outline-none">
+                <option selected>Program</option>
+                <option>Test</option>
+                <option>Test</option>
+                <option>Test</option>
+            </select>
+        </div>
+        <div class="mutual-padding-of-div plus-div">
+            <select class="applied-button-posted-jobs outline-none">
+                    <option>Job Title</option>
+                <option>Test</option>
+                <option>Test</option>
+                <option>Test</option>
+            </select>
+        </div>
+    <div class="mutual-padding-of-div plus-div">
+            <select class="applied-button-posted-jobs outline-none">
+                <option>Company</option>
+                <option>Test</option>
+                <option>Test</option>
+                <option>Test</option>
+            </select>
+        </div>
+
+
+    <div class="mutual-padding-of-div plus-div">
+                <select class="applied-button-posted-jobs outline-none">
+                    <option>Location</option>
+                    <option>Test</option>
+                    <option>Test</option>
+                    <option>Test</option>
+                </select>
+            </div>
+
+
+    <div class="mutual-padding-of-div plus-div">
+                <select class="applied-button-posted-jobs outline-none">
+                    <option>Salary</option>
+                    <option>Test</option>
+                    <option>Test</option>
+                    <option>Test</option>
+                </select>
+            </div>
+
+
+    <div class="mutual-padding-of-div plus-div">
+                <select class="applied-button-posted-jobs outline-none">
+                    <option>Date Posted</option>
+                    <option>Test</option>
+                    <option>Test</option>
+                    <option>Test</option>
+                </select>
+            </div>
+
+    </div>
+
+<div class="jobs-main-div"  style="display: flex; justify-content: space-between; width: 100%;">
+
+        <div class="jobs-left" style="">
+             {% for i in job %}
+
+
+                    <div onclick="getNumber({{i.id}})" class="jobs-rows-img second-jobs margin-top-jobs-rows-img same-background-jobs pixel"  id="select{{i.id}}">
+                        <img class="experience-education-img" src="{{i.logo.url}}" alt="">
+                        <div class="experience-rows">
+                        <div class="experience-first-row">{{i.job_title}}</div>
+                        <div class="experience-second-row">{{i.company}}</div>
+                        <div class="experience-third-row">{{i.city_j}}, {{i.city_j.country}}</div>
+                        <div class="experience-fourth-row">50 applicants · Open</div>
+                            <a href="{% url 'editJob' i.id%}" class="edit-job-button"><img class="edit-job-button" title="Edit Job" src="{% static 'img/Ikona_edit-01 56.png'%}" alt=""></a>
+
+                        </div>
+                    </div>
+                    <div class="move"></div>
+
+
+
+
+
+            {% endfor %}
+
+
+    </div>
+    <div class="right-jobs-main-div">
+            <div class="right-jobs" id="detailsRow" style="display:; flex-direction: column;">
+                <div class="right-jobs-rows-img" style="padding: 30px; margin-left: 10px; background-color: white;">
+                    <div class="experience-rows">
+                    <img class="exit-job-description" title="Exit" style="float: left; width: 22px; height: 22px;" src="{% static 'img/Vector 81 (1).png'%}" alt="">
+                    <div class="first-row-jobs">
+                <p class="" id="job_title">{{jobi.job_title}}</p>
+            </div>
+            <div class="second-row-jobs"><span id="company">{{jobi.company}}</span>&nbsp;&nbsp;<span style="color: #858585;"
+                    id="city"> {{jobi.city_j}}, {{jobi.country_j}}&nbsp;·&nbsp;23
+                    applicants</span></div>
+            <div style="" class="experience-third-row jobs-third-row">$<span id="salary">{{jobi.salary_per_hour}}/hour</span></div>
+            <div style="" class="experience-fourth-row jobs-mutual-margin-rows"><span id="typeOfWork">{{jobi.type_of_work}}</span> ·
+                <span id="hourPerWork">{{jobi.salary_per_hour}}</span> hours/week
+            </div>
+            <div style="margin-top: 20px;" class="experience-fourth-row jobs-mutual-margin-rows" id="sDate">
+            </div>
+            <div style="margin-top: 5px; margin-top: 20px;" class="experience-fourth-row jobs-mutual-margin-rows">
+                <span id="housing">{{ jobi.housing}}</span> · $<span id="housingCost">{{ jobi.housing_cost_per_week}}</span>/week
+            </div>
+            <div style="margin-top: 5px; margin-top: 20px;" class="experience-fourth-row jobs-mutual-margin-rows">
+                <span id="program">{{jobi.program}}</span>· Program Cost: $<span id="programCost">{{jobi.programCost}}</span>
+            </div>
+            <div style="margin-top: 5px; margin-top: 20px; height: 100%;"
+                class="experience-fourth-row jobs-mutual-margin-rows">Posted on: <span id="posted">{{jobi.postDate}}</span>
+
+            </div>
+                        <div id="button"  style="margin-top:25px">
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="right-jobs-rows-img-second">
+                    <div class="col-5">
+                        <textarea rows="50" cols="100" id="message" class="scroll" disabled>
+
+                        </textarea>
+
+                    </div>
+
+                </div>
+            </div>
+
+</div>
+</div>
+<!-- <script src="{% static 'js/main.js'%}"></script>-->
+<!--<script src="{% static 'js/jobs-img.js'%}"></script>-->
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<script src="{% static 'js/exit-job-description-button.js'%}"></script>
+<script>
+    async function getNumber(id) {
+
+
+        var elements = document.getElementsByClassName('pixel'); // get all elements
+
+        for(var i = 0; i < elements.length; i++){
+            elements[i].style.backgroundColor = "white";
+        }
+
+        post_id=id
+        console.log("post__id="+post_id)
+        let response = await fetch('',{
+
+            method: "get",
+
+            headers: {
+                "X-Requested-With": "XMLHttpRequest",
+                "Content-Type": 'application/json',
+                text: post_id,
+            }
+
+        }
+
+        )
+
+        let data = await response.json()
+
+        var element = document.getElementById("detailsRow");
+
+        if (element) {
+            var display = element.style.display;
+
+            if (display == "none") {
+                element.style.display = "block";
+            }
+        }
+        if(id != 0){
+            var select = document.getElementById('select'+id)
+            select.style.backgroundColor = "#E7F1FE";
+        }
+
+        if(id == 0){
+            id=data["post_id"]
+            var select = document.getElementById('select'+id)
+            select.style.backgroundColor = "#E7F1FE";
+        }
+
+
+        let textarea = document.getElementById('message')
+        textarea.value = ""
+        textarea.value += data["description"]
+
+
+        var element = document.getElementById("job_title");
+        element.innerHTML = data["title"]
+
+        var city_jobs = document.getElementById("city")
+        city_jobs.innerHTML = data ["city_j"]+",  "+data["country"]
+
+        var start_date = document.getElementById("sDate")
+        start_date.innerHTML = data["start_date"]+" - "+data["end_date"]
+
+        var company = document.getElementById("company")
+        company.innerHTML = data["company"]
+
+        var salary = document.getElementById("salary")
+        salary.innerHTML = data ["salary"]+"/hour"
+
+        var typeOfWork = document.getElementById('typeOfWork')
+        typeOfWork.innerHTML = data["typeOfWork"]
+
+        var hourPerWork = document.getElementById('hourPerWork')
+        hourPerWork.innerHTML = data['hourPerWork']
+
+        var housing = document.getElementById("housing")
+        housing.innerHTML = data['housing']
+
+        var housingCost = document.getElementById("housingCost")
+        housingCost.innerHTML = data["housingCost"]
+
+        var program = document.getElementById('program')
+        program.innerHTML = data["program"]
+
+        var programCost = document.getElementById("programCost")
+        programCost.innerHTML = data["programCost"]
+
+        var posted = document.getElementById("posted")
+        posted.innerHTML=data["posted"]
+        var button = document.getElementById("button")
+        var url= "apply/"+id
+        button.innerHTML = '<a href="'+url+'" class="applied-button-jobs outline-none" style="text-decoration:none;margin-top: 5px; width: fit-content; padding-top: 8px; padding-bottom: 8px;">Apply</a>';
+
+
+        var firstMediaQuery = window.matchMedia('(min-width: 768px');
+        const mediaQuery = window.matchMedia('(max-width: 767px)');
+        var right_jobs_main_div = document.querySelector('.right-jobs-main-div');
+        var jobs_left = document.querySelector('.jobs-left');
+        var jobs_buttons = document.querySelector('.jobs-buttons');
+
+        if (mediaQuery.matches) {
+                right_jobs_main_div.style.display = "block";
+                jobs_left.style.display = "none";
+                jobs_buttons.style.display = "none";
+                if(id==0){
+                var select = document.getElementById('select'+id)
+                select.style.backgroundColor = "white";
+                }
+        }
+        ;
+    }
+
+
+        var nul = "";
+
+        var firstMediaQuery = window.matchMedia('(min-width: 768px');
+        const mediaQuery = window.matchMedia('(max-width: 767px)');
+        var right_jobs_main_div = document.querySelector('.right-jobs-main-div');
+        var jobs_left = document.querySelector('.jobs-left');
+        var jobs_buttons = document.querySelector('.jobs-buttons');
+
+        if (mediaQuery.matches) {
+                right_jobs_main_div.style.display = "none";
+                jobs_left.style.display = "block";
+                jobs_buttons.style.display = "block";
+                if(id==0){
+                var select = document.getElementById('select'+id)
+                select.style.backgroundColor = "white";
+                }
+        };
+        window.onload = getNumber(nul);
+
+</script>
+
+
+{% endblock content%}

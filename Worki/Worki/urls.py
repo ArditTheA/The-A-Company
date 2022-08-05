@@ -33,7 +33,7 @@ urlpatterns = [
     path('register/', registration, name='register'),
     path('logout/', userViews.LogoutView.as_view(template_name='home/home.html'), name='logout'),
     path('accounts/', include('allauth.urls')),
-    path('',HomeTemp,name='home'),
+    path('',MainJobs.as_view(),name='home'),
     path("TermsAndCondition/",Terms,name="terms"),
 
      
@@ -69,5 +69,7 @@ urlpatterns = [
     path("Jobs/Applied",AppliedJobs.as_view(),name="appliedJob"),
 
 
+    # MainJobs
+    path("apply/<int:pk>",applyForJob),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -1,4 +1,3 @@
-from inspect import Parameter
 from django.contrib.auth import login
 from django.contrib.auth import views as auth_views
 from django.shortcuts import redirect, render
@@ -6,24 +5,17 @@ from django.views import generic
 from django.urls import reverse_lazy
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.forms import PasswordChangeForm
-from requests import request
 from django.core.mail import send_mail, BadHeaderError
-from django.http import HttpResponse
-from accounts.models import *
-from .forms import LoginForm, RegisterForm
 from django.contrib.auth.forms import PasswordResetForm
 from django.template.loader import render_to_string
 from django.db.models.query_utils import Q
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
-from django.views.generic.edit import UpdateView
 from accounts.forms import *
 from django.contrib.auth.decorators import login_required
-
-#####
-from django.core import serializers
-import json
+from django.utils import timezone
+today = timezone.now
 from django.shortcuts import HttpResponse
 from django.views.generic import View
 from django.http import JsonResponse
@@ -272,7 +264,7 @@ class AjaxHandler(View):
         post_id = request.headers.get('text')
 
         if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-            desciption = Jobs.objects.filter(id=post_id).values_list('description', flat=True).first()
+            description = Jobs.objects.filter(id=post_id).values_list('description', flat=True).first()
             title = Jobs.objects.filter(id=post_id).values_list('job_title', flat=True).first()
             start_date = Jobs.objects.filter(id=post_id).values_list('start_date', flat=True).first()
             end_date = Jobs.objects.filter(id=post_id).values_list('end_date', flat=True).first()
@@ -288,7 +280,7 @@ class AjaxHandler(View):
             posted = Jobs.objects.filter(id=post_id).values_list("postDate", flat=True).first()
 
             city_j = Jobs.objects.filter(id=post_id).values_list("city_j")
-            print(city_j)
+
             c = city_j.first()
 
             cityy = City.objects.filter(id=c[0]).values_list("name", flat=True).first()
@@ -297,7 +289,7 @@ class AjaxHandler(View):
             country = Country.objects.filter(id=city_uid).values_list("country", flat=True).first()
 
             return JsonResponse(
-                dict(description=desciption, title=title, city_j=cityy, country=country, start_date=start_date,
+                dict(description=description, title=title, city_j=cityy, country=country, start_date=start_date,
                      salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
                      typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
                      program=program, programCost=programCost,
@@ -310,7 +302,7 @@ class AppliedJobs(View):
         job = Application.objects.filter(user_id=request.user.id).order_by('-apply_date')
         post_id = request.headers.get('text')
         if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-            desciption = Jobs.objects.filter(id=post_id).values_list('description', flat=True).first()
+            description = Jobs.objects.filter(id=post_id).values_list('description', flat=True).first()
             title = Jobs.objects.filter(id=post_id).values_list('job_title', flat=True).first()
             start_date = Jobs.objects.filter(id=post_id).values_list('start_date', flat=True).first()
             end_date = Jobs.objects.filter(id=post_id).values_list('end_date', flat=True).first()
@@ -326,7 +318,7 @@ class AppliedJobs(View):
             posted = Jobs.objects.filter(id=post_id).values_list("postDate", flat=True).first()
 
             city_j = Jobs.objects.filter(id=post_id).values_list("city_j")
-            print(city_j)
+
             c = city_j.first()
 
             cityy = City.objects.filter(id=c[0]).values_list("name", flat=True).first()
@@ -335,9 +327,108 @@ class AppliedJobs(View):
             country = Country.objects.filter(id=city_uid).values_list("country", flat=True).first()
 
             return JsonResponse(
-                dict(description=desciption, title=title, city_j=cityy, country=country, start_date=start_date,
+                dict(description=description, title=title, city_j=cityy, country=country, start_date=start_date,
                      salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
                      typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
                      program=program, programCost=programCost,
                      posted=posted))
         return render(request, "Jobs/applied.html", {"job": job})
+
+
+#########################################################################################
+# ------------------------------Posted Jobs---------------------------------------------#
+#########################################################################################
+
+class MainJobs(View):
+    def get(self, request):
+        job = Jobs.objects.filter(status="Open").order_by("-postDate")
+        post_id = request.headers.get("text")
+
+        if post_id == "":
+            jobi= Jobs.objects.filter(status="Open").order_by("-postDate").values_list('id',flat=True).first()
+            post_id=jobi
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                description = Jobs.objects.filter(id=post_id).values_list('description', flat=True).first()
+                title = Jobs.objects.filter(id=post_id).values_list('job_title', flat=True).first()
+                start_date = Jobs.objects.filter(id=post_id).values_list('start_date', flat=True).first()
+                end_date = Jobs.objects.filter(id=post_id).values_list('end_date', flat=True).first()
+                salary = Jobs.objects.filter(id=post_id).values_list("salary_per_hour", flat=True).first()
+                hourWeek = Jobs.objects.filter(id=post_id).values_list("hour_per_work", flat=True).first()
+                company = Jobs.objects.filter(id=post_id).values_list("company", flat=True).first()
+                typeOfWork = Jobs.objects.filter(id=post_id).values_list("type_of_work", flat=True).first()
+                hourPerWork = Jobs.objects.filter(id=post_id).values_list("hour_per_work", flat=True).first()
+                housing = Jobs.objects.filter(id=post_id).values_list("housing", flat=True).first()
+                housingCost = Jobs.objects.filter(id=post_id).values_list("housing_cost_per_week", flat=True).first()
+                program = Jobs.objects.filter(id=post_id).values_list("program", flat=True).first()
+                programCost = Jobs.objects.filter(id=post_id).values_list("programCost", flat=True).first()
+                posted = Jobs.objects.filter(id=post_id).values_list("postDate", flat=True).first()
+
+                city_j = Jobs.objects.filter(id=post_id).values_list("city_j")
+
+                c = city_j.first()
+
+                city: object = City.objects.filter(id=c[0]).values_list("name", flat=True).first()
+                city_uid = City.objects.filter(id=c[0]).values_list("country", flat=True).first()
+
+                country = Country.objects.filter(id=city_uid).values_list("country", flat=True).first()
+
+                return JsonResponse(
+                    dict(description=description, title=title, city_j=city, country=country, start_date=start_date,
+                         salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
+                         typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
+                         program=program, programCost=programCost,
+                         posted=posted,post_id=post_id))
+        else:
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                description = Jobs.objects.filter(id=post_id).values_list('description', flat=True).first()
+                title = Jobs.objects.filter(id=post_id).values_list('job_title', flat=True).first()
+                start_date = Jobs.objects.filter(id=post_id).values_list('start_date', flat=True).first()
+                end_date = Jobs.objects.filter(id=post_id).values_list('end_date', flat=True).first()
+                salary = Jobs.objects.filter(id=post_id).values_list("salary_per_hour", flat=True).first()
+                hourWeek = Jobs.objects.filter(id=post_id).values_list("hour_per_work", flat=True).first()
+                company = Jobs.objects.filter(id=post_id).values_list("company", flat=True).first()
+                typeOfWork = Jobs.objects.filter(id=post_id).values_list("type_of_work", flat=True).first()
+                hourPerWork = Jobs.objects.filter(id=post_id).values_list("hour_per_work", flat=True).first()
+                housing = Jobs.objects.filter(id=post_id).values_list("housing", flat=True).first()
+                housingCost = Jobs.objects.filter(id=post_id).values_list("housing_cost_per_week", flat=True).first()
+                program = Jobs.objects.filter(id=post_id).values_list("program", flat=True).first()
+                programCost = Jobs.objects.filter(id=post_id).values_list("programCost", flat=True).first()
+                posted = Jobs.objects.filter(id=post_id).values_list("postDate", flat=True).first()
+
+                city_j = Jobs.objects.filter(id=post_id).values_list("city_j")
+
+                c = city_j.first()
+
+                city: object = City.objects.filter(id=c[0]).values_list("name", flat=True).first()
+                city_uid = City.objects.filter(id=c[0]).values_list("country", flat=True).first()
+
+                country = Country.objects.filter(id=city_uid).values_list("country", flat=True).first()
+
+                return JsonResponse(
+                    dict(description=description, title=title, city_j=city, country=country, start_date=start_date,
+                         salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
+                         typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
+                         program=program, programCost=programCost,
+                         posted=posted))
+        return render(request, "MainJobs/index.html", {"job": job})
+
+
+@login_required
+def applyForJob(request,pk):
+    jobId = pk
+    userId = request.user.id
+    if request.user.profileSetup:
+        print("Profile Setup")
+        form = applyform(request.POST)
+        form.initial["job_id_id"] = jobId
+        form.initial["user_id"] = userId
+        form.initial["apply_date"] = today
+        form.initial["status"] = "Pennding"
+        print(form)
+
+
+
+    else:
+        print("Profile Not Setup")
+    return render(request,"MainJobs/apply.html")
+

@@ -151,8 +151,8 @@ class Application(models.Model):
     }
     job_id= models.ForeignKey(Jobs,on_delete=models.CASCADE)
     user_id = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
-    apply_date = models.DateField()
-    status = models.CharField(max_length=50,choices=Stat_type)
+    apply_date = models.DateField(default=today)
+    status = models.CharField(max_length=50,choices=Stat_type,default="Pennding")
 
     def __str__(self):
         return str(self.job_id)+" | "+str(self.user_id)+" | "+str(self.apply_date)
