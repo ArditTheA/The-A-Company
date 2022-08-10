@@ -19,8 +19,10 @@
 <link rel="stylesheet" href="{% static 'css/add-profile-picture.css' %}">
 <link rel="stylesheet" href="{% static 'css/experience-font-family.css' %}">
 <link rel="stylesheet" href="{% static 'css/add-experience.css' %}">
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 <link rel="stylesheet" href="{% static 'css/edit-cover.css' %}">
+    <link rel="icon" href="{% static 'img/Worki_Logo.png' %}">
     {% if user.is_authenticated %}
     <header class="header-border">
         <a href="{% url 'home'%}"><img id="worki-image" src="{% static 'img/Worki_Logo_Black.png' %}" title="Worki"></a>

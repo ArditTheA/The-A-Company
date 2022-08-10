@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<!--<form method="post">-->
+<!--    {% csrf_token %}-->
+<!--    {{form}}-->
+
+<!--    <button type="submit" value="submit">Submit</button>-->
+<!--</form>-->
+<link rel="stylesheet" href="{% static 'css/ProfileSetup/main.css' %}">
+
+<div class="container-add-a-job">
+        <form class="register-form" method="post">
+            {% csrf_token %}
+		    <div class="inside-the-container" style="">
+            <h1 class="next-none mid title-font-size f-title">We'd like to know</h1>
+            <h1 class="next-none mid title-font-size f-title">more about you</h1>
+            <label style="display: flex; justify-content: center;" class="disabled margin-top-bottom next-none margin-top-job-title">Part 1 of 3</label>
+      		<div class="form-group first-form-group">
+            <label class="disabled margin-top-bottom next-none">First name</label>
+                {{form.first_name}}
+      		</div>
+      		<div class="form-group" style="margin: 0;">
+          <label class="margin-top-bottom next-none">Last name</label>
+                {{form.last_name}}
+      		</div>
+              <label style="" class="margin-top-bottom next-none">Sex</label>
+            <div class="form-group" style="margin: 0; box-sizing: border-box; width: 100%;">
+                {{form.sex}}
+                    <input style="" class="next-none male-sex" type="text" name="data[MaleSex]" placeholder="Male">
+                    <input style="" class="next-none female-sex" type="text" name="data[FemaleSex]" placeholder="Female">
+            </div>
+            <div class="form-group" style="margin: 0;">
+                <label class="margin-top-bottom next-none">Date of Birth</label>
+                {{form.birthday}}
+            </div>
+                    <div class="form-group">
+      				<label class="margin-top-bottom margin-left next-none">Country of residence *</label>
+				<div>
+					{{form.country}}
+				</div>
+      		  </div>
+
+      		 <div class="form-group" style="margin: 0;">
+      		 	<label class="margin-top-bottom margin-left next-none">City of residence *</label>
+                 {{form.city}}
+      	    </div>
+              <div class="form-group" style="margin: 0;">
+                <label class="margin-top-bottom next-none">Email</label>
+                {{form.email}}
+            </div>
+            <div class="form-group" style="margin: 0;">
+                <label class="margin-top-bottom next-none">Phone number</label>
+                {{form.phone_number}}
+            </div>
+
+            <div style="width: 100%; display: flex; justify-content: space-between;">
+            <a href="" class="btn back-button next-none" style="color: #1877F2;">Back</a>
+            <button  class="btn submit-button next-button next-none" type="submit" style="color: white;">Next</button>
+            </div>
+		</div>
+    </form>
+	</div>
+
+
+
+{% endblock content %}

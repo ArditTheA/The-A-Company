@@ -32,13 +32,14 @@ class CustomUser(AbstractUser):
     ]
     username=models.CharField(max_length=255,null=True,blank=True)
     email = models.EmailField(_('email'), unique=True,null=False,blank=False)
-    profile = models.ImageField(upload_to="profile",default="download.jpg")
+    profile = models.ImageField(upload_to="profile",default="default.jpeg")
     cover = models.ImageField(upload_to="cover",default="default.png")
     sex = models.CharField(choices=sex_choice,max_length=10,null=True)
     profileSetup = models.BooleanField(default=False)
     city = models.ForeignKey(City,on_delete=models.CASCADE,null=True,blank=True)
     country = models.ForeignKey(Country,on_delete=models.CASCADE,null=True, blank=True)
     phone_number= models.CharField(max_length=255,null=True,blank=True)
+    birthday = models.DateField(null = True,blank=True)
     def __str__(self):
         return self.email+" "+ self.first_name+" "+ self.last_name
     
@@ -128,7 +129,7 @@ class Jobs(models.Model):
     housing_cost_per_week = models.IntegerField()
     program = models.CharField(max_length=50,choices=Program_Type)
     programCost = models.IntegerField()
-    logo = models.ImageField()
+    logo = models.ImageField(upload_to="JobLogo")
     description = models.TextField(null=True,blank=True)
 
     status = models.CharField(max_length=20,choices=Stat,default="Open")
@@ -137,12 +138,15 @@ class Jobs(models.Model):
     approved = models.BooleanField(default=False)
 
     applicant = models.ManyToManyField(CustomUser, related_name="applicant", blank=True)
+    apply_date = models.DateField(null=True,blank=True)
 
+    @property
     def total_applicant(self):
         return self.applicant.count()
 
+
     def __str__(self):
-        return str(self.id)
+        return str(self.job_title)
 
 class Application(models.Model):
     Stat_type={

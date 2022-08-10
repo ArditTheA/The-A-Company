@@ -1,4 +1,3 @@
-
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import get_user_model
 from django import forms
@@ -205,3 +204,35 @@ class applyform(ModelForm):
     class Meta:
         model = Application
         fields = "__all__"
+
+
+class setupProfile(ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ("first_name", "last_name", "sex","birthday", "country", "city", "email", "phone_number")
+        widgets = {
+            "first_name":forms.TextInput(attrs={'class':'next-none'}),
+            "last_name":forms.TextInput(attrs={'class':'next-none'}),
+            "country": forms.Select(attrs={"class": "next-none"}),
+            "city": forms.Select(attrs={"class": "next-none"}),
+            "email": forms.TextInput(attrs={"class": "next-none","type":"email"}),
+            "phone_number": forms.TextInput(attrs={"class": "next-none"}),
+            "birthday":forms.DateInput(attrs ={"class":"next-none","type":"date"}),
+
+        }
+
+
+class setupProfile2(ModelForm):
+    class Meta:
+        model = UserEducation
+        fields = "__all__"
+        widgets ={
+            "start_year": forms.DateInput(attrs={"class": "next-none", "type": "date"}),
+            "end_year": forms.DateInput(attrs={"class": "next-none", "type": "date"}),
+        }
+
+class setupProfile3(ModelForm):
+    class Meta:
+        model = UserLanguages
+        fields = "__all__"
+

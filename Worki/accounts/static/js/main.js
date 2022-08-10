@@ -1,13 +1,14 @@
-async function getNumber(id) {
+ async function getNumber(id) {
 
-        var select = document.getElementById('select'+id)
+
         var elements = document.getElementsByClassName('pixel'); // get all elements
+
         for(var i = 0; i < elements.length; i++){
             elements[i].style.backgroundColor = "white";
         }
-        select.style.backgroundColor = "#E7F1FE";
 
-
+        post_id=id
+        console.log("post__id="+post_id)
         let response = await fetch('',{
 
             method: "get",
@@ -15,7 +16,7 @@ async function getNumber(id) {
             headers: {
                 "X-Requested-With": "XMLHttpRequest",
                 "Content-Type": 'application/json',
-                text: id,
+                text: post_id,
             }
 
         }
@@ -33,8 +34,16 @@ async function getNumber(id) {
                 element.style.display = "block";
             }
         }
+        if(id != 0){
+            var select = document.getElementById('select'+id)
+            select.style.backgroundColor = "#E7F1FE";
+        }
 
-
+        if(id == 0){
+            id=data["post_id"]
+            var select = document.getElementById('select'+id)
+            select.style.backgroundColor = "#E7F1FE";
+        }
 
 
         let textarea = document.getElementById('message')
@@ -77,8 +86,9 @@ async function getNumber(id) {
 
         var posted = document.getElementById("posted")
         posted.innerHTML=data["posted"]
-        var butoni = document.getElementById("button")
-        butoni.innerHTML = '<a href="/news_events/"><span class="picon-p-add-news"></span>Read more news</a>';
+        var button = document.getElementById("button")
+        var url= "apply/"+id
+        button.innerHTML = '<a href="'+url+'" class="applied-button-jobs outline-none" style="text-decoration:none;margin-top: 5px; width: fit-content; padding-top: 8px; padding-bottom: 8px;">Apply</a>';
 
 
         var firstMediaQuery = window.matchMedia('(min-width: 768px');
@@ -91,13 +101,30 @@ async function getNumber(id) {
                 right_jobs_main_div.style.display = "block";
                 jobs_left.style.display = "none";
                 jobs_buttons.style.display = "none";
-
-        };
-
-
-
-
-
-
-
+                if(id==0){
+                var select = document.getElementById('select'+id)
+                select.style.backgroundColor = "white";
+                }
+        }
+        ;
     }
+
+
+        var nul = "";
+
+        var firstMediaQuery = window.matchMedia('(min-width: 768px');
+        const mediaQuery = window.matchMedia('(max-width: 767px)');
+        var right_jobs_main_div = document.querySelector('.right-jobs-main-div');
+        var jobs_left = document.querySelector('.jobs-left');
+        var jobs_buttons = document.querySelector('.jobs-buttons');
+
+        if (mediaQuery.matches) {
+                right_jobs_main_div.style.display = "none";
+                jobs_left.style.display = "block";
+                jobs_buttons.style.display = "block";
+                if(id==0){
+                var select = document.getElementById('select'+id)
+                select.style.backgroundColor = "white";
+                }
+        };
+        window.onload = getNumber(nul);

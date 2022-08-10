@@ -25,13 +25,13 @@
              {% for i in job %}
 
 
-            <div onclick="getNumber({{i.job_id}})" class="jobs-rows-img second-jobs margin-top-jobs-rows-img same-background-jobs pixel"  id="select{{i.id}}">
-                <img class="experience-education-img" src="{{i.job_id.logo.url}}" alt="">
+            <div onclick="getNumber({{i.id}})" class="jobs-rows-img second-jobs margin-top-jobs-rows-img same-background-jobs pixel"  id="select{{i.id}}">
+                <img class="experience-education-img" src="{{i.logo.url}}" alt="">
                 <div class="experience-rows">
-                <div class="experience-first-row">{{i.job_id.job_title}}</div>
-                <div class="experience-second-row">{{i.jobid.company}}</div>
-                <div class="experience-third-row">{{i.job_id.city_j}}, {{i.job_id.city_j.country}}</div>
-                <div class="experience-fourth-row">{{i.job_id.program}}</div>
+                <div class="experience-first-row">{{i.job_title}}</div>
+                <div class="experience-second-row">{{i.company}}</div>
+                <div class="experience-third-row">{{i.city_j}}, {{i.city_j.country}}</div>
+                <div class="experience-fourth-row">{{i.program}}</div>
 
                 </div>
             </div>
@@ -45,7 +45,7 @@
 
     </div>
     <div class="right-jobs-main-div">
-            <div class="right-jobs" id="detailsRow" style="display:none; flex-direction: column;">
+            <div class="right-jobs" id="detailsRow" style=" flex-direction: column;">
                 <div class="right-jobs-rows-img" style="padding: 30px; margin-left: 10px; background-color: white;">
                     <div class="experience-rows">
                     <img class="exit-job-description" title="Exit" style="float: left; width: 22px; height: 22px;" src="{% static 'img/Vector 81 (1).png'%}" alt="">

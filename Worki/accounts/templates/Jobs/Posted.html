@@ -32,7 +32,7 @@
                 <div class="experience-first-row">{{i.job_title}}</div>
                 <div class="experience-second-row">{{i.company}}</div>
                 <div class="experience-third-row">{{i.city_j}}, {{i.city_j.country}}</div>
-                <div class="experience-fourth-row">50 applicants · Open</div>
+                <div class="experience-fourth-row">{{i.total_applicant}} applicants · {{i.status}}</div>
                     <a href="{% url 'editJob' i.id%}" class="edit-job-button"><img class="edit-job-button" title="Edit Job" src="{% static 'img/Ikona_edit-01 56.png'%}" alt=""></a>
 
                 </div>
