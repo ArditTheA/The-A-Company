@@ -340,6 +340,7 @@ class AppliedJobs(View):
         if post_id == "":
             jobid = Application.objects.filter(user_id=request.user.id).order_by("-apply_date").values_list("job_id", flat=True).first()
             post_id = jobid
+            print(post_id)
             if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
                 description = Jobs.objects.filter(id=post_id).values_list('description', flat=True).first()
                 title = Jobs.objects.filter(id=post_id).values_list('job_title', flat=True).first()
@@ -355,9 +356,9 @@ class AppliedJobs(View):
                 program = Jobs.objects.filter(id=post_id).values_list("program", flat=True).first()
                 programCost = Jobs.objects.filter(id=post_id).values_list("programCost", flat=True).first()
                 posted = Jobs.objects.filter(id=post_id).values_list("postDate", flat=True).first()
-                city_j = Jobs.objects.filter(id=post_id).values_list("city_j").first()
-
-                cityy = City.objects.filter(id=city_j[0]).values_list("name", flat=True).first()
+                city_j = Jobs.objects.filter(id=post_id).values_list("city_j")
+                c = city_j.first()
+                cityy = City.objects.filter(id=c[0]).values_list("name", flat=True).first()
                 city_uid = City.objects.filter(id=c[0]).values_list("country", flat=True).first()
                 country = Country.objects.filter(id=city_uid).values_list("country", flat=True).first()
                 return JsonResponse(
@@ -436,6 +437,7 @@ class MainJobs(View):
         cityName=[]
         for i in city_y:
             getC = City.objects.get(id=i)
+            getCo = City.objects.filter(id=i).values_list("country",flat=True)
             cit = str(getC.name+", "+getC.country.country)
             cityName.append(cit)
         sal=[]
@@ -492,7 +494,7 @@ class MainJobs(View):
                 housingCost = Jobs.objects.filter(id=post_id).values_list("housing_cost_per_week", flat=True).first()
                 program = Jobs.objects.filter(id=post_id).values_list("program", flat=True).first()
                 programCost = Jobs.objects.filter(id=post_id).values_list("programCost", flat=True).first()
-                posted = Jobs.objects.filter(id=post_id).values_list("postDate", flat=True).first()
+                posted = Application.objects.filter(job_id=post_id).filter(user_id=request.user.id).values_list("apply_date", flat=True).first()
                 city_j = Jobs.objects.filter(id=post_id).values_list("city_j")
 
                 c = city_j.first()
