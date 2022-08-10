@@ -356,7 +356,7 @@ class AppliedJobs(View):
                 programCost = Jobs.objects.filter(id=post_id).values_list("programCost", flat=True).first()
                 posted = Jobs.objects.filter(id=post_id).values_list("postDate", flat=True).first()
                 city_j = Jobs.objects.filter(id=post_id).values_list("city_j").first()
-                
+
                 cityy = City.objects.filter(id=city_j[0]).values_list("name", flat=True).first()
                 city_uid = City.objects.filter(id=c[0]).values_list("country", flat=True).first()
                 country = Country.objects.filter(id=city_uid).values_list("country", flat=True).first()
