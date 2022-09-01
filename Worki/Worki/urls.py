@@ -26,7 +26,8 @@ from accounts.views import LoginView, RegisterView,HomeTemp
 from django.contrib.auth import views as auth_views
 from django.contrib.auth import views as userViews
 from accounts.views import *
-
+from  filters.views import *
+from resetpassword.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', LoginView.as_view(), name='login'),
@@ -35,21 +36,13 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('',MainJobs.as_view(),name='home'),
     path("TermsAndCondition/",Terms,name="terms"),
-
-     
-    # forget password
-
-    path('reset_password/',password_reset_request, name="reset_password"),
-
-    path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name="accounts/password_reset_sent.html"), name="password_reset_done"),
-
-    path('password_reset_confirm/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name="accounts/password_reset_form.html"),name="password_reset_confirm"),
-
-    path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name="accounts/password_reset_done.html"), name="password_reset_complete"),
     
-    path("password/change/",passChange.as_view(template_name="accounts/change_password.html"),name="password_change"),
 
+    path("password_reset", password_reset_request, name="password_reset"),
 
+    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='main/password/password_reset_done.html'), name='password_reset_done'),
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name="main/password/password_reset_confirm.html"), name='password_reset_confirm'),
+    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='main/password/password_reset_complete.html'), name='password_reset_complete'),      
 
     #profile
     path("profile/",update_profile,name="profile"),
@@ -71,7 +64,17 @@ urlpatterns = [
 
     # MainJobs
     path("apply/<int:pk>",applyForJob,name="apply"),
+    path("jobs/apply/<int:pk>",applyForJob),
     path("profile/setup/1/<int:pk>",applyForJob2,name="setupPart2"),
     path("profile/setup/2/<int:pk>",applyForJob3,name="setupPart3"),
+    path("search/",getList,name="search"),
+
+
+
+
+    # Filters
+
+    path("jobs/filter",OneSelFilter.as_view(),name="filter")
+
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

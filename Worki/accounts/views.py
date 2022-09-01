@@ -16,6 +16,8 @@ from accounts.forms import *
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 
+from filters.models import Search
+
 today = timezone.now
 from django.shortcuts import HttpResponse
 from django.views.generic import View
@@ -54,6 +56,12 @@ class RegisterView(generic.CreateView):
     template_name = 'accounts/register.html'
 
 
+
+
+
+
+
+
 def registration(request):
     if request.POST:
         form = RegisterForm(request.POST)
@@ -66,38 +74,6 @@ def registration(request):
         form = RegisterForm()
     return render(request, "accounts/register.html", {"form": form})
 
-
-def password_reset_request(request):
-    if request.method == "POST":
-        password_form = PasswordResetForm(request.POST)
-        if password_form.is_valid():
-            data = password_form.cleaned_data['email']
-            user_email = CustomUser.objects.filter(Q(email=data))
-            if user_email.exists():
-                for user in user_email:
-                    subject = "Password Request"
-                    email_template_name = 'accounts/password_reset_email.txt'
-                    parameter = {
-                        'email': user.email,
-                        'domain': 'worki.global',
-                        'site_name': 'Worki',
-                        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                        'token': default_token_generator.make_token(user),
-                        'protocol': "http",
-
-                    }
-                    email = render_to_string(email_template_name, parameter)
-                    try:
-                        send_mail(subject, email, '', [user.email], fail_silently=False)
-                    except:
-                        return HttpResponse("Invalid Header")
-                    return redirect('password_reset_done')
-    else:
-        password_form = PasswordResetForm()
-    context = {
-        'password_form': password_form
-    }
-    return render(request, 'accounts/password_reset.html', context)
 
 
 ############################### Profile ##################################################
@@ -264,8 +240,7 @@ class AjaxHandler(View):
         job = Jobs.objects.filter(user_id=request.user.id).order_by("-postDate")
         post_id = request.headers.get('text')
         if post_id == "":
-            jobid = Jobs.objects.filter(user_id=request.user.id).order_by("-postDate").values_list("id",
-                                                                                                   flat=True).first()
+            jobid = Jobs.objects.filter(user_id=request.user.id).order_by("-postDate").values_list("id",flat=True).first()
             post_id = jobid
             if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
                 description = Jobs.objects.filter(id=post_id).values_list('description', flat=True).first()
@@ -291,6 +266,9 @@ class AjaxHandler(View):
                 city_uid = City.objects.filter(id=c[0]).values_list("country", flat=True).first()
 
                 country = Country.objects.filter(id=city_uid).values_list("country", flat=True).first()
+
+
+                
 
                 return JsonResponse(
                     dict(description=description, title=title, city_j=cityy, country=country, start_date=start_date,
@@ -335,12 +313,12 @@ class AjaxHandler(View):
 
 class AppliedJobs(View):
     def get(self, request):
-        job = Jobs.objects.filter(user_id=request.user.id)
+        job = Application.objects.filter(user_id=request.user).order_by("-apply_date")
         post_id = request.headers.get('text')
         if post_id == "":
-            jobid = Application.objects.filter(user_id=request.user.id).order_by("-apply_date").values_list("job_id", flat=True).first()
+            jobid = Application.objects.filter(user_id=request.user).order_by("-apply_date").values_list("job_id_id", flat=True).first()
             post_id = jobid
-            print(post_id)
+            print("post_id=",post_id)
             if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
                 description = Jobs.objects.filter(id=post_id).values_list('description', flat=True).first()
                 title = Jobs.objects.filter(id=post_id).values_list('job_title', flat=True).first()
@@ -398,9 +376,14 @@ class AppliedJobs(View):
                          salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
                          typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
                          program=program, programCost=programCost,
-                         posted=posted))
-
-        return render(request, "Jobs/applied.html", {"job": job})
+                         posted=posted,post_id=post_id))
+        check =  True
+        if len(job) != 0:
+            check = True
+        else:
+            check = False
+        print(post_id)
+        return render(request, "Jobs/applied.html", {"job": job,"check":check})
 
 
 #########################################################################################
@@ -409,41 +392,199 @@ class AppliedJobs(View):
 
 class MainJobs(View):
     def get(self, request):
-        job = Jobs.objects.filter(status="Open").order_by("-postDate")
         post_id = request.headers.get("text")
-        program = Jobs.objects.filter(status="Open").values_list("program",flat=True)
-        title = Jobs.objects.filter(status="Open").values_list("job_title",flat=True)
-        comp = Jobs.objects.filter(status="Open").values_list("company",flat=True)
-        city_j = Jobs.objects.filter(status="Open").values_list("city_j",flat=True)
-        salary = Jobs.objects.filter(status="Open").values_list("salary_per_hour",flat=True)
-        prog = []
-        for i in program:
-            if i not in prog:
-                prog.append(i)
-        Jtitle=[]
+        job =Jobs.objects.filter(status="Open").order_by("-postDate")
+        #search
+        query = request.GET.get("q")
 
-        for i in title:
-            if i not in Jtitle:
-                Jtitle.append(i)
-        company = []
-        for i in comp:
-            if i  not in company:
-                company.append(i)
+        
+        jobi=[]
+        
+        jobs = []
+        if(query != None):
+            searchRequest = query.split()
+            for i in searchRequest:
+                if i =="in" or i =="on" or i=="at" or i =="," or i=="-" or i==" ":
 
-        city_y  =[]
-        for i in city_j:
-            if i not in city_y:
-                city_y.append(i)
-        cityName=[]
-        for i in city_y:
-            getC = City.objects.get(id=i)
-            getCo = City.objects.filter(id=i).values_list("country",flat=True)
-            cit = str(getC.name+", "+getC.country.country)
-            cityName.append(cit)
-        sal=[]
-        for i in salary:
-            if i not in sal:
-                sal.append(i)
+                    searchRequest.remove(i)
+            
+
+            # title and city
+            if len(searchRequest) == 3:
+                if Jobs.objects.filter(job_title__icontains=searchRequest[0]+" "+searchRequest[1]).exists():
+                    searchRequest= [searchRequest[0]+" "+searchRequest[1],searchRequest[2]]
+                else:
+                    searchRequest= [searchRequest[0],searchRequest[1]+" "+searchRequest[2]]
+
+                print(searchRequest)
+                if Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(
+                        city_j__name__icontains=searchRequest[1]).exists():
+                    job = Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(
+                        city_j__name__icontains=searchRequest[1]).filter(status="Open")
+                    jobi = Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(status="Open")
+
+                elif Jobs.objects.filter(job_title__icontains=searchRequest[1]).filter(
+                        city_j__name__icontains=searchRequest[0]).exists():
+                    job = Jobs.objects.filter(job_title__icontains=searchRequest[1]).filter(
+                        city_j__name__icontains=searchRequest[0]).filter(status="Open")
+                    jobi = Jobs.objects.filter(job_title__icontains=searchRequest[1]).filter(status="Open")
+
+
+                # country and city
+                elif Jobs.objects.filter(country_j__country__icontains=searchRequest[1]).filter(
+                        city_j__name__icontains=searchRequest[0]).exists():
+                    job = Jobs.objects.filter(country_j__country__icontains=searchRequest[1]).filter(
+                        city_j__name__icontains=searchRequest[0]).filter(status="Open")
+
+                elif Jobs.objects.filter(country_j__country__icontains=searchRequest[0]).filter(
+                        city_j__name__icontains=searchRequest[1]).exists():
+                    job = Jobs.objects.filter(country_j__country__icontains=searchRequest[0]).filter(
+                        city_j__name__icontains=searchRequest[1]).filter(status="Open")
+
+                    # title and country
+                elif Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(
+                        country_j__country__icontains=searchRequest[1]).exists():
+                    job = Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(
+                        country_j__country__icontains=searchRequest[1]).filter(status="Open")
+
+                elif Jobs.objects.filter(job_title__icontains=searchRequest[1]).filter(
+                        country_j__country__icontains=searchRequest[0]).exists():
+                    job = Jobs.objects.filter(job_title__icontains=searchRequest[1]).filter(
+                        country_j__country__icontains=searchRequest[0]).filter(status="Open")
+                elif Jobs.objects.filter(job_title__icontains=searchRequest[0]).exists():
+                    job = Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(status="Open")
+                # title
+
+                elif Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(
+                        job_title__icontains=searchRequest[1]).exists():
+                    job = Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(
+                        job_title__icontains=searchRequest[1]).filter(status="Open").order_by("-postDate")
+                # cityyy
+                elif Jobs.objects.filter(city_j__name__icontains=searchRequest[0]).exists():
+                    job = Jobs.objects.filter(city_j__name__icontains=searchRequest[0]).filter(status="Open").order_by(
+                        "-postDate")
+
+                # country
+                elif Jobs.objects.filter(country_j__country__icontains=searchRequest[0]).exists():
+                    job = Jobs.objects.filter(country_j__country__icontains=searchRequest[0]).filter(
+                        status="Open").order_by("-postDate")
+                elif Jobs.objects.filter(job_title__icontains=searchRequest[0]).exists():
+                    job = Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(status="Open")
+            elif len(searchRequest)>1:
+                if Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(city_j__name__icontains=searchRequest[1]).exists():
+                    job = Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(city_j__name__icontains=searchRequest[1]).filter(status="Open")
+                    jobi = Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(status="Open")
+
+                elif Jobs.objects.filter(job_title__icontains=searchRequest[1]).filter(city_j__name__icontains=searchRequest[0]).exists():
+                    job = Jobs.objects.filter(job_title__icontains=searchRequest[1]).filter(city_j__name__icontains=searchRequest[0]).filter(status="Open")
+                    jobi = Jobs.objects.filter(job_title__icontains=searchRequest[1]).filter(status="Open")
+            
+            
+                # country and city
+                elif Jobs.objects.filter(country_j__country__icontains=searchRequest[1]).filter(city_j__name__icontains=searchRequest[0]).exists():
+                    job = Jobs.objects.filter(country_j__country__icontains=searchRequest[1]).filter(city_j__name__icontains=searchRequest[0]).filter(status="Open")
+            
+                elif Jobs.objects.filter(country_j__country__icontains=searchRequest[0]).filter(city_j__name__icontains=searchRequest[1]).exists():
+                    job = Jobs.objects.filter(country_j__country__icontains=searchRequest[0]).filter(city_j__name__icontains=searchRequest[1]).filter(status="Open")
+            
+                    # title and country
+                elif Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(country_j__country__icontains=searchRequest[1]).exists():
+                    job = Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(country_j__country__icontains=searchRequest[1]).filter(status="Open")
+            
+                elif Jobs.objects.filter(job_title__icontains=searchRequest[1]).filter(country_j__country__icontains=searchRequest[0]).exists():
+                    job = Jobs.objects.filter(job_title__icontains=searchRequest[1]).filter(country_j__country__icontains=searchRequest[0]).filter(status="Open")
+                elif Jobs.objects.filter(job_title__icontains=searchRequest[0]).exists():
+                    job = Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(status="Open")
+                #title
+            
+                elif Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(job_title__icontains=searchRequest[1]).exists():
+                    job = Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(job_title__icontains=searchRequest[1]).filter(status="Open").order_by("-postDate")
+                #cityyy
+                elif  Jobs.objects.filter(city_j__name__icontains=searchRequest[0]).exists():
+                    job = Jobs.objects.filter(city_j__name__icontains=searchRequest[0]).filter(status="Open").order_by("-postDate")
+            
+                #country
+                elif  Jobs.objects.filter(country_j__country__icontains=searchRequest[0]).exists():
+                    job = Jobs.objects.filter(country_j__country__icontains=searchRequest[0]).filter(status="Open").order_by("-postDate")
+                elif Jobs.objects.filter(job_title__icontains=searchRequest[0]).exists():
+                    job = Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(status="Open")
+            #title
+            
+            elif Jobs.objects.filter(job_title__icontains=searchRequest[0]).exists():
+                job = Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(status="Open").order_by("-postDate")
+            #cityyy
+            elif  Jobs.objects.filter(city_j__name__icontains=searchRequest[0]).exists():
+                job = Jobs.objects.filter(city_j__name__icontains=searchRequest[0]).filter(status="Open").order_by("-postDate")
+            
+            #country
+            elif  Jobs.objects.filter(country_j__country__icontains=searchRequest[0]).exists():
+                job = Jobs.objects.filter(country_j__country__icontains=searchRequest[0]).filter(status="Open").order_by("-postDate")
+
+            if len(job) != 0:
+                post_id=job[0].id
+            
+
+            for i in jobi:
+                if i not in job:
+                    jobs.append(i)
+            from filters.models import Search
+            
+            if request.user.is_authenticated:
+                search = Search()
+                search.user_id = request.user
+                search.search= query
+                search.save()
+            else:
+                search  =  Search()
+                search.search=query
+                search.save()
+
+        # else:
+        #     job = Jobs.objects.filter(status="Open").order_by("-postDate")
+        # end of search
+
+        #filters options
+        sortProgram =[]
+        sortTitle = []
+        sortCompany= []
+        sortCity =[]
+        cityName = []
+        sortSalary = []
+        if len(job)>=1:
+            program = job.values_list("program", flat=True)
+            title = job.values_list("job_title", flat=True)
+            comp = job.values_list("company", flat=True)
+            city_j = job.values_list("city_j", flat=True)
+            salary = job.values_list("salary_per_hour", flat=True)
+
+            
+            for i  in program:
+                if i  not in sortProgram:
+                    sortProgram.append(i)
+            for i in title:
+                if i not in sortTitle:
+                    sortTitle.append(i)
+            for i in comp:
+                if i not in sortCompany:
+                    sortCompany.append(i)
+            for i in city_j:
+                if i not in sortCity:
+                    sortCity.append(i)
+            for i in sortCity:
+                getC = City.objects.get(id=i)
+                getCo = City.objects.filter(id=i).values_list("country", flat=True)
+                cit = str(getC.name + " , " + getC.country.country)
+                cityName.append(cit)
+
+            for i in salary:
+                if i not in sortSalary:
+                    sortSalary.append(i)
+            sortProgram.sort()
+            sortTitle.sort()
+            sortCompany.sort()
+            cityName.sort()
+            sortSalary.sort()
+        #  Take the  first post   !!! with  auto id  the first result
 
         if post_id == "":
             jobi = Jobs.objects.filter(status="Open").order_by("-postDate").values_list('id', flat=True).first()
@@ -463,6 +604,7 @@ class MainJobs(View):
                 program = Jobs.objects.filter(id=post_id).values_list("program", flat=True).first()
                 programCost = Jobs.objects.filter(id=post_id).values_list("programCost", flat=True).first()
                 posted = Jobs.objects.filter(id=post_id).values_list("postDate", flat=True).first()
+                
 
                 city_j = Jobs.objects.filter(id=post_id).values_list("city_j")
 
@@ -472,13 +614,17 @@ class MainJobs(View):
                 city_uid = City.objects.filter(id=c[0]).values_list("country", flat=True).first()
 
                 country = Country.objects.filter(id=city_uid).values_list("country", flat=True).first()
-
+                applicant = Jobs.objects.filter(id=post_id).first()
+                
+                
+                app=(str(applicant))
                 return JsonResponse(
-                    dict(description=description, title=title, city_j=city, country=country, start_date=start_date,
+                    dict(description=description, title=title, applicant=app,city_j=city, country=country, start_date=start_date,
                          salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
                          typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
                          program=program, programCost=programCost,
                          posted=posted, post_id=post_id))
+        # take selected post byy id
         else:
             if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
                 description = Jobs.objects.filter(id=post_id).values_list('description', flat=True).first()
@@ -503,14 +649,27 @@ class MainJobs(View):
                 city_uid = City.objects.filter(id=c[0]).values_list("country", flat=True).first()
 
                 country = Country.objects.filter(id=city_uid).values_list("country", flat=True).first()
-
+                applicant = Jobs.objects.filter(id=post_id).first()
+                
+                
+                app=str(applicant)
                 return JsonResponse(
-                    dict(description=description, title=title, city_j=city, country=country, start_date=start_date,
+                    dict(description=description, title=title,applicant=app, city_j=city, country=country, start_date=start_date,
                          salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
                          typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
                          program=program, programCost=programCost,
-                         posted=posted))
-        return render(request, "MainJobs/index.html", {"job": job,"prog":prog,"title":Jtitle,"company":company,"city":cityName,"salary":sal})
+                         posted=posted,post_id=post_id))
+        filterProgram=""
+        filterTitle=""
+        filterCompany=""
+        filterLocation=""
+        filterSalary=""
+        filterDate=""
+
+        return render(request, "MainJobs/index.html", dict(job=job,jobi=jobi,prog=sortProgram, title=sortTitle, company=sortCompany,city=cityName,
+                salary=sortSalary,filterProgram=filterProgram,filterTitle=filterTitle,filterCompany=filterCompany,
+                filterLocation=filterLocation,filterSalary=filterSalary,filterDate=filterDate))
+        
 
 
 @login_required
@@ -532,6 +691,28 @@ def applyForJob(request, pk):
             app.status = "Pennding"
             app.save()
             post.applicant.add(userId)
+            subject = "Job Application"
+            email_template_applicant = "main/jobs/Jobapplication.txt"
+            email_template_owner=  "main/jobs/JobOwner.txt"
+            emailOwner = Jobs.objects.filter(id=pk).values_list('user_id__email', flat=True).first()
+            print(emailOwner)
+            c = {
+                    "email":request.user.email,
+                    'domain':'worki.global',
+                    'site_name': 'Worki',
+                    'user':request.user,
+                    "job":job,
+                    "date":dataa,
+
+                }
+            email = render_to_string(email_template_applicant, c)
+            oemail = render_to_string(email_template_owner,c)
+            try:
+                send_mail(subject, email, 'rinor@theacompany.xyz' , [request.user.email], fail_silently=False)
+                send_mail(subject,oemail,'rinor@theacompany.xyz',[emailOwner],fail_silently=False)
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+
             return render(request, "MainJobs/apply.html")
 
 
@@ -594,3 +775,9 @@ def applyForJob3(request,pk):
     form.initial["user_id"] = request.user.id
 
     return render(request,"ProfileSetup/thirdInfo.html",{"form":form})
+
+def getAllJobs(request):
+    job = Jobs.objects.all().filter(status="Open").order_by("-postDate")
+    print(job)
+    return render(request,"base.html",{"job":job})
+

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/ProfileSetup/third.css' %}">
+<link rel="stylesheet" href="{% static 'css/profile-header.css' %}">
+
+ <div class="container-add-a-job">
+        <form class="register-form" method="post">
+            {% csrf_token %}
+		    <div class="inside-the-container" style="">
+            <h1 class="next-none mid title-font-size f-title">Are you bilingual?</h1>
+            <h1 class="next-none mid title-font-size f-title">Eres bilingue?</h1>
+            <label style="display: flex; justify-content: center;" class="disabled second-margin-top-bottom next-none margin-top-job-title">Part 3 of 3</label>
+<div style="display:none">
+                    {{form.user_id}}
+                </div>
+                <div class="form-group">
+      				<label class="margin-top-bottom margin-left next-none">Language</label>
+				<div>
+                    {{form.language}}
+				</div>
+      		  </div>
+
+      		 <div class="form-group" style="margin: 0;">
+      		 	<label class="margin-top-bottom margin-left next-none">Proficiency</label>
+      		{{form.level}}
+      	    </div>
+
+
+            <label style="cursor: pointer;" class="margin-left add-language-font-and-color">+ Add another language</label>
+            <div style="width: 100%; display: flex; justify-content: space-between;">
+            <a href="education-job.html" class="btn back-button next-none" style="color: #1877F2;">Back</a>
+            <button type="submit" class="btn submit-button next-button next-none" style="color: white;">Submit</button>
+            </div>
+		</div>
+    </form>
+	</div>
+
+{% endblock content %}

@@ -1,0 +1,101 @@
+
+        .multiselect {
+  width: 100%;
+}
+
+.selectBox {
+  position: relative;
+}
+
+.selectBox select {
+  width: 100%;
+}
+
+.overSelect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+#mySelectOptions {
+  display: none;
+  border: 0.5px #7c7c7c solid;
+  background-color: #ffffff;
+  max-height: 140px;
+  overflow-y: scroll;
+  position: absolute;
+  z-index: 2;
+  border-radius: 16px;
+}
+#mySelectOptions::-webkit-scrollbar {
+    display: none;
+}
+
+
+#mySelectOptions label {
+  display: block;
+  font-weight: normal;
+  display: block;
+  white-space: nowrap;
+  min-height: 1.2em;
+  background-color: #ffffff00;
+  padding: 0px 20px;
+  /* padding: .375rem 2.25rem .375rem .75rem; */
+}
+
+#mySelectOptions label:hover {
+}
+.search-input::placeholder {
+    color: #b1b2b8;
+    font-size: 18px;
+}
+.search-input {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 20px;
+    border: none;
+    padding-left: 20px;
+    font-size: 18px;
+    padding-right: 20px;
+    width: 200px;
+    color: #65676B;
+    outline: none;
+}
+.search-input {
+    transition: all 0.5s ease-in-out;
+}
+#mySelectOptions {
+    border-bottom-left-radius: 16px;
+    border-top-left-radius: 16px;
+    border: none;
+    box-sizing: border-box;
+    cursor: auto;
+    transition: all 0.5s ease-in-out;
+    margin-top: 10px;
+    -webkit-box-shadow: 0 0 5px #e7e7e7;
+    box-shadow: 0 0 5px #e7e7e7;
+}
+.labels-stats {
+    font-size: 18px;
+    color: #65676B;
+    margin-bottom: 20px;
+    padding-left: 0px;
+    padding-right: 0px;
+    cursor: pointer;
+}
+.first-label-margin {
+    margin-top: 20px;
+}
+
+ input[type=checkbox] {
+    accent-color: white;
+    border: none;
+}
+
+/* display: none; */
+
+
+
+

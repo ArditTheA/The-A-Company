@@ -15,8 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="stylesheet" href="{% static 'css/authenticated.css' %}">
 <link rel="stylesheet" href="{% static 'css/profile-header.css' %}">
-<link rel="stylesheet" href="{% static 'css/edit-profile.css' %}">
-<link rel="stylesheet" href="{% static 'css/add-profile-picture.css' %}">
+
 <link rel="stylesheet" href="{% static 'css/experience-font-family.css' %}">
 <link rel="stylesheet" href="{% static 'css/add-experience.css' %}">
 
@@ -34,24 +33,24 @@
     <div class="dropdown">
         <div class="dropdown-content" ><a href="{% url 'profile'  %}" class="dropdown-content-text">My profile</a></div>
         <div class="dropdown-mid-content"><a href="{% url 'appliedJob'%}" class="dropdown-content-text">My jobs</a></div>
+        <div class="dropdown-content"><a href="/accounts/google/login/?process=connect" class="dropdown-content-text">Connect to Google</a></div>
         <div class="dropdown-content"><a href="{% url 'logout' %}" class="dropdown-content-text">Sign out</a></div>
      </div>
     {% else %}
-         <header id="header-border">
-            <a href="{% url 'home'%}">
-                <img id="worki-image" src="{% static 'img/Worki_Logo_Black.png' %}" title="Worki">
-            </a>
-            
-            <div id="img-and-buttons">
-                <a ><img class="jobs-icon-button" title="Jobs" src="{% static 'img/JOBS_Icon.png'%}" alt=""></a>
-                <a href="{% url 'login' %}"><button id="sign-in-button">Sign in</button></a> 
-                <a href="{% url 'register' %}"><button id="sign-up-button">Create Account</button></a>
-            </div>
-        </header> 
+         <header class="header-border">
+        <a href="{% url 'home'%}"><img id="worki-image" src="{% static 'img/Worki_Logo_Black.png' %}" title="Worki"></a>
+        <div id="jobs-and-profile">
+        <a href="{% url 'home'%}"><img class="jobs-icon-button" title="Jobs" src="{% static 'img/JOBS_Icon.png' %}"></a>
+            <img src="{% static 'img/123.png' %}" id="profile-image-button" title="Profile" alt="">
+        </div>
+    </header>
+    <div class="dropdown">
+    <div style="padding-left: 20px; padding-right: 20px;" class="dropdown-content" ><a href="{% url 'login'%}" class="dropdown-content-text">Sign in</a></div>
+    <div style="padding-bottom: 20px;" class="dropdown-mid-content"><a href="{% url 'register'%}" class="dropdown-content-text">Create Account</a></div>
+</div>
     {% endif %}
 </head>
 <body>
-    
     
         
     {% block content %}

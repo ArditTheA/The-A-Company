@@ -1,0 +1,98 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Jobs</title>
+<link rel="stylesheet" href="{% static 'css/authenticated.css'%}">
+<link rel="stylesheet" href="{% static 'css/jobs.css'%}">
+<link rel="stylesheet" href="{% static 'css/profile-header.css'%}">
+<link rel="stylesheet" href="{% static 'css/posted-jobs-media-queries.css'%}">
+
+<div class="jobs-buttons">
+        <div class="mutual-padding-of-div plus-div">
+           <a href="{% url 'addJob'%}"><img title="Add a Job" class="plus-icon-jobs" src="{% static 'img/add.png'%}" alt=""></a>
+        </div>
+        <div class="mutual-padding-of-div">
+        <a href="{% url 'appliedJob'%}"><button title="Applied Jobs" class="applied-button-posted-jobs outline-none">Applied</button></a></div>
+        <div>
+        <button title="Posted Jobs" class="posted-button-posted-jobs outline-none">Posted</button></div>
+    </div>
+
+<div class="jobs-main-div" style="display: flex; justify-content: space-between; width: 100%;">
+
+        <div class="jobs-left" style="">
+             {% for i in job %}
+
+
+            <div onclick="getNumber({{i.id}})" class="jobs-rows-img second-jobs margin-top-jobs-rows-img same-background-jobs pixel"  id="select{{i.id}}">
+                <img class="experience-education-img" src="{{i.logo.url}}" alt="">
+                <div class="experience-rows">
+                <div class="experience-first-row">{{i.job_title}}</div>
+                <div class="experience-second-row">{{i.company}}</div>
+                <div class="experience-third-row">{{i.city_j}}, {{i.city_j.country}}</div>
+                <div class="experience-fourth-row">{{i.total_applicant}} applicants · {{i.status}}</div>
+                    <a href="{% url 'editJob' i.id%}" class="edit-job-button"><img class="edit-job-button" title="Edit Job" src="{% static 'img/Ikona_edit-01 56.png'%}" alt=""></a>
+
+                </div>
+            </div>
+            <div class="move"></div>
+
+           
+
+
+
+        {% endfor %}
+
+
+    </div>
+    <div class="right-jobs-main-div">
+            <div class="right-jobs" id="detailsRow" style="display:none; flex-direction: column;">
+                <div class="right-jobs-rows-img" style="padding: 30px; margin-left: 10px; background-color: white;">
+                    <div class="experience-rows">
+                    <img class="exit-job-description" title="Exit" style="float: left; width: 22px; height: 22px;" src="{% static 'img/Vector 81 (1).png'%}" alt="">
+                    <div class="first-row-jobs">
+                <p class="" id="job_title">asd</p>
+            </div>
+            <div class="second-row-jobs"><span id="company"></span>&nbsp;&nbsp;<span style="color: #858585;"
+                    id="city">·&nbsp;&nbsp &nbsp;·&nbsp;23
+                    applicants</span></div>
+            <div style="" class="experience-third-row jobs-third-row">$<span id="salary"></span></div>
+            <div style="" class="experience-fourth-row jobs-mutual-margin-rows"><span id="typeOfWork"></span> ·
+                <span id="hourPerWork"></span> hours/week
+            </div>
+            <div style="margin-top: 20px;" class="experience-fourth-row jobs-mutual-margin-rows" id="sDate">
+            </div>
+            <div style="margin-top: 5px; margin-top: 20px;" class="experience-fourth-row jobs-mutual-margin-rows">
+                <span id="housing"></span> · $<span id="housingCost"></span>/week
+            </div>
+            <div style="margin-top: 5px; margin-top: 20px;" class="experience-fourth-row jobs-mutual-margin-rows">
+                <span id="program"></span>· Program Cost: $<span id="programCost"></span>
+            </div>
+            <div style="margin-top: 5px; margin-top: 20px; height: 100%;"
+                class="experience-fourth-row jobs-mutual-margin-rows">Posted on: <span id="posted"></span>
+            </div></div>
+                </div>
+                <div class="right-jobs-rows-img-second">
+                    <div class="col-5">
+                        <textarea rows="50" cols="100" id="message" class="scroll" disabled>
+
+                        </textarea>
+                    </div>
+
+                </div>
+            </div>
+
+</div>
+</div>
+ <script src="{% static 'js/main.js'%}"></script>
+<!--<script src="{% static 'js/jobs-img.js'%}"></script>-->
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script src="{% static 'js/exit-job-description-button.js'%}"></script>
+<script>
+
+</script>
+
+
+{% endblock content%}

@@ -1,0 +1,98 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/authenticated.css' %}">
+<link rel="stylesheet" href="{% static 'css/profile-header.css' %}">
+<link rel="stylesheet" href="{% static 'css/edit-profile.css' %}">
+<link rel="stylesheet" href="{% static 'css/add-profile-picture.css' %}">
+<link rel="stylesheet" href="{% static 'css/experience-font-family.css' %}">
+<link rel="stylesheet" href="{% static 'css/add-experience.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+<link rel="stylesheet" href="{% static 'css/edit-cover.css' %}">
+
+
+<div class="experience-main-div experience-education-languages different_exp">
+    <div class="experience-div second-experience-div">
+        <div class="experience-paragraph-img-rows">
+            <div class="aaa">
+            <p class="experience-paragraph">Language</p>
+            {% for i in User_lang%}
+            <div class="experience-rows-img" style="">
+                <img class="experience-education-img" src="{% static 'img/Logo (8).png' %}" alt="">
+                <div class="experience-rows">
+                <div style="display: flex; width: 100%;">
+                    <div class="experience-first-row">{{i.language}}</div>
+                    <div class="two-imgs-experience">
+                    
+                <a href="{% url 'editLanguageId' i.id %}">
+                    <img class="edit-experience edit-experience-pop-up-button" title="Edit Experience" src="{% static 'img/Ikona_edit-01 56.png' %}" alt=""></a>
+                </div>
+                </div>
+                <div class="experience-third-row">{{i.level}}</div>  
+            </div>
+            </div>
+            {% endfor %}
+        </div>
+        </div>
+        <div class="add-and-edit-experience">
+          <a href="{% url 'profile'%}"><img class="back-icon" title="Go Back" src="{% static 'img/back (2).png' %}" alt=""></a>         
+          <img class="add-experience-button plus-button-exp" title="Add Experience" src="{% static 'img/Vector 80.png' %}" alt="">
+        </div>
+    </div>
+</div>
+
+<div class="bg-add-and-edit bg-add-experience" style="display: flex;">
+    <div class="add-experience" style="height: 500px;">
+        <div class="under-container">
+            <div class="exit-img exit-img-edit-profile">
+                <a href="{% url 'editLanguage'%}">
+                    <img class="exit-button exit-button-edit-profile" src="{% static 'img/Vector 81 (1).png' %}" alt="">
+                </a>
+            </div>
+            <h1 id="title-experience">Edit Language</h1>
+            <form method="POST" action="" class="sign-up-form">
+                {% csrf_token %}
+                <div style="display: none;">
+                    {{edit.user_id}}
+                </div>
+                <div class="div-of-job-experience">
+                    <p class="paragraph-of-name paragraphs-stats">University *</p>
+                    {{edit.language}}
+                </div>
+
+                <div>
+                    <p class="paragraph-of-surname paragraphs-stats">Degree *</p>
+                    {{edit.level}}
+                </div>
+                
+                <div class="save-button">
+                    <input name="save" type="submit" class="save-submit-input save-picture font-fam" value="Save">
+                </div>  
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script src="{% static 'js/profile_dropdown.js' %}"></script>
+<script src="{% static 'js/js.js' %}"></script>
+
+<script src="{% static 'js/edit-button.js' %}"></script>
+
+<script src="{% static 'js/change-profile.js' %}"></script>
+
+<script src="{% static 'js/exit-button.js' %}"></script>
+
+<script src="{% static 'js/edit-button.js' %}"></script>
+
+<script src="{% static 'js/add-button.js' %}"></script>
+
+<script src="{% static 'js/add-experience-button.js' %}"></script>
+
+<script src="{% static 'js/edit-experience-button.js' %}"></script>
+
+<script src="{% static 'js/edit-cover.js' %}"></script>
+{% endblock content %}

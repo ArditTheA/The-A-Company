@@ -1,0 +1,13 @@
+.input-form {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    position: relative;
+    margin-right: 20px;
+    outline: none;
+}
+
+.icon, .white-icon {
+    position: absolute;
+    right: 10px;
+}

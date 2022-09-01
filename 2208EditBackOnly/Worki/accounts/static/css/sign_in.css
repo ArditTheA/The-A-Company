@@ -1,0 +1,286 @@
+@import url('https://fonts.googleapis.com/css2?family=Spline+Sans&display=swap');
+
+body {
+    margin: 0;
+    background-color: #E5E5E5;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 40px;
+    font-family: 'Spline Sans', sans-serif;
+}
+
+
+.header-border {
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+.worki-image {
+    height: 60px;
+}
+
+.container {
+    margin: auto auto auto auto;
+    box-sizing: border-box;
+    border-radius: 20px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+#title {
+    width: 180px;
+    font-size: 45px;
+    font-weight: 400;
+    color: #1877F2;
+    margin: auto;
+    padding-bottom: 40px;
+    text-align: center;
+}
+
+.font-fam {
+    font-family: 'Spline Sans', sans-serif;
+}
+
+.under-container {
+    width: 450px;
+    margin-top: 0;
+}
+
+.mutual-stats {
+    border-radius: 30px;
+    padding: 10px 0px 10px 10px;
+    font-size: 18px;
+    border: 0.5px solid #9E9E9E;
+    background-color: white;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.mutual-stats:focus {
+    outline: none;
+}
+.mutual-stats::placeholder {
+    color: #9E9E9E;
+}
+
+.password-input {
+    border-radius: 30px;
+    padding: 10px 0px 10px 10px;
+    font-size: 18px;
+    border: 0.5px solid #9E9E9E;
+    background-color: white;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.password-input:focus {
+    outline: none;
+}
+
+.password-input::placeholder {
+    color: #9E9E9E;
+}
+
+.email-input {
+    margin-bottom: 20px;
+}
+
+.same-color-of-paragraphs {
+    color: #9E9E9E;
+}
+.password-link, .sign-up-link {
+    color: #1877F2;
+    text-decoration: none;
+}
+.sign-up-link {
+    text-decoration: none;
+}
+
+.first-paragraph {
+    padding-left: 10px;
+    font-size: 15px;
+}
+
+.second-paragraph {
+    text-align: center;
+    font-size: 15px;
+}
+
+.second-paragraph .sign-in-submit-input {
+    text-align: center;
+}
+
+.sign-in-google {
+    text-align: center;
+    text-decoration: none;
+    color: #9E9E9E;
+}
+
+.sign-in-submit-input {
+    padding: 10px 0px;
+    border-radius: 30px;
+    background-color: #1877F2;
+    color: white;
+    font-size: 18px;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    border: 0.5px solid #1877F2;
+}
+
+.sign-in-submit-input:focus {
+    outline: none;
+}
+
+.third-paragraph {
+    font-size: 15px;
+    margin-bottom: 0;
+    padding-left: 10px;
+}
+
+.input-form {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    position: relative;
+}
+
+.icon {
+    position: absolute;
+    left: 10px;
+    height: 76%;
+}
+
+#togglePassword {
+    position: absolute;
+    right: 22px;
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .header-border {
+        display: none;
+    }
+    .worki-image {
+        display: none;
+    }
+    .container {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+    .under-container {
+        padding-left: 18px;
+        padding-right: 18px;
+        height: 100vh;
+    }
+    #title {
+        font-size: 35px;
+        width: 140px;
+        padding-bottom: 30px;
+    }
+    .first-paragraph {
+        font-size: 12px;
+    }
+    .second-paragraph {
+        font-size: 12px;
+    }
+    .third-paragraph {
+        font-size: 12px;
+    }
+    .sign-in-submit-input, .sign-in-google {
+        font-size: 15px;
+    }
+    
+    .email-input, .password-input, .sign-in-submit-input .sign-in-google {
+        font-size: 15px;
+    }
+    
+    .email-input {
+        margin-bottom: 17px;
+    }
+}
+
+@media screen and (max-width: 767px) and (min-width: 481px) {
+    .container {
+        padding-top: 35px;
+        padding-bottom: 35px;
+    }
+    .header-border {
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+    .worki-image {
+        width: 36px;
+        height: 36px;
+    }
+    .under-container {
+        width: 380px;
+    }
+    #title {
+        font-size: 38px;
+        width: 150px;
+        padding-bottom: 30px;
+    }
+    .first-paragraph {
+        font-size: 13px;
+    }
+    .second-paragraph {
+        font-size: 13px;
+    }
+    .third-paragraph {
+        font-size: 13px;
+    }
+    .email-input {
+        margin-bottom: 18px;
+    }
+    .email-input, .password-input, .sign-in-submit-input, .sign-in-google {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+    .container {
+        padding-top: 37px;
+        padding-bottom: 37px;
+    }
+    .header-border {
+        padding-top: 14px;
+        padding-bottom: 14px;
+    }
+    .worki-image {
+        width: 38px;
+        height: 38px;
+    }
+    .under-container {
+        width: 420px;
+    }
+    #title {
+        font-size: 41px;
+        width: 170px;
+        padding-bottom: 33px;
+    }
+    .first-paragraph {
+        font-size: 14px;
+    }
+    .second-paragraph {
+        font-size: 14px;
+    }
+    .third-paragraph {
+        font-size: 14px;
+    }
+    .email-input {
+        margin-bottom: 19px;
+    }
+    .email-input, .password-input, .sign-in-submit-input, .sign-in-google {
+        font-size: 17px;
+    }
+}

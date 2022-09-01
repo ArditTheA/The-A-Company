@@ -110,7 +110,11 @@ class Jobs(models.Model):
         ("Provided","Provided")
     }
     Program_Type={
-        ("Work And Travel","Work And Travel")
+        ("Ausbildung","Ausbildung"),
+        ("Internship","Internship"),
+        ("Work And Travel","Work And Travel"),
+        
+
     }
     Stat={
         ("Open","Open"),
@@ -146,7 +150,7 @@ class Jobs(models.Model):
 
 
     def __str__(self):
-        return str(self.job_title)
+        return str(self.applicant.count())
 
 class Application(models.Model):
     Stat_type={
