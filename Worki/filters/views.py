@@ -43,7 +43,7 @@ class UseFilter(View):
         job = []
         post_id = request.headers.get("text")
 
-        print(Jobs.objects.filter(postDate__month=datetime.now().month))
+        print(Jobs.objects.filter(approved=True).filter(postDate__month=datetime.now().month))
         #------------------Multiple  Seleceted ------------------------#
         if  len(request.GET.getlist("Program"))>1 or len(request.GET.getlist("Job Title"))>1 or   len(request.GET.getlist("Company"))>1 or len(request.GET.getlist("Location"))>1 or len(request.GET.getlist("Salary"))>1:
             if request.GET.getlist("Program") == []:
@@ -70,19 +70,19 @@ class UseFilter(View):
             print("datee:",filterDate)
             if filterDate == None:
 
-                job  =Jobs.objects.filter(reduce(or_, [Q(job_title__icontains=t) for t in filterTitle])).filter(reduce(operator.or_, (Q(program__icontains=i) for i in filterProgram))).filter(reduce(operator.or_, (Q(city_j__name__icontains=l) for l in filterLocation))).filter(reduce(operator.or_, (Q(company__icontains=c) for c in filterCompany))).filter(reduce(operator.or_, (Q(salary_per_hour__icontains=s) for s in filterSalary))).filter(status="Open").order_by("-postDate")
+                job  =Jobs.objects.filter(approved=True).filter(reduce(or_, [Q(job_title__icontains=t) for t in filterTitle])).filter(reduce(operator.or_, (Q(program__icontains=i) for i in filterProgram))).filter(reduce(operator.or_, (Q(city_j__name__icontains=l) for l in filterLocation))).filter(reduce(operator.or_, (Q(company__icontains=c) for c in filterCompany))).filter(reduce(operator.or_, (Q(salary_per_hour__icontains=s) for s in filterSalary))).filter(status="Open").order_by("-postDate")
                 filterDate=""
             else:
                 if filterDate == "Today":
-                    job  =Jobs.objects.filter(reduce(or_, [Q(job_title__icontains=t) for t in filterTitle])).filter(reduce(operator.or_, (Q(program__icontains=i) for i in filterProgram))).filter(reduce(operator.or_, (Q(city_j__name__icontains=l) for l in filterLocation))).filter(reduce(operator.or_, (Q(company__icontains=c) for c in filterCompany))).filter(reduce(operator.or_, (Q(salary_per_hour__icontains=s) for s in filterSalary))).filter(postDate=datetime.now()).filter(status="Open").order_by("-postDate")
+                    job  =Jobs.objects.filter(approved=True).filter(reduce(or_, [Q(job_title__icontains=t) for t in filterTitle])).filter(reduce(operator.or_, (Q(program__icontains=i) for i in filterProgram))).filter(reduce(operator.or_, (Q(city_j__name__icontains=l) for l in filterLocation))).filter(reduce(operator.or_, (Q(company__icontains=c) for c in filterCompany))).filter(reduce(operator.or_, (Q(salary_per_hour__icontains=s) for s in filterSalary))).filter(postDate=datetime.now()).filter(status="Open").order_by("-postDate")
                 elif filterDate == "Last Week":
-                    job  =Jobs.objects.filter(reduce(or_, [Q(job_title__icontains=t) for t in filterTitle])).filter(reduce(operator.or_, (Q(program__icontains=i) for i in filterProgram))).filter(reduce(operator.or_, (Q(city_j__name__icontains=l) for l in filterLocation))).filter(reduce(operator.or_, (Q(company__icontains=c) for c in filterCompany))).filter(reduce(operator.or_, (Q(salary_per_hour__icontains=s) for s in filterSalary))).filter(postDate__week=date.today().isocalendar()[1]-1).filter(status="Open").order_by("-postDate")
+                    job  =Jobs.objects.filter(approved=True).filter(reduce(or_, [Q(job_title__icontains=t) for t in filterTitle])).filter(reduce(operator.or_, (Q(program__icontains=i) for i in filterProgram))).filter(reduce(operator.or_, (Q(city_j__name__icontains=l) for l in filterLocation))).filter(reduce(operator.or_, (Q(company__icontains=c) for c in filterCompany))).filter(reduce(operator.or_, (Q(salary_per_hour__icontains=s) for s in filterSalary))).filter(postDate__week=date.today().isocalendar()[1]-1).filter(status="Open").order_by("-postDate")
                 elif filterDate == "Last Month":
-                    job  =Jobs.objects.filter(reduce(or_, [Q(job_title__icontains=t) for t in filterTitle])).filter(reduce(operator.or_, (Q(program__icontains=i) for i in filterProgram))).filter(reduce(operator.or_, (Q(city_j__name__icontains=l) for l in filterLocation))).filter(reduce(operator.or_, (Q(company__icontains=c) for c in filterCompany))).filter(reduce(operator.or_, (Q(salary_per_hour__icontains=s) for s in filterSalary))).filter(postDate__month=datetime.now().month-1).filter(status="Open").order_by("-postDate")
+                    job  =Jobs.objects.filter(approved=True).filter(reduce(or_, [Q(job_title__icontains=t) for t in filterTitle])).filter(reduce(operator.or_, (Q(program__icontains=i) for i in filterProgram))).filter(reduce(operator.or_, (Q(city_j__name__icontains=l) for l in filterLocation))).filter(reduce(operator.or_, (Q(company__icontains=c) for c in filterCompany))).filter(reduce(operator.or_, (Q(salary_per_hour__icontains=s) for s in filterSalary))).filter(postDate__month=datetime.now().month-1).filter(status="Open").order_by("-postDate")
 
         #----------One Selected ------------
         else:
-            
+
             if request.GET.get("Program") != None:
                 filterProgram = request.GET.get("Program")
             else:
@@ -108,32 +108,32 @@ class UseFilter(View):
                 filterDate =request.GET.get("dataPosted")
             else:
                 filterDate=""
-            
-           
+
+
 
             if filterDate ==  "":
-                job = Jobs.objects.filter(status="Open").filter(program__icontains=filterProgram).filter(job_title__icontains=filterTitle).filter(company__icontains=filterCompany).filter(city_j__name__icontains=filterLocation).filter(salary_per_hour__icontains=filterSalary).order_by("-postDate")
+                job = Jobs.objects.filter(approved=True).filter(status="Open").filter(program__icontains=filterProgram).filter(job_title__icontains=filterTitle).filter(company__icontains=filterCompany).filter(city_j__name__icontains=filterLocation).filter(salary_per_hour__icontains=filterSalary).order_by("-postDate")
 
-               
+
             else:
                 if filterDate=="today":
-                    job = Jobs.objects.filter(status="Open").filter(program__icontains=filterProgram).filter(job_title__icontains=filterTitle).filter(company__icontains=filterCompany).filter(city_j__name__icontains=filterLocation).filter(salary_per_hour__icontains=filterSalary).filter(postDate=datetime.now()).order_by("-postDate")
+                    job = Jobs.objects.filter(approved=True).filter(status="Open").filter(program__icontains=filterProgram).filter(job_title__icontains=filterTitle).filter(company__icontains=filterCompany).filter(city_j__name__icontains=filterLocation).filter(salary_per_hour__icontains=filterSalary).filter(postDate=datetime.now()).order_by("-postDate")
                 elif filterDate=="Last Month":
                     lastmonth=datetime.now().month-1
-                    job = Jobs.objects.filter(status="Open").filter(program__icontains=filterProgram).filter(job_title__icontains=filterTitle).filter(company__icontains=filterCompany).filter(city_j__name__icontains=filterLocation).filter(salary_per_hour__icontains=filterSalary).filter(postDate__month=lastmonth).order_by("-postDate")
+                    job = Jobs.objects.filter(approved=True).filter(status="Open").filter(program__icontains=filterProgram).filter(job_title__icontains=filterTitle).filter(company__icontains=filterCompany).filter(city_j__name__icontains=filterLocation).filter(salary_per_hour__icontains=filterSalary).filter(postDate__month=lastmonth).order_by("-postDate")
                 elif filterDate=="Last Week":
                     lastweek=date.today().isocalendar()[1]-1
-                    job = Jobs.objects.filter(status="Open").filter(program__icontains=filterProgram).filter(job_title__icontains=filterTitle).filter(company__icontains=filterCompany).filter(city_j__name__icontains=filterLocation).filter(salary_per_hour__icontains=filterSalary).filter(postDate__week=lastweek).order_by("-postDate")
+                    job = Jobs.objects.filter(approved=True).filter(status="Open").filter(program__icontains=filterProgram).filter(job_title__icontains=filterTitle).filter(company__icontains=filterCompany).filter(city_j__name__icontains=filterLocation).filter(salary_per_hour__icontains=filterSalary).filter(postDate__week=lastweek).order_by("-postDate")
 
-       
+
         stat = False
-       
-        
-        program = Jobs.objects.filter(status="Open").values_list("program", flat=True)
-        title = Jobs.objects.filter(status="Open").values_list("job_title", flat=True)
-        comp = Jobs.objects.filter(status="Open").values_list("company", flat=True)
-        city_j = Jobs.objects.filter(status="Open").values_list("city_j", flat=True)
-        salary = Jobs.objects.filter(status="Open").values_list("salary_per_hour", flat=True)
+
+
+        program = Jobs.objects.filter(approved=True).filter(status="Open").values_list("program", flat=True)
+        title = Jobs.objects.filter(approved=True).filter(status="Open").values_list("job_title", flat=True)
+        comp = Jobs.objects.filter(approved=True).filter(status="Open").values_list("company", flat=True)
+        city_j = Jobs.objects.filter(approved=True).filter(status="Open").values_list("city_j", flat=True)
+        salary = Jobs.objects.filter(approved=True).filter(status="Open").values_list("salary_per_hour", flat=True)
         prog = []
         for i in program:
             if i not in prog:
@@ -167,22 +167,22 @@ class UseFilter(View):
             post_id=job[0].id
 
         if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-            description = Jobs.objects.filter(id=post_id).values_list('description', flat=True).first()
-            title = Jobs.objects.filter(id=post_id).values_list('job_title', flat=True).first()
-            start_date = Jobs.objects.filter(id=post_id).values_list('start_date', flat=True).first()
-            end_date = Jobs.objects.filter(id=post_id).values_list('end_date', flat=True).first()
-            salary = Jobs.objects.filter(id=post_id).values_list("salary_per_hour", flat=True).first()
-            hourWeek = Jobs.objects.filter(id=post_id).values_list("hour_per_work", flat=True).first()
-            company = Jobs.objects.filter(id=post_id).values_list("company", flat=True).first()
-            typeOfWork = Jobs.objects.filter(id=post_id).values_list("type_of_work", flat=True).first()
-            hourPerWork = Jobs.objects.filter(id=post_id).values_list("hour_per_work", flat=True).first()
-            housing = Jobs.objects.filter(id=post_id).values_list("housing", flat=True).first()
-            housingCost = Jobs.objects.filter(id=post_id).values_list("housing_cost_per_week", flat=True).first()
-            program = Jobs.objects.filter(id=post_id).values_list("program", flat=True).first()
-            programCost = Jobs.objects.filter(id=post_id).values_list("programCost", flat=True).first()
+            description = Jobs.objects.filter(approved=True).filter(id=post_id).values_list('description', flat=True).first()
+            title = Jobs.objects.filter(approved=True).filter(id=post_id).values_list('job_title', flat=True).first()
+            start_date = Jobs.objects.filter(approved=True).filter(id=post_id).values_list('start_date', flat=True).first()
+            end_date = Jobs.objects.filter(approved=True).filter(id=post_id).values_list('end_date', flat=True).first()
+            salary = Jobs.objects.filter(approved=True).filter(id=post_id).values_list("salary_per_hour", flat=True).first()
+            hourWeek = Jobs.objects.filter(approved=True).filter(id=post_id).values_list("hour_per_work", flat=True).first()
+            company = Jobs.objects.filter(approved=True).filter(id=post_id).values_list("company", flat=True).first()
+            typeOfWork = Jobs.objects.filter(approved=True).filter(id=post_id).values_list("type_of_work", flat=True).first()
+            hourPerWork = Jobs.objects.filter(approved=True).filter(id=post_id).values_list("hour_per_work", flat=True).first()
+            housing = Jobs.objects.filter(approved=True).filter(id=post_id).values_list("housing", flat=True).first()
+            housingCost = Jobs.objects.filter(approved=True).filter(id=post_id).values_list("housing_cost_per_week", flat=True).first()
+            program = Jobs.objects.filter(approved=True).filter(id=post_id).values_list("program", flat=True).first()
+            programCost = Jobs.objects.filter(approved=True).filter(id=post_id).values_list("programCost", flat=True).first()
             posted = Application.objects.filter(job_id=post_id).filter(user_id=request.user.id).values_list(
                 "apply_date", flat=True).first()
-            city_j = Jobs.objects.filter(id=post_id).values_list("city_j")
+            city_j = Jobs.objects.filter(approved=True).filter(id=post_id).values_list("city_j")
 
             c = city_j.first()
 
@@ -190,10 +190,10 @@ class UseFilter(View):
             city_uid = City.objects.filter(id=c[0]).values_list("country", flat=True).first()
 
             country = Country.objects.filter(id=city_uid).values_list("country", flat=True).first()
-            applicant = Jobs.objects.filter(id=post_id).first()
+            applicant = Jobs.objects.filter(approved=True).filter(id=post_id).first()
 
             app = str(applicant)
-            
+
             return JsonResponse(
                 dict(description=description, title=title, applicant=app, city_j=city, country=country,
                      start_date=start_date,
@@ -233,7 +233,7 @@ class UseFilter(View):
         else:
             if request.GET.get("Salary")  !=  None:
                 salarystr=request.GET.get("Salary")
-        
+
 
         print(titlestr)
         if len(job) != 0:
@@ -268,7 +268,7 @@ class OneSelFilter(View):
                 filterProgram = request.GET.get("Program")
             else:
                 filterProgram=""
-        
+
         if request.GET.get("Job Title") != None:
             if request.GET.get("Job Title") != "Job Title":
                 filterTitle =request.GET.get("Job Title")
@@ -277,13 +277,13 @@ class OneSelFilter(View):
         if request.GET.get("Company") != None:
             if request.GET.get("Company") != "Company":
                 filterCompany=request.GET.get("Company")
-       
+
             else:
                 filterCompany=""
         if request.GET.get("Location") != None:
             if request.GET.get("Location") != "Location":
                 filterLocation=request.GET.get("Location")
-                
+
             else:
                 filterLocation=""
         if request.GET.get("Salary") != None:
@@ -297,34 +297,30 @@ class OneSelFilter(View):
             else:
                 filterDate=""
         location=filterLocation
-        
-        
+
+
         if filterLocation != "":
             getCityLoc=filterLocation.split()
             filterLocation=getCityLoc[0]
-
+        print("filter  title",filterTitle)
         if filterProgram == "" and  filterTitle ==  "" and filterCompany == "" and filterLocation == "" and filterSalary == ""  and filterDate == "":
-            job = Jobs.objects.filter(status="Open").order_by("-postDate")
+            job = Jobs.objects.filter(approved=True).filter(status="Open").order_by("-postDate")
         else:
             if filterDate ==  "":
-                job = Jobs.objects.filter(program__icontains=filterProgram).filter(job_title__icontains=filterTitle).filter(company__icontains=filterCompany).filter(city_j__name__icontains=filterLocation).filter(salary_per_hour__icontains=filterSalary)
+                job = Jobs.objects.filter(approved=True).filter(program__icontains=filterProgram).filter(job_title__icontains=filterTitle).filter(company__contains=filterCompany).filter(city_j__name__icontains=filterLocation).filter(salary_per_hour__icontains=filterSalary)
             else:
-                if filterDate=="today":
-                    job = Jobs.objects.filter(status="Open").filter(program__icontains=filterProgram).filter(job_title__icontains=filterTitle).filter(company__icontains=filterCompany).filter(city_j__name__icontains=filterLocation).filter(salary_per_hour__icontains=filterSalary).filter(postDate=datetime.now()).order_by("-postDate")
+                if filterDate=="Today":
+                    job = Jobs.objects.filter(approved=True).filter(status="Open").filter(program__icontains=filterProgram).filter(job_title__icontains=filterTitle).filter(company__icontains=filterCompany).filter(city_j__name__icontains=filterLocation).filter(salary_per_hour__icontains=filterSalary).filter(postDate=datetime.now()).order_by("-postDate")
                     dateF="Today"
                 elif filterDate=="Last Month":
                     lastmonth=datetime.now().month-1
-                    job = Jobs.objects.filter(status="Open").filter(program__icontains=filterProgram).filter(job_title__icontains=filterTitle).filter(company__icontains=filterCompany).filter(city_j__name__icontains=filterLocation).filter(salary_per_hour__icontains=filterSalary).filter(postDate__month=lastmonth).order_by("-postDate")
+                    job = Jobs.objects.filter(approved=True).filter(status="Open").filter(program__icontains=filterProgram).filter(job_title__icontains=filterTitle).filter(company__icontains=filterCompany).filter(city_j__name__icontains=filterLocation).filter(salary_per_hour__icontains=filterSalary).filter(postDate__month=lastmonth).order_by("-postDate")
                     dateF="Last Month"
                 elif filterDate=="Last Week":
                     lastweek=date.today().isocalendar()[1]-1
-                    job = Jobs.objects.filter(status="Open").filter(program__icontains=filterProgram).filter(job_title__icontains=filterTitle).filter(company__icontains=filterCompany).filter(city_j__name__icontains=filterLocation).filter(salary_per_hour__icontains=filterSalary).filter(postDate__week=lastweek).order_by("-postDate")
+                    job = Jobs.objects.filter(approved=True).filter(status="Open").filter(program__icontains=filterProgram).filter(job_title__icontains=filterTitle).filter(company__icontains=filterCompany).filter(city_j__name__icontains=filterLocation).filter(salary_per_hour__icontains=filterSalary).filter(postDate__week=lastweek).order_by("-postDate")
                     dateF="Last Week"
 
-        # 
-        #     job = Jobs.objects.filter(status="Open").filter(program__icontains=filterProgram).filter(job_title__icontains=filterTitle).filter(company__icontains=filterCompany).filter(city_j__name__icontains=filterLocation).filter(salary_per_hour=filterSalary)
-        # 
-     
         #Filter Clean Up And  Sort
         print("filterTitle",filterTitle)
         if len(job)>=1:
@@ -334,7 +330,7 @@ class OneSelFilter(View):
             city_j = job.values_list("city_j", flat=True)
             salary = job.values_list("salary_per_hour", flat=True)
 
-            
+
             for i  in program:
                 if i  not in sortProgram:
                     sortProgram.append(i)
@@ -361,30 +357,30 @@ class OneSelFilter(View):
             sortCompany.sort()
             cityName.sort()
             sortSalary.sort()
-            
 
 
-            
+
+
         if post_id == "":
             post_id=job[0].id
 
         if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-            description = Jobs.objects.filter(id=post_id).values_list('description', flat=True).first()
-            title = Jobs.objects.filter(id=post_id).values_list('job_title', flat=True).first()
-            start_date = Jobs.objects.filter(id=post_id).values_list('start_date', flat=True).first()
-            end_date = Jobs.objects.filter(id=post_id).values_list('end_date', flat=True).first()
-            salary = Jobs.objects.filter(id=post_id).values_list("salary_per_hour", flat=True).first()
-            hourWeek = Jobs.objects.filter(id=post_id).values_list("hour_per_work", flat=True).first()
-            company = Jobs.objects.filter(id=post_id).values_list("company", flat=True).first()
-            typeOfWork = Jobs.objects.filter(id=post_id).values_list("type_of_work", flat=True).first()
-            hourPerWork = Jobs.objects.filter(id=post_id).values_list("hour_per_work", flat=True).first()
-            housing = Jobs.objects.filter(id=post_id).values_list("housing", flat=True).first()
-            housingCost = Jobs.objects.filter(id=post_id).values_list("housing_cost_per_week", flat=True).first()
-            program = Jobs.objects.filter(id=post_id).values_list("program", flat=True).first()
-            programCost = Jobs.objects.filter(id=post_id).values_list("programCost", flat=True).first()
+            description = Jobs.objects.filter(approved=True).filter(id=post_id).values_list('description', flat=True).first()
+            title = Jobs.objects.filter(approved=True).filter(id=post_id).values_list('job_title', flat=True).first()
+            start_date = Jobs.objects.filter(approved=True).filter(id=post_id).values_list('start_date', flat=True).first()
+            end_date = Jobs.objects.filter(approved=True).filter(id=post_id).values_list('end_date', flat=True).first()
+            salary = Jobs.objects.filter(approved=True).filter(id=post_id).values_list("salary_per_hour", flat=True).first()
+            hourWeek = Jobs.objects.filter(approved=True).filter(id=post_id).values_list("hour_per_work", flat=True).first()
+            company = Jobs.objects.filter(approved=True).filter(id=post_id).values_list("company", flat=True).first()
+            typeOfWork = Jobs.objects.filter(approved=True).filter(id=post_id).values_list("type_of_work", flat=True).first()
+            hourPerWork = Jobs.objects.filter(approved=True).filter(id=post_id).values_list("hour_per_work", flat=True).first()
+            housing = Jobs.objects.filter(approved=True).filter(id=post_id).values_list("housing", flat=True).first()
+            housingCost = Jobs.objects.filter(approved=True).filter(id=post_id).values_list("housing_cost_per_week", flat=True).first()
+            program = Jobs.objects.filter(approved=True).filter(id=post_id).values_list("program", flat=True).first()
+            programCost = Jobs.objects.filter(approved=True).filter(id=post_id).values_list("programCost", flat=True).first()
             posted = Application.objects.filter(job_id=post_id).filter(user_id=request.user.id).values_list(
                 "apply_date", flat=True).first()
-            city_j = Jobs.objects.filter(id=post_id).values_list("city_j")
+            city_j = Jobs.objects.filter(approved=True).filter(id=post_id).values_list("city_j")
 
             c = city_j.first()
 
@@ -392,10 +388,10 @@ class OneSelFilter(View):
             city_uid = City.objects.filter(id=c[0]).values_list("country", flat=True).first()
 
             country = Country.objects.filter(id=city_uid).values_list("country", flat=True).first()
-            applicant = Jobs.objects.filter(id=post_id).first()
+            applicant = Jobs.objects.filter(approved=True).filter(id=post_id).first()
 
             app = str(applicant)
-            
+
             return JsonResponse(
                 dict(description=description, title=title, applicant=app, city_j=city, country=country,
                      start_date=start_date,

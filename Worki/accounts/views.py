@@ -393,7 +393,7 @@ class AppliedJobs(View):
 class MainJobs(View):
     def get(self, request):
         post_id = request.headers.get("text")
-        job =Jobs.objects.filter(status="Open").order_by("-postDate")
+        job =Jobs.objects.filter(approved=True).filter(status="Open").order_by("-postDate")
         #search
         query = request.GET.get("q")
 
@@ -417,108 +417,108 @@ class MainJobs(View):
                     searchRequest= [searchRequest[0],searchRequest[1]+" "+searchRequest[2]]
 
                 print(searchRequest)
-                if Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(
+                if Jobs.objects.filter(approved=True).filter(job_title__icontains=searchRequest[0]).filter(
                         city_j__name__icontains=searchRequest[1]).exists():
-                    job = Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(
+                    job = Jobs.objects.filter(approved=True).filter(job_title__icontains=searchRequest[0]).filter(
                         city_j__name__icontains=searchRequest[1]).filter(status="Open")
-                    jobi = Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(status="Open")
+                    jobi = Jobs.objects.filter(approved=True).filter(job_title__icontains=searchRequest[0]).filter(status="Open")
 
-                elif Jobs.objects.filter(job_title__icontains=searchRequest[1]).filter(
+                elif Jobs.objects.filter(approved=True).filter(job_title__icontains=searchRequest[1]).filter(
                         city_j__name__icontains=searchRequest[0]).exists():
-                    job = Jobs.objects.filter(job_title__icontains=searchRequest[1]).filter(
+                    job = Jobs.objects.filter(approved=True).filter(job_title__icontains=searchRequest[1]).filter(
                         city_j__name__icontains=searchRequest[0]).filter(status="Open")
-                    jobi = Jobs.objects.filter(job_title__icontains=searchRequest[1]).filter(status="Open")
+                    jobi = Jobs.objects.filter(approved=True).filter(job_title__icontains=searchRequest[1]).filter(status="Open")
 
 
                 # country and city
-                elif Jobs.objects.filter(country_j__country__icontains=searchRequest[1]).filter(
+                elif Jobs.objects.filter(approved=True).filter(country_j__country__icontains=searchRequest[1]).filter(
                         city_j__name__icontains=searchRequest[0]).exists():
-                    job = Jobs.objects.filter(country_j__country__icontains=searchRequest[1]).filter(
+                    job = Jobs.objects.filter(approved=True).filter(country_j__country__icontains=searchRequest[1]).filter(
                         city_j__name__icontains=searchRequest[0]).filter(status="Open")
 
-                elif Jobs.objects.filter(country_j__country__icontains=searchRequest[0]).filter(
+                elif Jobs.objects.filter(approved=True).filter(country_j__country__icontains=searchRequest[0]).filter(
                         city_j__name__icontains=searchRequest[1]).exists():
-                    job = Jobs.objects.filter(country_j__country__icontains=searchRequest[0]).filter(
+                    job = Jobs.objects.filter(approved=True).filter(country_j__country__icontains=searchRequest[0]).filter(
                         city_j__name__icontains=searchRequest[1]).filter(status="Open")
 
                     # title and country
-                elif Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(
+                elif Jobs.objects.filter(approved=True).filter(job_title__icontains=searchRequest[0]).filter(
                         country_j__country__icontains=searchRequest[1]).exists():
-                    job = Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(
+                    job = Jobs.objects.filter(approved=True).filter(job_title__icontains=searchRequest[0]).filter(
                         country_j__country__icontains=searchRequest[1]).filter(status="Open")
 
-                elif Jobs.objects.filter(job_title__icontains=searchRequest[1]).filter(
+                elif Jobs.objects.filter(approved=True).filter(job_title__icontains=searchRequest[1]).filter(
                         country_j__country__icontains=searchRequest[0]).exists():
-                    job = Jobs.objects.filter(job_title__icontains=searchRequest[1]).filter(
+                    job = Jobs.objects.filter(approved=True).filter(job_title__icontains=searchRequest[1]).filter(
                         country_j__country__icontains=searchRequest[0]).filter(status="Open")
-                elif Jobs.objects.filter(job_title__icontains=searchRequest[0]).exists():
-                    job = Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(status="Open")
+                elif Jobs.objects.filter(approved=True).filter(job_title__icontains=searchRequest[0]).exists():
+                    job = Jobs.objects.filter(approved=True).filter(job_title__icontains=searchRequest[0]).filter(status="Open")
                 # title
 
-                elif Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(
+                elif Jobs.objects.filter(approved=True).filter(job_title__icontains=searchRequest[0]).filter(
                         job_title__icontains=searchRequest[1]).exists():
-                    job = Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(
+                    job = Jobs.objects.filter(approved=True).filter(job_title__icontains=searchRequest[0]).filter(
                         job_title__icontains=searchRequest[1]).filter(status="Open").order_by("-postDate")
                 # cityyy
-                elif Jobs.objects.filter(city_j__name__icontains=searchRequest[0]).exists():
-                    job = Jobs.objects.filter(city_j__name__icontains=searchRequest[0]).filter(status="Open").order_by(
+                elif Jobs.objects.filter(approved=True).filter(city_j__name__icontains=searchRequest[0]).exists():
+                    job = Jobs.objects.filter(approved=True).filter(city_j__name__icontains=searchRequest[0]).filter(status="Open").order_by(
                         "-postDate")
 
                 # country
-                elif Jobs.objects.filter(country_j__country__icontains=searchRequest[0]).exists():
-                    job = Jobs.objects.filter(country_j__country__icontains=searchRequest[0]).filter(
+                elif Jobs.objects.filter(approved=True).filter(country_j__country__icontains=searchRequest[0]).exists():
+                    job = Jobs.objects.filter(approved=True).filter(country_j__country__icontains=searchRequest[0]).filter(
                         status="Open").order_by("-postDate")
-                elif Jobs.objects.filter(job_title__icontains=searchRequest[0]).exists():
-                    job = Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(status="Open")
+                elif Jobs.objects.filter(approved=True).filter(job_title__icontains=searchRequest[0]).exists():
+                    job = Jobs.objects.filter(approved=True).filter(job_title__icontains=searchRequest[0]).filter(status="Open")
             elif len(searchRequest)>1:
-                if Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(city_j__name__icontains=searchRequest[1]).exists():
-                    job = Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(city_j__name__icontains=searchRequest[1]).filter(status="Open")
-                    jobi = Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(status="Open")
+                if Jobs.objects.filter(approved=True).filter(job_title__icontains=searchRequest[0]).filter(city_j__name__icontains=searchRequest[1]).exists():
+                    job = Jobs.objects.filter(approved=True).filter(job_title__icontains=searchRequest[0]).filter(city_j__name__icontains=searchRequest[1]).filter(status="Open")
+                    jobi = Jobs.objects.filter(approved=True).filter(job_title__icontains=searchRequest[0]).filter(status="Open")
 
-                elif Jobs.objects.filter(job_title__icontains=searchRequest[1]).filter(city_j__name__icontains=searchRequest[0]).exists():
-                    job = Jobs.objects.filter(job_title__icontains=searchRequest[1]).filter(city_j__name__icontains=searchRequest[0]).filter(status="Open")
-                    jobi = Jobs.objects.filter(job_title__icontains=searchRequest[1]).filter(status="Open")
+                elif Jobs.objects.filter(approved=True).filter(job_title__icontains=searchRequest[1]).filter(city_j__name__icontains=searchRequest[0]).exists():
+                    job = Jobs.objects.filter(approved=True).filter(job_title__icontains=searchRequest[1]).filter(city_j__name__icontains=searchRequest[0]).filter(status="Open")
+                    jobi = Jobs.objects.filter(approved=True).filter(job_title__icontains=searchRequest[1]).filter(status="Open")
             
             
                 # country and city
-                elif Jobs.objects.filter(country_j__country__icontains=searchRequest[1]).filter(city_j__name__icontains=searchRequest[0]).exists():
-                    job = Jobs.objects.filter(country_j__country__icontains=searchRequest[1]).filter(city_j__name__icontains=searchRequest[0]).filter(status="Open")
+                elif Jobs.objects.filter(approved=True).filter(country_j__country__icontains=searchRequest[1]).filter(city_j__name__icontains=searchRequest[0]).exists():
+                    job = Jobs.objects.filter(approved=True).filter(country_j__country__icontains=searchRequest[1]).filter(city_j__name__icontains=searchRequest[0]).filter(status="Open")
             
-                elif Jobs.objects.filter(country_j__country__icontains=searchRequest[0]).filter(city_j__name__icontains=searchRequest[1]).exists():
-                    job = Jobs.objects.filter(country_j__country__icontains=searchRequest[0]).filter(city_j__name__icontains=searchRequest[1]).filter(status="Open")
+                elif Jobs.objects.filter(approved=True).filter(country_j__country__icontains=searchRequest[0]).filter(city_j__name__icontains=searchRequest[1]).exists():
+                    job = Jobs.objects.filter(approved=True).filter(country_j__country__icontains=searchRequest[0]).filter(city_j__name__icontains=searchRequest[1]).filter(status="Open")
             
                     # title and country
-                elif Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(country_j__country__icontains=searchRequest[1]).exists():
-                    job = Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(country_j__country__icontains=searchRequest[1]).filter(status="Open")
+                elif Jobs.objects.filter(approved=True).filter(job_title__icontains=searchRequest[0]).filter(country_j__country__icontains=searchRequest[1]).exists():
+                    job = Jobs.objects.filter(approved=True).filter(job_title__icontains=searchRequest[0]).filter(country_j__country__icontains=searchRequest[1]).filter(status="Open")
             
-                elif Jobs.objects.filter(job_title__icontains=searchRequest[1]).filter(country_j__country__icontains=searchRequest[0]).exists():
-                    job = Jobs.objects.filter(job_title__icontains=searchRequest[1]).filter(country_j__country__icontains=searchRequest[0]).filter(status="Open")
-                elif Jobs.objects.filter(job_title__icontains=searchRequest[0]).exists():
-                    job = Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(status="Open")
+                elif Jobs.objects.filter(approved=True).filter(job_title__icontains=searchRequest[1]).filter(country_j__country__icontains=searchRequest[0]).exists():
+                    job = Jobs.objects.filter(approved=True).filter(job_title__icontains=searchRequest[1]).filter(country_j__country__icontains=searchRequest[0]).filter(status="Open")
+                elif Jobs.objects.filter(approved=True).filter(job_title__icontains=searchRequest[0]).exists():
+                    job = Jobs.objects.filter(approved=True).filter(job_title__icontains=searchRequest[0]).filter(status="Open")
                 #title
             
-                elif Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(job_title__icontains=searchRequest[1]).exists():
-                    job = Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(job_title__icontains=searchRequest[1]).filter(status="Open").order_by("-postDate")
+                elif Jobs.objects.filter(approved=True).filter(job_title__icontains=searchRequest[0]).filter(job_title__icontains=searchRequest[1]).exists():
+                    job = Jobs.objects.filter(approved=True).filter(job_title__icontains=searchRequest[0]).filter(job_title__icontains=searchRequest[1]).filter(status="Open").order_by("-postDate")
                 #cityyy
-                elif  Jobs.objects.filter(city_j__name__icontains=searchRequest[0]).exists():
-                    job = Jobs.objects.filter(city_j__name__icontains=searchRequest[0]).filter(status="Open").order_by("-postDate")
+                elif  Jobs.objects.filter(approved=True).filter(city_j__name__icontains=searchRequest[0]).exists():
+                    job = Jobs.objects.filter(approved=True).filter(city_j__name__icontains=searchRequest[0]).filter(status="Open").order_by("-postDate")
             
                 #country
-                elif  Jobs.objects.filter(country_j__country__icontains=searchRequest[0]).exists():
-                    job = Jobs.objects.filter(country_j__country__icontains=searchRequest[0]).filter(status="Open").order_by("-postDate")
-                elif Jobs.objects.filter(job_title__icontains=searchRequest[0]).exists():
-                    job = Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(status="Open")
+                elif  Jobs.objects.filter(approved=True).filter(country_j__country__icontains=searchRequest[0]).exists():
+                    job = Jobs.objects.filter(approved=True).filter(country_j__country__icontains=searchRequest[0]).filter(status="Open").order_by("-postDate")
+                elif Jobs.objects.filter(approved=True).filter(job_title__icontains=searchRequest[0]).exists():
+                    job = Jobs.objects.filter(approved=True).filter(job_title__icontains=searchRequest[0]).filter(status="Open")
             #title
             
-            elif Jobs.objects.filter(job_title__icontains=searchRequest[0]).exists():
-                job = Jobs.objects.filter(job_title__icontains=searchRequest[0]).filter(status="Open").order_by("-postDate")
+            elif Jobs.objects.filter(approved=True).filter(job_title__icontains=searchRequest[0]).exists():
+                job = Jobs.objects.filter(approved=True).filter(job_title__icontains=searchRequest[0]).filter(status="Open").order_by("-postDate")
             #cityyy
-            elif  Jobs.objects.filter(city_j__name__icontains=searchRequest[0]).exists():
-                job = Jobs.objects.filter(city_j__name__icontains=searchRequest[0]).filter(status="Open").order_by("-postDate")
+            elif  Jobs.objects.filter(approved=True).filter(city_j__name__icontains=searchRequest[0]).exists():
+                job = Jobs.objects.filter(approved=True).filter(city_j__name__icontains=searchRequest[0]).filter(status="Open").order_by("-postDate")
             
             #country
-            elif  Jobs.objects.filter(country_j__country__icontains=searchRequest[0]).exists():
-                job = Jobs.objects.filter(country_j__country__icontains=searchRequest[0]).filter(status="Open").order_by("-postDate")
+            elif  Jobs.objects.filter(approved=True).filter(country_j__country__icontains=searchRequest[0]).exists():
+                job = Jobs.objects.filter(approved=True).filter(country_j__country__icontains=searchRequest[0]).filter(status="Open").order_by("-postDate")
 
             if len(job) != 0:
                 post_id=job[0].id
@@ -540,7 +540,7 @@ class MainJobs(View):
                 search.save()
 
         # else:
-        #     job = Jobs.objects.filter(status="Open").order_by("-postDate")
+        #     job = Jobs.objects.filter(approved=True).filter(status="Open").order_by("-postDate")
         # end of search
 
         #filters options
@@ -587,7 +587,7 @@ class MainJobs(View):
         #  Take the  first post   !!! with  auto id  the first result
 
         if post_id == "":
-            jobi = Jobs.objects.filter(status="Open").order_by("-postDate").values_list('id', flat=True).first()
+            jobi = Jobs.objects.filter(approved=True).filter(status="Open").order_by("-postDate").values_list('id', flat=True).first()
             post_id = jobi
             if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
                 description = Jobs.objects.filter(id=post_id).values_list('description', flat=True).first()
@@ -708,8 +708,8 @@ def applyForJob(request, pk):
             email = render_to_string(email_template_applicant, c)
             oemail = render_to_string(email_template_owner,c)
             try:
-                send_mail(subject, email, 'rinor@theacompany.xyz' , [request.user.email], fail_silently=False)
-                send_mail(subject,oemail,'rinor@theacompany.xyz',[emailOwner],fail_silently=False)
+                send_mail(subject, email, 'hello@worki.global' , [request.user.email], fail_silently=False)
+                # send_mail(subject,oemail,'rinor@theacompany.xyz',[emailOwner],fail_silently=False)
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
 

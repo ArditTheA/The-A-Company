@@ -178,7 +178,7 @@ function myFunction() {
                       {% if filterTitle != "" %}
                   <select id="selTitle" style="color: #f1f1f1;background-color: #1877f2; border: none; font-size: 18px; padding-top: 0; padding-bottom: 0; 
                   padding: 8px 30px; padding-left: 20px; " class="form-select" name="Job Title" onchange="this.form.submit()" id="second_form_select">
-                    <option class="first-input-option" selected>{{filterTitle}}</option>
+                    <option class="first-input-option" value="{{filterTitle}}">{{filterTitle}}</option>
                   </select>
                   <div class="" style="display: flex; align-items: center;">
                     <img class="icon" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
@@ -186,7 +186,7 @@ function myFunction() {
                    {% else %}
                     <select style="color: #65676B; border: none; font-size: 18px; padding-top: 0; padding-bottom: 0; 
                   padding: 8px 30px; padding-left: 20px; " class="form-select" name="Job Title" onchange="this.form.submit()" id="second_form_select">
-                    <option class="first-input-option" >Job Title</option>
+                    <option class="first-input-option">Job Title</option>
                   </select>
                   <div class="" style="display: flex; align-items: center;">
                     <img class="icon" src="{% static 'img/dropdown-icon.png' %}" alt="">
