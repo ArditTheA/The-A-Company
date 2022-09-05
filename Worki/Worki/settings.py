@@ -34,6 +34,8 @@ DEBUG = True
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 SILENCED_SYSTEM_CHECKS = ["auth.W004"]
 ALLOWED_HOSTS = ['*']
+DATE_FORMAT = "d-m-Y"
+USE_L10N = False
 
 SOCIALACCOUNT_LOGIN_ON_GET=True
 
