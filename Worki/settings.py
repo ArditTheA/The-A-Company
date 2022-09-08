@@ -25,12 +25,14 @@ SECRET_KEY = '0x-zrhf@)(t)%-630q&s&9g_c^lvh_9cehy@7vx==@bxgn_s_='
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = True    
-DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
-SILENCED_SYSTEM_CHECKS = ["auth.W004"]
-ALLOWED_HOSTS = ["*"]
+DEBUG = False    
+CSRF_TRUSTED_ORIGINS = ['https://worki.global']
+CORS_REPLACE_HTTPS_REFERER = True
 
-DEBUG = True
+
+
+
+
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 SILENCED_SYSTEM_CHECKS = ["auth.W004"]
 ALLOWED_HOSTS = ['*']
@@ -145,11 +147,25 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+if(DEBUG==True):
+    STATIC_URL = '/static/'
+    MEDIA_URL = '/static/media/'
+    STATICFILES_DIRS=[
+         os.path.join(BASE_DIR,'static')
+    ]
+    STATIC_ROOT='/home/username/websitedomain/static'
+    MEDIA_ROOT='/home/username/websitedomain/static/media'
+else:
+    STATIC_URL = '/static/'
+    MEDIA_URL='static/media/'
+    STATIC_ROOT=os.path.join(BASE_DIR,'static')
+    MEDIA_ROOT=os.path.join(BASE_DIR,'static/media/')
+
+
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+
 
 # New configs
 
