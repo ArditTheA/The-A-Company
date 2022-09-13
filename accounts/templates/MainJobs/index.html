@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 
-<link rel="stylesheet" href="{% static 'css/profile-headers.css'%}">
+<!-- <link rel="stylesheet" href="{% static 'css/profile-headers.css'%}"> -->
 <link rel="stylesheet" href="{% static 'css/jobs.css' %}">
 <link rel="stylesheet" href="{% static 'css/profile-header.css' %}">
 <link rel="stylesheet" href="{% static 'css/posted-jobs-media-queries.css'%}">
@@ -218,7 +218,7 @@
             var display = element.style.display;
 
             if (display == "none") {
-                element.style.display = "block";
+                element.style.display = "flex";
             }
         }
         if(id != 0){
@@ -291,7 +291,7 @@
         var jobs_buttons = document.querySelector('.jobs-buttons');
 
         if (mediaQuery.matches) {
-                right_jobs_main_div.style.display = "block";
+                right_jobs_main_div.style.display = "flex";
                 jobs_left.style.display = "none";
                 jobs_buttons.style.display = "none";
                 if(id==0){
@@ -313,8 +313,8 @@
 
         if (mediaQuery.matches) {
                 right_jobs_main_div.style.display = "none";
-                jobs_left.style.display = "block";
-                jobs_buttons.style.display = "block";
+                jobs_left.style.display = "flex";
+                jobs_buttons.style.display = "flex";
                 if(id==0){
                 var select = document.getElementById('select'+id)
                 select.style.backgroundColor = "white";

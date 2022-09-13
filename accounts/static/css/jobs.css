@@ -17,7 +17,7 @@ textarea {
 .scroll { -ms-overflow-style: none; }
 
 .jobs-buttons {
-    display: flex;
+    display: flex !important;
     align-items: center;
     margin: 20px 0px 0px 40px;
 }
@@ -147,6 +147,7 @@ textarea {
 .jobs-rows-img {
     padding: 30px; 
     background-color: white;
+    position: relative;
 }
 .margin-top-jobs-rows-img {
     margin-top: 20px;

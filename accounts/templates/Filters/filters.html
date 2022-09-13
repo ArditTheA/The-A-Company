@@ -1,11 +1,16 @@
 {% load static  %}
+<style>
+  .jobs-buttons{
+    
+  }
+</style>
 <script>
   function myFunction() {
     document.getElementById("myForm").submit();
   }
   </script>
 <div class="main-buttons-div" style="position: relative;">
-  <div class="jobs-buttons second-jobs-buttons scrolling-wrapper" style="display: flex !important ;">
+  <div class="jobs-buttons second-jobs-buttons scrolling-wrapper" style="">
       <form class="card" action="{% url 'home' %}">
           <img style="cursor: pointer; margin-right: 20px;" title="Search by job or location"
               class="plus-icon-jobs search-icon-jobs" src="{% static 'img/search-third-img.png'%}" alt="">

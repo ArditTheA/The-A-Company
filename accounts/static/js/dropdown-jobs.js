@@ -55,11 +55,11 @@
         inputForm[i].addEventListener('click', function () {
             $(checkboxes[i]).css("left", inputForm[i].offsetLeft - $(".jobs-buttons")[0].scrollLeft);
             $(inputForm[i]).parent().find(".selectOptions").attr("data-leftPos", inputForm[i].offsetLeft);
-            if (checkboxes[i].style.display == "block") {
-                checkboxes[i].style.display = "none";
+            if (checkboxes[i].style.display == "none") {
+                checkboxes[i].style.display = "block";
             }
             else {
-                checkboxes[i].style.display = "block";
+                checkboxes[i].style.display = "none";
                 $(".open").removeClass("open")
                 $(checkboxes[i]).closest(".selectBox").addClass("open")
             }
