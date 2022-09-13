@@ -358,7 +358,7 @@
 
     </style>
 <div class="container-add-a-job">
-        <form class="register-form" method="post" enctype="multipart/form-data">
+        <form class="register-form" method="post" action="{% url  'addJob'%}"enctype="multipart/form-data">
 			{% csrf_token %}
 		    <div class="inside-the-container" style="">
             <h1 class="next-none mid title-font-size f-title">Got an open spot?</h1>
