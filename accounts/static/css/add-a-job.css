@@ -1,0 +1,34 @@
+
+@media screen and (max-width: 767px) and (min-width: 481px) {
+    .container-add-a-job {
+        margin: 20px;
+        padding: 30px;
+        height: auto;
+    }
+}
+@media screen and (max-width: 480px) {
+    .container-add-a-job {
+        margin: 10px;
+        padding: 20px;
+        height: auto;
+    }
+    .title-font-size {
+        font-size: 30px;
+    }
+    .navbar {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    img {
+        height: 40px;
+    }
+    .first-form-group {
+        margin-top: 10px; /* margin-top ne llaptop: 10px 
+                                        +
+                             margin-top ne mobile: 10px
+                                         =
+                                        20px */								 
+    }
+    input {
+    }
+}

@@ -399,7 +399,7 @@ class OneSelFilter(View):
                      typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
                      program=program, programCost=programCost,
                      posted=posted, post_id=post_id))
-        return render(request, "Filters/index.html",
+        return render(request, "MainJobs/index.html",
             dict(job=job, prog=sortProgram, title=sortTitle, company=sortCompany,city=cityName,
                 salary=sortSalary,filterProgram=filterProgram,filterTitle=filterTitle,filterCompany=filterCompany,
                 filterLocation=location,filterSalary=filterSalary,filterDate=filterDate,dateF=dateF))
