@@ -131,7 +131,7 @@
                         </div>
         
                         <label for="id_cover">
-                            <img class="changed-cover" height="250" src="{{user.cover.url}}" title="Profile Cover" alt="">
+                            <img class="changed-cover" id="coverPic" height="250" src="{{user.cover.url}}" title="Profile Cover" alt="">
                         </label>
                         {{form.cover}}
                     </div>
@@ -200,7 +200,7 @@
                         </div>
         
                         <label for="id_profile">
-                            <img class="changed-profile" height="250" src="{{user.profile.url}}" title="Profile Cover" alt="">
+                            <img class="changed-profile"  id="profilePic" height="250" src="{{user.profile.url}}" title="Profile Cover" alt="">
         
                         </label>
                         {{form.profile}}
@@ -211,7 +211,7 @@
         
         
                     <div class="save-button">
-                        <input name="save" type="submit" class="save-submit-input save-cover font-fam" value="Save">
+                        <input name="save" type="submit" class="save-submit-input save-cover font-fam"  value="Save">
                     </div>
                 </form>
             </div>
@@ -356,6 +356,34 @@
         </div>    
     </div>
 
+    <script>
+        window.addEventListener('load', function() {
+        document.querySelector('#id_profile').addEventListener('change', function() {
+        if (this.files && this.files[0]) {
+            var img = document.querySelector('#profilePic');
+            img.onload = () => {
+                URL.revokeObjectURL(img.src);  // no longer needed, free memory
+            }
+
+            img.src = URL.createObjectURL(this.files[0]); // set src to blob url
+        }
+  });
+});
+    </script>
+    <script>
+        window.addEventListener('load', function() {
+        document.querySelector('#id_cover').addEventListener('change', function() {
+        if (this.files && this.files[0]) {
+            var img = document.querySelector('#coverPic');
+            img.onload = () => {
+                URL.revokeObjectURL(img.src);  // no longer needed, free memory
+            }
+
+            img.src = URL.createObjectURL(this.files[0]); // set src to blob url
+        }
+  });
+});
+    </script>
     <script src="{% static 'js/js.js' %}"></script>
 
     <script src="{% static 'js/profile_dropdown.js' %}"></script>

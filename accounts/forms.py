@@ -54,7 +54,7 @@ class EditProf(ModelForm):
 
             "Country": forms.Select(attrs={'class': 'country-input font-fam'}),
             'profile': forms.FileInput(attrs={'id': 'id_profile'}),
-            'cover': forms.FileInput(attrs={'class': 'upload_profile_pic'}),
+            'cover': forms.FileInput(attrs={'class': 'upload_profile_pic',"id":"id_cover"}),
 
         }
         # fields = '__all__'

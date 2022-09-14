@@ -104,7 +104,8 @@ class UserLanguages(models.Model):
 
 class Jobs(models.Model):
     TypeofWork = {
-        ('Full Time','Full Time')
+        ('Full Time','Full Time'),
+        ('Part Time','Part Time')
     }
     Housing_type={
         ("Provided","Provided")
@@ -142,7 +143,7 @@ class Jobs(models.Model):
     approved = models.BooleanField(default=False)
 
     applicant = models.ManyToManyField(CustomUser, related_name="applicant", blank=True)
-    apply_date = models.DateField(null=True,blank=True)
+    
 
     @property
     def total_applicant(self):

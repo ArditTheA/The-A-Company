@@ -1,3 +1,4 @@
+
 """
 Django settings for django_email_login project.
 
@@ -25,15 +26,21 @@ SECRET_KEY = '0x-zrhf@)(t)%-630q&s&9g_c^lvh_9cehy@7vx==@bxgn_s_='
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = True    
-DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
-SILENCED_SYSTEM_CHECKS = ["auth.W004"]
-ALLOWED_HOSTS = ["*"]
+DEBUG = False    
+CSRF_TRUSTED_ORIGINS = ['https://worki.global']
+CORS_REPLACE_HTTPS_REFERER = True
 
-DEBUG = True
+SITE_ID = 2
+
+AUTHENTICATION_BACKENDS = ['accounts.backends.EmailBackend','allauth.account.auth_backends.AuthenticationBackend']
+
+
+
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 SILENCED_SYSTEM_CHECKS = ["auth.W004"]
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['worki.global']
+DATE_FORMAT = "d-m-Y"
+USE_L10N = False
 
 SOCIALACCOUNT_LOGIN_ON_GET=True
 
@@ -53,6 +60,7 @@ INSTALLED_APPS = [
 
 
     #3party login providers
+    'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -143,15 +151,29 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
+
+if(DEBUG==True):
+    STATIC_URL = '/static/'
+    MEDIA_URL = '/static/media/'
+    STATICFILES_DIRS=[
+         os.path.join(BASE_DIR,'static')
+    ]
+    STATIC_ROOT='/home/username/websitedomain/static'
+    MEDIA_ROOT='/home/username/websitedomain/static/media'
+else:
+    STATIC_URL = '/static/'
+    MEDIA_URL='static/media/'
+    STATIC_ROOT=os.path.join(BASE_DIR,'static')
+    MEDIA_ROOT=os.path.join(BASE_DIR,'static/media/')
+
+
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+
 
 # New configs
-
 AUTH_USER_MODEL = 'accounts.CustomUser'
-AUTHENTICATION_BACKENDS = ['accounts.backends.EmailBackend']
+
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'SCOPE': [
@@ -175,6 +197,3 @@ EMAIL_PORT = "587"
 EMAIL_USE_TLS=True
 EMAIL_HOST_USER = "hello@worki.global"
 EMAIL_HOST_PASSWORD = "sthpmwbfxydzgzrk"
-
-
-
