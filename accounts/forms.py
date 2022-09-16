@@ -188,7 +188,7 @@ class editjob(ModelForm):
             "logo":forms.FileInput(attrs={"style":"display:none"}),
             "postDate": forms.DateInput(
                 attrs={"class": "start-date-input mutual-stats font-fam next-none", "type": "date"}),
-            "approved": forms.CheckboxInput(attrs={"disabled": "disabled"}),
+            "approved": forms.CheckboxInput(),
             "city_j": forms.Select(attrs={"class": "next-none"}),
             "type_of_work": forms.Select(attrs={"class": "next-none"}),
             "housing": forms.Select(attrs={"class": "next-none"}),
