@@ -288,7 +288,7 @@ class OneSelFilter(View):
                 filterLocation=""
         if request.GET.get("Salary") != None:
             if request.GET.get("Salary") != "Salary":
-                filterSalary =int(request.GET.get("Salary"))
+                filterSalary =float(request.GET.get("Salary"))
             else:
                 filterSalary=""
         if  request.GET.get("dataPosted") != None:
@@ -389,7 +389,9 @@ class OneSelFilter(View):
 
             country = Country.objects.filter(id=city_uid).values_list("country", flat=True).first()
             applicant = Jobs.objects.filter(approved=True).filter(id=post_id).first()
-
+            salary=format(salary,'.2f')
+            start_date=format(start_date,"%d/%b/%Y")
+            end_date=format(end_date,"%d/%b/%Y")
             app = str(applicant)
 
             return JsonResponse(

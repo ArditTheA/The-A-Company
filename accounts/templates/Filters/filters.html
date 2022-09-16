@@ -42,11 +42,11 @@
                       <div class="" style="display: flex; align-items: center;">
                           <img class="icon" src="{% static 'img/dropdown-icon.png'%}" alt="">
                           <img style="cursor: pointer; display: none;" class="white-icon"
-                              src="{% img/white-dropdown-icon.png" alt="">
+                              src="{% static 'img/white-dropdown-icon.png' %}" alt="">
                       </div>
 
                       {% endif %}
-                      <div style="" class="overSelect"></div>
+                      <div style="" class="overSelect" onclick="ShowDropDown()"></div>
                   </div>
                   <div id="mySelectOptions" class="selectOptions dropdown-elements" style="z-index: 99;">
                       {% for i in prog %}
@@ -89,7 +89,7 @@
                       </div>
 
                       {% endif %}
-                      <div style="" class="overSelect"></div>
+                      <div style="" class="overSelect" onclick="ShowDropDown()"></div>
                   </div>
                   <div id="mySelectOptions" class="selectOptions dropdown-elements" style="z-index: 99;">
                       {% for i in title %}
@@ -131,7 +131,7 @@
                       </div>
 
                       {% endif %}
-                      <div style="" class="overSelect"></div>
+                      <div style="" class="overSelect"  onclick="ShowDropDown()"></div>
                   </div>
                   <div id="mySelectOptions" class="selectOptions dropdown-elements" style="z-index: 99;">
                       {% for i in company %}
@@ -172,7 +172,7 @@
                       </div>
 
                       {% endif %}
-                      <div style="" class="overSelect"></div>
+                      <div style="" class="overSelect" onclick="ShowDropDown()"></div>
                   </div>
                   <div id="mySelectOptions" class="selectOptions dropdown-elements" style="z-index: 99;">
                       {% for i in city %}
@@ -213,7 +213,7 @@
                       </div>
 
                       {% endif %}
-                      <div style="" class="overSelect"></div>
+                      <div style="" class="overSelect" onclick="ShowDropDown()"></div>
                   </div>
                   <div id="mySelectOptions" class="selectOptions dropdown-elements" style="z-index: 99;">
                       {% for i in salary %}
@@ -254,7 +254,7 @@
                       </div>
 
                       {% endif %}
-                      <div style="" class="overSelect"></div>
+                      <div style="" class="overSelect" onclick="ShowDropDown()"></div>
                   </div>
                   <div id="mySelectOptions" class="selectOptions dropdown-elements" style="z-index: 99;">
                       {% if filterDate != ""%}
@@ -294,4 +294,32 @@
   var dateFunction = function(){
     document.getElementById("selDate").value="Date Posted"
   };
+</script>
+<script>
+  function ShowDropDown(){
+  var checkboxes = document.querySelectorAll(".selectOptions");
+
+    var inputForm = document.querySelectorAll('.input-form');
+    var show_hide = false;
+
+    for (let i = 0; i < inputForm.length; i++) {
+        inputForm[i].addEventListener('click', function () {
+            $(checkboxes[i]).css("left", inputForm[i].offsetLeft - $(".jobs-buttons")[0].scrollLeft);
+            $(inputForm[i]).parent().find(".selectOptions").attr("data-leftPos", inputForm[i].offsetLeft);
+            if (checkboxes[i].style.display == "none") {
+                checkboxes[i].style.display = "block";
+            }
+            else {
+                checkboxes[i].style.display = "none";
+                $(".open").removeClass("open")
+                $(checkboxes[i]).closest(".selectBox").addClass("open")
+            }
+            document.addEventListener('click', function(e) {
+                if (!checkboxes[i].contains(e.target) && !container_fluid[i].contains(e.target)) {
+                    checkboxes[i].style.display = 'none';
+                }
+            });    
+        });
+    };
+  }
 </script>

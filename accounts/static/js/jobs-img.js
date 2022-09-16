@@ -1,4 +1,4 @@
-var second_jobs_img = document.querySelectorAll('.jobs-rows-img');
+// var second_jobs_img = document.querySelectorAll('.jobs-rows-img');
 var right_jobs = document.querySelectorAll('.right-jobs');
 var right_jobs_main_div = document.querySelector('.right-jobs-main-div');
 var jobs_left = document.querySelector('.jobs-left');

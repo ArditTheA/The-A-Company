@@ -269,7 +269,10 @@ class AjaxHandler(View):
 
 
                 
-
+                salary=format(salary,'.2f')
+                start_date=format(start_date,"%d/%b/%Y")
+                end_date=format(end_date,"%d/%b/%Y")
+                posted=format(posted,"%d/%b/%Y")
                 return JsonResponse(
                     dict(description=description, title=title, city_j=cityy, country=country, start_date=start_date,
                          salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
@@ -301,6 +304,10 @@ class AjaxHandler(View):
                 city_uid = City.objects.filter(id=c[0]).values_list("country", flat=True).first()
 
                 country = Country.objects.filter(id=city_uid).values_list("country", flat=True).first()
+                salary=format(salary,'.2f')
+                start_date=format(start_date,"%d/%b/%Y")
+                end_date=format(end_date,"%d/%b/%Y")
+                posted=format(posted,"%d/%b/%Y")
 
                 return JsonResponse(
                     dict(description=description, title=title, city_j=cityy, country=country, start_date=start_date,
@@ -339,6 +346,10 @@ class AppliedJobs(View):
                 cityy = City.objects.filter(id=c[0]).values_list("name", flat=True).first()
                 city_uid = City.objects.filter(id=c[0]).values_list("country", flat=True).first()
                 country = Country.objects.filter(id=city_uid).values_list("country", flat=True).first()
+                salary=format(salary,'.2f')
+                start_date=format(start_date,"%d/%b/%Y")
+                end_date=format(end_date,"%d/%b/%Y")
+                posted=format(posted,"%d/%b/%Y")
                 return JsonResponse(
                     dict(description=description, title=title, city_j=cityy, country=country, start_date=start_date,
                          salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
@@ -370,7 +381,10 @@ class AppliedJobs(View):
                 city_uid = City.objects.filter(id=c[0]).values_list("country", flat=True).first()
 
                 country = Country.objects.filter(id=city_uid).values_list("country", flat=True).first()
-
+                salary=format(salary,'.2f')
+                start_date=format(start_date,"%d/%b/%Y")
+                end_date=format(end_date,"%d/%b/%Y")
+                posted=format(posted,"%d/%b/%Y")
                 return JsonResponse(
                     dict(description=description, title=title, city_j=cityy, country=country, start_date=start_date,
                          salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
@@ -397,7 +411,7 @@ class MainJobs(View):
         #search
         query = request.GET.get("q")
 
-        
+        print(post_id)
         jobi=[]
         
         jobs = []
@@ -616,7 +630,10 @@ class MainJobs(View):
                 country = Country.objects.filter(id=city_uid).values_list("country", flat=True).first()
                 applicant = Jobs.objects.filter(id=post_id).first()
                 
-                
+                salary=format(salary,'.2f')
+                start_date=format(start_date,"%d/%b/%Y")
+                end_date=format(end_date,"%d/%b/%Y")
+                # posted=format(posted,"%d/%b/%Y")
                 app=(str(applicant))
                 return JsonResponse(
                     dict(description=description, title=title, applicant=app,city_j=city, country=country, start_date=start_date,
@@ -651,7 +668,11 @@ class MainJobs(View):
                 country = Country.objects.filter(id=city_uid).values_list("country", flat=True).first()
                 applicant = Jobs.objects.filter(id=post_id).first()
                 
-                
+                salary=format(salary,'.2f')
+                start_date=format(start_date,"%d/%b/%Y")
+                end_date=format(end_date,"%d/%b/%Y")
+                # posted=format(posted,"%d/%b/%Y")
+
                 app=str(applicant)
                 return JsonResponse(
                     dict(description=description, title=title,applicant=app, city_j=city, country=country, start_date=start_date,

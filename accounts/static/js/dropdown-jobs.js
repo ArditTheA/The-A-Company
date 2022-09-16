@@ -48,28 +48,7 @@
     var fourth_input_type = document.querySelectorAll(".fourth_input_type");
     var fifth_input_type = document.querySelectorAll(".fifth_input_type");
     var sixth_input_type = document.querySelectorAll(".sixth_input_type");
-    var inputForm = document.querySelectorAll('.input-form');
-    var show_hide = false;
-
-    for (let i = 0; i < inputForm.length; i++) {
-        inputForm[i].addEventListener('click', function () {
-            $(checkboxes[i]).css("left", inputForm[i].offsetLeft - $(".jobs-buttons")[0].scrollLeft);
-            $(inputForm[i]).parent().find(".selectOptions").attr("data-leftPos", inputForm[i].offsetLeft);
-            if (checkboxes[i].style.display == "none") {
-                checkboxes[i].style.display = "block";
-            }
-            else {
-                checkboxes[i].style.display = "none";
-                $(".open").removeClass("open")
-                $(checkboxes[i]).closest(".selectBox").addClass("open")
-            }
-            document.addEventListener('click', function(e) {
-                if (!checkboxes[i].contains(e.target) && !container_fluid[i].contains(e.target)) {
-                    checkboxes[i].style.display = 'none';
-                }
-            });    
-        });
-    };
+    
 
     $(".jobs-buttons").on("scroll", function() {
         var activeDropdown = $('.selectBox.open').find('.selectOptions');

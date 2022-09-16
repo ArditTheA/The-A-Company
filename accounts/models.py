@@ -8,6 +8,7 @@ from django.utils.translation import gettext_lazy as _
 from datetime import datetime
 from django.urls import reverse 
 from django.utils import timezone
+from django.conf import settings
 today = timezone.now
 
 class Country(models.Model):

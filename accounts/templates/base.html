@@ -26,7 +26,7 @@
     <header class="header-border">
         <a href="{% url 'home'%}"><img id="worki-image" src="{% static 'img/Worki_Logo_Black.png' %}" title="Worki"></a>
         <div id="jobs-and-profile">
-        <a href=""><img class="jobs-icon-button" title="Jobs" src="{% static 'img/JOBS_Icon.png' %}"></a>
+        <a href="{% url 'home'%}"><img class="jobs-icon-button" title="Jobs" src="{% static 'img/JOBS_Icon.png' %}"></a>
             <img src="{{user.profile.url}}" id="profile-image-button" title="Profile" alt="">
         </div>
     </header>

@@ -140,7 +140,32 @@
 
 {% include "Filters/filters.html" %}
 <div class="jobs-main-div" style="display: flex; justify-content: space-between;">
-    {% include "Filters/index.html" %}
+    <div class="jobs-left" style="" id="myDIV">
+    {% for i in job %}
+           <div onclick="getNumber({{i.id}},{{i.total_applicant}})" class="jobs-rows-img second-jobs margin-top-jobs-rows-img same-background-jobs pixel"  id="select{{i.id}}">
+               <img class="experience-education-img" src="{{i.logo.url}}" alt="">
+               <span class="experience-rows">
+               <span class="experience-first-row">{{i.job_title}}</span>
+               <span class="experience-second-row">{{i.company}}</span>
+               <span class="experience-third-row">{{i.city_j}}, {{i.city_j.country}}</span>
+               <span class="experience-fourth-row">{{i.program}}</span>
+               </span>
+           </div>
+           <span class="move"></span>
+   {% endfor %}
+   {% for j in jobi %}
+           <div onclick="getNumber({{j.id}})" class="jobs-rows-img second-jobs margin-top-jobs-rows-img same-background-jobs pixel"  id="select{{j.id}}">
+               <img class="experience-education-img" src="{{j.logo.url}}" alt="">
+               <span class="experience-rows">
+               <span class="experience-first-row">{{j.job_title}}</span>
+               <span class="experience-second-row">{{j.company}}</span>
+               <span class="experience-third-row">{{j.city_j}}, {{j.city_j.country}}</span>
+               <span class="experience-fourth-row">{{j.program}}</span>
+               </span>
+           </div>
+           <span class="move"></span>
+   {% endfor %}
+</div>
     <div class="right-jobs-main-div">
         <div class="right-jobs" id="detailsRow" style="display:none;flex-direction: column;">
             <div class="right-jobs-rows-img" style="padding: 30px; margin-left: 10px; background-color: white;">
@@ -164,7 +189,8 @@
                             jobi.housing_cost_per_week}}</span>
                     </div>
                     <div style="margin-top: 5px; margin-top: 20px;" class="experience-fourth-row jobs-mutual-margin-rows">
-                        <span id="program">{{jobi.program}}</span><span id="programCost">{{jobi.programCost}}</span>
+                        <span id="program"></span><span id="programCost">
+                        </span>
                     </div>
     
                     <div id="button" style="margin-top:25px">
@@ -254,13 +280,13 @@
         }
 
         var start_date = document.getElementById("sDate")
-        start_date.innerHTML = data["start_date"]+" - "+data["end_date"]
+        start_date.innerHTML = data["start_date"] +" - "+data["end_date"]
 
         var company = document.getElementById("company")
         company.innerHTML = data["company"]
 
         var salary = document.getElementById("salary")
-        salary.innerHTML ="$"+ data ["salary"]+"/hour"
+        salary.innerHTML ="$"+ data ["salary"]+" / hour"
 
         var typeOfWork = document.getElementById('typeOfWork')
         typeOfWork.innerHTML = data["typeOfWork"]
@@ -278,7 +304,7 @@
         program.innerHTML = data["program"]
 
         var programCost = document.getElementById("programCost")
-        programCost.innerHTML = "· Program Cost: $"+data["programCost"]
+        programCost.innerHTML = "  ·  Program Cost: $"+data["programCost"]
         var button = document.getElementById("button")
         var url= "apply/"+id
         button.innerHTML = '{% if user.profileSetup %}<a href="'+url+'" class="applied-button-jobs outline-none" style="text-decoration:none;margin-top: 5px; width: fit-content; padding-top: 8px; padding-bottom: 8px;">Fast Apply</a>{% else %}<a href="'+url+'" class="applied-button-jobs outline-none" style="text-decoration:none;margin-top: 5px; width: fit-content; padding-top: 8px; padding-bottom: 8px;">Apply</a>{% endif %}';
@@ -310,7 +336,7 @@
         var right_jobs_main_div = document.querySelector('.right-jobs-main-div');
         var jobs_left = document.querySelector('.jobs-left');
         var jobs_buttons = document.querySelector('.jobs-buttons');
-
+        console.log("asd")
         if (mediaQuery.matches) {
                 right_jobs_main_div.style.display = "none";
                 jobs_left.style.display = "flex";
@@ -321,6 +347,7 @@
                 }
         };
         window.onload = getNumber(nul);
+
 
 </script>
 
