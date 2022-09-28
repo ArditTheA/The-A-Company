@@ -90,7 +90,6 @@ select {
 .edit-button-cover {
     width: 30px;
     height: 30px;
-    position: fixed;
     right: 40px;
     top: 40px;
     cursor: pointer;
@@ -284,6 +283,7 @@ margin-right: 20px;
         margin: 20px 30px 20px 30px;
     }
     .pro-img {
+        border-radius: 30px;
     }
     .profile-image-and-add-button {
     }
@@ -304,8 +304,11 @@ margin-right: 20px;
         bottom: 30px;
     }
     .edit-button-cover {
-        right: 40px;
-        bottom: 30px;
+        position: absolute;
+        right: 30px;
+        top: 30px;
+        width: 25px;
+        height: 25px;
     }
     .profile-name {
         margin-top: 0px;
@@ -355,6 +358,14 @@ margin-right: 20px;
         width: 26px;
         height: 26px;
     }    
+    .edit-button-cover {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        width: 21px;
+        height: 21px;
+    }
+
     .profile-name {
         margin-top: 10px;
         text-align: center;
@@ -423,6 +434,14 @@ margin-right: 20px;
     .pro-img {
         border-radius: 15px;
     }
+    .jobs-rows-img {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        border-radius: 30px;
+    }
+    .right-jobs-rows-img, .right-jobs-rows-img-second {
+        border-radius: 30px;
+    }
     .second-part-profile-header {
         padding: 0px 0px 20px 0px;
     }
@@ -446,6 +465,13 @@ margin-right: 20px;
     .edit-button, .edit-experience {
         width: 22px;
         height: 22px;
+    }
+    .edit-button-cover {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        width: 17px;
+        height: 17px;
     }
     .profile-name {
         font-size: 30px;
@@ -513,7 +539,7 @@ margin-right: 20px;
         width: 28px;
         height: 28px;
     }
-    .edit-experience, .edit-button-cover {
+    .edit-experience {
         width: 28px;
         height: 28px;
     }

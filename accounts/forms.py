@@ -211,13 +211,14 @@ class setupProfile(ModelForm):
         model = CustomUser
         fields = ("first_name", "last_name", "sex","birthday", "country", "city", "email", "phone_number")
         widgets = {
-            "first_name":forms.TextInput(attrs={'class':'next-none'}),
-            "last_name":forms.TextInput(attrs={'class':'next-none'}),
-            "country": forms.Select(attrs={"class": "next-none"}),
-            "city": forms.Select(attrs={"class": "next-none"}),
-            "email": forms.TextInput(attrs={"class": "next-none","type":"email"}),
-            "phone_number": forms.TextInput(attrs={"class": "next-none"}),
-            "birthday":forms.DateInput(attrs ={"class":"next-none","type":"date"}),
+            "first_name":forms.TextInput(attrs={'class':'next-none',"required":"required"}),
+            "last_name":forms.TextInput(attrs={'class':'next-none',"required":"required"}),
+            "country": forms.Select(attrs={"class": "custom-select sel select-options-input next-none padding-of-inputs","required":"required"}),
+            "city": forms.Select(attrs={"class": "custom-select sel select-options-input next-none padding-of-inputs","required":"required"}),
+            "email": forms.TextInput(attrs={"class": "next-none padding-of-inputs","type":"email","required":"required"}),
+            "phone_number": forms.TextInput(attrs={"class": "next-none padding-of-inputs","required":"required"}),
+            "birthday":forms.DateInput(attrs ={"class":"next-none","type":"date","required":"required"}),
+            "sex":forms.Select(attrs={"class":"custom-select sel select-options-input next-none padding-of-inputs"})
 
         }
 
@@ -227,7 +228,8 @@ class setupProfile2(ModelForm):
         model = UserEducation
         fields = "__all__"
         widgets ={
-            "start_year": forms.DateInput(attrs={"class": "next-none", "type": "date"}),
+            "university":forms.Select(attrs={"class":"custom-select sel select-options-input next-none padding-of-inputs","required":"required"}),
+            "start_year": forms.DateInput(attrs={"class": "next-none", "type": "date","required":"required"}),
             "end_year": forms.DateInput(attrs={"class": "next-none", "type": "date"}),
         }
 
@@ -235,4 +237,8 @@ class setupProfile3(ModelForm):
     class Meta:
         model = UserLanguages
         fields = "__all__"
+        widgets={
+            "language":forms.Select(attrs={"class":"custom-select sel select-options-input next-none padding-of-inputs","required":"required"}),
+            "level":forms.Select(attrs={"class":"custom-select sel select-options-input next-none padding-of-inputs","required":"required"})
+        }
 

@@ -1,8 +1,9 @@
 var bgEditExperience = document.querySelector(".bg-edit-experience");
-var ed = document.querySelector(".");
+var bg_exp = document.querySelector(".bg-exp");
 
 window.addEventListener('click', function(event) {
-    if (event.target == bgEditExperience) {
-        bgEditExperience.style.display = "none";
+    if (event.target == bg_exp) {
+        bg_exp.style.display = "none";
     }
 });
+

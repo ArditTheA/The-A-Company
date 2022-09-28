@@ -12,6 +12,7 @@ window.addEventListener('click', function(event) {
     }
 });
 
+
                 // OR //
 
 

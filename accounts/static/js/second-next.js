@@ -14,3 +14,5 @@ for (let i = 0; i < next_none.length; i++) {
         main_conatiner.style.width = "100%";
     });
 };
+
+document.querySelector('button').parentElement.style='pointer-events:none'

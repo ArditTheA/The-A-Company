@@ -34,13 +34,14 @@ class CustomUser(AbstractUser):
     username=models.CharField(max_length=255,null=True,blank=True)
     email = models.EmailField(_('email'), unique=True,null=False,blank=False)
     profile = models.ImageField(upload_to="profile",default="defaultProfile.png")
-    cover = models.ImageField(upload_to="cover",default="defaultCover.png")
+    cover = models.ImageField(upload_to="cover",default="defaultCover.jpeg")
     sex = models.CharField(choices=sex_choice,max_length=10,null=True)
     profileSetup = models.BooleanField(default=False)
     city = models.ForeignKey(City,on_delete=models.CASCADE,null=True,blank=True)
     country = models.ForeignKey(Country,on_delete=models.CASCADE,null=True, blank=True)
     phone_number= models.CharField(max_length=255,null=True,blank=True)
     birthday = models.DateField(null = True,blank=True)
+    picture = models.TextField(null=True, blank=True)
     def __str__(self):
         return self.email+" "+ self.first_name+" "+ self.last_name
     
@@ -152,7 +153,7 @@ class Jobs(models.Model):
 
 
     def __str__(self):
-        return str(self.applicant.count())
+        return str(self.job_title)
 
 class Application(models.Model):
     Stat_type={

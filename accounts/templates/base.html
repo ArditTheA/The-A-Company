@@ -1,65 +1,128 @@
 {% load static %}
-
+{% load socialaccount %}
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Worki</title>
+    <link rel="stylesheet" href="{% static 'css/filter.css'%}">
     <link rel="stylesheet" href="{% static 'css/authenticated.css'%}">
-    <link rel="stylesheet" href="{% static 'css/non-authenticated.css'%}">
     <link rel="stylesheet" href="{% static 'css/profile-header.css'%}">
+    <link rel="stylesheet" href="{% static 'css/jobi.css'%}">
+    <link rel="icon" href="{% static 'img/123.png' %}">
+    <style type="text/css">
+        body {
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <link rel="stylesheet" href="{% static 'css/authenticated.css' %}">
-<link rel="stylesheet" href="{% static 'css/profile-header.css' %}">
 
-<link rel="stylesheet" href="{% static 'css/experience-font-family.css' %}">
-<link rel="stylesheet" href="{% static 'css/add-experience.css' %}">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-<link rel="stylesheet" href="{% static 'css/edit-cover.css' %}">
-    <link rel="icon" href="{% static 'img/Worki_Logo.png' %}">
+
     {% if user.is_authenticated %}
+
     <header class="header-border">
         <a href="{% url 'home'%}"><img id="worki-image" src="{% static 'img/Worki_Logo_Black.png' %}" title="Worki"></a>
         <div id="jobs-and-profile">
-        <a href="{% url 'home'%}"><img class="jobs-icon-button" title="Jobs" src="{% static 'img/JOBS_Icon.png' %}"></a>
+
+            <a href="{% url 'home'%}"><img class="jobs-icon-button" title="Jobs"
+                    src="{% static 'img/JOBS_Icon.png' %}"></a>
+            {% if user.is_authenticated and user.profile != "defaultProfile.png"%}
             <img src="{{user.profile.url}}" id="profile-image-button" title="Profile" alt="">
+            {% elif user.is_authenticated and not backends.associated %}
+            <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" id="profile-image-button" title="Profile"
+                alt="">
+
+            {% elif user.is_authenticated and backends.associated %}
+            <img src="{{user.profile.url}}" id="profile-image-button" title="Profile" alt="">
+            {% endif %}
+
+
+
         </div>
     </header>
     <div class="dropdown">
-        <div class="dropdown-content" ><a href="{% url 'profile'  %}" class="dropdown-content-text">My profile</a></div>
-        <div class="dropdown-mid-content"><a href="{% url 'appliedJob'%}" class="dropdown-content-text">My jobs</a></div>
+        <div class="dropdown-content"><a href="{% url 'profile'  %}" class="dropdown-content-text">My profile</a></div>
+        <div class="dropdown-mid-content"><a href="{% url 'appliedJob'%}" class="dropdown-content-text">My jobs</a>
+        </div>
         <!-- <div class="dropdown-content"><a href="/accounts/google/login/?process=connect" class="dropdown-content-text">Connect to Google</a></div> -->
         <div class="dropdown-content"><a href="{% url 'logout' %}" class="dropdown-content-text">Sign out</a></div>
-     </div>
+    </div>
+
     {% else %}
-         <header class="header-border">
+    <header class="header-border">
         <a href="{% url 'home'%}"><img id="worki-image" src="{% static 'img/Worki_Logo_Black.png' %}" title="Worki"></a>
         <div id="jobs-and-profile">
-        <a href="{% url 'home'%}"><img class="jobs-icon-button" title="Jobs" src="{% static 'img/JOBS_Icon.png' %}"></a>
-            <img src="{% static 'img/123.png' %}" id="profile-image-button" title="Profile" alt="">
+            <a href="{% url 'home'%}"><img class="jobs-icon-button" title="Jobs"
+                    src="{% static 'img/JOBS_Icon.png' %}"></a>
+            <img src="{% static 'img/profile.jpg' %}" id="profile-image-button" title="Profile" alt="">
         </div>
     </header>
     <div class="dropdown">
-    <div style="padding-left: 20px; padding-right: 20px;" class="dropdown-content" ><a href="{% url 'login'%}" class="dropdown-content-text">Sign in</a></div>
-    <div style="padding-bottom: 20px;" class="dropdown-mid-content"><a href="{% url 'register'%}" class="dropdown-content-text">Create Account</a></div>
-</div>
+        <div style="padding-left: 20px; padding-right: 20px;" class="dropdown-content"><a href="{% url 'login'%}"
+                class="dropdown-content-text">Sign in</a></div>
+        <div style="padding-bottom: 20px; padding-right: 20px; padding-left: 20px" class="dropdown-mid-content"><a
+                href="{% url 'register'%}" class="dropdown-content-text">Create Account</a></div>
+    </div>
     {% endif %}
 </head>
+
 <body>
-    
-        
+
     {% block content %}
-    
+
 
     {% endblock content%}
 
 </body>
+<script src="{% static 'js/profile_dropdown.js'%}"></script>
+<script src="{% static 'js/jobs-img.js'%}"></script>
+<script src="{% static 'js/exit-job-description-button.js'%}"></script>
+<script src="{% static 'js/second-next.js'%}"></script>
+<script src="{% static 'js/search-button.js'%}"></script>
 
-    <script src="{% static 'js/profile_dropdown.js'%}"></script>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="{% static 'js/dropdown-jobs.js'%}"></script>
+<script src="{% static 'js/profile_dropdown.js'%}"></script>
+<script src="{% static 'js/Profile/dropdown.js'%}"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.2/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    var dropdown = document.querySelectorAll(".dropdown");
+    var work_and_travel_dropdown = document.querySelectorAll(".dropdown-work-and-travel");
+    var profile = document.querySelectorAll("#profile-image-button");
+    var work_and_travel_button = document.querySelectorAll('.button-work-and-travel');
+    var mutual_button_div = document.querySelectorAll('.mutual-padding-of-div');
+    var jobs_buttons_icon = document.querySelectorAll('.icon');
+    var jobs_buttons_white_icon = document.querySelectorAll('.white-icon')
+    var show_dropdown = document.querySelectorAll('.showDropdown');
+    var button_content = document.querySelectorAll('.button-content');
+    for (let i = 0; i < dropdown.length; i++) {
+        profile[i].addEventListener("click", function () {
+            if (dropdown[i].style.display == "block") {
+                dropdown[i].style.display = "none";
+            }
+            else {
+                dropdown[i].style.display = "block";
+            }
+        })
+        document.addEventListener('click', function (e) {
+            if (!dropdown[i].contains(e.target) && !profile[i].contains(e.target)) {
+                dropdown[i].style.display = 'none';
+            }
+        });
+
+    }
+</script>
+
 </html>

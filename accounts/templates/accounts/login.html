@@ -25,6 +25,13 @@
     <div class="container">
         <div class="under-container">
             <h1 id="title">Sign in to start</h1>
+
+            <div class="input-form">
+               <a class="sign-in-google mutual-stats" href="{% provider_login_url 'google' %}"><div class="">Sign in with Google</div>
+               </a>
+                <img class="icon" src="{% static 'img/google-01 8.png'%}">
+            </div>
+            <p class="second-paragraph same-color-of-paragraphs">or</p>
             <form method="POST" action="" class="sign-in-form">
                 {% csrf_token %}
                 <input name="username" type="email" class="email-input mutual-stats font-fam" placeholder="Email"id="id_username" ></input>
@@ -39,12 +46,7 @@
                 </div>
             </form>
 
-            <p class="second-paragraph same-color-of-paragraphs">or</p>
-            <div class="input-form">
-               <a class="sign-in-google mutual-stats" href="{% provider_login_url 'google' %}"><div class="">Sign in with Google</div>
-               </a>
-                <img class="icon" src="{% static 'img/google-01 8.png'%}">
-            </div>
+            
             <p class="third-paragraph same-color-of-paragraphs">Not a user? <a class="sign-up-link"
                     href="{% url 'register' %}">Create account</a></p>
         </div>

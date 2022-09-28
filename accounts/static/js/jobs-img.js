@@ -1,4 +1,4 @@
-// var second_jobs_img = document.querySelectorAll('.jobs-rows-img');
+var second_jobs_img = document.querySelectorAll('.jobs-rows-img');
 var right_jobs = document.querySelectorAll('.right-jobs');
 var right_jobs_main_div = document.querySelector('.right-jobs-main-div');
 var jobs_left = document.querySelector('.jobs-left');
@@ -26,4 +26,29 @@ const mediaQuery = window.matchMedia('(max-width: 767px)');
         });
     };
 
+    // var url = $("#clickable a").attr("href");s
 
+    // $("#clickable").click(function() {
+    //     window.location = url;
+    //     return true;
+    // });
+
+
+
+
+    // $(".edit-job-button")[i].click(function(e) {
+    //     // Do something
+    //     e.stopPropagation();
+    // });        
+
+
+    // $(".jobs-rows-img")[i].click(function(e) {
+    //     var senderElement = e.target;
+    //     // Check if sender is the <div> element e.g.
+    //     // if($(e.target).is("div")) {
+    //     window.location = url;
+    //     return true;
+    // });
+
+     
+    

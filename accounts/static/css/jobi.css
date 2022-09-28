@@ -91,6 +91,12 @@
 
 
 @media screen and (max-width: 480px) {
+    textarea{
+        font-size: 16px;
+    }
+    .move{
+        margin-top: 0px;
+    }
     .jobs-main-div {
      }
      .jobs-left-title, .mobile-title-font-size, .first-row-second-div {
@@ -142,7 +148,7 @@
     
     .right-jobs-main-div {
         display: none;
-        width: 100%;
+        width: 100% !important;
     }
     .applied-posted-right-main-div-mobile {
         margin-top: -10px;

@@ -61,7 +61,6 @@ class RegisterView(generic.CreateView):
 
 
 
-
 def registration(request):
     if request.POST:
         form = RegisterForm(request.POST)
@@ -115,6 +114,17 @@ def update_profile(request):
                    })
 
 
+
+def update_user_social_data(strategy, *args, **kwargs):
+  response = kwargs['response']
+  backend = kwargs['backend']
+  user = kwargs['user']
+
+  if response['picture']:
+    url = response['picture']
+    userProfile_obj = CustomUser()
+    userProfile_obj.picture = url
+    userProfile_obj.save()
 ################Edit user Experience ####################333
 
 def Edit_user_exp(request):
@@ -270,9 +280,9 @@ class AjaxHandler(View):
 
                 
                 salary=format(salary,'.2f')
-                start_date=format(start_date,"%d/%b/%Y")
-                end_date=format(end_date,"%d/%b/%Y")
-                posted=format(posted,"%d/%b/%Y")
+                start_date=format(start_date,"%d/%m/%Y")
+                end_date=format(end_date,"%d/%m/%Y")
+                posted=format(posted,"%d/%m/%Y")
                 return JsonResponse(
                     dict(description=description, title=title, city_j=cityy, country=country, start_date=start_date,
                          salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
@@ -305,9 +315,9 @@ class AjaxHandler(View):
 
                 country = Country.objects.filter(id=city_uid).values_list("country", flat=True).first()
                 salary=format(salary,'.2f')
-                start_date=format(start_date,"%d/%b/%Y")
-                end_date=format(end_date,"%d/%b/%Y")
-                posted=format(posted,"%d/%b/%Y")
+                start_date=format(start_date,"%d/%m/%Y")
+                end_date=format(end_date,"%d/%m/%Y")
+                posted=format(posted,"%d/%m/%Y")
 
                 return JsonResponse(
                     dict(description=description, title=title, city_j=cityy, country=country, start_date=start_date,
@@ -341,21 +351,25 @@ class AppliedJobs(View):
                 program = Jobs.objects.filter(id=post_id).values_list("program", flat=True).first()
                 programCost = Jobs.objects.filter(id=post_id).values_list("programCost", flat=True).first()
                 posted = Jobs.objects.filter(id=post_id).values_list("postDate", flat=True).first()
+                applied = Application.objects.filter(job_id=post_id).filter(user_id=request.user).values_list("apply_date",flat=True).first()
+
                 city_j = Jobs.objects.filter(id=post_id).values_list("city_j")
                 c = city_j.first()
                 cityy = City.objects.filter(id=c[0]).values_list("name", flat=True).first()
                 city_uid = City.objects.filter(id=c[0]).values_list("country", flat=True).first()
                 country = Country.objects.filter(id=city_uid).values_list("country", flat=True).first()
                 salary=format(salary,'.2f')
-                start_date=format(start_date,"%d/%b/%Y")
-                end_date=format(end_date,"%d/%b/%Y")
-                posted=format(posted,"%d/%b/%Y")
+                start_date=format(start_date,"%d/%m/%Y")
+                end_date=format(end_date,"%d/%m/%Y")
+                posted=format(posted,"%d/%m/%Y")
+                applied=format(applied,"%d/%m/%Y")
+                
                 return JsonResponse(
                     dict(description=description, title=title, city_j=cityy, country=country, start_date=start_date,
                          salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
                          typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
                          program=program, programCost=programCost,
-                         posted=posted, post_id=post_id))
+                         posted=posted, post_id=post_id,applied=applied))
         else:
             if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
                 description = Jobs.objects.filter(id=post_id).values_list('description', flat=True).first()
@@ -372,6 +386,7 @@ class AppliedJobs(View):
                 program = Jobs.objects.filter(id=post_id).values_list("program", flat=True).first()
                 programCost = Jobs.objects.filter(id=post_id).values_list("programCost", flat=True).first()
                 posted = Jobs.objects.filter(id=post_id).values_list("postDate", flat=True).first()
+                applied = Application.objects.filter(job_id=post_id).filter(user_id=request.user).values_list("apply_date",flat=True).first()
 
                 city_j = Jobs.objects.filter(id=post_id).values_list("city_j")
 
@@ -382,21 +397,22 @@ class AppliedJobs(View):
 
                 country = Country.objects.filter(id=city_uid).values_list("country", flat=True).first()
                 salary=format(salary,'.2f')
-                start_date=format(start_date,"%d/%b/%Y")
-                end_date=format(end_date,"%d/%b/%Y")
-                posted=format(posted,"%d/%b/%Y")
+                start_date=format(start_date,"%d/%m/%Y")
+                end_date=format(end_date,"%d/%m/%Y")
+                posted=format(posted,"%d/%m/%Y")
+                applied=format(applied,"%d/%m/%Y")
                 return JsonResponse(
                     dict(description=description, title=title, city_j=cityy, country=country, start_date=start_date,
                          salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
                          typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
                          program=program, programCost=programCost,
-                         posted=posted,post_id=post_id))
+                         posted=posted,post_id=post_id,applied=applied))
         check =  True
         if len(job) != 0:
             check = True
         else:
             check = False
-        print(post_id)
+       
         return render(request, "Jobs/applied.html", {"job": job,"check":check})
 
 
@@ -415,6 +431,10 @@ class MainJobs(View):
         jobi=[]
         
         jobs = []
+        if request.user.is_authenticated:
+            auth=str(request.user.profileSetup)
+        else:
+            auth="False"
         if(query != None):
             searchRequest = query.split()
             for i in searchRequest:
@@ -544,10 +564,12 @@ class MainJobs(View):
             from filters.models import Search
             
             if request.user.is_authenticated:
+                
                 search = Search()
                 search.user_id = request.user
                 search.search= query
                 search.save()
+
             else:
                 search  =  Search()
                 search.search=query
@@ -564,6 +586,7 @@ class MainJobs(View):
         sortCity =[]
         cityName = []
         sortSalary = []
+
         if len(job)>=1:
             program = job.values_list("program", flat=True)
             title = job.values_list("job_title", flat=True)
@@ -601,8 +624,11 @@ class MainJobs(View):
         #  Take the  first post   !!! with  auto id  the first result
 
         if post_id == "":
-            jobi = Jobs.objects.filter(approved=True).filter(status="Open").order_by("-postDate").values_list('id', flat=True).first()
-            post_id = jobi
+            post_id = Jobs.objects.filter(approved=True).filter(status="Open").order_by("-postDate").values_list('id', flat=True).first()
+        
+            appNo= Jobs.objects.get(id=post_id).applicant.count()
+            
+            
             if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
                 description = Jobs.objects.filter(id=post_id).values_list('description', flat=True).first()
                 title = Jobs.objects.filter(id=post_id).values_list('job_title', flat=True).first()
@@ -631,16 +657,15 @@ class MainJobs(View):
                 applicant = Jobs.objects.filter(id=post_id).first()
                 
                 salary=format(salary,'.2f')
-                start_date=format(start_date,"%d/%b/%Y")
-                end_date=format(end_date,"%d/%b/%Y")
-                # posted=format(posted,"%d/%b/%Y")
+                start_date=format(start_date,"%d/%m/%Y")
+                end_date=format(end_date,"%d/%m/%Y")
                 app=(str(applicant))
                 return JsonResponse(
                     dict(description=description, title=title, applicant=app,city_j=city, country=country, start_date=start_date,
                          salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
                          typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
                          program=program, programCost=programCost,
-                         posted=posted, post_id=post_id))
+                         posted=posted, post_id=post_id,auth=auth,appNo=appNo))
         # take selected post byy id
         else:
             if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
@@ -666,20 +691,20 @@ class MainJobs(View):
                 city_uid = City.objects.filter(id=c[0]).values_list("country", flat=True).first()
 
                 country = Country.objects.filter(id=city_uid).values_list("country", flat=True).first()
-                applicant = Jobs.objects.filter(id=post_id).first()
+                appNo=0
+                appNo= Jobs.objects.get(id=post_id).applicant.count()
                 
                 salary=format(salary,'.2f')
-                start_date=format(start_date,"%d/%b/%Y")
-                end_date=format(end_date,"%d/%b/%Y")
-                # posted=format(posted,"%d/%b/%Y")
+                start_date=format(start_date,"%d/%m/%Y")
+                end_date=format(end_date,"%d/%m/%Y")
 
-                app=str(applicant)
+                
                 return JsonResponse(
-                    dict(description=description, title=title,applicant=app, city_j=city, country=country, start_date=start_date,
+                    dict(description=description, title=title, city_j=city, country=country, start_date=start_date,
                          salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
                          typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
                          program=program, programCost=programCost,
-                         posted=posted,post_id=post_id))
+                         posted=posted,post_id=post_id,auth=auth,appNo=appNo))
         filterProgram=""
         filterTitle=""
         filterCompany=""

@@ -43,6 +43,13 @@
                 </div>
                 <div class="experience-second-row">{{i.company}}</div>
                 <div class="experience-third-row">{{i.city_j}}, {{i.city_j.country}}</div>
+                {% if i.approved %}
+                <div class="experience-fourth-row">Approved</div>
+
+                {% else %}
+                <div class="experience-fourth-row" style="color:red">Your job is on pennding till someone approve  it!</div>
+
+                {% endif %}
                 <div class="experience-fourth-row">{{i.total_applicant}} applicants · {{i.status}}</div>
 
             </div>
@@ -58,49 +65,40 @@
 
     </div>
     <div class="right-jobs-main-div">
-        <div class="right-jobs" id="detailsRow" style="display:none; flex-direction: column;">
-            <div class="right-jobs-rows-img" style="padding: 30px; margin-left: 10px; background-color: white;">
-                <div class="experience-rows">
-                    <img class="exit-job-description" title="Exit" style="float: left; width: 22px; height: 22px;"
-                        src="{% static 'img/Vector 81 (1).png'%}" alt="">
-                    <div class="first-row-jobs">
-                        <p class="" id="job_title">asd</p>
-                    </div>
-                    <div class="second-row-jobs"><span id="company"></span>&nbsp;&nbsp;<span style="color: #858585;"
-                            id="city">·&nbsp;&nbsp &nbsp;·&nbsp;23
-                            applicants</span></div>
-                    <div style="" class="experience-third-row jobs-third-row">$<span id="salary"></span></div>
-                    <div style="" class="experience-fourth-row jobs-mutual-margin-rows"><span id="typeOfWork"></span> ·
-                        <span id="hourPerWork"></span> hours/week
-                    </div>
-                    <div style="margin-top: 20px;" class="experience-fourth-row jobs-mutual-margin-rows" id="sDate">
-                    </div>
-                    <div style="margin-top: 5px; margin-top: 20px;"
-                        class="experience-fourth-row jobs-mutual-margin-rows">
-                        <span id="housing"></span> · $<span id="housingCost"></span>/week
-                    </div>
-                    <div style="margin-top: 5px; margin-top: 20px;"
-                        class="experience-fourth-row jobs-mutual-margin-rows">
-                        <span id="program"></span>· Program Cost: $<span id="programCost"></span>
-                    </div>
-                    <div style="margin-top: 5px; margin-top: 20px; height: 100%;"
-                        class="experience-fourth-row jobs-mutual-margin-rows">Posted on: <span id="posted"></span>
+        <div class="right-jobs" id="detailsRow" style="display:none;flex-direction: column;">
+
+        <div class="right-jobs-rows-img" style="padding: 3; margin-left: 10px; background-color: white;">
+                    <div class="experience-rows" style="">
+                        <img class="exit-job-description" title="Exit" style="float: left; cursor: pointer;"
+                            src="{% static 'img/Vector 81 (1).png'%}" alt="">
+                        <div class="first-row-jobs mobile-title-font-size" id="job_title"></div>
+                        <div class="second-row-jobs mobile-under-title-font-size">
+                            <span id="company"></span>
+                            <span style="color: #858585;">·&nbsp;&nbsp;
+                                <span id="city"></span>&nbsp;&nbsp;<span id="countApplicant"></span></span></div>
+                        <div style="" class="jobs-third-row mobile-rows-font-size"><span id="salary"></span></div>
+                        <div style="" class="experience-fourth-row mobile-rows-font-size  jobs-mutual-margin-rows"><span id="typeOfWork"></span>· <span id="hourPerWork"></span>
+                        </div>
+                        <div style="" class="experience-fourth-row mobile-rows-font-size jobs-mutual-margin-rows" id="sDate"></div>
+                        <div style=""
+                            class="experience-fourth-row mobile-rows-font-size jobs-mutual-margin-rows"><span id="housing"></span> <span id="housingCost"></span></div>
+                        <div style=""
+                            class="experience-fourth-row mobile-rows-font-size jobs-mutual-margin-rows"><span id="program"></span>  <span id="programCost"></span>
+                        </div>
+                        <div class="experience-fourth-row mobile-rows-font-size jobs-mutual-margin-rows"><span id="pos"></span></div>
+                        
                     </div>
                 </div>
-            </div>
-            <div class="right-jobs-rows-img-second">
-                <div class="col-5">
-                    <textarea rows="50" cols="100" id="message" class="scroll" disabled>
-
-                        </textarea>
+                <div class="right-jobs-rows-img-second">
+                    <div class="experience-rows">
+                    <textarea rows="30" cols="120" id="message" class="scroll" disabled>
+                    </textarea>
                 </div>
-
             </div>
-        </div>
-
     </div>
+    
 </div>
-<script src="{% static 'js/main.js'%}"></script>
+<script src="{% static 'js/Ajax/posted-jobs-ajax.js'%}"></script>
 <script src="{% static 'js/jobs-img.js'%}"></script>
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script src="{% static 'js/exit-job-description-button.js'%}"></script>

@@ -13,6 +13,13 @@ body {
     align-items: center;
     display: none;
 }
+.proImg{
+    border-radius: 50% !important;
+    width: 260px !important;
+    height: 260px !important;
+    object-fit: cover;
+    cursor: pointer;
+}
 .change-profile-picture {
     text-align: center;
     box-sizing: border-box;

@@ -11,18 +11,7 @@
     <link rel="stylesheet" href="{% static 'css/add-experience.css' %}">
 
 
-        <header class="header-border">
-            <img id="worki-image" src="{% static 'img/Worki_Logo_Black.png' %}" title="Worki">
-            <div id="jobs-and-profile">
-            <a href="#"><img class="jobs-icon-button" title="Jobs" src="{% static 'img/JOBS_Icon.png' %}"></a>
-                <img src="{% static 'img/Profile.png' %}" id="profile-image-button" title="Profile" alt="">
-            </div>
-        </header>
-        <div class="dropdown">
-            <div class="dropdown-content" ><a href="" class="dropdown-content-text">My profile</a></div>
-            <div class="dropdown-mid-content"><a href="" class="dropdown-content-text">My jobs</a></div>
-            <div class="dropdown-content"><a href="" class="dropdown-content-text">Sign out</a></div>
-        </div>
+       
         <div class="experience-main-div experience-education-languages different_exp">
         <div class="experience-div second-experience-div">
             <div class="experience-paragraph-img-rows">
@@ -47,7 +36,7 @@
             </div>
             </div>
             <div class="add-and-edit-experience">
-              <a href="profile.html"><img class="back-icon" title="Go Back" src="{% static 'img/Безымянный-1 (1).png' %}" alt=""></a>         
+              <a href="profile.html"><img class="back-icon" title="Go Back" src="{% static 'img/backButton.png' %}" alt=""></a>         
               <img class="add-experience-button plus-button-exp" title="Add Experience" src="{% static 'img/Vector 80.png' %}" alt="">
             </div>
         </div>
@@ -108,6 +97,8 @@
 
 <script src="{% static 'js/profile_dropdown.js' %}"></script>
 <script src="{% static 'js/edit-experience-button.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/add-experience-education-language.js'%}"></script>
+
 
 {% endblock content %}
 

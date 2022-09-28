@@ -3,14 +3,15 @@ textarea {
     height:auto;
     resize: none;
     border:none;
-    width:85%;
+    width:100%;
     background-color: white;
     font-size: 18px;
     color: #757575;
+    padding-top: 0.1em;
     overflow: scroll;
     font-family: 'Spline Sans', sans-serif;
-    padding: 5px;
     box-sizing: border-box;
+    line-height: 30px;
 }
 .scroll::-webkit-scrollbar { width: 0 !important }
 .scroll { overflow: -moz-scrollbars-none; }
@@ -444,4 +445,3 @@ body {}
                 }
             }
             
-  

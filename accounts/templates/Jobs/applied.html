@@ -50,46 +50,39 @@
 
     </div>
     <div class="right-jobs-main-div">
-        <div class="right-jobs" id="detailsRow" style=" flex-direction: column;">
-            <div class="right-jobs-rows-img" style="padding: 30px; margin-left: 10px; background-color: white;">
-                <div class="experience-rows">
-                    <img class="exit-job-description" title="Exit" style="float: left; width: 22px; height: 22px;"
-                        src="{% static 'img/Vector 81 (1).png'%}" alt="">
-                    <div class="first-row-jobs">
-                        <p class="" id="job_title">asd</p>
-                    </div>
-                    <div class="second-row-jobs"><span id="company"></span>&nbsp;&nbsp;<span style="color: #858585;"
-                            id="city">·&nbsp;&nbsp &nbsp;·&nbsp;23
-                            applicants</span></div>
-                    <div style="" class="experience-third-row jobs-third-row">$<span id="salary"></span></div>
-                    <div style="" class="experience-fourth-row jobs-mutual-margin-rows"><span id="typeOfWork"></span> ·
-                        <span id="hourPerWork"></span> hours/week
-                    </div>
-                    <div style="margin-top: 20px;" class="experience-fourth-row jobs-mutual-margin-rows" id="sDate">
-                    </div>
-                    <div style="margin-top: 5px; margin-top: 20px;"
-                        class="experience-fourth-row jobs-mutual-margin-rows">
-                        <span id="housing"></span> · $<span id="housingCost"></span>/week
-                    </div>
-                    <div style="margin-top: 5px; margin-top: 20px;"
-                        class="experience-fourth-row jobs-mutual-margin-rows">
-                        <span id="program"></span>· Program Cost: $<span id="programCost"></span>
-                    </div>
-                    <div style="margin-top: 5px; margin-top: 20px; height: 100%;"
-                        class="experience-fourth-row jobs-mutual-margin-rows">Applied on: <span id="posted"></span>
+        <div class="right-jobs" id="detailsRow" style="display:none;flex-direction: column;">
+
+        <div class="right-jobs-rows-img" style="padding: 3; margin-left: 10px; background-color: white;">
+                    <div class="experience-rows" style="">
+                        <img class="exit-job-description" title="Exit" style="float: left; cursor: pointer;"
+                            src="{% static 'img/Vector 81 (1).png'%}" alt="">
+                        <div class="first-row-jobs mobile-title-font-size" id="job_title"></div>
+                        <div class="second-row-jobs mobile-under-title-font-size">
+                            <span id="company"></span>
+                            <span style="color: #858585;">·&nbsp;&nbsp;
+                                <span id="city"></span>&nbsp;&nbsp;<span id="countApplicant"></span></span></div>
+                        <div style="" class="jobs-third-row mobile-rows-font-size"><span id="salary"></span></div>
+                        <div style="" class="experience-fourth-row mobile-rows-font-size  jobs-mutual-margin-rows"><span id="typeOfWork"></span>· <span id="hourPerWork"></span>
+                        </div>
+                        <div style="" class="experience-fourth-row mobile-rows-font-size jobs-mutual-margin-rows" id="sDate"></div>
+                        <div style=""
+                            class="experience-fourth-row mobile-rows-font-size jobs-mutual-margin-rows"><span id="housing"></span> <span id="housingCost"></span></div>
+                        <div style=""
+                            class="experience-fourth-row mobile-rows-font-size jobs-mutual-margin-rows"><span id="program"></span>  <span id="programCost"></span>
+                        </div>
+                        <div style=""
+                            class="experience-fourth-row mobile-rows-font-size jobs-mutual-margin-rows"><span id="applied"></span>
+                        </div>
+                        
+                        
                     </div>
                 </div>
-            </div>
-            <div class="right-jobs-rows-img-second">
-                <div class="col-5">
-                    <textarea rows="50" cols="100" id="message" class="scroll" disabled>
-
-                        </textarea>
+                <div class="right-jobs-rows-img-second">
+                    <div class="experience-rows">
+                    <textarea rows="30" cols="120" id="message" class="scroll" disabled>
+                    </textarea>
                 </div>
-
             </div>
-        </div>
-
     </div>
 </div>
 
@@ -114,138 +107,12 @@
         </div>
 
 {% endif %}
+<script type="text/javascript" src="{% static 'js/Ajax/applied-jobs-ajax.js'%}"></script>
 <!-- <script src="{% static 'js/main.js'%}"></script>-->
 <!--<script src="{% static 'js/jobs-img.js'%}"></script>-->
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script src="{% static 'js/exit-job-description-button.js'%}"></script>
-<script>
-    async function getNumber(id) {
 
-
-        var elements = document.getElementsByClassName('pixel'); // get all elements
-
-        for (var i = 0; i < elements.length; i++) {
-            elements[i].style.backgroundColor = "white";
-        }
-
-        post_id = id
-        console.log("post__id=" + post_id)
-        let response = await fetch('', {
-
-            method: "get",
-
-            headers: {
-                "X-Requested-With": "XMLHttpRequest",
-                "Content-Type": 'application/json',
-                text: post_id,
-            }
-
-        }
-
-        )
-
-        let data = await response.json()
-
-        var element = document.getElementById("detailsRow");
-
-        if (element) {
-            var display = element.style.display;
-
-            if (display == "none") {
-                element.style.display = "block";
-            }
-        }
-        console.log(id)
-        if(id == 0){
-            id=data["post_id"]
-        }
-        if (id != 0) {
-            var select = document.getElementById('select' + id)
-            select.style.backgroundColor = "#E7F1FE";
-        }
-
-        let textarea = document.getElementById('message')
-        textarea.value = ""
-        textarea.value += data["description"]
-
-
-        var element = document.getElementById("job_title");
-        element.innerHTML = data["title"]
-
-        var city_jobs = document.getElementById("city")
-        city_jobs.innerHTML = data["city_j"] + ",  " + data["country"]
-
-        var start_date = document.getElementById("sDate")
-        start_date.innerHTML = data["start_date"] + " - " + data["end_date"]
-
-        var company = document.getElementById("company")
-        company.innerHTML = data["company"]
-
-        var salary = document.getElementById("salary")
-        salary.innerHTML = data["salary"] + "/hour"
-
-        var typeOfWork = document.getElementById('typeOfWork')
-        typeOfWork.innerHTML = data["typeOfWork"]
-
-        var hourPerWork = document.getElementById('hourPerWork')
-        hourPerWork.innerHTML = data['hourPerWork']
-
-        var housing = document.getElementById("housing")
-        housing.innerHTML = data['housing']
-
-        var housingCost = document.getElementById("housingCost")
-        housingCost.innerHTML = data["housingCost"]
-
-        var program = document.getElementById('program')
-        program.innerHTML = data["program"]
-
-        var programCost = document.getElementById("programCost")
-        programCost.innerHTML = data["programCost"]
-
-        var posted = document.getElementById("posted")
-        posted.innerHTML = data["posted"]
-        var button = document.getElementById("button")
-
-
-        var firstMediaQuery = window.matchMedia('(min-width: 768px');
-        const mediaQuery = window.matchMedia('(max-width: 767px)');
-        var right_jobs_main_div = document.querySelector('.right-jobs-main-div');
-        var jobs_left = document.querySelector('.jobs-left');
-        var jobs_buttons = document.querySelector('.jobs-buttons');
-
-        if (mediaQuery.matches) {
-            right_jobs_main_div.style.display = "block";
-            jobs_left.style.display = "none";
-            jobs_buttons.style.display = "none";
-            if (id == 0) {
-                var select = document.getElementById('select' + id)
-                select.style.backgroundColor = "white";
-            }
-        }
-        ;
-    }
-
-
-    var nul = "";
-
-    var firstMediaQuery = window.matchMedia('(min-width: 768px');
-    const mediaQuery = window.matchMedia('(max-width: 767px)');
-    var right_jobs_main_div = document.querySelector('.right-jobs-main-div');
-    var jobs_left = document.querySelector('.jobs-left');
-    var jobs_buttons = document.querySelector('.jobs-buttons');
-
-    if (mediaQuery.matches) {
-        right_jobs_main_div.style.display = "none";
-        jobs_left.style.display = "block";
-        jobs_buttons.style.display = "block";
-        if (id == 0) {
-            var select = document.getElementById('select' + id)
-            select.style.backgroundColor = "white";
-        }
-    };
-    window.onload = getNumber(nul);
-
-</script>
 
 
 {% endblock content%}

@@ -1,18 +1,16 @@
 {% extends 'base.html'%}
 {% load static %}
 {% block content %}
-<meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
+    <link rel="stylesheet" href="{% static 'css/edit-profile.css' %}">
+
     <link rel="stylesheet" href="{% static 'css/authenticated.css' %}">
-<link rel="stylesheet" href="{% static 'css/profile-header.css' %}">
-<link rel="stylesheet" href="{% static 'css/edit-profile.css' %}">
-<link rel="stylesheet" href="{% static 'css/add-profile-picture.css' %}">
-<link rel="stylesheet" href="{% static 'css/experience-font-family.css' %}">
-<link rel="stylesheet" href="{% static 'css/add-experience.css' %}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-<link rel="stylesheet" href="{% static 'css/edit-cover.css' %}">
+<link rel="stylesheet" href="{% static 'css/profile-header.css'%}">
+    <link rel="stylesheet" href="{% static 'css/edit-profile.css'%}">
+    <link rel="stylesheet" href="{% static 'css/add-profile-picture.css'%}">
+    <link rel="stylesheet" href="{% static 'css/experience-font-family.css'%}">
+    <link rel="stylesheet" href="{% static 'css/add-experience.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/edit-cover.css'%}">
 
 
        
@@ -25,14 +23,20 @@
             <div class="second-part-profile-header">
                 <div class="profile-image-and-edit">
                     <div class="profile-image-and-add-button">
+                        {% if user.is_authenticated and user.profile != "defaultProfile.png"%}
                         <a href="" title="Profile Picture" ><img class="profile-image" src="{{user.profile.url}}" alt=""></a>
+                        {% elif user.is_authenticated and not backends.associated %}
+                        <a href="" title="Profile Picture" ><img class="profile-image" src="{{ user.socialaccount_set.all.0.get_avatar_url }}" alt=""></a>
+                        {% elif user.is_authenticated and backends.associated %}
+                        <a href="" title="Profile Picture" ><img class="profile-image" src="{{user.profile.url}}" alt=""></a>
+                        {% endif %}
                         <img src="{% static 'img/Asset 3.png' %}" title="Add Profile" id="plus-icon" alt="">
                     </div>
 
                     <img class="edit-button" title="Edit Profile" src="{% static 'img/Ikona_edit-01 56.png' %}" alt="">
                 </div>
                 <div class="profile-name"><span class="profile-firstname">{{user.first_name}}</span> <span class="profile-surname">{{user.last_name}}</span></div>
-                <div class="profile-birthplace"><span class="profile-city">{{user.city}}</span><span>,</span> <span class="profile-country">{{user.country}}</span>
+                <div class="profile-birthplace"><span class="profile-city">{{user.city}}</span><span>,</span> <span class="profile-country">{{user.country}} </span>
                 </div>
             </div>
         </div>
@@ -200,7 +204,7 @@
                         </div>
         
                         <label for="id_profile">
-                            <img class="changed-profile"  id="profilePic" height="250" src="{{user.profile.url}}" title="Profile Cover" alt="">
+                            <img class="changed-profile  proImg" id="profilePic"  src="{{user.profile.url}}" title="Profile Cover" alt="">
         
                         </label>
                         {{form.profile}}
@@ -355,7 +359,29 @@
         </div>
         </div>    
     </div>
+    <script src="{% static 'js/dropdown-jobs.js'%}"></script>
+    <script src="{% static 'js/Profile/dropdown.js'%}"></script>
 
+
+    <script src="{% static 'js/edit-button.js'%}"></script>
+
+    <script src="{% static 'js/change-profile.js'%}"></script>
+
+    <script src="{% static 'js/exit-button.js'%}"></script>
+
+    <script src="{% static 'js/edit-button.js'%}"></script>
+    
+    <script src="{% static 'js/add-button.js'%}"></script>
+
+    <script src="{% static 'js/edit-experience-button.js'%}"></script>
+
+    <script src="{% static 'js/edit-cover.js'%}"></script>
+
+    <script src="{% static 'js/add-experience-education-language.js'%}"></script>
+
+    <script src="{% static 'js/profile_dropdown_2.js'%}"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script>
         window.addEventListener('load', function() {
         document.querySelector('#id_profile').addEventListener('change', function() {
@@ -384,26 +410,8 @@
   });
 });
     </script>
-    <script src="{% static 'js/js.js' %}"></script>
-
-    <script src="{% static 'js/profile_dropdown.js' %}"></script>
-
-    <script src="{% static 'js/edit-button.js' %}"></script>
-
-    <script src="{% static 'js/change-profile.js' %}"></script>
-
-    <script src="{% static 'js/exit-button.js' %}"></script>
-
-    <script src="{% static 'js/edit-button.js' %}"></script>
     
-    <script src="{% static 'js/add-button.js' %}"></script>
-
-    <script src="{% static 'js/edit-experience-button.js' %}"></script>
-
-    <script src="{% static 'js/edit-cover.js' %}"></script>
-
-    <script src="{% static 'js/add-experience-education-language.js' %}"></script>
-    
+     
 
 
 {% endblock content %}

@@ -66,8 +66,6 @@ urlpatterns = [
     path("search/",getList,name="search"),
 
 
-
-
     # Filters
 
     path("jobs/filter",OneSelFilter.as_view(),name="filter")

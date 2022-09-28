@@ -26,6 +26,14 @@
     <div class="container">
         <div class="under-container">
             <h1 id="title">Create account to start</h1>
+            <div class="input-form">
+                <a href="{% provider_login_url 'google' %}" class="sign-up-google mutual-stats">
+                    <div>Create account with Google</div>
+                </a>
+                <img class="icon" src="{% static 'img/google-01 8.png'%}">
+            </div>
+            <p class="second-paragraph same-color-of-paragraphs">or</p>
+            
             <form method="post" action="" class="sign-up-form">
             {% csrf_token %}
                 <input name="first_name" type="text" class="name-input mutual-stats font-fam" placeholder="First Name" id="id_first_name"></input>
@@ -46,13 +54,7 @@
                 </div>
             </form>
 
-            <p class="second-paragraph same-color-of-paragraphs">or</p>
-            <div class="input-form">
-                <a href="{% provider_login_url 'google' %}" class="sign-up-google mutual-stats">
-                    <div>Create account with Google</div>
-                </a>
-                <img class="icon" src="{% static 'img/google-01 8.png'%}">
-            </div>
+            
             <p class="third-paragraph same-color-of-paragraphs">Already a user? <a class="sign-in-link"
                     href="{% url 'login'%}">Sign in</a></p>
         </div>
