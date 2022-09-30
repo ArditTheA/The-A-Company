@@ -12,15 +12,19 @@
 
 <div class="jobs-buttons">
     <div class="mutual-padding-of-div plus-div">
+
         <a href="{% url 'addJob'%}"><img title="Add a Job" class="plus-icon-jobs" src="{% static 'img/add.png'%}"
                 alt=""></a>
     </div>
     <div class="mutual-padding-of-div">
-        <a href="{% url 'appliedJob'%}"><button title="Applied Jobs"
-                class="applied-button-posted-jobs outline-none">Applied</button></a>
+        <input name="submit" type="submit" class="applied-button-posted-jobs" value="Applied"
+            onClick="location.href ='{% url 'appliedJob' %}'">
+
+
     </div>
-    <div>
-        <button title="Posted Jobs" class="posted-button-posted-jobs outline-none">Posted</button>
+    <div class="mutual-padding-of-div">
+        <input name="submit" type="submit" class="posted-button-posted-jobs  " value="Posted"
+            onClick="location.href ='{% url 'postedJob' %}'">
     </div>
 </div>
 
@@ -30,81 +34,102 @@
         {% for i in job %}
 
 
-        <div onclick="getNumber({{i.id}})"
-            class="jobs-rows-img second-jobs margin-top-jobs-rows-img same-background-jobs pixel" id="select{{i.id}}">
+        <div onclick="getNumber({{i.id}})"class="jobs-rows-img second-jobs margin-top-jobs-rows-img same-background-jobs pixel" id="select{{i.id}}">
             <img class="experience-education-img" src="{{i.logo.url}}" alt="">
             <div class="experience-rows">
                 <div class="first-row-and-edit-img">
-
-
                     <div class="experience-first-row">{{i.job_title}}</div>
-                    <a href="{% url 'editJob' i.id%}"><img class="edit-job-button" title="Edit Job"
+                    <a onclick="stopProp(event)" href="{% url 'editJob' i.id%}"><img class="edit-job-button" title="Edit Job" style="z-index:2;"
                             src="{% static 'img/Ikona_edit-01 56.png'%}" alt=""></a>
                 </div>
                 <div class="experience-second-row">{{i.company}}</div>
                 <div class="experience-third-row">{{i.city_j}}, {{i.city_j.country}}</div>
-                {% if i.approved %}
-                <div class="experience-fourth-row">Approved</div>
-
-                {% else %}
-                <div class="experience-fourth-row" style="color:red">Your job is on pennding till someone approve  it!</div>
-
-                {% endif %}
                 <div class="experience-fourth-row">{{i.total_applicant}} applicants · {{i.status}}</div>
-
             </div>
         </div>
         <div class="move"></div>
-
-
-
-
-
         {% endfor %}
-
-
     </div>
     <div class="right-jobs-main-div">
         <div class="right-jobs" id="detailsRow" style="display:none;flex-direction: column;">
 
-        <div class="right-jobs-rows-img" style="padding: 3; margin-left: 10px; background-color: white;">
-                    <div class="experience-rows" style="">
-                        <img class="exit-job-description" title="Exit" style="float: left; cursor: pointer;"
-                            src="{% static 'img/Vector 81 (1).png'%}" alt="">
-                        <div class="first-row-jobs mobile-title-font-size" id="job_title"></div>
-                        <div class="second-row-jobs mobile-under-title-font-size">
-                            <span id="company"></span>
-                            <span style="color: #858585;">·&nbsp;&nbsp;
-                                <span id="city"></span>&nbsp;&nbsp;<span id="countApplicant"></span></span></div>
-                        <div style="" class="jobs-third-row mobile-rows-font-size"><span id="salary"></span></div>
-                        <div style="" class="experience-fourth-row mobile-rows-font-size  jobs-mutual-margin-rows"><span id="typeOfWork"></span>· <span id="hourPerWork"></span>
-                        </div>
-                        <div style="" class="experience-fourth-row mobile-rows-font-size jobs-mutual-margin-rows" id="sDate"></div>
-                        <div style=""
-                            class="experience-fourth-row mobile-rows-font-size jobs-mutual-margin-rows"><span id="housing"></span> <span id="housingCost"></span></div>
-                        <div style=""
-                            class="experience-fourth-row mobile-rows-font-size jobs-mutual-margin-rows"><span id="program"></span>  <span id="programCost"></span>
-                        </div>
-                        <div class="experience-fourth-row mobile-rows-font-size jobs-mutual-margin-rows"><span id="pos"></span></div>
-                        
+            <div class="right-jobs-rows-img" style="padding: 3; margin-left: 10px; background-color: white;">
+                <div class="experience-rows" style="">
+                    <img class="exit-job-description" title="Exit" style="float: left; cursor: pointer;"
+                        src="{% static 'img/Vector 81 (1).png'%}" alt="">
+                    <div class="first-row-jobs mobile-title-font-size" id="job_title"></div>
+                    <div class="second-row-jobs mobile-under-title-font-size">
+                        <span id="company"></span>
+                        <span style="color: #858585;">·&nbsp;&nbsp;
+                            <span id="city"></span>&nbsp;&nbsp;<span id="countApplicant"></span></span>
                     </div>
+                    <div style="" class="jobs-third-row mobile-rows-font-size"><span id="salary"></span></div>
+                    <div style="" class="experience-fourth-row mobile-rows-font-size  jobs-mutual-margin-rows"><span
+                            id="typeOfWork"></span>· <span id="hourPerWork"></span>
+                    </div>
+                    <div style="" class="experience-fourth-row mobile-rows-font-size jobs-mutual-margin-rows"
+                        id="sDate"></div>
+                    <div style="" class="experience-fourth-row mobile-rows-font-size jobs-mutual-margin-rows"><span
+                            id="housing"></span> <span id="housingCost"></span></div>
+                    <div style="" class="experience-fourth-row mobile-rows-font-size jobs-mutual-margin-rows"><span
+                            id="program"></span> <span id="programCost"></span>
+                    </div>
+                    <div class="experience-fourth-row mobile-rows-font-size jobs-mutual-margin-rows"><span
+                            id="pos"></span></div>
+
                 </div>
-                <div class="right-jobs-rows-img-second">
-                    <div class="experience-rows">
+            </div>
+            <div class="right-jobs-rows-img-second">
+                <div class="experience-rows">
                     <textarea rows="30" cols="120" id="message" class="scroll" disabled>
                     </textarea>
                 </div>
             </div>
+        </div>
+
     </div>
+    <script>
+        function stopProp(event) {
+        
+            event.stopPropagation();
+        
+        }    
+    </script>
+    <script type="text/javascript">
+        var dropdown = document.querySelectorAll(".dropdown");
+        var work_and_travel_dropdown = document.querySelectorAll(".dropdown-work-and-travel");
+        var profile = document.querySelectorAll("#profile-image-button");
+        var work_and_travel_button = document.querySelectorAll('.button-work-and-travel');
+        var mutual_button_div = document.querySelectorAll('.mutual-padding-of-div');
+        var jobs_buttons_icon = document.querySelectorAll('.icon');
+        var jobs_buttons_white_icon = document.querySelectorAll('.white-icon')
+        var show_dropdown = document.querySelectorAll('.showDropdown');
+        var button_content = document.querySelectorAll('.button-content');
+        for (let i = 0; i < dropdown.length; i++) {
+            profile[i].addEventListener("click", function () {
+                if (dropdown[i].style.display == "block") {
+                    dropdown[i].style.display = "none";
+                }
+                else {
+                    dropdown[i].style.display = "block";
+                }
+            })
+            document.addEventListener('click', function (e) {
+                if (!dropdown[i].contains(e.target) && !profile[i].contains(e.target)) {
+                    dropdown[i].style.display = 'none';
+                }
+            });
     
-</div>
-<script src="{% static 'js/Ajax/posted-jobs-ajax.js'%}"></script>
-<script src="{% static 'js/jobs-img.js'%}"></script>
-<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-<script src="{% static 'js/exit-job-description-button.js'%}"></script>
-<script>
+        }
+    </script>
+    
+    <script src="{% static 'js/Ajax/posted-jobs-ajax.js'%}"></script>
+    <script src="{% static 'js/jobs-img.js'%}"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script src="{% static 'js/exit-job-description-button.js'%}"></script>
+    <script>
 
-</script>
+    </script>
 
 
-{% endblock content%}
+    {% endblock content%}

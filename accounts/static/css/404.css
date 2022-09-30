@@ -2,15 +2,19 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
-.h{
-    
-
-
-font-family: 'Spline Sans';
+body {
+  margin: 10px;
+  background-color: red;
+}
+h1 {
+    margin-top: 0px;
+    width: 350px;
+    margin: auto;
+  font-family: 'Spline Sans', sans-serif;
 font-style: normal;
 font-weight: 400;
-font-size: 60px;
-
+font-size: 40px;
+margin-bottom: 40px;
 /* or 70px */
 
 text-align: center;
@@ -19,58 +23,70 @@ color: #1877F2;
 
 text-shadow: 0px 0px 0px #399EAC;
 }
-
+p {
+}
 .second-paragraph .sign-in-submit-input {
     text-align: center;
 }
 
 .sign-in-submit-input {
-    padding: 10px 0px;
+    padding: 10px 25px;
     border-radius: 30px;
     background-color: #1877F2;
     color: white;
     font-size: 18px;
-    width: 33%;
     text-align: center;
     cursor: pointer;
     border: 0.5px solid #1877F2;
+    margin-top: 40px;
+    font-family: 'Spline Sans', sans-serif;
 }
 
 .sign-in-submit-input:focus {
     outline: none;
 }
+
 .p{
-    font-family: 'Spline Sans';
-font-style: normal;
-font-weight: 400;
-font-size: 24px;
+  font-family: 'Spline Sans', sans-serif;
+font-size: 18px !important;
 line-height: 28px;
 text-align: center;
-
-color: #757575;
+margin-top: 40px;
+color: #858585;
 }
 
 body {
   padding: 0;
   margin: 0;
   text-align: center;
+  background-color:#f1f1f1;
 }
 
 #notfound {
-  height: 90vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(100% - 80px);
+  height: calc(100% - 80px);
+  background-color: white;
+  border-radius: 40px;
+  
+}
+.notfound {
+  margin: auto;
+  background-color: white;
+  border-radius: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 #notfound .notfound {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
 }
 
 .notfound {
-  max-width: 767px;
   width: 100%;
   line-height: 1.4;
   padding: 0px 15px;
@@ -78,9 +94,6 @@ body {
 
 .notfound .notfound-404 {
   position: relative;
-  height: 150px;
-  line-height: 150px;
-  margin-bottom: 25px;
 }
 
 .notfound .notfound-404 h1 {
@@ -103,26 +116,18 @@ body {
 }
 
 .notfound p {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  margin-bottom: 0px;
-  text-transform: uppercase;
+ margin-bottom: 0px;
 }
 
 .notfound a {
-  font-family: 'Titillium Web', sans-serif;
   display: inline-block;
-  text-transform: uppercase;
-  color: #fff;
+  color: white;
   text-decoration: none;
   border: none;
   background: #5c91fe;
-  padding: 10px 40px;
-  font-size: 14px;
-  font-weight: 700;
+  padding: 10px 35px;
+  font-size: 18px;
   border-radius: 1px;
-  margin-top: 15px;
   -webkit-transition: 0.2s all;
   transition: 0.2s all;
 }
@@ -131,14 +136,75 @@ body {
   opacity: 0.8;
 }
 
-@media only screen and (max-width: 767px) {
-  .notfound .notfound-404 {
-    line-height: 110px;
-  }
-  .notfound .notfound-404 h1 {
-    font-size: 120px;
-  }
+@media only screen and (max-width: 1024px) and (min-width: 768px) {
+
   .h{
-    font-size: 30px;
+      font-size: 36px;
+  }
+  .p {
+      font-size: 17px !important;
+  }
+  .sign-in-submit-input {
+      font-size: 17px;
+  }
+  .notfound {
+      padding-left: 40px;
+      padding-right: 40px;
+  }
+
+  
+}
+
+@media only screen and (max-width: 767px) and (min-width: 481px) {
+
+  .h{
+      font-size: 32px;
+  }
+  .p {
+      font-size: 16px !important;
+  }
+  .sign-in-submit-input {
+      font-size: 16px;
+  }
+  #notfound {
+      width: calc(100% - 40px);
+      height: calc(100% - 40px);
+  }
+  .notfound {
+      padding-left: 30px;
+      padding-right: 30px;
+  }
+
+}
+
+@media only screen and (max-width: 767px) {
+  img {
+      width: 80%;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .h{
+      font-size: 30px;
+      width: 250px;
+      margin-bottom: 30px;
+  }
+  #notfound {
+      width: calc(100% - 20px);
+      height: calc(100% - 20px);
+      border-radius: 30px;
+  }
+  .notfound {
+      padding-left: 20px;
+      padding-right: 20px;
+  }
+  .p {
+      font-size: 16px !important;
+      margin-top: 30px;
+  }
+  .notfound a {
+      font-size: 16px;
+      margin-top: 30px;
+      padding: 8px 30px 8px 30px;
   }
 }

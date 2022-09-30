@@ -34,16 +34,40 @@
             <p class="second-paragraph same-color-of-paragraphs">or</p>
             <form method="POST" action="" class="sign-in-form">
                 {% csrf_token %}
-                <input name="username" type="email" class="email-input mutual-stats font-fam" placeholder="Email"id="id_username" ></input>
+                {% if form.username.value == None and form.password.value == None %}
+                
+                <input name="username" type="email" class="email-input mutual-stats font-fam" required="required" placeholder="Email"id="id_username" ></input>
                 <div class="input-form">
-                    <input name="password" type="password" id="password" class="password-input font-fam" placeholder="Password"></input>
+                    <input name="password" type="password" id="password" class="password-input font-fam" required="required" placeholder="Password"></input>
                     <i class="bi bi-eye-slash" id="togglePassword"></i>
                 </div>
-                <p class="first-paragraph same-color-of-paragraphs"><a class="password-link" href="{% url 'password_reset' %}">Forgot
+                {% if form.errors %}
+                <p class="first-paragraph" style="color: red;font-size: 14px;">This account can only be signed in with Google, or by resetting the password with “Forgot Password”.
+                </p>
+            
+                {% endif %}
+                <p class="first-paragraph -color-of-paragraphs"><a class="password-link" href="{% url 'password_reset' %}">Forgot
                         password?</a></p>
                 <div class="sign-in-input">
                     <input name="submit" type="submit" class="sign-in-submit-input font-fam" value="Sign in">
                 </div>
+                {% else %}
+                <input name="username" type="email" value="{{form.username.value}}"class="email-input mutual-stats font-fam" required="required" placeholder="Email"id="id_username" ></input>
+                <div class="input-form">
+                    <input name="password" type="password" value="{{form.password.value}}" id="password" class="password-input font-fam" required="required" placeholder="Password"></input>
+                    <i class="bi bi-eye-slash" id="togglePassword"></i>
+                </div>
+                {% if form.errors %}
+                    <p class="first-paragraph" style="color: red;font-size: 14px;">This account can only be signed in with Google, or by resetting the password with “Forgot Password”.
+                    </p>
+            
+                {% endif %}
+                <p class="first-paragraph -color-of-paragraphs"><a class="password-link" href="{% url 'password_reset' %}">Forgot
+                        password?</a></p>
+                <div class="sign-in-input">
+                    <input name="submit" type="submit" class="sign-in-submit-input font-fam" value="Sign in">
+                </div>
+                {% endif %}
             </form>
 
             

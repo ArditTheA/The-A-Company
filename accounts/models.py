@@ -33,7 +33,7 @@ class CustomUser(AbstractUser):
     ]
     username=models.CharField(max_length=255,null=True,blank=True)
     email = models.EmailField(_('email'), unique=True,null=False,blank=False)
-    profile = models.ImageField(upload_to="profile",default="defaultProfile.png")
+    profile = models.ImageField(upload_to="profile",default="defaultProfile.jpg")
     cover = models.ImageField(upload_to="cover",default="defaultCover.jpeg")
     sex = models.CharField(choices=sex_choice,max_length=10,null=True)
     profileSetup = models.BooleanField(default=False)
@@ -153,7 +153,7 @@ class Jobs(models.Model):
 
 
     def __str__(self):
-        return str(self.job_title)
+        return str(self.job_title)+ " - " +str(self.company)+ " - "+str(format(self.postDate,"%d/%m/%Y"))+  " - "+ str(self.approved)
 
 class Application(models.Model):
     Stat_type={

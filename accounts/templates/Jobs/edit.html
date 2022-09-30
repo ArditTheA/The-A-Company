@@ -457,6 +457,33 @@
 		</div>
     </form>
 	</div>
+	<script type="text/javascript">
+        var dropdown = document.querySelectorAll(".dropdown");
+        var work_and_travel_dropdown = document.querySelectorAll(".dropdown-work-and-travel");
+        var profile = document.querySelectorAll("#profile-image-button");
+        var work_and_travel_button = document.querySelectorAll('.button-work-and-travel');
+        var mutual_button_div = document.querySelectorAll('.mutual-padding-of-div');
+        var jobs_buttons_icon = document.querySelectorAll('.icon');
+        var jobs_buttons_white_icon = document.querySelectorAll('.white-icon')
+        var show_dropdown = document.querySelectorAll('.showDropdown');
+        var button_content = document.querySelectorAll('.button-content');
+        for (let i = 0; i < dropdown.length; i++) {
+            profile[i].addEventListener("click", function () {
+                if (dropdown[i].style.display == "block") {
+                    dropdown[i].style.display = "none";
+                }
+                else {
+                    dropdown[i].style.display = "block";
+                }
+            })
+            document.addEventListener('click', function (e) {
+                if (!dropdown[i].contains(e.target) && !profile[i].contains(e.target)) {
+                    dropdown[i].style.display = 'none';
+                }
+            });
+    
+        }
+    </script>
 <script src="{% static 'js/second-next.js'%}"></script>
 <script src="{% static 'js/back-job-description.js'%}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

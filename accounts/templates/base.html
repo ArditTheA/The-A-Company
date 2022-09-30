@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Worki</title>
     <link rel="stylesheet" href="{% static 'css/filter.css'%}">
     <link rel="stylesheet" href="{% static 'css/authenticated.css'%}">
@@ -50,7 +51,7 @@
         <div class="dropdown-mid-content"><a href="{% url 'appliedJob'%}" class="dropdown-content-text">My jobs</a>
         </div>
         <!-- <div class="dropdown-content"><a href="/accounts/google/login/?process=connect" class="dropdown-content-text">Connect to Google</a></div> -->
-        <div class="dropdown-content"><a href="{% url 'logout' %}" class="dropdown-content-text">Sign out</a></div>
+        <div class="third-dropdown-content"><a href="{% url 'logout' %}" class="dropdown-content-text">Sign out</a></div>
     </div>
 
     {% else %}
@@ -59,7 +60,7 @@
         <div id="jobs-and-profile">
             <a href="{% url 'home'%}"><img class="jobs-icon-button" title="Jobs"
                     src="{% static 'img/JOBS_Icon.png' %}"></a>
-            <img src="{% static 'img/profile.jpg' %}" id="profile-image-button" title="Profile" alt="">
+            <img src="{% static 'img/defaultProfile.jpg' %}" id="profile-image-button" title="Profile" alt="">
         </div>
     </header>
     <div class="dropdown">

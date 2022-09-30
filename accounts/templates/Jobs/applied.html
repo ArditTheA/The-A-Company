@@ -12,14 +12,20 @@
 
 <div class="jobs-buttons">
     <div class="mutual-padding-of-div plus-div">
+
         <a href="{% url 'addJob'%}"><img title="Add a Job" class="plus-icon-jobs" src="{% static 'img/add.png'%}"
                 alt=""></a>
     </div>
     <div class="mutual-padding-of-div">
-        <button title="Applied Jobs" class="applied-button-jobs outline-none">Applied</button>
+        <input name="submit" type="submit" class="posted-button-posted-jobs" value="Applied"
+            onClick="location.href ='{% url 'appliedJob' %}'">
+
+
     </div>
-    <a href="{% url 'postedJob'%}"><button title="Posted Jobs"
-            class="posted-button-jobs outline-none">Posted</button></a>
+    <div class="mutual-padding-of-div">
+        <input name="submit" type="submit" class="applied-button-posted-jobs " value="Posted"
+            onClick="location.href ='{% url 'postedJob' %}'">
+    </div>
 </div>
 {% if check %}
 
@@ -90,24 +96,49 @@
 {% else %}
 <link rel="stylesheet" href="{% static 'css/404.css'%}">
 
-        <div id="notfound">
-            <div class="notfound">
-                <h1 class="h" >Oops! No Application Found!</h1>
-                <div class="notfound-404">
-                    <img src="{% static 'img/oopss.png'%}">
-                </div>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <p class="p">When u apply in anyy jobs your application will appear here</p>
-                <input name="submit" type="submit" class="sign-in-submit-input font-fam" value="Go Back" onClick="history.go(-1);">
-            </div>
+<div id="notfound">
+    <div class="notfound">
+        <h1 class="h" >No Application Found</h1>
+        <div style="" class="notfound-404">
+            <img src="{% static 'img/oops.png'%}">
         </div>
+        <p style="" class="p">We could not find any application of yours</p>
+        <a style="border-radius: 30px;" href="{% url 'home'%}" name="submit" type="submit" class="sign-in-submit-input font-fam">Go Back</a>
+
+    </div>
+</div>
 
 {% endif %}
 <script type="text/javascript" src="{% static 'js/Ajax/applied-jobs-ajax.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/dropdown-jobs.js'%}"></script>
+<script type="text/javascript">
+    var dropdown = document.querySelectorAll(".dropdown");
+    var work_and_travel_dropdown = document.querySelectorAll(".dropdown-work-and-travel");
+    var profile = document.querySelectorAll("#profile-image-button");
+    var work_and_travel_button = document.querySelectorAll('.button-work-and-travel');
+    var mutual_button_div = document.querySelectorAll('.mutual-padding-of-div');
+    var jobs_buttons_icon = document.querySelectorAll('.icon');
+    var jobs_buttons_white_icon = document.querySelectorAll('.white-icon')
+    var show_dropdown = document.querySelectorAll('.showDropdown');
+    var button_content = document.querySelectorAll('.button-content');
+    for (let i = 0; i < dropdown.length; i++) {
+        profile[i].addEventListener("click", function () {
+            if (dropdown[i].style.display == "block") {
+                dropdown[i].style.display = "none";
+            }
+            else {
+                dropdown[i].style.display = "block";
+            }
+        })
+        document.addEventListener('click', function (e) {
+            if (!dropdown[i].contains(e.target) && !profile[i].contains(e.target)) {
+                dropdown[i].style.display = 'none';
+            }
+        });
+
+    }
+</script>
+
 <!-- <script src="{% static 'js/main.js'%}"></script>-->
 <!--<script src="{% static 'js/jobs-img.js'%}"></script>-->
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>

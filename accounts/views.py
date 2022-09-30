@@ -1,3 +1,4 @@
+from urllib import request
 from django.contrib.auth import login
 from django.contrib.auth import views as auth_views
 from django.shortcuts import redirect, render, get_object_or_404
@@ -43,8 +44,12 @@ def HomeTemp(request):
 
 
 class LoginView(auth_views.LoginView):
+
     form_class = LoginForm
     template_name = 'accounts/login.html'
+
+
+
 
 
 class LogoutView(auth_views.LogoutView):
