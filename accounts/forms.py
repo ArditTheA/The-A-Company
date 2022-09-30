@@ -190,11 +190,11 @@ class editjob(ModelForm):
             "postDate": forms.DateInput(
                 attrs={"class": "start-date-input mutual-stats font-fam next-none", "type": "date"}),
             "approved": forms.CheckboxInput(),
-            "city_j": forms.Select(attrs={"class": "next-none"}),
-            "type_of_work": forms.Select(attrs={"class": "next-none"}),
-            "housing": forms.Select(attrs={"class": "next-none"}),
-            "program": forms.Select(attrs={"class": "next-none"}),
-            "country_j": forms.Select(attrs={"class": "next-none"}),
+            "city_j": forms.Select(attrs={"class": "custom-select sel select-options-input next-none padding-of-inputs"}),
+            "type_of_work": forms.Select(attrs={"class": "custom-select sel select-options-input next-none padding-of-inputs"}),
+            "housing": forms.Select(attrs={"class": "custom-select sel select-options-input next-none padding-of-inputs"}),
+            "program": forms.Select(attrs={"class": "custom-select sel select-options-input next-none padding-of-inputs"}),
+            "country_j": forms.Select(attrs={"class": "custom-select sel select-options-input next-none padding-of-inputs"}),
             "description": forms.Textarea(
                 attrs={"class": "scroll inner-text second-next-none", "style": "display: none;"})
 

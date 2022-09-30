@@ -91,23 +91,6 @@
             </div>
     </div>
 </div>
-
-
-{% else %}
-<link rel="stylesheet" href="{% static 'css/404.css'%}">
-
-<div id="notfound">
-    <div class="notfound">
-        <h1 class="h" >No Application Found</h1>
-        <div style="" class="notfound-404">
-            <img src="{% static 'img/oops.png'%}">
-        </div>
-        <p style="" class="p">We could not find any application of yours</p>
-        <a style="border-radius: 30px;" href="{% url 'home'%}" name="submit" type="submit" class="sign-in-submit-input font-fam">Go Back</a>
-
-    </div>
-</div>
-
 {% endif %}
 <script type="text/javascript" src="{% static 'js/Ajax/applied-jobs-ajax.js'%}"></script>
 <script type="text/javascript" src="{% static 'js/dropdown-jobs.js'%}"></script>
