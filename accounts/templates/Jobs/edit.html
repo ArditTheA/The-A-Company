@@ -7,24 +7,22 @@
 
 <style type="text/css">
 
-<style>
-		
-		@import url('https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500&display=swap');
-	
-		body {
+	@import url('https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500&display=swap');
+
+    body {
 		margin: 0;
 		background-color: #E5E5E5;
 		font-family: 'Spline Sans', sans-serif;
-		-webkit-tap-highlight-color: transparent;
-	  }
+  	}
+	select{
+		height: auto !important;
+	}
 	.navbar {
 		padding-top: 40px;
 		padding-bottom: 40px;
 	}
-	select{
-		height: auto !important;
-	}
-	.container-add-a-job {
+
+    .container-add-a-job {
 		border-radius: 40px;
 		background-color: white;
 		display: flex;
@@ -38,19 +36,19 @@
 		max-width: none;
 		position: relative;
 		margin: 20px 40px 20px 40px;
-	
-	}
-	
+
+    }
+
 	.register-form {
 		width: 450px;
 	}
-	
+
 	input::placeholder {
 		color: black;
 	}
-	
-	input, .select-options-input{
-		border: 0.5px solid #9E9E9E;
+
+    input, .select-options-input{
+    	border: 0.5px solid #9E9E9E;
 		border-radius: 30px;
 		padding: 10px 10px 10px 10px;
 		font-size: 18px;
@@ -58,8 +56,8 @@
 		width: 100%;
 		box-sizing: border-box;
 		outline: none;
-	}
-	
+    }
+
 	.select-options-input {
 		color: black;
 	}
@@ -76,23 +74,23 @@
 	h1 {
 		color: #1877F2;
 		font-size: 40px;
-		font-weight: 400;
-		color: #1877F2;
-		margin: auto;
-		text-align: center;
+    	font-weight: 400;
+    	color: #1877F2;
+    	margin: auto;
+    	text-align: center;
 	}
-	
-	.sel{
-		border-radius: 40px;
-		border: 0.5px solid #9E9E9E;
-		background-color: white;
-		/*width: 600px;*/
-	}
-	
-	.mid{
-		text-align: center;
+
+    .sel{
+    	border-radius: 40px;
+    	border: 0.5px solid #9E9E9E;
+    	background-color: white;
+    	/*width: 600px;*/
+    }
+
+    .mid{
+    	text-align: center;
 		margin: 0;
-	}
+    }
 	.title-font-size {
 		font-size: 40px;
 	}
@@ -102,28 +100,28 @@
 	}
 	.form-group {
 		margin: 0;
-	}	
+	}
 	.submit-button, .back-button {
-		margin-top: 40px;
-		border-radius: 30px;
-		padding: 8px 35px;
-		background-color: #1877F2;
-		font-size: 18px;
+        margin-top: 40px;
+        border-radius: 30px;
+        padding: 8px 35px;
+        background-color: #1877F2;
+        font-size: 18px;
 	}
-	.submit-button {
-		background-color: #1877F2;
-		color: white;
-	}
-	.back-button {
-		background-color: white;
-		color: #1877F2;
+    .submit-button {
+        background-color: #1877F2;
+        color: white;
+    }
+    .back-button {
+        background-color: white;
+        color: #1877F2;
 		border: 1px solid #1877F2;
-	}
-	.submit-button:hover, .back-button:hover {
-	filter: brightness(0.95);
-	}
-	.upload-file-div {
-		border: 0.5px solid #9E9E9E;
+    }
+    .submit-button:hover, .back-button:hover {
+    filter: brightness(0.95);
+}
+    .upload-file-div {
+        border: 0.5px solid #9E9E9E;
 		border-radius: 30px;
 		padding: 10px 10px 10px 10px;
 		font-size: 18px;
@@ -131,14 +129,14 @@
 		width: 100%;
 		box-sizing: border-box;
 		outline: none;
-		color: white;
-		border: none;
-	}
-	
+        color: white;
+        border: none;
+    }
+
 	.navbar-brand {
 		padding: 0;
 	}
-	
+
 	.modal-bg {
 		width: 100%;
 		height: 100%;
@@ -150,7 +148,7 @@
 		align-items: center;
 		display: none;
 	}
-	
+
 	.content {
 		text-align: center;
 		background-color: white;
@@ -161,7 +159,7 @@
 		/* Increase/Decrease this value for cross-browser compatibility */
 		overflow-y: scroll;
 	}
-	
+
 	.sign-up-pop-up-paragraph {
 		margin: 0;
 		margin-top: 40px;
@@ -179,26 +177,26 @@
 	.company-name {
 		color: black;
 	}
-	.upload>input[type="file"] {
-	}
-	.dropdown {
-		position: absolute;
-	}
-	.dropdown-content-text {
-		text-decoration: none;
-		color: gray;
-	}
-	.logo-label {
-		width: 100%;
-		margin-bottom: 0;
-	}
+    .upload>input[type="file"] {
+}
+    .dropdown {
+        position: absolute;
+    }
+    .dropdown-content-text {
+        text-decoration: none;
+        color: gray;
+    }
+    .logo-label {
+        width: 100%;
+        margin-bottom: 0;
+    }
 	.input-form {
-	display: flex;
-	flex-direction: row-reverse;
-	align-items: center;
-	position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    position: relative;
 	}
-	
+
 	.icon {
 		position: absolute;
 		left: 10px;
@@ -206,79 +204,76 @@
 		width: 22px;
 		border-radius: 4px;
 	}
-	
-	.under-main-modal-bg {
+
+.under-main-modal-bg {
 	display: none;
-	margin: 20px 40px 20px 40px; 
-	padding: 40px; 
-	background-color: white; 
-	border-radius: 40px;
-	}
-	.submit-button, .back-button {
-	margin-top: 40px;
-	border-radius: 30px;
-	padding: 8px 35px;
-	background-color: #1877F2;
-	font-size: 18px;
-	cursor: pointer;
-	}
-	.submit-button {
-	background-color: #1877F2;
-	color: white;
-	border: none;
-	}
-	.back-button {
+	margin: 20px 40px 20px 40px;
+	padding: 40px;
 	background-color: white;
-	color: #1877F2;
-	border: 1px solid #1877F2;
-	}
-	.submit-button:hover, .back-button:hover {
-	filter: brightness(0.95);
-	}
-	.imgs-over-textarea {
-	display: flex; 
+	border-radius: 40px;
+}
+.submit-button, .back-button {
+    margin-top: 40px;
+    border-radius: 30px;
+    padding: 8px 35px;
+    background-color: #1877F2;
+    font-size: 18px;
+    cursor: pointer;
+}
+.submit-button {
+    background-color: #1877F2;
+    color: white;
+    border: none;
+}
+.back-button {
+    background-color: white;
+    color: #1877F2;
+    border: 1px solid #1877F2;
+}
+.submit-button:hover, .back-button:hover {
+    filter: brightness(0.95);
+}
+.imgs-over-textarea {
+	display: flex;
 	width: calc(100% - 120px);
 	margin: auto;
-	}
-	.scroll {
+}
+.scroll {
 	width: calc(100% - 120px);
 	margin-left: 40px;
 	margin-right: 40px;
-	height: 400px; 
-	background-color: white; 
+	height: 400px;
+	background-color: white;
 	border-radius: 40px;
-	resize: none; 
-	border: 1px solid #9E9E9E; 
-	font-size: 18px; 
-	color: #757575; 
+	resize: none;
+	border: 1px solid #9E9E9E;
+	font-size: 18px;
+	color: #757575;
 	padding: 10px;
 	margin: auto;
-	outline: none;  
+	outline: none;
 	margin-top: 20px;
-	}
-	.textarea-imgs {
+}
+.textarea-imgs {
 	display: flex;
 	flex-direction: column;
-	}
-	.margin-top-job-title {
+}
+.margin-top-job-title {
 	padding-top: 30px;
-	}
-	.back-submit-buttons {
+}
+.back-submit-buttons {
 	width: 450px;
 	display: flex;
 	justify-content: space-between;
 	margin: auto;
-	}
-	.back-button-description {
+}
+.back-button-description {
 	color: #1877F2;
-	}
-	.title-job-description {
-	padding-bottom: 40px; 
-	text-align: center; 
-	font-size: 40px;
-	}
-	
+}
+
+
 	@media screen and (max-width: 1024px) and (min-width: 768px) {
+		
 		.container-add-a-job {
 			margin: 30px;
 		}
@@ -293,10 +288,10 @@
 			display: flex;
 			justify-content: space-between;
 			margin: auto;
-	
+
 		}
 	}
-	
+
 	@media screen and (max-width: 767px) and (min-width: 481px) {
 		.container-add-a-job {
 			margin: 20px;
@@ -305,7 +300,7 @@
 		.imgs-over-textarea {
 			width: 100%;
 		}
-		.scroll {                     
+		.scroll {
 			width: 100%;
 		}
 		.back-submit-buttons {
@@ -334,22 +329,26 @@
 		.title-font-size {
 			font-size: 30px;
 		}
+		.navbar {
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
 		img {
 			height: 40px;
 		}
 		.first-form-group {
-			 /* margin-top ne llaptop: 10px 
+			margin-top: 10px; /* margin-top ne llaptop: 10px
 											+
 								 margin-top ne mobile: 10px
-											 =
-											20px */								 
+								 			=
+											20px */
 		}
 		input {
 		}
-	.back-submit-buttons {
+    .back-submit-buttons {
 		display: flex;
 		justify-content: space-between;
-	}
+    }
 	.back-button-description {
 		margin-right: 0;
 	}
@@ -359,134 +358,8 @@
 	.back-submit-buttons {
 		width: 100%;
 	}
-	.title-job-description {
-		font-size: 30px;
-		margin-top: 0;
-	}
-	}
-	
-	
-	@media screen and (max-width: 767px) and (min-width: 481px) {
-		.container-add-a-job {
-			margin: 20px;
-			padding: 30px;
-			height: auto;
-		}
-	}
-	@media screen and (max-width: 480px) {
-		.container-add-a-job {
-			margin: 10px;
-			padding: 20px;
-			height: auto;
-		}
-		.title-font-size {
-			font-size: 30px;
-		}
-		.navbar {
-			padding-top: 10px;
-			padding-bottom: 10px;
-		}
-		img {
-			height: 40px;
-		}
-		.first-form-group {
-			margin-top: 10px; /* margin-top ne llaptop: 10px 
-											+
-								 margin-top ne mobile: 10px
-											 =
-											20px */								 
-		}
-		.parent_container {
-					height: 100%;
-					width: 100%;
-					position: absolute;
-					padding-bottom: 20px !important;
-				}
-	
-			.container-add-a-job {
-				margin: 10px;
-				padding: 20px;
-				height: 100%;
-				border-radius: 30px;
-			}
-			.register-form {
-				width: 100%;
-				height: 100%;
-				overflow-y: scroll;
-			}
-			.register-form::-webkit-scrollbar {
-				display: none;
-			}
-			.scroll {
-				width: 100%;
-				height: 300px;
-			}
-			.imgs-over-textarea {
-				width: 100%;
-			}
-			.title-font-size {
-				font-size: 30px;
-			}
-			img {
-				height: 40px;
-			}
-			.first-form-group {
-				 /* margin-top ne llaptop: 10px 
-												+
-									 margin-top ne mobile: 10px
-												 =
-												20px */								 
-			}
-			input {
-			}
-		.back-submit-buttons {
-			display: flex;
-			justify-content: space-between;
-		}
-		.back-button-description {
-			margin-right: 0;
-		}
-		.submit-button-description {
-			margin-right: 0;
-		}
-		.back-submit-buttons {
-			width: 100%;
-		}
-		.title-job-description {
-			font-size: 30px;
-			margin-top: 0;
-		}
-		input::placeholder, .male-sex, .female-sex {
-			font-size: 16px;
-		}
-		.margin-top-bottom {
-			font-size: 14px;
-		}
-		input, .padding-of-inputs, .back-button, .next-button, .submit-button {
-			padding-top: 8px;
-			padding-bottom: 8px;
-			font-size: 16px;
-		}
-		.back-button, .next-button, .submit-button {
-			padding-right: 30px;
-			padding-left: 30px;
-		}
-	
-		.back-and-next-buttons, .back-submit-buttons {
-		margin-top: -10px;
-	}
-		.title-job-description {
-			font-size: 30px !important;
-			margin-top: 10px;
-			margin-bottom: -10px;
-		}
-		.bold-font-button {
-			height: 16px !important;
-		}
-		.imgs-over-textarea {
-			margin-bottom: -10px;
-		}
-	}
+}
+
     </style>
 <div class="container-add-a-job">
         <form class="register-form" id="form-id" method="post" enctype="multipart/form-data">
@@ -556,22 +429,21 @@
                 	<div style="cursor: pointer; display: flex; align-items: center;" class="upload-file-div"><img style="vertical-align: middle; margin-left: 5px;" class="icon" src="{% static 'img/gallery-upload.png'%}" alt=""><div style="margin-left: 37px;">Upload your file</div></div>
 				</div>
                 </label>
-<!--				<input type="file" name="logo" accept="image/*" required="" id="id_logo"  style="display:none;">-->
 				{{form.logo}}
 
             </div>
-            <div class="back-and-next-buttons" style="width: 100%; display: flex; justify-content: space-between;">
-            <a href="{% url 'postedJob'%}" class="btn back-button next-none" style="color: #1877F2;">Back</a>
+            <div style="width: 100%; display: flex; justify-content: space-between;">
+            <a href="{% url 'postedJob'%}"  class="btn back-button next-none" style="color: #1877F2;">Back</a>
             <a class="btn submit-button next-button next-none" style="color: white;">Next</a>
             </div>
 		</div>
-		<div class="second-next-none title-job-description" style="display: none; color: #1877F2; padding-bottom: 40px; text-align: center; font-size: 40px;">
+		<div class="second-next-none" style="display: none; color: #1877F2; padding-bottom: 40px; text-align: center; font-size: 40px;">
 			Job Description
 		</div>
 		<div class="textarea-imgs" style="">
 		<div class="imgs-over-textarea" style="">
-			<img class="second-next-none bold-font-button" title="Bold"  style="display: none; height: 20px; margin-right: 20px; cursor: pointer;" src="{% static 'img/B .png'%}" alt="">
-			<img class="second-next-none bold-font-button" style="display: none; height: 20px;" src="{% static 'img/bullets 1.png'%}" alt="">
+			<img class="second-next-none" title="Bold" class="bold-font-button" style="display: none; height: 20px; margin-right: 20px; cursor: pointer;" src="{% static 'img/B .png'%}" alt="">
+			<img class="second-next-none" style="display: none; height: 20px;" src="{% static 'img/bullets 1.png'%}" alt="">
 		</div>
 		{{form.description}}
 			<div style="display:none;">
@@ -589,33 +461,6 @@
 		</div>
     </form>
 	</div>
-	<script type="text/javascript">
-        var dropdown = document.querySelectorAll(".dropdown");
-        var work_and_travel_dropdown = document.querySelectorAll(".dropdown-work-and-travel");
-        var profile = document.querySelectorAll("#profile-image-button");
-        var work_and_travel_button = document.querySelectorAll('.button-work-and-travel');
-        var mutual_button_div = document.querySelectorAll('.mutual-padding-of-div');
-        var jobs_buttons_icon = document.querySelectorAll('.icon');
-        var jobs_buttons_white_icon = document.querySelectorAll('.white-icon')
-        var show_dropdown = document.querySelectorAll('.showDropdown');
-        var button_content = document.querySelectorAll('.button-content');
-        for (let i = 0; i < dropdown.length; i++) {
-            profile[i].addEventListener("click", function () {
-                if (dropdown[i].style.display == "block") {
-                    dropdown[i].style.display = "none";
-                }
-                else {
-                    dropdown[i].style.display = "block";
-                }
-            })
-            document.addEventListener('click', function (e) {
-                if (!dropdown[i].contains(e.target) && !profile[i].contains(e.target)) {
-                    dropdown[i].style.display = 'none';
-                }
-            });
-    
-        }
-    </script>
 <script src="{% static 'js/second-next.js'%}"></script>
 <script src="{% static 'js/back-job-description.js'%}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
