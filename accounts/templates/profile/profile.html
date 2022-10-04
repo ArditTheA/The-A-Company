@@ -18,7 +18,7 @@
        <div class="profile-header">
             <div id="example1">
             <img class="pro-img" src="{{user.cover.url}}" alt="">
-            <img class="edit-button-cover" title="Edit Cover Picture" src="{% static 'img/Ikona_edit-01 56.png' %}" alt="">
+            <img class="edit-button-cover" title="Edit Cover Picture" src="{% static 'img/pen.png' %}" alt="">
             </div>
             <div class="second-part-profile-header">
                 <div class="profile-image-and-edit">
@@ -48,7 +48,7 @@
                 <p class="experience-paragraph">Experience</p>
                 {% for i in usExp%}
                 <div class="experience-rows-img">
-                    <img class="experience-education-img" src="{% static 'img/Logo (8).png' %}" alt="">
+                    <img class="experience-education-img" src="{% static 'img/worki_icons-18.jpg' %}" alt="">
                     <div class="experience-rows">
                     <div class="experience-first-row">{{i.title}}</div>
                     <div class="experience-second-row">{{i.company}}</div>
@@ -74,7 +74,7 @@
                     <p class="experience-paragraph">Education</p>
                     {% for i in usEdu%}
                     <div class="experience-rows-img">
-                        <img class="experience-education-img" src="{% static 'img/USF_Logo 2.png' %}" alt="">
+                        <img class="experience-education-img" src="{% static 'img/worki_icons-19.jpg' %}" alt="">
                         <div class="experience-rows">
                         <div class="experience-first-row">{{i.university.name}}</div>
                         <div class="experience-second-row">{{i.degree}}, {{i.field_of_study}}</div>

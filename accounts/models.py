@@ -33,8 +33,8 @@ class CustomUser(AbstractUser):
     ]
     username=models.CharField(max_length=255,null=True,blank=True)
     email = models.EmailField(_('email'), unique=True,null=False,blank=False)
-    profile = models.ImageField(upload_to="profile",default="defaultProfile.jpg")
-    cover = models.ImageField(upload_to="cover",default="defaultCover.jpeg")
+    profile = models.ImageField(upload_to="profile",default="defaultProfile.jpeg")
+    cover = models.ImageField(upload_to="cover",default="defaultCover.jpg")
     sex = models.CharField(choices=sex_choice,max_length=10,null=True)
     profileSetup = models.BooleanField(default=False)
     city = models.ForeignKey(City,on_delete=models.CASCADE,null=True,blank=True)
