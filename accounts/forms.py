@@ -15,6 +15,9 @@ class add_user_Exp(ModelForm):
             "start_date": forms.DateInput(attrs={"class": "start-date-input mutual-stats font-fam", "type": "date"}),
             "end_date": forms.DateInput(
                 attrs={"class": "end-date-input mutual-stats font-fam", "type": "date", "required": "false"}),
+            "Country": forms.TextInput(attrs={'class': 'name-input mutual-stats font-fam',"list":"usExpCountryList"}),
+            "city_usExp":forms.TextInput(attrs={"class":"name-input mutual-stats font-fam","list":"usExpCityList"})
+            
 
         }
 
@@ -28,11 +31,14 @@ class add_user_language(ModelForm):
 class add_user_edu(ModelForm):
     class Meta:
         model = UserEducation
-        fields = {"user_id", "university", "degree", "field_of_study", "start_year", "end_year",
+        fields = {"user_id", "university", "degree","country_e","city_e", "field_of_study", "start_year", "end_year",
                   "total_examples_passed", "GPA"}
         widgets = {
+            "university":forms.TextInput(attrs={"class":"name-input mutual-stats font-fam","list":"University"}),
             "degree": forms.TextInput(attrs={'class': 'name-input mutual-stats font-fam'}),
             "field_of_study": forms.TextInput(attrs={'class': 'name-input mutual-stats font-fam'}),
+            "country_e":forms.TextInput(attrs={"class":"name-input mutual-stats font-fam","list":"EduCountryList"}),
+            "city_e":forms.TextInput(attrs={"class":"name-input mutual-stats font-fam","list":"EduCityList"}),
             "start_year": forms.DateInput(attrs={"class": "start-date-input mutual-stats font-fam", "type": "date"}),
             "end_year": forms.DateInput(attrs={"class": "end-date-input mutual-stats font-fam", "type": "date"}),
             "total_examples_passed": forms.NumberInput(attrs={'class': 'name-input mutual-stats font-fam'}),
@@ -50,9 +56,10 @@ class EditProf(ModelForm):
             "first_name": forms.TextInput(attrs={'class': 'name-input mutual-stats font-fam'}),
 
             "last_name": forms.TextInput(attrs={'class': 'surname-input mutual-stats font-fam'}),
-            "City": forms.Select(attrs={'class': 'city-input font-fam', 'selected': 1}),
+            "city": forms.TextInput(attrs={"type":"text",'class': 'city-input font-fam',"list":"cityList"}),
 
-            "Country": forms.Select(attrs={'class': 'country-input font-fam'}),
+            "country":forms.TextInput(attrs={"class":"test name-input mutual-stats font-fam","list":"countryList"}),
+
             'profile': forms.FileInput(attrs={'id': 'id_profile'}),
             'cover': forms.FileInput(attrs={'class': 'upload_profile_pic',"id":"id_cover"}),
 
@@ -77,7 +84,8 @@ class EditExperience(ModelForm):
             "company": forms.TextInput(attrs={'class': 'name-input mutual-stats font-fam'}),
             "start_date": forms.DateInput(attrs={"class": "start-date-input mutual-stats font-fam", "type": "date"}),
             "end_date": forms.DateInput(attrs={"class": "end-date-input mutual-stats font-fam", "type": "date"}),
-
+            "Country": forms.TextInput(attrs={"class":"name-input mutual-stats font-fam","list":"UsExpCountryList"}),
+            "city_usExp":forms.TextInput(attrs={"class":"name-input mutual-stats font-fam","list":"usExpcityList"})
         }
 
 
@@ -91,16 +99,22 @@ class EditUserEdu(ModelForm):
             "field_of_study",
             "start_year",
             "end_year",
+            "country_e",
+            "city_e",
             "total_examples_passed",
             "GPA",
         }
         widgets = {
+            "university":forms.TextInput(attrs={"class":"name-input mutual-stats font-fam","list":"uniList"}),
+            "country_e":forms.TextInput(attrs={"class":"name-input mutual-stats font-fam","list":"EduCountryList"}),
+            "city_e":forms.TextInput(attrs={"class":"name-input mutual-stats font-fam","list":"EduCityList"}),
             "degree": forms.TextInput(attrs={'class': 'name-input mutual-stats font-fam'}),
             "field_of_study": forms.TextInput(attrs={'class': 'name-input mutual-stats font-fam'}),
             "start_year": forms.DateInput(attrs={"class": "start-date-input mutual-stats font-fam", "type": "date"}),
             "end_year": forms.DateInput(attrs={"class": "end-date-input mutual-stats font-fam", "type": "date"}),
             "total_examples_passed": forms.NumberInput(attrs={'class': 'name-input mutual-stats font-fam'}),
             "GPA": forms.NumberInput(attrs={'class': 'name-input mutual-stats font-fam'}),
+
 
         }
 
@@ -156,17 +170,14 @@ class add_Jobs(ModelForm):
             "programCost": forms.NumberInput(attrs={'class': 'name-input mutual-stats font-fam next-none'}),
             "hour_per_work": forms.NumberInput(attrs={'class': 'name-input mutual-stats font-fam next-none'}),
             "salary_per_hour": forms.NumberInput(attrs={'class': 'name-input mutual-stats font-fam next-none'}),
-
-            "postDate": forms.DateInput(
-                attrs={"class": "start-date-input mutual-stats font-fam next-none", "type": "date"}),
             "approved": forms.CheckboxInput(attrs={"disabled": "disabled"}),
-            "city_j": forms.Select(attrs={"class": "next-none"}),
+            "city_j": forms.TextInput(attrs={"class": "next-none","list":"city_jlist"}),
             "type_of_work": forms.Select(attrs={"class": "next-none"}),
             "housing": forms.Select(attrs={"class": "next-none"}),
             "program": forms.Select(attrs={"class": "next-none"}),
-            "country_j": forms.Select(attrs={"class": "next-none"}),
+            "country_j": forms.TextInput(attrs={'class': 'next-none name-input mutual-stats font-fam',"list":"country_jList"}),
             "description": forms.Textarea(
-                attrs={"class": "scroll inner-text second-next-none", "style": "display: none;"})
+                attrs={"class": "scroll inner-text second-next-none","id":"myTextArea", "style": "display: none;"})
 
         }
 
@@ -187,16 +198,14 @@ class editjob(ModelForm):
             "hour_per_work": forms.NumberInput(attrs={'class': 'name-input mutual-stats font-fam next-none'}),
             "salary_per_hour": forms.NumberInput(attrs={'class': 'name-input mutual-stats font-fam next-none'}),
             "logo":forms.FileInput(attrs={"style":"display:none"}),
-            "postDate": forms.DateInput(
-                attrs={"class": "start-date-input mutual-stats font-fam next-none", "type": "date"}),
             "approved": forms.CheckboxInput(),
-            "city_j": forms.Select(attrs={"class": "custom-select sel select-options-input next-none padding-of-inputs"}),
+            "city_j": forms.TextInput(attrs={"class": "name-input mutual-stats font-fam next-none","list":"cityList"}),
             "type_of_work": forms.Select(attrs={"class": "custom-select sel select-options-input next-none padding-of-inputs"}),
             "housing": forms.Select(attrs={"class": "custom-select sel select-options-input next-none padding-of-inputs"}),
             "program": forms.Select(attrs={"class": "custom-select sel select-options-input next-none padding-of-inputs"}),
-            "country_j": forms.Select(attrs={"class": "custom-select sel select-options-input next-none padding-of-inputs"}),
+            "country_j": forms.TextInput(attrs={"class": "name-input mutual-stats font-fam next-none","type":"text","list":"countryList"}),
             "description": forms.Textarea(
-                attrs={"class": "scroll inner-text second-next-none", "style": "display: none;"})
+                attrs={"class": "scroll inner-text second-next-none","id":"myTextArea", "style": "display: none;"})
 
         }
 
@@ -214,12 +223,12 @@ class setupProfile(ModelForm):
         widgets = {
             "first_name":forms.TextInput(attrs={'class':'next-none',"required":"required"}),
             "last_name":forms.TextInput(attrs={'class':'next-none',"required":"required"}),
-            "country": forms.Select(attrs={"class": "custom-select sel select-options-input next-none padding-of-inputs","required":"required"}),
-            "city": forms.Select(attrs={"class": "custom-select sel select-options-input next-none padding-of-inputs","required":"required"}),
+            "country":forms.TextInput(attrs={"class":"test name-input mutual-stats font-fam","list":"countryList"}),
+            "city": forms.TextInput(attrs={"class": "test name-input mutual-stats font-fam","required":"required","list":"cityList"}),
             "email": forms.TextInput(attrs={"class": "next-none padding-of-inputs","type":"email","required":"required"}),
             "phone_number": forms.TextInput(attrs={"class": "next-none padding-of-inputs","required":"required"}),
             "birthday":forms.DateInput(attrs ={"class":"next-none","type":"date","required":"required"}),
-            "sex":forms.Select(attrs={"class":"custom-select sel select-options-input next-none padding-of-inputs"})
+            "sex":forms.Select(attrs={"class":"custom-select sel select-options-input next-none padding-of-inputs"}),
 
         }
 
@@ -229,9 +238,13 @@ class setupProfile2(ModelForm):
         model = UserEducation
         fields = "__all__"
         widgets ={
-            "university":forms.Select(attrs={"class":"custom-select sel select-options-input next-none padding-of-inputs","required":"required"}),
+            "university":forms.TextInput(attrs={"class":"name-input mutual-stats font-fam","required":"required", "list":"univ"}),
             "start_year": forms.DateInput(attrs={"class": "next-none", "type": "date","required":"required"}),
-            "end_year": forms.DateInput(attrs={"class": "next-none", "type": "date"}),
+            # "end_year": forms.DateInput(attrs={"class": "next-none", "type": "date"},input_formats=settings.DATE_INPUT_FORMATS),
+            
+            "country_e":forms.TextInput(attrs={"class":"name-input mutual-stats font-fam","list":"CountryList","required":"required"}),
+            "city_e":forms.TextInput(attrs={"class":"name-input mutual-stats font-fam","list":"CityList","required":"required"}),
+            "degree":forms.Select(),
         }
 
 class setupProfile3(ModelForm):

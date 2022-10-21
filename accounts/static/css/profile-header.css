@@ -157,7 +157,7 @@ select {
 }
 .experience-paragraph {
     margin: 0; 
-    font-size: 20px;
+    font-size: 22px;
 }
 
 .education-paragraphs-div {
@@ -207,11 +207,26 @@ select {
 }
 .right-jobs-rows-img-second {
 }
-
+#message{
+    line-height: 2;
+    
+}
+.edit-education-parent-scroll {
+    overflow-y: scroll;
+    height: 80vh;
+}
+.edit-education-scroll {
+}
+.edit-education-scroll::-webkit-scrollbar {
+    display: none;
+}
 .experience-rows {
     display: flex; 
     flex-direction: column; 
     margin: 0;
+    font-size: 18px;
+    color:#858585;
+    
 }
 .two-imgs-experience {
     position: absolute; 
@@ -222,26 +237,27 @@ select {
 }
 .language-rate {
     color: #9E9E9E;
+    font-size: 18px;
 }
 .experience-first-row {
     margin-top: 0; 
-    font-size: 24px; 
+    font-size: 20px; 
     color: #131419; 
     padding-bottom: 5px;
 }
 .experience-second-row {
     margin: 0; 
-    font-size: 22px; 
+    font-size: 18px; 
     padding-bottom: 5px; 
     color: #1877F2;
 }
 .experience-third-row {
-    font-size: 20px; 
+    font-size: 18px; 
     padding-bottom: 5px; 
     color: #858585;
 }
 .experience-fourth-row {
-    font-size: 20px; 
+    font-size: 18px; 
     color: #858585;
 }
 .add-and-edit-experience {
@@ -249,7 +265,9 @@ select {
     padding-right: 40px; 
     padding-top: 40px;
 }
-.add-experience-button {
+.add-experience-button, .second-add-languages-button, .second-add-experience-button, .second-add-education-button {
+
+
     width: 30px;
     height: 30px; 
     margin-right: 12px; 
@@ -323,6 +341,7 @@ margin-right: 20px;
 }
 
 @media screen and (max-width: 767px) and (min-width: 481px) {
+    
     .profile-header {
         margin: 20px;
         border-radius: 20px;
@@ -420,6 +439,43 @@ margin-right: 20px;
 }
 
 @media screen and (max-width: 480px) {
+    .experience-paragraph {
+        margin: 0;
+        font-size: 18px;
+    }
+    .language-rate {
+        color: #9E9E9E;
+        font-size: 16px;
+    }
+    .education-second-paragraph {
+        font-size: 16px;
+        padding-bottom: 5px;
+    }
+    
+    .save-button-edit-add-education-480 {
+        padding-bottom: 50px !important;
+    }
+    .add-experience-button, .second-add-languages-button, .second-add-experience-button, .second-add-education-button {
+        width: 21px;
+        height: 21px;
+        cursor: pointer;
+
+    }
+    .two-imgs-experience {
+        position: absolute;
+        right: 20px;
+    }
+    .add-and-edit-experience {
+        display: flex;
+        padding-right: 20px;
+        padding-top: 40px;
+    }
+    .jobs-main-div {
+        margin-top: 0px;
+    }
+    #message{
+        font-size: 16px;
+    }
     .profile-header, .experience-div {
         border-radius: 20px;
     }
@@ -437,10 +493,10 @@ margin-right: 20px;
     .jobs-rows-img {
         padding-top: 20px;
         padding-bottom: 20px;
-        border-radius: 30px;
+        border-radius: 20px;
     }
     .right-jobs-rows-img, .right-jobs-rows-img-second {
-        border-radius: 30px;
+        border-radius: 20px;
     }
     .second-part-profile-header {
         padding: 0px 0px 20px 0px;
@@ -459,7 +515,7 @@ margin-right: 20px;
         vertical-align: middle;
         margin-top: 10px;
         position: absolute;
-        right: 30px;
+        right: 20px;
         bottom: 20px;
     }
     .edit-button, .edit-experience {
@@ -488,7 +544,7 @@ margin-right: 20px;
         border-radius: 20px;
     }
     .experience-paragraph-img-rows {
-        padding: 30px 0px 30px 30px;
+        padding: 20px 0px 20px 20px;
     }
     .experience-paragraph {
         margin-bottom: 30px;
@@ -499,7 +555,7 @@ margin-right: 20px;
     .under-container {
     }
     .add-and-edit-experience {
-        padding-right: 30px;
+        padding-right: 20px;
         padding-top: 30px;
     }
     .experience-education-img {
@@ -515,13 +571,13 @@ margin-right: 20px;
         padding: 30px 0px 30px 30px;
     }
     .experience-first-row {
-        font-size: 20px;
+        font-size: 16px;
     }
     .experience-second-row {
-        font-size: 19px;
+        font-size: 16px;
     }
     .experience-third-row, .experience-fourth-row {
-        font-size: 18px;
+        font-size: 16px;
     }
 }
 

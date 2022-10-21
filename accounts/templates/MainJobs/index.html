@@ -6,37 +6,42 @@
 
 
 <link rel="stylesheet" href="{% static 'css/jobi.css' %}">
+<!-- <link rel="stylesheet" href="{% static 'css/posted-jobs-media-queries.css' %}"> -->
 
 
 {% include "Filters/filters.html" %}
 <div class="jobs-main-div" style="display: flex; justify-content: space-between;">
-    <div class="jobs-left" style="" id="myDIV">
+    <div class="jobs-left mobile-margin-top" style="" id="myDIV">
     {% for i in job %}
+
            <div onclick="getNumber('{{i.id}}')" class="jobs-rows-img second-jobs margin-top-jobs-rows-img same-background-jobs pixel"  id="select{{i.id}}">
                <img class="experience-education-img" src="{{i.logo.url}}" alt="">
                <span class="experience-rows">
                <span class="experience-first-row">{{i.job_title}}</span>
                <span class="experience-second-row">{{i.company}}</span>
-               <span class="experience-third-row">{{i.city_j}}, {{i.city_j.country}}</span>
+               <span class="experience-third-row">{{i.city_j}}, {{i.country_j}}</span>
                <span class="experience-fourth-row">{{i.program}}</span>
                </span>
            </div>
-           <span class="move"></span>
+    <div class="move"></div>
+
    {% endfor %}
    {% for j in jobi %}
+
            <div onclick="getNumber('{{j.id}}')" class="jobs-rows-img second-jobs margin-top-jobs-rows-img same-background-jobs pixel"  id="select{{j.id}}">
                <img class="experience-education-img" src="{{j.logo.url}}" alt="">
                <span class="experience-rows">
                <span class="experience-first-row">{{j.job_title}}</span>
                <span class="experience-second-row">{{j.company}}</span>
-               <span class="experience-third-row">{{j.city_j}}, {{j.city_j.country}}</span>
+               <span class="experience-third-row">{{j.city_j}}, {{j.country_j}}</span>
                <span class="experience-fourth-row">{{j.program}}</span>
                </span>
            </div>
-           <span class="move"></span>
+   <div class="move"></div>
+
    {% endfor %}
     </div>
-    <div class="right-jobs-main-div">
+    <div class="right-jobs-main-div right-job-margin-top">
         <div class="right-jobs" id="detailsRow" style="display:none;flex-direction: column;">
 
         <div class="right-jobs-rows-img" style="padding: 3; margin-left: 10px; background-color: white;">
@@ -45,12 +50,15 @@
                             src="{% static 'img/Vector 81 (1).png'%}" alt="">
                         <div class="first-row-jobs mobile-title-font-size" id="job_title"></div>
                         <div class="second-row-jobs mobile-under-title-font-size">
-                            <span id="company"></span><span style="color: #858585;">&nbsp;&nbsp;·&nbsp;&nbsp;
-                            <span id="city"></span>&nbsp;&nbsp;·&nbsp;&nbsp;<span id="countApplicant"></span></span></div>
+                            <span id="company"></span>
+                            <span style="color: #858585;">
+                                &nbsp;·&nbsp;
+                            <span id="city"></span>&nbsp;&nbsp;·&nbsp;
+                            <span id="countApplicant"></span></span></div>
                                 
                         <div style="" class="jobs-third-row mobile-rows-font-size"><span id="salary"></span></div>
                         <div  class="experience-fourth-row mobile-rows-font-size  jobs-mutual-margin-rows">
-                            <span id="typeOfWork"></span>&nbsp;&nbsp;·&nbsp;&nbsp;
+                            <span id="typeOfWork"></span>&nbsp;·&nbsp;
                             <span id="hourPerWork"></span>
                         </div>
                         <div style="" class="experience-fourth-row mobile-rows-font-size jobs-mutual-margin-rows" id="sDate"></div>
@@ -61,14 +69,12 @@
                             <span id="program"></span>&nbsp;&nbsp;·&nbsp;&nbsp;<span id="programCost"></span>
                         </div>
                         
-                        <div id="button" style="margin-top: 20px;padding-bottom: 8px"></div>
+                        <div id="button" style="margin-top: 25px;padding-bottom: 8px"></div>
                     </div>
                 </div>
                 <div class="right-jobs-rows-img-second">
                     <div class="experience-rows">
                         <span id="message" ></span>
-                    <!-- <textarea  cols="120" id="message" class="scroll" style="height: auto !important;" disabled>
-                    </textarea> -->
                 </div>
             </div>
     </div>
@@ -78,7 +84,6 @@
 <script type="text/javascript">
 
 </script>
-
 <script src="{% static 'js/Ajax/right-jobs-ajax.js'%}"></script>
 
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>

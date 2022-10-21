@@ -2,14 +2,12 @@
 
 body {
     margin: 0;
-    background-color: #E5E5E5;
+    background-color: #f1f1f1;
     padding-left: 40px;
     padding-right: 40px;
     padding-bottom: 40px;
     font-family: 'Spline Sans', sans-serif;
 }
-
-
 .header-border {
     display: flex;
     justify-content: center;
@@ -21,9 +19,10 @@ body {
 }
 
 .container {
+    width: 100%;
     margin: auto auto auto auto;
     box-sizing: border-box;
-    border-radius: 20px;
+    border-radius: 40px;
     background-color: white;
     display: flex;
     justify-content: center;
@@ -32,8 +31,8 @@ body {
 }
 
 #title {
-    width: 180px;
-    font-size: 45px;
+    width: 160px;
+    font-size: 40px;
     font-weight: 400;
     color: #1877F2;
     margin: auto;
@@ -50,7 +49,7 @@ body {
     margin-top: 0;
 }
 
-.mutual-stats {
+.input-text {
     border-radius: 30px;
     padding: 10px 0px 10px 10px;
     font-size: 18px;
@@ -60,10 +59,11 @@ body {
     box-sizing: border-box;
 }
 
-.mutual-stats:focus {
+.input-text:focus {
     outline: none;
 }
-.mutual-stats::placeholder {
+
+.input-text::placeholder {
     color: #9E9E9E;
 }
 
@@ -77,7 +77,7 @@ body {
     box-sizing: border-box;
 }
 
-.password-input:focus {
+#password:focus {
     outline: none;
 }
 
@@ -85,44 +85,56 @@ body {
     color: #9E9E9E;
 }
 
-.email-input {
+.name-input {
+    width: 48%;
+}
+
+.surname-input {
+    float: right;
+    width: 48%;
+    font-family: 'Spline Sans', sans-serif;
+}
+
+.name-input, .surname-input, .email-input {
     margin-bottom: 20px;
 }
 
 .same-color-of-paragraphs {
     color: #9E9E9E;
 }
+
 .password-link, .sign-up-link {
+    text-decoration: none;
     color: #1877F2;
-    text-decoration: none;
-}
-.sign-up-link {
-    text-decoration: none;
 }
 
 .first-paragraph {
     padding-left: 10px;
-    font-size: 15px;
 }
 
 .second-paragraph {
     text-align: center;
-    font-size: 15px;
+}
+.first-paragraph, .second-paragraph {
+    margin: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 16px;
 }
 
-.second-paragraph .sign-in-submit-input {
+.second-paragraph {
     text-align: center;
 }
 
 .sign-in-google {
     text-align: center;
-    text-decoration: none;
     color: #9E9E9E;
+    text-decoration: none;
 }
 
 .sign-in-submit-input {
     padding: 10px 0px;
-    border-radius: 30px;
+    border-radius: 20px;
     background-color: #1877F2;
     color: white;
     font-size: 18px;
@@ -132,14 +144,15 @@ body {
     border: 0.5px solid #1877F2;
 }
 
-.sign-in-submit-input:focus {
+.sign-up-submit-input:focus {
     outline: none;
 }
 
 .third-paragraph {
-    font-size: 15px;
-    margin-bottom: 0;
+    font-size: 16px;
     padding-left: 10px;
+    margin: 0;
+    padding-top: 20px;
 }
 
 .input-form {
@@ -152,7 +165,7 @@ body {
 .icon {
     position: absolute;
     left: 10px;
-    height: 76%;
+    height: 80%;
 }
 
 #togglePassword {
@@ -160,58 +173,54 @@ body {
     right: 22px;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 1024px) and (min-width: 768px) {
     body {
-        padding-top: 10px;
-        padding-bottom: 10px;
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-    .header-border {
-        display: none;
-    }
-    .worki-image {
-        display: none;
+        padding: 0px 36px 36px 36px;
+        
     }
     .container {
-        padding-top: 30px;
-        padding-bottom: 30px;
+        padding-top: 36px;
+        padding-bottom: 36px;
+    }
+    .header-border {
+        padding-top: 36px;
+        padding-bottom: 36px;
+    }
+    .worki-image {
+        height: 55px;
     }
     .under-container {
-        padding-left: 18px;
-        padding-right: 18px;
-        height: 100vh;
+        width: 420px;
     }
     #title {
-        font-size: 30px;
+        font-size: 36px;
         width: 140px;
-        padding-bottom: 30px;
+        padding-bottom: 36px;
     }
-    .first-paragraph {
-        font-size: 14px;
-    }
-    .second-paragraph {
-        font-size: 14px;
+    .first-paragraph, .second-paragraph {
+        padding-top: 18px;
+        padding-bottom: 18px;
     }
     .third-paragraph {
-        font-size: 14px;
+        padding-top: 18px;
     }
-    .sign-in-submit-input, .sign-in-google {
-        font-size: 16px;
+    .first-paragraph, .second-paragraph, .third-paragraph {
+        font-size: 15px;
     }
-    
-    .email-input, .password-input, .sign-in-submit-input .sign-in-google {
-        font-size: 16px;
+    .name-input, .surname-input, .email-input {
+        margin-bottom: 18px;
     }
-    
-    .email-input {
-        margin-bottom: 16px;
+    .name-input, .surname-input, .email-input, .password-input, .sign-up-submit-input, .sign-up-google {
+        font-size: 17px;
+        padding-top: 9px;
+        padding-bottom: 9px;
     }
 }
 
 @media screen and (max-width: 767px) and (min-width: 481px) {
     body {
         padding: 0px 20px 20px 20px;
+        
     }
     .container {
         padding-top: 30px;
@@ -252,45 +261,51 @@ body {
     }
 }
 
-@media screen and (max-width: 1024px) and (min-width: 768px) {
+@media screen and (max-width: 480px) {
     body {
-        padding: 0px 36px 36px 36px;
+        padding: 10px 10px 10px 10px;
+        
     }
-    .create-account-container {
-        padding-top: 36px;
-        padding-bottom: 36px;
+    .container {
+        padding-top: 30px;
+        padding-bottom: 30px;
+        border-radius: 20px;
     }
     .header-border {
-        padding-top: 36px;
-        padding-bottom: 36px;
+        display: none;
     }
     .worki-image {
-        height: 55px;
+        display: none;
     }
-    .create-account-under-container {
-        width: 420px;
+    .under-container {
+        padding-left: 20px;
+        padding-right: 20px;
+        height: 100vh;
     }
-    #create-account-title {
-        font-size: 36px;
-        width: 300px;
-        padding-bottom: 36px;
+    #title {
+        font-size: 30px;
+        width: 170px;
+        padding-bottom: 30px;
     }
     .first-paragraph, .second-paragraph {
-        padding-top: 18px;
-        padding-bottom: 18px;
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
     .third-paragraph {
-        padding-top: 18px;
+        padding-top: 10px;
     }
     .first-paragraph, .second-paragraph, .third-paragraph {
-        font-size: 15px;
+        font-size: 14px;
+    }
+    .name-input, .surname-input, .email-input, .password-input, .sign-in-submit-input, .sign-in-google {
+        font-size: 16px;
+        
+    }
+
+    .name-input {
+        margin-bottom: 15px;
     }
     .name-input, .surname-input, .email-input {
-        margin-bottom: 18px;
-    }
-    .name-input, .surname-input, .email-input, .password-input, .sign-up-submit-input, .sign-up-google {
-        font-size: 17px;
-        padding-top: 9px;
-        padding-bottom: 9px;
+        margin-bottom: 15px;
     }
 }

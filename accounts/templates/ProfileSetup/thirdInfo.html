@@ -183,7 +183,7 @@
         position: absolute;
     }
     .dropdown-content-text {
-        text-decoration: none;
+        text-decoration: none !important;
         color: gray;
     }
     .logo-label {
@@ -325,14 +325,25 @@
 		}
 	}
 	@media screen and (max-width: 480px) {
+		.parent_container {
+			height: calc(100% - 60px);
+			width: 100%;
+			position: absolute;
+			padding-bottom: 20px !important;
+		}
 		.container-add-a-job {
 			margin: 10px;
 			padding: 20px;
-			height: auto;
+			height: 100%;
 			border-radius: 30px;
 		}
 		.register-form {
 			width: 100%;
+			height: 100%;
+			overflow-y: scroll;
+		}
+		.register-form::-webkit-scrollbar {
+			display: none;
 		}
 		.scroll {
 			width: 100%;
@@ -373,68 +384,132 @@
 		font-size: 30px;
 		margin-top: 0;
 	}
-	input::placeholder, .male-sex, .female-sex {
-		font-size: 16px;
-	}
-	.margin-top-bottom {
+	.margin-top-bottom, .second-margin-top-bottom, .add-language-font-and-color {
 		font-size: 14px;
 	}
-	input {
+	input, .padding-of-inputs, .back-button, .next-button {
 		padding-top: 8px;
 		padding-bottom: 8px;
 	}
-	.padding-of-inputs {
-		padding-top: 8px;
-		padding-bottom: 8px;
+	input::placeholder, .male-sex, .female-sex, .padding-of-inputs, .back-button, .next-button {
 		font-size: 16px;
 	}
 	.back-button, .next-button {
-		font-size: 16px;
-		padding-top: 8px;
-		padding-bottom: 8px;
 		padding-right: 30px;
 		padding-left: 30px;
 	}
 
 	.back-and-next-buttons {
-		margin-top: -10px;
-	}
-	input {
-		font-size: 16px;
+		margin-top: -10px;   /* kjo i bie qe margin -top eshte 30px (margin-top: 30px, nga margin-top: 40px sa ka qene ne fillim) */
 	}
 }
-
 
     </style>
 <div class="parent_container">
  <div class="container-add-a-job">
-        <form class="register-form" method="post">
+        <form class="register-form" id="my-form"method="post">
             {% csrf_token %}
 		    <div class="inside-the-container" style="">
             <h1 class="next-none mid title-font-size f-title">Are you bilingual?</h1>
             <h1 class="next-none mid title-font-size f-title">Eres bilingue?</h1>
-            <label style="display: flex; justify-content: center;" class="disabled second-margin-top-bottom next-none margin-top-job-title">Part 3 of 3</label>
+			<label style="display: flex; justify-content: center;" class="disabled margin-top-bottom next-none margin-top-job-title">Part 3 of 3</label>
+
 <div style="display:none">
                     {{form.user_id}}
                 </div>
                 <div class="form-group">
       				<label class="margin-top-bottom margin-left next-none">Language</label>
 				<div>
-                    {{form.language}}
+                    <select name="language" class="custom-select sel select-options-input next-none padding-of-inputs" required="" id="id_language">
+						<option value=""></option>
+						{% for  i in lang %}
+						{% if i == asd %}
+						<option value="{{i.id}}" selected>{{i}}</option>
+						{% else %}
+						<option value="{{i.id}}" >{{i}}</option>
+
+						{% endif %}
+						{% endfor %}
+					  
+					  </select>
 				</div>
       		  </div>
 
       		 <div class="form-group" style="margin: 0;">
-      		 	<label class="margin-top-bottom margin-left next-none">Proficiency</label>
-      		{{form.level}}
+      		 	<label class="margin-top-bottom margin-left next-none">Proficiency </label>
+				   <select name="level"  class="custom-select sel select-options-input next-none padding-of-inputs" required="" id="id_level">
+					<option value="" selected></option>
+					{% if asd1 == "N/A" %}
+					<option value="N/A" selected>N/A</option>
+					{% else %}
+					<option value="N/A">N/A</option>
+
+					{% endif %}
+					{% if asd1 == "Basic" %}
+					<option value="Basic" selected>Basic</option>
+					{% else %}
+					<option value="Basic">Basic</option>
+
+					{% endif %}
+					{% if asd1 == "Low-Intermediate" %}
+					<option value="Low-Intermediate" selected>Low-Intermediate</option>
+
+					{% else %}
+					<option value="Low-Intermediate">Low-Intermediate</option>
+
+					{% endif %}
+
+					{% if asd1 == "High-Intermediate" %}
+					<option value="High-Intermediate" selected>High-Intermediate</option>
+					{% else %}
+					<option value="High-Intermediate">High-Intermediate</option>
+					{% endif %}
+					{% if  asd1 == "Advanced" %}
+					<option value="Advanced" selected>Advanced</option>
+					{% else %}
+					<option value="Advanced">Advanced</option>
+					
+					{% endif %}
+				  
+				  </select>
       	    </div>
-            <div class="back-and-next-buttons" style="width: 100%; display: flex; justify-content: space-between;">
-            <a href="education-job.html" class="btn back-button next-none" style="color: #1877F2;">Back</a>
-            <button type="submit" class="btn submit-button next-button next-none" style="color: white; float: right;">Submit</button>
-            </div>
+			  <div class="back-and-next-buttons"
+			  style="width: 100%; display: flex; justify-content: space-between;">
+			  <a href="{% url 'setupPart2' a %}"  class="btn back-button next-none" style="color: #1877F2;">Back</a>
+
+			  <a href="javascript:void(0);" onclick="document.getElementById('my-form').submit()" class="btn submit-button next-button next-none"
+				  style="color: white;">Submit</a>
+		  </div>
 		</div>
     </form>
 	</div>
 </div>
+<script type="text/javascript">
+    var dropdown = document.querySelectorAll(".dropdown");
+    var work_and_travel_dropdown = document.querySelectorAll(".dropdown-work-and-travel");
+    var profile = document.querySelectorAll("#profile-image-button");
+    var work_and_travel_button = document.querySelectorAll('.button-work-and-travel');
+    var mutual_button_div = document.querySelectorAll('.mutual-padding-of-div');
+    var jobs_buttons_icon = document.querySelectorAll('.icon');
+    var jobs_buttons_white_icon = document.querySelectorAll('.white-icon')
+    var show_dropdown = document.querySelectorAll('.showDropdown');
+    var button_content = document.querySelectorAll('.button-content');
+    for (let i = 0; i < dropdown.length; i++) {
+        profile[i].addEventListener("click", function () {
+            if (dropdown[i].style.display == "block") {
+                dropdown[i].style.display = "none";
+            }
+            else {
+                dropdown[i].style.display = "block";
+            }
+        })
+        document.addEventListener('click', function (e) {
+            if (!dropdown[i].contains(e.target) && !profile[i].contains(e.target)) {
+                dropdown[i].style.display = 'none';
+            }
+        });
+
+    }
+</script>
 
 {% endblock content %}

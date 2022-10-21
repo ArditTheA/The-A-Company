@@ -17,24 +17,25 @@
             <p class="experience-paragraph">Education</p>
             {% for i in userEdu%}
             <div class="experience-rows-img" style="">
-                <img class="experience-education-img" src="{% static 'img/Logo (8).png' %}" alt="">
+                <img class="experience-education-img" src="{% static 'img/worki_icons-19.jpg' %}" alt="">
                 <div class="experience-rows">
                 <div style="display: flex; width: 100%;">
-                    <div class="experience-first-row">{{i.university.name}}</div>
+                    <div class="experience-first-row">{{i.university}}</div>
                     <div class="two-imgs-experience">
                     
                 <a href="{% url 'editEduId' i.id %}">
                     <img class="edit-experience edit-experience-pop-up-button" title="Edit Experience" src="{% static 'img/Ikona_edit-01 56.png' %}" alt=""></a>
                 </div>
                 </div>
-                <div class="experience-second-row">{{i.degree}}, {{i.field_of_study}}</div>
-                    <div class="experience-third-row">{{i.start_year|date:'d-m-Y'}} -
+                <div class="experience-second-row">{{i.field_of_study}}</div>
+                <div class="experience-third-row">{{i.city_e}}, {{i.country_e}}</div>
+
+                    <div class="experience-fourth-row">{{i.start_year|date:'d/m/Y'}} -
                         {% if i.end_year == null%}
                         Present
                         {% else %}
-                        {{i.end_year |date:'d-m-Y'}}
+                        {{i.end_year |date:'d/m/Y'}}
                         {% endif%}</div>
-                    <div class="experience-fourth-row">{{i.university.location}}, {{i.university.location.country}}</div>
                     </div>
             </div>
             {% endfor %}
@@ -47,8 +48,8 @@
     </div>
 </div>
 <div class="bg-add-and-edit bg-add-experience">
-    <div class="add-experience">
-        <div class="under-container">
+    <div class="edit-experience-pop-up edit-education-parent-scroll">
+        <div class="under-container edit-education-scroll" style="overflow-y: scroll;">
             <div class="exit-img exit-img-edit-profile">
                 <a href="{% url 'editEdu'%}">
                     <img class="exit-button exit-button-edit-profile" src="{% static 'img/Vector 81 (1).png' %}" alt="">
@@ -61,25 +62,44 @@
                     {{edit.user_id}}
                 </div>
                 <div class="div-of-job-experience">
-                    <p class="paragraph-of-name paragraphs-stats">University *</p>
+                    <p class="paragraph-of-name paragraphs-stats">University</p>
                     {{edit.university}}
+                </div>
+                <div>
+                    <p class="paragraph-of-country paragraphs-stats">Field Of Study</p>
+                    {{edit.field_of_study}}
                 </div>
 
                 <div>
-                    <p class="paragraph-of-surname paragraphs-stats">Degree *</p>
+                    <p class="paragraph-of-surname paragraphs-stats">Degree</p>
                     {{edit.degree}}
                 </div>
                 <div>
-                    <p class="paragraph-of-country paragraphs-stats">Field Of Study *</p>
-                    {{edit.field_of_study}}
+                    <p class="paragraph-of-surname paragraphs-stats">Country</p>
+                    {{edit.country_e}}
+                    <datalist id="EduCountryList">
+                        {% for i in country %}
+                        <option>{{i}}</option>
+                        {% endfor %}
+                    </datalist>
                 </div>
                 <div>
-                    <p class="paragraph-of-country paragraphs-stats">Total Examp Passed *</p>
-                    {{edit.total_examples_passed}}
+                    <p class="paragraph-of-surname paragraphs-stats">City</p>
+                    {{edit.city_e}}
+                    <datalist id="EduCityList">
+                        {% for i in city %}
+                        <option>{{i.name}}</option>
+                        {% endfor %}
+                    </datalist>
+                </div>
+                
+                <div>
+                    <p class="paragraph-of-country paragraphs-stats">Total Exams Passed</p>
+                    <input type="number" name="total_examples_passed" placeholder="0" class="name-input mutual-stats font-fam" required="" id="id_total_examples_passed">
                 </div>
                 <div>
-                    <p class="paragraph-of-country paragraphs-stats">GPA *</p>
-                    {{edit.GPA}}
+                    <p class="paragraph-of-country paragraphs-stats">GPA</p>
+                    <input type="number" name="GPA" placeholder="0.0" class="name-input mutual-stats font-fam" step="any" required="" id="id_GPA">
                 </div>
                 
                 <div>
@@ -87,16 +107,18 @@
                     <div style="display: flex; justify-content: space-between;">
                         <div style="width: 48%;">
                             <p class="paragraphs-stats paragraph-of-start-date">Start date</p>
-                            {{edit.start_year}}
+                            <input id="id_start_year" class="start-date-input mutual-stats font-fam" name="start_year" type="tel" maxlength="10" placeholder="dd/mm/yyyy" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
+
                         </div>
                         <div style="width: 48%;
                     float: right;">
                             <p class="paragraphs-stats paragraph-of-end-date">End date</p>
-                            {{edit.end_year}}
+                            <input id="id_end_year" class="end-date-input mutual-stats font-fam" name="end_year" type="tel" maxlength="10" placeholder="dd/mm/yyyy" oninput="this.value = MMDDYYYY(this.value, event)" />
+
                         </div>
                     </div>
                     </div>
-                    <div class="save-button">
+                    <div class="save-button save-button-edit-add-education-480">
                         <input name="save" type="submit" class="save-submit-input save-picture font-fam" value="Save">
 
                     </div>

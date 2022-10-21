@@ -63,6 +63,7 @@
             }
             else {
                 checkboxes[i].style.display = "block";
+                setDropdownWidth($(checkboxes[i]))
                 $(".open").removeClass("open")
                 $(checkboxes[i]).closest(".selectBox").addClass("open")
             }
@@ -75,12 +76,30 @@
     };
 
     $(".jobs-buttons").on("scroll", function() {
+
         var activeDropdown = $('.selectBox.open').find('.selectOptions')
+        if (activeDropdown.length == 0)
+            return
         // subtract scroll position from buttons offset position
         var pos = parseInt(activeDropdown.attr('data-leftPos')) - parseInt($(this).scrollLeft());
         // appply updated position to dropdown
-        activeDropdown.css("left", pos);
+        activeDropdown.css("left", pos)
+        
+        // Set width dynamically based on scroll position
+        setDropdownWidth(activeDropdown)
       });
+
+      function setDropdownWidth(dropdown) {
+        if (dropdown.length == 0)
+            return
+        const menuDiv = $('.main-buttons-div')
+        const dropdownLeft = dropdown[0].offsetLeft   // discutions with Agon for [0]  //
+        dropdown.css('width', 'auto')
+        if(dropdownLeft + dropdown.outerWidth() > menuDiv.outerWidth()) {
+            const newWidth = menuDiv.outerWidth() - dropdownLeft
+            dropdown.outerWidth(newWidth)
+        }
+      }
 
     
 

@@ -1,0 +1,10 @@
+{% autoescape off %}
+Hello {{first_name}}, Welcome to Worki. You have successfully created an account.
+
+Together we’ll create the future of work.
+
+See you around,
+Worki Team
+
+
+{% endautoescape %}

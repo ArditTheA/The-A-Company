@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="{% static 'css/profile-header.css'%}">
 <link rel="stylesheet" href="{% static 'css/posted-jobs-media-queries.css'%}">
 
+
 <div class="jobs-buttons">
     <div class="mutual-padding-of-div plus-div">
 
@@ -28,13 +29,14 @@
     </div>
 </div>
 
+
 <div class="jobs-main-div" style="display: flex; justify-content: space-between; width: 100%;">
 
-    <div class="jobs-left" style="position: relative;">
+    <div class="jobs-left applied-jobs-left" style="margin-top: 0;">
         {% for i in job %}
 
 
-        <div onclick="getNumber({{i.id}})"class="jobs-rows-img second-jobs margin-top-jobs-rows-img same-background-jobs pixel" id="select{{i.id}}">
+        <div onclick="getNumber({{i.id}})"class="jobs-rows-img second-jobs margin-top-jobs-rows-img same-background-jobs pixel first-job-applied" id="select{{i.id}}">
             <img class="experience-education-img" src="{{i.logo.url}}" alt="">
             <div class="experience-rows">
                 <div class="first-row-and-edit-img">
@@ -43,7 +45,7 @@
                             src="{% static 'img/Ikona_edit-01 56.png'%}" alt=""></a>
                 </div>
                 <div class="experience-second-row">{{i.company}}</div>
-                <div class="experience-third-row">{{i.city_j}}, {{i.city_j.country}}</div>
+                <div class="experience-third-row">{{i.city_j}}, {{i.country_j}}</div>
                 <div class="experience-fourth-row">{{i.total_applicant}} applicants · {{i.status}}</div>
             </div>
         </div>
@@ -53,40 +55,41 @@
     <div class="right-jobs-main-div">
         <div class="right-jobs" id="detailsRow" style="display:none;flex-direction: column;">
 
-            <div class="right-jobs-rows-img" style="padding: 3; margin-left: 10px; background-color: white;">
-                <div class="experience-rows" style="">
-                    <img class="exit-job-description" title="Exit" style="float: left; cursor: pointer;"
-                        src="{% static 'img/Vector 81 (1).png'%}" alt="">
-                    <div class="first-row-jobs mobile-title-font-size" id="job_title"></div>
-                    <div class="second-row-jobs mobile-under-title-font-size">
-                        <span id="company"></span>
-                        <span style="color: #858585;">·&nbsp;&nbsp;
-                            <span id="city"></span>&nbsp;&nbsp;<span id="countApplicant"></span></span>
+        <div class="right-jobs-rows-img" style="padding: 3; margin-left: 10px; background-color: white;">
+                    <div class="experience-rows" style="">
+                        <img class="exit-job-description" title="Exit" style="float: left; cursor: pointer;"
+                            src="{% static 'img/Vector 81 (1).png'%}" alt="">
+                        <div class="first-row-jobs mobile-title-font-size" id="job_title"></div>
+                        <div class="second-row-jobs mobile-under-title-font-size">
+                            <span id="company"></span>
+                            <span style="color: #858585;">
+                                &nbsp;·&nbsp;
+                            <span id="city"></span><span id="country"></span>&nbsp;&nbsp;·&nbsp;
+                            <span id="countApplicant"></span></span></div>
+                                
+                        <div style="" class="jobs-third-row mobile-rows-font-size"><span id="salary"></span></div>
+                        <div  class="experience-fourth-row mobile-rows-font-size  jobs-mutual-margin-rows">
+                            <span id="typeOfWork"></span>&nbsp;·&nbsp;
+                            <span id="hourPerWork"></span>
+                        </div>
+                        <div style="" class="experience-fourth-row mobile-rows-font-size jobs-mutual-margin-rows" id="sDate"></div>
+                        <div style="" class="experience-fourth-row mobile-rows-font-size jobs-mutual-margin-rows">
+                            <span id="housing"></span>&nbsp;&nbsp;·&nbsp;&nbsp;<span id="housingCost"></span>
+                        </div>
+                        <div style="" class="experience-fourth-row mobile-rows-font-size jobs-mutual-margin-rows">
+                            <span id="program"></span>&nbsp;&nbsp;·&nbsp;&nbsp;<span id="programCost"></span>
+                        </div>
+                        <div style="" class="experience-fourth-row mobile-rows-font-size jobs-mutual-margin-rows">
+                            <span >Posted on</span>&nbsp;&nbsp;·&nbsp;&nbsp;<span id="pos"></span>
+                        </div>
+                        
                     </div>
-                    <div style="" class="jobs-third-row mobile-rows-font-size"><span id="salary"></span></div>
-                    <div style="" class="experience-fourth-row mobile-rows-font-size  jobs-mutual-margin-rows"><span
-                            id="typeOfWork"></span>· <span id="hourPerWork"></span>
-                    </div>
-                    <div style="" class="experience-fourth-row mobile-rows-font-size jobs-mutual-margin-rows"
-                        id="sDate"></div>
-                    <div style="" class="experience-fourth-row mobile-rows-font-size jobs-mutual-margin-rows"><span
-                            id="housing"></span> <span id="housingCost"></span></div>
-                    <div style="" class="experience-fourth-row mobile-rows-font-size jobs-mutual-margin-rows"><span
-                            id="program"></span> <span id="programCost"></span>
-                    </div>
-                    <div class="experience-fourth-row mobile-rows-font-size jobs-mutual-margin-rows"><span
-                            id="pos"></span></div>
-
+                </div>
+                <div class="right-jobs-rows-img-second">
+                    <div class="experience-rows">
+                        <span id="message" ></span>
                 </div>
             </div>
-            <div class="right-jobs-rows-img-second">
-                <div class="experience-rows">
-                    <textarea rows="30" cols="120" id="message" class="scroll" disabled>
-                    </textarea>
-                </div>
-            </div>
-        </div>
-
     </div>
     <script>
         function stopProp(event) {

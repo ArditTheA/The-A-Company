@@ -130,7 +130,7 @@ body {
     }
     .cover-edit {
         width: 100%;
-        height: 100%;
+        height: calc(100% - 20px);
         padding: 30px 20px 0px 20px;
         border-radius: 15px;
         margin: 10px;

@@ -1,6 +1,7 @@
 from distutils.command.upload import upload
 from email.policy import default
 from hashlib import blake2b
+from random import choices
 from tkinter.tix import Tree
 from django.db import models
 from django.contrib.auth.models import AbstractUser
@@ -24,7 +25,7 @@ class City(models.Model):
     country = models.ForeignKey(Country,on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.name)
+        return str(self.name)+", "+str(self.country)
 
 class CustomUser(AbstractUser):
     sex_choice=[
@@ -33,12 +34,13 @@ class CustomUser(AbstractUser):
     ]
     username=models.CharField(max_length=255,null=True,blank=True)
     email = models.EmailField(_('email'), unique=True,null=False,blank=False)
-    profile = models.ImageField(upload_to="profile",default="defaultProfile.jpeg")
+    
+    profile = models.ImageField(upload_to="profile",default="defaultProfile.jpg")
     cover = models.ImageField(upload_to="cover",default="defaultCover.jpg")
     sex = models.CharField(choices=sex_choice,max_length=10,null=True)
     profileSetup = models.BooleanField(default=False)
-    city = models.ForeignKey(City,on_delete=models.CASCADE,null=True,blank=True)
-    country = models.ForeignKey(Country,on_delete=models.CASCADE,null=True, blank=True)
+    city = models.CharField(max_length=255,null=True,blank=True)
+    country = models.CharField(max_length=255,null=True,blank=True)
     phone_number= models.CharField(max_length=255,null=True,blank=True)
     birthday = models.DateField(null = True,blank=True)
     picture = models.TextField(null=True, blank=True)
@@ -59,16 +61,15 @@ class Languages(models.Model):
 
 class University(models.Model):
     name = models.CharField(max_length=500)
-    location = models.ForeignKey(City,on_delete=models.CASCADE,default=1)
     def __str__(self):
-        return str(self.name)+" | "+str(self.location)
+        return str(self.name)
 
 class UserExperiece(models.Model):
     user_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     title = models.CharField(max_length=500)
     company = models.CharField(max_length=255)
-    Country = models.ForeignKey(Country,on_delete=models.CASCADE)
-    city_usExp = models.ForeignKey(City, on_delete=models.CASCADE)
+    Country = models.CharField(max_length=255,null=True,blank=True)
+    city_usExp = models.CharField(max_length=255,null=True,blank=True)
     start_date = models.DateField()
     end_date = models.DateField(null=True,blank=True)
 
@@ -77,9 +78,15 @@ class UserExperiece(models.Model):
 
 
 class UserEducation(models.Model):
+    degree_choice={
+        ("Bachelor","Bachelor’s Degree"),
+        ("Master","Master’s Degree")
+    }
     user_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    university = models.ForeignKey(University, on_delete=models.CASCADE)
-    degree = models.CharField(max_length=255)
+    university = models.CharField(max_length=255)
+    degree = models.CharField(max_length=255,choices=degree_choice)
+    country_e = models.CharField(max_length=255,null=True,blank=True)
+    city_e = models.CharField(max_length=255,null=True,blank=True)
     field_of_study = models.CharField(max_length=255)
     start_year = models.DateField()
     end_year = models.DateField(null=True,blank=True)
@@ -90,11 +97,11 @@ class UserEducation(models.Model):
 
 class UserLanguages(models.Model):
     Level_Choice = {
-        ("Elementary proficiency", "Elementary proficiency"),
-        ("Limited working proficiency","Limited working proficiency"),
-        ("Professional working proficiency","Professional working proficiency"),
-        ("Full professional proficiency","Full professional proficiency"),
-        ("Native or bilingual proficiency","Native or bilingual proficiency")
+        ("Advanced", "Advanced"),
+        ("High-Intermediate","High-Intermediate"),
+        ("Low-Intermediate","Low-Intermediate"),
+        ("Basic","Basic"),
+        ("N/A","N/A")
 
     }
     user_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
@@ -110,12 +117,14 @@ class Jobs(models.Model):
         ('Part Time','Part Time')
     }
     Housing_type={
-        ("Provided","Provided")
+        ("Provided","Provided"),
+        ("Not provided","Not provided")
     }
     Program_Type={
-        ("Ausbildung","Ausbildung"),
+        ("Work and Travel","Work and Travel"),
         ("Internship","Internship"),
-        ("Work And Travel","Work And Travel"),
+        ("Trainee","Trainee"),
+        ("Ausbildung","Ausbildung")
         
 
     }
@@ -125,8 +134,8 @@ class Jobs(models.Model):
     }
     job_title = models.CharField(max_length=255)
     company = models.CharField(max_length=255)
-    city_j = models.ForeignKey(City,on_delete=models.CASCADE)
-    country_j = models.ForeignKey(Country,on_delete=models.CASCADE)
+    city_j = models.CharField(max_length=255)
+    country_j = models.CharField(max_length=255)
     salary_per_hour = models.FloatField()
     type_of_work = models.CharField(max_length=50,choices=TypeofWork)
     hour_per_work = models.IntegerField(default=0)
@@ -140,7 +149,7 @@ class Jobs(models.Model):
     description = models.TextField(null=True,blank=True)
 
     status = models.CharField(max_length=20,choices=Stat,default="Open")
-    postDate = models.DateField(default=today)
+    postDate = models.DateField(default=datetime.now(),blank=True,null=True)
     user_id = models.ForeignKey(CustomUser,on_delete=models.CASCADE, null=True,blank=True)
     approved = models.BooleanField(default=False)
 

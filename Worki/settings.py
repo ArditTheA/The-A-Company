@@ -15,13 +15,13 @@ SECRET_KEY = '0x-zrhf@)(t)%-630q&s&9g_c^lvh_9cehy@7vx==@bxgn_s_='
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = False    
+DEBUG = True    
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 SILENCED_SYSTEM_CHECKS = ["auth.W004"]
 ALLOWED_HOSTS = ["*"]
 CSRF_TRUSTED_ORIGINS = ['https://worki.global']
 
-DEBUG = False
+DEBUG = True
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 SILENCED_SYSTEM_CHECKS = ["auth.W004"]
 ALLOWED_HOSTS = ['*']
@@ -29,7 +29,8 @@ ALLOWED_HOSTS = ['*']
 SOCIALACCOUNT_LOGIN_ON_GET=True
 SOCIALACCOUNT_QUERY_EMAIL=True
 # Application definition
-
+DATE_INPUT_FORMATS = ('%d/%m/%Y','%d-%m-%Y','%Y-%m-%d')
+USE_L10N = True
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -125,7 +126,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-GB'
 
 TIME_ZONE = 'UTC'
 

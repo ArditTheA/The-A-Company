@@ -1,0 +1,8 @@
+{% autoescape off %}
+Hello, {{user.first_name}}!
+
+Thanks for posting a job. The job posting for {{jobTitle}} is under review. 
+
+You’ll hear from us in 48 hours,
+Worki Team
+{% endautoescape %}

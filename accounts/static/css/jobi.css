@@ -91,16 +91,22 @@
 
 
 @media screen and (max-width: 480px) {
+    .mobile-margin-top{
+        margin-top: 20px !important;
+    }
+    .right-job-margin-top{
+        margin-top: 20px !important;
+    }
     textarea{
         font-size: 16px;
     }
     .move{
-        margin-top: 0px;
+        margin-top: 10px;
     }
     .jobs-main-div {
      }
      .jobs-left-title, .mobile-title-font-size, .first-row-second-div {
-        font-size: 20px;
+        font-size: 16px;
     }
     .applied-posted-buttons-mobile {
         margin-top: 5px !important;
@@ -147,6 +153,7 @@
     }
     
     .right-jobs-main-div {
+        margin-top: 10px;
         display: none;
         width: 100% !important;
     }
@@ -156,10 +163,12 @@
     .right-jobs {
         height: 100vh;
         margin-bottom: 10px;
+        width: 100%;
     }
     .jobs-left {
         width: 100% !important;
         margin-bottom: 10px;
+        margin-top: 10px;
     }
     .outline-none {
         margin-top: 5px;
@@ -175,13 +184,14 @@
                                ne fillim, i bie qe margin-top: 20px */
     }
     .jobs-rows-img {
-        margin: 0px 0px 10px 10px;
+        margin: 0px 0px 0px 10px;
     }
     .last-job-margin-bottom {
         margin-bottom: -10px;
     }
     .right-jobs-rows-img-second {
         margin-top: 10px;
+        border-radius: 20px;
     }
     .different-background-jobs {
         background-color: white;
@@ -201,6 +211,7 @@
 
     .jobs-rows-img {
         padding: 20px;
+        border-radius: 20px;
     }
 
     .jobs-buttons {
@@ -215,6 +226,7 @@
     }
     .right-jobs-rows-img, .right-jobs-rows-img-second  {
         margin-right: 10px;
+        border-radius: 20px;
     };
     .container-add-a-job {
         border-radius: 20px !important;

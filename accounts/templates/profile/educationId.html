@@ -5,10 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Experience</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/authenticated.css' %}">
     <link rel="stylesheet" href="{% static 'css/profile-header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/edit-profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/add-profile-picture.css' %}">
+    <link rel="stylesheet" href="{% static 'css/experience-font-family.css' %}">
     <link rel="stylesheet" href="{% static 'css/add-experience.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/edit-cover.css' %}">
 
 
        
@@ -19,17 +23,18 @@
                 <p class="experience-paragraph">Education</p>
                 {% for i in userEdu%}
                 <div class="experience-rows-img">
-                    <img class="experience-education-img" src="{% static 'img/USF_Logo 2.png' %}" alt="">
+                    <img class="experience-education-img" src="{% static 'img/worki_icons-19.jpg' %}" alt="">
                     <div class="experience-rows">
-                    <div class="experience-first-row">{{i.university.name}}</div>
+                    <div class="experience-first-row">{{i.university}}</div>
                     <div class="experience-second-row">{{i.degree}}, {{i.field_of_study}}</div>
-                    <div class="experience-third-row">{{i.start_year|date:'d-m-Y'}} -
+                    <div class="experience-third-row">{{i.city_e}}, {{i.country_e}}</div>
+
+                    <div class="experience-fourth-row">{{i.start_year|date:'d/m/Y'}} -
                         {% if i.end_year == null%}
                         Present
                         {% else %}
-                        {{i.end_year |date:'d-m-Y'}}
+                        {{i.end_year |date:'d/m/Y'}}
                         {% endif%}</div>
-                    <div class="experience-fourth-row">{{i.university.location}}, {{i.university.location.country}}</div>
                     </div>
                 </div>
                 {% endfor %}
@@ -43,8 +48,8 @@
     </div>
     <div class="bg-edit-experience" style="display: flex;">
 
-        <div class="edit-experience-pop-up">
-            <div class="under-container">
+        <div class="edit-experience-pop-up edit-education-parent-scroll">
+            <div class="under-container edit-education-scroll" style="overflow-y: scroll;">
                 <div class="exit-img exit-img-edit-experience">
                        <a href="{% url 'editEdu'%}"> <img title="Exit" style="vertical-align: middle;" class="exit-button exit-button-edit-experience" src="{% static 'img/Vector 81 (1).png' %}" alt=""></a>
                 </div>
@@ -52,39 +57,66 @@
                 <form method="POST" action="" class="sign-up-form">
                     {% csrf_token %}
                     <div class="div-of-job-experience">
-                    <p class="paragraph-of-name paragraphs-stats">University *</p>
+                    <p class="paragraph-of-name paragraphs-stats">University</p>
                     {{edit.university}}
+                    <datalist id="uniList">
+                        {% for i in university %}
+                        <option>{{i}}</option>
+                        {% endfor %}
+                    </datalist>
                     </div>
                     
                     <div>
-                    <p class="paragraph-of-surname paragraphs-stats">Field of study *</p>
+                    <p class="paragraph-of-surname paragraphs-stats">Field of study</p>
                     {{edit.field_of_study}}
                     </div>
                     <div>
-                    
+                        <p class="paragraph-of-surname paragraphs-stats">Degree</p>
+                        {{edit.degree}}
                     </div>
-                    <div>
+                    <p class="paragraph-of-surname paragraphs-stats">Country</p>
+                        {{edit.country_e}}
+                        <datalist id="EduCountryList">
+                            {% for i in country%}
+                            <option>{{i}}</option>
+                            {% endfor %}
+                        </datalist>
                     
+                    <div>
+                    <div>
+                    <p class="paragraph-of-surname paragraphs-stats">City</p>
+                        {{edit.city_e}}
+                        <datalist id="EduCityList">
+                            {% for i in city %}
+                            <option>{{i.name}}</option>
+                            {% endfor  %}
+                        </datalist>
+                    </div>
                     <div style="display: flex; justify-content: space-between;">
                     <div style="width: 48%;">
-                    <p class="paragraphs-stats paragraph-of-start-date">University start year *</p>
-                    {{edit.start_year}}
+                    <p class="paragraphs-stats paragraph-of-start-date">Start year</p>
+                    <input id="id_start_year" value="{{edit.start_year.value|date:'d/m/Y'}}" class="start-date-input mutual-stats font-fam" name="start_year" type="tel" maxlength="10" placeholder="dd/mm/yyyy" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
+
                     </div>
                     <div style="width: 48%;
                     float: right;">
-                    <p class="paragraphs-stats paragraph-of-end-date">University end year *</p>
-                    {{edit.end_year}}
+                    <p class="paragraphs-stats paragraph-of-end-date">End year</p>
+                    <input id="id_end_year" class="end-date-input mutual-stats font-fam" name="end_year" value="{{edit.end_year.value|date:'d/m/Y'}}" type="tel" maxlength="10" placeholder="dd/mm/yyyy"  oninput="this.value = MMDDYYYY(this.value, event)" />
+
                     </div>
                     </div>
                     <div>
-                        <p class="paragraph-of-surname paragraphs-stats">Total Examp Passed</p>
+                        <p class="paragraph-of-surname paragraphs-stats">Total Exams Passed</p>
                         {{edit.total_examples_passed}}
                     </div>
                     <div>
                         <p class="paragraph-of-surname paragraphs-stats">GPA</p>
                         {{edit.GPA}}
                     </div>
-                    <div class="save-button">
+                    <div style="display: none;">
+                        {{edit.user_id}}
+                    </div>
+                    <div class="save-button save-button-edit-add-education-480">
                     <a href=""><input name="save" type="submit" class="save-submit-input font-fam" value="Save"></a>
                     </div>
                 </form>

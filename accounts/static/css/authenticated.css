@@ -3,6 +3,7 @@ body {
     margin: 0;
     box-sizing: border-box;
     font-family: sans-serif;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .header-border {
@@ -14,11 +15,14 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    box-shadow: 0 0 5px #e7e7e7;
 }
 
 #worki-image {
     margin-left: 40px;
-    height: 30px;
+    height: 35px;
+    border-radius: 10px;
+    vertical-align: middle;
 }
 
 #jobs-and-profile {
@@ -29,7 +33,7 @@ body {
 
 .jobs-icon-button {
     margin-right: 20px;
-    height: 36px;
+    height: 35px;
     vertical-align: middle;
 }
 
@@ -38,7 +42,7 @@ body {
     cursor: pointer;
     height: 36px;
     width: 36px;
-    border-radius: 50%;
+    border-radius: 10px;
     object-fit: cover;
 }
 
@@ -119,12 +123,6 @@ body {
         margin-right: 10px;
     }
     .dropdown {
-        font-size: 17px;
-    }
-    .dropdown-content {
-        padding: 12px 40px;
-    }
-    .dropdown-mid-content {
-        padding: 0px;
+        font-size: 16px;
     }
 }

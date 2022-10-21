@@ -9,16 +9,17 @@
 <link rel="stylesheet" href="{% static 'css/add-experience.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 <link rel="stylesheet" href="{% static 'css/edit-cover.css' %}">
+<link rel="stylesheet" href="{% static 'css/responsive-experience-education-languages-page.css'%}">
+
 
 
 <div class="experience-main-div experience-education-languages different_exp">
     <div class="experience-div second-experience-div">
         <div class="experience-paragraph-img-rows">
             <div class="aaa">
-            <p class="experience-paragraph">Language</p>
+            <p class="experience-paragraph">Languages</p>
             {% for i in User_lang%}
             <div class="experience-rows-img" style="">
-                <img class="experience-education-img" src="{% static 'img/Logo (8).png' %}" alt="">
                 <div class="experience-rows">
                 <div style="display: flex; width: 100%;">
                     <div class="experience-first-row">{{i.language}}</div>
@@ -41,8 +42,8 @@
     </div>
 </div>
 
-<div class="bg-add-and-edit bg-add-experience" style="display: flex;">
-    <div class="add-experience" style="height: 500px;">
+<div class="bg-edit-experience" style="display: flex;">
+    <div class="edit-languages-pop-up">
         <div class="under-container">
             <div class="exit-img exit-img-edit-profile">
                 <a href="{% url 'editLanguage'%}">
@@ -56,13 +57,62 @@
                     {{edit.user_id}}
                 </div>
                 <div class="div-of-job-experience">
-                    <p class="paragraph-of-name paragraphs-stats">University *</p>
-                    {{edit.language}}
+                    <p class="paragraph-of-name paragraphs-stats">Language</p>
+                    <select name="language" required="" id="id_language">
+                        
+                        
+                        {% for i in lang %}
+                        {% if i == uslang %}
+                        <option value="{{i.id}}" selected>{{i}}</option>
+                        {% else  %}
+                        <option value="{{i.id}}">{{i}}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
                 </div>
 
                 <div>
-                    <p class="paragraph-of-surname paragraphs-stats">Degree *</p>
-                    {{edit.level}}
+                    <p class="paragraph-of-surname paragraphs-stats">Level</p>
+                    <select name="level" required="" id="id_level">
+                        
+                      
+                        {% if asd1 == "N/A" %}
+                        <option value="N/A" selected>N/A</option>
+                        {% else %}
+                        <option value="N/A">N/A</option>
+
+                        {% endif %}
+                        {% if asd1 == "Basic" %}
+                        <option value="Basic" selected>Basic</option>
+                        {% else %}
+                        <option value="Basic">Basic</option>
+
+                        {% endif %}
+                        {% if asd1 == "Low-Intermediate" %}
+                        <option value="Low-Intermediate" selected>Low-Intermediate</option>
+
+                        {% else %}
+                        <option value="Low-Intermediate">Low-Intermediate</option>
+
+                        {% endif %}
+
+                        {% if asd1 == "High-Intermediate" %}
+                        <option value="High-Intermediate" selected>High-Intermediate</option>
+                        {% else %}
+                        <option value="High-Intermediate">High-Intermediate</option>
+                        {% endif %}
+                        {% if  asd1 == "Advanced" %}
+                        <option value="Advanced" selected>Advanced</option>
+                        {% else %}
+                        <option value="Advanced">Advanced</option>
+                        
+                        {% endif %}
+                      
+                      </select>
+
+                    
+
+
                 </div>
                 
                 <div class="save-button">

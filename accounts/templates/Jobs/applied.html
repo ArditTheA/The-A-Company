@@ -31,12 +31,12 @@
 
 <div class="jobs-main-div" style="display: flex; justify-content: space-between; width: 100%;">
 
-    <div class="jobs-left" style="">
+    <div class="jobs-left applied-jobs-left" style="margin-top: 0;">
         {% for i in job %}
 
 
         <div onclick="getNumber({{i.job_id.id}})"
-            class="jobs-rows-img second-jobs margin-top-jobs-rows-img same-background-jobs pixel" id="select{{i.job_id.id}}">
+            class="jobs-rows-img second-jobs margin-top-jobs-rows-img same-background-jobs pixel first-job-applied" id="select{{i.job_id.id}}">
             <img class="experience-education-img" src="{{i.job_id.logo.url}}" alt="">
             <div class="experience-rows">
                 <div class="experience-first-row">{{i.job_id.job_title}}</div>
@@ -65,31 +65,34 @@
                         <div class="first-row-jobs mobile-title-font-size" id="job_title"></div>
                         <div class="second-row-jobs mobile-under-title-font-size">
                             <span id="company"></span>
-                            <span style="color: #858585;">·&nbsp;&nbsp;
-                                <span id="city"></span>&nbsp;&nbsp;<span id="countApplicant"></span></span></div>
+                            <span style="color: #858585;">
+                                &nbsp;·&nbsp;
+                            <span id="city"></span>&nbsp;&nbsp;·&nbsp;
+                            <span id="countApplicant"></span></span></div>
+                                
                         <div style="" class="jobs-third-row mobile-rows-font-size"><span id="salary"></span></div>
-                        <div style="" class="experience-fourth-row mobile-rows-font-size  jobs-mutual-margin-rows"><span id="typeOfWork"></span>· <span id="hourPerWork"></span>
+                        <div  class="experience-fourth-row mobile-rows-font-size  jobs-mutual-margin-rows">
+                            <span id="typeOfWork"></span>&nbsp;·&nbsp;
+                            <span id="hourPerWork"></span>
                         </div>
                         <div style="" class="experience-fourth-row mobile-rows-font-size jobs-mutual-margin-rows" id="sDate"></div>
-                        <div style=""
-                            class="experience-fourth-row mobile-rows-font-size jobs-mutual-margin-rows"><span id="housing"></span> <span id="housingCost"></span></div>
-                        <div style=""
-                            class="experience-fourth-row mobile-rows-font-size jobs-mutual-margin-rows"><span id="program"></span>  <span id="programCost"></span>
+                        <div style="" class="experience-fourth-row mobile-rows-font-size jobs-mutual-margin-rows">
+                            <span id="housing"></span>&nbsp;&nbsp;·&nbsp;&nbsp;<span id="housingCost"></span>
                         </div>
-                        <div style=""
-                            class="experience-fourth-row mobile-rows-font-size jobs-mutual-margin-rows"><span id="applied"></span>
+                        <div style="" class="experience-fourth-row mobile-rows-font-size jobs-mutual-margin-rows">
+                            <span id="program"></span>&nbsp;&nbsp;·&nbsp;&nbsp;<span id="programCost"></span>
                         </div>
-                        
                         
                     </div>
                 </div>
                 <div class="right-jobs-rows-img-second">
                     <div class="experience-rows">
-                    <textarea rows="30" cols="120" id="message" class="scroll" disabled>
-                    </textarea>
+                        <span id="message" ></span>
                 </div>
             </div>
     </div>
+    
+
 </div>
 {% endif %}
 <script type="text/javascript" src="{% static 'js/Ajax/applied-jobs-ajax.js'%}"></script>
@@ -123,7 +126,7 @@
 </script>
 
 <!-- <script src="{% static 'js/main.js'%}"></script>-->
-<!--<script src="{% static 'js/jobs-img.js'%}"></script>-->
+<script src="{% static 'js/jobs-img.js'%}"></script>
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script src="{% static 'js/exit-job-description-button.js'%}"></script>
 

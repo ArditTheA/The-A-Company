@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
-<!--<form method="post">-->
-<!--    {% csrf_token %}-->
-<!--    {{form}}-->
 
-<!--    <button type="submit" value="submit">Submit</button>-->
-<!--</form>-->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="{% static 'css/profile-header.css'%}">
+
 <style type="text/css">
 
+	.next-none::placeholder {
+	color: gray;
+	}
     body {
 		background-color: #E5E5E5;
 		font-family: 'Spline Sans', sans-serif;
@@ -188,7 +188,7 @@
         position: absolute;
     }
     .dropdown-content-text {
-        text-decoration: none;
+        text-decoration: none !important;
         color: gray;
     }
     .logo-label {
@@ -413,51 +413,152 @@
     </style>
 <div class="parent_container">
 <div class="container-add-a-job">
-        <form class="register-form" method="post">
+        <form class="register-form" id="my-form" method="post">
             {% csrf_token %}
 		    <div class="inside-the-container" style="">
             <h1 class="next-none mid title-font-size f-title">Tell us about</h1>
             <h1 class="next-none mid title-font-size f-title">your education</h1>
-            <label style="display: flex; justify-content: center;" class="disabled second-margin-top-bottom next-none margin-top-job-title">Part 2 of 3</label>
+            <label style="display: flex; justify-content: center;" class="disabled margin-top-bottom next-none margin-top-job-title">Part 2 of 3</label>
+
 
                 <div class="form-group">
       				<label class="margin-top-bottom margin-left next-none">University</label>
 				<div>
-                    {{form.university}}
+					<input type="text" name="university" value="{{edu.university}}" class="name-input mutual-stats font-fam" required="" list="univ" maxlength="255" id="id_university">
+                    
+					<datalist id="univ">
+						{% for  i in uni %}
+						<option>{{i}}</option>
+						{% endfor %}
+					</datalist>
 				</div>
       		  </div>
 
       		 <div class="form-group" style="margin: 0;">
       		 	<label class="margin-top-bottom margin-left next-none">Degree</label>
-      		    {{form.degree}}
+					
+					{% if edu.degree == "Master" %}
+					<select name="degree" required="" id="id_degree">
+						<option value="Bachelor">Bachelor’s Degree</option>
+
+						<option value="Master" selected="selected">Master’s Degree</option>
+					</select>
+					{% elif edu.degree == "Bachelor" %}
+					<select name="degree" required="" id="id_degree">
+						<option value="Bachelor" selected="selected">Bachelor’s Degree</option>
+
+						<option value="Master" >Master’s Degree</option>
+					</select>
+					{% else %}
+					<select name="degree" required="" id="id_degree">
+						<option selected></option>
+						<option value="Bachelor" >Bachelor’s Degree</option>
+
+						<option value="Master" >Master’s Degree</option>
+					</select>
+
+					{% endif %}
+					
+				  
+				
       	    </div>
               <div class="form-group" style="margin: 0;">
                 <label class="margin-top-bottom next-none">Field of study</label>
-                {{form.field_of_study}}
+                <input type="text" name="field_of_study" maxlength="255" value="{{edu.field_of_study}}"required="" id="id_field_of_study">
             </div>
+			<div class="form-group" style="margin: 0;">
+				<label class="margin-top-bottom margin-left next-none">Country</label>
+				<input type="text" name="country_e" value="{{edu.country_e}}"class="name-input mutual-stats font-fam" list="CountryList" required="required" maxlength="255" id="id_country_e">
+			   <datalist id="CountryList">
+				{% for i in country %}
+				<option>{{i}}</option>
+				{% endfor %}
+			   </datalist>
+		   </div>
+		   <div class="form-group" style="margin: 0;">
+			<label class="margin-top-bottom margin-left next-none">City</label>
+			<input type="text" name="city_e" value="{{edu.city_e}}"class="name-input mutual-stats font-fam" list="CityList" required="required" maxlength="255" id="id_city_e">
+		   <datalist id="CityList">
+			{% for i in city %}
+			<option>{{i.name}}</option>
+			{% endfor %}
+		   </datalist>
+	   </div>
             <div class="form-group" style="margin: 0;">
                 <label class="margin-top-bottom margin-left next-none">University start year</label>
-                {{form.start_year}}
+                
+                <input id="start_year" class="next-none"value="{{sdate}}" name="start_year" type="tel" maxlength="10" value="{{birth}}" placeholder="dd/mm/yyyy"  oninput="this.value = MMDDYYYY(this.value, event)" />
+
            </div>
            <div class="form-group" style="margin: 0;">
             <label class="margin-top-bottom margin-left next-none">University end year</label>
-               {{form.end_year}}
+			<input id="end_year" class="next-none" name="end_year" type="tel" maxlength="10" value="{{edate}}" placeholder="dd/mm/yyyy"  oninput="this.value = MMDDYYYY(this.value, event)" />
+			
+               
            </div>
            <div class="form-group" style="margin: 0;">
-            <label class="margin-top-bottom next-none">Total exams passed</label>
-               {{form.total_examples_passed}}
+            <label class="margin-top-bottom next-none">Total exams passed {{edu.total_examples_passed}}</label>
+			<input class="next-none" type="number" name="total_examples_passed" value="{{edu.total_examples_passed}}" required="" placeholder="0" id="id_total_examples_passed">
             </div>
             <div class="form-group" style="margin: 0;">
                 <label class="margin-top-bottom next-none">GPA</label>
-                {{form.GPA}}
+				<input class="next-none" type="number" name="GPA" placeholder="0.00" step="any" value="{{edu.GPA}}"  required="" id="id_GPA">
+                
             </div>
             <div style="display:none">{{form.user_id}}</div>
-            <div class="back-and-next-buttons" style="width: 100%; display: flex; justify-content: space-between;">
-            <a href="apply-for-job.html" class="btn back-button next-none" style="color: #1877F2;">Back</a>
-            <button type="submit"  class="btn submit-button next-button next-none" style="color: white;float: right;">Next</button>
-            </div>
+            <div class="back-and-next-buttons"
+						style="width: 100%; display: flex; justify-content: space-between;">
+						<a href="{% url 'apply' a %}"   class="btn back-button next-none" style="color: #1877F2;">Back</a>
+						<a href="javascript:void(0);" onclick="document.getElementById('my-form').submit()" class="btn submit-button next-button next-none"
+							style="color: white;">Next</a>
+					</div>
 		</div>
     </form>
+	
 	</div>
 </div>
+<script>
+	function MMDDYYYY(value, event) {
+	  let newValue = value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');
+	
+	  const dayOrMonth = (index) => index % 2 === 1 && index < 4;
+	
+	  // on delete key.  
+	  if (!event.data) {
+		return value;
+	  }
+	
+	  return newValue.split('').map((v, i) => dayOrMonth(i) ? v + '/' : v).join('');;
+	  
+	  ducument.getElementById("test").innerHTML(newValue)
+	}
+	
+	</script>
+<script type="text/javascript">
+    var dropdown = document.querySelectorAll(".dropdown");
+    var work_and_travel_dropdown = document.querySelectorAll(".dropdown-work-and-travel");
+    var profile = document.querySelectorAll("#profile-image-button");
+    var work_and_travel_button = document.querySelectorAll('.button-work-and-travel');
+    var mutual_button_div = document.querySelectorAll('.mutual-padding-of-div');
+    var jobs_buttons_icon = document.querySelectorAll('.icon');
+    var jobs_buttons_white_icon = document.querySelectorAll('.white-icon')
+    var show_dropdown = document.querySelectorAll('.showDropdown');
+    var button_content = document.querySelectorAll('.button-content');
+    for (let i = 0; i < dropdown.length; i++) {
+        profile[i].addEventListener("click", function () {
+            if (dropdown[i].style.display == "block") {
+                dropdown[i].style.display = "none";
+            }
+            else {
+                dropdown[i].style.display = "block";
+            }
+        })
+        document.addEventListener('click', function (e) {
+            if (!dropdown[i].contains(e.target) && !profile[i].contains(e.target)) {
+                dropdown[i].style.display = 'none';
+            }
+        });
+
+    }
+</script>
 {% endblock content %}

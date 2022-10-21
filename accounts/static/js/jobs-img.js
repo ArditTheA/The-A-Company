@@ -12,8 +12,12 @@ const mediaQuery = window.matchMedia('(max-width: 767px)');
     for (let i = 0; i < second_jobs_img.length; i++) {
         second_jobs_img[i].addEventListener('click', function() {
             if (firstMediaQuery.matches) {
-            second_jobs_img[i].style.backgroundColor = "#E7F1FE";
-            $(second_jobs_img[i]).siblings().css("background-color", "white")
+            right_jobs_main_div.style.display = null;
+            second_jobs_img[i].classList.add('different-background-jobs');
+            $(second_jobs_img[i]).siblings().removeClass('different-background-jobs').addClass("same-background-jobs");
+            
+            //  second_jobs_img[i].style.backgroundColor = "red";
+            //  $(second_jobs_img[i]).siblings().css("background-color", "white");
             }
             right_jobs[i].style.display = "flex";
             $(right_jobs[i]).siblings().css("display", "none");
@@ -24,7 +28,21 @@ const mediaQuery = window.matchMedia('(max-width: 767px)');
             //    $(this).contents().wrap('<a href="http://www.worki.global"></a>');
             };
         });
-    };
+
+    }
+
+    if (firstMediaQuery.matches) {
+        for (let i = 0; i < second_jobs_img.length; i++) {
+        }
+    }
+
+    if (mediaQuery.matches) {
+        for (let i = 0; i < second_jobs_img.length; i++) {
+            
+        }
+    }
+
+
 
     // var url = $("#clickable a").attr("href");s
 

@@ -2,7 +2,6 @@
 {% load static %}
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/404.css'%}">
-
     
 <div id="notfound">
     <div class="notfound">
@@ -10,7 +9,7 @@
         <div style="" class="notfound-404">
             <img src="{% static 'img/oops.png'%}">
         </div>
-        <p style="" class="p">We guarantee you’ll get a response soon! 
+        <p style="" class="p">We guarantee you’ll get a response soon! <br/>
             We also updated your profile. In the mean time, relax!</p>
         <a style="border-radius: 30px;" href="{% url 'home'%}" name="submit" type="submit" class="sign-in-submit-input font-fam">Go Back</a>
 

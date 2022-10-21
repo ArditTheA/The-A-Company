@@ -15,37 +15,40 @@
     <div class="experience-div second-experience-div">
         <div class="experience-paragraph-img-rows">
             <div class="aaa">
-            <p class="experience-paragraph">Experience</p>
-            {% for i in userExp%}
-            <div class="experience-rows-img" style="">
-                <img class="experience-education-img" src="{% static 'img/Logo (8).png' %}" alt="">
-                <div class="experience-rows">
-                <div style="display: flex; width: 100%;">
-                    <div class="experience-first-row">{{i.title}}</div>
-                    <div class="two-imgs-experience">
-                    
-                <a href="{% url 'editExprienceId' i.id %}">
-                    <img class="edit-experience edit-experience-pop-up-button" title="Edit Experience" src="{% static 'img/Ikona_edit-01 56.png' %}" alt=""></a>
-                </div>
-                </div>
-                <div class="experience-second-row">{{i.company}}</div>
-                <div class="experience-third-row">{{i.city_usExp}}, {{i.Country}}</div>
-                <div class="experience-fourth-row">
-                    {{i.start_date|date:'d-m-Y'}} -
+                <p class="experience-paragraph">Experience</p>
+                {% for i in userExp%}
+                <div class="experience-rows-img" style="">
+                    <img class="experience-education-img" src="{% static 'img/worki_icons-18.jpg' %}" alt="">
+                    <div class="experience-rows">
+                        <div style="display: flex; width: 100%;">
+                            <div class="experience-first-row">{{i.title}}</div>
+                            <div class="two-imgs-experience">
+
+                                <a href="{% url 'editExprienceId' i.id %}">
+                                    <img class="edit-experience edit-experience-pop-up-button" title="Edit Experience"
+                                        src="{% static 'img/Ikona_edit-01 56.png' %}" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="experience-second-row">{{i.company}}</div>
+                        <div class="experience-third-row">{{i.city_usExp}}, {{i.Country}}</div>
+                        <div class="experience-fourth-row">
+                            {{i.start_date|date:'d/m/Y'}} -
                             {% if i.end_date == null%}
                             Present
                             {% else %}
-                            {{i.end_date |date:'d-m-Y'}}
+                            {{i.end_date |date:'d/m/Y'}}
                             {% endif%}
+                        </div>
+                    </div>
                 </div>
-                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
-        </div>
         </div>
         <div class="add-and-edit-experience">
-          <a href="{% url 'profile'%}"><img class="back-icon" title="Go Back" src="{% static 'img/backButton.png' %}" alt=""></a>         
-          <img class="add-experience-button plus-button-exp" title="Add Experience" src="{% static 'img/Vector 80.png' %}" alt="">
+            <a href="{% url 'profile'%}"><img class="back-icon" title="Go Back" src="{% static 'img/backButton.png' %}"
+                    alt=""></a>
+            <img class="add-experience-button plus-button-exp" title="Add Experience"
+                src="{% static 'img/Vector 80.png' %}" alt="">
         </div>
     </div>
 </div>
@@ -61,42 +64,53 @@
             <form method="POST" action="" class="sign-up-form">
                 {% csrf_token %}
                 <div style="display: none;">
+                    {{form}}
                     {{for_usExp.user_id}}
                 </div>
                 <div class="div-of-job-experience">
-                    <p class="paragraph-of-name paragraphs-stats">Job title *</p>
+                    <p class="paragraph-of-name paragraphs-stats">Job title</p>
                     {{for_usExp.title}}
                 </div>
 
                 <div>
-                    <p class="paragraph-of-surname paragraphs-stats">Company *</p>
+                    <p class="paragraph-of-surname paragraphs-stats">Company</p>
                     {{for_usExp.company}}
                 </div>
                 <div>
-                    <p class="paragraph-of-country paragraphs-stats">Country *</p>
+                    <p class="paragraph-of-country paragraphs-stats">Country</p>
                     {{for_usExp.Country}}
+                    <datalist id="usExpCountryList">
+                        {% for i in country %}
+                            <option>{{i}}</option>
+                        {% endfor %}
+                    </datalist>
                 </div>
                 <div>
-                    <p class="paragraph-of-city paragraphs-stats">City *</p>
+                    <p class="paragraph-of-city paragraphs-stats">City</p>
                     {{for_usExp.city_usExp}}
+                    <datalist id="usExpCityList">
+                        {% for i in city %}
+                            <option>{{i.name}}</option>
+                        {% endfor %}
+                    </datalist>
                 </div>
                 <div>
 
                     <div style="display: flex; justify-content: space-between;">
                         <div style="width: 48%;">
                             <p class="paragraphs-stats paragraph-of-start-date">Start date</p>
-                            <input type="date" name="start_date" class="start-date-input mutual-stats font-fam"
-                                required="" id="id_start_date">
+                            <input id="id_start_date" class="start-date-input mutual-stats font-fam" name="start_date" type="tel" maxlength="10" placeholder="dd/mm/yyyy" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
+
                         </div>
                         <div style="width: 48%;
                     float: right;">
                             <p class="paragraphs-stats paragraph-of-end-date">End date</p>
-                            <input type="date" name="end_date" class="end-date-input mutual-stats font-fam" 
-                                id="id_end_date">
+                            <input id="id_end_date" class="end-date-input mutual-stats font-fam" name="end_date" type="tel" maxlength="10" placeholder="dd/mm/yyyy" oninput="this.value = MMDDYYYY(this.value, event)" />
+
+                            
                         </div>
                     </div>
-                    </div>
-                    <div class="save-button">
+                    <div class="save-button save-button-edit-add-education-480">
                         <input name="save" type="submit" class="save-submit-input save-picture font-fam" value="Save">
 
                     </div>
@@ -104,7 +118,7 @@
         </div>
     </div>
 </div>
-    
+
 
 <script src="{% static 'js/profile_dropdown.js' %}"></script>
 <script src="{% static 'js/js.js' %}"></script>

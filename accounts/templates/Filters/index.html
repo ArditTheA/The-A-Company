@@ -1,7 +1,8 @@
 {% load static %}
 
-<div class="jobs-left" style="" id="myDIV">
+<div class="jobs-left" id="myDIV" style="">
     {% for i in job %}
+    <span class="move"></span>
            <div onclick="getNumber({{i.id}},{{i.total_applicant}})" class="jobs-rows-img second-jobs margin-top-jobs-rows-img same-background-jobs pixel"  id="select{{i.id}}">
                <img class="experience-education-img" src="{{i.logo.url}}" alt="">
                <span class="experience-rows">

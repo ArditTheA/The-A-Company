@@ -1,12 +1,14 @@
 {% autoescape off %}
-Hello - {{user.first_name}} {{user.last_name}}
-Thanks for taking the time to apply for our position. We appreciate your interest in {{job.company}}
+Hello, {{user.first_name}}!
 
-We're currently in the process of taking applications for this position. 
-We will begin taking interviews. If you are selected to continue to the interview process,
-our human resources department will be in contact with you soon as possible.
+You have successfully applied for {{job.job_title}}.
 
-Thanks for using {{ site_name }}!
+You’re guaranteed to hear soon via email or phone call about your job application. 
+
+Don’t worry, we're not like the other ones. 
+
+We’ll be in touch soon,
+Worki Team
 
 {% endautoescape %}
 

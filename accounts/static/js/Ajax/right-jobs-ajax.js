@@ -53,19 +53,6 @@
         }
         
         let textarea = document.getElementById('message');
-        // textarea.value = "";
-        // textarea.value += data["description"];
-        // var text = $('#message');
-
-        // text.each(function(){
-        //     $(this).attr('rows',1);
-        //     resize($(this));
-        // });
-        
-        // function resize ($text) {
-        //     $text.css('height', 'auto');
-        //     $text.css('height', $text[0].scrollHeight+10+'px');
-        // }
         textarea.innerHTML=data["description"]
 
 
@@ -75,11 +62,16 @@
         var city_jobs = document.getElementById("city")
         city_jobs.innerHTML = data["city_j"]+",  "+data["country"]
 
-       
-
         var countApplicant = document.getElementById("countApplicant")
-        countApplicant.innerHTML = data["appNo"]+" Applicant"
-        
+       
+        if(data["appNo"]==0){
+            countApplicant.innerHTML = data["appNo"]+" Applicants"
+        }else if(data["appNo"]>=2){
+            countApplicant.innerHTML = data["appNo"]+" Applicants"
+        }
+        else{
+            countApplicant.innerHTML = data["appNo"]+" Applicant"
+        }
 
         var start_date = document.getElementById("sDate");
         start_date.innerHTML = data["start_date"] +" - "+data["end_date"];

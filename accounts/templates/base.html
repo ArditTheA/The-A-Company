@@ -13,12 +13,25 @@
     <link rel="stylesheet" href="{% static 'css/filter.css'%}">
     <link rel="stylesheet" href="{% static 'css/authenticated.css'%}">
     <link rel="stylesheet" href="{% static 'css/profile-header.css'%}">
+    <link rel="stylesheet" href="{% static 'css/posted-jobs-media-queries.css'%}">
     <link rel="stylesheet" href="{% static 'css/jobi.css'%}">
     <link rel="icon" href="{% static 'img/123.png' %}">
     <style type="text/css">
         body {
             -webkit-tap-highlight-color: transparent;
         }
+        /* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
@@ -27,12 +40,12 @@
     {% if user.is_authenticated %}
 
     <header class="header-border">
-        <a href="{% url 'home'%}"><img id="worki-image" src="{% static 'img/Worki_Logo_Black.png' %}" title="Worki"></a>
+        <a href="{% url 'home'%}"><img id="worki-image" src="{% static 'img/12.jpeg' %}" title="Worki"></a>
         <div id="jobs-and-profile">
 
             <a href="{% url 'home'%}"><img class="jobs-icon-button" title="Jobs"
                     src="{% static 'img/JOBS_Icon.png' %}"></a>
-            {% if user.is_authenticated and user.profile != "defaultProfile.png"%}
+            {% if user.is_authenticated and user.profile != "defaultProfile.jpg"%}
             <img src="{{user.profile.url}}" id="profile-image-button" title="Profile" alt="">
             {% elif user.is_authenticated and not backends.associated %}
             <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" id="profile-image-button" title="Profile"
@@ -56,7 +69,7 @@
 
     {% else %}
     <header class="header-border">
-        <a href="{% url 'home'%}"><img id="worki-image" src="{% static 'img/Worki_Logo_Black.png' %}" title="Worki"></a>
+        <a href="{% url 'home'%}"><img id="worki-image" src="{% static 'img/12.jpeg' %}" title="Worki"></a>
         <div id="jobs-and-profile">
             <a href="{% url 'home'%}"><img class="jobs-icon-button" title="Jobs"
                     src="{% static 'img/JOBS_Icon.png' %}"></a>
@@ -80,6 +93,33 @@
     {% endblock content%}
 
 </body>
+<script>
+    function MMDDYYYY(value, event) {
+      let newValue = value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');
+    
+      const dayOrMonth = (index) => index % 2 === 1 && index < 4;
+    
+      // on delete key.  
+      if (!event.data) {
+        return value;
+      }
+    
+      return newValue.split('').map((v, i) => dayOrMonth(i) ? v + '/' : v).join('');;
+      
+      ducument.getElementById("test").innerHTML(newValue)
+    }
+    
+    </script>
+<script>
+    function Post(){
+        var textareaText = $('#myTextArea').val();
+        var test = textareaText.replace(/\r?\n/g, '<br />');
+        var x = document.getElementById('myTextArea');
+        x.value = test;
+        document.getElementById('form-id').submit();
+    }
+    
+</script>
 <script src="{% static 'js/profile_dropdown.js'%}"></script>
 <script src="{% static 'js/jobs-img.js'%}"></script>
 <script src="{% static 'js/exit-job-description-button.js'%}"></script>

@@ -4,19 +4,18 @@
 
 <link rel="stylesheet" href="{% static 'css/addJobs.css'%}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css">
 <style type="text/css">
 
 	@import url('https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500&display=swap');
-
+	input::placeholder{
+		color: gray  !important;
+	}
     body {
 		margin: 0;
 		background-color: #E5E5E5;
 		font-family: 'Spline Sans', sans-serif;
   	}
-	select{
-		height: auto !important;
-	}
 	.navbar {
 		padding-top: 40px;
 		padding-bottom: 40px;
@@ -84,7 +83,7 @@
     	border-radius: 40px;
     	border: 0.5px solid #9E9E9E;
     	background-color: white;
-    	/*width: 600px;*/
+		height: 100%;
     }
 
     .mid{
@@ -361,6 +360,7 @@
 }
 
     </style>
+    <script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/classic/ckeditor.js"></script>
 <div class="container-add-a-job">
         <form class="register-form" id="form-id" method="post" enctype="multipart/form-data">
 			{% csrf_token %}
@@ -379,12 +379,22 @@
       				<label class="margin-top-bottom margin-left next-none">Country *</label>
 				<div>
 					{{form.country_j}}
+					<datalist id="countryList">
+						{% for i in country%}
+						<option>{{i}}</option>
+						{% endfor %}
+					</datalist>
 				</div>
       		  </div>
 
       		 <div class="form-group" style="margin: 0;">
       		 	<label class="margin-top-bottom margin-left next-none">City *</label>
 				 {{form.city_j}}
+				 <datalist id="cityList">
+					{% for i in city %}
+					<option>{{i.name}}</option>
+					{% endfor %}
+				</datalist>
       	</div>
       		<div class="form-group" style="margin: 0;">
       			<label class="margin-top-bottom margin-left next-none">Salary per hour *</label>
@@ -392,7 +402,21 @@
       		</div>
       		<div class="form-group" style="margin: 0;">
       		    <label class="margin-top-bottom margin-left next-none" for="exampleFormControlSelect2">Type of work *</label>
-				{{form.type_of_work}}
+				  <select name="type_of_work" class="custom-select sel select-options-input next-none padding-of-inputs" required="" id="id_type_of_work">
+					<option value=""></option>
+				     {% if form.type_of_work.value == "Part Time" %}
+					<option value="Part Time" selected>Part Time</option>
+					{% else %}
+					<option value="Part Time">Part Time</option>
+
+					{% endif %}
+					{% if form.type_of_work.value == "Full Time"%}
+					<option value="Full Time" selected="">Full Time</option>
+					
+					{% else %}
+					<option value="Full Time" s>Full Time</option>
+					{% endif %}
+				  </select>
 			</div>
             <div class="form-group" style="margin: 0;">
       			<label class="margin-top-bottom margin-left next-none">Hours per week *</label>
@@ -400,15 +424,30 @@
       		</div>
               <div class="form-group" style="margin: 0;">
                 <label class="margin-top-bottom margin-left next-none">Start date *</label>
-				  {{form.start_date}}
+				<input class="start-date-input mutual-stats font-fam next-none" id="id_start_date" value="{{form.start_date.value|date:'d/m/Y'}}"class="start-date-input mutual-stats font-fam" name="start_date" type="tel" maxlength="10" placeholder="dd/mm/yyyy" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
+
             </div>
             <div class="form-group" style="margin: 0;">
                 <label class="margin-top-bottom margin-left next-none">End date *</label>
-				{{form.end_date}}
+				<input class="start-date-input mutual-stats font-fam next-none" id="id_end_date" value="{{form.end_date.value|date:'d/m/Y'}}"class="start-date-input mutual-stats font-fam" name="end_date" type="tel" maxlength="10" placeholder="dd/mm/yyyy" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
+
             </div>
       		  <div class="form-group" style="margin: 0;">
       		    <label class="margin-top-bottom margin-left next-none" for="exampleFormControlSelect2">Housing *</label>
-				{{form.housing}}
+				  <select name="housing" class="custom-select sel select-options-input next-none padding-of-inputs" required="" id="id_housing">
+					<option value=""></option>
+					{% if form.housing.value == "Not provided"%}
+					<option value="Not provided" selected>Not provided</option>
+					{% else %}
+					<option value="Not provided">Not provided</option>
+					{% endif %}
+					{% if form.housing.value == "Provided"%}
+					<option value="Provided" selected="">Provided</option>
+					{% else %}
+					<option value="Provided" >Provided</option>
+					{% endif %}
+
+				  </select>
 			  </div>
             <div class="form-group" style="margin: 0;">
                 <label class="margin-top-bottom margin-left next-none">Housing cost per week *</label>
@@ -416,7 +455,32 @@
             </div>
       		  <div class="form-group">
       		    <label class="margin-top-bottom margin-left next-none" for="exampleFormControlSelect2">Program *</label>
-      		    {{form.program}}
+				  <select name="program" class="custom-select sel select-options-input next-none padding-of-inputs" required="" id="id_program">
+					<option value=""></option>
+					{% if form.program.value == "Trainee"%}
+					<option value="Trainee" selected="">Trainee</option>
+					{% else %}
+					<option value="Trainee">Trainee</option>
+
+					{% endif %}
+					{% if form.program.value == "Internship" %}
+					<option value="Internship" selected>Internship</option>
+					{% else %}
+					<option value="Internship">Internship</option>
+					
+					{% endif %}
+					{% if form.program.value == "Work and Travel" %}
+					<option value="Work and Travel" selected>Work and Travel</option>
+					{% else %}
+					<option value="Work and Travel">Work and Travel</option>
+					{% endif %}
+					{% if form.program.value == "Ausbildung" %}
+
+					<option value="Ausbildung">Ausbildung</option>
+					{% else %}
+					<option value="Ausbildung">Ausbildung</option>
+					{% endif %}
+				  </select>
 			  </div>
               <div class="form-group" style="margin: 0;">
                 <label class="margin-top-bottom margin-left next-none">Program Cost *</label>
@@ -429,12 +493,15 @@
                 	<div style="cursor: pointer; display: flex; align-items: center;" class="upload-file-div"><img style="vertical-align: middle; margin-left: 5px;" class="icon" src="{% static 'img/gallery-upload.png'%}" alt=""><div style="margin-left: 37px;">Upload your file</div></div>
 				</div>
                 </label>
-				{{form.logo}}
+				<input type="file" name="logo" accept="image/*" required="" id="id_logo"  style="display:none;">
 
             </div>
             <div style="width: 100%; display: flex; justify-content: space-between;">
             <a href="{% url 'postedJob'%}"  class="btn back-button next-none" style="color: #1877F2;">Back</a>
-            <a class="btn submit-button next-button next-none" style="color: white;">Next</a>
+            <a class="btn submit-button next-button next-none" onclick="var ta = document.getElementById('myTextArea');var text = '{{form.description.value}}';
+			var re = /<br *\/?>/gi;
+			ta.value = text.replace(re, '\n');
+		  " style="color: white;">Next</a>
             </div>
 		</div>
 		<div class="second-next-none" style="display: none; color: #1877F2; padding-bottom: 40px; text-align: center; font-size: 40px;">
@@ -445,7 +512,8 @@
 			<img class="second-next-none" title="Bold" class="bold-font-button" style="display: none; height: 20px; margin-right: 20px; cursor: pointer;" src="{% static 'img/B .png'%}" alt="">
 			<img class="second-next-none" style="display: none; height: 20px;" src="{% static 'img/bullets 1.png'%}" alt="">
 		</div>
-		{{form.description}}
+		<div id="myDiv">
+			<textarea name="description" cols="40" rows="10" class="scroll inner-text second-next-none" id="myTextArea" style="display:none;"></textarea>
 			<div style="display:none;">
 						{{form.status}}
 						{{form.postDate}}
@@ -456,11 +524,36 @@
 		</div>
 		<div class="back-submit-buttons" style="">
 			<a class="back-button back-button-description second-next-none" style="display: none; color: #1877F2;">Back</a>
-			<a id="sub" style="display: none; color: white;text-decoration: none;" href="javascript:void(0);" onclick="document.getElementById('form-id').submit();" class="submit-button submit-button-description second-next-none"> Submit</a>
-
+			<a id="sub" style="display: none; color: white;text-decoration: none;" href="javascript:void(0);" onclick="Post()" class="submit-button submit-button-description second-next-none"> Submit</a>
 		</div>
     </form>
 	</div>
+	<script>
+		function test(){
+		jQuery("#myTextArea").val(jQuery("#myDiv").html()
+      .replace(/\<br \>/g, "\n")
+      .replace(/\<br \/\>/g, "\n"));}
+    </script>
+	<script>
+		function f(){
+			var element = "{{form.description.value}}";
+			console.log(element)
+		}
+		window.onload = f();
+	</script>
+	<script>
+		function Post(){
+			var textareaText = $('#myTextArea').val();
+			var test = textareaText.replace(/\r?\n/g, '<br />');
+			var x = document.getElementById('myTextArea');
+            x.value = test;
+			document.getElementById('form-id').submit();
+		}
+        
+    </script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="{% static 'js/Profile/dropdown.js'%}"></script>
+
 <script src="{% static 'js/second-next.js'%}"></script>
 <script src="{% static 'js/back-job-description.js'%}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

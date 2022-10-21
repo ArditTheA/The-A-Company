@@ -18,12 +18,16 @@ body {
 .add-experience, .add-education, .edit-experience-pop-up {
     text-align: center;
     background-color: white;
-    padding: 30px 40px 40px 40px;
-    border-radius: 40px;
+    padding: 20px 20px 20px 20px;
+    border-radius: 20px;
     box-sizing: border-box;
     position: absolute;
     /* Increase/Decrease this value for cross-browser compatibility */
     overflow-y: scroll;
+    
+}
+.add-education{
+    height: 80vh;
 }
 
 .add-languages {
@@ -58,7 +62,7 @@ body {
 
 #title-experience {
     width: 300px;
-    font-size: 40px;
+    font-size: 30px;
     font-weight: 400;
     color: #1877F2;
     margin: auto;
@@ -81,7 +85,7 @@ body {
 .mutual-stats {
     border-radius: 30px;
     padding: 10px 0px 10px 10px;
-    font-size: 18px;
+    font-size: 16px;
     border: 0.5px solid #9E9E9E;
     background-color: white;
     width: 100%;
@@ -103,7 +107,7 @@ body {
 .city-input, .program-input {
     border-radius: 30px;
     padding: 10px 0px 10px 10px;
-    font-size: 18px;
+    font-size: 16px;
     border: 0.5px solid #9E9E9E;
     background-color: white;
     width: 100%;
@@ -126,6 +130,9 @@ body {
     display: flex;
     justify-content: flex-start;
     cursor: pointer;
+}
+.save-edu{
+    padding-bottom: 80px !important;
 }
 
 .exit-button {
@@ -150,16 +157,17 @@ body {
 }
 
 .paragraphs-stats {
-    font-size: 16px;
+    font-size: 14px;
     float: left;
     margin: 0;
     margin-left: 10px;
     margin-bottom: 5px;
+    margin-top: 10px;
     color: #9E9E9E;
 }
 
 .paragraph-of-surname, .paragraph-of-country, .paragraph-of-city, .paragraph-of-program, .paragraph-of-start-date, .paragraph-of-end-date {
-    margin-top: 10px;
+
 }
 
 .second-paragraph {
@@ -185,6 +193,7 @@ body {
 
 .save-button {
     padding-top: 40px;
+  
 }
 
 .sign-up-google {
@@ -231,6 +240,11 @@ body {
 }
 
 @media screen and (max-width: 480px) {
+    .add-experience, .add-education, .edit-experience-pop-up{
+        height: calc(100% - 20px) !important;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
     .bg-add-and-edit, .bg-edit-experience {
         background-color: #E5E5E5;
     }
@@ -240,12 +254,15 @@ body {
         height: calc(100% - 20px);
         padding: 0;
         padding: 30px 20px 0px 20px;
-        border-radius: 15px;
+        border-radius: 20px;
     }
     .under-container {
         width: 100%;
         margin: auto;
         height: 100%;
+    }
+    .exit-img-edit-experience {
+        margin-bottom: 30px;
     }
     .exit-button-edit-profile {
         margin-bottom: 30px;

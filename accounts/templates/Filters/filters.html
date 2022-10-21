@@ -19,7 +19,7 @@
                 <div class="second-input-form" style="">
                 <input style="" name="q" placeholder="Search by job or location"
                     class="search-input inputs-right-margin" id="input-removed"
-                    style="padding-top: 8px; padding-bottom: 8px; padding-left: 20px; background-color: white;">
+                    style="padding-top: 8px; padding-bottom: 8px; padding-left: 20px; background-color: white; " autocomplete="off">
                 </input>
                 <img style="display: none;" class="input-exit-button" title="Exit" src="{% static 'img/Vector 81 (1).png'%}" style="width: 8px; height: 8px; background-color: red;" alt="">
             </div>
@@ -216,10 +216,10 @@
       <div class="container-fluid " style="cursor: pointer;">
         <div id="mySelectLabel" class="selectBox" style="z-index: 99; position: static">
           <div class="input-form margin inputs-right-margin" style="">
-            {% if filterSalary != '' %}
+            {% if filterSalary != "" %}
             <select id="selSalary" style="color: #f1f1f1; background-color: #1877f2;border: none; font-size: 18px; padding-top: 0; padding-bottom: 0; 
             padding: 8px 30px; padding-left: 20px;" name="Salary" class="form-select" id="second_form_select">
-              <option value="{{filterSalary}}" id="" class="first-input-option">{{filterSalary}}$</option>
+              <option value="{{filterSalary}}" id="" class="first-input-option"> {{filterSalary}}</option>
             </select>
             <div class="" style="display: flex; align-items: center;">
               <img class="icon" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
@@ -245,12 +245,12 @@
             {% for i in salary %}
             {%if i == filterSalary %}
             <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type"
-                onclick="salaryFunction()" onchange="this.form.submit()" value="{{i}}" /> {{i}}$</label>
+                onclick="salaryFunction()" onchange="this.form.submit()" value="{{i}}" /> {{i}}</label>
 
 
             {%else%}
             <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
-                onchange="checkboxStatusChange()" onclick="setTimeout(myFunction, 1);" value="{{i}}" /> {{i}}$</label>
+                onchange="checkboxStatusChange()" onclick="setTimeout(myFunction, 1);" value="{{i}}" /> {{i}}</label>
             {% endif %}
             {% endfor %}
 

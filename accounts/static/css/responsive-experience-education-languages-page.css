@@ -1,0 +1,76 @@
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+
+    .second-experience-rows-img, .second-education-rows-img {
+        margin-top: 30px;
+    }
+    .first-experience-rows-img, .first-education-rows-img {
+        margin-top: 30px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .languages-div {
+        margin-top: 10px;
+    }
+    .second-experience-rows-img, .second-education-rows-img {
+        margin-top: 20px;
+    }
+
+    .edit-experience-pop-up-button {
+        margin-right: -20px;
+    }    
+    .back-icon {
+        height: 18px;
+    }
+    .plus-button-exp {
+        width: 21px;
+        height: 21px;
+    }
+    .bg-edit-experience {
+    }
+    .date-paragraphs-of-eduaction {
+        font-size: 15px;
+        margin-left: 5px;
+        width: 160px;
+    }
+    .paragraph-of-end-date {
+    }
+    .start-date-div {
+    }
+    .end-date-div {
+    }
+    .edit-experience-pop-up, .edit-languages-pop-up {
+        width: calc(100% - 20px);
+        height: calc(100% - 20px);
+        border-radius: 20px;
+        padding-top: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .save-submit-input {
+        margin-top: -10px;
+                         /* qe i bie margin-top: 30px nga 40px sa eshte ne fillim */
+    }
+    
+    .save-button-second-experience-pop-up {
+    }
+    .under-container {
+        width: 100%;
+    }
+    #title-experience {
+        margin-top: -10px;
+        margin-bottom: -10px;
+        font-size: 30px;
+    }
+    #title {
+        font-size: 30px;
+    }
+
+    .under-container {
+    }
+    .exit-button-edit-experience {
+        width: 14px;
+        height: 14px;
+    }
+    
+}
