@@ -55,6 +55,8 @@ INSTALLED_APPS = [
 
     #django filters
     'django_filters',
+
+    'analytical',
 ]
 
 SOCIAL_AUTH_PIPELINE = (
