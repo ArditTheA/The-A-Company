@@ -498,7 +498,12 @@
             </div>
             <div style="width: 100%; display: flex; justify-content: space-between;">
             <a href="{% url 'postedJob'%}"  class="btn back-button next-none" style="color: #1877F2;">Back</a>
-            <a class="btn submit-button next-button next-none"  onclick="" >Next</a>
+            <a class="btn submit-button next-button next-none" style="color: white;" onclick="
+			var ta = document.getElementById('myTextArea');
+			var text = '{{des}}';
+			var re = /<br *\/?>/gi;
+			ta.value = text.replace(re, '\n');
+		  " >Next</a>
             </div>
 		</div>
 		<div class="second-next-none" style="display: none; color: #1877F2; padding-bottom: 40px; text-align: center; font-size: 40px;">
@@ -510,7 +515,7 @@
 			<img class="second-next-none" style="display: none; height: 20px;" src="{% static 'img/bullets 1.png'%}" alt="">
 		</div>
 		<div id="myDiv">
-			<textarea name="description" cols="40" rows="10" class="scroll inner-text second-next-none" id="myTextArea" style="display:none;">{{des}}</textarea>
+			<textarea name="description" cols="40" rows="10" class="scroll inner-text second-next-none" id="myTextArea" style="display:none;"></textarea>
 			<div style="display:none;">
 						{{form.status}}
 						{{form.postDate}}
@@ -525,17 +530,7 @@
 		</div>
     </form>
 	</div>
-	<script>
-				
-    </script>
-	<script>
-		window.onload = function formatText() {
-			cell_string ="{{des}}";
-			console.log(cell_string)
-			
-			
-		}
-	</script>
+	
 	<script>
 		function Post(){
 			var textareaText = $('#myTextArea').val();

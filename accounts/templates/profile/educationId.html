@@ -71,8 +71,25 @@
                     {{edit.field_of_study}}
                     </div>
                     <div>
-                        <p class="paragraph-of-surname paragraphs-stats">Degree</p>
-                        {{edit.degree}}
+                        <p class="paragraph-of-surname paragraphs-stats">Degree {{edit.degree.value}}</p>
+                        <select name="degree" required="" id="id_degree">
+                            <option selected></option>
+                            {% if edit.degree.value == "Bachelor’s Degree"%}
+                            <option value="Bachelor" selected>Bachelor’s Degree</option>
+                            {% else %}
+                            <option value="Bachelor" >Bachelor’s Degree</option>
+
+                            {% endif %}
+                            
+                            {% if edit.degree.value == "Master’s Degree" %}
+                            <option value="Master"  selected >Master’s Degree</option>
+
+                            {% else %}
+                            <option value="Master" >Master’s Degree</option>
+
+                            {% endif %}
+    
+                        </select>
                     </div>
                     <p class="paragraph-of-surname paragraphs-stats">Country</p>
                         {{edit.country_e}}

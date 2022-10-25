@@ -140,8 +140,6 @@ def update_profile(request):
         if form_usLang.is_valid():
             form_usLang.save()
         if form_usEdu.is_valid():
-            
-            
             if not Country.objects.filter(country=EduCountry).exists():
                 usCo = Country()
                 usCo.country=EduCountry

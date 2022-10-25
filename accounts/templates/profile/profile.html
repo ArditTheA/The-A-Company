@@ -371,7 +371,12 @@
             </div>
             <div >
                 <p class="paragraph-of-surname paragraphs-stats">Degree </p>
-                {{form_usEdu.degree}}
+                <select name="degree" required="" id="id_degree">
+                    <option selected></option>
+                    <option value="Bachelor" >Bachelor’s Degree</option>
+
+                    <option value="Master" >Master’s Degree</option>
+                </select>
             </div>
             <div >
                 <p class="paragraph-of-surname paragraphs-stats">Country </p>
@@ -411,7 +416,7 @@
             <div style="width: 48%;
             float: right;">
             <p class="paragraphs-stats paragraph-of-end-date">End year </p>
-            <input id="id_end_year" class="end-date-input mutual-stats font-fam" name="end_year" type="tel" maxlength="10" placeholder="dd/mm/yyyy" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
+            <input id="id_end_year" class="end-date-input mutual-stats font-fam" name="end_year" type="tel" maxlength="10" placeholder="dd/mm/yyyy" oninput="this.value = MMDDYYYY(this.value, event)" />
 
             </div>
             </div>
