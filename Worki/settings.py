@@ -31,6 +31,7 @@ SOCIALACCOUNT_QUERY_EMAIL=True
 # Application definition
 DATE_INPUT_FORMATS = ('%d/%m/%Y','%d-%m-%Y','%Y-%m-%d')
 USE_L10N = True
+HOTJAR_SITE_ID ='3217621'
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
