@@ -60,8 +60,8 @@ class EditProf(ModelForm):
 
             "country":forms.TextInput(attrs={"class":"test name-input mutual-stats font-fam","list":"countryList"}),
 
-            'profile': forms.FileInput(attrs={'id': 'id_profile'}),
-            'cover': forms.FileInput(attrs={'class': 'upload_profile_pic',"id":"id_cover"}),
+            'profile': forms.FileInput(attrs={'id': 'id_profile',"onchange":"document.getElementById('profilePic').src = window.URL.createObjectURL(this.files[0])"}),
+            'cover': forms.FileInput(attrs={'class': 'upload_profile_pic',"id":"id_cover","onchange":"document.getElementById('coverPic').src = window.URL.createObjectURL(this.files[0])"}),
 
         }
         # fields = '__all__'

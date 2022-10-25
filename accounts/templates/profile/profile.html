@@ -32,13 +32,9 @@
     <div class="second-part-profile-header">
         <div class="profile-image-and-edit">
             <div class="profile-image-and-add-button">
-                {% if user.is_authenticated and user.profile != "defaultProfile.jpg"%}
+                
                 <a href="" title="Profile Picture" ><img class="profile-image" src="{{user.profile.url}}" alt=""></a>
-                {% elif user.is_authenticated and not backends.associated %}
-                <a href="" title="Profile Picture" ><img class="profile-image" src="{{ user.socialaccount_set.all.0.get_avatar_url }}" alt=""></a>
-                {% elif user.is_authenticated and backends.associated %}
-                <a href="" title="Profile Picture" ><img class="profile-image" src="{{user.profile.url}}" alt=""></a>
-                {% endif %}
+                
                 <img src="{% static 'img/Asset 3.png' %}" title="Add Profile" id="plus-icon" alt="">
             </div>
 
@@ -53,7 +49,7 @@
     <div class="experience-div">
         <div class="experience-paragraph-img-rows">
             <div class="aaa">
-            <p class="experience-paragraph">Experience</p>
+            <p class="experience-paragraph">Experience </p>
             {% for i in usExp%}
             <div class="experience-rows-img">
                 <img class="experience-education-img" src="{% static 'img/worki_icons-18.jpg' %}" alt="">
@@ -288,7 +284,7 @@
                         <div style="width: 48%;
                     float: right;">
                             <p class="paragraphs-stats paragraph-of-end-date">End date</p>
-                            <input id="id_end_date" class="end-date-input mutual-stats font-fam" name="end_date" type="tel" maxlength="10" placeholder="dd/mm/yyyy" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
+                            <input id="id_end_date" class="end-date-input mutual-stats font-fam" name="end_date" type="tel" maxlength="10" placeholder="dd/mm/yyyy"  oninput="this.value = MMDDYYYY(this.value, event)" />
 
                             
                         </div>

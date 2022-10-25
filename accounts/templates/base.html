@@ -45,15 +45,10 @@ input[type=number] {
 
             <a href="{% url 'home'%}"><img class="jobs-icon-button" title="Jobs"
                     src="{% static 'img/JOBS_Icon.png' %}"></a>
-            {% if user.is_authenticated and user.profile != "defaultProfile.jpg"%}
+            
             <img src="{{user.profile.url}}" id="profile-image-button" title="Profile" alt="">
-            {% elif user.is_authenticated and not backends.associated %}
-            <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" id="profile-image-button" title="Profile"
-                alt="">
 
-            {% elif user.is_authenticated and backends.associated %}
-            <img src="{{user.profile.url}}" id="profile-image-button" title="Profile" alt="">
-            {% endif %}
+           
 
 
 

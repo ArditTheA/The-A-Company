@@ -297,12 +297,23 @@ def Edit_User_langId(request, pk):
 def addJob(request):
     uid = request.user.id
     form = add_Jobs(request.POST or None, request.FILES or None)
+    getCountry = request.POST.get("country_j")
+    getCity = request.POST.get("city_j")
     country_j = Country.objects.all()
     city_j = City.objects.all()
     jobTitle = request.POST.get("job_title")
     if request.method == "POST":
         if form.is_valid():
             form.save()
+            if not Country.objects.filter(country=getCountry).exists():
+                co = Country()
+                co.country = getCountry
+                co.save()
+            if not City.objects.filter(name=getCity).exists():
+                cit = City()
+                cit.name=getCity
+                cit.country=Country.objects.get(country=getCountry)
+                cit.save()
             subject = "Your job posting for "+jobTitle+"is under review"
             email_template_applicant = "main/jobs/postJob.txt"
             
@@ -336,10 +347,11 @@ def editJob(request, pk):
     form = editjob(request.POST or None, request.FILES or None, instance=job)
     country = Country.objects.all()
     city = City.objects.all()
+    des = job.description
     if form.is_valid():
         form.save()
         return redirect("postedJob")
-    return render(request, "Jobs/edit.html", {"form": form,"country":country,"city":city})
+    return render(request, "Jobs/edit.html", {"form": form,"country":country,"city":city,"des":des})
 
 
 #########################################################################################

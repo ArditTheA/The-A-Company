@@ -1,0 +1,128 @@
+body {
+    background-color: #f1f1f1;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.header-border {
+    background-color: white;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 0 5px #e7e7e7;
+}
+
+#worki-image {
+    margin-left: 40px;
+    height: 35px;
+    border-radius: 10px;
+    vertical-align: middle;
+}
+
+#jobs-and-profile {
+    float: right;
+    display: flex;
+    align-items: center;
+}
+
+.jobs-icon-button {
+    margin-right: 20px;
+    height: 35px;
+    vertical-align: middle;
+}
+
+#profile-image-button {
+    margin-right: 40px;
+    cursor: pointer;
+    height: 36px;
+    width: 36px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.dropdown, .dropdown-work-and-travel {
+    border: none;
+    display: none;
+    text-align: center; 
+    font-size: 18px; 
+    background-color: white;   /*display: none = nuk mund te perdoret transition: ... */
+    border-radius: 16px;
+    overflow: hidden;
+    position: absolute;
+    z-index: 2;
+    margin-top: 10px;
+}
+.dropdown {
+    right: 0;
+    transition: all 0.5s ease-in-out;
+    -webkit-box-shadow: 0 0 5px #e7e7e7;
+    box-shadow: 0 0 5px #e7e7e7;
+}
+.dropdown-work-and-travel {
+}
+.dropdown-content {
+    padding: 20px 20px 15px 20px;
+}
+
+.dropdown-mid-content {
+}
+
+.dropdown-content-text {
+    text-decoration: none;
+    color: #65676B;
+    margin-top: 15px;
+}
+.third-dropdown-content {
+    padding: 15px 0px 20px 0px;
+}
+
+.dropdown-content-text:hover {
+    color: black;
+}
+
+/* .showDropdown{
+    height: auto;
+    opacity: 1;
+} */
+
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+    #worki-image {
+        margin-left: 30px;
+    }
+    #profile-image-button {
+        margin-right: 30px;
+    }
+}
+
+@media screen and (max-width: 767px) and (min-width: 481px) {
+    #worki-image {
+        margin-left: 20px;
+    }
+    .jobs-icon-button {
+        margin-right: 20px;
+    }
+    #profile-image-button {
+        margin-right: 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #worki-image {
+        margin-left: 10px;
+    }
+    .jobs-icon-button {
+        margin-right: 20px;
+    }
+    #profile-image-button {
+        margin-right: 10px;
+    }
+    .dropdown {
+        font-size: 16px;
+    }
+}
