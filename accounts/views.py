@@ -346,6 +346,7 @@ def editJob(request, pk):
     country = Country.objects.all()
     city = City.objects.all()
     des = job.description
+    des=des.replace('<br />','\n')
     if form.is_valid():
         form.save()
         return redirect("postedJob")
