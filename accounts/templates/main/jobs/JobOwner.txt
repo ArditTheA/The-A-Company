@@ -1,13 +1,9 @@
-{% autoescape off %}
 Hello - {{job.user_id__first_name}} {{job.user_id__last_name}}
 {{user_first_name}} {{user_last_name}} {{user_email}}
 Has Just Apply for your job application
-
 {{job.job_title}} {{job.program}}- {{job.company}}
-
 Thanks for using {{ site_name }}!
 
-{% endautoescape %}
 
 
 

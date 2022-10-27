@@ -506,15 +506,16 @@ input:focus, select:focus
             <h1 class="next-none mid title-font-size f-title">Got an open spot?</h1>
             <h1 class="next-none mid title-font-size f-title">Post your job here!</h1>
       		<div class="form-group first-form-group">
-            <label class="disabled margin-top-bottom next-none margin-top-job-title">Job title * {{form.errors}}</label>
+            <label class="disabled margin-top-bottom next-none margin-top-job-title">Job title</label>
             {{form.job_title}}
       		</div>
       		<div class="form-group" style="margin: 0;">
-          <label class="margin-top-bottom next-none">Company *</label>
+          <label class="margin-top-bottom next-none">Company
+          </label>
 				{{form.company}}
       		</div>
       		<div class="form-group">
-      				<label class="margin-top-bottom margin-left next-none">Country *</label>
+      				<label class="margin-top-bottom margin-left next-none">Country</label>
 				<div>
 					{{form.country_j}}
 					<datalist id="country_jList">
@@ -526,7 +527,7 @@ input:focus, select:focus
       		  </div>
 
       		 <div class="form-group" style="margin: 0;">
-      		 	<label class="margin-top-bottom margin-left next-none">City *</label>
+      		 	<label class="margin-top-bottom margin-left next-none">City</label>
 				 {{form.city_j}}
 				 <datalist id="city_jlist">
 					{% for i in city_j%}
@@ -535,11 +536,11 @@ input:focus, select:focus
 				 </datalist>
       	</div>
       		<div class="form-group" style="margin: 0;">
-      			<label class="margin-top-bottom margin-left next-none">Salary per hour *</label>
+      			<label class="margin-top-bottom margin-left next-none">Salary per hour</label>
 				{{form.salary_per_hour}}
       		</div>
       		<div class="form-group" style="margin: 0;">
-      		    <label class="margin-top-bottom margin-left next-none" for="exampleFormControlSelect2">Type of work *</label>
+      		    <label class="margin-top-bottom margin-left next-none" for="exampleFormControlSelect2">Type of work</label>
 				  <select name="type_of_work" class="next-none" required="" id="id_type_of_work">
 					<option value=""></option>
 				  
@@ -550,21 +551,21 @@ input:focus, select:focus
 				  </select>
 			</div>
             <div class="form-group" style="margin: 0;">
-      			<label class="margin-top-bottom margin-left next-none">Hours per week *</label>
+      			<label class="margin-top-bottom margin-left next-none">Hours per week</label>
 				<input type="number" name="hour_per_work" placeholder="0" class="name-input mutual-stats font-fam next-none" required="" id="id_hour_per_work">
       		</div>
               <div class="form-group" style="margin: 0;">
-                <label class="margin-top-bottom margin-left next-none">Start date *</label>
+                <label class="margin-top-bottom margin-left next-none">Start date </label>
                 <input id="id_start_date" class="next-none" name="start_date" type="tel" maxlength="10" placeholder="dd/mm/yyyy" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
 
             </div>
             <div class="form-group" style="margin: 0;">
-                <label class="margin-top-bottom margin-left next-none">End date *</label>
+                <label class="margin-top-bottom margin-left next-none">End date </label>
                 <input id="id_end_date" class="next-none" name="end_date" type="tel" maxlength="10" placeholder="dd/mm/yyyy" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
 
             </div>
       		  <div class="form-group" style="margin: 0;">
-      		    <label class="margin-top-bottom margin-left next-none" for="exampleFormControlSelect2">Housing *</label>
+      		    <label class="margin-top-bottom margin-left next-none" for="exampleFormControlSelect2">Housing</label>
 				  <select name="housing" class="next-none" required=""  id="id_housing">
 					<option value="" selected=""></option>
 				  
@@ -574,11 +575,11 @@ input:focus, select:focus
 				  </select>
 			  </div>
             <div class="form-group" style="margin: 0;">
-                <label class="margin-top-bottom margin-left next-none">Housing cost per week *</label>
+                <label class="margin-top-bottom margin-left next-none">Housing cost per week</label>
 				{{form.housing_cost_per_week}}
             </div>
       		  <div class="form-group">
-      		    <label class="margin-top-bottom margin-left next-none" for="exampleFormControlSelect2">Program *</label>
+      		    <label class="margin-top-bottom margin-left next-none" for="exampleFormControlSelect2">Program</label>
       		    <select name="program" class="next-none" required="" id="id_program">
 					<option value=""></option>
 					<option value="Ausbildung">Ausbildung</option>
@@ -592,10 +593,10 @@ input:focus, select:focus
 				  </select>
 			  </div>
               <div class="form-group" style="margin: 0;">
-                <label class="margin-top-bottom margin-left next-none">Program Cost *</label>
+                <label class="margin-top-bottom margin-left next-none">Program Cost</label>
 				  {{form.programCost}}
             </div>
-            <div class="margin-top-bottom margin-left-bottom next-none" >Logo *</div>
+            <div class="margin-top-bottom margin-left-bottom next-none" >Logo</div>
             <div class="form-group upload next-none" style="margin: 0;">
                 <label class="logo-label" for="id_logo" style="">
 				<div class="input-form">

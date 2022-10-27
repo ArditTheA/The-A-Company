@@ -69,7 +69,7 @@
                             <span id="program"></span>&nbsp;&nbsp;·&nbsp;&nbsp;<span id="programCost"></span>
                         </div>
                         
-                        <div id="button" style="margin-top: 25px;padding-bottom: 8px"></div>
+                        <div id="button" style="margin-top: 33px;padding-bottom: 8px"></div>
                     </div>
                 </div>
                 <div class="right-jobs-rows-img-second">
@@ -81,8 +81,28 @@
     
 
 </div>
-<script type="text/javascript">
+<script>
+    function myFunction(x) {
+        var element = document.getElementById("detailsRow");
+  if (x.matches) {
+    var getJobList = document.querySelector(".jobs-rows-img")
+    getJobList.style.backgroundColor = "white"
+    element.style.display = "none"
+    
+  } else {
+    element.style.display = "flex";
+    getNumber("")
+  }
+}
 
+// Create a MediaQueryList object
+const mmObj = window.matchMedia("(max-width: 480px)")
+
+// Call the match function at run time:
+myFunction(mmObj);
+
+// Add the match function as a listener for state changes:
+mmObj.addListener(myFunction)
 </script>
 <script src="{% static 'js/Ajax/right-jobs-ajax.js'%}"></script>
 

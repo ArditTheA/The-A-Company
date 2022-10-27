@@ -312,7 +312,7 @@ def addJob(request):
                 cit.name=getCity
                 cit.country=Country.objects.get(country=getCountry)
                 cit.save()
-            subject = "Your job posting for "+jobTitle+"is under review"
+            subject = "Your job posting for "+jobTitle+" is under review"
             email_template_applicant = "main/jobs/postJob.txt"
             
             
@@ -347,7 +347,18 @@ def editJob(request, pk):
     city = City.objects.all()
     des = job.description
     des=des.replace('<br />','\n')
+    city = request.POST.get("city_j")
+    country = request.POST.get("country_j")
     if form.is_valid():
+        if not Country.objects.filter(country=country).exists():
+            co = Country()
+            co.country=country
+            co.save()
+        if not City.objects.filter(name=city).exists():
+            cit = City()
+            cit.name=city
+            cit.country = Country.objects.get(country=country)
+            cit.save()
         form.save()
         return redirect("postedJob")
     return render(request, "Jobs/edit.html", {"form": form,"country":country,"city":city,"des":des})
@@ -456,12 +467,14 @@ class AjaxHandler(View):
                 end_date = format(end_date, "%d/%m/%Y")
                 posted = format(posted, "%d/%m/%Y")
 
+                appNo = 0
+                appNo = Jobs.objects.get(id=post_id).applicant.count()
                 return JsonResponse(
                     dict(description=description, title=title, city_j=city_j, country=country, start_date=start_date,
                          salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
                          typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
                          program=program, programCost=programCost,
-                         posted=posted))
+                         posted=posted,appNo=appNo))
         return render(request, "Jobs/Posted.html", dict(job=job)) 
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
@@ -595,6 +608,9 @@ class MainJobs(View):
         jobi = []
 
         jobs = []
+        hasApply=False
+        hasApplyDate =""
+        
         if request.user.is_authenticated:
             auth = str(request.user.profileSetup)
         else:
@@ -778,7 +794,7 @@ class MainJobs(View):
         sortCity = []
         cityName = []
         sortSalary = []
-
+        
         if len(job) >= 1:
             program = job.values_list("program", flat=True)
             title = job.values_list("job_title", flat=True)
@@ -845,7 +861,11 @@ class MainJobs(View):
         if post_id == "":
             post_id = Jobs.objects.filter(approved=True).filter(status="Open").order_by(
                 "-postDate").values_list('id', flat=True).first()
-
+       
+            if Application.objects.filter(job_id=post_id).filter(user_id=request.user.id).exists():
+                hasApply=True
+                hasApplyDate=Application.objects.filter(job_id=post_id).filter(user_id=request.user.id).values_list("apply_date",flat=True).first()
+                hasApplyDate=format(hasApplyDate, "%d/%m/%Y")  
             appNo = Jobs.objects.get(id=post_id).applicant.count()
 
             if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
@@ -895,9 +915,13 @@ class MainJobs(View):
                          salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
                          typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
                          program=program, programCost=programCost,
-                         posted=posted, post_id=post_id, auth=auth, appNo=appNo))
+                         posted=posted, post_id=post_id, auth=auth, appNo=appNo,hasApply=hasApply,hasApplyDate=hasApplyDate))
         # take selected post byy id
         else:
+            if Application.objects.filter(job_id=post_id).filter(user_id=request.user.id).exists():
+                hasApply=True
+                hasApplyDate=Application.objects.filter(job_id=post_id).filter(user_id=request.user.id).values_list("apply_date",flat=True).first()
+                hasApplyDate=format(hasApplyDate, "%d/%m/%Y")            
             if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
                 description = Jobs.objects.filter(id=post_id).values_list(
                     'description', flat=True).first()
@@ -945,7 +969,7 @@ class MainJobs(View):
                          salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
                          typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
                          program=program, programCost=programCost,
-                         posted=posted, post_id=post_id, auth=auth, appNo=appNo))
+                         posted=posted, post_id=post_id, auth=auth, appNo=appNo,hasApply=hasApply,hasApplyDate=hasApplyDate))
         filterProgram = ""
         filterTitle = ""
         filterCompany = ""

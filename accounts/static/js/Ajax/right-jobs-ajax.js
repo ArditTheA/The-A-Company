@@ -111,11 +111,22 @@
         programCost.innerHTML = "Program Cost: €"+data["programCost"]
         var button = document.getElementById("button")
         var url= "apply/"+id
-        if (auth != "False"){
-            button.innerHTML = '<a href="'+url+'" class="applied-button-jobs outline-none" style="text-decoration:none;margin-top: 5px; width: fit-content; padding-top: 8px; padding-bottom: 8px;">Fast Apply</a>';
-        }else{
-        button.innerHTML = '<a href="'+url+'" class="applied-button-jobs outline-none" style="text-decoration:none;margin-top: 5px; width: fit-content; padding-top: 8px; padding-bottom: 8px;">Apply</a>';
+        var dateApply=data["hasApplyDate"]
+        var hasApply = data["hasApply"]
+        console.log(hasApply)
 
+        if(!hasApply){
+            console.log(hasApply)
+
+            if (auth != "False"){
+                console.log(hasApply)
+
+                button.innerHTML = '<a href="'+url+'" class="applied-button-jobs outline-none" style="text-decoration:none;margin-top: 5px; width: fit-content; padding-top: 8px; padding-bottom: 8px;">Fast Apply</a>';
+            }else{
+            button.innerHTML = '<a href="'+url+'" class="applied-button-jobs outline-none" style="text-decoration:none;margin-top: 5px; width: fit-content; padding-top: 8px; padding-bottom: 8px;">Apply</a>';
+            }
+        }else{
+            button.innerHTML=""
         }
 
 
@@ -147,15 +158,17 @@
         var jobs_buttons = document.querySelector('.jobs-buttons');
         console.log("asd")
         if (mediaQuery.matches) {
-                right_jobs_main_div.style.display = "none";
-                jobs_left.style.display = "flex";
-                jobs_buttons.style.display = "flex";
-                
+            
+            right_jobs_main_div.style.display = null;
+           
                 var select = document.getElementById('select'+id)
                 select.style.backgroundColor = "white";
                 
         };
+      
+    
         
         
         window.onload = getNumber(nul);
+       
 

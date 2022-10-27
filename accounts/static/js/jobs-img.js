@@ -9,6 +9,21 @@ var second_part_right = document.querySelectorAll('.right-jobs-rows-img-second')
 const firstMediaQuery = window.matchMedia('(min-width: 768px');
 const mediaQuery = window.matchMedia('(max-width: 767px)');
 
+        const mediaQuery1 = window.matchMedia('(max-width: 767px)');
+        var right_jobs_main_div = document.querySelector('.right-jobs-main-div');
+        var jobs_left = document.querySelector('.jobs-left');
+        var jobs_buttons = document.querySelector('.jobs-buttons');
+        console.log("asd")
+        if (mediaQuery1s.matches) {
+            
+            right_jobs_main_div.style.display = null;
+            jobs_left.style.display = "flex";
+            jobs_buttons.style.display = "flex";
+                var select = document.getElementById('select'+id)
+                select.style.backgroundColor = "white";
+                
+        };
+
     for (let i = 0; i < second_jobs_img.length; i++) {
         second_jobs_img[i].addEventListener('click', function() {
             if (firstMediaQuery.matches) {
