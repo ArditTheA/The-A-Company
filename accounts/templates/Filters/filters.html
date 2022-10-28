@@ -25,7 +25,7 @@
             </div>
         </div>
     </form>
-    <form style="display: flex;" class="buttons-form card" id="myForm" action="{% url 'filter'%}">
+    <form style="display: flex;" class="buttons-form card" id="myForm" action="{% url 'filter' %}">
       <!-- Program -->
       <div class="container-fluid " style="cursor: pointer;">
         <div id="mySelectLabel" class="selectBox" style="z-index: 99; position: static">
@@ -63,11 +63,11 @@
             {%if i == filterProgram %}
 
             <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type"
-                onclick="progFunction()" onchange="this.form.submit()" /> {{i}}</label>
+                onclick="progFunction();setTimeout(this.form.submit(),50)"/> {{i}}</label>
 
             {%else%}
             <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
-                onchange="checkboxStatusChange()" onclick="setTimeout(myFunction, 1);" value="{{i}}" /> {{i}}</label>
+                onchange="" onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="{{i}}" /> {{i}}</label>
             {% endif %}
             {% endfor %}
           </div>
@@ -113,7 +113,7 @@
 
             {%else%}
             <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
-                onchange="checkboxStatusChange()" onclick="setTimeout(myFunction, 1);" value="{{i}}" /> {{i}}</label>
+                 onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="{{i}}" /> {{i}}</label>
             {% endif %}
             {% endfor %}
           </div>
@@ -158,7 +158,7 @@
 
             {%else%}
             <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
-                onchange="checkboxStatusChange()" onclick="setTimeout(myFunction, 1);" value="{{i}}" /> {{i}}</label>
+                onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="{{i}}" /> {{i}}</label>
             {% endif %}
             {% endfor %}
           </div>
@@ -204,7 +204,7 @@
 
             {%else%}
             <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
-                onchange="checkboxStatusChange()" onclick="setTimeout(myFunction, 1);" value="{{i}}" /> {{i}}</label>
+               onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="{{i}}" /> {{i}}</label>
             {% endif %}
             {% endfor %}
 
@@ -250,7 +250,7 @@
 
             {%else%}
             <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
-                onchange="checkboxStatusChange()" onclick="setTimeout(myFunction, 1);" value="{{i}}" /> {{i}}</label>
+                onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="{{i}}" /> {{i}}</label>
             {% endif %}
             {% endfor %}
 
@@ -294,12 +294,12 @@
             {%else%}
 
             <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
-                onchange="checkboxStatusChange()" onclick="setTimeout(myFunction, 1);" value="Today" /> Today</label>
+                 onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="Today" /> Today</label>
             <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
-                onchange="checkboxStatusChange()" onclick="setTimeout(myFunction, 1);" value="Last Week" /> Last
+               onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="Last Week" /> Last
               Week</label>
             <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
-                onchange="checkboxStatusChange()" onclick="setTimeout(myFunction, 1);" value="Last Month" /> Last
+                onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="Last Month" /> Last
               Month</label>
             {% endif%}
 
@@ -312,6 +312,41 @@
     </form>
   </div>
 </div>
+
+
+<script type="text/javascript">
+  var progFunction = function () {
+    x = document.getElementById("selProg");
+    x.options[x.selectedIndex].text = "Program";
+    x.options[x.selectedIndex].value = "Program";
+    
+  };
+  var titleFunction = function () {
+    x = document.getElementById("selTitle");
+    x.options[x.selectedIndex].text = "Job Title";
+    x.options[x.selectedIndex].value = "Job Title";
+  };
+  var companyFunction = function () {
+    x = document.getElementById("selCompany");
+    x.options[x.selectedIndex].text = "Company";
+    x.options[x.selectedIndex].value = "Company";
+  };
+  var locationFunction = function () {
+    x = document.getElementById("selLocation");
+    x.options[x.selectedIndex].text = "Location";
+    x.options[x.selectedIndex].value = "Location";
+  };
+  var salaryFunction = function () {
+    x = document.getElementById("selSalary");
+    x.options[x.selectedIndex].text = "Salary";
+    x.options[x.selectedIndex].value = "Salary";
+  };
+  var dateFunction = function () {
+    x = document.getElementById("selDate");
+    x.options[x.selectedIndex].text = "Date Posted";
+    x.options[x.selectedIndex].value = "Date Posted";
+  };
+</script>
 <script src="{% static 'js/dropdown-jobs.js'%}"></script>
 <script src="{% static 'js/Profile/dropdown.js'%}"></script>
 <script>
@@ -342,24 +377,3 @@
 
 
 
-
-<script type="text/javascript">
-  var progFunction = function () {
-    document.getElementById("selProg").value = "Program";
-  };
-  var titleFunction = function () {
-    document.getElementById("selTitle").value = "Job Title"
-  };
-  var companyFunction = function () {
-    document.getElementById("selCompany").value = "Company"
-  };
-  var locationFunction = function () {
-    document.getElementById("selLocation").value = "Location"
-  };
-  var salaryFunction = function () {
-    document.getElementById("selSalary").value = "Salary"
-  };
-  var dateFunction = function () {
-    document.getElementById("selDate").value = "Date Posted"
-  };
-</script>

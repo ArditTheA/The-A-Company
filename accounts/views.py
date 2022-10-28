@@ -1,4 +1,5 @@
 
+import re
 from django.http import JsonResponse
 from django.views.generic import View
 from django.shortcuts import HttpResponse
@@ -341,27 +342,35 @@ def addJob(request):
 
 @login_required
 def editJob(request, pk):
-    job = Jobs.objects.get(id=pk)
-    form = editjob(request.POST or None, request.FILES or None, instance=job)
-    country = Country.objects.all()
-    city = City.objects.all()
-    des = job.description
-    des=des.replace('<br />','\n')
-    city = request.POST.get("city_j")
-    country = request.POST.get("country_j")
-    if form.is_valid():
-        if not Country.objects.filter(country=country).exists():
-            co = Country()
-            co.country=country
-            co.save()
-        if not City.objects.filter(name=city).exists():
-            cit = City()
-            cit.name=city
-            cit.country = Country.objects.get(country=country)
-            cit.save()
-        form.save()
-        return redirect("postedJob")
-    return render(request, "Jobs/edit.html", {"form": form,"country":country,"city":city,"des":des})
+    if Jobs.objects.filter(id=pk).exists():
+        job = Jobs.objects.get(id=pk)
+        jobUs = job.user_id
+        print(jobUs)
+        if jobUs == request.user:
+            form = editjob(request.POST or None, request.FILES or None, instance=job)
+            country = Country.objects.all()
+            city = City.objects.all()
+            des = job.description
+            des=des.replace('<br />','\n')
+            city = request.POST.get("city_j")
+            country = request.POST.get("country_j")
+            if form.is_valid():
+                if not Country.objects.filter(country=country).exists():
+                    co = Country()
+                    co.country=country
+                    co.save()
+                if not City.objects.filter(name=city).exists():
+                    cit = City()
+                    cit.name=city
+                    cit.country = Country.objects.get(country=country)
+                    cit.save()
+                form.save()
+                return redirect("postedJob")
+            return render(request, "Jobs/edit.html", {"form": form,"country":country,"city":city,"des":des})
+        else:
+            return render(request,"Jobs/404.html")
+    else:
+        return render(request,"Jobs/404.html")
 
 
 #########################################################################################

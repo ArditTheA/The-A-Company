@@ -255,6 +255,7 @@ body {
         padding: 0;
         padding: 20px 20px 0px 20px;
         border-radius: 20px;
+        position: fixed;
     }
     .under-container {
         width: 100%;
