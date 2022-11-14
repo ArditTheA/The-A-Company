@@ -411,8 +411,9 @@
         <form class="register-form" method="POST">
             {% csrf_token %}
 		    <div class="inside-the-container" style="">
-            <h1 class="next-none mid title-font-size f-title">We'd like to know</h1>
+            <h1 class="next-none mid title-font-size f-title">Fast. Easy. Seamless.</h1>
             <h1 class="next-none mid title-font-size f-title">more about you</h1>
+            <label style="display: flex; justify-content: center;" class="disabled margin-top-bottom next-none margin-top-job-title">Part 1 of 1</label>
       		<div class="form-group first-form-group">
             <label class="disabled margin-top-bottom next-none">First name  {{form.errors}}</label>
                 {{form.first_name}}
