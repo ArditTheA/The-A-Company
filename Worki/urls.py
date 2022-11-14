@@ -31,30 +31,31 @@ urlpatterns = [
     path('logout/', userViews.LogoutView.as_view(template_name='home/home.html'), name='logout'),
     path('accounts/', include('allauth.urls')),
     path('',MainJobs.as_view(),name='home'),
+    path('<int:pk>',MainJobsId.as_view()),
+    path('jobs/<int:pk>',MainJobsId.as_view()),
     path("TermsAndCondition/",Terms,name="terms"),
-    
+
 
     path("password_reset", password_reset_request, name="password_reset"),
 
     # path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='main/password/password_reset_done.html'), name='password_reset_done'),
     # path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name="main/password/password_reset_confirm.html"), name='password_reset_confirm'),
-    # path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='main/password/password_reset_complete.html'), name='password_reset_complete'),      
+    # path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='main/password/password_reset_complete.html'), name='password_reset_complete'),
 
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='main/password/password_reset_done.html'), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name="main/password/password_reset_confirm.html"), name='password_reset_confirm'),
-    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='main/password/password_reset_complete.html'), name='password_reset_complete'),  
+    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='main/password/password_reset_complete.html'), name='password_reset_complete'),
     #profile
     path("profile/",update_profile,name="profile"),
-    path("profile/Experience",Edit_user_exp,name="editExprience"),    
-    path("profile/Experience/<int:pk>",Edit_user_expId,name="editExprienceId"),    
+    path("profile/Experience",Edit_user_exp,name="editExprience"),
+    path("profile/Experience/<int:pk>",Edit_user_expId,name="editExprienceId"),
     path("profile/Education/",Edit_user_edu,name="editEdu"),
     path("profile/Education/<int:pk>/",Edit_user_EduId,name="editEduId"),
     path("profile/language/",Edit_user_language,name="editLanguage"),
     path("profile/language/<int:pk>/",Edit_User_langId,name="editLanguageId"),
 
     #JOBS
-    # path("Jobs/Posted",getPostedJobs,name="postedJob"),
-    # path("My/Jobs/<int:pk>",getPostedJobsId,name="postedJobId"),
+
     path("Jobs/Add",addJob,name="addJob"),
     path("Jobs/Edit/<int:pk>",editJob,name="editJob"),
     path("Jobs/Posted",AjaxHandler.as_view(),name="postedJob"),
@@ -67,11 +68,11 @@ urlpatterns = [
     path("profile/setup/1/<int:pk>",applyForJob2,name="setupPart2"),
     path("profile/setup/2/<int:pk>",applyForJob3,name="setupPart3"),
     path("search/",getList,name="search"),
+    path("apply/Succesful",ApplySuc,name="appSuc"),
 
 
     # Filters
-
-    path("jobs/filter",OneSelFilter.as_view(),name="filter")
+    path("jobs/filter",OneSelFilter.as_view(),name="filter"),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

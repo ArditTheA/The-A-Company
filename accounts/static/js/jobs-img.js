@@ -6,27 +6,26 @@ var parent = document.querySelector('.jobs-main-div');
 var a = document.querySelector("body");
 var jobs_buttons = document.querySelector('.jobs-buttons');
 var second_part_right = document.querySelectorAll('.right-jobs-rows-img-second');
-const firstMediaQuery = window.matchMedia('(min-width: 768px');
-const mediaQuery = window.matchMedia('(max-width: 767px)');
+const firstMQ = window.matchMedia('(min-width: 768px');
+const MQ = window.matchMedia('(max-width: 767px)');
 
         const mediaQuery1 = window.matchMedia('(max-width: 767px)');
         var right_jobs_main_div = document.querySelector('.right-jobs-main-div');
         var jobs_left = document.querySelector('.jobs-left');
         var jobs_buttons = document.querySelector('.jobs-buttons');
-        console.log("asd")
-        if (mediaQuery1s.matches) {
+        
+        if (mediaQuery1.matches) {
             
             right_jobs_main_div.style.display = null;
             jobs_left.style.display = "flex";
             jobs_buttons.style.display = "flex";
-                var select = document.getElementById('select'+id)
-                select.style.backgroundColor = "white";
+                
                 
         };
 
     for (let i = 0; i < second_jobs_img.length; i++) {
         second_jobs_img[i].addEventListener('click', function() {
-            if (firstMediaQuery.matches) {
+            if (firstMQ.matches) {
             right_jobs_main_div.style.display = null;
             second_jobs_img[i].classList.add('different-background-jobs');
             $(second_jobs_img[i]).siblings().removeClass('different-background-jobs').addClass("same-background-jobs");
@@ -36,7 +35,7 @@ const mediaQuery = window.matchMedia('(max-width: 767px)');
             }
             right_jobs[i].style.display = "flex";
             $(right_jobs[i]).siblings().css("display", "none");
-            if (mediaQuery.matches) {
+            if (MQ.matches) {
                 right_jobs_main_div.style.display = "block";
                 jobs_left.style.display = "none";
                 jobs_buttons.style.display = "none";
@@ -46,12 +45,12 @@ const mediaQuery = window.matchMedia('(max-width: 767px)');
 
     }
 
-    if (firstMediaQuery.matches) {
+    if (firstMQ.matches) {
         for (let i = 0; i < second_jobs_img.length; i++) {
         }
     }
 
-    if (mediaQuery.matches) {
+    if (MQ.matches) {
         for (let i = 0; i < second_jobs_img.length; i++) {
             
         }

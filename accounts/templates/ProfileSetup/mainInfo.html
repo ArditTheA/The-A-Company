@@ -351,11 +351,7 @@
 			height: 40px;
 		}
 		.first-form-group {
-			 /* margin-top ne llaptop: 10px 
-											+
-								 margin-top ne mobile: 10px
-								 			=
-											20px */								 
+										 
 		}
 		input {
 		}
@@ -449,9 +445,13 @@
             <div class="form-group" style="margin: 0;">
                 <label class="margin-top-bottom next-none">Date of Birth</label>
 				{% if user.birthday == "" %}
-                <input id="id_birthday" class="next-none" name="birthday" type="tel" maxlength="10" placeholder="dd/mm/yyyy"  oninput="this.value = MMDDYYYY(this.value, event)" />
+                <input id="id_birthday" class="next-none" name="birthday" type="tel" maxlength="10" placeholder="dd/mm/yyyy" onchange="checkBirthday()" oninput="this.value = MMDDYYYY(this.value, event)" />
+                <label class="margin-top-bottom next-none" id="birthday_id" style="color:red; display: none;">Date not valid</label>
+				
 				{% else %}
-                <input id="id_birthday" class="next-none" name="birthday" type="tel" maxlength="10" value="{{birth}}" placeholder="dd/mm/yyyy"  oninput="this.value = MMDDYYYY(this.value, event)" />
+				
+                <input id="id_birthday" class="next-none" name="birthday" type="tel" maxlength="10" value="{{birth}}" placeholder="dd/mm/yyyy"onchange=" checkBirthday()"  oninput="this.value = MMDDYYYY(this.value, event)" />
+                <label class="margin-top-bottom next-none" id="birthday_id" style="color:red; display: none;">Date not valid</label>
 
 				{% endif %}
 			</div>

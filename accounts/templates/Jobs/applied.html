@@ -94,6 +94,10 @@
     
 
 </div>
+{% else %}
+<div class="experience-first-row NoResult">You haven't applied for any job</div>
+
+
 {% endif %}
 <script type="text/javascript" src="{% static 'js/Ajax/applied-jobs-ajax.js'%}"></script>
 <script type="text/javascript" src="{% static 'js/dropdown-jobs.js'%}"></script>
@@ -103,7 +107,7 @@
     var profile = document.querySelectorAll("#profile-image-button");
     var work_and_travel_button = document.querySelectorAll('.button-work-and-travel');
     var mutual_button_div = document.querySelectorAll('.mutual-padding-of-div');
-    var jobs_buttons_icon = document.querySelectorAll('.icon');
+    var jobs_buttons_icon = document.querySelectorAll('.icon')
     var jobs_buttons_white_icon = document.querySelectorAll('.white-icon')
     var show_dropdown = document.querySelectorAll('.showDropdown');
     var button_content = document.querySelectorAll('.button-content');

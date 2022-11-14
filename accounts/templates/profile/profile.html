@@ -41,7 +41,12 @@
             <img class="edit-button" title="Edit Profile" src="{% static 'img/Ikona_edit-01 56.png' %}" alt="">
         </div>
         <div class="profile-name"><span class="profile-firstname">{{user.first_name}}</span> <span class="profile-surname">{{user.last_name}}</span></div>
+        {% if user.city != None and user.country != None %}
         <div class="profile-birthplace"><span class="profile-city">{{user.city}}</span><span>,</span> <span class="profile-country">{{user.country}} </span>
+            {% else %}
+                    <div class="profile-birthplace"><span class="profile-city"></span><span></span> <span class="profile-country"> </span>
+
+            {% endif %}
         </div>
     </div>
 </div>
@@ -131,10 +136,11 @@
             {% csrf_token %}
             <div class="div-of-changed-cover">
                 <div style="display: none;">
-                    {{ form.city }}
-                    {{form.country}}
+               
                     {{form.last_name}}
                     {{form.first_name}}
+                    {{form.country}}
+                    {{form.city}}
                 </div>
 
                 <label for="id_cover">
@@ -278,13 +284,17 @@
                     <div style="display: flex; justify-content: space-between;">
                         <div style="width: 48%;">
                             <p class="paragraphs-stats paragraph-of-start-date">Start date</p>
-                            <input id="id_start_date" class="start-date-input mutual-stats font-fam" name="start_date" type="tel" maxlength="10" placeholder="dd/mm/yyyy" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
+                            <input id="id_start_date" class="start-date-input mutual-stats font-fam" onchange="checkStartDate();" name="start_date" type="tel" maxlength="10" placeholder="dd/mm/yyyy" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
+                            <label class="paragraphs-stats paragraph-of-start-date"  id="sdateError" style="padding:0;display: none;color:red;">Date not valid</label>
 
                         </div>
                         <div style="width: 48%;
                     float: right;">
                             <p class="paragraphs-stats paragraph-of-end-date">End date</p>
-                            <input id="id_end_date" class="end-date-input mutual-stats font-fam" name="end_date" type="tel" maxlength="10" placeholder="dd/mm/yyyy"  oninput="this.value = MMDDYYYY(this.value, event)" />
+                            <input id="id_end_date" class="end-date-input mutual-stats font-fam" name="end_date" onchange="checkEndDate();" type="tel" maxlength="10" placeholder="dd/mm/yyyy"  oninput="this.value = MMDDYYYY(this.value, event)" />
+                            <input class="paragraphs-stats  paragraph-of-end-date" style="margin-right:0;" onchange="present()"type="checkbox" >
+                            <label class="paragraphs-stats paragraph-of-end-date" style="margin-top: 8px;">Present</label>
+                            <label class="paragraphs-stats paragraph-of-start-date" id="edateError" style="display: none;color:red;">Date not valid</label>
 
                             
                         </div>
@@ -410,13 +420,17 @@
             <div style="display: flex; justify-content: space-between;">
             <div style="width: 48%;">
             <p class="paragraphs-stats paragraph-of-start-date">Start year </p>
-            <input id="id_start_year" class="start-date-input mutual-stats font-fam" name="start_year" type="tel" maxlength="10" placeholder="dd/mm/yyyy" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
+            <input id="id_start_year" class="start-date-input mutual-stats font-fam" name="start_year" onchange="checkStartYear()" type="tel" maxlength="10" placeholder="dd/mm/yyyy" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
+            <p class="paragraphs-stats paragraph-of-start-date" id="sYear" style="color:red;display: none;">Date not valid </p>
 
             </div>
             <div style="width: 48%;
             float: right;">
             <p class="paragraphs-stats paragraph-of-end-date">End year </p>
-            <input id="id_end_year" class="end-date-input mutual-stats font-fam" name="end_year" type="tel" maxlength="10" placeholder="dd/mm/yyyy" oninput="this.value = MMDDYYYY(this.value, event)" />
+            <input id="id_end_year" class="end-date-input mutual-stats font-fam" name="end_year" onchange="checkEndYear()" type="tel" maxlength="10" placeholder="dd/mm/yyyy" oninput="this.value = MMDDYYYY(this.value, event)" />
+            <input class="paragraphs-stats  paragraph-of-end-date" style="margin-right:0;" onchange="presentEnd()"type="checkbox" >
+            <label class="paragraphs-stats paragraph-of-end-date" style="margin-top: 8px;">Present</label>
+            <p class="paragraphs-stats paragraph-of-start-date" id="eYear" style="color:red;display: none;">Date not valid </p>
 
             </div>
             </div>

@@ -1,6 +1,5 @@
 {% load static %}
 
-
 <script>
   function myFunction() {
     document.getElementById("myForm").submit();
@@ -11,7 +10,7 @@
 
 <div class="main-buttons-div" style="position: relative;">
   <div class="jobs-buttons second-jobs-buttons scrolling-wrapper">
-    <form class="card" action="{% url 'home' %}">
+    <form class="card" action="{% url 'home'%}">
         <img style="cursor: pointer;" title="Search by job or location"
             class="plus-icon-jobs search-icon-jobs inputs-right-margin" src="{% static 'img/search-third-img.png'%}"
             alt="">
@@ -19,7 +18,7 @@
                 <div class="second-input-form" style="">
                 <input style="" name="q" placeholder="Search by job or location"
                     class="search-input inputs-right-margin" id="input-removed"
-                    style="padding-top: 8px; padding-bottom: 8px; padding-left: 20px; background-color: white; " autocomplete="off">
+                    style="padding-top: 8px; padding-bottom: 8px; padding-left: 20px; background-color: white; " autocomplete="off" onchange="SearchFunction()">
                 </input>
                 <img style="display: none;" class="input-exit-button" title="Exit" src="{% static 'img/Vector 81 (1).png'%}" style="width: 8px; height: 8px; background-color: red;" alt="">
             </div>
@@ -51,8 +50,7 @@
             </select>
             <div class="" style="display: flex; align-items: center;">
               <img class="icon" src="{% static 'img/dropdown-icon.png'%}" alt="">
-              <img style="cursor: pointer; display: none;" class="white-icon"
-                src="{% static 'img/white-dropdown-icon.png' %}" alt="">
+              <img style="cursor: pointer; display: none;" class="white-icon" src="{% static 'img/white-dropdown-icon.png' %}" alt="">
             </div>
 
             {% endif %}
@@ -87,8 +85,7 @@
             </select>
             <div class="" style="display: flex; align-items: center;">
               <img class="icon" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
-              <img style="cursor: pointer; display: block;" class="white-icon"
-                src="{% static 'img/white-dropdown-icon.png' %}" alt="">
+              <img style="cursor: pointer; display: block;" class="white-icon" src="{% static 'img/white-dropdown-icon.png' %}" alt="">
             </div>
             {% else %}
             <select style="color: #65676B; border: none; font-size: 18px; padding-top: 0; padding-bottom: 0; 
@@ -97,7 +94,7 @@
             </select>
             <div class="" style="display: flex; align-items: center;">
               <img class="icon" src="{% static 'img/dropdown-icon.png'%}" alt="">
-              <img style="cursor: pointer; display: none;" class="white-icon" src="{% img/white-dropdown-icon.png"
+              <img style="cursor: pointer; display: none;" class="white-icon" src="{% static 'img/white-dropdown-icon.png' %}"
                 alt="">
             </div>
 
@@ -132,8 +129,7 @@
             </select>
             <div class="" style="display: flex; align-items: center;">
               <img class="icon" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
-              <img style="cursor: pointer; display: block;" class="white-icon"
-                src="{% static 'img/white-dropdown-icon.png' %}" alt="">
+              <img style="cursor: pointer; display: block;" class="white-icon"  src="{% static 'img/white-dropdown-icon.png' %}" alt="">
             </div>
             {% else %}
             <select style="color: #65676B; border: none; font-size: 18px; padding-top: 0; padding-bottom: 0; 
@@ -142,8 +138,7 @@
             </select>
             <div class="" style="display: flex; align-items: center;">
               <img class="icon" src="{% static 'img/dropdown-icon.png'%}" alt="">
-              <img style="cursor: pointer; display: none;" class="white-icon" src="{% img/white-dropdown-icon.png"
-                alt="">
+              <img style="cursor: pointer; display: none;" class="white-icon" src="{% static 'img/white-dropdown-icon.png' %}" alt="">
             </div>
 
             {% endif %}
@@ -313,6 +308,12 @@
   </div>
 </div>
 
+<script>
+function SearchFunction() {
+	var search = document.getElementById("input-removed").value;
+	location.href = "/" + search
+}
+</script>
 
 <script type="text/javascript">
   var progFunction = function () {

@@ -1,6 +1,6 @@
  async function getNumber(id) {
-
-
+        window.history.pushState("","","")
+        window.history.pushState("","", id)
         var elements = document.getElementsByClassName('pixel'); // get all elements
 
         for(var i = 0; i < elements.length; i++){
@@ -8,10 +8,13 @@
         }
 
         post_id=id
-
+//        if(id == ""){
+//            if (data["post_id"] != ""){
+//                post_id=data["post_id"]
+//            }
+//        }
     
-        console.log("post__id="+post_id)
-        let response = await fetch('',{
+        let response = await fetch('/',{
 
             method: "get",
 
@@ -40,7 +43,7 @@
         if(mobile.matches){
 
         }else{
-            if(id != 0){
+            if(post_id != 0){
                 var select = document.getElementById('select'+id)
                 select.style.backgroundColor = "#E7F1FE";
             }
@@ -113,20 +116,22 @@
         var url= "apply/"+id
         var dateApply=data["hasApplyDate"]
         var hasApply = data["hasApply"]
-        console.log(hasApply)
+        var auth=data["auth"]
 
         if(!hasApply){
-            console.log(hasApply)
 
-            if (auth != "False"){
-                console.log(hasApply)
-
-                button.innerHTML = '<a href="'+url+'" class="applied-button-jobs outline-none" style="text-decoration:none;margin-top: 5px; width: fit-content; padding-top: 8px; padding-bottom: 8px;">Fast Apply</a>';
+            if (auth == "True"){
+                document.getElementById("button").style.marginTop = "33px";
+                button.innerHTML = '<a href="'+url+'" class="applied-button-jobs outline-none" style="text-decoration:none;margin-top: 18px; width: fit-content; padding-top: 8px; padding-bottom: 8px;">Fast Apply</a>';
             }else{
-            button.innerHTML = '<a href="'+url+'" class="applied-button-jobs outline-none" style="text-decoration:none;margin-top: 5px; width: fit-content; padding-top: 8px; padding-bottom: 8px;">Apply</a>';
+             document.getElementById("button").style.marginTop = "33px";
+
+            button.innerHTML = '<a href="'+url+'" class="applied-button-jobs outline-none" style="text-decoration:none;margin-top: 18px; width: fit-content; padding-top: 8px; padding-bottom: 8px;">Apply</a>';
             }
         }else{
-            button.innerHTML=""
+            document.getElementById("button").style.marginTop = "20px";
+
+            button.innerHTML="Applied on "+data["applyDate"]
         }
 
 
@@ -147,28 +152,34 @@
         }
         ;
     }
-
-
-        var nul = "";
-
-        var firstMediaQuery = window.matchMedia('(min-width: 768px');
-        const mediaQuery = window.matchMedia('(max-width: 767px)');
-        var right_jobs_main_div = document.querySelector('.right-jobs-main-div');
-        var jobs_left = document.querySelector('.jobs-left');
-        var jobs_buttons = document.querySelector('.jobs-buttons');
-        console.log("asd")
-        if (mediaQuery.matches) {
-            
-            right_jobs_main_div.style.display = null;
-           
-                var select = document.getElementById('select'+id)
-                select.style.backgroundColor = "white";
-                
-        };
-      
     
+
+    
+        function myFunction(x) {
+            var element = document.getElementById("detailsRow");
+        if (x.matches) {
+            var getJobList = document.querySelector(".jobs-rows-img")
+            getJobList.style.backgroundColor = "white"
+            element.style.display = "none"
+
+        } else {
+            element.style.display = "flex";
+            var c =document.getElementById("PostID").value;
+
+            getNumber(c);
+
+        }
+        }
+
+        // Create a MediaQueryList object
+        const mmObj = window.matchMedia("(max-width: 480px)")
+
+        // Call the match function at run time:
+        myFunction(mmObj);
+
+        // Add the match function as a listener for state changes:
+        mmObj.addListener(myFunction)
         
         
-        window.onload = getNumber(nul);
        
 

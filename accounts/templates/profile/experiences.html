@@ -99,15 +99,18 @@
                     <div style="display: flex; justify-content: space-between;">
                         <div style="width: 48%;">
                             <p class="paragraphs-stats paragraph-of-start-date">Start date</p>
-                            <input id="id_start_date" class="start-date-input mutual-stats font-fam" name="start_date" type="tel" maxlength="10" placeholder="dd/mm/yyyy" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
+                            <input id="id_start_date" class="start-date-input mutual-stats font-fam" onchange="checkStartDate()" name="start_date" type="tel" maxlength="10" placeholder="dd/mm/yyyy" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
+                            <label class="paragraphs-stats paragraph-of-start-date"  id="sdateError" style="padding:0;display: none;color:red;">Date not valid</label>
 
                         </div>
                         <div style="width: 48%;
                     float: right;">
                             <p class="paragraphs-stats paragraph-of-end-date">End date</p>
-                            <input id="id_end_date" class="end-date-input mutual-stats font-fam" name="end_date" type="tel" maxlength="10" placeholder="dd/mm/yyyy" oninput="this.value = MMDDYYYY(this.value, event)" />
+                            <input id="id_end_date" class="end-date-input mutual-stats font-fam" name="end_date" onchange="checkEndDate()" type="tel" maxlength="10" placeholder="dd/mm/yyyy" oninput="this.value = MMDDYYYY(this.value, event)" />
+                            <input class="paragraphs-stats  paragraph-of-end-date" style="margin-right:0;" onchange="present()"type="checkbox" >
+                            <label class="paragraphs-stats paragraph-of-end-date" style="margin-top: 8px;">Present</label>
+                            <label class="paragraphs-stats paragraph-of-start-date" id="edateError" style="display: none;color:red;">Date not valid</label>
 
-                            
                         </div>
                     </div>
                     <div class="save-button save-button-edit-add-education-480">

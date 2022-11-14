@@ -508,16 +508,21 @@ input:focus, select:focus
       		<div class="form-group first-form-group">
             <label class="disabled margin-top-bottom next-none margin-top-job-title">Job title</label>
             {{form.job_title}}
+				<label class="margin-top-bottom margin-left " id="JtitleErr" style="display: none;color:red;">This field is required</label>
       		</div>
       		<div class="form-group" style="margin: 0;">
           <label class="margin-top-bottom next-none">Company
           </label>
 				{{form.company}}
+				<label class="margin-top-bottom margin-left " id="CompErr" style="display: none;color:red;">This field is required</label>
+
       		</div>
       		<div class="form-group">
       				<label class="margin-top-bottom margin-left next-none">Country</label>
 				<div>
 					{{form.country_j}}
+					<label class="margin-top-bottom margin-left " id="CountryErr" style="display: none;color:red;">This field is required</label>
+
 					<datalist id="country_jList">
 						{% for  i in country_j %}
 						<option>{{i}}</option>
@@ -529,6 +534,8 @@ input:focus, select:focus
       		 <div class="form-group" style="margin: 0;">
       		 	<label class="margin-top-bottom margin-left next-none">City</label>
 				 {{form.city_j}}
+				 <label class="margin-top-bottom margin-left " id="CityErr" style="display: none;color:red;">This field is required</label>
+
 				 <datalist id="city_jlist">
 					{% for i in city_j%}
 					<option>{{i.name}}</option>
@@ -538,10 +545,12 @@ input:focus, select:focus
       		<div class="form-group" style="margin: 0;">
       			<label class="margin-top-bottom margin-left next-none">Salary per hour</label>
 				{{form.salary_per_hour}}
+				<label class="margin-top-bottom margin-left " id="SalErr" style="display: none;color:red;">This field is required</label>
+
       		</div>
       		<div class="form-group" style="margin: 0;">
       		    <label class="margin-top-bottom margin-left next-none" for="exampleFormControlSelect2">Type of work</label>
-				  <select name="type_of_work" class="next-none" required="" id="id_type_of_work">
+				  <select name="type_of_work" class="next-none" required="" id="id_type_of_work" onchange="checkForm()">
 					<option value=""></option>
 				  
 					<option value="Full Time">Full Time</option>
@@ -549,38 +558,52 @@ input:focus, select:focus
 					<option value="Part Time">Part Time</option>
 				  
 				  </select>
+				<label class="margin-top-bottom margin-left " id="TypeErr" style="display: none;color:red;">This field is required</label>
+
 			</div>
             <div class="form-group" style="margin: 0;">
       			<label class="margin-top-bottom margin-left next-none">Hours per week</label>
-				<input type="number" name="hour_per_work" placeholder="0" class="name-input mutual-stats font-fam next-none" required="" id="id_hour_per_work">
-      		</div>
+				<input type="number" name="hour_per_work" placeholder="0" onchange="checkForm()" class="name-input mutual-stats font-fam next-none" required="" id="id_hour_per_work">
+
+				<label class="margin-top-bottom margin-left " id="HourErr" style="display: none;color:red;">This field is required</label>
+
+			</div>
               <div class="form-group" style="margin: 0;">
                 <label class="margin-top-bottom margin-left next-none">Start date </label>
-                <input id="id_start_date" class="next-none" name="start_date" type="tel" maxlength="10" placeholder="dd/mm/yyyy" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
+                <input id="id_start_date" class="next-none" name="start_date" onchange="checkForm();checkStartDate();"  type="tel" maxlength="10" placeholder="dd/mm/yyyy" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
+                <label class="margin-top-bottom margin-left " id="sdateError" style="display: none;color:red;">Date not valid</label>
+				<label class="margin-top-bottom margin-left" id="SDErr" style="display: none;color:red;">This field is required</label>
 
             </div>
             <div class="form-group" style="margin: 0;">
                 <label class="margin-top-bottom margin-left next-none">End date </label>
-                <input id="id_end_date" class="next-none" name="end_date" type="tel" maxlength="10" placeholder="dd/mm/yyyy" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
+                <input id="id_end_date" class="next-none" name="end_date"  onchange="checkForm();checkEndDate();" type="tel" maxlength="10" placeholder="dd/mm/yyyy" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
+                <label class="margin-top-bottom margin-left " id="edateError" style="display: none;color:red;">Date not valid</label>
+				<label class="margin-top-bottom margin-left " id="EdErr" style="display: none;color:red;">This field is required</label>
 
             </div>
       		  <div class="form-group" style="margin: 0;">
       		    <label class="margin-top-bottom margin-left next-none" for="exampleFormControlSelect2">Housing</label>
-				  <select name="housing" class="next-none" required=""  id="id_housing">
+				  <select name="housing" class="next-none" required="" onchange="checkForm()" id="id_housing">
 					<option value="" selected=""></option>
 				  
 					<option value="Provided">Provided</option>
 					<option value="Not provided">Not provided</option>
 				  
 				  </select>
+				  <label class="margin-top-bottom margin-left " id="HousingErr" style="display: none;color:red;">This field is required</label>
+
 			  </div>
             <div class="form-group" style="margin: 0;">
                 <label class="margin-top-bottom margin-left next-none">Housing cost per week</label>
 				{{form.housing_cost_per_week}}
+				<label class="margin-top-bottom margin-left " id="HousingCoErr" style="display: none;color:red;">This field is required</label>
+
+
             </div>
       		  <div class="form-group">
       		    <label class="margin-top-bottom margin-left next-none" for="exampleFormControlSelect2">Program</label>
-      		    <select name="program" class="next-none" required="" id="id_program">
+      		    <select name="program" class="next-none" onchange="checkForm()" required="" id="id_program">
 					<option value=""></option>
 					<option value="Ausbildung">Ausbildung</option>
 				  
@@ -591,27 +614,32 @@ input:focus, select:focus
 					<option value="Work and Travel">Work and Travel</option>
 				  
 				  </select>
+				  <label class="margin-top-bottom margin-left " id="ProgErr" style="display: none;color:red;">This field is required</label>
+
 			  </div>
               <div class="form-group" style="margin: 0;">
                 <label class="margin-top-bottom margin-left next-none">Program Cost</label>
 				  {{form.programCost}}
+				  <label class="margin-top-bottom margin-left " id="ProgCoErr" style="display: none;color:red;">This field is required</label>
+
             </div>
             <div class="margin-top-bottom margin-left-bottom next-none" >Logo</div>
             <div class="form-group upload next-none" style="margin: 0;">
                 <label class="logo-label" for="id_logo" style="">
 				<div class="input-form">
-                	<div style="cursor: pointer; display: flex; align-items: center;" class="upload-file-div"><img style="vertical-align: middle; margin-left: 5px;" class="icon" src="{% static 'img/gallery-upload.png'%}" alt=""><div style="margin-left: 37px;">Upload your file</div></div>
+                	<div style="cursor: pointer; display: flex; align-items: center;" class="upload-file-div" id="logos_id"><img style="vertical-align: middle; margin-left: 5px;" class="icon" src="{% static 'img/gallery-upload.png'%}" alt=""><div style="margin-left: 37px;">Upload your file</div></div>
 				</div>
                 </label>
-				<input type="file" name="logo" accept="image/*" required="" id="id_logo"  style="display:none;">
+				<input type="file" name="logo" accept="image/*" onchange="checkForm()" required="" id="id_logo"  style="display:none;">
+				<label class="margin-top-bottom margin-left " id="ImgErr" style="display: none;color:red;">This field is required</label>
 
             </div>
             <div style="width: 100%; display: flex; justify-content: space-between;">
             <a href="{% url 'postedJob'%}"  class="btn back-button next-none" style="color: #1877F2;">Back</a>
-            <a class="btn submit-button next-button next-none" style="color: white;">Next</a>
+            <a style="color:white" class="btn submit-button next-button next-none" onclick="checkFormButton()" style="color: white;">Next</a>
             </div>
 		</div>
-		<div class="second-next-none" style="display: none; color: #1877F2; padding-bottom: 40px; text-align: center; font-size:30px;">
+		<div class="second-next-none" style="display: none; color: #1877F2; padding-bottom: 40px; text-align: center; font-size:40px;">
 			Job Description
 		</div>
 		<div class="textarea-imgs" style="">
@@ -692,6 +720,7 @@ input:focus, select:focus
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script src="{% static 'js/second-next.js'%}"></script>
+<script src="{% static 'js/CheckForm.js'%}"></script>
 <script src="{% static 'js/back-job-description.js'%}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 

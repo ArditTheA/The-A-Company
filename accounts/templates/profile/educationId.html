@@ -71,17 +71,17 @@
                     {{edit.field_of_study}}
                     </div>
                     <div>
-                        <p class="paragraph-of-surname paragraphs-stats">Degree {{edit.degree.value}}</p>
+                        <p class="paragraph-of-surname paragraphs-stats">Degree</p>
                         <select name="degree" required="" id="id_degree">
                             <option selected></option>
-                            {% if edit.degree.value == "Bachelor’s Degree"%}
+                            {% if edit.degree.value == "Bachelor"%}
                             <option value="Bachelor" selected>Bachelor’s Degree</option>
                             {% else %}
                             <option value="Bachelor" >Bachelor’s Degree</option>
 
                             {% endif %}
                             
-                            {% if edit.degree.value == "Master’s Degree" %}
+                            {% if edit.degree.value == "Master" %}
                             <option value="Master"  selected >Master’s Degree</option>
 
                             {% else %}
@@ -112,13 +112,25 @@
                     <div style="display: flex; justify-content: space-between;">
                     <div style="width: 48%;">
                     <p class="paragraphs-stats paragraph-of-start-date">Start year</p>
-                    <input id="id_start_year" value="{{edit.start_year.value|date:'d/m/Y'}}" class="start-date-input mutual-stats font-fam" name="start_year" type="tel" maxlength="10" placeholder="dd/mm/yyyy" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
+                    <input id="id_start_year" value="{{edit.start_year.value|date:'d/m/Y'}}" onchange="checkStartYear()" class="start-date-input mutual-stats font-fam" name="start_year" type="tel" maxlength="10" placeholder="dd/mm/yyyy" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
+                    <p class="paragraphs-stats paragraph-of-start-date" id="sYear" style="color:red;display: none;">Date not valid </p>
 
                     </div>
                     <div style="width: 48%;
                     float: right;">
                     <p class="paragraphs-stats paragraph-of-end-date">End year</p>
-                    <input id="id_end_year" class="end-date-input mutual-stats font-fam" name="end_year" value="{{edit.end_year.value|date:'d/m/Y'}}" type="tel" maxlength="10" placeholder="dd/mm/yyyy"  oninput="this.value = MMDDYYYY(this.value, event)" />
+                    {% if edit.end_year.value == None %}
+                    <input id="id_end_year" disabled class="end-date-input mutual-stats font-fam" name="end_year" onchange="checkEndYear()" value="{{edit.end_year.value|date:'d/m/Y'}}" type="tel" maxlength="10" placeholder="Present"  oninput="this.value = MMDDYYYY(this.value, event)" />
+
+                    <input class="paragraphs-stats  paragraph-of-end-date" checked style="margin-right:0;" onchange="presentEnd()"type="checkbox">
+                    {% else %}
+                    <input id="id_end_year" class="end-date-input mutual-stats font-fam" name="end_year" onchange="checkEndYear()" value="{{edit.end_year.value|date:'d/m/Y'}}" type="tel" maxlength="10" placeholder="dd/mm/yyyy"  oninput="this.value = MMDDYYYY(this.value, event)" />
+
+                    <input class="paragraphs-stats  paragraph-of-end-date" style="margin-right:0;" onchange="presentEnd()"type="checkbox">
+
+                    {% endif %}
+                    <label class="paragraphs-stats paragraph-of-end-date" style="margin-top: 8px;">Present</label>
+                    <p class="paragraphs-stats paragraph-of-start-date" id="eYear" style="color:red;display: none;">Date not valid </p>
 
                     </div>
                     </div>

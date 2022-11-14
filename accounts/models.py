@@ -12,6 +12,8 @@ from django.utils import timezone
 from django.conf import settings
 today = timezone.now
 
+
+
 class Country(models.Model):
     country = models.CharField(max_length=255)
 
@@ -37,7 +39,7 @@ class CustomUser(AbstractUser):
     
     profile = models.ImageField(upload_to="profile",default="defaultProfile.jpg")
     cover = models.ImageField(upload_to="cover",default="defaultCover.jpg")
-    sex = models.CharField(choices=sex_choice,max_length=10,null=True)
+    sex = models.CharField(choices=sex_choice,max_length=10,null=True,blank=True)
     profileSetup = models.BooleanField(default=False)
     city = models.CharField(max_length=255,null=True,blank=True)
     country = models.CharField(max_length=255,null=True,blank=True)
@@ -163,6 +165,17 @@ class Jobs(models.Model):
 
     def __str__(self):
         return str(self.job_title)+ " - " +str(self.company)+ " - "+str(format(self.postDate,"%d/%m/%Y"))+  " - "+ str(self.approved)
+
+
+class ActiveStudent(models.Model):
+    Answer_type={
+        ("Y","Yes"),
+        ("N","No")
+    }
+    user_id = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
+    answer = models.CharField(max_length=10,choices=Answer_type)
+    def __str__(self):
+        return str(self.user_id)+" "+str(self.answer)
 
 class Application(models.Model):
     Stat_type={

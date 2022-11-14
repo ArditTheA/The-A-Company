@@ -2,8 +2,15 @@
 {% load static %}
 {% block content %}
 
-<link rel="stylesheet" href="{% static 'css/add-experience.css'%}">
-<link rel="stylesheet" href="{% static 'css/responsive-experience-education-languages-page.css'%}">
+<link rel="stylesheet" href="{% static 'css/authenticated.css' %}">
+<link rel="stylesheet" href="{% static 'css/profile-header.css' %}">
+<link rel="stylesheet" href="{% static 'css/edit-profile.css' %}">
+<link rel="stylesheet" href="{% static 'css/add-profile-picture.css' %}">
+<link rel="stylesheet" href="{% static 'css/experience-font-family.css' %}">
+<link rel="stylesheet" href="{% static 'css/add-experience.css' %}">
+<link rel="stylesheet" href="{% static 'css/edits-experience.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+<link rel="stylesheet" href="{% static 'css/edit-cover.css' %}">
 <div class="parent_container">
     <div class="experience-main-div experience-education-languages different_exp">
         <div class="experience-div second-experience-div">
@@ -39,10 +46,10 @@
 
         <div class="edit-experience-pop-up">
             <div class="under-container">
-                <div class="exit-img exit-img-edit-experience">
-                    <a href="{% url 'editExprience' %}"> <img title="Exit" style="vertical-align: middle;"
-                            class="exit-button exit-button-edit-experience" src="{% static 'img/Vector 81 (1).png'%}"
-                            alt=""></a>
+                <div class="exit-img exit-img-edit-profile">
+                    <a href="{% url 'editExprience'%}">
+                        <img class="exit-button exit-button-edit-profile" src="{% static 'img/Vector 81 (1).png' %}" alt="">
+                    </a>
                 </div>
                 <h1 id="title-experience" class="second-title-experience">Edit Experience</h1>
                 <form method="POST" action="" class="sign-up-form">
@@ -85,18 +92,38 @@
                                 <p class="paragraphs-stats paragraph-of-start-date">Start date</p>
                                 <input id="id_start_date" value="{{edit.start_date.value|date:'d/m/Y'}}"
                                     class="start-date-input mutual-stats font-fam" name="start_date" type="tel"
-                                    maxlength="10" placeholder="dd/mm/yyyy" required=""
+                                    maxlength="10" onchange="checkStartDate()" placeholder="dd/mm/yyyy" required=""
                                     oninput="this.value = MMDDYYYY(this.value, event)" />
+                            <label class="paragraphs-stats paragraph-of-start-date"  id="sdateError" style="padding:0;display: none;color:red;">Date not valid</label>
+                                    
 
                             </div>
                             <div style="width: 48%;
                         float: right;">
+                        
                                 <p class="paragraphs-stats paragraph-of-end-date">End date</p>
-                                <input id="id_end_date" value="{{edit.end_date.value|date:'d/m/Y'}}"
+                                
+                                    {% if edit.end_date.value == None %}
+                                    <input id="id_end_date" value="{{edit.end_date.value|date:'d/m/Y'}}"
                                     class="end-date-input mutual-stats font-fam" name="end_date" type="tel"
-                                    maxlength="10" placeholder="dd/mm/yyyy" 
+                                    maxlength="10" placeholder="Present" disabled onchange="checkEndDate()"
                                     oninput="this.value = MMDDYYYY(this.value, event)" />
+                                    <input class="paragraphs-stats paragraph-of-end-date" checked style="margin-right:0;" onchange="present()"type="checkbox" >
+                                    {% else %}
+                                    <input id="id_end_date" value="{{edit.end_date.value|date:'d/m/Y'}}"
+                                    class="end-date-input mutual-stats font-fam" name="end_date" type="tel"
+                                    maxlength="10" placeholder="dd/mm/yyyy"  onchange="checkEndDate()"
+                                    oninput="this.value = MMDDYYYY(this.value, event)" />
+                                    <input class="paragraphs-stats  paragraph-of-end-date" style="margin-right:0;" onchange="present()"type="checkbox" >
 
+                                    <input class="paragraphs-stats  paragraph-of-end-date" style="margin-right:0;" onchange="present()"type="checkbox" >
+
+                                    {% endif%}
+
+                                    <label  class="paragraphs-stats paragraph-of-end-date" style="margin-top: 8px;">Present</label>
+                                    <label class="paragraphs-stats paragraph-of-start-date" id="edateError" style="display: none;color:red;">Date not valid</label>
+
+                                
                             </div>
                         </div>
                         <div class="save-button">

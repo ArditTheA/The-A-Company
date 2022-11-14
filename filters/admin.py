@@ -1,4 +1,16 @@
 from django.contrib import admin
 from .models import *
-admin.site.register(Search)
+from django.contrib import admin
+from django.contrib.auth.mixins import PermissionRequiredMixin
+admin.site.register(UserCountry)
+admin.site.register(UserCity)
+admin.site.register(UserUni)
+
+
+@admin.register(Search)
+class SearchAdmin(admin.ModelAdmin):
+    search_fields = ('search',)
+
+    list_display = ["user_id","search"]
+
 # Register your models here.

@@ -29,7 +29,7 @@
     </div>
 </div>
 
-
+{% if check %}
 <div class="jobs-main-div" style="display: flex; justify-content: space-between; width: 100%;">
 
     <div class="jobs-left applied-jobs-left" style="margin-top: 0;">
@@ -91,6 +91,15 @@
                 </div>
             </div>
     </div>
+    </div>
+    </div>
+    {% else %}
+
+<div class="experience-first-row NoResult" >You haven’t posted any job</div>
+
+
+
+    {% endif %}
     <script>
         function stopProp(event) {
         

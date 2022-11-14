@@ -15,7 +15,7 @@ SECRET_KEY = '0x-zrhf@)(t)%-630q&s&9g_c^lvh_9cehy@7vx==@bxgn_s_='
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = False    
+DEBUG = True    
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 SILENCED_SYSTEM_CHECKS = ["auth.W004"]
 ALLOWED_HOSTS = ["*"]
@@ -179,7 +179,7 @@ EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = "587"
 EMAIL_USE_TLS=True
 EMAIL_HOST_USER = "hello@worki.global"
-EMAIL_HOST_PASSWORD = "sthpmwbfxydzgzrk"
+EMAIL_HOST_PASSWORD = "yodwlodchylmxlgt"
 
 
 

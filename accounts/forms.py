@@ -1,3 +1,4 @@
+from pyexpat import model
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import get_user_model
 from django import forms
@@ -160,22 +161,22 @@ class add_Jobs(ModelForm):
         fields = "__all__"
         widgets = {
 
-            "job_title": forms.TextInput(attrs={'class': 'name-input mutual-stats font-fam next-none'}),
-            "company": forms.TextInput(attrs={'class': 'name-input mutual-stats font-fam next-none'}),
+            "job_title": forms.TextInput(attrs={'class': 'name-input mutual-stats font-fam next-none',"onchange":"checkForm()"}),
+            "company": forms.TextInput(attrs={'class': 'name-input mutual-stats font-fam next-none',"onchange":"checkForm()"}),
             "start_date": forms.DateInput(
-                attrs={"class": "start-date-input mutual-stats font-fam next-none", "type": "date"}),
+                attrs={"class": "start-date-input mutual-stats font-fam next-none", "type": "date","onchange":"checkForm()"}),
             "end_date": forms.DateInput(
-                attrs={"class": "end-date-input mutual-stats font-fam next-none", "type": "date"}),
-            "housing_cost_per_week": forms.NumberInput(attrs={'class': 'name-input mutual-stats font-fam  next-none'}),
-            "programCost": forms.NumberInput(attrs={'class': 'name-input mutual-stats font-fam next-none'}),
-            "hour_per_work": forms.NumberInput(attrs={'class': 'name-input mutual-stats font-fam next-none'}),
-            "salary_per_hour": forms.NumberInput(attrs={'class': 'name-input mutual-stats font-fam next-none'}),
+                attrs={"class": "end-date-input mutual-stats font-fam next-none", "type": "date","onchange":"checkForm()"}),
+            "housing_cost_per_week": forms.NumberInput(attrs={'class': 'name-input mutual-stats font-fam  next-none',"onchange":"checkForm()"}),
+            "programCost": forms.NumberInput(attrs={'class': 'name-input mutual-stats font-fam next-none',"onchange":"checkForm()"}),
+            "hour_per_work": forms.NumberInput(attrs={'class': 'name-input mutual-stats font-fam next-none',"onchange":"checkForm()"}),
+            "salary_per_hour": forms.NumberInput(attrs={'class': 'name-input mutual-stats font-fam next-none',"onchange":"checkForm()"}),
             "approved": forms.CheckboxInput(attrs={"disabled": "disabled"}),
-            "city_j": forms.TextInput(attrs={"class": "next-none","list":"city_jlist"}),
-            "type_of_work": forms.Select(attrs={"class": "next-none"}),
-            "housing": forms.Select(attrs={"class": "next-none"}),
-            "program": forms.Select(attrs={"class": "next-none"}),
-            "country_j": forms.TextInput(attrs={'class': 'next-none name-input mutual-stats font-fam',"list":"country_jList"}),
+            "city_j": forms.TextInput(attrs={"class": "next-none","list":"city_jlist","onchange":"checkForm()"}),
+            "type_of_work": forms.Select(attrs={"class": "next-none","onchange":"checkForm()"}),
+            "housing": forms.Select(attrs={"class": "next-none","onchange":"checkForm()"}),
+            "program": forms.Select(attrs={"class": "next-none","onchange":"checkForm()"}),
+            "country_j": forms.TextInput(attrs={'class': 'next-none name-input mutual-stats font-fam',"list":"country_jList","onchange":"checkForm()"}),
             "description": forms.Textarea(
                 attrs={"class": "scroll inner-text second-next-none","id":"myTextArea", "style": "display: none;"})
 
@@ -247,6 +248,13 @@ class setupProfile2(ModelForm):
             "degree":forms.Select(),
         }
 
+class AnswerUS(ModelForm):
+    class Meta:
+        model = ActiveStudent
+        fields = "__all__"
+        widgets = {
+            "answer":forms.Select(attrs={"class":"custom-select sel select-options-input next-none padding-of-inputs","required":"required"})
+        }
 class setupProfile3(ModelForm):
     class Meta:
         model = UserLanguages
