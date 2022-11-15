@@ -1460,9 +1460,12 @@ def applyForJob(request, pk):
     if request.user.birthday != None:
         birth = format(request.user.birthday, "%d/%m/%Y")
     if jobType == "Work and Travel":
-        AnswerUs = ActiveStudent.objects.get(user_id=request.user)
+        if ActiveStudent.objects.filter(user_id=request.user).exists():
+            AnswerUs = ActiveStudent.objects.get(user_id=request.user)
 
-        AnS = AnswerUS(request.POST or None, instance=AnswerUs)
+            AnS = AnswerUS(request.POST or None, instance=AnswerUs)
+        else:
+            AnS = AnswerUS(request.POST or None)
 
         form = setupProfile(request.POST or None, instance=userId)
         profCountry = request.POST.get("country")
@@ -1522,12 +1525,8 @@ def applyForJob(request, pk):
     else:
         if request.user.profileSetup:
 
-            if Application.objects.filter(job_id=pk).filter(user_id=request.user.id).exists():
-                app = Application.objects.filter(
-                    job_id=pk).filter(user_id=request.user.id)
-
-                return render(request, "MainJobs/hasApply.html", {"app": app})
-            else:
+            if not Application.objects.filter(job_id=pk).filter(user_id=request.user.id).exists():
+                
                 post = get_object_or_404(Jobs, id=pk)
                 app = Application()
                 app.user_id = userId

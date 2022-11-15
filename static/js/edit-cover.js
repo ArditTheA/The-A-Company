@@ -7,6 +7,8 @@ editCoverButton.addEventListener('click', function() {
 
 window.addEventListener('click', function(event) {
     if (event.target == bgCoverEdit) {
+        document.body.style.overflow="scroll";
+
         bgCoverEdit.style.display = "none";
     }
 });

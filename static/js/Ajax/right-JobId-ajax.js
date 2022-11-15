@@ -13,7 +13,7 @@
 //                post_id=data["post_id"]
 //            }
 //        }
-    
+
         let response = await fetch('/',{
 
             method: "get",
@@ -54,7 +54,7 @@
                 select.style.backgroundColor = "#E7F1FE";
             }
         }
-        
+
         let textarea = document.getElementById('message');
         textarea.innerHTML=data["description"]
 
@@ -66,7 +66,7 @@
         city_jobs.innerHTML = data["city_j"]+",  "+data["country"]
 
         var countApplicant = document.getElementById("countApplicant")
-       
+
         if(data["appNo"]==0){
             countApplicant.innerHTML = data["appNo"]+" Applicants"
         }else if(data["appNo"]>=2){
@@ -108,7 +108,7 @@
         var program = document.getElementById('program');
         program.innerHTML = data["program"];
 
-    
+
 
         var programCost = document.getElementById("programCost")
         programCost.innerHTML = "Program Cost: €"+data["programCost"]
@@ -152,22 +152,32 @@
         }
         ;
     }
-    
 
-    
+
+
         function myFunction(x) {
             var element = document.getElementById("detailsRow");
         if (x.matches) {
             var getJobList = document.querySelector(".jobs-rows-img")
             getJobList.style.backgroundColor = "white"
-            element.style.display = "none"
+            element.style.display = "flex";
+            var c =document.getElementById("PostID").value;
+            var result = window.location.href.split('/').reverse()[0]
+            if (result != ""){
+                getNumber(result)
+            }else{
+                getNumber(c);
+            }
 
         } else {
             element.style.display = "flex";
             var c =document.getElementById("PostID").value;
-
-            getNumber(c);
-
+            var result = window.location.href.split('/').reverse()[0]
+            if (result != ""){
+                getNumber(result)
+            }else{
+                getNumber(c);
+            }
         }
         }
 
@@ -179,7 +189,7 @@
 
         // Add the match function as a listener for state changes:
         mmObj.addListener(myFunction)
-        
-        
-       
+
+
+
 

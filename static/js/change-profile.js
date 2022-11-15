@@ -23,6 +23,7 @@ saveButton.addEventListener('click', function() {
     country.textContent = countryEdit.value;
 
     modalBg.style.display = "none";
+
 });
 
 

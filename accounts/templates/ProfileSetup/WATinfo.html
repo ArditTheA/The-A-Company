@@ -411,8 +411,8 @@
         <form class="register-form" method="POST">
             {% csrf_token %}
 		    <div class="inside-the-container" style="">
-            <h1 class="next-none mid title-font-size f-title">Fast. Easy. Seamless.</h1>
-            <h1 class="next-none mid title-font-size f-title">more about you</h1>
+            <h1 class="next-none mid title-font-size f-title">Apply fast</h1>
+            <h1 class="next-none mid title-font-size f-title">and easy</h1>
             <label style="display: flex; justify-content: center;" class="disabled margin-top-bottom next-none margin-top-job-title">Part 1 of 1</label>
       		<div class="form-group first-form-group">
             <label class="disabled margin-top-bottom next-none">First name  {{form.errors}}</label>
@@ -422,6 +422,14 @@
           <label class="margin-top-bottom next-none">Last name</label>
                 {{form.last_name}}
       		</div>
+			  <div class="form-group" style="margin: 0;">
+                <label class="margin-top-bottom next-none">Email</label>
+                {{form.email}}
+            </div>
+			<div class="form-group" style="margin: 0;">
+                <label class="margin-top-bottom next-none">Phone number</label>
+                {{form.phone_number}}
+            </div>
                     <div class="form-group">
       				<label class="margin-top-bottom margin-left next-none">Country of residence *</label>
 				<div>
@@ -433,14 +441,8 @@
 					</datalist>
 				</div>
       		  </div>
-              <div class="form-group" style="margin: 0;">
-                <label class="margin-top-bottom next-none">Email</label>
-                {{form.email}}
-            </div>
-            <div class="form-group" style="margin: 0;">
-                <label class="margin-top-bottom next-none">Phone number</label>
-                {{form.phone_number}}
-            </div>
+              
+            
                 <div class="form-group">
                 <label class="margin-top-bottom margin-left next-none">Are you an active university student?</label>
           <div>
@@ -464,7 +466,7 @@
 
             <div class="back-and-next-buttons" style="width: 100%; display: flex; justify-content: space-between;">
                 <a href="{% url 'home'%}" class="btn back-button next-none" style="color: #1877F2;">Back</a>
-                <button type="submit" class="btn btn-primary submit-button next-none" style="color: white; float:right">Next</a>
+                <button type="submit" class="btn btn-primary submit-button next-none" style="color: white; float:right">Submit</a>
             </div>
 		</div>
     </form>

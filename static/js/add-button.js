@@ -9,6 +9,8 @@ addButton.addEventListener("click", function() {
 window.addEventListener('click', function(event) {
     if (event.target == bg_change_profile_picture) {
         bg_change_profile_picture.style.display = "none";
+        document.body.style.overflow="scroll";
+
     }
 });
 

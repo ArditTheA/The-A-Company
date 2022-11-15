@@ -18,7 +18,7 @@ body {
 .add-experience, .add-education, .edit-experience-pop-up {
     text-align: center;
     background-color: white;
-    padding: 20px 20px 20px 20px;
+    padding: 40px;
     border-radius: 20px;
     box-sizing: border-box;
     position: absolute;
@@ -33,7 +33,7 @@ body {
 .add-languages {
     text-align: center;
     background-color: white;
-    padding: 30px 40px 40px 40px;
+    padding: 40px 40px 40px 40px;
     border-radius: 40px;
     box-sizing: border-box;
     position: absolute;
@@ -42,7 +42,7 @@ body {
 .edit-languages-pop-up, .add-languages-pop-up {
     text-align: center;
     background-color: white;
-    padding: 30px 40px 40px 40px;
+    padding: 40px 40px 40px 40px;
     border-radius: 40px;
     box-sizing: border-box;
     position: absolute;
@@ -62,7 +62,7 @@ body {
 
 #title-experience {
     width: 300px;
-    font-size: 30px;
+    font-size: 40px;
     font-weight: 400;
     color: #1877F2;
     margin: auto;
@@ -246,7 +246,7 @@ body {
         margin-right: 10px;
     }
     .bg-add-and-edit, .bg-edit-experience {
-        background-color: #E5E5E5;
+        background-color: #f1f1f1;
     }
 
     .add-experience, .add-education, .add-languages {
@@ -255,6 +255,7 @@ body {
         padding: 0;
         padding: 20px 20px 0px 20px;
         border-radius: 20px;
+        position: fixed;
     }
     .under-container {
         width: 100%;
@@ -269,6 +270,7 @@ body {
     }
     #title-experience {
         padding-bottom: 30px;
+        font-size:30px;
     }
     .save-experience-languages-education {
         padding-top: 30px;

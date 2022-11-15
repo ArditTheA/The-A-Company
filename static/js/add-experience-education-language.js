@@ -29,6 +29,7 @@ btn3.addEventListener('click', function() {
 
 window.addEventListener('click', function(event) {
     if (event.target == mainDiv) {
+        document.body.style.overflow="scroll";
         mainDiv.style.display = "none";
     }
 });
