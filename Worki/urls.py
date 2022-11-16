@@ -24,6 +24,7 @@ from django.contrib.auth import views as userViews
 from accounts.views import *
 from  filters.views import *
 from resetpassword.views import *
+from Match.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', LoginView.as_view(), name='login'),
@@ -31,7 +32,7 @@ urlpatterns = [
     path('logout/', userViews.LogoutView.as_view(template_name='home/home.html'), name='logout'),
     path('accounts/', include('allauth.urls')),
     path('',MainJobs.as_view(),name='home'),
-    path('<int:pk>',MainJobsId.as_view()),
+    path('<int:pk>',MainJobsId.as_view(),name="visitJob"),
     path('jobs/<int:pk>',MainJobsId.as_view()),
     path("TermsAndCondition/",Terms,name="terms"),
 
@@ -73,6 +74,11 @@ urlpatterns = [
 
     # Filters
     path("jobs/filter",OneSelFilter.as_view(),name="filter"),
+
+    path("Administrator/Applicant",GetJobApplicant,name="newApplication"),
+    path("Administrator/Applicant/all",GetAllApplication,name="allApplication"),
+    path("Administrator/Applicant/profile/<int:pk>", GetUserProfile,name="visitProfile"),
+    path("Administrator/Applicant/Read", MarkApplicantAsRead,name="markAsRead"),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

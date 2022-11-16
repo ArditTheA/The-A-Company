@@ -169,8 +169,8 @@ class Jobs(models.Model):
 
 class ActiveStudent(models.Model):
     Answer_type={
-        ("Y","Yes"),
-        ("N","No")
+        ("Yes","Yes"),
+        ("No","No")
     }
     user_id = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
     answer = models.CharField(max_length=10,choices=Answer_type)

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'filters',
     'resetpassword',
+    'Match',
 
     #3party login providers
     'allauth',
