@@ -74,7 +74,20 @@ def CountryUser(country, user):
                 countryC.country = coun
                 countryC.save()
 
-
+def CountryJob(country):
+    co = country
+    if not Country.objects.filter(country=co).exists():
+        coJ = Country()
+        coJ.country=co
+        coJ.save()
+def CityJob(city,country):
+    ci = city
+    co = country
+    if not City.objects.filter(name=ci).filter(country=co).exists():
+        ciJ = City()
+        ciJ.country=co
+        ciJ.name=ci
+        ciJ.save()
 ############################################################################
 
 
@@ -331,9 +344,9 @@ def addJob(request):
     if request.method == "POST":
         if form.is_valid():
             form.save()
-            CountryUser(getCountry, request.user)
+            CountryJob(getCountry)
 
-            CityUser(getCity, getCountry, request.user)
+            CityJob(getCity, getCountry)
             subject = "Your job posting for " + jobTitle + " is under review"
             email_template_applicant = "main/jobs/postJob.txt"
 
@@ -374,8 +387,8 @@ def editJob(request, pk):
             des = des.replace('<br />', '\n')
 
             if form.is_valid():
-                CountryUser(request.POST.get("country_j"), request.user)
-                CityUser(request.POST.get("city_j"), request.user)
+                CountryJob(request.POST.get("country_j"))
+                CityJob(request.POST.get("city_j"),request.POST.get("country_j"))
                 form.save()
                 return redirect("postedJob")
             return render(request, "Jobs/edit.html", {"form": form, "country": country, "city": city, "des": des})
