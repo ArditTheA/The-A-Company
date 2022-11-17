@@ -658,11 +658,19 @@ input:focus, select:focus
 		</div>
 		<div class="back-submit-buttons" style="">
 			<a class="back-button back-button-description second-next-none" style="display: none; color: #1877F2;">Back</a>
-			<a id="sub" style="display: none; color: white;text-decoration: none;" href="javascript:void(0);" onclick="Post()" class="submit-button submit-button-description second-next-none"> Submit</a>
+			<a id="sub" style="display: none; color: white;text-decoration: none;"  onclick="clickAndDisable(this);Post();" class="submit-button submit-button-description second-next-none"> Submit</a>
 		</div>
     </form>
 	</div>
 </div>
+<script>
+   function clickAndDisable(link) {
+     link.onclick = function(event) {
+        event.preventDefault();
+     }
+   }
+</script>
+
 	<script>
 		function MMDDYYYY(value, event) {
 		  let newValue = value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');

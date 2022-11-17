@@ -83,10 +83,10 @@ def CountryJob(country):
 def CityJob(city,country):
     ci = city
     co = country
-    if not City.objects.filter(name=ci).filter(country=co).exists():
+    if not City.objects.filter(name=ci).exists():
         ciJ = City()
-        ciJ.country=co
         ciJ.name=ci
+        ciJ.country=Country.objects.get(country=co)
         ciJ.save()
 ############################################################################
 
@@ -1487,52 +1487,53 @@ def applyForJob(request, pk):
         ACaws = ""
         if ActiveStudent.objects.filter(user_id=request.user).exists():
             ACaws = ActiveStudent.objects.filter(user_id=request.user).values_list("answer",flat=True).first()
+        if not Application.objects.filter(job_id=pk).filter(user_id=request.user).exists():
+            if request.method == "POST":
+                if form.is_valid():
+                    if not ActiveStudent.objects.filter(user_id=request.user).exists():
+                        ACS = ActiveStudent()
+                        ACS.user_id=request.user
+                        ACS.answer = answerUS
+                        ACS.save()
+                    else:
+                        ACS = ActiveStudent.objects.get(user_id=request.user)
+                        ACS.answer=answerUS
+                        ACS.save()
 
-        if request.method == "POST":
-            if form.is_valid():
-                if not ActiveStudent.objects.filter(user_id=request.user).exists():
-                    ACS = ActiveStudent()
-                    ACS.user_id=request.user
-                    ACS.answer = answerUS
-                    ACS.save()
-                else:
-                    ACS = ActiveStudent.objects.get(user_id=request.user)
-                    ACS.answer=answerUS
-                    ACS.save()
 
+                    CountryUser(profCountry, request.user)
+                    form.save()
+                    post = get_object_or_404(Jobs, id=pk)
+                    app = Application()
+                    app.user_id = userId
+                    app.job_id = job
+                    app.apply_date = dataa
+                    app.status = "Pennding"
+                    app.save()
+                    post.applicant.add(userId)
+                    subject = "You applied for" + "  " + job.job_title
+                    email_template_applicant = "main/jobs/Jobapplication.txt"
 
-                CountryUser(profCountry, request.user)
-                form.save()
-                post = get_object_or_404(Jobs, id=pk)
-                app = Application()
-                app.user_id = userId
-                app.job_id = job
-                app.apply_date = dataa
-                app.status = "Pennding"
-                app.save()
-                post.applicant.add(userId)
-                subject = "You applied for" + "  " + job.job_title
-                email_template_applicant = "main/jobs/Jobapplication.txt"
+                    c = {
+                        "email": request.user.email,
+                        'domain': 'worki.global',
+                        'site_name': 'Worki',
+                        'user': request.user,
+                        "job": job,
+                        "date": dataa,
 
-                c = {
-                    "email": request.user.email,
-                    'domain': 'worki.global',
-                    'site_name': 'Worki',
-                    'user': request.user,
-                    "job": job,
-                    "date": dataa,
+                    }
+                    email = render_to_string(email_template_applicant, c)
 
-                }
-                email = render_to_string(email_template_applicant, c)
-
-                try:
-                    send_mail(subject, email, 'hello@worki.global',
-                              [request.user.email], fail_silently=False)
-                    # send_mail(subject,oemail,'rinor@theacompany.xyz',[emailOwner],fail_silently=False)
-                except BadHeaderError:
-                    return HttpResponse('Invalid header found.')
-                return redirect('appSuc')
-
+                    try:
+                        send_mail(subject, email, 'hello@worki.global',
+                                  [request.user.email], fail_silently=False)
+                        # send_mail(subject,oemail,'rinor@theacompany.xyz',[emailOwner],fail_silently=False)
+                    except BadHeaderError:
+                        return HttpResponse('Invalid header found.')
+                    return redirect('appSuc')
+        else:
+            return redirect("home")
         return render(request, "ProfileSetup/WATinfo.html",dict(form=form,country=country,AnS=AnS))
 
     else:
