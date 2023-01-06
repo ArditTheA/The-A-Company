@@ -198,7 +198,7 @@ class editjob(ModelForm):
             "programCost": forms.NumberInput(attrs={'class': 'name-input mutual-stats font-fam next-none'}),
             "hour_per_work": forms.NumberInput(attrs={'class': 'name-input mutual-stats font-fam next-none'}),
             "salary_per_hour": forms.NumberInput(attrs={'class': 'name-input mutual-stats font-fam next-none'}),
-            "logo":forms.FileInput(attrs={"style":"display:none"}),
+
             "approved": forms.CheckboxInput(),
             "city_j": forms.TextInput(attrs={"class": "name-input mutual-stats font-fam next-none","list":"cityList"}),
             "type_of_work": forms.Select(attrs={"class": "custom-select sel select-options-input next-none padding-of-inputs"}),

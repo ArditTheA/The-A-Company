@@ -25,60 +25,39 @@ from accounts.views import *
 from  filters.views import *
 from resetpassword.views import *
 from Match.views import *
+from ScreeningQuestion.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', LoginView.as_view(), name='login'),
     path('register/', registration, name='register'),
     path('logout/', userViews.LogoutView.as_view(template_name='home/home.html'), name='logout'),
-    path('accounts/', include('allauth.urls')),
-    path('',MainJobs.as_view(),name='home'),
-    path('<int:pk>',MainJobsId.as_view(),name="visitJob"),
-    path('jobs/<int:pk>',MainJobsId.as_view()),
-    path("TermsAndCondition/",Terms,name="terms"),
+    path('', MainJobs.as_view(), name='home'),
 
-
-    path("password_reset", password_reset_request, name="password_reset"),
-
-    # path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='main/password/password_reset_done.html'), name='password_reset_done'),
-    # path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name="main/password/password_reset_confirm.html"), name='password_reset_confirm'),
-    # path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='main/password/password_reset_complete.html'), name='password_reset_complete'),
-
-    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='main/password/password_reset_done.html'), name='password_reset_done'),
-    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name="main/password/password_reset_confirm.html"), name='password_reset_confirm'),
-    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='main/password/password_reset_complete.html'), name='password_reset_complete'),
-    #profile
-    path("profile/",update_profile,name="profile"),
-    path("profile/Experience",Edit_user_exp,name="editExprience"),
-    path("profile/Experience/<int:pk>",Edit_user_expId,name="editExprienceId"),
-    path("profile/Education/",Edit_user_edu,name="editEdu"),
-    path("profile/Education/<int:pk>/",Edit_user_EduId,name="editEduId"),
-    path("profile/language/",Edit_user_language,name="editLanguage"),
-    path("profile/language/<int:pk>/",Edit_User_langId,name="editLanguageId"),
-
-    #JOBS
-
-    path("Jobs/Add",addJob,name="addJob"),
-    path("Jobs/Edit/<int:pk>",editJob,name="editJob"),
-    path("Jobs/Posted",AjaxHandler.as_view(),name="postedJob"),
-    path("Jobs/Applied",AppliedJobs.as_view(),name="appliedJob"),
-
-
-    # MainJobs
-    path("apply/<int:pk>",applyForJob,name="apply"),
-    path("jobs/apply/<int:pk>",applyForJob),
-    path("profile/setup/1/<int:pk>",applyForJob2,name="setupPart2"),
-    path("profile/setup/2/<int:pk>",applyForJob3,name="setupPart3"),
-    path("search/",getList,name="search"),
-    path("apply/Succesful",ApplySuc,name="appSuc"),
-
+    #Jobs  / Profile / Posted / Aplied
+    path("",include('accounts.urls')),
 
     # Filters
-    path("jobs/filter",OneSelFilter.as_view(),name="filter"),
+    path("", include('filters.urls')),
+    # Match
+    path("", include('Match.urls')),
+    #reset password
+    path("", include('resetpassword.urls')),
+    #Screening Question
+    path("", include('ScreeningQuestion.urls')),
 
-    path("Administrator/Applicant",GetJobApplicant,name="newApplication"),
-    path("Administrator/Applicant/all",GetAllApplication,name="allApplication"),
-    path("Administrator/Applicant/profile/<int:pk>", GetUserProfile,name="visitProfile"),
-    path("Administrator/Applicant/Read", MarkApplicantAsRead,name="markAsRead"),
+                  path("password_reset", password_reset_request, name="password_reset"),
 
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+                  # path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='main/password/password_reset_done.html'), name='password_reset_done'),
+                  # path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name="main/password/password_reset_confirm.html"), name='password_reset_confirm'),
+                  # path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='main/password/password_reset_complete.html'), name='password_reset_complete'),
+
+                  path('password_reset/done/',
+                       auth_views.PasswordResetDoneView.as_view(template_name='main/password/password_reset_done.html'),
+                       name='password_reset_done'),
+                  path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(
+                      template_name="main/password/password_reset_confirm.html"), name='password_reset_confirm'),
+                  path('reset/done/', auth_views.PasswordResetCompleteView.as_view(
+                      template_name='main/password/password_reset_complete.html'), name='password_reset_complete'),
+
+              ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

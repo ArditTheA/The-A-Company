@@ -137,6 +137,7 @@ function checkFormButton(){
     var program =document.getElementById("id_program").value
     var programCost =document.getElementById("id_programCost").value
     var id_logo =document.getElementById("id_logo").value
+    console.log(id_logo);
     function onlySpaces(str) {
         return str.trim().length != 0;
     }

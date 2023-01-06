@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Applicants</title>
+    <link rel="stylesheet" href="../css/authenticated.css">
+    <link rel="stylesheet" href="../css/jobs.css">
+    <link rel="stylesheet" href="../css/profile-header.css">
+    <link rel="stylesheet" href="../css/posted-jobs-media-queries.css">
+    <link rel="stylesheet" href="../css/all-aplicants.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+</head>
+<style>
+    input[type="checkbox"]::before {
+        outline: none;
+    }
+
+    .plus-icon-jobs:hover {
+        filter: brightness(0.9);
+    }
+</style>
+<body>
+    <header class="header-border">
+        <img style="border-radius: 10px;" id="worki-image" src="../img/12.jpeg" title="Worki">
+        <div id="jobs-and-profile">
+        <a href="jobs.html"><img class="jobs-icon-button" title="Jobs" src="../img/JOBS_Icon.png"></a>
+        <img src="../img/logo-avatar.png" id="profile-image-button" title="Profile" alt="">
+    </div>
+    </header>
+
+    <div class="dropdown">
+        <div class="dropdown-content"><a href="profile.html" class="dropdown-content-text">My profile</a></div>
+        <div class="dropdown-mid-content"><a href="../html/jobs-applied.html" class="dropdown-content-text">My jobs</a></div>
+        <div class="third-dropdown-content"><a href="" class="dropdown-content-text">Sign out</a></div>
+    </div>
+
+    <div class="jobs-buttons applied-posted-buttons-mobile all-aplicants-main-div">
+         <div class="main-input-form">
+            <div class="input-form-all-applicants inputs-right-margin">
+                <div style="display: flex;">
+                    <button style="padding-left: 20px;" title="All Applicants" class="applied-button-jobs outline-none all-applicants-button">All Applicants</button>
+                    <div class="" style="display: flex; align-items: center;">
+                        <img style="cursor: pointer;" class="white-icon" src="../img/white-dropdown-icon.png" alt="">
+                    </div>
+                </div>
+                <div class="all-applicants-dropdown" style="padding-bottom: 20px; padding-left: 20px; padding-right: 20px; overflow-y: scroll; max-height: 140px; flex-direction: column; align-items: center; overflow-x: scroll;">
+                    <div class="dropdown-content"><a title="Qualified Students" href="https://google.com" id="qualify" class="dropdown-content-text">Qualified</a></div>
+                    <div style="" class="dropdown-mid-content"><a title="Not Qualified Students" href="" class="dropdown-content-text">Not qualified</a></div>
+                    <!-- <div style="cursor: pointer; margin-top: 0px;" class="add-subphase-button dropdown-content-text"><span style="text-align: center;">+</span> Add Subphase</div> -->
+                    <div class="add-subphase-div" style="padding-top: 15px;">
+                        <img style="padding: 0; width: 16px; height: 16px; cursor: pointer;" title="Add a Subphase" class="add-subphase-button applied-posted-plus-icon-mobile" src="../img/add_subphase.png" alt="">
+                     </div>        
+                </div>
+            </div>
+                </div>
+                <div class="second-input-form" style="">
+
+                    <input style="" name="" placeholder="Search by job or location"
+                        class="search-input inputs-right-margin" id="input-removed"
+                        style="padding-left: 20px; background-color: white;">
+                    
+                    </input>
+                    <img style="display: none;" class="input-exit-button" title="Exit" src="../img/Vector 81 (1).png" alt="">
+                </div>
+
+    <img style="cursor: pointer; margin-left: 20px;" title="Add a Phase" class="plus-icon-jobs phase-plus-icon applied-posted-plus-icon-mobile" src="../img/add.png" alt="">
+
+    </div>
+
+    <div class="jobs-main-div" style="display: flex; justify-content: space-between;">
+        <div class="jobs-left applied-jobs-left" style="">
+        
+            <div class="jobs-rows-img different-background-jobs first-job-applied">
+                <img class="experience-education-img" src="../img/Profile (2).png" alt="" style="border-radius: 10px;">
+                <div class="experience-rows">
+                <div style="display: flex;">
+                
+                <div style="width: 200px;" class="experience-first-row jobs-first-row">Festim Bejtullahu</div>
+                <label for="select-all" title="Select all" style="position: absolute; right: 31.7px; top: 15px; background-color: #E7F1FE; cursor: pointer;">
+                    <input title="Select all" value="Select" name="select-all" type="checkbox" class="select-all-button" id="select-all"  style="display: none;"></input>All</label>    
+                <input title="Select applicant" class="checkbox-jobs"  name="checkb" id="checkb" style="height: 22px; width: 22px; position: absolute; right: 20px; top: 40px;" type="checkbox"></input>
+
+                </div>  
+                <div class="experience-second-row">festimbejtullahu@gmail.com</div>
+                <div class="experience-third-row">+383 45 572 572</div>
+                <div class="experience-fourth-row">Gjakovë, Kosovo</div>
+
+                </div>
+            </div>
+
+            <div class="jobs-rows-img second-jobs move same-background-jobs">
+                <img class="experience-education-img" src="../img/question.png" alt="">
+                <div class="experience-rows">
+                <div class="experience-first-row">Liri Efendiu</div>
+                <input title="Select applicant" class="checkbox-jobs" style="height: 22px; width: 22px; position: absolute; right: 20px;" type="checkbox"></input>
+                <div class="experience-second-row">Gjakovë, Kosovo</div>
+                <div class="experience-third-row">+383 45 572 572</div>
+                <div class="experience-fourth-row">liriefendiu@gmail.com</div>
+                </div>
+            </div>
+
+            <div class="jobs-rows-img move same-background-jobs">
+                <img class="experience-education-img" src="../img/question.png" alt="">
+                <div class="experience-rows">
+                    <div class="experience-first-row">Rinor Biçku</div>
+                    <input title="Select applicant" class="checkbox-jobs " name="checkb"  style="height: 22px; width: 22px; position: absolute; right: 20px;" type="checkbox"></input>
+                    <div class="experience-second-row">Gjilan, Kosovo</div>
+                    <div class="experience-third-row">+383 45 572 572</div>
+                    <div class="experience-fourth-row">rinorbiçku@gmail.com</div>
+                    </div>
+            </div>
+            <div class="jobs-rows-img move same-background-jobs">
+                <img class="experience-education-img" src="../img/question.png" alt="">
+                <div class="experience-rows">
+                <div class="experience-first-row">Ganaela Dujaka</div>
+                <input title="Select applicant" class="checkbox-jobs" style="height: 22px; width: 22px; position: absolute; right: 20px;" type="checkbox"></input>
+                <div class="experience-second-row">Gjakovë, Kosovo</div>
+                <div class="experience-third-row">+383 45 572 572</div>
+                <div class="experience-fourth-row">genaeladujaka@gmail.com</div>
+                </div>
+            </div>
+            <div class="jobs-rows-img move same-background-jobs">
+                <img class="experience-education-img" src="../img/question.png" alt="">
+                <div class="experience-rows">
+                <div class="experience-first-row">Ardit Qurdina</div>
+                <input title="Select applicant" class="checkbox-jobs" name="checkb" style="height: 22px; width: 22px; position: absolute; right: 20px;" type="checkbox"></input>
+                <div class="experience-second-row">Gjakovë, Kosovo</div>
+                <div class="experience-third-row">Texas, USA</div>
+                <div class="experience-fourth-row">Work and Travel</div>
+                </div>
+            </div>
+            <div class="jobs-rows-img move same-background-jobs">
+                <div style="display: flex;">
+                    <img class="experience-education-img" src="../img/question.png" alt="">
+                </div>
+                <div class="experience-rows">
+                <div class="experience-first-row">Warehouse Associate</div>
+                <input title="Select applicant" class="checkbox-jobs" name="checkb" style="height: 22px; width: 22px; position: absolute; right: 20px;" type="checkbox"></input>
+                <div class="experience-second-row">Amazon</div>
+                <div class="experience-third-row">Texas, USA</div>
+                <div class="experience-fourth-row">Work and Travel</div>
+                </div>
+            </div>
+            <div class="jobs-rows-img move same-background-jobs">
+                <img class="experience-education-img" src="../img/question.png" alt="">
+                <div class="experience-rows">
+                <div class="experience-first-row">Warehouse Associate</div>
+                <input title="Select applicant" class="checkbox-jobs" name="checkb" style="height: 22px; width: 22px; position: absolute; right: 20px;" type="checkbox"></input>
+                <div class="experience-second-row">Amazon</div>
+                <div class="experience-third-row">Texas, USA</div>
+                <div class="experience-fourth-row">Work and Travel</div>
+                </div>
+            </div>
+            <div class="jobs-rows-img move same-background-jobs">
+                <img class="experience-education-img" src="../img/question.png" alt="">
+                <div class="experience-rows">
+                <div class="experience-first-row">Warehouse Associate</div>
+                <input title="Select applicant" class="checkbox-jobs" name="checkb" style="height: 22px; width: 22px; position: absolute; right: 20px;" type="checkbox"></input>
+                <div class="experience-second-row">Amazon</div>
+                <div class="experience-third-row">Texas, USA</div>
+                <div class="experience-fourth-row">Work and Travel</div>
+                </div>
+            </div>
+            <div class="jobs-rows-img move same-background-jobs last-job-margin-bottom">
+                <img class="experience-education-img" src="../img/question.png" alt="">
+                <div class="experience-rows">
+                <div class="experience-first-row">Warehouse Associate</div>
+                <input title="Select applicant" class="checkbox-jobs" name="checkb" style="height: 22px; width: 22px; position: absolute; right: 20px;" type="checkbox"></input>
+                <div class="experience-second-row">Amazon</div>
+                <div class="experience-third-row">Texas, USA</div>
+                <div class="experience-fourth-row">Work and Travel</div>
+                </div>
+            </div>
+            <div>
+            </div>
+        </div>
+        <div class="right-jobs-main-div applied-posted-right-main-div-mobile" style="">
+            <div class="right-jobs">
+                <div class="right-jobs-rows-img" style="margin-left: 10px; background-color: white; margin-bottom: 20px;">
+                    <div class="experience-rows">
+                        <img class="exit-job-description" title="Exit" style="float: left; cursor: pointer;"
+                            src="../img/close(2).png" alt="">
+                        <div class="first-row-jobs mobile-title-font-size">Festim Bejtullahu</div>
+                        <div class="second-row-jobs mobile-under-title-font-size">Qualified</div>
+                        <div style="" class="jobs-third-row mobile-rows-font-size">festimbejtullahu@gmail.com</div>
+                        <div style="" class="experience-fourth-row jobs-mutual-margin-rows mobile-rows-font-size">+38345572572
+                        </div>
+                        <div style="" class="experience-fourth-row jobs-mutual-margin-rows mobile-rows-font-size">San Francisco, USA</div>
+                        <div style=""
+                            class="experience-fourth-row jobs-mutual-margin-rows mobile-rows-font-size">Applied on: 10/09/2022</div>
+                    </div>
+                </div>
+        
+                <div class="experience-main-div experience-education-languages experience-education-margin-bottom">
+                <div class="experience-div">
+                    <div class="experience-paragraph-img-rows">
+                        <div class="aaa">
+                        <p class="experience-paragraph">Experience</p>
+                        <div class="experience-rows-img">
+                            <img class="experience-education-img" src="../img/worki_icons-18.jpg" alt="" title="Experience">
+                            <div class="experience-rows">
+                            <div class="experience-first-row">Warehouse Associate</div>
+                            <div class="experience-second-row">Amazon</div>
+                            <div class="experience-third-row">Texas, USA</div>
+                            <div class="experience-fourth-row">Work and Travel</div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- <div class="add-and-edit-experience">
+                        <img class="add-experience-button" title="Add Experience" src="../img/Vector 80.png" alt="">
+                        <a href="experience.html"><img class="edit-experience" title="Edit Experience" src="../img/Ikona_edit-01 56.png" alt=""></a>
+                    </div> -->
+                </div>
+        
+                </div>
+                <div class="languages-main-div experience-education-languages experience-education-margin-bottom">
+                    <div class="education-div">
+                        <div class="experience-paragraph-img-rows">
+                            <div class="aaa">
+                            <p class="experience-paragraph">Education</p>
+                            <div class="experience-rows-img" style="">
+                                <img class="experience-education-img" src="../img/worki_icons-19.jpg" alt="" title="Education">
+                                <div class="experience-rows">
+                                <div class="experience-first-row">University of San Francisco</div>
+                                <div class="experience-second-row">MBA</div>
+                                <div class="experience-third-row">Semptember 2015 - Present</div>
+                                <div class="experience-fourth-row">San Francisco, USA</div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <!-- <div class="add-and-edit-experience">
+                            <img class="add-experience-button add-education-button" title="Add Education" src="../img/Vector 80.png" alt="">
+                            <a href="education.html"><img class="edit-experience" title="Edit Education" src="../img/Ikona_edit-01 56.png" alt=""></a>
+                        </div> -->
+                    </div>   
+                </div>
+                <div class="experience-education-languages languages-main-div">
+                    <div class="languages-div">
+                        <div class="languages-paragraphs-div">
+                            <div class="experience-paragraph language-paragraph">Languages</div>
+                            <div style="" class="experience-rows-img-languages">
+                                <div class="education-second-paragraph">English</div>
+                                <div class="language-rate">Advanced</div>
+                            </div>
+                            <div style="" class="experience-rows-img-languages">
+                                <div class="education-second-paragraph">Albanian</div>
+                                <div class="language-rate">High-Intermediate</div>
+                            </div>
+                        </div>
+                        <!-- <div class="add-and-edit-experience">
+                            <img class="add-experience-button add-languages-button" id="" title="Add Language" src="../img/Vector 80.png" alt="">
+                            <a href="languages.html">
+                            <img class="edit-experience" title="Edit Languages" src="../img/Ikona_edit-01 56.png" alt=""></a>
+                        </div> -->
+                    </div>
+                </div>        
+            </div>
+        </div>
+        </div>
+        </body>
+        
+        <script src="../js/profile_dropdown.js"></script>
+        <script src="../js/jobs-img.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="../js/exit-job-description-button.js"></script>
+        <script src="../js/second-next.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+        <script src="../js/search-button.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+        <script src="../js/dropdown-jobs.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.2/umd/popper.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <script src="../js/all-applicants-dropdown.js"></script>
+        <script src="../js/select-all-button.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="../js/add-phase.js"></script>
+        <script src="../js/add-subphase.js"></script>
+
+        <script>
+        $(".jobs-rows-img input").click(function (e) {
+            // Do something
+            e.stopPropagation();
+        });
+        </script>
+
+        <script>
+            function Check(){
+                var c = document.querySelectorAll(".checkbox-jobs")
+                console.log(c)
+                if(c.length === 0){
+                    document.getElementById("qualify").href="https://worki.global"
+                }else{
+                    document.getElementById("qualify").href="https://google.com"
+                }
+            }
+$('#select-all').click(function(event) {   
+    if(this.checked) {
+        // Iterate each checkbox
+        $(':checkbox').each(function() {
+            this.checked = true;
+            this.title = "Deselect applicant";
+        });
+    } else {
+        $(':checkbox').each(function() {
+            this.checked = false;     
+            this.title = "Select applicant";
+
+        });
+    }
+});
+
+
+$(':checkbox').click(function(e) {
+    // Check();   
+    if(this.checked) {
+        
+            this.title = "Deselect applicant";
+        
+    }
+    else {
+        
+            this.title = "Select applicant";
+        
+    }
+
+})
+
+        </script>
+
+        </html>

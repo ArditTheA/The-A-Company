@@ -6,42 +6,50 @@
 
 
 <link rel="stylesheet" href="{% static 'css/jobi.css' %}">
+<link rel="stylesheet" href="{% static 'css/labels.css' %}">
 <!-- <link rel="stylesheet" href="{% static 'css/posted-jobs-media-queries.css' %}"> -->
 
 
 {% include "Filters/filters.html" %}
+
 {% if check %}
 <input style="display:none;" id="PostID" value="{{post_id}}">
 <div class="jobs-main-div" style="display: flex; justify-content: space-between;">
     <div class="jobs-left mobile-margin-top" style="" id="myDIV">
-    {% for i in job %}
+<!--        Left Jobs-->
+         {% for i in job %}
 
-           <div onclick="getNumber('{{i.id}}')" class="jobs-rows-img second-jobs margin-top-jobs-rows-img same-background-jobs pixel"  id="select{{i.id}}">
-               <img class="experience-education-img" src="{{i.logo.url}}" alt="">
-               <span class="experience-rows">
-               <span class="experience-first-row">{{i.job_title}}</span>
-               <span class="experience-second-row">{{i.company}}</span>
-               <span class="experience-third-row">{{i.city_j}}, {{i.country_j}}</span>
-               <span class="experience-fourth-row">{{i.program}}</span>
-               </span>
-           </div>
-    <div class="move"></div>
+               <div onclick="getNumber('{{i.id}}')" class="jobs-rows-img second-jobs margin-top-jobs-rows-img same-background-jobs pixel"  id="select{{i.id}}">
+                   <img class="experience-education-img" src="{{i.logo.url}}" alt="">
+                   <span class="experience-rows">
+                   <span class="experience-first-row">{{i.job_title}} </span>
+                       {% if i.country_j == "USA" %}
+                            <span class="experience-second-row">${{i.salary_per_hour}}/hour</span>
+                       {% else %}
+                            <span class="experience-second-row">€{{i.salary_per_hour}}/hour</span>
+                       {% endif%}
+                   <span class="experience-third-row">{{i.company}}</span>
 
-   {% endfor %}
-   {% for j in jobi %}
+                   <span class="experience-third-row">{{i.city_j}}, {{i.country_j}}</span>
+                       <div class="experience-fifth-row">
+                           {% if i.positionLeft <= 3 and i.positionLeft > 0 %}
+                        <div class="jobs-availability experience-fifth-row-positions" title="{{i.positionLeft}} positions left">{{i.positionLeft}} positions left</div>
 
-           <div onclick="getNumber('{{j.id}}')" class="jobs-rows-img second-jobs margin-top-jobs-rows-img same-background-jobs pixel"  id="select{{j.id}}">
-               <img class="experience-education-img" src="{{j.logo.url}}" alt="">
-               <span class="experience-rows">
-               <span class="experience-first-row">{{j.job_title}}</span>
-               <span class="experience-second-row">{{j.company}}</span>
-               <span class="experience-third-row">{{j.city_j}}, {{j.country_j}}</span>
-               <span class="experience-fourth-row">{{j.program}}</span>
-               </span>
-           </div>
-   <div class="move"></div>
+                           {% endif %}
+                           {% if i.daysLeftDeadline <= 7 and i.daysLeftDeadline > 0 %}
+                           <div class="jobs-availability experience-fifth-row-days" title="Expiring in {{i.daysLeftDeadline}} days">{{i.daysLeftDeadline}} days left</div>
+                           {% endif %}
+                           {% if i.postDate.year == getYear and i.postDate.month == getMonth %}
+                            <div class="jobs-availability experience-fifth-row-new" title="New job">New</div>
+                           {% endif %}
 
-   {% endfor %}
+                        </div>
+
+                   </span>
+               </div>
+        <div class="move"></div>
+
+       {% endfor %}
   
     </div>
     <div class="right-jobs-main-div right-job-margin-top">
@@ -59,7 +67,7 @@
                             <span id="city"></span>&nbsp;&nbsp;·&nbsp;
                             <span id="countApplicant"></span></span></div>
                                 
-                        <div style="" class="jobs-third-row mobile-rows-font-size"><span id="salary"></span></div>
+                        <div style="" class="jobs-third-row mobile-rows-font-size"><span id="salary"></span>&nbsp&nbsp·&nbsp&nbsp <span id="totsalary" style="color:#00AA11;"></span></div>
                         <div  class="experience-fourth-row mobile-rows-font-size  jobs-mutual-margin-rows">
                             <span id="typeOfWork"></span>&nbsp;·&nbsp;
                             <span id="hourPerWork"></span>

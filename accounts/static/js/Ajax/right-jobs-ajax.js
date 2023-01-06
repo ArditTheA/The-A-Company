@@ -1,4 +1,4 @@
- async function getNumber(id) {
+     async function getNumber(id) {
         window.history.pushState("","","")
         window.history.pushState("","", id)
         var elements = document.getElementsByClassName('pixel'); // get all elements
@@ -78,17 +78,35 @@
 
         var start_date = document.getElementById("sDate");
         start_date.innerHTML = data["start_date"] +" - "+data["end_date"];
-
-
         var comp = document.getElementById("company")
         comp.innerHTML=data["company"]
 
+
+
+        function getMonthDifference(startDate, endDate) {
+          return (
+            endDate.getMonth() -
+            startDate.getMonth() +
+            12 * (endDate.getFullYear() - startDate.getFullYear())
+          );
+        }
+
+        var c= (getMonthDifference(
+          new Date(data["SDate"]), new Date(data["EDate"]))
+        );
+        var total = (data["salary"]*data['hourPerWork'])*4*c;
+
+        var tt  = Math.floor(total);
         if(data["country"]== "USA"){
         var salary = document.getElementById("salary")
         salary.innerHTML ="$"+ data ["salary"]+"/hour"
+        document.getElementById("totsalary").innerHTML="$"+tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
         }else{
             var salary = document.getElementById("salary")
         salary.innerHTML ="€"+ data ["salary"]+"/hour"
+        document.getElementById("totsalary").innerHTML="€"+tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
         }
         var typeOfWork = document.getElementById('typeOfWork')
         typeOfWork.innerHTML = data["typeOfWork"]+" "
@@ -119,15 +137,11 @@
         var auth=data["auth"]
 
         if(!hasApply){
-
-            if (auth == "True"){
-                document.getElementById("button").style.marginTop = "33px";
-                button.innerHTML = '<a href="'+url+'" class="applied-button-jobs outline-none" style="text-decoration:none;margin-top: 18px; width: fit-content; padding-top: 8px; padding-bottom: 8px;">Fast Apply</a>';
-            }else{
-             document.getElementById("button").style.marginTop = "33px";
+            document.getElementById("button").style.marginTop = "33px";
 
             button.innerHTML = '<a href="'+url+'" class="applied-button-jobs outline-none" style="text-decoration:none;margin-top: 18px; width: fit-content; padding-top: 8px; padding-bottom: 8px;">Apply</a>';
-            }
+
+
         }else{
             document.getElementById("button").style.marginTop = "20px";
 

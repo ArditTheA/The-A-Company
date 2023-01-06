@@ -8,11 +8,14 @@
     <link rel="stylesheet" href="{% static 'css/filter.css'%}">
     <link rel="stylesheet" href="{% static 'css/jobi.css'%}">
 
+
+
+
 <div class="main-buttons-div" style="position: relative;">
   <div class="jobs-buttons second-jobs-buttons scrolling-wrapper">
     <form class="card" action="{% url 'home'%}">
         <img style="cursor: pointer;" title="Search by job or location"
-            class="plus-icon-jobs search-icon-jobs inputs-right-margin" src="{% static 'img/search-third-img.png'%}"
+            class="plus-icon-jobs search-icon-jobs inputs-right-margin" src="{% static 'img/search (1).png'%}"
             alt="">
             <div class="mutual-padding-of-div input-search-div" style="border-radius: 20px;">
                 <div class="second-input-form" style="">
@@ -25,194 +28,127 @@
         </div>
     </form>
     <form style="display: flex;" class="buttons-form card" id="myForm" action="{% url 'filter' %}">
-      <!-- Program -->
-      <div class="container-fluid " style="cursor: pointer;">
-        <div id="mySelectLabel" class="selectBox" style="z-index: 99; position: static">
-          <div class="input-form margin inputs-right-margin" style="">
-            {% if filterProgram != "" %}
-            
+        <!-- Program -->
+<div class="container-fluid " style="cursor: pointer;">
+  <div id="mySelectLabel" class="selectBox" style="z-index: 99; position: static">
+    <div class="input-form margin inputs-right-margin" style="">
+      {% if filterProgram != "" %}
 
-            <select id="selProg" style="color: #f1f1f1; background-color: #1877f2;border: none; font-size: 18px; padding-top: 0; padding-bottom: 0; 
-                padding: 8px 30px; padding-left: 20px;" name="Program" onchange="this.form.submit()"
-              class="form-select" id="second_form_select">
-              <option value="{{filterProgram}}" class="first-input-option">{{filterProgram}}</option>
-            </select>
-            <div class="" style="display: flex; align-items: center;">
-              <img class="icon" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
-              <img style="cursor: pointer; display: block;" class="white-icon"
-                src="{% static 'img/white-dropdown-icon.png' %}" alt="">
-            </div>
-           
-            {% else %}
-            <select style="color: #65676B; border: none; font-size: 18px; padding-top: 0; padding-bottom: 0; 
-              padding: 8px 30px; padding-left: 20px;" class="form-select" name="Program" id="second_form_select">
-              <option class="first-input-option">Program</option>
-            </select>
-            <div class="" style="display: flex; align-items: center;">
-              <img class="icon" src="{% static 'img/dropdown-icon.png'%}" alt="">
-              <img style="cursor: pointer; display: none;" class="white-icon" src="{% static 'img/white-dropdown-icon.png' %}" alt="">
-            </div>
 
-            {% endif %}
-            <div class="overSelect" onclick="ShowDropDown(0)"></div>
-          </div>
-          <div id="mySelectOptions" class="selectOptions dropdown-elements" style="z-index: 99;">
-            {% for i in prog %}
-            {%if i == filterProgram %}
-
-            <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type"
-                onclick="progFunction();setTimeout(this.form.submit(),50)"/> {{i}}</label>
-
-            {%else%}
-            <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
-                onchange="" onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="{{i}}" /> {{i}}</label>
-            {% endif %}
-            {% endfor %}
-          </div>
-        </div>
+      <select id="selProg" style="color: #f1f1f1; background-color: #1877f2;border: none; font-size: 18px; padding-top: 0; padding-bottom: 0;
+          padding: 8px 30px; padding-left: 20px;" name="Program" onchange="this.form.submit()"
+        class="form-select" id="second_form_select">
+        <option value="{{filterProgram}}" class="first-input-option">{{filterProgram}}</option>
+      </select>
+      <div class="" style="display: flex; align-items: center;">
+        <img class="icon" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
+        <img style="cursor: pointer; display: block;" class="white-icon"
+          src="{% static 'img/white-dropdown-icon.png' %}" alt="">
       </div>
-      <!-- End  of programs -->
 
-
-      <!-- Title -->
-      <div class="container-fluid " style="cursor: pointer;">
-        <div id="mySelectLabel" class="selectBox" style="z-index: 99; position: static">
-          <div class="input-form margin inputs-right-margin" style="">
-            {% if filterTitle != '' %}
-            <select id="selTitle" style="color: #f1f1f1; background-color: #1877f2;border: none; font-size: 18px; padding-top: 0; padding-bottom: 0; 
-            padding: 8px 30px; padding-left: 20px;" name="Job Title" class="form-select" id="second_form_select">
-              <option value="{{filterTitle}}" id="" class="first-input-option">{{filterTitle}}</option>
-            </select>
-            <div class="" style="display: flex; align-items: center;">
-              <img class="icon" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
-              <img style="cursor: pointer; display: block;" class="white-icon" src="{% static 'img/white-dropdown-icon.png' %}" alt="">
-            </div>
-            {% else %}
-            <select style="color: #65676B; border: none; font-size: 18px; padding-top: 0; padding-bottom: 0; 
-            padding: 8px 30px; padding-left: 20px;" class="form-select" name="Job Title" id="second_form_select">
-              <option class="first-input-option">Job Title</option>
-            </select>
-            <div class="" style="display: flex; align-items: center;">
-              <img class="icon" src="{% static 'img/dropdown-icon.png'%}" alt="">
-              <img style="cursor: pointer; display: none;" class="white-icon" src="{% static 'img/white-dropdown-icon.png' %}"
-                alt="">
-            </div>
-
-            {% endif %}
-            <div style="" class="overSelect" onclick="ShowDropDown(1)"></div>
-          </div>
-          <div id="mySelectOptions" class="selectOptions dropdown-elements" style="z-index: 99;">
-            {% for i in title %}
-            {%if i == filterTitle %}
-
-            <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type"
-                onclick="titleFunction()" onchange="this.form.submit()" /> {{i}}</label>
-
-            {%else%}
-            <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
-                 onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="{{i}}" /> {{i}}</label>
-            {% endif %}
-            {% endfor %}
-          </div>
-        </div>
+      {% else %}
+      <select style="color: #65676B; border: none; font-size: 18px; padding-top: 0; padding-bottom: 0;
+        padding: 8px 30px; padding-left: 20px;" class="form-select" name="Program" id="second_form_select">
+        <option class="first-input-option">Program</option>
+      </select>
+      <div class="" style="display: flex; align-items: center;">
+        <img class="icon" src="{% static 'img/dropdown-icon.png'%}" alt="">
+        <img style="cursor: pointer; display: none;" class="white-icon" src="{% static 'img/white-dropdown-icon.png' %}" alt="">
       </div>
-      <!-- End  of title -->
 
-      <!-- Company -->
-      <div class="container-fluid " style="cursor: pointer;">
-        <div id="mySelectLabel" class="selectBox" style="z-index: 99; position: static">
-          <div class="input-form margin inputs-right-margin" style="">
-            {% if filterCompany != '' %}
-            <select id="selCompany" style="color: #f1f1f1; background-color: #1877f2;border: none; font-size: 18px; padding-top: 0; padding-bottom: 0; 
-            padding: 8px 30px; padding-left: 20px;" name="Company" class="form-select" id="second_form_select">
-              <option value="{{filterCompany}}" id="" class="first-input-option">{{filterCompany}}</option>
-            </select>
-            <div class="" style="display: flex; align-items: center;">
-              <img class="icon" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
-              <img style="cursor: pointer; display: block;" class="white-icon"  src="{% static 'img/white-dropdown-icon.png' %}" alt="">
-            </div>
-            {% else %}
-            <select style="color: #65676B; border: none; font-size: 18px; padding-top: 0; padding-bottom: 0; 
-            padding: 8px 30px; padding-left: 20px;" class="form-select" name="Company" id="second_form_select">
-              <option class="first-input-option">Company</option>
-            </select>
-            <div class="" style="display: flex; align-items: center;">
-              <img class="icon" src="{% static 'img/dropdown-icon.png'%}" alt="">
-              <img style="cursor: pointer; display: none;" class="white-icon" src="{% static 'img/white-dropdown-icon.png' %}" alt="">
-            </div>
+      {% endif %}
+      <div class="overSelect" onclick="ShowDropDown(0)"></div>
+    </div>
+    <div id="mySelectOptions" class="selectOptions dropdown-elements" style="z-index: 99;">
+      {% if filterProgram != "" %}
+        {%if filterProgram == "Recommended" %}
 
-            {% endif %}
-            <div style="" class="overSelect" onclick="ShowDropDown(2)"></div>
-          </div>
-          <div id="mySelectOptions" class="selectOptions dropdown-elements" style="z-index: 99;">
-            {% for i in company %}
-            {%if i == filterCompany %}
+      <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type"
+          onclick="progFunction();setTimeout(this.form.submit(),50)"/> Recommended</label>
+        {% else %}
+        {% for i in prog %}
 
+          {% if i == filterProgram %}
             <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type"
-                onclick="companyFunction()" onchange="this.form.submit()" /> {{i}}</label>
+              onclick="progFunction();setTimeout(this.form.submit(),50)"/> {{i}}</label>
+          {%else%}
 
-            {%else%}
-            <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
-                onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="{{i}}" /> {{i}}</label>
-            {% endif %}
-            {% endfor %}
-          </div>
-        </div>
+          <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
+              onchange="" onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="{{i}}" /> {{i}}</label>
+          {% endif %}
+          {% endfor %}
+        {% endif %}
+
+
+      {% else %}
+        <label class="labels-stats first-label-margin"><input type="checkbox"  class="input_type"
+          onclick="checkboxStatusChange();setTimeout(this.form.submit(),50)" value="Recommended" /> Recommended</label>
+        {% for i in prog %}
+        <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
+              onchange="" onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="{{i}}" /> {{i}}</label>
+        {% endfor %}
+
+      {% endif %}
+
+    </div>
+  </div>
+</div>
+<!-- End  of programs -->
+<!-- Title -->
+<div class="container-fluid " style="cursor: pointer;">
+  <div id="mySelectLabel" class="selectBox" style="z-index: 99; position: static">
+    <div class="input-form margin inputs-right-margin" style="">
+      {% if filterTitle != '' %}
+      <select id="selTitle" style="color: #f1f1f1; background-color: #1877f2;border: none; font-size: 18px; padding-top: 0; padding-bottom: 0;
+      padding: 8px 30px; padding-left: 20px;" name="Job Position" class="form-select" id="second_form_select">
+        <option value="{{filterTitle}}" id="" class="first-input-option">{{filterTitle}}</option>
+      </select>
+      <div class="" style="display: flex; align-items: center;">
+        <img class="icon" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
+        <img style="cursor: pointer; display: block;" class="white-icon" src="{% static 'img/white-dropdown-icon.png' %}" alt="">
       </div>
-      <!-- End  of company -->
-
-      <!-- Location -->
-      <div class="container-fluid " style="cursor: pointer;">
-        <div id="mySelectLabel" class="selectBox" style="z-index: 99; position: static">
-          <div class="input-form margin inputs-right-margin" style="">
-            {% if filterLocation != '' %}
-            <select id="selLocation" style="color: #f1f1f1; background-color: #1877f2;border: none; font-size: 18px; padding-top: 0; padding-bottom: 0; 
-            padding: 8px 30px; padding-left: 20px;" name="Location" class="form-select" id="second_form_select">
-              <option value="{{filterLocation}}" class="first-input-option">{{filterLocation}}</option>
-            </select>
-            <div class="" style="display: flex; align-items: center;">
-              <img class="icon" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
-              <img style="cursor: pointer; display: block;" class="white-icon"
-                src="{% static 'img/white-dropdown-icon.png' %}" alt="">
-            </div>
-            {% else %}
-            <select style="color: #65676B; border: none; font-size: 18px; padding-top: 0; padding-bottom: 0; 
-                padding: 8px 30px; padding-left: 20px; " class="form-select" name="Location"
-              onchange="this.form.submit()" id="second_form_select">
-              <option class="first-input-option">Location</option>
-            </select>
-            <div class="" style="display: flex; align-items: center;">
-              <img class="icon" src="{% static 'img/dropdown-icon.png' %}" alt="">
-              <img style="cursor: pointer; display: none;" class="white-icon"
-                src="{% static 'img/white-dropdown-icon.png' %}" alt="">
-            </div>
-
-            {% endif %}
-            <div style="" class="overSelect" onclick="ShowDropDown(3)"></div>
-          </div>
-          <div id="mySelectOptions" class="selectOptions dropdown-elements" style="z-index: 99;">
-            {% for i in city %}
-            {%if i == filterLocation %}
-            <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type"
-                onclick="locationFunction()" onchange="this.form.submit()" value="{{i}}" /> {{i}}</label>
-
-
-            {%else%}
-            <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
-               onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="{{i}}" /> {{i}}</label>
-            {% endif %}
-            {% endfor %}
-
-          </div>
-        </div>
+      {% else %}
+      <select style="color: #65676B; border: none; font-size: 18px; padding-top: 0; padding-bottom: 0;
+      padding: 8px 30px; padding-left: 20px;" class="form-select" name="Job Position" id="second_form_select">
+        <option class="first-input-option">Job Position</option>
+      </select>
+      <div class="" style="display: flex; align-items: center;">
+        <img class="icon" src="{% static 'img/dropdown-icon.png'%}" alt="">
+        <img style="cursor: pointer; display: none;" class="white-icon" src="{% static 'img/white-dropdown-icon.png' %}" alt="">
       </div>
-      <!-- End  of Location -->
-      <!-- Salary -->
+
+      {% endif %}
+      <div style="" class="overSelect" onclick="ShowDropDown(1)"></div>
+    </div>
+    <div id="mySelectOptions" class="selectOptions dropdown-elements" style="z-index: 99;">
+      {% for i in title %}
+      {%if i == filterTitle %}
+
+      <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type"
+          onclick="titleFunction()" onchange="this.form.submit()" /> {{i}}</label>
+
+      {%else%}
+      <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
+           onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="{{i}}" /> {{i}}</label>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<!-- End  of title -->
+
+
+<!-- Salary -->
+
+
+
+
+
       <div class="container-fluid " style="cursor: pointer;">
         <div id="mySelectLabel" class="selectBox" style="z-index: 99; position: static">
           <div class="input-form margin inputs-right-margin" style="">
             {% if filterSalary != "" %}
-            <select id="selSalary" style="color: #f1f1f1; background-color: #1877f2;border: none; font-size: 18px; padding-top: 0; padding-bottom: 0; 
+            <select id="selSalary" style="color: #f1f1f1; background-color: #1877f2;border: none; font-size: 18px; padding-top: 0; padding-bottom: 0;
             padding: 8px 30px; padding-left: 20px;" name="Salary" class="form-select" id="second_form_select">
               <option value="{{filterSalary}}" id="" class="first-input-option"> {{filterSalary}}</option>
             </select>
@@ -222,7 +158,7 @@
                 src="{% static 'img/white-dropdown-icon.png' %}" alt="">
             </div>
             {% else %}
-            <select style="color: #65676B; border: none; font-size: 18px; padding-top: 0; padding-bottom: 0; 
+            <select style="color: #65676B; border: none; font-size: 18px; padding-top: 0; padding-bottom: 0;
                 padding: 8px 30px; padding-left: 20px; " class="form-select" name="Salary"
               onchange="this.form.submit()" id="second_form_select">
               <option class="first-input-option">Salary</option>
@@ -234,74 +170,169 @@
             </div>
 
             {% endif %}
-            <div style="" class="overSelect" onclick="ShowDropDown(4)"></div>
+            <div style="" class="overSelect" onclick="ShowDropDown(2)"></div>
           </div>
           <div id="mySelectOptions" class="selectOptions dropdown-elements" style="z-index: 99;">
-            {% for i in salary %}
-            {%if i == filterSalary %}
-            <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type"
-                onclick="salaryFunction()" onchange="this.form.submit()" value="{{i}}" /> {{i}}</label>
+              {% if filterSalary != "" %}
+                    {% if filterSalary == "Low to High"%}
+                    <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type"
+                        onclick="salaryFunction()" onchange="this.form.submit()" value="Low to High" /> Low to High</label>
+                    {% elif filterSalary == "High to Low" %}
+                    <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type"
+                        onclick="salaryFunction()" onchange="this.form.submit()" value="High to Low" /> High to Low</label>
 
-
-            {%else%}
+                    {% endif %}
+              {% else %}
             <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
-                onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="{{i}}" /> {{i}}</label>
-            {% endif %}
-            {% endfor %}
+                onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="Low to High" />Low to High</label>
+<label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
+                onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="High to Low" />High to Low</label>
 
+            {% endif %}
           </div>
         </div>
       </div>
       <!-- End  of Salary -->
-      <!-- Date Posted -->
-      <div class="container-fluid " style="cursor: pointer;">
-        <div id="mySelectLabel" class="selectBox" style="z-index: 99; position: static">
-          <div class="input-form last-input-form margin inputs-right-margin" style="">
-            {% if filterDate != '' %}
-            <select id="selDate" style="color: #f1f1f1; background-color: #1877f2;border: none; font-size: 18px; padding-top: 0; padding-bottom: 0; 
-            padding: 8px 30px; padding-left: 20px;" name="dataPosted" class="form-select" id="second_form_select">
-              <option value="{{filterDate}}" id="" class="first-input-option">{{filterDate}}</option>
-            </select>
-            <div class="" style="display: flex; align-items: center;">
-              <img class="icon" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
-              <img style="cursor: pointer; display: block;" class="white-icon"
-                src="{% static 'img/white-dropdown-icon.png' %}" alt="">
-            </div>
-            {% else %}
-            <select style="color: #65676B; border: none; font-size: 18px; padding-top: 0; padding-bottom: 0; 
-                padding: 8px 30px; padding-left: 20px; " class="form-select" name="dataPosted"
-              onchange="this.form.submit()" id="second_form_select">
-              <option class="first-input-option">Date Posted</option>
-            </select>
-            <div class="" style="display: flex; align-items: center;">
-              <img class="icon" src="{% static 'img/dropdown-icon.png' %}" alt="">
-              <img style="cursor: pointer; display: none;" class="white-icon"
-                src="{% static 'img/white-dropdown-icon.png' %}" alt="">
-            </div>
 
-            {% endif %}
-            <div style="" class="overSelect" onclick="ShowDropDown(5)"></div>
-          </div>
-          <div id="mySelectOptions" class="selectOptions dropdown-elements" style="z-index: 99;">
-            {% if filterDate != ""%}
-            <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type"
-                onclick="dateFunction()" onchange="this.form.submit()" value="{{filterDate}}" />{{filterDate}}</label>
-            {%else%}
-
-            <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
-                 onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="Today" /> Today</label>
-            <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
-               onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="Last Week" /> Last
-              Week</label>
-            <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
-                onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="Last Month" /> Last
-              Month</label>
-            {% endif%}
-
-          </div>
-        </div>
+      <!-- Company -->
+<div class="container-fluid " style="cursor: pointer;">
+  <div id="mySelectLabel" class="selectBox" style="z-index: 99; position: static">
+    <div class="input-form margin inputs-right-margin" style="">
+      {% if filterCompany != '' %}
+      <select id="selCompany" style="color: #f1f1f1; background-color: #1877f2;border: none; font-size: 18px; padding-top: 0; padding-bottom: 0;
+      padding: 8px 30px; padding-left: 20px;" name="Company" class="form-select" id="second_form_select">
+        <option value="{{filterCompany}}" id="" class="first-input-option">{{filterCompany}}</option>
+      </select>
+      <div class="" style="display: flex; align-items: center;">
+        <img class="icon" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
+        <img style="cursor: pointer; display: block;" class="white-icon"  src="{% static 'img/white-dropdown-icon.png' %}" alt="">
       </div>
-      <!-- End  of Location -->
+      {% else %}
+      <select style="color: #65676B; border: none; font-size: 18px; padding-top: 0; padding-bottom: 0;
+      padding: 8px 30px; padding-left: 20px;" class="form-select" name="Company" id="second_form_select">
+        <option class="first-input-option">Company</option>
+      </select>
+      <div class="" style="display: flex; align-items: center;">
+        <img class="icon" src="{% static 'img/dropdown-icon.png'%}" alt="">
+        <img style="cursor: pointer; display: none;" class="white-icon" src="{% static 'img/white-dropdown-icon.png' %}" alt="">
+      </div>
+
+      {% endif %}
+      <div style="" class="overSelect" onclick="ShowDropDown(3)"></div>
+    </div>
+    <div id="mySelectOptions" class="selectOptions dropdown-elements" style="z-index: 99;">
+      {% for i in company %}
+      {%if i == filterCompany %}
+
+      <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type"
+          onclick="companyFunction()" onchange="this.form.submit()" /> {{i}}</label>
+
+      {%else%}
+      <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
+          onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="{{i}}" /> {{i}}</label>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<!-- End  of company -->
+
+<!-- Location -->
+<div class="container-fluid " style="cursor: pointer;">
+  <div id="mySelectLabel" class="selectBox" style="z-index: 99; position: static">
+    <div class="input-form margin inputs-right-margin" style="">
+      {% if filterLocation != '' %}
+      <select id="selLocation" style="color: #f1f1f1; background-color: #1877f2;border: none; font-size: 18px; padding-top: 0; padding-bottom: 0;
+      padding: 8px 30px; padding-left: 20px;" name="Location" class="form-select" id="second_form_select">
+        <option value="{{filterLocation}}" class="first-input-option">{{filterLocation}}</option>
+      </select>
+      <div class="" style="display: flex; align-items: center;">
+        <img class="icon" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
+        <img style="cursor: pointer; display: block;" class="white-icon"
+          src="{% static 'img/white-dropdown-icon.png' %}" alt="">
+      </div>
+      {% else %}
+      <select style="color: #65676B; border: none; font-size: 18px; padding-top: 0; padding-bottom: 0;
+          padding: 8px 30px; padding-left: 20px; " class="form-select" name="Location"
+        onchange="this.form.submit()" id="second_form_select">
+        <option class="first-input-option">Location</option>
+      </select>
+      <div class="" style="display: flex; align-items: center;">
+        <img class="icon" src="{% static 'img/dropdown-icon.png' %}" alt="">
+        <img style="cursor: pointer; display: none;" class="white-icon"
+          src="{% static 'img/white-dropdown-icon.png' %}" alt="">
+      </div>
+
+      {% endif %}
+      <div style="" class="overSelect" onclick="ShowDropDown(4)"></div>
+    </div>
+    <div id="mySelectOptions" class="selectOptions dropdown-elements" style="z-index: 99;">
+      {% for i in city %}
+      {%if i == filterLocation %}
+      <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type"
+          onclick="locationFunction()" onchange="this.form.submit()" value="{{i}}" /> {{i}}</label>
+
+
+      {%else%}
+      <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
+         onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="{{i}}" /> {{i}}</label>
+      {% endif %}
+      {% endfor %}
+
+    </div>
+  </div>
+</div>
+<!-- End  of Location -->
+
+<!-- Date Posted -->
+<div class="container-fluid " style="cursor: pointer;">
+  <div id="mySelectLabel" class="selectBox" style="z-index: 99; position: static">
+    <div class="input-form last-input-form margin inputs-right-margin" style="">
+      {% if filterDate != '' %}
+      <select id="selDate" style="color: #f1f1f1; background-color: #1877f2;border: none; font-size: 18px; padding-top: 0; padding-bottom: 0;
+      padding: 8px 30px; padding-left: 20px;" name="dataPosted" class="form-select" id="second_form_select">
+        <option value="{{filterDate}}" id="" class="first-input-option">{{filterDate}}</option>
+      </select>
+      <div class="" style="display: flex; align-items: center;">
+        <img class="icon" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
+        <img style="cursor: pointer; display: block;" class="white-icon"
+          src="{% static 'img/white-dropdown-icon.png' %}" alt="">
+      </div>
+      {% else %}
+      <select style="color: #65676B; border: none; font-size: 18px; padding-top: 0; padding-bottom: 0;
+          padding: 8px 30px; padding-left: 20px; " class="form-select" name="dataPosted"
+        onchange="this.form.submit()" id="second_form_select">
+        <option class="first-input-option">Date Posted</option>
+      </select>
+      <div class="" style="display: flex; align-items: center;">
+        <img class="icon" src="{% static 'img/dropdown-icon.png' %}" alt="">
+        <img style="cursor: pointer; display: none;" class="white-icon"
+          src="{% static 'img/white-dropdown-icon.png' %}" alt="">
+      </div>
+
+      {% endif %}
+      <div style="" class="overSelect" onclick="ShowDropDown(5)"></div>
+    </div>
+    <div id="mySelectOptions" class="selectOptions dropdown-elements" style="z-index: 99;">
+      {% if filterDate != ""%}
+      <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type"
+          onclick="dateFunction()" onchange="this.form.submit()" value="{{filterDate}}" />{{filterDate}}</label>
+      {%else%}
+
+      <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
+           onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="Today" /> Today</label>
+      <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
+         onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="Last Week" /> Last
+        Week</label>
+      <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
+          onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="Last Month" /> Last
+        Month</label>
+      {% endif%}
+
+    </div>
+  </div>
+</div>
+<!-- End  of Location -->
 
 
     </form>
@@ -324,8 +355,8 @@ function SearchFunction() {
   };
   var titleFunction = function () {
     x = document.getElementById("selTitle");
-    x.options[x.selectedIndex].text = "Job Title";
-    x.options[x.selectedIndex].value = "Job Title";
+    x.options[x.selectedIndex].text = "Job Position";
+    x.options[x.selectedIndex].value = "Job Position";
   };
   var companyFunction = function () {
     x = document.getElementById("selCompany");

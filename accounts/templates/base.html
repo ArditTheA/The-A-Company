@@ -1,11 +1,11 @@
 {% load static %}
 {% load socialaccount %}
-{% load hotjar %}
+
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% hotjar %}
+    
     {{ analytics_code }}
     <!-- Google tag (gtag.js) -->
 <!-- Google tag (gtag.js) -->
@@ -40,6 +40,7 @@
     <link rel="stylesheet" href="{% static 'css/posted-jobs-media-queries.css'%}">
     <link rel="stylesheet" href="{% static 'css/jobi.css'%}">
     <link rel="icon" href="{% static 'img/123.png' %}">
+
     <style type="text/css">
         body {
             -webkit-tap-highlight-color: transparent;
@@ -55,6 +56,29 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+        .under-header-wishes {
+            background-color: #1877F2;
+            width: 100%;
+            text-align: center;
+            color: white;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            font-size: 18px;
+        }
+        .wishes-child {
+            padding-bottom: 3px;
+        }
+
+        @media screen and (max-width: 480px) {
+         .wishes-child {
+               padding-bottom: 1px;
+
+            }
+            .under-header-wishes{
+            font-size:16px;
+            }
+         }
 
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -102,10 +126,9 @@ input[type=number] {
                 href="{% url 'register'%}" class="dropdown-content-text">Create Account</a></div>
     </div>
     {% endif %}
-</head>
+
 
 <body>
-
     {% block content %}
 
 
@@ -188,5 +211,26 @@ input[type=number] {
 
     }
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </html>

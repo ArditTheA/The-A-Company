@@ -1,0 +1,303 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Add Job Question</title>
+</head>
+<body>
+<div class="container">
+
+  <form class="col-md-12" method="post" action="{% url 'add-question' %}">
+    {% csrf_token %}
+<!--    Start of question-->
+
+<!--    Question 1-->
+  <div class="form-group">
+    <label for="question1" >Question 1</label>
+    <input class="form-control" maxlength="200" id="question1" name="question1" type="text" placeholder="Question 1" value="{{job1promp}}"><br>
+    <div class="row">
+      <div class="col-md-6">
+
+        <label>Anser Type: </label>
+
+        <select onchange="changeAnsType(1)" class="form-control" id="ans_type1" name="answerType1">
+        {% if job1questionType == "Yes/No" %}
+            <option selected value="YesNo">Yes / No</option>
+            <option value="Numeric" >Numeric</option>
+          {% elif job1questionType == "Numeric" %}
+            <option  value="YesNo">Yes / No</option>
+            <option selected value="Numeric" >Numeric</option>
+          {% else %}
+            <option></option>
+            <option  value="YesNo">Yes / No</option>
+            <option  value="Numeric" >Numeric</option>
+        {% endif %}
+
+    </select>
+      </div>
+      <div class="col-md-3">
+
+        <label for="ideal">Ideal answer:</label>
+        <div class="idealAns1" id="idealAns1">
+        {% if job1ideal != None %}
+            {% if job1questionType != "Yes/No" %}
+            <input type="number" value="{{job1ideal}}" name="idealAnsF1" class="form-control idealAnsF1" id="idealAnsF1">
+            {% else %}
+            <select class="form-control idealAnsF1" id="idealAnsF1" name="idealAnsF1">{% if job1questionType == "Yes/No" %}
+            <option selected value="YesNo">Yes / No</option>
+            <option value="Numeric" >Numeric</option>
+          {% elif job1questionType == "Numeric" %}
+            <option  value="YesNo">Yes / No</option>
+            <option selected value="Numeric" >Numeric</option>{% endif %}</select>
+            {% endif %}
+          {% endif %}
+
+        </div>
+
+      </div>
+      <div class="col-md-3">
+        <br>
+        {% if job1qualify != None %}
+          {% if job1qualify == True %}
+                  <label ><input type="checkbox" checked id="qualify1" name="qualify1"> Requried to be same as ideal answer</label>
+
+          {% else %}
+          <label ><input type="checkbox" id="qualify1" name="qualify1"> Requried to be same as ideal answer</label>
+          {% endif %}
+        {% else %}
+
+        <label ><input type="checkbox" id="qualify1" name="qualify1"> Requried to be same as ideal answer</label>
+        {% endif %}
+      </div>
+
+    </div>
+
+  </div>
+<!--    End of question 1-->
+
+    <!--    Question 2-->
+  <div class="form-group">
+    <label for="question1" >Question 2</label>
+    <input class="form-control" value="{{job2promp}}"  maxlength="200" id="question2" name="question2" type="text" placeholder="Question 1"><br>
+    <div class="row">
+      <div class="col-md-6">
+
+        <label>Anser Type: </label>
+
+        <select onchange="changeAnsType(2)" class="form-control" id="ans_type2" name="answerType2">
+          {% if job2questionType == "Yes/No" %}
+            <option selected value="YesNo">Yes / No</option>
+            <option value="Numeric" >Numeric</option>
+          {% elif job2questionType == "Numeric" %}
+            <option  value="YesNo">Yes / No</option>
+            <option selected value="Numeric" >Numeric</option>
+          {% else %}
+            <option></option>
+            <option  value="YesNo">Yes / No</option>
+            <option  value="Numeric" >Numeric</option>
+        {% endif %}
+    </select>
+      </div>
+      <div class="col-md-3">
+
+        <label >Ideal answer:</label>
+        <div class="idealAns2" id="idealAns2">
+          {% if job2ideal != None %}
+            {% if job2questionType != "Yes/No" %}
+            <input type="number" value="{{job2ideal}}" name="idealAnsF1" class="form-control idealAnsF1" id="idealAnsF2">
+            {% else %}
+            <select class="form-control idealAnsF2" id="idealAnsF2" name="idealAnsF2">{% if job2questionType == "Yes/No" %}
+            <option selected value="Yes">Yes</option>
+            <option value="No" >No</option>
+          {% elif job2questionType == "Numeric" %}
+            <option  value="Yes">Yes</option>
+            <option selected value="No" >No</option>{% endif %}</select>
+            {% endif %}
+          {% endif %}
+        </div>
+
+      </div>
+      <div class="col-md-3">
+        <br>
+        {% if job2qualify != None %}
+          {% if job2qualify == True %}
+                  <label ><input type="checkbox" checked id="qualify2" name="qualify1"> Requried to be same as ideal answer</label>
+
+          {% else %}
+          <label ><input type="checkbox" id="qualify2" name="qualify2"> Requried to be same as ideal answer</label>
+          {% endif %}
+        {% else %}
+
+        <label ><input type="checkbox" id="qualify2" name="qualify2"> Requried to be same as ideal answer</label>
+        {% endif %}
+      </div>
+
+    </div>
+
+  </div>
+<!--    End of question 2-->
+    <!--    Question 3-->
+  <div class="form-group">
+    <label for="question1" >Question 3</label>
+    <input class="form-control" value="{{job3promp}}"maxlength="200" id="question3" name="question3" type="text" placeholder="Question 1"><br>
+    <div class="row">
+      <div class="col-md-6">
+
+        <label>Anser Type: </label>
+
+        <select onchange="changeAnsType(3)" class="form-control" id="ans_type3" name="answerType3">
+        {% if job3questionType == "Yes/No" %}
+            <option selected value="YesNo">Yes / No</option>
+            <option value="Numeric" >Numeric</option>
+          {% elif job3questionType == "Numeric" %}
+            <option  value="YesNo">Yes / No</option>
+            <option selected value="Numeric" >Numeric</option>
+          {% else %}
+            <option></option>
+            <option  value="YesNo">Yes / No</option>
+            <option  value="Numeric" >Numeric</option>
+        {% endif %}
+    </select>
+      </div>
+      <div class="col-md-3">
+
+        <label >Ideal answer:</label>
+        <div class="idealAns3" id="idealAns3">
+        {% if job3ideal != None %}
+            {% if job3questionType != "Yes/No" %}
+            <input type="number" value="{{job3ideal}}" name="idealAnsF3" class="form-control idealAnsF3" id="idealAnsF3">
+            {% else %}
+            <select class="form-control idealAnsF3" id="idealAnsF3" name="idealAnsF3">{% if job3questionType == "Yes/No" %}
+            <option selected value="Yes">Yes</option>
+            <option value="No" >No</option>
+          {% elif job3questionType == "Numeric" %}
+            <option  value="Yes">Yes</option>
+            <option selected value="No" >No</option>{% endif %}</select>
+            {% endif %}
+          {% endif %}
+        </div>
+
+      </div>
+      <div class="col-md-3">
+        <br>
+        <label ><input type="checkbox" id="qualify3" name="qualify3"> Requried to be same as ideal answer</label>
+
+      </div>
+
+    </div>
+
+  </div>
+<!--    End of question 3-->
+
+
+<!--    End of question -->
+
+<!--    Application Settings  -->
+  <div class="form-group">
+    <label>Application Settings</label>
+    <br>
+    <select  id="job-settings" name="job-settings" class="form-control">
+      {% if jobFilter != None %}
+        {% if jobFilter == "F" %}
+        <option selected value="F">Filter out & send rejection letters to applicants who don't meet qualifications</option>
+        <option value="NF">Don’t filter out applicants. I will manually review each application sent to me</option>
+        {% else %}
+        <option value="F">Filter out & send rejection letters to applicants who don't meet qualifications</option>
+        <option selected value="NF">Don’t filter out applicants. I will manually review each application sent to me</option>
+
+        {% endif %}
+      {% else %}
+        <option value="F">Filter out & send rejection letters to applicants who don't meet qualifications</option>
+      <option value="NF">Don’t filter out applicants. I will manually review each application sent to me</option>
+
+      {% endif %}
+    </select>
+  </div>
+<!--    end of applicaiton settings-->
+
+
+
+<!--    Rejection letter  -->
+    <div class="form-group">
+      <label>Write your rejection letter </label>
+
+      <textarea class="form-control" name="rejected-email" id="job-email" rows="10" cols="10">{{jobEmail}}</textarea>
+    </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+</div>
+<script>
+  function changeAnsType(id){
+       var question_id = id;
+       var choice = "ans_type"+question_id
+       var selected = document.getElementById(choice).value
+       var getName = "#idealAns"+question_id;
+       var setName = "idealAnsF"+question_id;
+
+       if(selected == "YesNo"){
+          console.log(getName)
+
+          $(getName).append($('<select class="form-control '+setName+'" id='+setName+' name='+setName+'><option>Yes</option><option>No</option></select>'));
+       }else if(selected == "Numeric"){
+          $(getName).append($('<input type="number" name="'+setName+'" class="form-control '+setName+'" id="'+setName+'">'));
+       }
+
+
+  }
+</script>
+
+<script>
+  const question = [];
+  const ansType = [];
+  const ideal = [];
+  const req = [];
+  function SaveQuestion(){
+      question.push(document.getElementById("question1").value);
+      question.push(document.getElementById("question2").value);
+      question.push(document.getElementById("question3").value);
+
+      ansType.push(document.getElementById("ans_type1").value);
+      ansType.push(document.getElementById("ans_type2").value);
+      ansType.push(document.getElementById("ans_type3").value);
+
+      ideal.push(document.getElementById("idealAnsF1").value);
+      ideal.push(document.getElementById("idealAnsF2").value);
+      ideal.push(document.getElementById("idealAnsF3").value);
+
+
+      req.push($('#qualify1').is(':checked'));
+      req.push($('#qualify2').is(':checked'));
+      req.push($('#qualify3').is(':checked'));
+
+
+      console.log(question.toString())
+      console.log(ansType.toString())
+      console.log(ideal.toString())
+      console.log(req.toString())
+
+
+      window.location.href ="/SQ/Add/push/"+question.toString()+"/"+ansType.toString()+"/"+ideal.toString()+"/"+req.toString()
+
+
+
+  }
+
+</script>
+<script src="{% static 'js/Ajax/Match/user-details-ajax.js'%}"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.2/umd/popper.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</body>
+</html>
+{% endblock content %}

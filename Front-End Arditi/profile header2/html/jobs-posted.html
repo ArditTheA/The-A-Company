@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Jobs</title>
+    <link rel="stylesheet" href="../css/authenticated.css">
+    <link rel="stylesheet" href="../css/jobs.css">
+    <link rel="stylesheet" href="../css/profile-header.css">
+    <link rel="stylesheet" href="../css/posted-jobs-media-queries.css">
+</head>
+<style>
+
+
+/* /* :root {
+    --bg: #1a1e24;
+    --color: #eee;
+    --font: Montserrat, Roboto, Helvetica, Arial, sans-serif;
+}
+
+ .wrapper {
+    padding: 1.5rem 0;
+    filter: url('#goo');
+}
+
+.apply-button-description {
+    display: inline-block;
+    text-align: center;
+    background: #1877F2;
+    color: white;
+    line-height: 1;
+    border-radius: 40px;
+    position: relative;
+    text-decoration: none;
+    font-size: 18px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.apply-button-description:before,
+.apply-button-description:after {
+    width: 2em;
+    height: 1em;
+    position: absolute;
+    content: "";
+    background: #1877F2;
+    border-radius: 50%;
+    transition: transform 1s ease;
+    transform: scale(0);
+    z-index: -1;
+}
+
+.apply-button-description:before {
+    top: -25%;
+    left: 20%;
+}
+
+.apply-button-description:after {
+    bottom: -25%;
+    right: 20%;
+}
+
+.apply-button-description:hover:before,
+.apply-button-description:hover:after {
+    transform: none;
+} */
+
+/* .apply-button-description::after {
+    background-color: yellow;
+    z-index: -1;
+} */
+
+ /* .apply-button-description:hover::after {
+    transform: translate(0, 0);
+} */
+/* .apply-button-description {
+  border: 2px solid currentColor;
+  border-radius: 3rem;
+  color: yellow;
+  font-family: roboto;
+  font-size: 4rem;
+  font-weight: 100;
+  overflow: hidden;
+  padding: 1rem 2rem;
+  position: relative;
+  text-decoration: none;
+  transition: .2s transform ease-in-out;
+  will-change: transform;
+  z-index: 0;
+}
+  apply-button-description::after {
+    background-color: yellow;
+    border-radius: 3rem;
+    content: "";
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    will-change: transform;
+    z-index: -1;
+}*/
+  .apply-button-description:hover::after {
+        transform: translate(0, 0);
+    }
+  .apply-button-description:hover {
+    transform: rotate(10deg);
+    transition: .2s transform ease-in-out;
+    will-change: transform;
+    transform: scale(1.08);
+    transform-origin: top left;
+}
+</style>
+<body>
+    <header class="header-border">
+        <img style="border-radius: 10px;" id="worki-image" src="../img/12.jpeg" title="Worki">
+        <div id="jobs-and-profile">
+            <a href="jobs.html"><img class="jobs-icon-button" title="Jobs" src="../img/JOBS_Icon.png"></a>
+            <img src="../img/logo-avatar.png" id="profile-image-button" title="Profile" alt="">
+        </div>
+    </header>
+
+    <div class="dropdown">
+        <div class="dropdown-content"><a href="profile.html" class="dropdown-content-text">My profile</a></div>
+        <div class="dropdown-mid-content"><a href="" class="dropdown-content-text">My jobs</a></div>
+        <div class="third-dropdown-content"><a href="" class="dropdown-content-text">Sign out</a></div>
+    </div>
+
+    <div class="jobs-buttons applied-posted-buttons-mobile">
+        <div class="mutual-padding-of-div plus-div">
+            <a href="add-a-job.html"><img title="Add a Job" class="plus-icon-jobs applied-posted-plus-icon-mobile" src="../img/add.png" alt=""></a>
+        </div>
+        <div class="mutual-padding-of-div">
+            <a href="jobs-applied.html"><button title="Applied Jobs"
+                    class="applied-button-posted-jobs outline-none">Applied</button></a>
+        </div>
+        <div>
+            <button title="Posted Jobs" class="posted-button-posted-jobs outline-none">Posted</button>
+        </div>
+    </div>
+
+    <div class="jobs-main-div" style="display: flex; justify-content: space-between;">
+        <div class="jobs-left applied-jobs-left" style="">
+
+            <div class="jobs-rows-img different-background-jobs first-job-applied">
+                <img class="experience-education-img" src="../img/Logo (8).png" alt="">
+                <div class="experience-rows">
+                    <div class="first-row-and-edit-img">
+                        <div class="experience-first-row">Warehouse Associate</div>
+                        <div style="display: flex; flex-direction: column;">
+                        <a><img class="edit-job-button" title="Edit Job"
+                                style="z-index: 2;" src="../img/Ikona_edit-01 56.png" alt=""></a>
+                                <div class="edit_dropdown" style="right: 30px;">
+                                    <div class="dropdown-content"><a href="../html/edit-a-job.html" class="dropdown-content-text">Edit Job</a></div>
+                                    <div class="dropdown-mid-content"><a href="" class="dropdown-content-text">Close Job</a></div>
+                                    <div style="margin-left: 20px; margin-right: 20px;" class="third-dropdown-content"><a href="../html/all-applicants1.html" class="dropdown-content-text">View Applicants </a></div>
+                                </div>                                    
+                        </div>
+                    </div>
+                    <div class="experience-second-row">Amazon</div>
+                    <div class="experience-third-row">Texas, USA</div>
+                    <div class="experience-fourth-row">50 applicants · Open</div>
+                </div>
+            </div>
+
+            <div class="jobs-rows-img second-jobs move same-background-jobs">
+                <img class="experience-education-img" src="../img/Logo (8).png" alt="">
+                <div class="experience-rows">
+                    <div class="first-row-and-edit-img">
+                        <div class="experience-first-row">Warehouse Associate</div>
+                        <div style="">
+                            <a><img class="edit-job-button" title="Edit Job" style=""
+                                src="../img/Ikona_edit-01 56.png" alt=""></a>
+                                <div class="edit_dropdown" style="">
+                                    <div class="dropdown-content"><a href="../html/edit-a-job.html" class="dropdown-content-text">Edit Job</a></div>
+                                    <div class="dropdown-mid-content"><a href="" class="dropdown-content-text">Close job</a></div>
+                                    <div style="margin-left: 20px; margin-right: 20px;" class="third-dropdown-content"><a href="" class="dropdown-content-text">View Applicants</a></div>
+                                </div>                            
+                        </div>
+                    </div>
+                    <div class="experience-second-row">Amazon</div>
+                    <div class="experience-third-row">Texas, USA</div>
+                    <div class="experience-fourth-row">50 applicants · Open</div>
+                </div>
+            </div>
+
+            <div class="jobs-rows-img move same-background-jobs">
+                <img class="experience-education-img" src="../img/Logo (8).png" alt="">
+                <div class="experience-rows">
+                    <div class="first-row-and-edit-img">
+                        <div class="experience-first-row">Warehouse Associate</div>
+                        <div style="">
+                            <a><img class="edit-job-button" title="Edit Job" style=""
+                                src="../img/Ikona_edit-01 56.png" alt=""></a>
+                                <div class="edit_dropdown" style="">
+                                    <div class="dropdown-content"><a href="../html/edit-a-job.html" class="dropdown-content-text">Edit Job</a></div>
+                                    <div class="dropdown-mid-content"><a href="" class="dropdown-content-text">Close job</a></div>
+                                    <div style="margin-left: 20px; margin-right: 20px;" class="third-dropdown-content"><a href="" class="dropdown-content-text">View Applicants</a></div>
+                                </div>                            
+                        </div>
+                    </div>
+                    <div class="experience-second-row">Amazon</div>
+                    <div class="experience-third-row">Texas, USA</div>
+                    <div class="experience-fourth-row">50 applicants · Open</div>
+                </div>
+            </div>
+            <div class="jobs-rows-img move same-background-jobs">
+                <img class="experience-education-img" src="../img/Logo (8).png" alt="">
+                <div class="experience-rows">
+                    <div class="first-row-and-edit-img">
+                        <div class="experience-first-row">Warehouse Associate</div>
+                        <div style="">
+                            <a><img class="edit-job-button" title="Edit Job" style=""
+                                src="../img/Ikona_edit-01 56.png" alt=""></a>
+                                <div class="edit_dropdown" style="">
+                                    <div class="dropdown-content"><a href="../html/edit-a-job.html" class="dropdown-content-text">Edit Job</a></div>
+                                    <div class="dropdown-mid-content"><a href="" class="dropdown-content-text">Close job</a></div>
+                                    <div style="margin-left: 20px; margin-right: 20px;" class="third-dropdown-content"><a href="" class="dropdown-content-text">View Applicants</a></div>
+                                </div>                            
+                        </div>
+                    </div>
+                    <div class="experience-second-row">Amazon</div>
+                    <div class="experience-third-row">Texas, USA</div>
+                    <div class="experience-fourth-row">50 applicants · Open</div>
+                </div>
+            </div>
+            <div class="jobs-rows-img move same-background-jobs">
+                <img class="experience-education-img" src="../img/Logo (8).png" alt="">
+                <div class="experience-rows">
+                    <div class="first-row-and-edit-img">
+                        <div class="experience-first-row">Warehouse Associate</div>
+                        <div style="">
+                            <a><img class="edit-job-button" title="Edit Job" style=""
+                                src="../img/Ikona_edit-01 56.png" alt=""></a>
+                                <div class="edit_dropdown" style="">
+                                    <div class="dropdown-content"><a href="../html/edit-a-job.html" class="dropdown-content-text">Edit Job</a></div>
+                                    <div class="dropdown-mid-content"><a href="" class="dropdown-content-text">Close job</a></div>
+                                    <div style="margin-left: 20px; margin-right: 20px;" class="third-dropdown-content"><a href="" class="dropdown-content-text">View Applicants</a></div>
+                                </div>                            
+                        </div>
+                    </div>
+                    <div class="experience-second-row">Amazon</div>
+                    <div class="experience-third-row">Texas, USA</div>
+                    <div class="experience-fourth-row">50 applicants · Open</div>
+                </div>
+            </div>
+            <div class="jobs-rows-img move same-background-jobs">
+                <div style="display: flex;">
+                    <img class="experience-education-img" src="../img/Logo (8).png" alt="">
+                </div>
+                <div class="experience-rows">
+                    <div class="first-row-and-edit-img">
+                        <div class="experience-first-row">Warehouse Associate</div>
+                        <div style="">
+                            <a><img class="edit-job-button" title="Edit Job" style=""
+                                src="../img/Ikona_edit-01 56.png" alt=""></a>
+                                <div class="edit_dropdown" style="">
+                                    <div class="dropdown-content"><a href="../html/edit-a-job.html" class="dropdown-content-text">Edit Job</a></div>
+                                    <div class="dropdown-mid-content"><a href="" class="dropdown-content-text">Close job</a></div>
+                                    <div style="margin-left: 20px; margin-right: 20px;" class="third-dropdown-content"><a href="" class="dropdown-content-text">View Applicants</a></div>
+                                </div>                            
+                        </div>
+                    </div>
+                    <div class="experience-second-row">Amazon</div>
+                    <div class="experience-third-row">Texas, USA</div>
+                    <div class="experience-fourth-row">50 applicants · Open</div>
+                </div>
+            </div>
+            <div class="jobs-rows-img move same-background-jobs">
+                <img class="experience-education-img" src="../img/Logo (8).png" alt="">
+                <div class="experience-rows">
+                    <div class="first-row-and-edit-img">
+                        <div class="experience-first-row">Warehouse Associate</div>
+                        <div style="">
+                            <a><img class="edit-job-button" title="Edit Job" style=""
+                                src="../img/Ikona_edit-01 56.png" alt=""></a>
+                                <div class="edit_dropdown" style="">
+                                    <div class="dropdown-content"><a href="../html/edit-a-job.html" class="dropdown-content-text">Edit Job</a></div>
+                                    <div class="dropdown-mid-content"><a href="" class="dropdown-content-text">Close job</a></div>
+                                    <div style="margin-left: 20px; margin-right: 20px;" class="third-dropdown-content"><a href="" class="dropdown-content-text">View Applicants</a></div>
+                                </div>                            
+                        </div>
+                    </div>
+                    <div class="experience-second-row">Amazon</div>
+                    <div class="experience-third-row">Texas, USA</div>
+                    <div class="experience-fourth-row">50 applicants · Open</div>
+                </div>
+            </div>
+            <div class="jobs-rows-img move same-background-jobs">
+                <img class="experience-education-img" src="../img/Logo (8).png" alt="">
+                <div class="experience-rows">
+                    <div class="first-row-and-edit-img">
+                        <div class="experience-first-row">Warehouse Associate</div>
+                        <div style="">
+                            <a><img class="edit-job-button" title="Edit Job" style=""
+                                src="../img/Ikona_edit-01 56.png" alt=""></a>
+                                <div class="edit_dropdown" style="">
+                                    <div class="dropdown-content"><a href="../html/edit-a-job.html" class="dropdown-content-text">Edit Job</a></div>
+                                    <div class="dropdown-mid-content"><a href="" class="dropdown-content-text">Close job</a></div>
+                                    <div style="margin-left: 20px; margin-right: 20px;" class="third-dropdown-content"><a href="" class="dropdown-content-text">View Applicants</a></div>
+                                </div>                            
+                        </div>
+                    </div>
+                    <div class="experience-second-row">Amazon</div>
+                    <div class="experience-third-row">Texas, USA</div>
+                    <div class="experience-fourth-row">50 applicants · Open</div>
+                </div>
+            </div>
+            <div class="jobs-rows-img move same-background-jobs last-job-margin-bottom">
+                <img class="experience-education-img" src="../img/Logo (8).png" alt="">
+                <div class="experience-rows">
+                    <div class="first-row-and-edit-img">
+                        <div class="experience-first-row">Warehouse Associate</div>
+                        <div style="">
+                            <a><img class="edit-job-button" title="Edit Job" style=""
+                                src="../img/Ikona_edit-01 56.png" alt=""></a>
+                                <div class="edit_dropdown" style="">
+                                    <div class="dropdown-content"><a href="../html/edit-a-job.html" class="dropdown-content-text">Edit Job</a></div>
+                                    <div class="dropdown-mid-content"><a href="" class="dropdown-content-text">Close job</a></div>
+                                    <div style="margin-left: 20px; margin-right: 20px;" class="third-dropdown-content"><a href="" class="dropdown-content-text">View Applicants</a></div>
+                                </div>                            
+                        </div>
+                    </div>
+                    <div class="experience-second-row">Amazon</div>
+                    <div class="experience-third-row">Texas, USA</div>
+                    <div class="experience-fourth-row">50 applicants · Open</div>
+                </div>
+            </div>
+            <div>
+            </div>
+        </div>
+        <div class="right-jobs-main-div applied-posted-right-main-div-mobile">
+            <div class="right-jobs">
+                <div class="right-jobs-rows-img" style="margin-left: 10px; background-color: white;">
+                    <div class="experience-rows">
+                        <img class="exit-job-description" title="Exit" style="float: left; cursor: pointer;"
+                            src="../img/close(2).png" alt="">
+                        <div class="first-row-jobs mobile-title-font-size">Warehouse Associate</div>
+                        <div class="second-row-jobs mobile-under-title-font-size">Amazon&nbsp;&nbsp;<span style="color: #858585;">·&nbsp;&nbsp;Texas,
+                                USA&nbsp;&nbsp;·&nbsp;&nbsp;23 applicants</span></div>
+                        <div style="" class="jobs-third-row mobile-rows-font-size">$12.00/hour</div>
+                        <div style="" class="experience-fourth-row jobs-mutual-margin-rows mobile-rows-font-size">Full time · 40 hours/week
+                        </div>
+                        <div style="" class="experience-fourth-row jobs-mutual-margin-rows mobile-rows-font-size">01 June,
+                            2022 - 31 August 2022</div>
+                        <div style=""
+                            class="experience-fourth-row jobs-mutual-margin-rows mobile-rows-font-size">Housing provided · $100.00/week</div>
+                        <div style=""
+                            class="experience-fourth-row jobs-mutual-margin-rows mobile-rows-font-size">Work and Travel · Program Cost: $600
+                        </div>
+                        <div style="height: 100%;"
+                            class="experience-fourth-row jobs-mutual-margin-rows mobile-rows-font-size apply-fourth-row">Posted on 01 May, 2022</div>
+                        <a href="apply-for-job-posted-jobs.html"
+                            style="width: fit-content; padding-top: 10px; padding-bottom: 10px; text-decoration: none;"
+                            title="Apply for Job" class="applied-button-jobs outline-none apply-button-description button">Apply</a>
+                    </div>
+                </div>
+                <div class="right-jobs-rows-img-second">
+                    <div class="experience-rows">
+                        <div class="first-row-jobs first-row-second-div">Work and Travel</div>
+                        <div class="second-row-second-div">
+                            Work and Travel allows foreign students an opportunity to live and work in
+                            Germany for 90 days during the summer vacation from university to
+                            experience and to be exposed to work, people, and way of life in Germany.
+                            Learn more about the program <a class="here-link" style="" href="#">here</a>.
+                        </div>
+                        <div class="jobs-third-row-second-div">
+                            <div class="first-row-jobs-third-row-second-div first-row-second-div">Job description</div>
+                            <div class="second-div-second-paragraph">
+                                We are hiring driven Warehouse Associates! As a Warehouse Associate you
+                                will be responsible for properly labeling and packing items to be shipped
+                                while also organizing and tracking warehouse inventory levels at all times.
+                                Join us and become part of a diverse and friendly team in a Logistics
+                                Warehouse in Germany. We provide in-house training so all you have to do is Easy Apply!
+                            </div>
+                        </div>
+                        <div class="jobs-third-row-second-div">
+                            <div class="first-row-jobs-third-row-second-div first-row-second-div">What we offer:</div>
+                            <div class="second-div-second-paragraph">
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span
+                                        style="margin-right: 10px;">·</span>Easy Apply</div>
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span
+                                        style="margin-right: 10px;">·</span>Guaranteed employment</div>
+                            </div>
+                        </div>
+                        <div class="jobs-third-row-second-div">
+                            <div class="first-row-jobs-third-row-second-div first-row-second-div">What you'll be doing:
+                            </div>
+                            <div class="second-div-second-paragraph">
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span
+                                        style="margin-right: 10px;">·</span>Organize and track warehouse inventory</div>
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span
+                                        style="margin-right: 10px;">·</span>Process, package, label and ship orders
+                                    accurately</div>
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span
+                                        style="margin-right: 10px;">·</span>Maintain strict safety and quality standards
+                                </div>
+                                <div style="margin-left: 10px;"><span style="margin-right: 10px;">·</span>Inspect
+                                    products for defects and damages</div>
+                            </div>
+                        </div>
+                        <div class="jobs-third-row-second-div">
+                            <div class="first-row-jobs-third-row-second-div first-row-second-div">What we're looking
+                                for:</div>
+                            <div class="second-div-second-paragraph">
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span
+                                        style="margin-right: 10px;">·</span>Currently enrolled as a university student
+                                </div>
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span
+                                        style="margin-right: 10px;">·</span>Basic knowledge of English or German
+                                    language</div>
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span
+                                        style="margin-right: 10px;">·</span>No prior work experience is required</div>
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span
+                                        style="margin-right: 10px;">·</span>Physical endurance (Up to 8 hours
+                                    standing/walking; Max: 20kg lifting)</div>
+                                <div style="margin-left: 10px;"><span style="margin-right: 10px;">·</span>Able to work
+                                    independently and within a team</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="right-jobs" style="display: none; flex-direction: column;">
+                <div class="right-jobs-rows-img" style="padding: 30px; margin-left: 10px; background-color: white;">
+                    <div class="experience-rows">
+                        <img class="exit-job-description" title="Exit"
+                            style="float: left; width: 20px; height: 20px; cursor: pointer;"
+                            src="../img/Vector 81 (1).png" alt="">
+                        <div class="first-row-jobs">Warehouse Associate</div>
+                        <div class="second-row-jobs">Amazon&nbsp;&nbsp;<span style="color: #858585;">·&nbsp;&nbsp;Las
+                                Vegas, USA&nbsp;·&nbsp;23 applicants</span></div>
+                        <div style="" class="experience-third-row jobs-third-row">$12.00/hour</div>
+                        <div style="" class="experience-fourth-row jobs-mutual-margin-rows">Full time · 40 hours/week
+                        </div>
+                        <div style="margin-top: 20px;" class="experience-fourth-row jobs-mutual-margin-rows">01 June,
+                            2022 - 31 August 2022</div>
+                        <div style="margin-top: 5px; margin-top: 20px;"
+                            class="experience-fourth-row jobs-mutual-margin-rows">Housing provided · $100.00/week</div>
+                        <div style="margin-top: 5px; margin-top: 20px;"
+                            class="experience-fourth-row jobs-mutual-margin-rows">Work and Travel · Program Cost: $600
+                        </div>
+                        <div style="margin-top: 5px; margin-top: 20px; height: 100%;"
+                            class="experience-fourth-row jobs-mutual-margin-rows">Posted on 01 May, 2022</div>
+                    </div>
+                </div>
+                <div class="right-jobs-rows-img-second">
+                    <div class="experience-rows">
+                        <div class="first-row-jobs first-row-second-div">Work and Travel</div>
+                        <div class="second-row-second-div">
+                            Work and Travel allows foreign students an opportunity to live and work in
+                            Germany for 90 days during the summer vacation from university to
+                            experience and to be exposed to work, people, and way of life in Germany.
+                            Learn more about the program <a class="here-link" style="" href="#">here</a>.
+                        </div>
+                        <div class="jobs-third-row-second-div">
+                            <div class="first-row-jobs-third-row-second-div first-row-second-div">Job description</div>
+                            <div class="second-div-second-paragraph">
+                                We are hiring driven Warehouse Associates! As a Warehouse Associate you
+                                will be responsible for properly labeling and packing items to be shipped
+                                while also organizing and tracking warehouse inventory levels at all times.
+                                Join us and become part of a diverse and friendly team in a Logistics
+                                Warehouse in Germany. We provide in-house training so all you have to do is Easy Apply!
+                            </div>
+                        </div>
+                        <div class="jobs-third-row-second-div">
+                            <div class="first-row-jobs-third-row-second-div first-row-second-div">What we offer:</div>
+                            <div class="second-div-second-paragraph">
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span
+                                        style="margin-right: 10px;">·</span>Easy Apply</div>
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span
+                                        style="margin-right: 10px;">·</span>Guaranteed employment</div>
+                            </div>
+                        </div>
+                        <div class="jobs-third-row-second-div">
+                            <div class="first-row-jobs-third-row-second-div first-row-second-div">What you'll be doing:
+                            </div>
+                            <div class="second-div-second-paragraph">
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span
+                                        style="margin-right: 10px;">·</span>Organize and track warehouse inventory</div>
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span
+                                        style="margin-right: 10px;">·</span>Process, package, label and ship orders
+                                    accurately</div>
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span
+                                        style="margin-right: 10px;">·</span>Maintain strict safety and quality standards
+                                </div>
+                                <div style="margin-left: 10px;"><span style="margin-right: 10px;">·</span>Inspect
+                                    products for defects and damages</div>
+                            </div>
+                        </div>
+                        <div class="jobs-third-row-second-div">
+                            <div class="first-row-jobs-third-row-second-div first-row-second-div">What we're looking
+                                for:</div>
+                            <div class="second-div-second-paragraph">
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span
+                                        style="margin-right: 10px;">·</span>Currently enrolled as a university student
+                                </div>
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span
+                                        style="margin-right: 10px;">·</span>Basic knowledge of English or German
+                                    language</div>
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span
+                                        style="margin-right: 10px;">·</span>No prior work experience is required</div>
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span
+                                        style="margin-right: 10px;">·</span>Physical endurance (Up to 8 hours
+                                    standing/walking; Max: 20kg lifting)</div>
+                                <div style="margin-left: 10px;"><span style="margin-right: 10px;">·</span>Able to work
+                                    independently and within a team</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="right-jobs" style="display: none; flex-direction: column;">
+                <div class="right-jobs-rows-img" style="padding: 30px; margin-left: 10px; background-color: white;">
+                    <div class="experience-rows">
+                        <img class="exit-job-description" title="Exit"
+                            style="float: left; width: 20px; height: 20px; cursor: pointer;"
+                            src="../img/Vector 81 (1).png" alt="">
+                        <div class="first-row-jobs">Warehouse Associate</div>
+                        <div class="second-row-jobs">Amazon&nbsp;&nbsp;<span style="color: #858585;">·&nbsp;&nbsp;New
+                                York, USA&nbsp;·&nbsp;23 applicants</span></div>
+                        <div style="" class="experience-third-row jobs-third-row">$12.00/hour</div>
+                        <div style="" class="experience-fourth-row jobs-mutual-margin-rows">Full time · 40 hours/week
+                        </div>
+                        <div style="margin-top: 20px;" class="experience-fourth-row jobs-mutual-margin-rows">01 June,
+                            2022 - 31 August 2022</div>
+                        <div style="margin-top: 5px; margin-top: 20px;"
+                            class="experience-fourth-row jobs-mutual-margin-rows">Housing provided · $100.00/week</div>
+                        <div style="margin-top: 5px; margin-top: 20px;"
+                            class="experience-fourth-row jobs-mutual-margin-rows">Work and Travel · Program Cost: $600
+                        </div>
+                        <div style="margin-top: 5px; margin-top: 20px; height: 100%;"
+                            class="experience-fourth-row jobs-mutual-margin-rows">Posted on 01 May, 2022</div>
+                    </div>
+                </div>
+                <div class="right-jobs-rows-img-second"
+                    style="margin-left: 10px; background-color: white; margin-top: 20px;">
+                    <div class="experience-rows">
+                        <div class="first-row-jobs first-row-second-div">Work and Travel</div>
+                        <div class="second-row-second-div">
+                            Work and Travel allows foreign students an opportunity to live and work in
+                            Germany for 90 days during the summer vacation from university to
+                            experience and to be exposed to work, people, and way of life in Germany.
+                            Learn more about the program <a class="here-link" style="" href="#">here</a>.
+                        </div>
+                        <div class="jobs-third-row-second-div">
+                            <div class="first-row-jobs-third-row-second-div first-row-second-div">Job description</div>
+                            <div class="second-div-second-paragraph">
+                                We are hiring driven Warehouse Associates! As a Warehouse Associate you
+                                will be responsible for properly labeling and packing items to be shipped
+                                while also organizing and tracking warehouse inventory levels at all times.
+                                Join us and become part of a diverse and friendly team in a Logistics
+                                Warehouse in Germany. We provide in-house training so all you have to do is Easy Apply!
+                            </div>
+                        </div>
+                        <div class="jobs-third-row-second-div">
+                            <div class="first-row-jobs-third-row-second-div first-row-second-div">What we offer:</div>
+                            <div class="second-div-second-paragraph">
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span
+                                        style="margin-right: 10px;">·</span>Easy Apply</div>
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span
+                                        style="margin-right: 10px;">·</span>Guaranteed employment</div>
+                            </div>
+                        </div>
+
+                        <div class="jobs-third-row-second-div">
+                            <div class="first-row-jobs-third-row-second-div first-row-second-div">What you'll be doing:
+                            </div>
+                            <div class="second-div-second-paragraph">
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span
+                                        style="margin-right: 10px;">·</span>Organize and track warehouse inventory</div>
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span
+                                        style="margin-right: 10px;">·</span>Process, package, label and ship orders
+                                    accurately</div>
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span
+                                        style="margin-right: 10px;">·</span>Maintain strict safety and quality standards
+                                </div>
+                                <div style="margin-left: 10px;"><span style="margin-right: 10px;">·</span>Inspect
+                                    products for defects and damages</div>
+                            </div>
+                        </div>
+                        <div class="jobs-third-row-second-div">
+                            <div class="first-row-jobs-third-row-second-div first-row-second-div">What we're looking
+                                for:</div>
+                            <div class="second-div-second-paragraph">
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span
+                                        style="margin-right: 10px;">·</span>Currently enrolled as a university student
+                                </div>
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span
+                                        style="margin-right: 10px;">·</span>Basic knowledge of English or German
+                                    language</div>
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span
+                                        style="margin-right: 10px;">·</span>No prior work experience is required</div>
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span
+                                        style="margin-right: 10px;">·</span>Physical endurance (Up to 8 hours
+                                    standing/walking; Max: 20kg lifting)</div>
+                                <div style="margin-left: 10px;"><span style="margin-right: 10px;">·</span>Able to work
+                                    independently and within a team</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="right-jobs" style="display: none; flex-direction: column;">
+                <div class="right-jobs-rows-img" style="padding: 30px; margin-left: 10px; background-color: white;">
+                    <div class="experience-rows">
+                        <img class="exit-job-description" title="Exit"
+                            style="float: left; width: 20px; height: 20px; cursor: pointer;"
+                            src="../img/Vector 81 (1).png" alt="">
+                        <div class="first-row-jobs">Warehouse Associate</div>
+                        <div class="second-row-jobs">Amazon&nbsp;&nbsp;<span
+                                style="color: #858585;">·&nbsp;&nbsp;Atlanta, USA&nbsp;·&nbsp;23 applicants</span></div>
+                        <div style="" class="experience-third-row jobs-third-row">$12.00/hour</div>
+                        <div style="" class="experience-fourth-row jobs-mutual-margin-rows">Full time · 40 hours/week
+                        </div>
+                        <div style="margin-top: 20px;" class="experience-fourth-row jobs-mutual-margin-rows">01 June,
+                            2022 - 31 August 2022</div>
+                        <div style="margin-top: 5px; margin-top: 20px;"
+                            class="experience-fourth-row jobs-mutual-margin-rows">Housing provided · $100.00/week</div>
+                        <div style="margin-top: 5px; margin-top: 20px;"
+                            class="experience-fourth-row jobs-mutual-margin-rows">Work and Travel · Program Cost: $600
+                        </div>
+                        <div style="margin-top: 5px; margin-top: 20px; height: 100%;"
+                            class="experience-fourth-row jobs-mutual-margin-rows">Posted on 01 May, 2022</div>
+                    </div>
+                </div>
+                <div class="right-jobs-rows-img-second"
+                    style="margin-left: 10px; background-color: white; margin-top: 20px;">
+                    <div class="experience-rows">
+                        <div class="first-row-jobs first-row-second-div">Work and Travel</div>
+                        <div class="second-row-second-div">
+                            Work and Travel allows foreign students an opportunity to live and work in
+                            Germany for 90 days during the summer vacation from university to
+                            experience and to be exposed to work, people, and way of life in Germany.
+                            Learn more about the program <a class="here-link" style="" href="#">here</a>.
+                        </div>
+                        <div class="jobs-third-row-second-div">
+                            <div class="first-row-jobs-third-row-second-div first-row-second-div">Job description</div>
+                            <div class="second-div-second-paragraph">
+                                We are hiring driven Warehouse Associates! As a Warehouse Associate you
+                                will be responsible for properly labeling and packing items to be shipped
+                                while also organizing and tracking warehouse inventory levels at all times.
+                                Join us and become part of a diverse and friendly team in a Logistics
+                                Warehouse in Germany. We provide in-house training so all you have to do is Easy Apply!
+                            </div>
+                        </div>
+                        <div class="jobs-third-row-second-div">
+                            <div class="first-row-jobs-third-row-second-div first-row-second-div">What we offer:</div>
+                            <div class="second-div-second-paragraph">
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span
+                                        style="margin-right: 10px;">·</span>Easy Apply</div>
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span
+                                        style="margin-right: 10px;">·</span>Guaranteed employment</div>
+                            </div>
+                        </div>
+
+                        <div class="jobs-third-row-second-div">
+                            <div class="first-row-jobs-third-row-second-div first-row-second-div">What you'll be doing:
+                            </div>
+                            <div class="second-div-second-paragraph">
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span
+                                        style="margin-right: 10px;">·</span>Organize and track warehouse inventory</div>
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span
+                                        style="margin-right: 10px;">·</span>Process, package, label and ship orders
+                                    accurately</div>
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span
+                                        style="margin-right: 10px;">·</span>Maintain strict safety and quality standards
+                                </div>
+                                <div style="margin-left: 10px;"><span style="margin-right: 10px;">·</span>Inspect
+                                    products for defects and damages</div>
+                            </div>
+                        </div>
+                        <div class="jobs-third-row-second-div">
+                            <div class="first-row-jobs-third-row-second-div first-row-second-div">What we're looking
+                                for:</div>
+                            <div class="second-div-second-paragraph">
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span
+                                        style="margin-right: 10px;">·</span>Currently enrolled as a university student
+                                </div>
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span
+                                        style="margin-right: 10px;">·</span>Basic knowledge of English or German
+                                    language</div>
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span
+                                        style="margin-right: 10px;">·</span>No prior work experience is required</div>
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span
+                                        style="margin-right: 10px;">·</span>Physical endurance (Up to 8 hours
+                                    standing/walking; Max: 20kg lifting)</div>
+                                <div style="margin-left: 10px;"><span style="margin-right: 10px;">·</span>Able to work
+                                    independently and within a team</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="../js/profile_dropdown.js"></script>
+<script src="../js/jobs-img.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<script src="../js/exit-job-description-button.js"></script>
+<script src="../js/profile_dropdown_2.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="../js/edit-job-dropdown.js"></script>
+<script>
+
+
+    $(".jobs-rows-img a").click(function (e) {
+        // Do something
+        e.stopPropagation();
+    });
+
+</script>
+
+</html>

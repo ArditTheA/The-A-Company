@@ -29,7 +29,7 @@
     <th><input type="text" id="txt_city_j" style="width:100px" placeholder="City"> </th>
     <th></th>
     <th></th>
-    <th></th>
+    <th><a href="{% url 'stats'%}" class="btn btn-warning">Stats</a></th>
     <th>{% if allApp %}<a href="{% url 'newApplication'%}" class="btn btn-info">New Application</a>{% else %}<a href="{% url 'allApplication'%}" class="btn btn-info">All Application</a>{% endif %}</th>
 
 
@@ -81,7 +81,6 @@
 
 
                   <button class="exportToExcel btn btn-warning float-right" style="margin-bottom:40px;margin-right:40px">Download</button>
-
 
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">

@@ -331,73 +331,6 @@ def Edit_User_langId(request, pk):
 ###########################################################################
 
 
-# ---------------------------------Add Job ---------------------------------------------#
-@login_required
-def addJob(request):
-    uid = request.user.id
-    form = add_Jobs(request.POST or None, request.FILES or None)
-    getCountry = request.POST.get("country_j")
-    getCity = request.POST.get("city_j")
-    country_j = Country.objects.all()
-    city_j = City.objects.all()
-    jobTitle = request.POST.get("job_title")
-    if request.method == "POST":
-        if form.is_valid():
-            form.save()
-            CountryJob(getCountry)
-
-            CityJob(getCity, getCountry)
-            subject = "Your job posting for " + jobTitle + " is under review"
-            email_template_applicant = "main/jobs/postJob.txt"
-
-            c = {
-                "email": request.user.email,
-                'domain': 'worki.global',
-                'site_name': 'Worki',
-                'user': request.user,
-                'jobTitle': jobTitle,
-
-            }
-            email = render_to_string(email_template_applicant, c)
-
-            try:
-                send_mail(subject, email, 'hello@worki.global',
-                          [request.user.email], fail_silently=False)
-            except BadHeaderError:
-                return HttpResponse('Invalid header found.')
-
-            return redirect('postedJob')
-    if uid != "":
-        form.initial["user_id"] = uid
-
-    return render(request, "Jobs/add.html", {"form": form, "country_j": country_j, "city_j": city_j})
-
-
-@login_required
-def editJob(request, pk):
-    if Jobs.objects.filter(id=pk).exists():
-        job = Jobs.objects.get(id=pk)
-        jobUs = job.user_id
-
-        if jobUs == request.user:
-            form = editjob(request.POST or None, request.FILES or None, instance=job)
-            country = Country.objects.all()
-            city = City.objects.all()
-            des = job.description
-            des = des.replace('<br />', '\n')
-
-            if form.is_valid():
-                CountryJob(request.POST.get("country_j"))
-                CityJob(request.POST.get("city_j"),request.POST.get("country_j"))
-                form.save()
-                return redirect("postedJob")
-            return render(request, "Jobs/edit.html", {"form": form, "country": country, "city": city, "des": des})
-        else:
-            return render(request, "Jobs/404.html")
-    else:
-        return render(request, "Jobs/404.html")
-
-
 #########################################################################################
 # ------------------------------Posted Jobs---------------------------------------------#
 #########################################################################################
@@ -642,195 +575,49 @@ class MainJobs(View):
         post_id = request.headers.get("text")
         test = request.headers.get("text")
         job = Jobs.objects.filter(approved=True).filter(status="Open").order_by("-postDate").order_by("-id")
-        # search
-        se = request.GET.get("q")
-        query = []
-        if se != None:
-            seInput = se.split(" ")
-            for i in seInput:
-                if i != "in" or i != "on" or i != "at" or i != "," or i != "-" or i != " ":
 
-                    if i[len(i) - 1] == ",":
-                        i = i.replace(',', '')
-                        query.append(i)
-                    elif i[len(i) - 1] == ".":
-                        i = i.replace(',', '')
-                        query.append(i)
-                    else:
-                        query.append(i)
-
-        jobi = []
-        jobs = []
         hasApply = False
         hasApplyDate = ""
-        if request.user.is_authenticated:
-            auth = str(request.user.profileSetup)
-        else:
-            auth = "False"
-        if se != None:
-            if len(query) == 0:
-                job = Jobs.objects.filter(approved=True)
 
-        if (len(query) >= 1):
+        # search
+        query = request.GET.get("q")
+        title_j = [""]
+        city_j = [""]
+        country_j = [""]
+        if query != None:
+            t = query.split(" ")
+            if query.isspace() != True:
+                searchWord = []
+                if len(t)>1:
+                    for i in t:
+                        if i != "in" or i != "on" or i != "at" or i != "," or i != "-" or i != " ":
+                            if i[len(i) - 1] == ",":
+                                i = i.replace(',', '')
+                                searchWord.append(i)
+                            elif i[len(i) - 1] == ".":
+                                i = i.replace(',', '')
+                                searchWord.append(i)
+                            else:
+                                searchWord.append(i)
+                    if len(searchWord) > 0:
+                        for i in range(len(searchWord)):
+                            if Jobs.objects.filter(job_title__icontains=searchWord[i]).exists():
 
-            # title and city
-            if len(query) == 3:
-                if Jobs.objects.filter(job_title__icontains=query[0] + " " + query[1]).exists():
-                    query = [query[0] + " " +
-                             query[1], query[2]]
-                else:
-                    query = [query[0],
-                             query[1] + " " + query[2]]
-
-                if Jobs.objects.filter(approved=True).filter(job_title__icontains=query[0]).filter(
-                        city_j__icontains=query[1]).exists():
-                    job = Jobs.objects.filter(approved=True).filter(job_title__icontains=query[0]).filter(
-                        city_j__icontains=query[1]).filter(status="Open")
-                    jobi = Jobs.objects.filter(approved=True).filter(job_title__icontains=query[0]).filter(
-                        status="Open")
-
-                elif Jobs.objects.filter(approved=True).filter(job_title__icontains=query[1]).filter(
-                        city_j__icontains=query[0]).exists():
-                    job = Jobs.objects.filter(approved=True).filter(job_title__icontains=query[1]).filter(
-                        city_j__icontains=query[0]).filter(status="Open")
-                    jobi = Jobs.objects.filter(approved=True).filter(
-                        job_title__icontains=query[1]).filter(status="Open")
-
-                # country and city
-                elif Jobs.objects.filter(approved=True).filter(country_j__icontains=query[1]).filter(
-                        city_j__icontains=query[0]).exists():
-                    job = Jobs.objects.filter(approved=True).filter(country_j__icontains=query[1]).filter(
-                        city_j__icontains=query[0]).filter(status="Open")
-
-                elif Jobs.objects.filter(approved=True).filter(country_j__icontains=query[0]).filter(
-                        city_j__icontains=query[1]).exists():
-                    job = Jobs.objects.filter(approved=True).filter(country_j__icontains=query[0]).filter(
-                        city_j__icontains=query[1]).filter(status="Open")
-
-                    # title and country
-                elif Jobs.objects.filter(approved=True).filter(job_title__icontains=query[0]).filter(
-                        country_j__icontains=query[1]).exists():
-                    job = Jobs.objects.filter(approved=True).filter(job_title__icontains=query[0]).filter(
-                        country_j__icontains=query[1]).filter(status="Open")
-
-                elif Jobs.objects.filter(approved=True).filter(job_title__icontains=query[1]).filter(
-                        country_j__icontains=query[0]).exists():
-                    job = Jobs.objects.filter(approved=True).filter(job_title__icontains=query[1]).filter(
-                        country_j__icontains=query[0]).filter(status="Open")
-                elif Jobs.objects.filter(approved=True).filter(job_title__icontains=query[0]).exists():
-                    job = Jobs.objects.filter(approved=True).filter(
-                        job_title__icontains=query[0]).filter(status="Open")
-                # title
-
-                elif Jobs.objects.filter(approved=True).filter(job_title__icontains=query[0]).filter(
-                        job_title__icontains=query[1]).exists():
-                    job = Jobs.objects.filter(approved=True).filter(job_title__icontains=query[0]).filter(
-                        job_title__icontains=query[1]).filter(status="Open").order_by("-postDate")
-                # cityyy
-                elif Jobs.objects.filter(approved=True).filter(city_j__icontains=query[0]).exists():
-                    job = Jobs.objects.filter(approved=True).filter(city_j__icontains=query[0]).filter(
-                        status="Open").order_by(
-                        "-postDate")
-
-                # country
-                elif Jobs.objects.filter(approved=True).filter(country_j__icontains=query[0]).exists():
-                    job = Jobs.objects.filter(approved=True).filter(country_j__icontains=query[0]).filter(
-                        status="Open").order_by("-postDate")
-                elif Jobs.objects.filter(approved=True).filter(job_title__icontains=query[0]).exists():
-                    job = Jobs.objects.filter(approved=True).filter(
-                        job_title__icontains=query[0]).filter(status="Open")
-            elif len(query) > 1:
-                if Jobs.objects.filter(approved=True).filter(job_title__icontains=query[0]).filter(
-                        city_j__icontains=query[1]).exists():
-                    job = Jobs.objects.filter(approved=True).filter(job_title__icontains=query[0]).filter(
-                        city_j__icontains=query[1]).filter(status="Open")
-                    jobi = Jobs.objects.filter(approved=True).filter(
-                        job_title__icontains=query[0]).filter(status="Open")
-
-                elif Jobs.objects.filter(approved=True).filter(job_title__icontains=query[1]).filter(
-                        city_j__icontains=query[0]).exists():
-                    job = Jobs.objects.filter(approved=True).filter(job_title__icontains=query[1]).filter(
-                        city_j__icontains=query[0]).filter(status="Open")
-                    jobi = Jobs.objects.filter(approved=True).filter(
-                        job_title__icontains=query[1]).filter(status="Open")
-
-                # country and city
-                elif Jobs.objects.filter(approved=True).filter(country_j__icontains=query[1]).filter(
-                        city_j__icontains=query[0]).exists():
-                    job = Jobs.objects.filter(approved=True).filter(country_j__icontains=query[1]).filter(
-                        city_j__icontains=query[0]).filter(status="Open")
-
-                elif Jobs.objects.filter(approved=True).filter(country_j__icontains=query[0]).filter(
-                        city_j__icontains=query[1]).exists():
-                    job = Jobs.objects.filter(approved=True).filter(country_j__icontains=query[0]).filter(
-                        city_j__icontains=query[1]).filter(status="Open")
-
-                    # title and country
-                elif Jobs.objects.filter(approved=True).filter(job_title__icontains=query[0]).filter(
-                        country_j__icontains=query[1]).exists():
-                    job = Jobs.objects.filter(approved=True).filter(job_title__icontains=query[0]).filter(
-                        country_j__icontains=query[1]).filter(status="Open")
-
-                elif Jobs.objects.filter(approved=True).filter(job_title__icontains=query[1]).filter(
-                        country_j__icontains=query[0]).exists():
-                    job = Jobs.objects.filter(approved=True).filter(job_title__icontains=query[1]).filter(
-                        country_j__icontains=query[0]).filter(status="Open")
-                elif Jobs.objects.filter(approved=True).filter(job_title__icontains=query[0]).exists():
-                    job = Jobs.objects.filter(approved=True).filter(
-                        job_title__icontains=query[0]).filter(status="Open")
-                # title
-
-                elif Jobs.objects.filter(approved=True).filter(job_title__icontains=query[0]).filter(
-                        job_title__icontains=query[1]).exists():
-                    job = Jobs.objects.filter(approved=True).filter(job_title__icontains=query[0]).filter(
-                        job_title__icontains=query[1]).filter(status="Open").order_by("-postDate")
-                # cityyy
-                elif Jobs.objects.filter(approved=True).filter(city_j__icontains=query[0]).exists():
-                    job = Jobs.objects.filter(approved=True).filter(
-                        city_j__icontains=query[0]).filter(status="Open").order_by("-postDate")
-
-                # country
-                elif Jobs.objects.filter(approved=True).filter(country_j__icontains=query[0]).exists():
-                    job = Jobs.objects.filter(approved=True).filter(
-                        country_j__icontains=query[0]).filter(status="Open").order_by("-postDate")
-                elif Jobs.objects.filter(approved=True).filter(job_title__icontains=query[0]).exists():
-                    job = Jobs.objects.filter(approved=True).filter(
-                        job_title__icontains=query[0]).filter(status="Open")
-            # title
-
-            elif Jobs.objects.filter(approved=True).filter(job_title__icontains=query[0]).exists():
-                job = Jobs.objects.filter(approved=True).filter(
-                    job_title__icontains=query[0]).filter(status="Open").order_by("-postDate")
-            # cityyy
-            elif Jobs.objects.filter(approved=True).filter(city_j__icontains=query[0]).exists():
-                job = Jobs.objects.filter(approved=True).filter(
-                    city_j__icontains=query[0]).filter(status="Open").order_by("-postDate")
-
-            # country
-            elif Jobs.objects.filter(approved=True).filter(country_j__icontains=query[0]).exists():
-                job = Jobs.objects.filter(approved=True).filter(
-                    country_j__icontains=query[0]).filter(status="Open").order_by("-postDate")
-
-            if len(job) > 0:
-                post_id = str(job[0].id)
-
-
-            for i in jobi:
-                for j in job:
-                    if i != j:
-                        jobs.append(i)
-
+                                title_j.insert(0, t[i])
+                            elif Jobs.objects.filter(city_j__icontains=searchWord[i]).exists():
+                                city_j.insert(0, searchWord[i])
+                            elif Jobs.objects.filter(country_j__icontains=searchWord[i]).exists():
+                                country_j.insert(0, searchWord[i])
+                        job=Jobs.objects.filter(job_title__icontains=title_j[0]).filter(city_j__icontains=city_j[0]).filter(
+                        country_j__icontains=country_j[0]).filter(approved=True).filter(status="Open").order_by("-id")
+                elif len(t)==1:
+                    job = Jobs.objects.filter(Q(job_title__contains=query) | Q(city_j__icontains=query) | Q(country_j__icontains=query)).filter(approved=True).filter(status="Open").order_by("-id")
             if request.user.is_authenticated:
-
                 search = Search()
                 search.user_id = request.user
                 search.search = query
                 search.save()
 
-            else:
-                search = Search()
-                search.search = query
-                search.save()
         # end of search
 
         # filters options
@@ -862,8 +649,10 @@ class MainJobs(View):
                     sortCity.append(i)
 
             for i in sortCity:
-                cit = City.objects.get(name__icontains=i)
-                cityName.append(str(cit))
+
+                if City.objects.filter(name=i).exists():
+                    cit = City.objects.get(name=i)
+                    cityName.append(str(cit))
 
             # for i in salary:
             #      if i not in sortSalary:
@@ -894,13 +683,24 @@ class MainJobs(View):
                 sal = "€" + str(i)
                 sortSalary.append(sal)
 
-            sortProgram.sort()
+            sortProgram.sort(reverse=True)
             sortTitle.sort()
             sortCompany.sort()
             cityName.sort()
         #  Take the  first post   !!! with  auto id  the first result
+        getMonth = datetime.now().month
+        getYear = datetime.now().year
 
+        str_d1 = format(datetime.now(),"%Y/%m/%d")
+        str_d2 = format(job[0].deadline,"%Y/%m/%d")
 
+        # convert string to date object
+        d1 = datetime.strptime(str_d1, "%Y/%m/%d")
+        d2 = datetime.strptime(str_d2, "%Y/%m/%d")
+
+        # difference between dates in timedelta
+        delta = d2 - d1
+        dayyy=(delta.days)
         if post_id == "":
             post_id = Jobs.objects.filter(approved=True).filter(status="Open").order_by(
                 "-postDate").values_list('id', flat=True).first()
@@ -948,18 +748,19 @@ class MainJobs(View):
                     id=post_id).values_list("country_j").first()
 
                 applicant = Jobs.objects.filter(id=post_id).first()
-
+                SDate = start_date
+                EDate = end_date
                 salary = format(salary, '.2f')
                 start_date = format(start_date, "%d/%m/%Y")
                 end_date = format(end_date, "%d/%m/%Y")
                 app = (str(applicant))
                 return JsonResponse(
                     dict(description=description, title=title, applicant=app, city_j=city_j, country=country,
-                         start_date=start_date,
+                         start_date=start_date,SDate=SDate,EDate=EDate,
                          salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
                          typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
                          program=program, programCost=programCost,
-                         posted=posted, post_id=post_id, auth=auth, appNo=appNo, hasApply=hasApply,
+                         posted=posted, post_id=post_id, appNo=appNo, hasApply=hasApply,
                          hasApplyDate=hasApplyDate), safe=True)
         # take selected post byy id
         else:
@@ -1005,7 +806,8 @@ class MainJobs(View):
 
                 appNo = 0
                 appNo = Jobs.objects.get(id=post_id).applicant.count()
-
+                SDate = start_date
+                EDate=end_date
                 salary = format(salary, '.2f')
                 start_date = format(start_date, "%d/%m/%Y")
                 end_date = format(end_date, "%d/%m/%Y")
@@ -1015,8 +817,8 @@ class MainJobs(View):
                     dict(description=description, title=title, city_j=city_j, country=country, start_date=start_date,
                          salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
                          typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
-                         program=program, programCost=programCost,
-                         posted=posted, post_id=post_id, auth=auth, appNo=appNo, hasApply=hasApply, safe=True,applyDate=hasApplyDate))
+                         program=program, programCost=programCost,SDate=SDate,EDate=EDate,
+                         posted=posted, post_id=post_id, appNo=appNo, hasApply=hasApply, safe=True,applyDate=hasApplyDate))
         filterProgram = ""
         filterTitle = ""
         filterCompany = ""
@@ -1040,7 +842,7 @@ class MainJobs(View):
         return render(request, "MainJobs/index.html",
                       dict(job=job, prog=sortProgram, title=sortTitle, company=sortCompany, city=cityName,
                            salary=sortSalary, filterProgram=filterProgram, filterTitle=filterTitle,
-                           filterCompany=filterCompany,
+                           filterCompany=filterCompany,getMonth=getMonth,getYear=getYear,
                            filterLocation=filterLocation, filterSalary=filterSalary, filterDate=filterDate, tit=title,
                            check=check, post_id=post_id,hasApply=hasApply))
 
@@ -1077,10 +879,9 @@ class MainJobsId(View):
         jobs = []
         hasApply = False
         hasApplyDate = ""
-        if request.user.is_authenticated:
-            auth = str(request.user.profileSetup)
-        else:
-            auth = "False"
+        getMonth = datetime.now().month
+        getYear = datetime.now().year
+
         if se != None:
             if len(query) == 0:
                 job = Jobs.objects.filter(approved=True)
@@ -1276,8 +1077,9 @@ class MainJobsId(View):
                     sortCity.append(i)
 
             for i in sortCity:
-                cit = City.objects.get(name__icontains=i)
-                cityName.append(str(cit))
+                if City.objects.filter(name=i).exists():
+                    cit = City.objects.get(name=i)
+                    cityName.append(str(cit))
 
             # for i in salary:
             #      if i not in sortSalary:
@@ -1308,7 +1110,7 @@ class MainJobsId(View):
                 sal = "€" + str(i)
                 sortSalary.append(sal)
 
-            sortProgram.sort()
+            sortProgram.sort(reverse=True)
             sortTitle.sort()
             sortCompany.sort()
             cityName.sort()
@@ -1362,18 +1164,19 @@ class MainJobsId(View):
                     id=post_id).values_list("country_j").first()
 
                 applicant = Jobs.objects.filter(id=post_id).first()
-
+                SDate = start_date
+                EDate = end_date
                 salary = format(salary, '.2f')
                 start_date = format(start_date, "%d/%m/%Y")
                 end_date = format(end_date, "%d/%m/%Y")
                 app = (str(applicant))
                 return JsonResponse(
                     dict(description=description, title=title, applicant=app, city_j=city_j, country=country,
-                         start_date=start_date,
+                         start_date=start_date,SDate=SDate,EDate=EDate,
                          salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
                          typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
                          program=program, programCost=programCost,
-                         posted=posted, post_id=post_id, auth=auth, appNo=appNo, hasApply=hasApply,
+                         posted=posted, post_id=post_id, appNo=appNo, hasApply=hasApply,
                          hasApplyDate=hasApplyDate), safe=True)
         # take selected post byy id
         else:
@@ -1419,6 +1222,8 @@ class MainJobsId(View):
 
                 appNo = 0
                 appNo = Jobs.objects.get(id=post_id).applicant.count()
+                SDate = start_date
+                EDate = end_date
 
                 salary = format(salary, '.2f')
                 start_date = format(start_date, "%d/%m/%Y")
@@ -1427,10 +1232,10 @@ class MainJobsId(View):
 
                 return JsonResponse(
                     dict(description=description, title=title, city_j=city_j, country=country, start_date=start_date,
-                         salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
+                         salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,SDate=SDate,EDate=EDate,
                          typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
-                         program=program, programCost=programCost,
-                         posted=posted, post_id=post_id, auth=auth, appNo=appNo, hasApply=hasApply, safe=True,applyDate=hasApplyDate))
+                         program=program, programCost=programCost,posted=posted, post_id=post_id, appNo=appNo, hasApply=hasApply,
+                         safe=True,applyDate=hasApplyDate))
         filterProgram = ""
         filterTitle = ""
         filterCompany = ""
@@ -1453,7 +1258,7 @@ class MainJobsId(View):
         return render(request, "MainJobs/JobIndex.html",
                       dict(FJob=FJob,job=Jobb, prog=sortProgram, title=sortTitle, company=sortCompany, city=cityName,
                            salary=sortSalary, filterProgram=filterProgram, filterTitle=filterTitle,
-                           filterCompany=filterCompany,
+                           filterCompany=filterCompany,getMonth=getMonth,getYear=getYear,
                            filterLocation=filterLocation, filterSalary=filterSalary, filterDate=filterDate, tit=title,
                            check=check, post_id=post_id,hasApply=hasApply))
 
@@ -1461,133 +1266,6 @@ class MainJobsId(View):
 
 def ApplySuc(request):
     return render(request,"MainJobs/apply.html")
-
-@login_required
-def applyForJob(request, pk):
-    job = Jobs.objects.get(id=pk)
-    jobType = Jobs.objects.filter(id=pk).values_list("program", flat=True).first()
-
-    userId = request.user
-    dataa = datetime.now()
-    birth = ""
-    if request.user.birthday != None:
-        birth = format(request.user.birthday, "%d/%m/%Y")
-    if jobType == "Work and Travel":
-        if ActiveStudent.objects.filter(user_id=request.user).exists():
-            AnswerUs = ActiveStudent.objects.get(user_id=request.user)
-
-            AnS = AnswerUS(request.POST or None, instance=AnswerUs)
-        else:
-            AnS = AnswerUS(request.POST or None)
-
-        form = setupProfile(request.POST or None, instance=userId)
-        profCountry = request.POST.get("country")
-        answerUS = request.POST.get("answer")
-        country = Country.objects.all()
-        ACaws = ""
-        if ActiveStudent.objects.filter(user_id=request.user).exists():
-            ACaws = ActiveStudent.objects.filter(user_id=request.user).values_list("answer",flat=True).first()
-        if not Application.objects.filter(job_id=pk).filter(user_id=request.user).exists():
-            if request.method == "POST":
-                if form.is_valid():
-                    if not ActiveStudent.objects.filter(user_id=request.user).exists():
-                        ACS = ActiveStudent()
-                        ACS.user_id=request.user
-                        ACS.answer = answerUS
-                        ACS.save()
-                    else:
-                        ACS = ActiveStudent.objects.get(user_id=request.user)
-                        ACS.answer=answerUS
-                        ACS.save()
-
-
-                    CountryUser(profCountry, request.user)
-                    form.save()
-                    post = get_object_or_404(Jobs, id=pk)
-                    app = Application()
-                    app.user_id = userId
-                    app.job_id = job
-                    app.apply_date = dataa
-                    app.status = "Pennding"
-                    app.save()
-                    post.applicant.add(userId)
-                    subject = "You applied for" + "  " + job.job_title
-                    email_template_applicant = "main/jobs/Jobapplication.txt"
-
-                    c = {
-                        "email": request.user.email,
-                        'domain': 'worki.global',
-                        'site_name': 'Worki',
-                        'user': request.user,
-                        "job": job,
-                        "date": dataa,
-
-                    }
-                    email = render_to_string(email_template_applicant, c)
-
-                    try:
-                        send_mail(subject, email, 'hello@worki.global',
-                                  [request.user.email], fail_silently=False)
-                        # send_mail(subject,oemail,'rinor@theacompany.xyz',[emailOwner],fail_silently=False)
-                    except BadHeaderError:
-                        return HttpResponse('Invalid header found.')
-                    return redirect('appSuc')
-        else:
-            return redirect("home")
-        return render(request, "ProfileSetup/WATinfo.html",dict(form=form,country=country,AnS=AnS))
-
-    else:
-        if request.user.profileSetup:
-
-            if not Application.objects.filter(job_id=pk).filter(user_id=request.user.id).exists():
-                
-                post = get_object_or_404(Jobs, id=pk)
-                app = Application()
-                app.user_id = userId
-                app.job_id = job
-                app.apply_date = dataa
-                app.status = "Pennding"
-                app.save()
-                post.applicant.add(userId)
-                subject = "You applied for" + "  " + job.job_title
-                email_template_applicant = "main/jobs/Jobapplication.txt"
-
-                c = {
-                    "email": request.user.email,
-                    'domain': 'worki.global',
-                    'site_name': 'Worki',
-                    'user': request.user,
-                    "job": job,
-                    "date": dataa,
-
-                }
-                email = render_to_string(email_template_applicant, c)
-
-                try:
-                    send_mail(subject, email, 'hello@worki.global',
-                              [request.user.email], fail_silently=False)
-                    # send_mail(subject,oemail,'rinor@theacompany.xyz',[emailOwner],fail_silently=False)
-                except BadHeaderError:
-                    return HttpResponse('Invalid header found.')
-
-                return render(request, "MainJobs/apply.html")
-        else:
-            form = setupProfile(request.POST or None, instance=userId)
-            country = Country.objects.all()
-            city = City.objects.all()
-            profCountry = request.POST.get("country")
-            Scity = request.POST.get("city")
-            if request.method == "POST":
-                if form.is_valid():
-                    CountryUser(profCountry, request.user)
-                    CityUser(Scity, profCountry, request.user)
-                    form.save()
-                    return redirect('setupPart2', pk)
-                else:
-                    form = form()
-            return render(request, "ProfileSetup/mainInfo.html",
-                          {"form": form, "country": country, "city": city, "birth": birth})
-    return render(request, "MainJobs/apply.html")
 
 
 @login_required
@@ -1624,13 +1302,9 @@ def applyForJob2(request, pk):
         if request.method == "POST":
             if form.is_valid():
                 form.save()
-                if UserLanguages.objects.filter(user_id=request.user.id).exists():
-                    us = get_object_or_404(CustomUser, id=request.user.id)
-                    us.profileSetup = True
-                    us.save()
-                    return redirect('apply', pk)
-                else:
-                    return redirect('setupPart3', pk)
+
+                return redirect('apply', pk)
+
 
         form.initial["user_id"] = request.user.id
     return render(request, "ProfileSetup/secondInfo.html", {"form": form, "compare": compare,
@@ -1659,7 +1333,38 @@ def applyForJob3(request, pk):
                 us = get_object_or_404(CustomUser, id=userId)
                 us.profileSetup = True
                 us.save()
-                return redirect("apply", pk)
+                if not Application.objects.filter(job_id=pk).filter(user_id=request.user.id).exists():
+
+                    post = get_object_or_404(Jobs, id=pk)
+                    app = Application()
+                    app.user_id = request.user
+                    app.job_id = job
+                    app.apply_date = dataa
+                    app.status = "Pennding"
+                    app.save()
+                    post.applicant.add(userId)
+                    subject = "You applied for" + "  " + job.job_title
+                    email_template_applicant = "main/jobs/Jobapplication.txt"
+
+                    c = {
+                        "email": request.user.email,
+                        'domain': 'worki.global',
+                        'site_name': 'Worki',
+                        'user': request.user,
+                        "job": job,
+                        "date": dataa,
+
+                    }
+                    email = render_to_string(email_template_applicant, c)
+
+                    try:
+                        send_mail(subject, email, 'hello@worki.global',
+                                  [request.user.email], fail_silently=False)
+                        # send_mail(subject,oemail,'rinor@theacompany.xyz',[emailOwner],fail_silently=False)
+                    except BadHeaderError:
+                        return HttpResponse('Invalid header found.')
+
+                    return render(request, "MainJobs/apply.html")
             else:
                 form = form()
         form.initial["user_id"] = request.user.id
@@ -1675,7 +1380,38 @@ def applyForJob3(request, pk):
                 us = get_object_or_404(CustomUser, id=userId)
                 us.profileSetup = True
                 us.save()
-                return redirect("apply", pk)
+                if not Application.objects.filter(job_id=pk).filter(user_id=request.user.id).exists():
+
+                    post = get_object_or_404(Jobs, id=pk)
+                    app = Application()
+                    app.user_id = userId
+                    app.job_id = job
+                    app.apply_date = dataa
+                    app.status = "Pennding"
+                    app.save()
+                    post.applicant.add(userId)
+                    subject = "You applied for" + "  " + job.job_title
+                    email_template_applicant = "main/jobs/Jobapplication.txt"
+
+                    c = {
+                        "email": request.user.email,
+                        'domain': 'worki.global',
+                        'site_name': 'Worki',
+                        'user': request.user,
+                        "job": job,
+                        "date": dataa,
+
+                    }
+                    email = render_to_string(email_template_applicant, c)
+
+                    try:
+                        send_mail(subject, email, 'hello@worki.global',
+                                  [request.user.email], fail_silently=False)
+                        # send_mail(subject,oemail,'rinor@theacompany.xyz',[emailOwner],fail_silently=False)
+                    except BadHeaderError:
+                        return HttpResponse('Invalid header found.')
+
+                    return render(request, "MainJobs/apply.html")
             else:
                 form = form()
         form.initial["user_id"] = request.user.id
@@ -1687,3 +1423,95 @@ def getAllJobs(request):
     job = Jobs.objects.all().filter(status="Open").order_by("-postDate")
 
     return render(request, "base.html", {"job": job})
+
+
+@login_required
+def applyForJob(request, pk):
+    job = Jobs.objects.get(id=pk)
+    jobType = Jobs.objects.filter(id=pk).values_list("program", flat=True).first()
+
+    userId = request.user
+    dataa = datetime.now()
+    birth = ""
+    if request.user.birthday != None:
+        birth = format(request.user.birthday, "%d/%m/%Y")
+    if jobType == "Work and Travel":
+        if ActiveStudent.objects.filter(user_id=request.user).exists():
+            AnswerUs = ActiveStudent.objects.get(user_id=request.user)
+
+            AnS = AnswerUS(request.POST or None, instance=AnswerUs)
+        else:
+            AnS = AnswerUS(request.POST or None)
+
+        form = setupProfile(request.POST or None, instance=userId)
+        profCountry = request.POST.get("country")
+        answerUS = request.POST.get("answer")
+        country = Country.objects.all()
+        ACaws = ""
+        if ActiveStudent.objects.filter(user_id=request.user).exists():
+            ACaws = ActiveStudent.objects.filter(user_id=request.user).values_list("answer", flat=True).first()
+        if not Application.objects.filter(job_id=pk).filter(user_id=request.user).exists():
+            if request.method == "POST":
+                if form.is_valid():
+                    if not ActiveStudent.objects.filter(user_id=request.user).exists():
+                        ACS = ActiveStudent()
+                        ACS.user_id = request.user
+                        ACS.answer = answerUS
+                        ACS.save()
+                    else:
+                        ACS = ActiveStudent.objects.get(user_id=request.user)
+                        ACS.answer = answerUS
+                        ACS.save()
+
+                    CountryUser(profCountry, request.user)
+                    form.save()
+                    post = get_object_or_404(Jobs, id=pk)
+                    app = Application()
+                    app.user_id = userId
+                    app.job_id = job
+                    app.apply_date = dataa
+                    app.status = "Pennding"
+                    app.save()
+                    post.applicant.add(userId)
+                    subject = "You applied for" + " " + job.job_title
+                    email_template_applicant = "main/jobs/Jobapplication.txt"
+
+                    c = {
+                        "email": request.user.email,
+                        'domain': 'worki.global',
+                        'site_name': 'Worki',
+                        'user': request.user,
+                        "job": job,
+                        "date": dataa,
+
+                    }
+                    email = render_to_string(email_template_applicant, c)
+
+                    try:
+                        send_mail(subject, email, 'hello@worki.global',
+                                  [request.user.email], fail_silently=False)
+                        # send_mail(subject,oemail,'rinor@theacompany.xyz',[emailOwner],fail_silently=False)
+                    except BadHeaderError:
+                        return HttpResponse('Invalid header found.')
+                    return redirect('appSuc')
+        else:
+            return redirect("home")
+        return render(request, "ProfileSetup/WATinfo.html", dict(form=form, country=country, AnS=AnS))
+
+    else:
+        form = setupProfile(request.POST or None, instance=userId)
+        country = Country.objects.all()
+        city = City.objects.all()
+        profCountry = request.POST.get("country")
+        Scity = request.POST.get("city")
+        if request.method == "POST":
+            if form.is_valid():
+                CountryUser(profCountry, request.user)
+                CityUser(Scity, profCountry, request.user)
+                form.save()
+                return redirect('setupPart2', pk)
+            else:
+                form = form()
+        return render(request, "ProfileSetup/mainInfo.html",{"form": form, "country": country, "city": city, "birth": birth})
+    return render(request, "MainJobs/apply.html")
+

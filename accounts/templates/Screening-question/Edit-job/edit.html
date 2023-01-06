@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Add Job Question</title>
+</head>
+<body>
+<div class="container">
+
+  <form class="col-md-12" method="post" action="{% url 'add-question' %}">
+    {% csrf_token %}
+<!--    Start of question-->
+{% for i in question %}
+<!--    Question 1-->
+  <div class="form-group">
+    <label for="question1" >Question 1</label>
+    <input class="form-control" maxlength="200" value="{{i.promp}}"id="question1" name="question1" type="text" placeholder="Question 1"><br>
+    <div class="row">
+      <div class="col-md-6">
+
+        <label>Anser Type: </label>
+
+        <select onchange="changeAnsType(1)" class="form-control" id="ans_type1" name="answerType1">
+                    <option>{{i.question_type}}</option>
+
+      <option value="YesNo">Yes / No</option>
+      <option value="Numeric" >Numeric</option>
+    </select>
+      </div>
+      <div class="col-md-3">
+
+        <label for="ideal">Ideal answer:</label>
+        <div class="idealAns1" id="idealAns1">
+          {% if i.question_type == "Numeric" %}
+          <input type="number" name="" class="form-control idealAnsF2" id="idealAnsF2" value="{{i.ideal_answer}}">
+          {% else %}
+            <select class="form-control idealAnsF1" id="idealAnsF1" name="idealAnsF1"><option>{{i.ideal_answer}}</option><option>No</option></select>
+          {% endif %}
+        </div>
+
+      </div>
+      <div class="col-md-3">
+        <br>
+        <label ><input type="checkbox" id="qualify1" name="qualify1"> Requried to be same as ideal answer</label>
+
+      </div>
+
+    </div>
+
+  </div>
+<!--    End of question 1-->
+{% endfor %}
+
+
+
+
+<!--    End of question -->
+
+<!--    Application Settings  -->
+  <div class="form-group">
+    <label>Application Settings</label>
+    <br>
+    <select  id="job-settings" name="job-settings" class="form-control">
+      <option value="F">Filter out & send rejection letters to applicants who don't meet qualifications</option>
+      <option value="NF">Don’t filter out applicants. I will manually review each application sent to me</option>
+    </select>
+  </div>
+<!--    end of applicaiton settings-->
+
+
+
+<!--    Rejection letter  -->
+    <div class="form-group">
+      <label>Write your rejection letter </label>
+
+      <textarea class="form-control" name="rejected-email" id="job-email" rows="10" cols="10"></textarea>
+    </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+</div>
+<script>
+  function changeAnsType(id){
+       var question_id = id;
+       var choice = "ans_type"+question_id
+       var selected = document.getElementById(choice).value
+       var getName = "#idealAns"+question_id;
+       var setName = "idealAnsF"+question_id;
+
+       if(selected == "YesNo"){
+          console.log(getName)
+
+          $(getName).append($('<select class="form-control '+setName+'" id='+setName+' name='+setName+'><option>Yes</option><option>No</option></select>'));
+       }else if(selected == "Numeric"){
+          $(getName).append($('<input type="number" name="'+setName+'" class="form-control '+setName+'" id="'+setName+'">'));
+       }
+
+
+  }
+</script>
+
+<script>
+  const question = [];
+  const ansType = [];
+  const ideal = [];
+  const req = [];
+  function SaveQuestion(){
+      question.push(document.getElementById("question1").value);
+      question.push(document.getElementById("question2").value);
+      question.push(document.getElementById("question3").value);
+
+      ansType.push(document.getElementById("ans_type1").value);
+      ansType.push(document.getElementById("ans_type2").value);
+      ansType.push(document.getElementById("ans_type3").value);
+
+      ideal.push(document.getElementById("idealAnsF1").value);
+      ideal.push(document.getElementById("idealAnsF2").value);
+      ideal.push(document.getElementById("idealAnsF3").value);
+
+
+      req.push($('#qualify1').is(':checked'));
+      req.push($('#qualify2').is(':checked'));
+      req.push($('#qualify3').is(':checked'));
+
+
+      console.log(question.toString())
+      console.log(ansType.toString())
+      console.log(ideal.toString())
+      console.log(req.toString())
+
+
+      window.location.href ="/SQ/Add/push/"+question.toString()+"/"+ansType.toString()+"/"+ideal.toString()+"/"+req.toString()
+
+
+
+  }
+
+</script>
+<script src="{% static 'js/Ajax/Match/user-details-ajax.js'%}"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.2/umd/popper.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</body>
+</html>
+{% endblock content %}

@@ -15,7 +15,7 @@ SECRET_KEY = '0x-zrhf@)(t)%-630q&s&9g_c^lvh_9cehy@7vx==@bxgn_s_='
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = False
+DEBUG = True
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 SILENCED_SYSTEM_CHECKS = ["auth.W004"]
 ALLOWED_HOSTS = ["*"]
@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'filters',
     'resetpassword',
     'Match',
+    "Applicant",
+    "ScreeningQuestion",
 
     #3party login providers
     'allauth',
@@ -58,6 +60,9 @@ INSTALLED_APPS = [
     'django_filters',
 
     'analytical',
+
+
+    'rangefilter',
 ]
 
 SOCIAL_AUTH_PIPELINE = (

@@ -2,11 +2,10 @@ Hello, {{user.first_name}}!
 
 You have successfully applied for {{job.job_title}}.
 
-You’re guaranteed to hear soon via email or phone call about your job application. 
-
-Don’t worry, we're not like the other ones. 
+You’re guaranteed to hear in 72 hours via email or phone call about your job application.
 
 We’ll be in touch soon,
+
 Worki Team
 
 

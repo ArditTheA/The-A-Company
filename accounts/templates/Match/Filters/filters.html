@@ -1,0 +1,93 @@
+   {% load static %}
+    <div class="jobs-buttons applied-posted-buttons-mobile all-aplicants-main-div">
+        {% if q == "All" %}
+
+        <div class="main-input-form">
+            <div class="input-form-all-applicants inputs-right-margin">
+                <div style="display: flex">
+                    <button style="padding-left: 20px;" title="All Applicants" class="applied-button-jobs outline-none all-applicants-button">All Applicants</button>
+                    <div class="" style="display: flex; align-items: center;">
+                        <img style="cursor: pointer;" class="white-icon" src="{% static 'img/white-dropdown-icon.png'%}" alt="">
+                    </div>
+                </div>
+                <div class="all-applicants-dropdown" style="padding-bottom: 20px; padding-left: 20px; padding-right: 20px; overflow-y: scroll; max-height: 140px; flex-direction: column; align-items: center; overflow-x: scroll;">
+                    <div class="dropdown-content"><a title="Qualified Students" id="qualify" href="{% url 'qualified-applicant' jpk%}"  class="dropdown-content-text">Qualified</a></div>
+                    <div style="" class="dropdown-mid-content"><a title="Not Qualified Students" id="notqualify" href="{% url 'nonqualified-applicant' jpk%}" class="dropdown-content-text">Not qualified</a></div>
+
+                </div>
+            </div>
+         </div>
+
+        {% elif  q == "Q" %}
+        <div class="main-input-form">
+            <div class="input-form-all-applicants inputs-right-margin">
+                <div style="display: flex">
+                    <button style="padding-left: 20px;" title="All Applicants" class="applied-button-jobs outline-none all-applicants-button">Qualified </button>
+                    <div class="" style="display: flex; align-items: center;">
+                        <img style="cursor: pointer;" class="white-icon" src="{% static 'img/white-dropdown-icon.png'%}" alt="">
+                    </div>
+                </div>
+                <div class="all-applicants-dropdown" style="padding-bottom: 20px; padding-left: 20px; padding-right: 20px; overflow-y: scroll; max-height: 140px; flex-direction: column; align-items: center; overflow-x: scroll;">
+                    <div class="dropdown-content"><a title="Qualified Students" href="{% url 'applicant' jpk %}"  class="dropdown-content-text">All Applicants</a></div>
+                    <div style="" class="dropdown-mid-content"><a title="Not Qualified Students" id="notqualify" href="{% url 'nonqualified-applicant' jpk%}" class="dropdown-content-text">Not qualified</a></div>
+
+                </div>
+            </div>
+         </div>
+
+        {% elif q == "notQ" %}
+ <div class="main-input-form">
+            <div class="input-form-all-applicants inputs-right-margin">
+                <div style="display: flex">
+                    <button style="padding-left: 20px;" title="All Applicants" class="applied-button-jobs outline-none all-applicants-button">Not qualified </button>
+                    <div class="" style="display: flex; align-items: center;">
+                        <img style="cursor: pointer;" class="white-icon" src="{% static 'img/white-dropdown-icon.png'%}" alt="">
+                    </div>
+                </div>
+                <div class="all-applicants-dropdown" style="padding-bottom: 20px; padding-left: 20px; padding-right: 20px; overflow-y: scroll; max-height: 140px; flex-direction: column; align-items: center; overflow-x: scroll;">
+                    <div class="dropdown-content"><a title="Qualified Students" href="{% url 'applicant' jpk %}"  class="dropdown-content-text">All Applicants</a></div>
+                    <div style="" class="dropdown-mid-content"><a title="Not Qualified Students" href="{% url 'qualified-applicant' jpk%}" class="dropdown-content-text">Qualified</a></div>
+
+                </div>
+            </div>
+         </div>
+        {% endif %}
+
+
+        {% for i in phase %}
+         <div class="main-input-form">
+            <div class="input-form-all-applicants inputs-right-margin">
+                <div style="display: flex">
+                    <button style="padding-left: 20px;background-color:white;color:black" title="{{i.name}}" onclick="showDropDown({{i.id}})" class="applied-button-jobs outline-none all-applicants-button"> {{i.name}}</button>
+                    <div class="" style="display: flex; align-items: center;">
+                        <img style="cursor: pointer;" class="white-icon" src="{% static 'img/dropdown-icon.png'%}" alt="">
+                    </div>
+                </div>
+                <div class="all-applicants-dropdown" id="drop{{i.id}}" style="padding-bottom: 20px; padding-left: 20px; padding-right: 20px; overflow-y: scroll; max-height: 140px; flex-direction: column; align-items: center; overflow-x: scroll;">
+                    {% for j in subphase %}
+                        {% if i == j.phase %}
+                    <div class="dropdown-mid-content"><a title="Qualified Students" href="{% url 'applicant' jpk %}"  class="dropdown-content-text">{{j.name}}</a></div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+         </div>
+
+        {% endfor %}
+
+
+
+    </div>
+
+   <script>
+       function showDropDown(id){
+           var dropName = "drop"+id;
+          var elem = document.getElementById(dropName);
+          var foo = window.getComputedStyle(elem, null);
+          if (foo.getPropertyValue("display") == 'none') {
+            elem.style.display = 'block';
+          } else {
+            elem.style.display = 'none';
+          }
+       }
+   </script>

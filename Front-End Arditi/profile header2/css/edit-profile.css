@@ -1,0 +1,274 @@
+@import url('https://fonts.googleapis.com/css2?family=Spline+Sans&display=swap');
+
+body {
+    margin: 0;
+    background-color: #f1f1f1;
+    font-family: 'Spline Sans', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.edit-profile-bg {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.container-edit-profile {
+    box-sizing: border-box;
+    border-radius: 40px;
+    background-color: white;
+    padding: 30px 40px 40px 40px;
+    transition: 1s ease;
+}
+
+#title {
+    width: 300px;
+    font-size: 40px;
+    font-weight: 400;
+    color: #1877F2;
+    margin: auto;
+    padding-bottom: 40px;
+    text-align: center;
+}
+
+.font-fam {
+    font-family: 'Spline Sans', sans-serif;
+}
+
+.under-container-edit-profile {
+    width: 400px;
+    margin-top: 0;
+}
+
+.edit-profile-first-name {
+    margin: 0;
+}
+
+.mutual-stats {
+    border-radius: 30px;
+    padding: 10px 0px 10px 10px;
+    font-size: 18px;
+    border: 0.5px solid #9E9E9E;
+    background-color: white;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.mutual-stats:focus {
+    outline: none;
+}
+
+.mutual-stats::placeholder {
+    color: #9E9E9E;
+}
+
+.city-input {
+    border-radius: 30px;
+    padding: 10px 0px 10px 10px;
+    font-size: 18px;
+    border: 0.5px solid #9E9E9E;
+    background-color: white;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#password:focus {
+    outline: none;
+}
+
+.password-input::placeholder {
+    color: #9E9E9E;
+}
+
+.surname-input {
+    font-family: 'Spline Sans', sans-serif;
+}
+
+.exit-img {
+    margin-bottom: 40px;
+}
+
+.exit-button {
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    vertical-align: top;
+    vertical-align: bottom;
+    margin: 0;
+    cursor: pointer;
+}
+
+.same-color-of-paragraphs {
+    color: #9E9E9E;
+}
+
+.terms-conditions-link, .sign-in-link {
+    color: #1877F2;
+    text-decoration: none;
+}
+
+.sign-in-link {
+    text-decoration: none;
+}
+
+.paragraphs-stats {
+    font-size: 16px;
+    margin: 0;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    color: #9E9E9E;
+}
+
+.paragraph-of-surname, .paragraph-of-country, .paragraph-of-city {
+    margin-top: 10px;
+}
+
+.second-paragraph {
+    text-align: center;
+}
+.first-paragraph, .second-paragraph {
+    margin: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 16px;
+}
+
+.second-paragraph .sign-up-submit-input {
+    text-align: center;
+}
+
+.save-button {
+    padding-top: 40px;
+}
+
+.sign-up-google {
+    text-align: center;
+    color: #9E9E9E;
+    text-decoration: none;
+}
+
+.save-submit-input {
+    padding: 10px 24px;
+    border-radius: 30px;
+    background-color: #1877F2;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    border: 0.5px solid #1877F2;
+    float: right;
+    outline: none;
+}
+
+.sign-up-submit-input:focus {
+    outline: none;
+}
+
+.third-paragraph {
+    font-size: 16px;
+    padding-left: 10px;
+    margin: 0;
+    padding-top: 20px;
+}
+
+.input-form {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    position: relative;
+}
+
+.icon {
+    position: absolute;
+    left: 10px;
+    height: 80%;
+}
+
+#togglePassword {
+    position: absolute;
+    right: 22px;
+}
+
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+    #title {
+        font-size: 36px;
+    }
+
+}
+@media screen and (max-width: 767px) and (min-width: 481px) {
+
+    #title {
+        font-size: 32px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    .edit-profile-bg {
+        background-color: #f1f1f1;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    .container-edit-profile {
+        width: 100%;
+        height: calc(100% - 20px);
+        padding: 30px 20px 0px 20px;
+        margin: 10px 10px 20px 10px;
+        border-radius: 20px;
+    }
+
+    .under-container-edit-profile {
+        width: 100%;
+    }
+    #title {
+        margin-bottom: -20px;       /* pasi qe paragraph-stats ka margin-top: 10px, atehere title eshte e larguar: 50px nga paragrafet, keshtu
+                                    qe shenojme margin-bottom: -20px, qe ta kemi hapesiren (margin) 30px ndermjet title dhe paragraph-stats (paragrafet) */
+    }
+    .mutual-stats {
+        font-size: 14px;
+    }
+    .paragraphs-stats {
+        font-size: 14px;
+    }
+    .save-button-edit-profile {
+    }
+    .save-submit-input {
+        font-size: 14px;
+        padding: 7px 21px;
+    }
+    .exit-img-edit-profile {
+        margin: 0;
+        margin-top: -10px;  /* fillimisht eshte margin-top: 30px, per ta arritur margin-top: 20px, shenojme margin-top: -10px */
+    }
+    .change-profile-picture {
+
+    }
+    .exit-button {
+        width: 14px !important;
+        height: 14px !important;
+    }
+    .exit-img {
+    }
+    
+    .first-paragraph, .second-paragraph {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+    .third-paragraph {
+        padding-top: 15px;
+    }
+    .first-paragraph, .second-paragraph, .third-paragraph {
+        font-size: 13px;
+    }
+    .name-input, .surname-input, .email-input, .password-input, .sign-up-submit-input, .sign-up-google {
+        font-size: 16px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+}

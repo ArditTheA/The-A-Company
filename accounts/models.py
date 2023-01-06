@@ -149,7 +149,10 @@ class Jobs(models.Model):
     programCost = models.IntegerField()
     logo = models.ImageField(upload_to="JobLogo")
     description = models.TextField(null=True,blank=True)
-
+    recommended = models.BooleanField(default=False)
+    positionLeft = models.IntegerField(default=0)
+    deadline = models.DateField(default=datetime.now(),blank=True,null=True)
+    daysLeftDeadline = models.IntegerField(default=0)
     status = models.CharField(max_length=20,choices=Stat,default="Open")
     postDate = models.DateField(default=datetime.now(),blank=True,null=True)
     user_id = models.ForeignKey(CustomUser,on_delete=models.CASCADE, null=True,blank=True)
@@ -182,10 +185,16 @@ class Application(models.Model):
         ("Pennding","Pennding"),
         ("Read","Read")
     }
+    Applicant_stat={
+        ("Qualified","Qualified"),
+        ("Not qualified","Not qualified")
+
+    }
     job_id= models.ForeignKey(Jobs,on_delete=models.CASCADE)
     user_id = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
     apply_date = models.DateField(default=today)
     status = models.CharField(max_length=50,choices=Stat_type,default="Pennding")
+    ApplicantStat = models.CharField(max_length=50,choices=Applicant_stat,null=True,blank=True)
 
     def __str__(self):
         return str(self.job_id)+" | "+str(self.user_id)+" | "+str(self.apply_date)

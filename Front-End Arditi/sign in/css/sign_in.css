@@ -1,0 +1,311 @@
+@import url('https://fonts.googleapis.com/css2?family=Spline+Sans&display=swap');
+
+body {
+    margin: 0;
+    background-color: #f1f1f1;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 40px;
+    font-family: 'Spline Sans', sans-serif;
+}
+.header-border {
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+.worki-image {
+    height: 60px;
+}
+
+.container {
+    width: 100%;
+    margin: auto auto auto auto;
+    box-sizing: border-box;
+    border-radius: 40px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+#title {
+    width: 160px;
+    font-size: 40px;
+    font-weight: 400;
+    color: #1877F2;
+    margin: auto;
+    padding-bottom: 40px;
+    text-align: center;
+}
+
+.font-fam {
+    font-family: 'Spline Sans', sans-serif;
+}
+
+.under-container {
+    width: 450px;
+    margin-top: 0;
+}
+
+.input-text {
+    border-radius: 30px;
+    padding: 10px 0px 10px 10px;
+    font-size: 18px;
+    border: 0.5px solid #9E9E9E;
+    background-color: white;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.input-text:focus {
+    outline: none;
+}
+
+.input-text::placeholder {
+    color: #9E9E9E;
+}
+
+.password-input {
+    border-radius: 30px;
+    padding: 10px 0px 10px 10px;
+    font-size: 18px;
+    border: 0.5px solid #9E9E9E;
+    background-color: white;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#password:focus {
+    outline: none;
+}
+
+.password-input::placeholder {
+    color: #9E9E9E;
+}
+
+.name-input {
+    width: 48%;
+}
+
+.surname-input {
+    float: right;
+    width: 48%;
+    font-family: 'Spline Sans', sans-serif;
+}
+
+.name-input, .surname-input, .email-input {
+    margin-bottom: 20px;
+}
+
+.same-color-of-paragraphs {
+    color: #9E9E9E;
+}
+
+.password-link, .sign-up-link {
+    text-decoration: none;
+    color: #1877F2;
+}
+
+.first-paragraph {
+    padding-left: 10px;
+}
+
+.second-paragraph {
+    text-align: center;
+}
+.first-paragraph, .second-paragraph {
+    margin: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 16px;
+}
+
+.second-paragraph {
+    text-align: center;
+}
+
+.sign-in-google {
+    text-align: center;
+    color: #9E9E9E;
+    text-decoration: none;
+}
+
+.sign-in-submit-input {
+    padding: 10px 0px;
+    border-radius: 20px;
+    background-color: #1877F2;
+    color: white;
+    font-size: 18px;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    border: 0.5px solid #1877F2;
+}
+
+.sign-up-submit-input:focus {
+    outline: none;
+}
+
+.third-paragraph {
+    font-size: 16px;
+    padding-left: 10px;
+    margin: 0;
+    padding-top: 20px;
+}
+
+.input-form {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    position: relative;
+}
+
+.icon {
+    position: absolute;
+    left: 10px;
+    height: 80%;
+}
+
+#togglePassword {
+    position: absolute;
+    right: 22px;
+}
+
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+    body {
+        padding: 0px 36px 36px 36px;
+        
+    }
+    .container {
+        padding-top: 36px;
+        padding-bottom: 36px;
+    }
+    .header-border {
+        padding-top: 36px;
+        padding-bottom: 36px;
+    }
+    .worki-image {
+        height: 55px;
+    }
+    .under-container {
+        width: 420px;
+    }
+    #title {
+        font-size: 36px;
+        width: 140px;
+        padding-bottom: 36px;
+    }
+    .first-paragraph, .second-paragraph {
+        padding-top: 18px;
+        padding-bottom: 18px;
+    }
+    .third-paragraph {
+        padding-top: 18px;
+    }
+    .first-paragraph, .second-paragraph, .third-paragraph {
+        font-size: 15px;
+    }
+    .name-input, .surname-input, .email-input {
+        margin-bottom: 18px;
+    }
+    .name-input, .surname-input, .email-input, .password-input, .sign-up-submit-input, .sign-up-google {
+        font-size: 17px;
+        padding-top: 9px;
+        padding-bottom: 9px;
+    }
+}
+
+@media screen and (max-width: 767px) and (min-width: 481px) {
+    body {
+        padding: 0px 20px 20px 20px;
+        
+    }
+    .container {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+    .header-border {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+    .worki-image {
+        height: 50px;
+    }
+    .under-container {
+        width: 380px;
+    }
+    #title {
+        font-size: 32px;
+        width: 150px;
+        padding-bottom: 30px;
+    }
+    .first-paragraph, .second-paragraph {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    .third-paragraph {
+        padding-top: 15px;
+    }
+    .first-paragraph, .second-paragraph, .third-paragraph {
+        font-size: 14px;
+    }
+    .name-input, .surname-input, .email-input {
+        margin-bottom: 15px;
+    }
+    .name-input, .surname-input, .email-input, .password-input, .sign-in-submit-input, .sign-in-google {
+        font-size: 16px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        padding: 10px 10px 10px 10px;
+        
+    }
+    .container {
+        padding-top: 30px;
+        padding-bottom: 30px;
+        border-radius: 20px;
+    }
+    .header-border {
+        display: none;
+    }
+    .worki-image {
+        display: none;
+    }
+    .under-container {
+        padding-left: 20px;
+        padding-right: 20px;
+        height: 100vh;
+    }
+    #title {
+        font-size: 30px;
+        width: 170px;
+        padding-bottom: 30px;
+    }
+    .first-paragraph, .second-paragraph {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .third-paragraph {
+        padding-top: 10px;
+    }
+    .first-paragraph, .second-paragraph, .third-paragraph {
+        font-size: 14px;
+    }
+    .name-input, .surname-input, .email-input, .password-input, .sign-in-submit-input, .sign-in-google {
+        font-size: 16px;
+        padding: 8px 0px 8px 8px;
+    }
+
+    .name-input {
+        margin-bottom: 15px;
+    }
+    .name-input, .surname-input, .email-input {
+        margin-bottom: 15px;
+    }
+}
