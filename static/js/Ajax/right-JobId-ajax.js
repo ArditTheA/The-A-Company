@@ -8,11 +8,7 @@
         }
 
         post_id=id
-//        if(id == ""){
-//            if (data["post_id"] != ""){
-//                post_id=data["post_id"]
-//            }
-//        }
+
 
         let response = await fetch('/',{
 
@@ -83,12 +79,30 @@
         var comp = document.getElementById("company")
         comp.innerHTML=data["company"]
 
+        function getMonthDifference(startDate, endDate) {
+          return (
+            endDate.getMonth() -
+            startDate.getMonth() +
+            12 * (endDate.getFullYear() - startDate.getFullYear())
+          );
+        }
+
+        var c= (getMonthDifference(
+          new Date(data["SDate"]), new Date(data["EDate"]))
+        );
+        var total = (data ["salary"]*data['hourPerWork'])*4*c;
+        var tt  = Math.floor(total);
+        console.log(tt)
         if(data["country"]== "USA"){
         var salary = document.getElementById("salary")
         salary.innerHTML ="$"+ data ["salary"]+"/hour"
+        document.getElementById("totsalary").innerHTML="$"+tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
         }else{
             var salary = document.getElementById("salary")
         salary.innerHTML ="€"+ data ["salary"]+"/hour"
+        document.getElementById("totsalary").innerHTML="€"+tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
         }
         var typeOfWork = document.getElementById('typeOfWork')
         typeOfWork.innerHTML = data["typeOfWork"]+" "
