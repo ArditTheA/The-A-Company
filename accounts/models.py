@@ -152,7 +152,6 @@ class Jobs(models.Model):
     recommended = models.BooleanField(default=False)
     positionLeft = models.IntegerField(default=0)
     deadline = models.DateField(default=datetime.now(),blank=True,null=True)
-    daysLeftDeadline = models.IntegerField(default=0)
     status = models.CharField(max_length=20,choices=Stat,default="Open")
     postDate = models.DateField(default=datetime.now(),blank=True,null=True)
     user_id = models.ForeignKey(CustomUser,on_delete=models.CASCADE, null=True,blank=True)
@@ -164,7 +163,18 @@ class Jobs(models.Model):
     @property
     def total_applicant(self):
         return self.applicant.count()
+    def days_left(self):
 
+        d1 = datetime.now().date()
+        d2 = self.deadline
+
+        delta = d2 - d1
+        return delta.days
+    def day_left_new(self):
+        d1 = datetime.now().date()
+        d2 = self.postDate
+        delta = d1 - d2
+        return delta.days
 
     def __str__(self):
         return str(self.job_title)+ " - " +str(self.company)+ " - "+str(format(self.postDate,"%d/%m/%Y"))+  " - "+ str(self.approved)

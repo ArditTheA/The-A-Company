@@ -60,9 +60,9 @@ class OneSelFilter(View):
         if request.user.is_authenticated:
             auth=bool(request.user.profileSetup)
         post_id=request.headers.get("text")
-        if request.GET.get("Program") != None:
-            if request.GET.get("Program") != "Program":
-                filterProgram = request.GET.get("Program")
+        if request.GET.get("All Jobs") != None:
+            if request.GET.get("All Jobs") != "All Jobs":
+                filterProgram = request.GET.get("All Jobs")
             else:
                 filterProgram=""
 
@@ -112,6 +112,7 @@ class OneSelFilter(View):
             filterLocation=filterLocation.rstrip(filterLocation[-1])
         if filterProgram == "" and  filterTitle ==  "" and filterCompany == "" and filterLocation == "" and filterSalary == ""  and filterDate == "":
             job = Jobs.objects.filter(approved=True).filter(status="Open").order_by("-id")
+
         elif filterProgram == "Recommended":
             job = Jobs.objects.filter(approved=True).filter(status="Open").filter(recommended=True).filter(job_title__icontains=filterTitle).filter(company__contains=filterCompany).filter(city_j__icontains=filterLocation).order_by(filterSalary).order_by(filterSalary)
         else:
@@ -247,9 +248,12 @@ class OneSelFilter(View):
                     hasApply = True
         if filterSalary == "-id":
             filterSalary=""
+
+        getMonth = datetime.now().month
+        getYear = datetime.now().year
         return render(request, "MainJobs/index.html",
             dict(job=job, prog=sortProgram, title=sortTitle, company=sortCompany,city=cityName,
-                salary=sortSalary,filterProgram=filterProgram,filterTitle=filterTitle,filterCompany=filterCompany,
+                salary=sortSalary,filterProgram=filterProgram,filterTitle=filterTitle,filterCompany=filterCompany,getMonth=getMonth,getYear=getYear,
                 filterLocation=location,filterSalary=filterSalary,filterDate=filterDate,dateF=dateF,check=check,post_id=post_id))
 
 
@@ -275,9 +279,9 @@ class OneSelFilterId(View):
         if request.user.is_authenticated:
             auth = bool(request.user.profileSetup)
         post_id = request.headers.get("text")
-        if request.GET.get("Program") != None:
-            if request.GET.get("Program") != "Program":
-                filterProgram = request.GET.get("Program")
+        if request.GET.get("All Jobs") != None:
+            if request.GET.get("All Jobs") != "All Jobs":
+                filterProgram = request.GET.get("All Jobs")
             else:
                 filterProgram = ""
 
@@ -465,10 +469,11 @@ class OneSelFilterId(View):
                 post_id = job[0].id
                 if Application.objects.filter(job_id=post_id).filter(user_id=request.user.id).exists():
                     hasApply = True
+
         return render(request, "MainJobs/index.html",
                       dict(FJob=FJob,job=job, prog=sortProgram, title=sortTitle, company=sortCompany, city=cityName,
                            salary=sortSalary, filterProgram=filterProgram, filterTitle=filterTitle,
-                           filterCompany=filterCompany,
+                           filterCompany=filterCompany,getMonth=getMonth,getYear=getYear,
                            filterLocation=location, filterSalary=filterSalary, filterDate=filterDate, dateF=dateF,
                            check=check, post_id=post_id))
 

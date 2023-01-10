@@ -24,24 +24,29 @@
                    <span class="experience-rows">
                    <span class="experience-first-row">{{i.job_title}} </span>
                        {% if i.country_j == "USA" %}
-                            <span class="experience-second-row">${{i.salary_per_hour}}/hour</span>
+                            <span class="experience-second-row">${{i.salary_per_hour|floatformat:2}}/hour</span>
                        {% else %}
-                            <span class="experience-second-row">€{{i.salary_per_hour}}/hour</span>
+                            <span class="experience-second-row">€{{i.salary_per_hour|floatformat:2}}/hour</span>
                        {% endif%}
                    <span class="experience-third-row">{{i.company}}</span>
 
-                   <span class="experience-third-row">{{i.city_j}}, {{i.country_j}}</span>
+                   <span class="experience-fourth-row">{{i.city_j}}, {{i.country_j}}</span>
                        <div class="experience-fifth-row">
                            {% if i.positionLeft <= 3 and i.positionLeft > 0 %}
                         <div class="jobs-availability experience-fifth-row-positions" title="{{i.positionLeft}} positions left">{{i.positionLeft}} positions left</div>
 
                            {% endif %}
-                           {% if i.daysLeftDeadline <= 7 and i.daysLeftDeadline > 0 %}
-                           <div class="jobs-availability experience-fifth-row-days" title="Expiring in {{i.daysLeftDeadline}} days">{{i.daysLeftDeadline}} days left</div>
+
+                            {% if i.days_left <= 7 and i.days_left > 0 %}
+                                    <div class="jobs-availability experience-fifth-row-days" title="Expiring in {{i.days_left}} days">{{i.days_left}} days left</div>
                            {% endif %}
-                           {% if i.postDate.year == getYear and i.postDate.month == getMonth %}
+
+                           {% if i.day_left_new <= 30 and i.day_left_new >= 0 %}
                             <div class="jobs-availability experience-fifth-row-new" title="New job">New</div>
                            {% endif %}
+
+
+
 
                         </div>
 

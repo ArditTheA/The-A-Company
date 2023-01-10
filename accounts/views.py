@@ -575,15 +575,18 @@ class MainJobs(View):
         post_id = request.headers.get("text")
         test = request.headers.get("text")
         job = Jobs.objects.filter(approved=True).filter(status="Open").order_by("-postDate").order_by("-id")
+        # job = Jobs.objects.filter(approved=True).filter(status="Open").order_by("-postDate").order_by("-id")
 
         hasApply = False
         hasApplyDate = ""
-
+        title=""
         # search
         query = request.GET.get("q")
         title_j = [""]
         city_j = [""]
         country_j = [""]
+
+
         if query != None:
             t = query.split(" ")
             if query.isspace() != True:
@@ -691,16 +694,9 @@ class MainJobs(View):
         getMonth = datetime.now().month
         getYear = datetime.now().year
 
-        str_d1 = format(datetime.now(),"%Y/%m/%d")
-        str_d2 = format(job[0].deadline,"%Y/%m/%d")
 
-        # convert string to date object
-        d1 = datetime.strptime(str_d1, "%Y/%m/%d")
-        d2 = datetime.strptime(str_d2, "%Y/%m/%d")
 
-        # difference between dates in timedelta
-        delta = d2 - d1
-        dayyy=(delta.days)
+
         if post_id == "":
             post_id = Jobs.objects.filter(approved=True).filter(status="Open").order_by(
                 "-postDate").values_list('id', flat=True).first()
@@ -842,7 +838,7 @@ class MainJobs(View):
         return render(request, "MainJobs/index.html",
                       dict(job=job, prog=sortProgram, title=sortTitle, company=sortCompany, city=cityName,
                            salary=sortSalary, filterProgram=filterProgram, filterTitle=filterTitle,
-                           filterCompany=filterCompany,getMonth=getMonth,getYear=getYear,
+                           filterCompany=filterCompany,
                            filterLocation=filterLocation, filterSalary=filterSalary, filterDate=filterDate, tit=title,
                            check=check, post_id=post_id,hasApply=hasApply))
 
