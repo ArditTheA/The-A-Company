@@ -150,7 +150,7 @@ class Jobs(models.Model):
     logo = models.ImageField(upload_to="JobLogo")
     description = models.TextField(null=True,blank=True)
     recommended = models.BooleanField(default=False)
-    positionLeft = models.IntegerField(default=0)
+    positionLeft = models.IntegerField(default=0,null=True,blank=True)
     deadline = models.DateField(default=datetime.now(),blank=True,null=True)
     status = models.CharField(max_length=20,choices=Stat,default="Open")
     postDate = models.DateField(default=datetime.now(),blank=True,null=True)

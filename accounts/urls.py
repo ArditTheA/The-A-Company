@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from Match.views import *
-from ScreeningQuestion.views import addJob, editJob, applyForJob
+from ScreeningQuestion.views import *
 from filters.views import getList
 from .views import *
 from django.urls import path,include
