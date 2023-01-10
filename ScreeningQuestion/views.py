@@ -247,14 +247,12 @@ def editJob(request, pk):
             city = City.objects.all()
             des = job.description
             des = des.replace('<br />', '\n')
-            print("I Was Hereeeee 1 !!!!!!!!")
-            print(form.is_valid())
-            print(form.errors)
+
             if form.is_valid():
                 CountryJob(request.POST.get("country_j"))
                 CityJob(request.POST.get("city_j"),request.POST.get("country_j"))
                 form.save()
-                print("I Was Hereeeee 2!!!!!!!!")
+                
                 return redirect("postedJob")
             return render(request, "Jobs/edit.html", {"form": form, "country": country, "city": city, "des": des})
         else:
