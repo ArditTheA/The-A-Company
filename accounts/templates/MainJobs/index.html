@@ -33,7 +33,7 @@
                    <span class="experience-fourth-row">{{i.city_j}}, {{i.country_j}}</span>
                        <div class="experience-fifth-row">
                            {% if i.positionLeft <= 3 and i.positionLeft > 0 %}
-                        <div class="jobs-availability experience-fifth-row-positions" title="{{i.positionLeft}} positions left">{{i.positionLeft}} positions left</div>
+                        <div class="jobs-availability experience-fifth-row-positions" title="{{i.positionLeft}} positions left">{{i.positionLeft}} {% if i.positionLeft == 1 %}position{%else%} positions{% endif %}  left</div>
 
                            {% endif %}
 

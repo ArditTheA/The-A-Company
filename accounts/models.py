@@ -177,7 +177,7 @@ class Jobs(models.Model):
         return delta.days
 
     def __str__(self):
-        return str(self.job_title)+ " - " +str(self.company)+ " - "+str(format(self.postDate,"%d/%m/%Y"))+  " - "+ str(self.approved)
+        return str(self.job_title)+ " - " +str(self.company)+" - "+str(self.city_j)+ " - "+str(format(self.postDate,"%d/%m/%Y"))+  " - "+ str(self.approved)
 
 
 class ActiveStudent(models.Model):

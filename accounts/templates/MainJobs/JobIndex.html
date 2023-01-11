@@ -29,7 +29,7 @@
                <span class="experience-fourth-row">{{FJob.city_j}}, {{FJob.country_j}}</span>
                    <div class="experience-fifth-row">
                        {% if FJob.positionLeft <= 3 and FJob.positionLeft > 0 %}
-                    <div class="jobs-availability experience-fifth-row-positions" title="{{FJob.positionLeft}} positions left">{{FJob.positionLeft}} positions left</div>
+                    <div class="jobs-availability experience-fifth-row-positions" title="{{FJob.positionLeft}} positions left">{{FJob.positionLeft}} {% if FJob.positionLeft == 1 %}position{%else%} positions{% endif %}  left</div>
 
                        {% endif %}
                        {% if FJob.daysLeftDeadline <= 7 and FJob.daysLeftDeadline > 0 %}
@@ -58,7 +58,7 @@
                <span class="experience-third-row">{{i.city_j}}, {{i.country_j}}</span>
                    <div class="experience-fifth-row">
                        {% if i.positionLeft <= 3 and i.positionLeft > 0 %}
-                    <div class="jobs-availability experience-fifth-row-positions" title="{{i.positionLeft}} positions left">{{i.positionLeft}} positions left</div>
+                    <div class="jobs-availability experience-fifth-row-positions" title="{{i.positionLeft}} positions left">{{i.positionLeft}} {% if i.positionLeft == 1 %}position{%else%} positions{% endif %}  left</div>
 
                        {% endif %}
                        {% if i.daysLeftDeadline <= 7 and i.daysLeftDeadline > 0 %}

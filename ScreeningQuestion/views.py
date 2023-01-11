@@ -116,7 +116,7 @@ def addJob(request):
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
 
-            return redirect('add-question')
+            return redirect('postedJob')
     if uid != "":
         form.initial["user_id"] = uid
 
