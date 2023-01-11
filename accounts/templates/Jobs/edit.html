@@ -21,6 +21,8 @@
     padding-bottom: 40px;
 }
 
+
+
 .container-add-a-job {
     border-radius: 40px;
     background-color: white;
@@ -323,6 +325,9 @@ input:focus, select:focus
     }
 }
 @media screen and (max-width: 480px) {
+
+
+
     .container-add-a-job {
         margin: 10px;
         padding: 20px;
@@ -704,9 +709,23 @@ input:focus, select:focus
                </div>
       </div>
       <div class="back-submit-buttons" style="">
-         <a class="back-button back-button-description second-next-none" style="display: none; color: #1877F2;">Back</a>
-         <a id="sub" style="display: none; color: white;text-decoration: none;"  onclick="clickAndDisable(this);Post();" class="submit-button submit-button-description second-next-none"> Submit</a>
-      </div>
+			<a class="back-button back-button-description second-next-none" style="display: none; color: #1877F2;">Back</a>
+			<a style="display: none; color: white;" type="submit" class="submit-button submit-button-description second-next-none second-next-button">Next</a>
+		</div>
+           <div style="display: none; color: #1877F2;" class="third-next-none title-job-description title-additional-feauters">Additional features</div>
+        <div class="form-group third-next-none" style="display: none;">
+            <label class="margin-top-bottom margin-left number-of-positions-label">Number of positions</label>
+            {{form.positionLeft}}
+        </div>
+        <div class="form-group third-next-none" style="display: none; margin: 0;">
+            <label class="margin-top-bottom margin-left">Deadline date</label>
+            <input id="id_deadline" class="" name="deadline" onchange="checkStartDate();" value="{{form.deadline.value|date:'d/m/Y'}}" type="tel" maxlength="10" placeholder="dd/mm/yyyy" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
+
+        </div>
+        <div class="back-submit-buttons third-next-none-buttons" style="display: none;">
+			<a class="back-button back-button-description back-button back-button-additional-feauters" style="color: #1877F2;">Back</a>
+			<a id="sub" style="display: none; color: white;text-decoration: none;"  onclick="clickAndDisable(this);Post();" class="submit-button submit-button-description second-next-none"> Submit</a>
+		</div>
     </form>
    </div>
 </div>

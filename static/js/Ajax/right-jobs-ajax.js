@@ -100,12 +100,12 @@
         if(data["country"]== "USA"){
         var salary = document.getElementById("salary")
         salary.innerHTML ="$"+ data ["salary"]+"/hour"
-        document.getElementById("totsalary").innerHTML="$"+tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" total income";
+        document.getElementById("totsalary").innerHTML="$"+tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
         }else{
             var salary = document.getElementById("salary")
         salary.innerHTML ="€"+ data ["salary"]+"/hour"
-        document.getElementById("totsalary").innerHTML="€"+tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" total income";
+        document.getElementById("totsalary").innerHTML="€"+tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
         }
         var typeOfWork = document.getElementById('typeOfWork')

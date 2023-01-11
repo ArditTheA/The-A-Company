@@ -27,7 +27,9 @@
 
 @media screen and (max-width: 480px) {
 
-
+    .experience-fifth-row {
+        margin-right: -30px;
+    }
     .jobs-availability {
         font-size: 14px;
     }

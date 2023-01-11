@@ -11,6 +11,25 @@
 
 
    }
+   function thirdNone(){
+        var main_conatiner = document.querySelector('.register-form');
+        var third_next_none = document.querySelectorAll(".third-next-none");
+        var third_next_none_buttons = document.querySelector(".third-next-none-buttons");
+        var second_next_none = document.querySelectorAll('.second-next-none');
+        var second_next_button = document.querySelector(".second-next-button");
+        var buttons = document.querySelector(".back-submit-buttons")
+        for (let i = 0; i < second_next_none.length; i++) {
+
+
+        second_next_none[i].style.display = "none";
+        buttons.style.display ="none";
+        third_next_none[i].style.display = "block";
+
+        third_next_none_buttons.style.display = "flex";
+
+        main_conatiner.style.width = "450px";
+        }
+   }
    function checkError(){
    var job_title=document.getElementById("id_job_title").value
     var company = document.getElementById("id_company").value
@@ -204,6 +223,15 @@
         }else{
             checkError();
         };
+    });
+
+
+    var second_next_button = document.querySelector(".second-next-button");
+
+     second_next_button.addEventListener('click', function() {
+
+        thirdNone();
+
     });
 
 ;
