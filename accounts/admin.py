@@ -20,6 +20,7 @@ class CityUser(admin.ModelAdmin):
 
 @admin.register(CustomUser)
 class CustomUser(admin.ModelAdmin):
+    list_per_page = 1000
     list_filter = ("profileSetup",)
 
 
@@ -71,7 +72,7 @@ def make_Nrecommended(modeladmin,request,queryset):
 
 @admin.action(description='Mark selected job approved')
 def make_published(modeladmin, request, queryset):
-    queryset.update(approved=False)
+    queryset.update(approved=True)
 
 
 @admin.register(Jobs)
