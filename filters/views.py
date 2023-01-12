@@ -117,7 +117,7 @@ class OneSelFilter(View):
             job = Jobs.objects.filter(approved=True).filter(status="Open").filter(recommended=True).filter(job_title__icontains=filterTitle).filter(company__contains=filterCompany).filter(city_j__icontains=filterLocation).order_by(filterSalary).order_by(filterSalary)
         else:
             if filterDate ==  "":
-                job = Jobs.objects.filter(approved=True).filter(program__icontains=filterProgram).filter(job_title__icontains=filterTitle).filter(company__contains=filterCompany).filter(city_j__icontains=filterLocation).order_by(filterSalary)
+                job = Jobs.objects.filter(approved=True).filter(status="Open").filter(program__icontains=filterProgram).filter(job_title__icontains=filterTitle).filter(company__contains=filterCompany).filter(city_j__icontains=filterLocation).order_by(filterSalary)
             else:
                 if filterDate=="Today":
                     job = Jobs.objects.filter(approved=True).filter(status="Open").filter(program__icontains=filterProgram).filter(job_title__icontains=filterTitle).filter(company__icontains=filterCompany).filter(city_j__icontains=filterLocation).order_by(filterSalary).filter(postDate=datetime.now()).order_by("-id")
