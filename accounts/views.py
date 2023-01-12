@@ -647,19 +647,9 @@ class MainJobs(View):
             for i in comp:
                 if i not in sortCompany:
                     sortCompany.append(i)
-            for i in city_j:
-                if i not in sortCity:
-                    sortCity.append(i)
+            cityName=list(dict.fromkeys(city_j))
 
-            for i in sortCity:
 
-                if City.objects.filter(name=i).exists():
-                    cit = City.objects.get(name=i)
-                    cityName.append(str(cit))
-
-            # for i in salary:
-            #      if i not in sortSalary:
-            #         sortSalary.append(format(i,'.2f'))
             salUSA = []
             salEu = []
 
@@ -1068,14 +1058,7 @@ class MainJobsId(View):
             for i in comp:
                 if i not in sortCompany:
                     sortCompany.append(i)
-            for i in city_j:
-                if i not in sortCity:
-                    sortCity.append(i)
-
-            for i in sortCity:
-                if City.objects.filter(name=i).exists():
-                    cit = City.objects.get(name=i)
-                    cityName.append(str(cit))
+            cityName = list(dict.fromkeys(city_j))
 
             # for i in salary:
             #      if i not in sortSalary:
