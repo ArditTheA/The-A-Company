@@ -44,7 +44,7 @@
     }    
     
     .jobs-rows-img {
-        margin: 0px 10px 20px 20px;
+        margin-right: 10px !important;
     }
     .last-job-margin-bottom {
         margin-bottom: -10px;
@@ -196,6 +196,7 @@
 
     .jobs-rows-img {
         padding-left: 20px;
+        margin-right: 0px !important;
     }
 
     .jobs-buttons {
