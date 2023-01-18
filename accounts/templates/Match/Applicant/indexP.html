@@ -1,0 +1,74 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+    <link rel="stylesheet" href="{% static 'css/Match/authenticated.css'%}">
+<!--    <link rel="stylesheet" href="{% static 'css/Match/jobs.css'%}">-->
+<!--    <link rel="stylesheet" href="{% static 'css/profile-header.css'%}">-->
+    <link rel="stylesheet" href="{% static 'css/Match/posted-jobs-media-queries.cssss'%}">
+    <link rel="stylesheet" href="{% static 'css/all-aplicants.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+
+<style>
+    input[type="checkbox"]::before {
+        outline: none;
+    }
+
+    .plus-icon-jobs:hover {
+        filter: brightness(0.9);
+
+    }
+    .noApp{
+    margin-left: 40px; margin-top: 20px; font-size: 16px; color: #65676B;
+    }
+
+    @media screen and (max-width: 480px){
+    .right-profile{
+    margin-top:20px;
+    }
+    .left-user-first{
+        margin-top:10px;
+    }
+    .noApp{
+    margin-left: 20px; margin-top: 20px; font-size: 16px; color: #65676B;
+    }
+    }
+</style>
+
+
+
+{% if app %}
+
+
+{% include 'Match/Filters/filters.html'%}
+
+    <div class="jobs-main-div" style="display: flex; justify-content: space-between;">
+    {% include 'Match/Left/applicant.html'%}
+    {% include 'Match/Right/details.html'%}
+
+    </div>
+
+
+
+
+
+{% else %}
+{% include 'Match/Filters/filters.html'%}
+<div class="noApp"style="">
+        You don't have any applicants
+    </div>
+{% endif %}
+<script src="{% static 'js/profile_dropdown.js'%}"></script>
+
+
+
+
+
+
+
+        <script src="{% static 'js/Match/all-applicants-dropdown.js'%}"></script>
+        <script src="{% static 'js/select-all-button.js'%}"></script>
+        <script src="{% static 'js/add-phase.js'%}"></script>
+        <script src="{% static 'js/add-subphase.js'%}"></script>
+
+{% endblock content %}

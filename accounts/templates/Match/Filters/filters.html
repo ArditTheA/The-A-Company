@@ -55,23 +55,38 @@
 
 
         {% for i in phase %}
+        
          <div class="main-input-form">
             <div class="input-form-all-applicants inputs-right-margin">
                 <div style="display: flex">
+                    {% if i.name == getSub.phase.name%}
+                    <button style="padding-left: 20px;" title="{{i.name}}" onclick="showDropDown({{i.id}})" class="applied-button-jobs outline-none all-applicants-button"> {{getSub.name}}</button>
+                    <div class="" style="display: flex; align-items: center;">
+                        <img style="cursor: pointer;" class="white-icon" src="{% static 'img/white-dropdown-icon.png'%}" alt="">
+                    </div>
+                    {% else %}
                     <button style="padding-left: 20px;background-color:white;color:black" title="{{i.name}}" onclick="showDropDown({{i.id}})" class="applied-button-jobs outline-none all-applicants-button"> {{i.name}}</button>
                     <div class="" style="display: flex; align-items: center;">
                         <img style="cursor: pointer;" class="white-icon" src="{% static 'img/dropdown-icon.png'%}" alt="">
                     </div>
+                    {% endif %}
+                    
                 </div>
                 <div class="all-applicants-dropdown" id="drop{{i.id}}" style="padding-bottom: 20px; padding-left: 20px; padding-right: 20px; overflow-y: scroll; max-height: 140px; flex-direction: column; align-items: center; overflow-x: scroll;">
                     {% for j in subphase %}
                         {% if i == j.phase %}
-                    <div class="dropdown-mid-content"><a title="Qualified Students" href="{% url 'applicant' jpk %}"  class="dropdown-content-text">{{j.name}}</a></div>
+                            {% if j.name == getSub.name %}
+                    <div class="dropdown-mid-content"><a title="Qualified Students" id="Phases" href="{% url 'applicant' jpk %}"  class="dropdown-content-text"> {{j.name}}</a></div>
+
+                            {%else %}
+                    <div class="dropdown-mid-content"><a title="Qualified Students" id="Phases" href="{% url 'subphaseA' jpk j.name %}"  class="dropdown-content-text"> {{j.name}}</a></div>
+                        {% endif %}
                         {% endif %}
                     {% endfor %}
                 </div>
             </div>
          </div>
+
 
         {% endfor %}
 

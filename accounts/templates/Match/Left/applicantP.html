@@ -1,0 +1,148 @@
+{% load static %}
+<div class="jobs-left applied-jobs-left" style="">
+    <input type="text" id="sectedUser" style="display:none;" value="{{uid}}">
+
+            {% for i in listapp %}
+           
+                <div onclick="getUser({{i.applicant.id}})" class="jobs-rows-img left-user-first second-jobs move same-background-jobs">
+                <img class="experience-education-img" src="{{i.applicant.user_id.profile.url}}" alt="">
+                <div class="experience-rows">
+                <div class="experience-first-row">{{i.applicant.first_name}} {{i.applicant.last_name}}</div>
+                <input title="Select applicant" onchange="Check({{i.applicant.id}})" id="{{i.applicant.id}}" class="checkbox-jobs" id="check" style="height: 22px; width: 22px; position: absolute; right: 20px;" type="checkbox"></input>
+                <div class="experience-second-row">{{i.applicant.email}}</div>
+                <div class="experience-third-row">{{i.applicant.phone_number}}</div>
+                <div class="experience-fourth-row">{{i.applicant.city}}, {{i.applicant.country}}</div>
+                </div>
+            </div>
+            
+            {% endfor %}
+</div>
+
+<script src="{% static 'js/Ajax/Match/user-details-ajax.js'%}"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.2/umd/popper.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+   <script>
+        $(".jobs-rows-img input").click(function (e) {
+            // Do something
+            e.stopPropagation();
+        });
+        </script>
+ <script>
+
+<!-- -->
+const ct = [];
+            function Check(id){
+                string = ct;
+                substring=id;
+                checkBox = document.getElementById(substring);
+                console.log(ct.toString());
+                console.log(ct);
+
+                if(checkBox.checked) {
+
+                    if(string.includes(substring)){
+                        console.log(substring);
+                    }else{
+                        ct.push(id);
+                    }
+                    var uid = parseInt(id);
+                    var job = {{jpk}}
+                    var c = document.querySelectorAll(".checkbox-jobs:checked")
+                    if(c.length === 0){
+                        document.getElementById("qualify").href="{% url 'qualified-applicant' jpk %} "
+                    }else{
+                        var url = "JobID="+job+"/userid="+ct.toString();
+                        document.getElementById("qualify").href=url;
+                        document.getElementById("notqualify").href="/Administrator/Applicant/No/"+url;
+                        document.getElementById("qualify").innerHTML ="Move to qual";
+                    }
+                }else{
+                    if(string.includes(substring)){
+                        for( var i = 0; i < ct.length; i++){
+
+                            if ( ct[i] === substring) {
+
+                                ct.splice(i, 1);
+                            }
+
+                        }
+                    }
+
+
+                }
+                console.log("testttt");
+                console.log(ct);
+            }
+        $('#select-all').click(function(event) {
+            if(this.checked) {
+             var c = document.querySelectorAll(".checkbox-jobs")
+                    for(var i = 0; i < c.length; i++){
+                    c[i].checked = true;
+                    var round = Math.round;
+                    var x = round(c[i].getAttribute( 'id' ));
+                    string = ct;
+                    substring=x;
+                    if(!string.includes(substring)){
+                        ct.push(x);
+
+                    }
+
+                    }
+                    var job = {{jpk}}
+                    console.log(ct);
+                    var url = "JobID="+job+"/userid="+ct.toString();
+                    console.log(url)
+                    document.getElementById("qualify").href=url;
+                    document.getElementById("notqualify").href="/Administrator/Applicant/No/"+url;
+
+
+
+
+
+            } else {
+                $(':checkbox').each(function() {
+                    document.getElementById("qualify").href="{% url 'qualified-applicant' jpk %} ";
+                    document.getElementById("notqualify").href="{% url 'nonqualified-applicant' jpk%}";
+
+                    this.checked = false;
+                    this.title = "Select applicant";
+
+                });
+                for( var i = 0; i < ct.length; i++){
+
+
+
+                                ct.splice(i, 1);
+
+
+                        }
+
+
+            }
+        });
+
+
+        $(':checkbox').click(function(e) {
+            // Check();
+            if(this.checked) {
+
+                    this.title = "Deselect applicant";
+
+            }
+            else {
+
+                    this.title = "Select applicant";
+
+            }
+
+        })
+
+        </script>

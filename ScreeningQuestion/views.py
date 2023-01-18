@@ -74,8 +74,6 @@ def getUserAnswer(request,pk):
 
 
 
-
-
 # Add Jobs Edit
 #
 
@@ -377,12 +375,12 @@ def applyForJobSQ(request, pk):
                     makeApplication(userId,pk,job,dataa,"Not qualified",request.user.email)
                     return redirect('appSuc')
 
-            return render(request, "ProfileSetup/WATinfo.html", dict(form=form, country=country,question=question))
+            return render(request, "ApplySQ/index.html", dict(form=form, country=country,question=question))
         #
     else:
         if request.method == "POST" and form.is_valid():
             makeApplication(userId,pk,job,dataa,"",request.user.email)
             return redirect('appSuc')
-        return render(request, "ProfileSetup/WATinfo.html", dict(form=form, country=country))
+        return render(request, "ApplySQ/index.html", dict(form=form, country=country))
 
     return render(request, "MainJobs/apply.html")

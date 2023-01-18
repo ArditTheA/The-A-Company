@@ -44,6 +44,7 @@ urlpatterns = [
     path("", include('resetpassword.urls')),
     #Screening Question
     path("", include('ScreeningQuestion.urls')),
+    path("",include("Applicant.urls")),
 
                   path("password_reset", password_reset_request, name="password_reset"),
 
