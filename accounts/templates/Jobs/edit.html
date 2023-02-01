@@ -1,710 +1,705 @@
 {% extends 'base.html'%}
 {% load static %}
 {% block content %}
-<html lang="en">
-   <head>
-      <link rel="stylesheet" href="{% static 'css/authenticated.css'%}">
-      <link rel="stylesheet" href="{% static 'css/addJobs.css'%}">
-      <link rel="stylesheet" href="{% static 'css/job-description.css'%}">
-      <link rel="stylesheet" href="{% static 'css/Match/Jobs/sq-backup.css'%}">
-      <link rel="stylesheet" href="{% static 'css/Match/Jobs/style.css'%}">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
-      <link rel="stylesheet" href="{% static 'css/back-next-submit-buttons.css'%}">
-      <style>
-         @import url('https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500&display=swap');
-            .idealAnsF1, .idealAnsF2, .idealAnsF3, .select-width, .disable-inputs {
-    border-radius: 40px;
-    width:240px;
-}
-.rejection-letter {
-    min-height: 250px;
-    padding-left: 20px;
-    padding-top: 20px;
-    border-radius: 16px;
-}
-.textarea-question {
-    resize: none;
-    border-radius: 16px;
-    border: 1px solid #9E9E9E;
-    padding: 20px 20px 0px 20px;
-    color: #757575 !important;
-    width: 900px;
-}
-            .row {
+<link rel="stylesheet" href="{% static 'css/addJobs.css'%}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css">
+<style type="text/css">
+   .next-none::placeholder{
+      color:gray;
+   }
+   @import url('https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500&display=swap');
+   body {
     margin: 0;
+    background-color: #E5E5E5;
+    font-family: 'Spline Sans', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+  }
+.navbar {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+
+
+.container-add-a-job {
+    border-radius: 40px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    align-items: center;
+    font-size: 18px;
+    align-items: center;
+    max-width: none;
+    position: relative;
+    margin: 20px 40px 20px 40px;
+
+}
+
+.register-form {
+    width: 450px;
+}
+
+input::placeholder {
+    color: black;
+}
+
+input, .select-options-input{
+    border: 0.5px solid #9E9E9E;
+    border-radius: 30px;
+    padding: 10px 10px 10px 10px;
+    font-size: 18px;
+    background-color: white;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.select-options-input {
+    color: black;
+}
+.margin-left {
+    margin-left: 10px;
+}
+.margin-top-bottom {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 16px;
+    color: #9E9E9E;
+    margin-left: 10px;
+}
+h1 {
+    color: #1877F2;
+    font-size: 40px;
+    font-weight: 400;
+    color: #1877F2;
+    margin: auto;
+    text-align: center;
+}
+
+.sel{
+    border-radius: 40px;
+    border: 0.5px solid #9E9E9E;
+    background-color: white;
+    /*width: 600px;*/
+}
+
+.mid{
+    text-align: center;
+    margin: 0;
+}
+.title-font-size {
+    font-size: 40px;
+}
+.under-title-font-size {
+    font-size: 20px;
+    margin-top: 10px;
+}
+.form-group {
+    margin: 0;
+}
+.submit-button, .back-button {
+    margin-top: 40px;
+    border-radius: 30px;
+    padding: 8px 35px;
+    background-color: #1877F2;
+    font-size: 18px;
+}
+.submit-button {
+    background-color: #1877F2;
+    color: white;
+}
+.back-button {
+    background-color: white;
+    color: #1877F2;
+    border: 1px solid #1877F2;
+}
+.submit-button:hover, .back-button:hover {
+filter: brightness(0.95);
+}
+.upload-file-div {
+    border: 0.5px solid #9E9E9E;
+    border-radius: 30px;
+    padding: 10px 10px 10px 10px;
+    font-size: 18px;
+    background-color: #1877F2;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    color: white;
+    border: none;
+}
+
+.navbar-brand {
+    padding: 0;
+}
+
+.modal-bg {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    position: fixed;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.content {
+    text-align: center;
+    background-color: white;
+    padding: 30px 40px 40px 40px;
+    border-radius: 40px;
+    box-sizing: border-box;
+    position: absolute;
+    /* Increase/Decrease this value for cross-browser compatibility */
+    overflow-y: scroll;
+}
+
+.sign-up-pop-up-paragraph {
+    margin: 0;
+    margin-top: 40px;
+    color: #858585;
+    font-size: 18px;
+}
+.sign-up-pop-up-button {
+    margin-top: 40px;
+    background-color: #858585;
+    color: white;
+    display: inline-block;
+    padding: 10px 24px;
+    border-radius: 30px;
+}
+.company-name {
+    color: black;
+}
+.upload>input[type="file"] {
+}
+.dropdown {
+    position: absolute;
+}
+.dropdown-content-text {
+    text-decoration: none;
+    color: gray;
+}
+.logo-label {
+    width: 100%;
+    margin-bottom: 0;
+}
+.input-form {
+display: flex;
+flex-direction: row-reverse;
+align-items: center;
+position: relative;
+}
+
+.icon {
+    position: absolute;
+    left: 10px;
+    height: 22px;
+    width: 22px;
+    border-radius: 4px;
+}
+
+.under-main-modal-bg {
+display: none;
+margin: 20px 40px 20px 40px;
+padding: 40px;
+background-color: white;
+border-radius: 40px;
+}
+.submit-button, .back-button {
+margin-top: 40px;
+border-radius: 30px;
+padding: 8px 35px;
+background-color: #1877F2;
+font-size: 18px;
+cursor: pointer;
+}
+.submit-button {
+background-color: #1877F2;
+color: white;
+border: none;
+}
+.back-button {
+background-color: white;
+color: #1877F2;
+border: 1px solid #1877F2;
+}
+.submit-button:hover, .back-button:hover {
+filter: brightness(0.95);
+}
+.imgs-over-textarea {
+display: flex;
+width: calc(100% - 120px);
+margin: auto;
+}
+.scroll {
+width: calc(100% - 120px);
+margin-left: 40px;
+margin-right: 40px;
+height: 400px;
+background-color: white;
+border-radius: 40px;
+resize: none;
+border: 1px solid #9E9E9E;
+font-size: 18px;
+color: #757575;
+padding: 20px;
+margin: auto;
+outline: none;
+margin-top: 20px;
+overflow-y: scroll !important;
+}
+.textarea-imgs {
+display: flex;
+flex-direction: column;
+}
+.margin-top-job-title {
+padding-top: 30px;
+}
+.back-submit-buttons {
+width: 450px;
+display: flex;
+justify-content: space-between;
+margin: auto;
+}
+.back-button-description {
+color: #1877F2;
+}
+.title-job-description {
+padding-bottom: 40px;
+text-align: center;
+font-size: 40px;
+}
+
+.custom-select:focus {
+  box-shadow: none !important;
+}
+
+input:focus, select:focus
+   {
+       outline: none !important;
+   }
+
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+    .container-add-a-job {
+        margin: 30px;
+    }
+    .imgs-over-textarea {
+        width: calc(100% - 90px);
+    }
+    .scroll {
+        width: calc(100% - 90px);
+    }
+    .back-submit-buttons {
+        width: 400px;
+        display: flex;
+        justify-content: space-between;
+        margin: auto;
+
+    }
+}
+
+@media screen and (max-width: 767px) and (min-width: 481px) {
+    .container-add-a-job {
+        margin: 20px;
+        height: auto;
+    }
+    .imgs-over-textarea {
+        width: 100%;
+    }
+    .scroll {
+        width: 100%;
+    }
+    .back-submit-buttons {
+        width: 350px;
+        display: flex;
+        justify-content: space-between;
+        margin: auto;
+    }
+}
+@media screen and (max-width: 480px) {
+
+
+
+    .container-add-a-job {
+        margin: 10px;
+        padding: 20px;
+        height: auto;
+    }
+    .register-form {
+        width: 100%;
+    }
+    .scroll {
+        width: 100%;
+        height: 300px;
+    }
+    .imgs-over-textarea {
+        width: 100%;
+    }
+    .title-font-size {
+        font-size: 30px;
+    }
+    img {
+        height: 40px;
+    }
+    .first-form-group {
+         /* margin-top ne llaptop: 10px
+                                        +
+                             margin-top ne mobile: 10px
+                                         =
+                                        20px */
+    }
+    input {
+    }
+.back-submit-buttons {
     display: flex;
     justify-content: space-between;
 }
-         textarea{
-            width: calc(100% - 120px);
-            margin-left: 40px;
-            margin-right: 40px;
-            height: 400px;
-            background-color: white;
-            border-radius: 40px;
-            resize: none;
-            border: 1px solid #9E9E9E;
-            font-size: 18px;
-            color: #757575;
-            padding: 10px;
-            margin: auto;
-            outline: none;
-            margin-top: 20px;
-         }
-         body {
-         margin: 0;
-         background-color: #f1f1f1;
-         font-family: 'Spline Sans', sans-serif;
-         -webkit-tap-highlight-color: transparent;
-         }
-         .navbar {
-         padding-top: 40px;
-         padding-bottom: 40px;
-         }
-         .container-add-a-job {
-         border-radius: 40px;
-         background-color: white;
-         display: flex;
-         justify-content: center;
-         margin: auto;
-         padding-top: 40px;
-         padding-bottom: 40px;
-         align-items: center;
-         font-size: 18px;
-         align-items: center;
-         max-width: none !important;
-         position: relative;
-         margin: 20px 40px 20px 40px;
-         }
-         input[type=checkbox] {
-         accent-color: white;
-         border: none;
-         }
-         .register-form {
-         }
-         input::placeholder {
-         color: black;
-         }
-         input, .select-options-input {
-         border: 0.5px solid #9E9E9E;
-         border-radius: 30px;
-         padding: 10px 10px 10px 10px;
-         font-size: 18px;
-         width: 100%;
-         box-sizing: border-box;
-         outline: none;
-         }
-         .must-have-qualification-input {
-         width: fit-content;
-         }
-         .select-options-input {
-         color: black;
-         }
-         .margin-left {
-         margin-left: 10px;
-         }
-         .margin-top-bottom {
-         margin-top: 10px;
-         margin-bottom: 5px;
-         font-size: 16px;
-         color: #9E9E9E;
-         margin-left: 10px;
-         }
-         h1 {
-         color: #1877F2;
-         font-size: 40px;
-         font-weight: 400;
-         color: #1877F2;
-         margin: auto;
-         text-align: center;
-         }
-         .sel{
-         border-radius: 40px;
-         border: 0.5px solid #9E9E9E;
-         /*width: 600px;*/
-         }
-         .mid{
-         text-align: center;
-         margin: 0;
-         }
-         .title-font-size {
-         font-size: 40px;
-         }
-         .under-title-font-size {
-         font-size: 20px;
-         margin-top: 10px;
-         }
-         .form-group {
-         margin: 0;
-         }
-         .submit-button, .back-button {
-         margin-top: 40px;
-         border-radius: 30px;
-         padding: 8px 35px;
-         background-color: #1877F2;
-         font-size: 18px;
-         }
-         .submit-button {
-         background-color: #1877F2;
-         color: white;
-         }
-         .back-button {
-         background-color: white;
-         color: #1877F2;
-         border: 1px solid #1877F2;
-         }
-         .submit-button:hover, .back-button:hover {
-         filter: brightness(0.95);
-         }
-         .upload-file-div {
-         border: 0.5px solid #9E9E9E;
-         border-radius: 30px;
-         padding: 10px 10px 10px 10px;
-         font-size: 18px;
-         background-color: #1877F2;
-         width: 100%;
-         box-sizing: border-box;
-         outline: none;
-         color: white;
-         border: none;
-         }
-         .navbar-brand {
-         padding: 0;
-         }
-         .modal-bg {
-         width: 100%;
-         height: 100%;
-         position: relative;
-         position: fixed;
-         top: 0;
-         background-color: rgba(0, 0, 0, 0.7);
-         justify-content: center;
-         align-items: center;
-         display: none;
-         }
-         link {
-         box-shadow: auto !important;
-         }
-         .content {
-         }
-         .sign-up-pop-up-paragraph {
-         margin: 0;
-         margin-top: 40px;
-         color: #858585;
-         font-size: 18px;
-         }
-         .sign-up-pop-up-button {
-         margin-top: 40px;
-         background-color: #858585;
-         color: white;
-         display: inline-block;
-         padding: 10px 24px;
-         border-radius: 30px;
-         }
-         .company-name {
-         color: black;
-         }
-         .upload>input[type="file"] {
-         }
-         .dropdown {
-         position: absolute;
-         }
-         .dropdown-content-text {
-         text-decoration: none;
-         color: gray;
-         }
-         .logo-label {
-         width: 100%;
-         margin-bottom: 0;
-         }
-         .input-form {
-         display: flex;
-         flex-direction: row-reverse;
-         align-items: center;
-         position: relative;
-         }
-         .icon {
-         position: absolute;
-         left: 10px;
-         height: 22px;
-         width: 22px;
-         border-radius: 4px;
-         }
-         .under-main-modal-bg {
-         display: none;
-         margin: 20px 40px 20px 40px;
-         padding: 40px;
-         background-color: white;
-         border-radius: 40px;
-         }
-         .submit-button, .back-button {
-         margin-top: 40px;
-         border-radius: 30px;
-         padding: 8px 35px;
-         background-color: #1877F2;
-         font-size: 18px;
-         cursor: pointer;
-         }
-         .submit-button {
-         background-color: #1877F2;
-         color: white;
-         border: none;
-         }
-         .back-button {
-         background-color: white;
-         color: #1877F2;
-         border: 1px solid #1877F2;
-         }
-         .submit-button:hover, .back-button:hover {
-         filter: brightness(0.95);
-         }
-         .imgs-over-textarea {
-         display: flex;
-         width: calc(100% - 120px);
-         margin: auto;
-         }
-         .textarea-imgs {
-         display: flex;
-         flex-direction: column;
-         }
-         .margin-top-job-title {
-         padding-top: 30px;
-         }
-         .register-form {
-         width: 450px;
-         }
-         .back-submit-buttons {
-         width: 450px;
-         display: flex;
-         justify-content: space-between;
-         margin: auto;
-         }
-         .back-button-description {
-         color: #1877F2;
-         }
-         .title-job-description {
-         padding-bottom: 40px;
-         text-align: center;
-         font-size: 40px;
-         }
-         .screening-questions-under-parent {
-         }
-         .third-next-none-buttons {
-         }
-         .title-additional-feauters {
-         padding-bottom: 30px;
-         }
-         .custom-select:focus {
-         box-shadow: none !important;
-         }
-         input:focus, select:focus
-         {
-         outline: none !important;
-         }
-         @media screen and (max-width: 1024px) and (min-width: 768px) {
-         .container-add-a-job {
-         margin: 30px;
-         }
-         .imgs-over-textarea {
-         width: calc(100% - 90px);
+.back-button-description {
+    margin-right: 0;
+}
+.submit-button-description {
+    margin-right: 0;
+}
+.back-submit-buttons {
+    width: 100%;
+}
+.title-job-description {
+    font-size: 30px;
+    margin-top: 0;
+}
+}
+
+
+@media screen and (max-width: 767px) and (min-width: 481px) {
+    .container-add-a-job {
+        margin: 20px;
+        padding: 30px;
+        height: auto;
+    }
+}
+@media screen and (max-width: 480px) {
+    .container-add-a-job {
+        margin: 10px;
+        padding: 20px;
+        height: auto;
+    }
+    .title-font-size {
+        font-size: 30px;
+    }
+    .navbar {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    img {
+        height: 40px;
+    }
+    .first-form-group {
+        margin-top: 10px; /* margin-top ne llaptop: 10px
+                                        +
+                             margin-top ne mobile: 10px
+                                         =
+                                        20px */
+    }
+   .parent_container {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            padding-bottom: 20px !important;
          }
 
-         .buttons-responsive {
-         width: 400px;
-         display: flex;
-         justify-content: space-between;
-         margin: auto;
-         }
-         }
-         /* Screening Questions responsive */
-         @media screen and (max-width: 1077px) and (min-width: 768px) {
-         .screening-questions-under-parent {
-         width: calc(100% - 80px);
-         }
-         .textarea-question {
-         width: 100%;
-         }
-         }
-         @media screen and (max-width: 1024px) and (min-width: 768px) {
-         .textarea-question {
-         width: 100%;
-         }
-         }
-         @media screen and (max-width: 767px) and (min-width: 481px) {
-         .screening-questions-under-parent {
-         width: 100%;
-         }
-         .row {
-         }
-         .screening-questions-under-parent {
-         }
-         .screening-questions-parent {
-         }
-         .textarea-question {
-         width: 100%;
-         }
-         }
-         /* @media screen and (max-width: 890px) and (min-width: 768px) {
-         .screening-questions-under-parent {
-         width: calc(100% - 40px);
-         }
-         .textarea-question {
-         width: 100%;
-         }
-         } */
-         /* end of Screening Questions responsive */
-         @media screen and (max-width: 767px) and (min-width: 481px) {
-         .imgs-over-textarea {
-         width: 100%;
-         }
-
-         .buttons-responsive {
-         width: 400px;
-         display: flex;
-         justify-content: space-between;
-         margin: auto;
-         }
-         .title-additional-feauters {
-         padding-bottom: 20px;
-         }
-         }
-         @media screen and (max-width: 480px) {
-         .register-form {
-         width: 100%;
-         }
-
-         .imgs-over-textarea {
-         width: 100%;
-         }
-         .title-font-size, screening-questions-title {
-         font-size: 30px;
-         }
-         img {
-         height: 40px;
-         }
-         .first-form-group {
-         /* margin-top ne llaptop: 10px
-         +
-         margin-top ne mobile: 10px
-         =
-         20px */
-         }
-         input {
-         }
-         .back-submit-buttons {
-         display: flex;
-         justify-content: space-between;
-         }
-         .back-button-description {
-         margin-right: 0;
-         }
-         .submit-button-description {
-         margin-right: 0;
-         }
-         .back-submit-buttons {
-         }
-         .title-job-description {
-         font-size: 30px;
-         margin-top: 0;
-         }
-         .margin-top-job-title {
-         padding-top: 10px !important;
-         }
-         }
-         @media screen and (max-width: 767px) and (min-width: 481px) {
-         .container-add-a-job {
-         margin: 20px;
-         padding: 30px;
-         height: auto;
-         }
-         .container-add-a-job {
-         }
-         }
-         @media screen and (max-width: 480px) {
-         .title-font-size {
-         font-size: 30px;
-         }
-         .screening-questions-parent {
-         }
-         .navbar {
-         padding-top: 10px;
-         padding-bottom: 10px;
-         }
-         img {
-         height: 40px;
-         }
-         .first-form-group {
-         margin-top: 10px; /* margin-top ne llaptop: 10px
-         +
-         margin-top ne mobile: 10px
-         =
-         20px */
-         }
-         .parent_container {
-         width: 100%;
-         height: 100%;
-         position: absolute;
-         padding-bottom: 20px !important;
-         }
-         .container-add-a-job {
+      .container-add-a-job {
          margin: 10px;
          padding: 20px;
          height: 100%;
          border-radius: 20px;
-         }
-         .register-form {
+      }
+      .register-form {
          width: 100%;
          height: 100%;
          overflow-y: scroll;
-         }
-         .register-form::-webkit-scrollbar {
+      }
+      .register-form::-webkit-scrollbar {
          display: none;
-         }
-
-         .imgs-over-textarea {
+      }
+      .scroll {
          width: 100%;
-         }
-         .title-font-size {
+         height: 300px;
+      }
+      .imgs-over-textarea {
+         width: 100%;
+      }
+      .title-font-size {
          font-size: 30px;
-         }
-         img {
+      }
+      img {
          height: 40px;
-         }
-         .first-form-group {
-         /* margin-top ne llaptop: 10px
-         +
-         margin-top ne mobile: 10px
-         =
-         20px */
-         }
-         input {
-         }
-         .back-submit-buttons {
-         display: flex;
-         justify-content: space-between;
-         }
-         .back-button-description {
-         margin-right: 0;
-         }
-         .submit-button-description {
-         margin-right: 0;
-         }
-         .back-submit-buttons {
-         width: 100%;
-         }
-         .title-job-description {
-         font-size: 30px;
-         margin-top: 0;
-         }
-         input::placeholder, .male-sex, .female-sex {
-         font-size: 16px;
-         }
-         .margin-top-bottom {
-         font-size: 14px;
-         }
-         input, .padding-of-inputs, .back-button, .next-button, .submit-button {
-         padding-top: 8px;
-         padding-bottom: 8px;
-         font-size: 16px;
-         }
-         .back-button, .next-button, .submit-button {
-         padding-right: 30px;
-         padding-left: 30px;
-         font-size: 14px !important;
-         }
-         .back-and-next-buttons, .back-submit-buttons {
-         margin-top: -10px;
-         }
-         .title-job-description {
-         font-size: 30px !important;
-         margin-bottom: -10px;
-         }
-         .bold-font-button {
-         height: 16px !important;
-         }
-         .imgs-over-textarea {
-         margin-bottom: -10px;
-         }
-         .title-additional-feauters {
-         font-size: 30px;
-         margin-top: 10px;
-         padding-bottom: 30px;
-         }
-         .back-button-additional-feauters {
-         }
-         .upload-file-div {
-         font-size: 14px !important;
-         }
-         .icon {
-         height: 18px;
-         width: 18px;
-         vertical-align: middle;
-         }
-         .upload-file-content-div {
-         margin-left: 33px !important;
-         }
-         }
-      </style>
-   </head>
-   <body>
-      <div class="parent_container" style="">
-      <div class="container-add-a-job" style="">
-         <form class="register-form">
-            <div class="inside-the-container" style="">
-         <h1 class="next-none mid title-font-size f-title">Got an open spot?</h1>
-         <h1 class="next-none mid title-font-size f-title">Post your job here!</h1>
-         <div class="form-group first-form-group">
+      }
+      .first-form-group {
+          /* margin-top ne llaptop: 10px
+                                 +
+                         margin-top ne mobile: 10px
+                                 =
+                                 20px */
+      }
+      input {
+      }
+    .back-submit-buttons {
+      display: flex;
+      justify-content: space-between;
+    }
+   .back-button-description {
+      margin-right: 0;
+   }
+   .submit-button-description {
+      margin-right: 0;
+   }
+   .back-submit-buttons {
+      width: 100%;
+   }
+   .title-job-description {
+      font-size: 30px;
+      margin-top: 0;
+   }
+   input::placeholder, .male-sex, .female-sex {
+      font-size: 16px;
+   }
+   .margin-top-bottom {
+      font-size: 14px;
+   }
+   input, .padding-of-inputs, .back-button, .next-button, .submit-button {
+      padding-top: 8px;
+      padding-bottom: 8px;
+      font-size: 16px;
+   }
+   .back-button, .next-button, .submit-button {
+      padding-right: 30px;
+      padding-left: 30px;
+   }
+
+   .back-and-next-buttons, .back-submit-buttons {
+   margin-top: -10px;
+}
+   .title-job-description {
+      font-size: 30px !important;
+      margin-top: 10px;
+      margin-bottom: -10px;
+   }
+   .bold-font-button {
+      height: 16px !important;
+   }
+   .imgs-over-textarea {
+      margin-bottom: -10px;
+   }
+}
+
+
+    </style>
+    <script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/classic/ckeditor.js"></script>
+<div class="parent_container">
+<div class="container-add-a-job">
+        <form class="register-form" id="form-id" method="post"  enctype="multipart/form-data">
+         {% csrf_token %}
+          <div class="inside-the-container" style="">
+            <h1 class="next-none mid title-font-size f-title">Got an open spot?</h1>
+            <h1 class="next-none mid title-font-size f-title">Post your job here!</h1>
+          <div class="form-group first-form-group">
             <label class="disabled margin-top-bottom next-none margin-top-job-title">Job title</label>
             {{form.job_title}}
             <label class="margin-top-bottom margin-left " id="JtitleErr" style="display: none;color:red;">This field is required</label>
-         </div>
-         <div class="form-group" style="margin: 0;">
-            <label class="margin-top-bottom next-none">Company
-            </label>
+          </div>
+          <div class="form-group" style="margin: 0;">
+          <label class="margin-top-bottom next-none">Company
+          </label>
             {{form.company}}
             <label class="margin-top-bottom margin-left " id="CompErr" style="display: none;color:red;">This field is required</label>
-         </div>
-         <div class="form-group">
-            <label class="margin-top-bottom margin-left next-none">Country</label>
+
+          </div>
+          <div class="form-group">
+                <label class="margin-top-bottom margin-left next-none">Country</label>
             <div>
                {{form.country_j}}
                <label class="margin-top-bottom margin-left " id="CountryErr" style="display: none;color:red;">This field is required</label>
+
                <datalist id="country_jList">
                   {% for  i in country_j %}
                   <option>{{i}}</option>
                   {% endfor %}
                </datalist>
             </div>
-         </div>
-         <div class="form-group" style="margin: 0;">
-            <label class="margin-top-bottom margin-left next-none">City</label>
-            {{form.city_j}}
-            <label class="margin-top-bottom margin-left " id="CityErr" style="display: none;color:red;">This field is required</label>
-            <datalist id="city_jlist">
+            </div>
+
+           <div class="form-group" style="margin: 0;">
+             <label class="margin-top-bottom margin-left next-none">City</label>
+             {{form.city_j}}
+             <label class="margin-top-bottom margin-left " id="CityErr" style="display: none;color:red;">This field is required</label>
+
+             <datalist id="city_jlist">
                {% for i in city_j%}
                <option>{{i.name}}</option>
                {% endfor %}
-            </datalist>
-         </div>
-         <div class="form-group" style="margin: 0;">
-            <label class="margin-top-bottom margin-left next-none">Salary per hour</label>
+             </datalist>
+       </div>
+          <div class="form-group" style="margin: 0;">
+             <label class="margin-top-bottom margin-left next-none">Salary per hour</label>
             {{form.salary_per_hour}}
             <label class="margin-top-bottom margin-left " id="SalErr" style="display: none;color:red;">This field is required</label>
-         </div>
-         <div class="form-group" style="margin: 0;">
-            <label class="margin-top-bottom margin-left next-none" for="exampleFormControlSelect2">Type of work</label>
-            <select name="type_of_work" class="next-none" required="" id="id_type_of_work" onchange="checkForm()">
+
+          </div>
+          <div class="form-group" style="margin: 0;">
+              <label class="margin-top-bottom margin-left next-none" for="exampleFormControlSelect2">Type of work</label>
+
+              <select name="type_of_work" class="next-none" required="" id="id_type_of_work" onchange="checkForm()">
                {% if form.type_of_work == "Full Time" %}
-               <option value="Full Time" selected >Full Time</option>
-               <option value="Part Time">Part Time</option>
+                              <option value="Full Time" selected >Full Time</option>
+                 <option value="Part Time">Part Time</option>
+
                {% elif form.type_of_work == "Part Time" %}
-               <option value="Full Time">Full Time</option>
-               <option value="Part Time" selected>Part Time</option>
+                 <option value="Full Time">Full Time</option>
+                              <option value="Part Time" selected>Part Time</option>
+
                {% else %}
+
                <option value="Full Time">Full Time</option>
-               <option value="Part Time">Part Time</option>
-               {% endif %}
-            </select>
+                              <option value="Part Time">Part Time</option>
+
+                 {% endif %}
+
+
+              </select>
             <label class="margin-top-bottom margin-left " id="TypeErr" style="display: none;color:red;">This field is required</label>
+
          </div>
-         <div class="form-group" style="margin: 0;">
-            <label class="margin-top-bottom margin-left next-none">Hours per week</label>
+            <div class="form-group" style="margin: 0;">
+             <label class="margin-top-bottom margin-left next-none">Hours per week</label>
             <input type="number"  name="hour_per_work" placeholder="0" onchange="checkForm()" class="name-input mutual-stats font-fam next-none" required="" id="id_hour_per_work" value="{{form.hour_per_work.value}}">
+
             <label class="margin-top-bottom margin-left " id="HourErr" style="display: none;color:red;">This field is required</label>
+
          </div>
-         <div class="form-group" style="margin: 0;">
-            <label class="margin-top-bottom margin-left next-none">Start date </label>
-            <input id="id_start_date" class="next-none" name="start_date" onchange="checkForm();checkStartDate();" value="{{form.start_date.value|date:'d/m/Y'}}" type="tel" maxlength="10" placeholder="dd/mm/yyyy" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
-            <label class="margin-top-bottom margin-left " id="sdateError" style="display: none;color:red;">Date not valid</label>
+              <div class="form-group" style="margin: 0;">
+                <label class="margin-top-bottom margin-left next-none">Start date </label>
+                <input id="id_start_date" class="next-none" name="start_date" onchange="checkForm();checkStartDate();" value="{{form.start_date.value|date:'d/m/Y'}}" type="tel" maxlength="10" placeholder="dd/mm/yyyy" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
+                <label class="margin-top-bottom margin-left " id="sdateError" style="display: none;color:red;">Date not valid</label>
             <label class="margin-top-bottom margin-left" id="SDErr" style="display: none;color:red;">This field is required</label>
-         </div>
-         <div class="form-group" style="margin: 0;">
-            <label class="margin-top-bottom margin-left next-none">End date </label>
-            <input id="id_end_date" class="next-none" name="end_date"  onchange="checkForm();checkEndDate();" value="{{form.end_date.value|date:'d/m/Y'}}" type="tel" maxlength="10" placeholder="dd/mm/yyyy" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
-            <label class="margin-top-bottom margin-left " id="edateError" style="display: none;color:red;">Date not valid</label>
+
+            </div>
+            <div class="form-group" style="margin: 0;">
+                <label class="margin-top-bottom margin-left next-none">End date </label>
+                <input id="id_end_date" class="next-none" name="end_date"  onchange="checkForm();checkEndDate();" value="{{form.end_date.value|date:'d/m/Y'}}" type="tel" maxlength="10" placeholder="dd/mm/yyyy" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
+                <label class="margin-top-bottom margin-left " id="edateError" style="display: none;color:red;">Date not valid</label>
             <label class="margin-top-bottom margin-left " id="EdErr" style="display: none;color:red;">This field is required</label>
-         </div>
-         <div class="form-group" style="margin: 0;">
-            <label class="margin-top-bottom margin-left next-none" for="exampleFormControlSelect2">Housing</label>
-            <select name="housing" class="next-none" required="" onchange="checkForm()" id="id_housing" >
+
+            </div>
+            <div class="form-group" style="margin: 0;">
+              <label class="margin-top-bottom margin-left next-none" for="exampleFormControlSelect2">Housing</label>
+              <select name="housing" class="next-none" required="" onchange="checkForm()" id="id_housing" >
                {% if form.housing.value == "Provided" %}
-               <option value="Provided" selected>Provided</option>
+                 <option value="Provided" selected>Provided</option>
                <option value="Not provided">Not provided</option>
-               {% elif form.housing.value == "Not provided" %}
-               <option value="Provided">Provided</option>
+                 {% elif form.housing.value == "Not provided" %}
+                 <option value="Provided">Provided</option>
                <option value="Not provided" selected>Not provided</option>
-               {% endif %}
-            </select>
-            <label class="margin-top-bottom margin-left " id="HousingErr" style="display: none;color:red;">This field is required</label>
-         </div>
-         <div class="form-group" style="margin: 0;">
-            <label class="margin-top-bottom margin-left next-none">Housing cost per week</label>
+                 {% endif %}
+
+
+              </select>
+              <label class="margin-top-bottom margin-left " id="HousingErr" style="display: none;color:red;">This field is required</label>
+
+           </div>
+            <div class="form-group" style="margin: 0;">
+                <label class="margin-top-bottom margin-left next-none">Housing cost per week</label>
             {{form.housing_cost_per_week}}
             <label class="margin-top-bottom margin-left " id="HousingCoErr" style="display: none;color:red;">This field is required</label>
-         </div>
-         <div class="form-group">
-            <label class="margin-top-bottom margin-left next-none" for="exampleFormControlSelect2">Program</label>
-            <select name="program" class="next-none" onchange="checkForm()" required="" id="id_program">
+
+
+            </div>
+            <div class="form-group">
+              <label class="margin-top-bottom margin-left next-none" for="exampleFormControlSelect2">Program</label>
+              <select name="program" class="next-none" onchange="checkForm()" required="" id="id_program">
                <option value=""></option>
                {% if form.program.value == "Ausbildung"%}
                <option value="Ausbildung" selected>Ausbildung</option>
+
                <option value="Internship">Internship</option>
+
                <option value="Trainee">Trainee</option>
+
                <option value="Work and Travel">Work and Travel</option>
                {% elif form.program.value == "Internship"%}
                <option value="Ausbildung" >Ausbildung</option>
+
                <option selected value="Internship">Internship</option>
+
                <option value="Trainee">Trainee</option>
+
                <option value="Work and Travel">Work and Travel</option>
                {% elif form.program.value == "Trainee"%}
                <option value="Ausbildung" >Ausbildung</option>
+
                <option  value="Internship">Internship</option>
+
                <option value="Trainee" selected>Trainee</option>
+
                <option value="Work and Travel">Work and Travel</option>
                {% elif form.program.value == "Work and Travel"%}
                <option value="Ausbildung" >Ausbildung</option>
+
                <option  value="Internship">Internship</option>
+
                <option value="Trainee" >Trainee</option>
+
                <option value="Work and Travel" selected>Work and Travel</option>
+
                {% endif %}
-            </select>
-            <label class="margin-top-bottom margin-left " id="ProgErr" style="display: none;color:red;">This field is required</label>
-         </div>
-         <div class="form-group" style="margin: 0;">
-            <label class="margin-top-bottom margin-left next-none">Program Cost</label>
-            {{form.programCost}}
-            <label class="margin-top-bottom margin-left " id="ProgCoErr" style="display: none;color:red;">This field is required</label>
-         </div>
-         <div class="margin-top-bottom margin-left-bottom next-none" >Logo</div>
-         <div class="form-group upload next-none" style="margin: 0;">
-            <label class="logo-label" for="id_logo" style="">
-               <div class="input-form">
-                  <div style="cursor: pointer; display: flex; align-items: center;" class="upload-file-div" id="logos_id">
-                     <img style="vertical-align: middle; margin-left: 5px;" class="icon" src="{% static 'img/gallery-upload.png'%}" alt="">
-                     <div style="margin-left: 37px;">Upload your file</div>
-                  </div>
-               </div>
-            </label>
+
+
+
+              </select>
+              <label class="margin-top-bottom margin-left " id="ProgErr" style="display: none;color:red;">This field is required</label>
+
+           </div>
+              <div class="form-group" style="margin: 0;">
+                <label class="margin-top-bottom margin-left next-none">Program Cost</label>
+              {{form.programCost}}
+              <label class="margin-top-bottom margin-left " id="ProgCoErr" style="display: none;color:red;">This field is required</label>
+
+            </div>
+            <div class="margin-top-bottom margin-left-bottom next-none" >Logo</div>
+
+            <div class="form-group upload next-none" style="margin: 0;">
+                <label class="logo-label" for="id_logo" style="">
+            <div class="input-form">
+                   <div style="cursor: pointer; display: flex; align-items: center;" class="upload-file-div" id="logos_id"><img style="vertical-align: middle; margin-left: 5px;" class="icon" src="{% static 'img/gallery-upload.png'%}" alt=""><div style="margin-left: 37px;">Upload your file</div></div>
+            </div>
+                </label>
             <input type="file" value="{{form.logo.url}}" name="logo" accept="image/*"  onchange="checkForm()" id="id_logo"  style="display:none;" >
             <label class="margin-top-bottom margin-left " id="ImgErr" style="display: none;color:red;">This field is required</label>
-         </div>
-         <div style="width: 100%; display: flex; justify-content: space-between;">
+
+            </div>
+
+            <div style="width: 100%; display: flex; justify-content: space-between;">
             <a href="{% url 'postedJob'%}"  class="btn back-button next-none" style="color: #1877F2;">Back</a>
             <a style="color:white" class="btn submit-button next-button next-none"  style="color: white;">Next</a>
-         </div>
+            </div>
       </div>
-            <h1 class="second-next-none title-job-description" style="display: none; color: #1877F2;">
-                  Job Description
-               </h1>
-               <div class="textarea-imgs" style="">
-                  <div class="imgs-over-textarea" style="">
-                     <img id="bold-button" class="second-next-none bold-font-button" title="Bold" style="display: none; height: 20px; margin-right: 20px; cursor: pointer;" src="{% static 'img/B .png'%}" alt="">
-                     <img class="second-next-none bold-font-button" style="display: none; height: 20px;" src="{% static 'img/bullets 1.png'%}" alt="">
-                  </div>
-         <textarea name="description" cols="40" rows="10" class=" inner-text second-next-none editable"  style="display:none;">{{des}}</textarea>
-        </div>
+      <div class="second-next-none" style="display: none; color: #1877F2; padding-bottom: 40px; text-align: center; font-size:40px;">
+         Job Description
+      </div>
+      <div class="textarea-imgs" style="">
+      <div class="imgs-over-textarea" style="">
+         <img class="second-next-none" title="Bold" class="bold-font-button" style="display: none; height: 20px; margin-right: 20px; cursor: pointer;" src="{% static 'img/B .png'%}" alt="">
+         <img class="second-next-none" style="display: none; height: 20px;" src="{% static 'img/bullets 1.png'%}" alt="">
+      </div>
+      <div id="myDiv">
+         <textarea name="description" cols="40" rows="10" class="scroll inner-text second-next-none" id="myTextArea" style="display:none;">{{des}}</textarea>
          <div style="display:none;">
                   {{form.status}}
                   {{form.recommended}}
@@ -713,195 +708,54 @@
                   {{form.user_id}}
                   {{form.applicant}}
                </div>
-             <div class="back-submit-buttons buttons-responsive" style="">
-                  <a class="btn back-button back-button-description second-next-none" style="display: none; color: #1877F2;">Back</a>
-                  <a style="display: none; color: white;" type="submit" class="btn submit-button submit-button-description second-next-none second-next-button">Next</a>
-               </div>
-               <h1 style="display: none; color: #1877F2;" class="third-next-none title-job-description title-additional-feauters">Additional features</h1>
-                <div class="form-group third-next-none" style="display: none;">
-                    <label class="margin-top-bottom margin-left number-of-positions-label">Number of positions</label>
-                    {{form.positionLeft}}
-                </div>
-                <div class="form-group third-next-none" style="display: none;">
-                    <label class="margin-top-bottom margin-left">Deadline date</label>
-                    <input id="id_deadline" class="" name="deadline" onchange="checkStartDate();" value="{{form.deadline.value|date:'d/m/Y'}}" type="tel" maxlength="10" placeholder="dd/mm/yyyy" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
-                </div>
-                <div class="third-next-none-buttons" style="display: none; justify-content: space-between;">
-                    <a class="btn back-button back-button-description back-button-additional-feauters" style="color: #1877F2;">Back</a>
-                    <a style="color: white;" type="submit" class="submit-button third-next-button submit-button-description">Next</a>
-                </div>
-               <div class="screening-questions-parent fourth-next-none" style="display: none;">
-                  <div class="screening-questions-under-parent" style="">
-
-             <h1 class="screening-questions-title" style="">Add screening questions</h1>
-             <!--    Start of question-->
-             <!--    Question 1-->
-             <div class="form-group-screening-questions">
-             <label style="padding-top: 40px;" class="mutual-color first-question-label" for="question1">Question 1</label>
-             <!-- <input style="width: 1100px;" class="" maxlength="200" type="text" placeholder="Question 1"> -->
-             <textarea style="" name="question1" id="question1" class="textarea-question textarea-color form-control" placeholder="" name="" id="" rows="4"></textarea>
-             <div class="row">
-             <div class="under-row">
-             <div class="answer-type-select">
-             <label class="mutual-color answers-margin">Answer type: </label>
-             <select onchange="changeAnsType(1)" class="form-control select-width" id="ans_type1" name="answerType1">
-             <option class="first-option" style="display: none;"></option>
-             <option value="YesNo">Yes / No</option>
-             <option value="Numeric" >Numeric</option>
-             </select>
-             </div>
-             <div class="ideal-answer-select" style="">
-             <label for="ideal" class="width-labels mutual-color answers-margin">Ideal answer:</label>
-             <div class="idealAns1 idealAnsHeight" id="idealAns1">
-             <input class="disable-inputs" name="secondAnswer1" type="number" disabled>
-
-             </div>
-             </div>
-             </div>
-             <div class="must-have-qualification-div" style="display: flex; align-items: flex-end; justify-content: flex-end;">
-             <!-- <label ><input type="checkbox" id="qualify1" name="qualify1"> Requried to be same as ideal answer</label> -->
-             <label style="" class="must-have-qualification-label screening-questions-mutual-color mutual-color" for="must-have-qualification">
-             <input class="must-have-qualification-input" id="must-have-qualification" type="checkbox">Must-have qualification</label>
-             </div>
-             </div>
-             </div>
-             <!--    End of question 1-->
-             <!--    Question 2-->
-             <div class="form-group-screening-questions margin-between-question-and-answer">
-             <label class="mutual-color questions-application-letter-margin" for="question2" >Question 2</label>
-             <!-- <input class="form-control"  maxlength="200" type="text" placeholder="Question 2"> -->
-             <textarea id="question2" name="question2" class="textarea-question textarea-color form-control" placeholder="" name="" id="" rows="4"></textarea>
-             <div class="row">
-             <div class="under-row">
-             <div class="answer-type-select">
-             <label style="" class="mutual-color answers-margin">Answer type: </label>
-             <select onchange="changeAnsType(2)" class="form-control select-width" id="ans_type2" name="answerType2">
-             <option style="display: none;"></option>
-             <option value="YesNo">Yes / No</option>
-             <option value="Numeric" >Numeric</option>
-             </select>
-             </div>
-             <div class="ideal-answer-select">
-             <label class="width-labels mutual-color answers-margin">Ideal answer:</label>
-             <div class="idealAns2 idealAnsHeight" id="idealAns2">
-             <input class="disable-inputs" name="secondAnswer2" type="number" disabled>
-
-             </div>
-             </div>
-             </div>
-             <div class="must-have-qualification-div" style="display: flex !important; align-items: flex-end; justify-content: flex-end;">
-             <!-- <label ><input type="checkbox" id="qualify2" name="qualify2"> Requried to be same as ideal answer</label> -->
-             <label class="must-have-qualification-label screening-questions-mutual-color mutual-color" for="must-have-qualification-2">
-             <input class="must-have-qualification-input" id="must-have-qualification-2" type="checkbox">Must-have qualification</label>
-             </div>
-             </div>
-             </div>
-             <!--    End of question 2-->
-             <!--    Question 3-->
-             <div class="form-group-screening-questions margin-between-question-and-answer">
-             <label class="mutual-color questions-application-letter-margin" for="question3" style="color: #858585;">Question 3</label>
-             <!-- <input class="form-control" maxlength="200" id="question3" name="question3" type="text" placeholder="Question 3"> -->
-             <textarea style="" id="question3" name="question3" class="textarea-question textarea-color form-control" placeholder="" name="" id="" rows="4"></textarea>
-             <div class="row">
-             <div class="under-row">
-             <div class="answer-type-select">
-             <label class="mutual-color answers-margin">Answer type:</label>
-             <select onchange="changeAnsType(3)" class="form-control select-width" id="ans_type3" name="answerType3" style="">
-             <option style="display: none;"></option>
-             <option value="YesNo">Yes / No</option>
-             <option value="Numeric" >Numeric</option>
-             </select>
-             </div>
-             <div class="ideal-answer-select">
-             <label class="width-labels mutual-color answers-margin" style="">Ideal answer:</label>
-             <div class="idealAns3 idealAnsHeight" id="idealAns3" style="">
-             <input class="disable-inputs" name="secondAnswer3" type="number" disabled>
-
-             </div>
-             </div>
-             </div>
-             <div class="must-have-qualification-div" style="display: flex; align-items: flex-end; justify-content: flex-end;">
-             <!-- <label ><input type="checkbox" id="qualify2" name="qualify2"> Requried to be same as ideal answer</label> -->
-             <label style="" class="must-have-qualification-label screening-questions-mutual-color mutual-color" for="must-have-qualification-3">
-             <input class="must-have-qualification-input" id="must-have-qualification-3" type="checkbox">Must-have qualification</label>
-             </div>
-             </div>
-             </div>
-         <!--    End of question 3-->
-         <!--    End of question -->
-         <!--    Application Settings  -->
-             <div class="form-group-screening-questions margin-between-question-and-answer">
-             <label class="mutual-color questions-application-letter-margin">Application settings</label>
-             <select  id="job-settings" name="job-settings" class="form-control" style="color: black;">
-             <option value="F">Filter out & send rejection letters to applicants who don't meet qualifications</option>
-             <option value="NF">Don't filter out applicants. I will manually review each application sent to me</option>
-             </select>
-             </div>
-         <!--    end of applicaiton settings-->
-         <!--    Rejection letter  -->
-             <div class="form-group-screening-questions margin-between-question-and-answer" style="">
-             <label class="mutual-color questions-application-letter-margin" style="color: #858585;">Write your rejection letter </label>
-             <textarea class="form-control rejection-letter" name="rejected-email" id="job-email"></textarea>
-             </div>
-             <div class="back-submit-buttons third-next-none-buttons" style="width: 100%;">
-             <a class="back-button back-button-description back-button-screening-questions" style="color: #1877F2;">Back</a>
-             <a style="color: white;" type="submit" class="submit-button submit-button-description">Post your job</a>
-             </div>
-
-         </div>
-         </div>
-
-         </form>
-         </div>
       </div>
-   </body>
-   <script src="{% static 'js/CheckFormEdit.js'%}"></script>
+      <div class="back-submit-buttons" style="">
+			<a class="back-button back-button-description second-next-none" style="display: none; color: #1877F2;">Back</a>
+			<a style="display: none; color: white;" type="submit" class="submit-button submit-button-description second-next-none second-next-button">Next</a>
+		</div>
+           <div style="display: none; color: #1877F2;" class="third-next-none title-job-description title-additional-feauters">Additional features</div>
+        <div class="form-group third-next-none" style="display: none;">
+            <label class="margin-top-bottom margin-left number-of-positions-label">Number of positions</label>
+            {{form.positionLeft}}
+        </div>
+        <div class="form-group third-next-none" style="display: none; margin: 0;">
+            <label class="margin-top-bottom margin-left">Deadline date</label>
+            <input id="id_deadline" class="" name="deadline" onchange="checkStartDate();" value="{{form.deadline.value|date:'d/m/Y'}}" type="tel" maxlength="10" placeholder="dd/mm/yyyy" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
+
+        </div>
+        <div class="back-submit-buttons third-next-none-buttons" style="display: none;">
+			<a class="back-button back-button-description back-button back-button-additional-feauters" style="color: #1877F2;">Back</a>
+			<a id="sub" style="display: none; color: white;text-decoration: none;"  onclick="clickAndDisable(this);Post();" class="submit-button submit-button-description second-next-none"> Submit</a>
+		</div>
+    </form>
+   </div>
+</div>
+<script>
+   function clickAndDisable(link) {
+     link.onclick = function(event) {
+        event.preventDefault();
+     }
+   }
+</script>
+
    <script>
-      function changeAnsType(id){
-           var question_id = id;
-           var choice = "ans_type"+question_id;
-           var selected = document.getElementById(choice).value;
-           var getName = "#idealAns"+question_id;
-           var setName = "idealAnsF"+question_id;
-           var input_text_disabled = "secondAnswer"+question_id;
-          //  var NumericN = "numericNumber"+question_id;
+      function MMDDYYYY(value, event) {
+        let newValue = value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');
 
+        const dayOrMonth = (index) => index % 2 === 1 && index < 4;
 
-           if(selected == "YesNo") {
-              console.log(getName)
+        // on delete key.
+        if (!event.data) {
+         return value;
+        }
 
-              var x = $('<select class="form-control '+setName+'" id='+setName+' name='+setName+'><option>Yes</option><option>No</option></select>');
+        return newValue.split('').map((v, i) => dayOrMonth(i) ? v + '/' : v).join('');;
 
-              $(getName).append(x);
-              $('input[name='+setName+']').css("display", "none");
-              $('input[name='+input_text_disabled+']').css("display", "none");
+        ducument.getElementById("test").innerHTML(newValue)
+      }
 
-              // $(getName).css("display", "none");
-
-            //   $('<input type="number" name="'+setName+'" class="form-control '+setName+'" id="'+setName+'">').css("display", "none");
-
-           }else if(selected == "Numeric") {
-
-            var y = $('<input type="number" name="'+setName+'" class="form-control '+setName+'" id="'+setName+'">');
-
-            $(getName).append(y);
-            $('select[name='+setName+']').css("display", "none");
-            $('input[name='+input_text_disabled+']').css("display", "none");
-
-              // $(getName).append($('<input type="number" name="'+setName+'" class="form-control '+setName+'" id="'+setName+'">'));
-
-
-              // $('select[name="idealAnsF"]').css("display", "none");
-              // $(".yesNoClass").css("display", "none");
-
-           }
-          }
-      //        var yesNoClass = document.querySelectorAll(".yesNoClass");
-      //        var NumericInput = document.querySelectorAll(".numericN");
-
-
-   </script>
-    <script>
+      </script>
+   <script>
       function Post(){
          var textareaText = $('#myTextArea').val();
          var test = textareaText.replace(/\r?\n/g, '<br />');
@@ -911,20 +765,39 @@
       }
 
     </script>
+   <script type="text/javascript">
+      var dropdown = document.querySelectorAll(".dropdown");
+      var work_and_travel_dropdown = document.querySelectorAll(".dropdown-work-and-travel");
+      var profile = document.querySelectorAll("#profile-image-button");
+      var work_and_travel_button = document.querySelectorAll('.button-work-and-travel');
+      var mutual_button_div = document.querySelectorAll('.mutual-padding-of-div');
+      var jobs_buttons_icon = document.querySelectorAll('.icon');
+      var jobs_buttons_white_icon = document.querySelectorAll('.white-icon')
+      var show_dropdown = document.querySelectorAll('.showDropdown');
+      var button_content = document.querySelectorAll('.button-content');
+      for (let i = 0; i < dropdown.length; i++) {
+         profile[i].addEventListener("click", function () {
+            if (dropdown[i].style.display == "block") {
+               dropdown[i].style.display = "none";
+            }
+            else {
+               dropdown[i].style.display = "block";
+            }
+         })
+         document.addEventListener('click', function (e) {
+            if (!dropdown[i].contains(e.target) && !profile[i].contains(e.target)) {
+               dropdown[i].style.display = 'none';
+            }
+         });
 
-   <script src="{% static 'js/Ajax/Match/user-details-ajax.js'%}"></script>
-   <script src="{% static 'js/profile_dropdown.js'%}"></script>
-<!--   <script src="{% static 'js/bold-button.js'%}"></script>-->
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<!--   <script src="{% static 'js/second-next.js'%}"></script>-->
-   <script src="{% static 'js/back-job-description.js'%}"></script>
-   <script src="{% static 'js/profile_dropdown_2.js'%}"></script>
-   <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-   <script>
-      $('.editable').each(function(){
-          this.contentEditable = true;
-      });
+      }
    </script>
-</html>
-{% endblock content %}
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script src="{% static 'js/CheckFormEdit.js'%}"></script>
+<script src="{% static 'js/back-job-description.js'%}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+
+{% endblock content%}
