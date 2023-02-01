@@ -1,0 +1,47 @@
+.profile-header {
+    margin: 0px 40px 20px 10px;
+}
+
+.pro-img {
+    height: 9vw;
+}
+
+.experience-education-languages {
+    margin: 0px 20px 20px 10px;
+}
+/* .right-jobs {
+} */
+
+.experience-education-margin-bottom {
+    margin: 20px 20px 20px 10px;
+}
+.experience-education-languages {
+    margin: 0px 40px 20px 10px;
+}
+
+.profile-image {
+    width: 140px;
+    height: 140px;
+    margin-top: -70px;
+}
+/* .all-applicants-button {
+    position: relative;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    /* transition-duration: 0.4s; */
+/* } */
+.checkbox-jobs::after + .changed:after {
+    /* this selector is more specific, so it takes precedence over the other :after */
+        border-top-width: 22px;
+        border-left-width: 22px;
+        border-right-width: 22px;
+    }
+
+.checkbox-jobs .changed:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    transition: 0s;
+
+}
+
+

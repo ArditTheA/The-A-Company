@@ -3,7 +3,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
     
     {{ analytics_code }}
@@ -42,15 +42,15 @@
     <link rel="icon" href="{% static 'img/123.png' %}">
 
     <style type="text/css">
-        body {
-            -webkit-tap-highlight-color: transparent;
+        body{
+            -ms-overflow-style: none;  /* Internet Explorer 10+ */
+            scrollbar-width: none;  /* Firefox */
         }
-        /* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
+        body::-webkit-scrollbar {
+            display: none;  /* Safari and Chrome */
+        }
+
+
 
 /* Firefox */
 input[type=number] {
@@ -58,12 +58,12 @@ input[type=number] {
 }
 
         .under-header-wishes {
-            background-color: #1877F2;
+            background-color: #fc3d39;
             width: 100%;
             text-align: center;
             color: white;
-            padding-top: 10px;
-            padding-bottom: 10px;
+            padding-top: 8px;
+            padding-bottom: 8px;
             font-size: 18px;
         }
         .wishes-child {
@@ -129,12 +129,47 @@ input[type=number] {
 
 
 <body>
+ <div class="under-header-wishes" style="">
+    <div class="wishes-child" id="countdown" style=""></div>
+    <div>Apply for Work and Travel.</div>
+ </div>
+
     {% block content %}
 
 
     {% endblock content%}
 
 </body>
+<script>
+    // Set the target date and time
+    var targetDate = new Date("2023-03-01T00:00:00");
+
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+      // Get the current date and time
+      var currentDate = new Date().getTime();
+
+      // Calculate the difference between the current and target dates in milliseconds
+      var diff = targetDate - currentDate;
+
+      // Time calculations for days, hours, minutes and seconds
+      var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+
+      // Display the result
+      document.getElementById("countdown").innerHTML = days + " days, " + hours + " hours, "
+      + minutes + " minutes, " + seconds + " seconds left.";
+
+      // If the count down is finished, write some text
+      if (diff < 0) {
+        clearInterval(x);
+        document.getElementById("countdown").innerHTML = "EXPIRED";
+      }
+    }, 1000);
+  </script>
 <script>
     function MMDDYYYY(value, event) {
       let newValue = value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');

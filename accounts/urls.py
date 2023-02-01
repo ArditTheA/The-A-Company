@@ -30,8 +30,8 @@ urlpatterns = [
     path("Jobs/Applied", AppliedJobs.as_view(), name="appliedJob"),
 
     # MainJobs
-    path("apply/<int:pk>", applyForJobSQ, name="apply"),
-    path("jobs/apply/<int:pk>", applyForJobSQ),
+    path("apply/<int:pk>", applyForJob, name="apply"),
+    path("jobs/apply/<int:pk>", applyForJob),
     path("profile/setup/1/<int:pk>", applyForJob2, name="setupPart2"),
     path("profile/setup/2/<int:pk>", applyForJob3, name="setupPart3"),
 

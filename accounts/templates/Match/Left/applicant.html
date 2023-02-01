@@ -11,9 +11,8 @@
 
                 <div style="width: 200px;" class="experience-first-row jobs-first-row">{{i.user_id.first_name}} {{i.user_id.last_name}}</div>
                 <label for="select-all" title="Select all" style="position: absolute; right: 31.7px; top: 15px; background-color: #E7F1FE; cursor: pointer;">
-                    <input title="Select all" value="Select"  name="select-all" type="checkbox" class="select-all-button" id="select-all"  style="display: none;"></input>All</label>
+                    <input title="Select all" value="Select" onclick="Check()" name="select-all" type="checkbox" class="select-all-button selAll" id="select-all" style="display: none;"></input>All</label>
                 <input title="Select applicant" class="checkbox-jobs" onchange="Check({{i.user_id.id}})" name="checkb" id="{{i.user_id.id}}" style="height: 22px; width: 22px; position: absolute; right: 20px; top: 40px;" type="checkbox"></input>
-
                 </div>
                 <div class="experience-second-row">{{i.user_id.email}}</div>
                 <div class="experience-third-row">{{i.user_id.phone_number}}</div>
@@ -26,7 +25,7 @@
                 <img class="experience-education-img" src="{{i.user_id.profile.url}}" alt="">
                 <div class="experience-rows">
                 <div class="experience-first-row">{{i.user_id.first_name}} {{i.user_id.last_name}}</div>
-                <input title="Select applicant" onchange="Check({{i.user_id.id}})" id="{{i.user_id.id}}" class="checkbox-jobs" id="check" style="height: 22px; width: 22px; position: absolute; right: 20px;" type="checkbox"></input>
+                <input title="Select applicant" name="checkb" onchange="Check({{i.user_id.id}})" id="{{i.user_id.id}}" class="checkbox-jobs" id="check" style="height: 22px; width: 22px; position: absolute; right: 20px;" type="checkbox"></input>
                 <div class="experience-second-row">{{i.user_id.email}}</div>
                 <div class="experience-third-row">{{i.user_id.phone_number}}</div>
                 <div class="experience-fourth-row">{{i.user_id.city}}, {{i.user_id.country}}</div>
@@ -55,14 +54,170 @@
         </script>
  <script>
 
-<!-- -->
+var phase = "";
 const ct = [];
-            function Check(id){
+
+$(".phaseButton").click(function(event){
+    var jobid={{jpk}};
+    var url = "/Administrator/Applicant/JobId="+jobid+"/Phase="+phase+"/applicant="+ct.toString();
+    window.location = url;
+});
+
+
+
+          function Check(id){
+                console.log("testttt");
+                console.log(ct);
                 string = ct;
                 substring=id;
                 checkBox = document.getElementById(substring);
                 console.log(ct.toString());
                 console.log(ct);
+
+
+                if ($('.checkbox-jobs:checkbox:checked').length > 0) {
+        this.title = "Deselect applicant";
+
+        if ($('.checkbox-jobs:checkbox:checked').length == 1) {
+
+            $('.input_type').css("display", "flex");
+
+            $('.testbutton').prop("onclick", null).off("click");
+
+            $('.input_type').css("float", "left");
+            $('.all-applicants-dropdown').css("alignItems", "flex-start");
+            $('.move-phase-button').css("display", "block");
+            $('.move-phase-button').css("cursor", "not-allowed");
+            $('.all-applicants-dropdown').css("padding-bottom", "0px");
+            $('.all-applicants-button').css("-webkit-transition-duration", "0.4s");
+            $('.all-applicants-button').css("transition-duration", "0.4s");
+            $('.all-applicants-button').css("overflow", "hidden");
+
+            if(!$('.all-applicants-dropdown').is(':visible')) {
+
+
+            // $(".all-applicants-button").after(function() {
+            //
+<!--            $('.all-applicants-button').css("background-color", "#71a6eb");-->
+            $('.all-applicants-button').css("opacity", "1");
+            $('.all-applicants-button').css("display", "block");
+
+            $('.all-applicants-button').css("content", "");
+            $('.all-applicants-button').css({
+                                 transition : 'all 0.8s'
+            });
+            $('.all-applicants-button').toggleClass('changed');
+
+
+        }
+
+            $('#qualify').prop("onclick", null).off("click");
+
+            $('.input_type').click(function(e) {
+
+                phase=$('.input_type:checked').val();
+
+                $('.input_type').not(this).prop('checked', false);
+
+                if (this.checked) {
+
+                    $('#qualify').prop("onclick", null).off("click");
+                    $('.all-applicants-dropdown').css("alignItems", "flex-start");
+                    $('.move-phase-button').css("background-color", "#1877F2");
+                    $('.move-phase-button').css("color", "white");
+
+                    $('.move-phase-button').text("Move to" + " " + $('.input_type:checked').attr("name"));
+
+                    $('.move-phase-button').css("cursor", "pointer");
+
+
+
+
+                }
+                else {
+                    $('.all-applicants-dropdown').css("alignItems", "flex-start");
+                    $('.move-phase-button').css("background-color", "rgb(221, 221, 221)");
+                    $('.move-phase-button').css("color", "rgb(145, 143, 143)");
+                    $('.move-phase-button').prop('title', 'Select an option to click here');
+                    $('.move-phase-button').css("cursor", "not-allowed");
+                    $('.move-phase-button').text("Select to move");
+                }
+            })
+        }
+
+       }
+    else {
+            this.title = "Select applicant";
+
+
+        $('.input_type').not(this).prop('checked', false);
+
+        $('.all-applicants-dropdown').css("alignItems", "flex-start");
+                    $('.move-phase-button').css("background-color", "rgb(221, 221, 221)");
+                    $('.move-phase-button').css("color", "rgb(145, 143, 143)");
+                    // $('.move-phase-button').css("color", "rgb(146, 146, 146)");
+
+                    $('.move-phase-button').prop('title', 'Select an option to click here');
+                    $('.move-phase-button').css("cursor", "not-allowed");
+                    $('.move-phase-button').text("Select to move");
+
+        if ($('.checkbox-jobs:checkbox:checked').length > 0) {
+            $('.input_type').css("display", "flex");
+            $('.input_type').css("float", "left");
+            $('.all-applicants-dropdown').css("alignItems", "flex-start");
+            $('.move-phase-button').css("background-color", "rgb(221, 221, 221)");
+                    $('.move-phase-button').css("color", "rgb(145, 143, 143)");
+                    // $('.move-phase-button').css("color", "rgb(146, 146, 146)");
+
+                    $('.move-phase-button').prop('title', 'Select an option to click here');
+                    $('.move-phase-button').css("cursor", "not-allowed");
+                    $('.move-phase-button').text("Select to move");
+
+            // $('.all-applicants-button').css("background-color", "#71a6eb");
+            }
+        else {
+        $('.all-applicants-dropdown').css("alignItems", "center");
+        $('.all-applicants-dropdown').css("padding-bottom", "5px");
+        // if ($('.checkbox-jobs').is(':checked')) {
+        $("#qualify").on('click', function() {
+        $('.all-applicants-dropdown').css("alignItems", "center");
+        // $('.all-applicants-button').css("background-color", "#1877F2");
+
+        window.location = "http://www.worki.global/";
+        });
+
+
+
+        if ($('.checkbox-jobs:checkbox:checked').length < 1) {
+            // $('.all-applicants-button').css("background-color", "#1877F2");
+
+        }
+
+        $('.move-phase-button').css("display", "none");
+        $('.input_type').css("display", "none");
+        if ($('checkbox-jobs').is(':checked')) {
+
+        $('.input_type').click(function(e) {
+
+                if (this.checked) {
+                    $('.move-phase-button').css("display", "none");
+                    $('.all-applicants-dropdown').css("alignItems", "center");
+                }
+                else {
+                    $('.move-phase-button').css("display", "block");
+
+                }
+            })
+        }
+        else {
+            $('.input_type').click(function(e) {
+                $('.all-applicants-dropdown').css("alignItems", "center");
+            })
+
+        }
+    }
+    }
+
 
                 if(checkBox.checked) {
 
@@ -148,19 +303,6 @@ const ct = [];
         });
 
 
-        $(':checkbox').click(function(e) {
-            // Check();
-            if(this.checked) {
 
-                    this.title = "Deselect applicant";
-
-            }
-            else {
-
-                    this.title = "Select applicant";
-
-            }
-
-        })
 
         </script>

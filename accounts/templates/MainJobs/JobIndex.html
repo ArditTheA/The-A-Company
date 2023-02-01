@@ -15,6 +15,7 @@
 {% if check %}
 <input style="display:none;" id="PostID" value="{{post_id}}">
 <div class="jobs-main-div" style="display: flex; justify-content: space-between;">
+
     <div class="jobs-left mobile-margin-top" style="" id="myDIV">
         <div onclick="getNumber('{{FJob.id}}')" class="jobs-rows-img second-jobs margin-top-jobs-rows-img same-background-jobs pixel"  id="select{{FJob.id}}">
                <img class="experience-education-img" src="{{FJob.logo.url}}" alt="">
@@ -43,6 +44,7 @@
                </span>
            </div>
     <div class="move"></div>
+
     {% for i in job %}
 
            <div onclick="getNumber('{{i.id}}')" class="jobs-rows-img second-jobs margin-top-jobs-rows-img same-background-jobs pixel"  id="select{{i.id}}">

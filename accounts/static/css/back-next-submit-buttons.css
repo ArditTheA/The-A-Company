@@ -1,0 +1,13 @@
+.back-button:active {
+    box-shadow: 0px 0px 0px 3.2px #9cc5ff80 !important;
+  }
+  .next-button:active {
+    box-shadow: 0px 0px 0px 3.2px #9cc5ff80 !important;
+  }
+  .submit-button:active {
+    box-shadow: 0px 0px 0px 3.2px #9cc5ff80 !important;
+  }
+  
+  .back-button, .next-button, .submit-button {
+    box-shadow: none !important;
+  }

@@ -1,0 +1,324 @@
+body {
+    font-family: sans-serif;
+}
+
+.header-border {
+    position: static;
+}
+
+.screening-questions-parent {
+   /* margin: 20px 40px 20px 40px;  eshte bere koment sepse Screening Questions e kemi move te add-a-job.html dhe kan ndryshu shume sene dhe eshte dashur qe te bejme ndryshime, e nje nder ato ndryshime,
+                                        edhe this row (margin: 20px 40px 20px 40px;)  */
+   background-color: white;
+   border-radius: 40px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+.answers-margin {
+    margin: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.questions-application-letter-margin {
+    margin: 0;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.col-md-12 {
+    margin-bottom: 40px;
+
+}
+.first-question-label {
+    padding-top: 40px;
+}
+.form-control {
+}
+
+.screening-questions-title {
+    font-size: 40px;
+    color: #1877F2;
+    text-align: center;
+    /* padding-top: 40px; sikurse row me larte (margin: 20px 40px 20px 40px;) qe eshte bere koment, eshte bere edhe ky per t'iu pershtatur Screening Questions qe e kemi move te add-a-job.html dhe  */
+    padding-bottom: 0px;
+}
+
+.textarea-question {
+    resize: none;
+    border-radius: 16px;
+    border: 1px solid #9E9E9E;
+    padding: 20px 20px 0px 20px;
+    color: #757575 !important;
+    width: 900px;
+}
+.margin-between-question-and-answer {
+}
+
+label {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.must-have-qualification-div {
+    box-sizing: border-box;
+}
+.must-have-qualification-label {
+    margin-bottom: 6px !important;
+}
+#worki-image {
+    border-radius: 10px;
+}
+textarea {
+}
+
+.answer-type-select {
+}
+.rejection-letter {
+    resize: none;
+}
+
+.row {
+   margin: 0;
+   display: flex;
+   justify-content: space-between;
+}
+
+.under-row {
+    display: flex;
+}
+
+.ideal-answer-select {
+    margin-left: 40px;
+}
+.idealAns1, .idealAns2, .idealAns3 {
+    margin-right: 40px;
+}
+
+.idealAnsF1, .idealAnsF2, .idealAnsF3, .select-width, .width-labels, .disable-inputs {
+    width: 240px;
+}
+
+.idealAnsF1, .idealAnsF2, .idealAnsF3, .select-width, .disable-inputs {
+    border-radius: 40px;
+}
+
+#job-settings {
+   border-radius: 40px;
+}
+
+.mutual-color {
+    color: #858585;
+}
+
+.rejection-letter {
+    min-height: 250px;
+    padding-left: 20px;
+    padding-top: 20px;
+    border-radius: 16px;
+}
+
+.select-width {
+}
+
+.form-control {
+}
+
+.form-control {
+    /* filter: brightness(0.90); */
+
+
+    box-shadow: 0px 0px 0px 0px white !important;
+}
+
+.select-width::active {
+    /* box-shadow: 0px 0px 0px 0px white !important; */
+    outline: none;
+}
+
+.form-control, .disable-inputs, textarea {
+  border: 1px solid #9E9E9E !important;
+}
+
+.disable-inputs {
+    height: 40px;
+    outline: none;
+}
+.must-have-qualification-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.must-have-qualification-input {
+    margin-right: 8px;
+    border-radius: 30px;
+}
+.back-post-buttons {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 0px;
+    display: flex;
+    justify-content: space-between;
+}
+.btn {
+   background-color: #1877F2;
+   border-radius: 40px;
+   padding: 8px 30px 8px 30px;
+}
+
+select.form-control:not([size]):not([multiple]) {
+    height: 40px;
+    padding-left: 10px !important;
+    padding-right: 0px !important;
+}
+
+
+
+@media screen and (max-width: 910px) {
+
+    .must-have-qualification-label {
+        margin-top: 10px;
+    }
+
+}
+
+
+@media screen and (max-width: 636px) and (min-width: 481px) {
+
+
+
+    .screening-questions-under-parent {
+        width: 100% !important;
+    }
+
+    .idealAns1, .idealAns2, .idealAns3 {
+        margin-right: 0px !important;
+    }
+    .row {
+        width: 100%;
+    }
+
+    .under-row {
+        width: 100% !important;
+        justify-content: space-between;
+    }
+
+    .select-width, .disable-inputs {
+        width: 100% !important;
+        height: 38px !important;
+    }
+
+    .answer-type-select, .ideal-answer-select {
+        width: 45% !important;
+    }
+
+    .idealAnsF1, .idealAnsF2, .idealAnsF3 {
+        width: 100% !important;
+        height: 38px !important;
+
+    }
+
+    .width-labels {
+        width: 100px !important;
+    }
+
+    .must-have-qualification-label {
+        margin-top: 10px;
+    }
+
+    .screening-questions-title {
+        font-size: 30px !important;
+        margin-top: 10px !important;
+    }
+
+    .ideal-answer-select {
+        margin-left: -40px !important;
+    }
+
+    .textarea-question {
+        width: 100%;
+        height: 100px !important;
+    }
+
+}
+
+
+
+@media screen and (max-width: 480px) {
+
+    .screening-questions-under-parent {
+        width: 100% !important;
+    }
+
+    .row {
+        width: 100%;
+    }
+
+
+    .under-row {
+        width: 100% !important;
+        justify-content: space-between;
+    }
+
+    .select-width, .disable-inputs {
+        width: 100% !important;
+        height: 34px !important;
+    }
+
+    .answer-type-select, .ideal-answer-select {
+        width: 45% !important;
+    }
+
+    .idealAnsF1, .idealAnsF2, .idealAnsF3 {
+    width: 100% !important;
+    height: 34px !important;
+}
+    .width-labels {
+        width: 100px !important;
+    }
+
+    .must-have-qualification-label {
+        margin-top: 10px;
+    }
+
+    .screening-questions-title {
+        font-size: 30px !important;
+        margin-top: 10px !important;
+    }
+
+    .ideal-answer-select {
+        margin-left: -40px !important;
+    }
+
+    .textarea-question {
+        width: 100%;
+        height: 100px !important;
+    }
+    .first-question-label {
+        padding-top: 30px !important;
+    }
+    .mutual-color {
+        font-size: 14px !important;
+    }
+    .must-have-qualification-label {
+        margin-bottom: 0px !important;
+    }
+    .idealAns1, .idealAns2, .idealAns3 {
+        margin-right: 0px !important;
+    }
+    .select-width, .idealAnsF1, .idealAnsF2, .idealAnsF3 {
+        font-size: 14px !important;
+    }
+    .textarea-question {
+        padding: 10px 10px 0px 10px;
+    }
+    #job-settings {
+        font-size: 14px !important;
+    }
+    .answers-margin {
+        margin: 0;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+}

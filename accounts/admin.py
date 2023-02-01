@@ -75,13 +75,17 @@ def make_published(modeladmin, request, queryset):
     queryset.update(approved=True)
 
 
+
+
 @admin.register(Jobs)
 class JobsUser(admin.ModelAdmin):
     list_per_page = 1000
     search_fields = ("job_title","company","city_j")
-    list_filter = ("program","approved","recommended",("positionLeft", NumericRangeFilter),("postDate",DateRangeFilter),"company")
+    list_filter = ("program","status","approved","recommended",("positionLeft", NumericRangeFilter),("postDate",DateRangeFilter))
 
     actions = [makeN_published,make_published,make_recommended,make_Nrecommended]
+
+
 
 
 

@@ -283,8 +283,7 @@ def makeApplication(userId,pk,job,dataa,Status,emailU):
     email = render_to_string(email_template_applicant, c)
 
     try:
-        send_mail(subject, email, 'hello@worki.global',
-                  [emailU], fail_silently=False)
+        send_mail(subject, email, 'hello@worki.global',[emailU], fail_silently=False)
     except BadHeaderError:
         return HttpResponse('Invalid header found.')
 
@@ -362,7 +361,7 @@ def applyForJobSQ(request, pk):
 
                         makeApplication(userId,pk,job,dataa,"Not qualified",request.user.email)
                         print("doesnt meet qualification")
-                        rejection_email = job_settings.jobSettings
+                        rejection_email = job_settings.email
                         rejectedSubject = "You have been rejected"
                         form.save()
 

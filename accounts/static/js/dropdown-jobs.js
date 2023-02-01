@@ -12,18 +12,18 @@
   function checkboxStatusChange() {
     for (let i = 0; i < container_fluid.length; i++){
         var multiselectOption = container_fluid[i].getElementsByTagName('option')[0];
-  
+
         console.log(multiselectOption.textContent);
-        
+
         var values = [];
         var checkedCheckboxes = checkboxes[i].querySelectorAll('input[type=checkbox]:checked');
-      
+
         for (const item of checkedCheckboxes) {
           var checkboxValue = item.getAttribute('value');
 
           values.push(checkboxValue);
         }
-      
+
         var dropdownValue = multiselectOption.innerHTML;
 
         if (checkedCheckboxes.length == 1) {
@@ -31,7 +31,7 @@
 
         }
         multiselectOption.textContent = dropdownValue;
-      }    
+      }
     }
 
     var bodyy = document.querySelector(".header-border");
@@ -71,7 +71,7 @@
                 if (!checkboxes[i].contains(e.target) && !container_fluid[i].contains(e.target)) {
                     checkboxes[i].style.display = 'none';
                 }
-            });    
+            });
         });
     };
 
@@ -84,7 +84,7 @@
         var pos = parseInt(activeDropdown.attr('data-leftPos')) - parseInt($(this).scrollLeft());
         // appply updated position to dropdown
         activeDropdown.css("left", pos)
-        
+
         // Set width dynamically based on scroll position
         setDropdownWidth(activeDropdown)
       });
@@ -101,6 +101,6 @@
         }
       }
 
-    
+
 
 
