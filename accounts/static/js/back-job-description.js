@@ -29,7 +29,6 @@ back_button.addEventListener('click', function() {
 for (let i = 0; i < next_none.length; i++) {
 
     back_button_additional_feauters.addEventListener('click', function() {
-
         second_next_none[i].style.display = "block";
 
         third_next_none[i].style.display = "none";

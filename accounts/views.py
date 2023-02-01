@@ -342,6 +342,7 @@ class AjaxHandler(View):
         job = Jobs.objects.filter(
             user_id=request.user.id).order_by("-postDate")
         post_id = request.headers.get('text')
+
         if post_id == "":
             jobid = Jobs.objects.filter(user_id=request.user.id).order_by(
                 "-postDate").values_list("id", flat=True).first()
@@ -383,7 +384,8 @@ class AjaxHandler(View):
 
                 appNo = 0
                 appNo = Jobs.objects.get(id=post_id).applicant.count()
-
+                SDate = start_date
+                EDate = end_date
                 salary = format(salary, '.2f')
                 start_date = format(start_date, "%d/%m/%Y")
                 end_date = format(end_date, "%d/%m/%Y")
@@ -392,7 +394,7 @@ class AjaxHandler(View):
                     dict(description=description, title=title, city_j=city_j, country=country, start_date=start_date,
                          salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
                          typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
-                         program=program, programCost=programCost,
+                         program=program, programCost=programCost,SDate=SDate,EDate=EDate,
                          posted=posted, post_id=post_id, appNo=appNo))
         else:
             if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
@@ -430,6 +432,8 @@ class AjaxHandler(View):
                 country = Jobs.objects.filter(
                     id=post_id).values_list("country_j").first()
                 salary = format(salary, '.2f')
+                SDate = start_date
+                EDate = end_date
                 start_date = format(start_date, "%d/%m/%Y")
                 end_date = format(end_date, "%d/%m/%Y")
                 posted = format(posted, "%d/%m/%Y")
@@ -437,17 +441,22 @@ class AjaxHandler(View):
                 appNo = 0
                 appNo = Jobs.objects.get(id=post_id).applicant.count()
 
+
                 return JsonResponse(
                     dict(description=description, title=title, city_j=city_j, country=country, start_date=start_date,
                          salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
                          typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
-                         program=program, programCost=programCost,
-                         posted=posted, appNo=appNo))
+                         program=program, programCost=programCost,SDate=SDate,EDate=EDate,
+                         posted=posted, appNo=appNo,post_id=post_id))
         check = True
         if len(job) != 0:
             check = True
         else:
             check = False
+
+
+
+
         return render(request, "Jobs/Posted.html", dict(job=job, check=check))
 
 
@@ -498,16 +507,19 @@ class AppliedJobs(View):
                 country = Jobs.objects.filter(
                     id=post_id).values_list("country_j").first()
                 salary = format(salary, '.2f')
+                SDate = start_date
+                EDate = end_date
                 start_date = format(start_date, "%d/%m/%Y")
                 end_date = format(end_date, "%d/%m/%Y")
                 posted = format(posted, "%d/%m/%Y")
                 applied = format(applied, "%d/%m/%Y")
                 appNo = Jobs.objects.get(id=post_id).applicant.count()
+
                 return JsonResponse(
                     dict(description=description, title=title, city_j=city_j, country=country, start_date=start_date,
                          salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
                          typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
-                         program=program, programCost=programCost,
+                         program=program, programCost=programCost,SDate=SDate,EDate=EDate,
                          posted=posted, post_id=post_id, applied=applied, appNo=appNo))
         else:
             if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
@@ -548,19 +560,24 @@ class AppliedJobs(View):
                     id=post_id).values_list("country_j").first()
                 appNo = Jobs.objects.get(id=post_id).applicant.count()
                 salary = format(salary, '.2f')
+                SDate = start_date
+                EDate = end_date
                 start_date = format(start_date, "%d/%m/%Y")
                 end_date = format(end_date, "%d/%m/%Y")
                 posted = format(posted, "%d/%m/%Y")
                 applied = format(applied, "%d/%m/%Y")
+
                 return JsonResponse(
                     dict(description=description, title=title, city_j=city_j, country=country, start_date=start_date,
                          salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
                          typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
-                         program=program, programCost=programCost,
+                         program=program, programCost=programCost,SDate=SDate,EDate=EDate,
                          posted=posted, post_id=post_id, applied=applied, appNo=appNo), safe=True)
         check = True
         if len(job) != 0:
             check = True
+            post_id=job[0].id
+            return render(request, "Jobs/applied.html", dict(job=job, check=check,post_id=post_id))
         else:
             check = False
 
