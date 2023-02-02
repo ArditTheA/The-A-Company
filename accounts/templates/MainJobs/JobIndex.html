@@ -25,9 +25,9 @@
                <span class="experience-rows">
                <span class="experience-first-row">{{FJob.job_title}}</span>
                    {% if FJob.country_j == "USA" %}
-                        <span class="experience-second-row">${{FJob.salary_per_hour}}/hour</span>
+                        <span class="experience-second-row">${{FJob.salary_per_hour|floatformat:2}}/hour</span>
                    {% else %}
-                        <span class="experience-second-row">€{{FJob.salary_per_hour}}/hour</span>
+                        <span class="experience-second-row">€{{FJob.salary_per_hour|floatformat:2}}/hour</span>
                    {% endif%}
                <span class="experience-third-row">{{FJob.company}}</span>
                <span class="experience-fourth-row">{{FJob.city_j}}, {{FJob.country_j}}</span>
@@ -55,9 +55,9 @@
                <span class="experience-rows">
                <span class="experience-first-row">{{i.job_title}}</span>
                    {% if i.country_j == "USA" %}
-                        <span class="experience-second-row">${{i.salary_per_hour}}/hour</span>
+                        <span class="experience-second-row">${{i.salary_per_hour|floatformat:2}}/hour</span>
                    {% else %}
-                        <span class="experience-second-row">€{{i.salary_per_hour}}/hour</span>
+                        <span class="experience-second-row">€{{i.salary_per_hour|floatformat:2}}/hour</span>
                    {% endif%}
                <span class="experience-third-row">{{i.company}}</span>
                <span class="experience-third-row">{{i.city_j}}, {{i.country_j}}</span>
@@ -86,9 +86,9 @@
                <span class="experience-rows">
                <span class="experience-first-row">{{j.job_title}}</span>
                    {% if j.country_j == "USA" %}
-                        <span class="experience-second-row">${{j.salary_per_hour}}/hour</span>
+                        <span class="experience-second-row">${{j.salary_per_hour|floatformat:2}}/hour</span>
                    {% else %}
-                        <span class="experience-second-row">€{{j.salary_per_hour}}/hour</span>
+                        <span class="experience-second-row">€{{j.salary_per_hour|floatformat:2}}/hour</span>
                    {% endif%}
                    <span class="experience-third-row">{{j.company}}</span>
 

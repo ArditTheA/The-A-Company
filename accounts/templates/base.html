@@ -157,15 +157,33 @@ input[type=number] {
 
 
       // Display the result
-      document.getElementById("countdown").innerHTML = days + " days, " + hours + " hours, "
+      if (days < 2) {
+        document.getElementById("countdown").innerHTML = days + " day, " + hours + " hours, "
+      + minutes + " minutes, " + seconds + " seconds " + "left.";
+      }
+      if (hours < 2) {
+        document.getElementById("countdown").innerHTML = days + " days, " + hours + " hour, "
+      + minutes + " minutes, " + seconds + " seconds " + "left.";
+      }
+      if (minutes < 2) {
+        document.getElementById("countdown").innerHTML = days + " days, " + hours + " hours, "
+      + minutes + " minute, " + seconds + " seconds " + "left.";
+      }
+      if (seconds < 2) {
+        document.getElementById("countdown").innerHTML = days + " days, " + hours + " hours, "
+      + minutes + " minutes, " + seconds + " second " + "left.";
+      }
+      else{
+        document.getElementById("countdown").innerHTML = days + " days, " + hours + " hours, "
       + minutes + " minutes, " + seconds + " seconds left.";
+      }
 
       // If the count down is finished, write some text
       if (diff < 0) {
         clearInterval(x);
         document.getElementById("countdown").innerHTML = "EXPIRED";
       }
-    }, 1000);
+    });
   </script>
 <script>
     function MMDDYYYY(value, event) {

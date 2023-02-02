@@ -30,6 +30,19 @@
         main_conatiner.style.width = "450px";
         }
    }
+   function forthNone(){
+
+        var third_next_none = document.querySelectorAll(".third-next-none");
+        for(let i=0;i<third_next_none.length;i++){
+            third_next_none[i].style.display = "none"
+        }
+
+        third_next_none_buttons.style.display = "none";
+
+        fourth_next_none.style.display = "flex";
+
+        main_conatiner.style.width = "100%";
+   }
    function checkError(){
    var job_title=document.getElementById("id_job_title").value
     var company = document.getElementById("id_company").value
@@ -186,6 +199,7 @@
     var next_none = document.querySelectorAll('.next-none');
     var second_next_none = document.querySelectorAll('.second-next-none');
     var main_conatiner = document.querySelector('.register-form');
+
     function dateIsValid(dateStr) {
         const regex = /^\d{2}\/\d{2}\/\d{4}$/;
 
@@ -232,6 +246,12 @@
 
         thirdNone();
 
+    });
+    var third_next_button = document.querySelector(".third-next-button");
+    var fourth_next_none = document.querySelector(".fourth-next-none");
+
+    third_next_button.addEventListener('click', function() {
+        forthNone();
     });
 
 ;

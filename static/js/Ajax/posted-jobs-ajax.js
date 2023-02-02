@@ -51,7 +51,7 @@ async function getNumber(id) {
             select.style.backgroundColor = "#E7F1FE";
         }
     }
-    
+
     let textarea = document.getElementById('message');
     textarea.innerHTML=data["description"]
 
@@ -63,7 +63,7 @@ async function getNumber(id) {
     city_jobs.innerHTML = data["city_j"]+",  "+data["country"]
 
     var countApplicant = document.getElementById("countApplicant")
-   
+
     if(data["appNo"]==0){
         countApplicant.innerHTML = data["appNo"]+" Applicants"
     }else if(data["appNo"]>=2){
@@ -80,13 +80,31 @@ async function getNumber(id) {
     var comp = document.getElementById("company")
     comp.innerHTML=data["company"]
 
-    if(data["country"]== "USA"){
-    var salary = document.getElementById("salary")
-    salary.innerHTML ="$"+ data ["salary"]+"/hour"
-    }else{
+        function getMonthDifference(startDate, endDate) {
+          return (
+            endDate.getMonth() -
+            startDate.getMonth() +
+            12 * (endDate.getFullYear() - startDate.getFullYear())
+          );
+        }
+
+        var c= (getMonthDifference(
+          new Date(data["SDate"]), new Date(data["EDate"]))
+        );
+        var total = (data["salary"]*data['hourPerWork'])*4*c;
+
+        var tt  = Math.floor(total);
+        if(data["country"]== "USA"){
         var salary = document.getElementById("salary")
-    salary.innerHTML ="€"+ data ["salary"]+"/hour"
-    }
+        salary.innerHTML ="$"+ data ["salary"]+"/hour"
+        document.getElementById("totsalary").innerHTML="$"+tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" total income";
+
+        }else{
+            var salary = document.getElementById("salary")
+        salary.innerHTML ="€"+ data ["salary"]+"/hour"
+        document.getElementById("totsalary").innerHTML="€"+tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" total income";
+
+        }
     var typeOfWork = document.getElementById('typeOfWork')
     typeOfWork.innerHTML = data["typeOfWork"]+" "
 
@@ -109,9 +127,7 @@ async function getNumber(id) {
 
     var programCost = document.getElementById("programCost")
     programCost.innerHTML = "Program Cost: €"+data["programCost"]
-    
-    var Posted = document.getElementById("pos")
-    Posted.innerHTML=data["posted"]
+
 
 
     var firstMediaQuery = window.matchMedia('(min-width: 768px');
@@ -145,12 +161,12 @@ async function getNumber(id) {
             right_jobs_main_div.style.display = "none";
             jobs_left.style.display = "flex";
             jobs_buttons.style.display = "flex";
-            
+
             var select = document.getElementById('select'+id)
             select.style.backgroundColor = "white";
-            
+
     };
-    
-    
+
+
     window.onload = getNumber(nul);
 
