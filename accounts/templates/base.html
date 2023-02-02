@@ -178,6 +178,11 @@ input[type=number] {
       + minutes + " minutes, " + seconds + " seconds left.";
       }
 
+      var div = document.getElementById("banner");
+      if (div.style.display === "none") {
+        div.style.display = "block";
+      }
+
       // If the count down is finished, write some text
       if (diff < 0) {
         clearInterval(x);
