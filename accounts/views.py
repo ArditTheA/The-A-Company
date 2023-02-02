@@ -587,6 +587,8 @@ class AppliedJobs(View):
 #########################################################################################
 # ------------------------------Posted Jobs---------------------------------------------#
 #########################################################################################
+def remove_null(list_):
+    return [value for value in list_ if value]
 class MainJobs(View):
     def get(self, request):
         post_id = request.headers.get("text")
@@ -606,6 +608,7 @@ class MainJobs(View):
 
         if query != None:
             t = query.split(" ")
+            t = remove_null(t)
             if query.isspace() != True:
                 searchWord = []
                 if len(t)>1:
