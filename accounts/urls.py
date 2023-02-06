@@ -24,14 +24,14 @@ urlpatterns = [
 
     # JOBS
 
-    path("Jobs/Add", addJob, name="addJob"),
+    path("Jobs/Add", add_JobScreeningQuestion, name="addJob"),
     path("Jobs/Edit/<int:pk>", editJob, name="editJob"),
     path("Jobs/Posted", AjaxHandler.as_view(), name="postedJob"),
     path("Jobs/Applied", AppliedJobs.as_view(), name="appliedJob"),
 
     # MainJobs
-    path("apply/<int:pk>", applyForJob, name="apply"),
-    path("jobs/apply/<int:pk>", applyForJob),
+    path("apply/<int:pk>", applyForJobSQ, name="apply"),
+    path("jobs/apply/<int:pk>", applyForJobSQ),
     path("profile/setup/1/<int:pk>", applyForJob2, name="setupPart2"),
     path("profile/setup/2/<int:pk>", applyForJob3, name="setupPart3"),
 

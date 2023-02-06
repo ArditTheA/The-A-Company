@@ -8,6 +8,75 @@ from ScreeningQuestion.models import *
 from accounts.forms import *
 from accounts.views import *
 
+from .forms import *
+def add_JobScreeningQuestion(request):
+    country_j = Country.objects.all()
+    city_j = City.objects.all()
+    if request.method == 'POST':
+        getCountry = request.POST.get("country_j")
+        getCity = request.POST.get("city_j")
+
+        jobTitle = request.POST.get("job_title")
+        job_form = JobForm(request.POST,request.FILES)
+        job_question_formset = JobQuestionFormSet(request.POST, prefix='job_question')
+        job_settings_formset = JobSettingsFormSet(request.POST, prefix='job_settings')
+        print("-1 job_form-------")
+        print(job_form.is_valid())
+        print("--------")
+        print("--2 jobbQuestiion------")
+        print(job_question_formset.is_valid())
+        print(job_question_formset.errors)
+        print(job_question_formset)
+        print("--------")
+        print("-----3 job settings ------")
+        print(job_settings_formset.is_valid())
+        print("--------")
+
+
+        if job_form.is_valid() and job_question_formset.is_valid():
+            job = job_form.save()
+            for form in job_settings_formset:
+                job_settings = form.save(commit=False)
+                job_settings.job_id = job
+                job_settings.save()
+
+            for form in job_question_formset:
+                job_question = form.save(commit=False)
+                job_question.job_id = job
+                job_question.save()
+
+            CountryJob(getCountry)
+
+            CityJob(getCity, getCountry)
+            subject = "Your job posting for " + jobTitle + " is under review"
+            email_template_applicant = "main/jobs/postJob.txt"
+
+            c = {
+                "email": request.user.email,
+                'domain': 'worki.global',
+                'site_name': 'Worki',
+                'user': request.user,
+                'jobTitle': jobTitle,
+
+            }
+            email = render_to_string(email_template_applicant, c)
+
+            try:
+                send_mail(subject, email, 'hello@worki.global',
+                          [request.user.email], fail_silently=False)
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+
+            return redirect('postedJob')
+
+
+    else:
+        job_form = JobForm()
+        job_question_formset = JobQuestionFormSet(prefix='job_question')
+        job_settings_formset = JobSettingsFormSet(prefix='job_settings')
+
+    return render(request,"Jobs/add.html", {'job_form': job_form, 'job_question_formset': job_question_formset,"job_settings_formset":job_settings_formset})
+
 def getQuestion(request,pk):
     question = JobQuestion.objects.filter(job_id=pk).order_by("-id")
     userId=request.user
@@ -232,9 +301,119 @@ def editScreeningQuestion(request,pk):
 
     return render(request, "Screening-question/Add-job/add-question.html")
 
+def editJob(request,pk):
+    job = Jobs.objects.get(id=pk)
+
+    if request.method=="POST":
+        form = editjob(request.POST or None, request.FILES or None, instance=job)
+        if form.is_valid():
+            form.save()
+            jobbQ = JobQuestion.objects.filter(job_id=pk).order_by("id")
+            count = 1
+            if JobQuestion.objects.filter(job_id=pk).exists():
+                for i in jobbQ:
+
+
+                    getQuestion = "question" + str(count)
+                    getAnstype = "answerType" + str(count)
+                    getIdeal = "idealAnsF" + str(count)
+                    getQualify = "qualify" + str(count)
+                    if request.POST.get(getQuestion) is not None and request.POST.get(getQuestion) != "":
+
+                        job = JobQuestion.objects.get(id=i.id)
+                        job.promp = request.POST.get(getQuestion)
+                        job.job_id = Jobs.objects.get(id=pk)
+                        if request.POST.get(getAnstype) == "YesNo":
+                            job.question_type = "Yes/No"
+                        else:
+                            job.question_type = "Numeric"
+                        job.ideal_answer = request.POST.get(getIdeal)
+                        if request.POST.get(getQualify) is None:
+                            job.qualify = False
+                        else:
+                            job.qualify = True
+                        job.save()
+                    count += 1
+            else:
+                for i in range(3):
+                    getQuestion = "question" + str(count)
+                    getAnstype = "answerType" + str(count)
+                    getIdeal = "idealAnsF" + str(count)
+                    getQualify = "qualify" + str(count)
+                    if request.POST.get(getQuestion) is not None and request.POST.get(getQuestion) != "":
+                        job = JobQuestion()
+                        job.promp = request.POST.get(getQuestion)
+                        job.job_id = Jobs.objects.get(id=pk)
+                        if request.POST.get(getAnstype) == "YesNo":
+                            job.question_type = "Yes/No"
+                        else:
+                            job.question_type = "Numeric"
+                        job.ideal_answer = request.POST.get(getIdeal)
+                        if request.POST.get(getQualify) is None:
+                            job.qualify = False
+                        else:
+                            job.qualify = True
+                        job.save()
+                    count += 1
+
+            if JobSettings.objects.filter(job_id=pk).exists():
+                jobS = JobSettings.objects.get(job_id=pk)
+                jobS.jobSettings = request.POST.get('job-settings')
+                jobS.email = request.POST.get('rejected-email')
+                jobS.save()
+            else:
+                jobS = JobSettings()
+                jobS.jobSettings = request.POST.get('job-settings')
+                jobS.email = request.POST.get('rejected-email')
+                jobS.job_id=Jobs.objects.get(id=pk)
+                jobS.save()
+            return redirect('home')
+
+
+    else:
+        if JobSettings.objects.filter(job_id=pk).exists():
+            question = JobQuestion.objects.filter(job_id=pk).order_by("id")
+            jobSettings = JobSettings.objects.get(job_id=pk)
+            job1promp = question[0].promp
+            job1questionType = question[0].question_type
+            job1ideal = question[0].ideal_answer
+            job1qualify = question[0].qualify
+
+            job2promp = question[1].promp
+            job2questionType = question[1].question_type
+            job2ideal = question[1].ideal_answer
+            job2qualify = question[1].qualify
+
+            job3promp = question[2].promp
+            job3questionType = question[2].question_type
+            job3ideal = question[2].ideal_answer
+            job3qualify = question[2].qualify
+
+            jobEmail = jobSettings.email
+            jobFilter = jobSettings.jobSettings
+
+            form = editjob(request.POST or None,request.FILES or None,  instance=job)
+            country = Country.objects.all()
+            city = City.objects.all()
+            des = job.description
+            des = des.replace('<br />', '\n')
+            return render(request, "Jobs/edit.html", dict(form=form,country=country,city=city,des=des,
+                        jobEmail=jobEmail,jobFilter=jobFilter,pk=pk,
+                        job1promp=job1promp,job1questionType=job1questionType,job1ideal=job1ideal,job1qualify=job1qualify,
+                        job2promp=job2promp,job2questionType=job2questionType,job2ideal=job2ideal,job2qualify=job2qualify,
+                        job3promp=job3promp,job3questionType=job3questionType,job3ideal=job3ideal,job3qualify=job3qualify))
+        else:
+            form = editjob(request.POST or None, request.FILES or None, instance=job)
+            country = Country.objects.all()
+            city = City.objects.all()
+            des = job.description
+            des = des.replace('<br />', '\n')
+            return render(request, "Jobs/edit.html", dict(form=form, country=country, city=city, des=des,pk=pk))
+    return render(request, "Jobs/404.html")
+
 
 @login_required
-def editJob(request, pk):
+def editJobs(request, pk):
     if Jobs.objects.filter(id=pk).exists():
         job = Jobs.objects.get(id=pk)
         jobUs = job.user_id
@@ -299,7 +478,7 @@ def applyForJobSQ(request, pk):
     dataa = datetime.now()
 
     form = setupProfile(request.POST or None, instance=userId)
-    question = JobQuestion.objects.filter(job_id = job).order_by("-id")
+    question = JobQuestion.objects.filter(job_id = job).order_by("id")
     profCountry = request.POST.get("country")
     answerUS = request.POST.get("answer")
 

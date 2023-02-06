@@ -5,6 +5,5 @@ from ScreeningQuestion.models import *
 
 
 
-@admin.register(JobSettings)
-class JobSettignsAdmin(admin.ModelAdmin):
-    list_filter = ("jobSettings","job_id")
+admin.site.register(JobSettings)
+admin.site.register(JobQuestion)

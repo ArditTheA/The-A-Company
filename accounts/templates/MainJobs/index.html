@@ -108,7 +108,59 @@
     <div class="experience-first-row NoResult" style="">No results were found</div>
 
 {% endif %}
+<script>
+    // Set the target date and time
+    var targetDate = new Date("2023-03-01T00:00:00");
 
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+      // Get the current date and time
+      var currentDate = new Date().getTime();
+
+      // Calculate the difference between the current and target dates in milliseconds
+      var diff = targetDate - currentDate;
+
+      // Time calculations for days, hours, minutes and seconds
+      var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+
+      // Display the result
+      if (days < 2) {
+        document.getElementById("countdown").innerHTML = days + " day, " + hours + " hours, "
+      + minutes + " minutes, " + seconds + " seconds " + "left.";
+      }
+      if (hours < 2) {
+        document.getElementById("countdown").innerHTML = days + " days, " + hours + " hour, "
+      + minutes + " minutes, " + seconds + " seconds " + "left.";
+      }
+      if (minutes < 2) {
+        document.getElementById("countdown").innerHTML = days + " days, " + hours + " hours, "
+      + minutes + " minute, " + seconds + " seconds " + "left.";
+      }
+      if (seconds < 2) {
+        document.getElementById("countdown").innerHTML = days + " days, " + hours + " hours, "
+      + minutes + " minutes, " + seconds + " second " + "left.";
+      }
+      else{
+        document.getElementById("countdown").innerHTML = days + " days, " + hours + " hours, "
+      + minutes + " minutes, " + seconds + " seconds left.";
+      }
+
+      var div = document.getElementById("banner");
+      if (div.style.display === "none") {
+        div.style.display = "block";
+      }
+
+      // If the count down is finished, write some text
+      if (diff < 0) {
+        clearInterval(x);
+        document.getElementById("countdown").innerHTML = "EXPIRED";
+      }
+    });
+  </script>
 <script src="{% static 'js/Ajax/right-jobs-ajax.js'%}"></script>
 
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>

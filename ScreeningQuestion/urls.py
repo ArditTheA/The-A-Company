@@ -10,6 +10,6 @@ urlpatterns = [
 
     path("SQ/<int:pk>/",getQuestion,name="applyQ"),
     path("SQ/test/<int:pk>",getUserAnswer,name="ttest"),
-
+    # path("AddJob",add_JobScreeningQuestion,name="testSQ"),
 ]
 
