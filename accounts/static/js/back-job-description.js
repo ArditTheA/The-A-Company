@@ -1,6 +1,7 @@
 var back_button = document.querySelector('.back-button-description');
 var next_none = document.querySelectorAll('.next-none');
 var next_Button_2 = document.querySelector('.next-button');
+var next_Button_desc = document.querySelector('.second-next-none-button');
 var second_next_none = document.querySelectorAll('.second-next-none');
 var main_conatiner = document.querySelector('.register-form');
 var back_button_additional_feauters = document.querySelector(".back-button-additional-feauters");
@@ -36,6 +37,7 @@ for (let i = 0; i < next_none.length; i++) {
         third_next_none_buttons.style.display = "none";
 
         main_conatiner.style.width = "100%";
+        next_Button_desc.style.display = "flex";
 
         next_Button_2.removeAttribute("href");
 

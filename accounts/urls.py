@@ -24,7 +24,7 @@ urlpatterns = [
 
     # JOBS
 
-    path("Jobs/Add", addJob, name="addJob"),
+    path("Jobs/Add", add_JobScreeningQuestion, name="addJob"),
     path("Jobs/Edit/<int:pk>", editJob, name="editJob"),
     path("Jobs/Posted", AjaxHandler.as_view(), name="postedJob"),
     path("Jobs/Applied", AppliedJobs.as_view(), name="appliedJob"),
