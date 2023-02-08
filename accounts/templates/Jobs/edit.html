@@ -967,6 +967,13 @@
       </div>
    </body>
    <script src="{% static 'js/CheckFormEdit.js'%}"></script>
+<script>
+  document.querySelector("form").addEventListener("keypress", function(event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+    }
+  });
+</script>
 
    <script>
    function clickAndDisable(link) {

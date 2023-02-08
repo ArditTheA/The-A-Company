@@ -12,6 +12,7 @@ from .forms import *
 def add_JobScreeningQuestion(request):
     country_j = Country.objects.all()
     city_j = City.objects.all()
+    uid = request.user
     if request.method == 'POST':
         getCountry = request.POST.get("country_j")
         getCity = request.POST.get("city_j")
@@ -20,6 +21,7 @@ def add_JobScreeningQuestion(request):
         job_form = JobForm(request.POST,request.FILES)
         job_question_formset = JobQuestionFormSet(request.POST, prefix='job_question')
         job_settings_formset = JobSettingsFormSet(request.POST, prefix='job_settings')
+        job_form.initial["user_id"] = uid
         print("-1 job_form-------")
         print(job_form.is_valid())
         print("--------")
@@ -34,7 +36,9 @@ def add_JobScreeningQuestion(request):
 
 
         if job_form.is_valid() and job_question_formset.is_valid():
-            job = job_form.save()
+            job = job_form.save(commit=False)
+            job.user_id = request.user
+            job.save()
             for form in job_settings_formset:
                 job_settings = form.save(commit=False)
                 job_settings.job_id = job

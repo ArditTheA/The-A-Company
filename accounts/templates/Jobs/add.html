@@ -14,9 +14,10 @@
       <link rel="stylesheet" href="{% static 'css/back-next-submit-buttons.css'%}">
       <style>
          @import url('https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500&display=swap');
-            .idealAnsF1, .idealAnsF2, .idealAnsF3, .select-width, .disable-inputs {
+            .idealAnsF0,.idealAnsF1, .idealAnsF2, .idealAnsF3, .select-width, .disable-inputs, .addedInput {
     border-radius: 40px;
     width:240px;
+    height:40px;
 }
 .rejection-letter {
     min-height: 250px;
@@ -559,19 +560,19 @@
          <div class="form-group first-form-group">
             <label class="disabled margin-top-bottom next-none margin-top-job-title">Job title</label>
             {{job_form.job_title}}
-            <label class="margin-top-bottom margin-left " id="JtitleErr" style="display: none;color:red;">This field is required</label>
+            <label class="next-none margin-top-bottom margin-left " id="JtitleErr" style="display: none;color:red;">This field is required</label>
          </div>
          <div class="form-group" style="margin: 0;">
             <label class="margin-top-bottom next-none">Company
             </label>
             {{job_form.company}}
-            <label class="margin-top-bottom margin-left " id="CompErr" style="display: none;color:red;">This field is required</label>
+            <label class="next-none margin-top-bottom margin-left " id="CompErr" style="display: none;color:red;">This field is required</label>
          </div>
          <div class="form-group">
             <label class="margin-top-bottom margin-left next-none">Country</label>
             <div>
                {{job_form.country_j}}
-               <label class="margin-top-bottom margin-left " id="CountryErr" style="display: none;color:red;">This field is required</label>
+               <label class="next-none margin-top-bottom margin-left " id="CountryErr" style="display: none;color:red;">This field is required</label>
                <datalist id="country_jList">
                   {% for  i in country_j %}
                   <option>{{i}}</option>
@@ -582,7 +583,7 @@
          <div class="form-group" style="margin: 0;">
             <label class="margin-top-bottom margin-left next-none">City</label>
             {{job_form.city_j}}
-            <label class="margin-top-bottom margin-left " id="CityErr" style="display: none;color:red;">This field is required</label>
+            <label class="next-none margin-top-bottom margin-left " id="CityErr" style="display: none;color:red;">This field is required</label>
             <datalist id="city_jlist">
                {% for i in city_j%}
                <option>{{i.name}}</option>
@@ -592,10 +593,10 @@
          <div class="form-group" style="margin: 0;">
             <label class="margin-top-bottom margin-left next-none">Salary per hour</label>
             {{job_form.salary_per_hour}}
-            <label class="margin-top-bottom margin-left " id="SalErr" style="display: none;color:red;">This field is required</label>
+            <label class="next-none margin-top-bottom margin-left " id="SalErr" style="display: none;color:red;">This field is required</label>
          </div>
          <div class="form-group" style="margin: 0;">
-            <label class="margin-top-bottom margin-left next-none" for="exampleFormControlSelect2">Type of work</label>
+            <label class="margin-top-bottom margin-left next-none" for="id_type_of_work">Type of work</label>
             <select name="type_of_work" class="next-none" required="" id="id_type_of_work" onchange="checkForm()">
                {% if form.type_of_work == "Full Time" %}
                <option value="Full Time" selected >Full Time</option>
@@ -608,40 +609,40 @@
                <option value="Part Time">Part Time</option>
                {% endif %}
             </select>
-            <label class="margin-top-bottom margin-left " id="TypeErr" style="display: none;color:red;">This field is required</label>
+            <label class="next-none margin-top-bottom margin-left " id="TypeErr" style="display: none;color:red;">This field is required</label>
          </div>
          <div class="form-group" style="margin: 0;">
             <label class="margin-top-bottom margin-left next-none">Hours per week</label>
             <input type="number"  name="hour_per_work" placeholder="0" onchange="checkForm()" class="name-input mutual-stats font-fam next-none" required="" id="id_hour_per_work" value="{{job_form.hour_per_work.value}}">
-            <label class="margin-top-bottom margin-left " id="HourErr" style="display: none;color:red;">This field is required</label>
+            <label class="next-none margin-top-bottom margin-left " id="HourErr" style="display: none;color:red;">This field is required</label>
          </div>
          <div class="form-group" style="margin: 0;">
             <label class="margin-top-bottom margin-left next-none">Start date </label>
             <input id="id_start_date" class="next-none" name="start_date" onchange="checkForm();checkStartDate();" value="{{job_form.start_date.value|date:'d/m/Y'}}" type="tel" maxlength="10" placeholder="dd/mm/yyyy" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
             <label class="margin-top-bottom margin-left " id="sdateError" style="display: none;color:red;">Date not valid</label>
-            <label class="margin-top-bottom margin-left" id="SDErr" style="display: none;color:red;">This field is required</label>
+            <label class="next-none margin-top-bottom margin-left" id="SDErr" style="display: none;color:red;">This field is required</label>
          </div>
          <div class="form-group" style="margin: 0;">
             <label class="margin-top-bottom margin-left next-none">End date </label>
             <input id="id_end_date" class="next-none" name="end_date"  onchange="checkForm();checkEndDate();" value="{{job_form.end_date.value|date:'d/m/Y'}}" type="tel" maxlength="10" placeholder="dd/mm/yyyy" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
             <label class="margin-top-bottom margin-left " id="edateError" style="display: none;color:red;">Date not valid</label>
-            <label class="margin-top-bottom margin-left " id="EdErr" style="display: none;color:red;">This field is required</label>
+            <label class="next-none margin-top-bottom margin-left " id="EdErr" style="display: none;color:red;">This field is required</label>
          </div>
          <div class="form-group" style="margin: 0;">
-            <label class="margin-top-bottom margin-left next-none" for="exampleFormControlSelect2">Housing</label>
+            <label class="margin-top-bottom margin-left next-none" for="id_housing">Housing</label>
             <select name="housing" class="next-none" required="" onchange="checkForm()" id="id_housing" >
                <option value="Provided" >Provided</option>
                <option value="Not provided">Not provided</option>
             </select>
-            <label class="margin-top-bottom margin-left " id="HousingErr" style="display: none;color:red;">This field is required</label>
+            <label class="next-none margin-top-bottom margin-left " id="HousingErr" style="display: none;color:red;">This field is required</label>
          </div>
          <div class="form-group" style="margin: 0;">
             <label class="margin-top-bottom margin-left next-none">Housing cost per week</label>
             {{job_form.housing_cost_per_week}}
-            <label class="margin-top-bottom margin-left " id="HousingCoErr" style="display: none;color:red;">This field is required</label>
+            <label class="next-none margin-top-bottom margin-left " id="HousingCoErr" style="display: none;color:red;">This field is required</label>
          </div>
          <div class="form-group">
-            <label class="margin-top-bottom margin-left next-none" for="exampleFormControlSelect2">Program</label>
+            <label class="margin-top-bottom margin-left next-none" for="id_program">Program</label>
             <select name="program" class="next-none" onchange="checkForm()" required="" id="id_program">
                <option value=""></option>
 
@@ -651,12 +652,12 @@
                <option value="Work and Travel">Work and Travel</option>
 
             </select>
-            <label class="margin-top-bottom margin-left " id="ProgErr" style="display: none;color:red;">This field is required</label>
+            <label class="next-none margin-top-bottom margin-left " id="ProgErr" style="display: none;color:red;">This field is required</label>
          </div>
          <div class="form-group" style="margin: 0;">
             <label class="margin-top-bottom margin-left next-none">Program Cost</label>
             {{job_form.programCost}}
-            <label class="margin-top-bottom margin-left " id="ProgCoErr" style="display: none;color:red;">This field is required</label>
+            <label class="next-none margin-top-bottom margin-left " id="ProgCoErr" style="display: none;color:red;">This field is required</label>
          </div>
          <div class="margin-top-bottom margin-left-bottom next-none" >Logo</div>
          <div class="form-group upload next-none" style="margin: 0;">
@@ -669,7 +670,7 @@
                </div>
             </label>
             <input type="file" value="{{job_form.logo.url}}" name="logo" accept="image/*"  onchange="checkForm()" id="id_logo"  style="display:none;" >
-            <label class="margin-top-bottom margin-left " id="ImgErr" style="display: none;color:red;">This field is required</label>
+            <label class="next-none margin-top-bottom margin-left " id="ImgErr" style="display: none;color:red;">This field is required</label>
          </div>
          <div style="width: 100%; display: flex; justify-content: space-between;">
             <a href="{% url 'postedJob'%}"  class="btn back-button next-none" style="color: #1877F2;">Back</a>
@@ -726,7 +727,7 @@
              <div class="under-row">
              <div class="answer-type-select">
              <label class="mutual-color answers-margin">Answer type: </label>
-             <select onchange="changeAnsType(0)" class="form-control select-width" id="id_job_question-0-question_type" name="job_question-0-question_type">
+             <select onchange="changeAnsType(0)" class="form-control select-width"  id="id_job_question-0-question_type" name="job_question-0-question_type">
 
                      <option class="first-option" style="display: none;"></option>
                      <option value="Yes/No">Yes / No</option>
@@ -736,9 +737,9 @@
              </div>
              <div class="ideal-answer-select" style="">
              <label for="id_job_question-0-ideal_answer" class="width-labels mutual-color answers-margin">Ideal answer:</label>
-             <div class="idealAns0 idealAnsHeight" id="idealAns0">
+             <div class="idealAns1 idealAnsHeight" id="idealAns0">
 
-                    <input class="disable-inputs" name="job_question-0-ideal_answer"   id="id_job_question-0-ideal_answer" type="number" >
+                    <input class="disable-inputs" style="border-radius:40px;width:240px;" id="id_job_question-0-ideal_answer" name="job_question-0-ideal_answer" type="number" disabled>
 
              </div>
              </div>
@@ -746,7 +747,7 @@
              <div class="must-have-qualification-div" style="display: flex; align-items: flex-end; justify-content: flex-end;">
              <label style="" class="must-have-qualification-label screening-questions-mutual-color mutual-color" for="id_job_question-0-qualify">
 
-                              <input class="must-have-qualification-input" name="job_question-0-qualify" id="id_ob_question-0-qualify" type="checkbox">Must-have qualification</label>
+                              <input class="must-have-qualification-input" name="job_question-0-qualify" id="id_job_question-0-qualify" type="checkbox">Must-have qualification</label>
 
 
              </div>
@@ -766,7 +767,7 @@
              <div class="under-row">
              <div class="answer-type-select">
                  <label style="" class="mutual-color answers-margin">Answer type: </label>
-             <select onchange="changeAnsType(1)" class="form-control select-width" id="job_question-1-question_type" name="id_job_question-1-question_type">
+             <select onchange="changeAnsType(1)" class="form-control select-width" id="id_job_question-1-question_type" name="job_question-1-question_type">
 
              <option class="first-option" style="display: none;"></option>
              <option value="Yes/No">Yes / No</option>
@@ -776,9 +777,9 @@
              </div>
              <div class="ideal-answer-select">
              <label class="width-labels mutual-color answers-margin">Ideal answer:</label>
-             <div class="idealAns1 idealAnsHeight" id="idealAns1">
+             <div class="idealAns2 idealAnsHeight" id="idealAns1">
 
-             <input class="disable-inputs" name="job_question-1-ideal_answer"   id="id_job_question-1-ideal_answer"  type="number" >
+             <input class="disable-inputs" style="border-radius:40px;width:240px;" id="id_job_question-1-ideal_answer" name="job_question-1-ideal_answer" type="number" disabled>
 
              </div>
              </div>
@@ -797,7 +798,7 @@
 
              <!--    Question 3-->
              <div class="form-group-screening-questions margin-between-question-and-answer">
-             <label class="mutual-color questions-application-letter-margin" for="question3" style="color: #858585;">Question 3</label>
+             <label class="mutual-color questions-application-letter-margin" for="id_job_question-2-promp" style="color: #858585;">Question 3</label>
              <!-- <input class="form-control" maxlength="200" id="question3" name="question3" type="text" placeholder="Question 3"> -->
              <textarea style="" id="id_job_question-2-promp" name="job_question-2-promp" class="textarea-question textarea-color form-control" placeholder="" name="" id="" rows="4">{{job3promp}}</textarea>
              <div class="row">
@@ -814,9 +815,9 @@
              </div>
              <div class="ideal-answer-select">
              <label class="width-labels mutual-color answers-margin" style="">Ideal answer:</label>
-             <div class="idealAns2 idealAnsHeight" id="idealAns2" style="">
+             <div class="idealAns3 idealAnsHeight" id="idealAns2" style="">
 
-                <input class="disable-inputs"name="job_question-2-ideal_answer" name="idealAnsF3" id="id_job_question-2-ideal_answer"  type="number">
+                <input class="disable-inputs" style="border-radius:40px;width:240px;" id="id_job_question-2-ideal_answer" name="job_question-2-ideal_answer" type="number" disabled>
 
              </div>
              </div>
@@ -863,7 +864,52 @@
          </form>
          </div>
       </div>
+
    </body>
+
+   <script>
+
+</script>
+
+<script>
+    function changeAnsType(id){
+         var question_id = id;
+         var choice = "id_job_question-"+question_id+"-question_type";
+         var selected = document.getElementById(choice).value;
+         var getName = "#idealAns"+question_id;
+         var setName = "job_question-"+question_id+"-ideal_answer";
+         var setId = "id_job_question-"+question_id+"-ideal_answer";
+         var input_text_disabled = "id_job_question-"+question_id+"-ideal_answer";
+         var c = parseInt(question_id)
+        var d = 1;
+        var a = c+d;
+         var setClass = "idealAnsF"+a;
+
+
+         if(selected == "Yes/No") {
+            console.log(getName);
+
+            var x = $('<select class="form-control '+setClass+'" id='+setId+' name='+setName+' ><option>Yes</option><option>No</option></select>');
+            console.log(x);
+            $(getName).append(x);
+            console.log($(getName).append(x));
+            $('input[name='+setName+']').css("display", "none");
+            $('input[id='+input_text_disabled+']').css("display", "none");
+
+
+         }else if(selected == "Numeric") {
+
+            $('select[id='+setId+']').css("display", "none");
+              $('input[id='+input_text_disabled+']').css("display", "none");
+              var y = $('<input  type="number" name="'+setName+'" class="form-control '+setClass+'" id="'+setId+'">');
+              $(getName).append(y);
+
+         }
+        }
+
+
+
+  </script>
    <script src="{% static 'js/CheckFormEdit.js'%}"></script>
 <!--   <script src="{% static 'js/second-next.js'%}"></script>-->
 
@@ -874,53 +920,7 @@
      }
    }
 </script>
-   <script>
-    function changeAnsType(id){
-         var question_id = id;
-         var choice = "ans_type"+question_id;
-         var selected = document.getElementById(choice).value;
-         var getName = "#idealAns"+question_id;
-         var setName = "job_question-"+question_id+"-qualify";
-         var setId = "id_job_question-"+question_id+"-qualify";
-         var input_text_disabled = "job_question-"+question_id+"-qualify";
 
-
-
-         if(selected == "Yes/No") {
-            console.log(getName)
-
-            var x = $('<select class="form-control '+setName+'" id='+setId+' name='+setName+'><option>Yes</option><option>No</option></select>');
-
-            $(getName).append(x);
-            $('input[name='+setName+']').css("display", "none");
-            $('input[name='+input_text_disabled+']').css("display", "none");
-
-            // $(getName).css("display", "none");
-
-          //   $('<input type="number" name="'+setName+'" class="form-control '+setName+'" id="'+setId+'">').css("display", "none");
-
-         }
-         else if(selected == "Numeric") {
-
-          var y = $('<input type="number" name="'+setName+'" class="form-control '+setName+'" id="'+setId+'">');
-
-          $(getName).append(y);
-          $('select[name='+setName+']').css("display", "none");
-
-          $('input[id='+input_text_disabled+']').css("display", "none");
-
-            // $(getName).append($('<input type="number" name="'+setName+'" class="form-control '+setName+'" id="'+setId+'">'));
-
-
-            // $('select[name="idealAnsF"]').css("display", "none");
-            // $(".yesNoClass").css("display", "none");
-
-         }
-        }
-
-
-
-  </script>
     <script>
       function Post(){
 

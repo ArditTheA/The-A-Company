@@ -1,3 +1,48 @@
+   function secondNone(){
+       var next_Button = document.querySelector('.next-button');
+        var next_none = document.querySelectorAll('.next-none');
+        var second_next_none = document.querySelectorAll('.second-next-none');
+        var main_conatiner = document.querySelector('.register-form');
+
+        for (let i = 0; i < next_none.length; i++) {
+                second_next_none[i].style.display = "block";
+
+        };
+
+
+   }
+   function thirdNone(){
+        var main_conatiner = document.querySelector('.register-form');
+        var third_next_none = document.querySelectorAll(".third-next-none");
+        var third_next_none_buttons = document.querySelector(".third-next-none-buttons");
+        var second_next_none = document.querySelectorAll('.second-next-none');
+        var second_next_button = document.querySelector(".second-next-button");
+        var buttons = document.querySelector(".back-submit-buttons")
+        for (let i = 0; i < second_next_none.length; i++) {
+
+
+        second_next_none[i].style.display = "none";
+        buttons.style.display ="none";
+        third_next_none[i].style.display = "block";
+
+        third_next_none_buttons.style.display = "flex";
+
+        main_conatiner.style.width = "450px";
+        }
+   }
+   function forthNone(){
+
+        var third_next_none = document.querySelectorAll(".third-next-none");
+        for(let i=0;i<third_next_none.length;i++){
+            third_next_none[i].style.display = "none"
+        }
+
+        third_next_none_buttons.style.display = "none";
+
+        fourth_next_none.style.display = "flex";
+
+        main_conatiner.style.width = "100%";
+   }
 function checkForm(){
     var job_title=document.getElementById("id_job_title").value
     var company = document.getElementById("id_company").value
@@ -164,7 +209,8 @@ function checkFormButton(){
 
             document.getElementById("CountryErr").style.display = "none";
             document.getElementById("id_country_j").style.borderColor = "#9E9E9E";
-        }else{
+        }
+        else{
                     window.scrollTo({ top: 0, behavior: 'smooth' });
 
             document.getElementById("CountryErr").style.display = "block";
@@ -173,7 +219,8 @@ function checkFormButton(){
         if(city_j != "" && onlySpaces(city_j)){
             document.getElementById("CityErr").style.display = "none";
             document.getElementById("id_city_j").style.borderColor = "#9E9E9E";
-        }else{
+        }
+        else{
                     window.scrollTo({ top: 0, behavior: 'smooth' });
 
             document.getElementById("CityErr").style.display = "block";
@@ -182,7 +229,8 @@ function checkFormButton(){
         if(salary_per_hour != ""){
             document.getElementById("SalErr").style.display = "none";
             document.getElementById("id_salary_per_hour").style.borderColor = "#9E9E9E";
-        }else{
+        }
+        else{
                     window.scrollTo({ top: 0, behavior: 'smooth' });
 
             document.getElementById("SalErr").style.display = "block";
@@ -191,49 +239,56 @@ function checkFormButton(){
         if(type_of_work != ""){
             document.getElementById("TypeErr").style.display = "none";
             document.getElementById("id_type_of_work").style.borderColor = "#9E9E9E";
-        }else{
+        }
+        else{
             document.getElementById("TypeErr").style.display = "block";
             document.getElementById("id_type_of_work").style.borderColor = "red";
         }
         if(hour_per_work != ""){
             document.getElementById("HourErr").style.display = "none";
             document.getElementById("id_hour_per_work").style.borderColor = "#9E9E9E";
-        }else{
+        }
+        else{
             document.getElementById("HourErr").style.display = "block";
             document.getElementById("id_hour_per_work").style.borderColor = "red";
         }
         if(housing != ""){
             document.getElementById("HousingErr").style.display = "none";
             document.getElementById("id_housing").style.borderColor = "#9E9E9E";
-        }else{
+        }
+        else{
             document.getElementById("HousingErr").style.display = "block";
             document.getElementById("id_housing").style.borderColor = "red";
         }
         if(housing_cost_per_week != ""){
             document.getElementById("HousingCoErr").style.display = "none";
             document.getElementById("id_housing_cost_per_week").style.borderColor = "#9E9E9E";
-        }else{
+        }
+        else{
             document.getElementById("HousingCoErr").style.display = "block";
             document.getElementById("id_housing_cost_per_week").style.borderColor = "red";
         }
         if(program != ""){
             document.getElementById("ProgErr").style.display = "none";
             document.getElementById("id_program").style.borderColor = "#9E9E9E";
-        }else{
+        }
+        else{
             document.getElementById("ProgErr").style.display = "block";
             document.getElementById("id_program").style.borderColor = "red";
         }
         if(programCost != ""){
             document.getElementById("ProgCoErr").style.display = "none";
             document.getElementById("id_programCost").style.borderColor = "#9E9E9E";
-        }else{
+        }
+        else{
             document.getElementById("ProgCoErr").style.display = "block";
             document.getElementById("id_programCost").style.borderColor = "red";
         }
         if(id_logo != ""){
             document.getElementById("ImgErr").style.display = "none";
             document.getElementById("logos_id").style.borderColor = "#9E9E9E";
-        }else{
+        }
+        else{
             document.getElementById("ImgErr").style.display = "block";
             document.getElementById("logos_id").style.border = "0.5px solid red";
         }
@@ -248,27 +303,23 @@ function checkFormButton(){
         if(end_date !=""){
             document.getElementById("EdErr").style.display = "none";
             document.getElementById("id_end_date").style.borderColor = "#9E9E9E";
-        }else{
+        }
+        else{
             document.getElementById("EdErr").style.display = "block";
             document.getElementById("id_end_date").style.borderColor = "red";
         }
 }
-function thirdNone(){
-        var main_conatiner = document.querySelector('.register-form');
-        var third_next_none = document.querySelectorAll(".third-next-none");
-        var third_next_none_buttons = document.querySelector(".third-next-none-buttons");
-        var second_next_none = document.querySelectorAll('.second-next-none');
-        var second_next_button = document.querySelector(".second-next-button");
-        var buttons = document.querySelector(".back-submit-buttons")
-        for (let i = 0; i < second_next_none.length; i++) {
 
+   var second_next_button = document.querySelector(".second-next-button");
 
-        second_next_none[i].style.display = "none";
-        buttons.style.display ="none";
-        third_next_none[i].style.display = "block";
+     second_next_button.addEventListener('click', function() {
 
-        third_next_none_buttons.style.display = "flex";
+        thirdNone();
 
-        main_conatiner.style.width = "450px";
-        }
-   }
+    });
+    var third_next_button = document.querySelector(".third-next-button");
+    var fourth_next_none = document.querySelector(".fourth-next-none");
+
+    third_next_button.addEventListener('click', function() {
+        forthNone();
+    });
