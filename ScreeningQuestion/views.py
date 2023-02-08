@@ -257,16 +257,24 @@ def editScreeningQuestion(request,pk):
         job1questionType = question[0].question_type
         job1ideal = question[0].ideal_answer
         job1qualify = question[0].qualify
-
-        job2promp = question[1].promp
-        job2questionType = question[1].question_type
-        job2ideal = question[1].ideal_answer
-        job2qualify = question[1].qualify
-
-        job3promp = question[2].promp
-        job3questionType = question[2].question_type
-        job3ideal = question[2].ideal_answer
-        job3qualify = question[2].qualify
+        job2promp = ""
+        job2questionType = ""
+        job2ideal = ""
+        job2qualify = ""
+        job3promp = ""
+        job3questionType = ""
+        job3ideal = ""
+        job3qualify = ""
+        if len(question) == 1:
+            job2promp = question[1].promp
+            job2questionType = question[1].question_type
+            job2ideal = question[1].ideal_answer
+            job2qualify = question[1].qualify
+        if len(question) == 2:
+            job3promp = question[2].promp
+            job3questionType = question[2].question_type
+            job3ideal = question[2].ideal_answer
+            job3qualify = question[2].qualify
 
         jobEmail = jobSettings.email
         jobFilter = jobSettings.jobSettings
@@ -392,12 +400,13 @@ def editJob(request,pk):
             job3questionType=""
             job3ideal=""
             job3qualify=""
-            if len(question)>1:
+            if len(question)==2:
+                print(len(question))
                 job2promp = question[1].promp
                 job2questionType = question[1].question_type
                 job2ideal = question[1].ideal_answer
                 job2qualify = question[1].qualify
-
+            if len(question) >= 3:
                 job3promp = question[2].promp
                 job3questionType = question[2].question_type
                 job3ideal = question[2].ideal_answer
