@@ -8,7 +8,6 @@ var x1 = document.querySelectorAll(".dropdown-content").innerText;
 var subphases = document.querySelectorAll("dropdown-content");
 
 
-var phase ="Samia";
 const ct = [];
 $(".phaseButton").click(function(event){
     var jobid={{jpk}};

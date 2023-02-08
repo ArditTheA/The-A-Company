@@ -32,6 +32,7 @@ urlpatterns = [
     # MainJobs
     path("apply/<int:pk>", applyForJob, name="apply"),
     path("jobs/apply/<int:pk>", applyForJob),
+    path("jobs/apply/test/<int:pk>", applyForJobSQ),
     path("profile/setup/1/<int:pk>", applyForJob2, name="setupPart2"),
     path("profile/setup/2/<int:pk>", applyForJob3, name="setupPart3"),
 
