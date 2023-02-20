@@ -96,13 +96,21 @@
         if(data["country"]== "USA"){
         var salary = document.getElementById("salary")
         salary.innerHTML ="$"+ data ["salary"]+"/hour"
-        document.getElementById("totsalary").innerHTML="$"+tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" total income";
+        if(data["tips"]){
+            document.getElementById("totsalary").innerHTML="$"+tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" total income / +tips";
 
+            }else{
+            document.getElementById("totsalary").innerHTML="$"+tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" total income ";
+            }
         }else{
             var salary = document.getElementById("salary")
         salary.innerHTML ="€"+ data ["salary"]+"/hour"
-        document.getElementById("totsalary").innerHTML="€"+tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" total income";
+        if(data["tips"]){
+        document.getElementById("totsalary").innerHTML="€"+tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" total income / +tips";
+        }else{
+                document.getElementById("totsalary").innerHTML="€"+tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" total income";
 
+        }
         }
         var typeOfWork = document.getElementById('typeOfWork')
         typeOfWork.innerHTML = data["typeOfWork"]+" "

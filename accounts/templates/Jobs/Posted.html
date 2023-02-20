@@ -121,14 +121,9 @@
         <a href="{% url 'addJob'%}"><img title="Add a Job" class="plus-icon-jobs" src="{% static 'img/add.png'%}"
                 alt=""></a>
     </div>
-    <div class="mutual-padding-of-div">
-        <input name="submit" type="submit" class="applied-button-posted-jobs" value="Applied"
-            onClick="location.href ='{% url 'appliedJob' %}'">
 
-
-    </div>
     <div class="mutual-padding-of-div">
-        <input name="submit" type="submit" class="posted-button-posted-jobs  " value="Posted"
+        <input name="submit" type="submit" class="applied-button-posted-jobs" value="Posted"
             onClick="location.href ='{% url 'postedJob' %}'">
     </div>
 </div>
@@ -136,7 +131,7 @@
 {% if check %}
 <div class="jobs-main-div" style="display: flex; justify-content: space-between; width: 100%;">
 
-    <div class="jobs-left applied-jobs-left" style="margin-top: 0;">
+    <div class="jobs-left applied-jobs-left" style="margin-top: 0;height:auto !important;">
         {% for i in job %}
 
         <div onclick="getNumber({{i.id}})" class="jobs-rows-img second-jobs pixel" id="select{{i.id}}">

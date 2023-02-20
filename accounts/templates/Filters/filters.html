@@ -257,7 +257,7 @@
       <select style="color: #65676B; border: none; font-size: 18px; padding-top: 0; padding-bottom: 0;
           padding: 8px 30px; padding-left: 20px; " class="form-select" name="Location"
         onchange="this.form.submit()" id="second_form_select">
-        <option class="first-input-option">Location</option>
+        <option class="first-input-option" >Countries</option>
       </select>
       <div class="" style="display: flex; align-items: center;">
         <img class="icon" src="{% static 'img/dropdown-icon.png' %}" alt="">
@@ -322,13 +322,10 @@
       {%else%}
 
       <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
-           onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="Today" /> Today</label>
+           onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="Newest to oldest" /> Newest to oldest</label>
       <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
-         onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="Last Week" /> Last
-        Week</label>
-      <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
-          onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="Last Month" /> Last
-        Month</label>
+         onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="Oldest to newest" /> Oldest to newest</label>
+
       {% endif%}
 
     </div>
@@ -367,8 +364,8 @@ function SearchFunction() {
   };
   var locationFunction = function () {
     x = document.getElementById("selLocation");
-    x.options[x.selectedIndex].text = "Location";
-    x.options[x.selectedIndex].value = "Location";
+    x.options[x.selectedIndex].text = "Countries";
+    x.options[x.selectedIndex].value = "Countries";
   };
   var salaryFunction = function () {
     x = document.getElementById("selSalary");

@@ -23,6 +23,7 @@ from django.utils import timezone
 import itertools
 from filters.models import Search, UserCountry, UserCity, UserUni
 
+import locale
 today = timezone.now
 
 
@@ -440,7 +441,8 @@ class AjaxHandler(View):
 
                 appNo = 0
                 appNo = Jobs.objects.get(id=post_id).applicant.count()
-
+                locale.setlocale(locale.LC_ALL, '')  # set the locale to the user's default
+                programCost = locale.format("%d", programCost, grouping=True)
 
                 return JsonResponse(
                     dict(description=description, title=title, city_j=city_j, country=country, start_date=start_date,
@@ -457,7 +459,7 @@ class AjaxHandler(View):
 
 
 
-        return render(request, "Jobs/Posted.html", dict(job=job, check=check))
+        return render(request, "Jobs/Posted.html", dict(job=job, check=check,jpk=1))
 
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
@@ -514,7 +516,8 @@ class AppliedJobs(View):
                 posted = format(posted, "%d/%m/%Y")
                 applied = format(applied, "%d/%m/%Y")
                 appNo = Jobs.objects.get(id=post_id).applicant.count()
-
+                locale.setlocale(locale.LC_ALL, '')  # set the locale to the user's default
+                programCost = locale.format("%d", programCost, grouping=True)
                 return JsonResponse(
                     dict(description=description, title=title, city_j=city_j, country=country, start_date=start_date,
                          salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
@@ -655,7 +658,7 @@ class MainJobs(View):
             program = job.values_list("program", flat=True)
             title = job.values_list("job_title", flat=True)
             comp = job.values_list("company", flat=True)
-            city_j = job.values_list("city_j", flat=True)
+            country_j = job.values_list("country_j", flat=True)
             salary = job.values_list("salary_per_hour", flat=True)
 
             for i in program:
@@ -667,7 +670,7 @@ class MainJobs(View):
             for i in comp:
                 if i not in sortCompany:
                     sortCompany.append(i)
-            cityName=list(dict.fromkeys(city_j))
+            cityName=list(dict.fromkeys(country_j))
 
 
             salUSA = []
@@ -760,6 +763,8 @@ class MainJobs(View):
                 start_date = format(start_date, "%d/%m/%Y")
                 end_date = format(end_date, "%d/%m/%Y")
                 app = (str(applicant))
+                locale.setlocale(locale.LC_ALL, '')  # set the locale to the user's default
+                programCost = locale.format("%d", programCost, grouping=True)
                 return JsonResponse(
                     dict(description=description, title=title, applicant=app, city_j=city_j, country=country,
                          start_date=start_date,SDate=SDate,EDate=EDate,
@@ -786,6 +791,8 @@ class MainJobs(View):
                     'end_date', flat=True).first()
                 salary = Jobs.objects.filter(id=post_id).values_list(
                     "salary_per_hour", flat=True).first()
+                tips = Jobs.objects.filter(id=post_id).values_list(
+                    "tips",flat=True).first()
                 hourWeek = Jobs.objects.filter(id=post_id).values_list(
                     "hour_per_work", flat=True).first()
                 company = Jobs.objects.filter(id=post_id).values_list(
@@ -809,7 +816,8 @@ class MainJobs(View):
                     id=post_id).values_list("city_j").first()
                 country = Jobs.objects.filter(
                     id=post_id).values_list("country_j").first()
-
+                locale.setlocale(locale.LC_ALL, '')  # set the locale to the user's default
+                programCost = locale.format("%d", programCost, grouping=True)
                 appNo = 0
                 appNo = Jobs.objects.get(id=post_id).applicant.count()
                 SDate = start_date
@@ -821,7 +829,7 @@ class MainJobs(View):
 
                 return JsonResponse(
                     dict(description=description, title=title, city_j=city_j, country=country, start_date=start_date,
-                         salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
+                         salary=salary,tips=tips, hourWeek=hourWeek, company=company, end_date=end_date,
                          typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
                          program=program, programCost=programCost,SDate=SDate,EDate=EDate,
                          posted=posted, post_id=post_id, appNo=appNo, hasApply=hasApply, safe=True,applyDate=hasApplyDate))
@@ -1066,7 +1074,7 @@ class MainJobsId(View):
             program = job.values_list("program", flat=True)
             title = job.values_list("job_title", flat=True)
             comp = job.values_list("company", flat=True)
-            city_j = job.values_list("city_j", flat=True)
+            country_j = job.values_list("country_j", flat=True)
             salary = job.values_list("salary_per_hour", flat=True)
 
             for i in program:
@@ -1078,7 +1086,7 @@ class MainJobsId(View):
             for i in comp:
                 if i not in sortCompany:
                     sortCompany.append(i)
-            cityName = list(dict.fromkeys(city_j))
+            cityName = list(dict.fromkeys(country_j))
 
             # for i in salary:
             #      if i not in sortSalary:
@@ -1169,6 +1177,8 @@ class MainJobsId(View):
                 start_date = format(start_date, "%d/%m/%Y")
                 end_date = format(end_date, "%d/%m/%Y")
                 app = (str(applicant))
+                locale.setlocale(locale.LC_ALL, '')  # set the locale to the user's default
+                programCost = locale.format("%d", programCost, grouping=True)
                 return JsonResponse(
                     dict(description=description, title=title, applicant=app, city_j=city_j, country=country,
                          start_date=start_date,SDate=SDate,EDate=EDate,
@@ -1227,7 +1237,8 @@ class MainJobsId(View):
                 salary = format(salary, '.2f')
                 start_date = format(start_date, "%d/%m/%Y")
                 end_date = format(end_date, "%d/%m/%Y")
-
+                locale.setlocale(locale.LC_ALL, '')  # set the locale to the user's default
+                programCost = locale.format("%d", programCost, grouping=True)
 
                 return JsonResponse(
                     dict(description=description, title=title, city_j=city_j, country=country, start_date=start_date,

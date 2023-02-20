@@ -1,5 +1,5 @@
 .jobs-left, .right-jobs {
     overflow-y: scroll;
     height: calc(85.9vh - 61px) !important;
-    margin-bottom: 0 !important;
+    margin-bottom: 0;
 }

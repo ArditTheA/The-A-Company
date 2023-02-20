@@ -7,3 +7,4 @@ from ScreeningQuestion.models import *
 
 admin.site.register(JobSettings)
 admin.site.register(JobQuestion)
+admin.site.register(ApplicantAnswer)

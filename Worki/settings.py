@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'Match',
     "Applicant",
     "ScreeningQuestion",
+    'documents',
 
     #3party login providers
     'allauth',

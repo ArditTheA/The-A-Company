@@ -40,7 +40,6 @@
     <link rel="stylesheet" href="{% static 'css/posted-jobs-media-queries.css'%}">
     <link rel="stylesheet" href="{% static 'css/jobi.css'%}">
     <link rel="icon" href="{% static 'img/123.png' %}">
-    <link rel="stylesheet" href="{% static 'css/all-jobs-media-queries.css' %}">
 
     <style type="text/css">
         body{
@@ -83,7 +82,7 @@ input[type=number] {
 
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-
+    <link rel="stylesheet" href="{% static 'css/all-jobs-media-queries.css' %}">
 
 
     {% if user.is_authenticated %}
@@ -107,7 +106,8 @@ input[type=number] {
         <div class="dropdown-content"><a href="{% url 'profile'  %}" class="dropdown-content-text">My profile</a></div>
         <div class="dropdown-mid-content"><a href="{% url 'appliedJob'%}" class="dropdown-content-text">My jobs</a>
         </div>
-        <!-- <div class="dropdown-content"><a href="/accounts/google/login/?process=connect" class="dropdown-content-text">Connect to Google</a></div> -->
+                <div class="third-dropdown-content" style="padding-bottom:0px;"><a href="{% url 'postedJob'%}" class="dropdown-content-text">Recruiter</a>
+                </div>
         <div class="third-dropdown-content"><a href="{% url 'logout' %}" class="dropdown-content-text">Sign out</a></div>
     </div>
 

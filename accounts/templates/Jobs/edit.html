@@ -599,8 +599,28 @@
             {{form.salary_per_hour}}
             <label class="margin-top-bottom margin-left " id="SalErr" style="display: none;color:red;">This field is required</label>
          </div>
+         <div class="form-group" style="margin-top:10px;">
+                 <label class="margin-top-bottom margin-left next-none" for="id_tips">Tips</label>
+
+                <select class="next-none" name="tips" id="id_tips">
+
+                    {% if form.tips.value %}
+                        <option value="True" selected>Yes</option>
+                        <option value="False">No</option>
+                    {% elif not forms.tips.value%}
+                        <option value="True">Yes</option>
+                        <option value="False" selected>No</option>
+                    {% else %}
+                        <option></option>
+                        <option value="True">Yes</option>
+                        <option value="False">No</option>
+                    {% endif%}
+                </select>
+
+
+         </div>
          <div class="form-group" style="margin: 0;">
-            <label class="margin-top-bottom margin-left next-none" for="exampleFormControlSelect2">Type of work</label>
+            <label class="margin-top-bottom margin-left next-none" for="id_type_of_work">Type of work</label>
             <select name="type_of_work" class="next-none" required="" id="id_type_of_work" onchange="checkForm()">
                {% if form.type_of_work == "Full Time" %}
                <option value="Full Time" selected >Full Time</option>
@@ -633,7 +653,7 @@
             <label class="margin-top-bottom margin-left " id="EdErr" style="display: none;color:red;">This field is required</label>
          </div>
          <div class="form-group" style="margin: 0;">
-            <label class="margin-top-bottom margin-left next-none" for="exampleFormControlSelect2">Housing</label>
+            <label class="margin-top-bottom margin-left next-none" for="id_housing">Housing</label>
             <select name="housing" class="next-none" required="" onchange="checkForm()" id="id_housing" >
                {% if form.housing.value == "Provided" %}
                <option value="Provided" selected>Provided</option>
@@ -709,7 +729,7 @@
                      <img id="bold-button" class="second-next-none bold-font-button" title="Bold" style="display: none; height: 20px; margin-right: 20px; cursor: pointer;" src="{% static 'img/B .png'%}" alt="">
                      <img class="second-next-none bold-font-button" style="display: none; height: 20px;" src="{% static 'img/bullets 1.png'%}" alt="">
                   </div>
-         <textarea name="description" cols="40" rows="10" class=" inner-text second-next-none editable"  style="display:none;">{{des}}</textarea>
+         <textarea name="description" id="descriptionArea" cols="40" rows="10" class=" inner-text second-next-none editable"  style="display:none;">{{des}}</textarea>
         </div>
          <div style="display:none;">
                   {{form.status}}
@@ -724,6 +744,7 @@
          <a style="display: none; color: white;" type="submit" class="btn submit-button submit-button-description second-next-none second-next-button">Next</a>
       </div>
                <h1 style="display: none; color: #1877F2;" class="third-next-none title-job-description title-additional-feauters">Additional features</h1>
+
                 <div class="form-group third-next-none" style="display: none;">
                     <label class="margin-top-bottom margin-left number-of-positions-label">Number of positions</label>
                     {{form.positionLeft}}
@@ -732,6 +753,7 @@
                     <label class="margin-top-bottom margin-left">Deadline date</label>
                     <input id="id_deadline" class="" name="deadline" onchange="checkStartDate();" value="{{form.deadline.value|date:'d/m/Y'}}" type="tel" maxlength="10" placeholder="dd/mm/yyyy" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
                 </div>
+
                 <div class="third-next-none-buttons" style="display: none; justify-content: space-between;">
                     <a class="btn back-button back-button-description back-button-additional-feauters" style="color: #1877F2;">Back</a>
                     <a style="color: white;" type="submit" class="submit-button third-next-button submit-button-description">Next</a>
@@ -972,7 +994,28 @@
       </div>
    </body>
    <script src="{% static 'js/CheckFormEdit.js'%}"></script>
+   <script>
+function replaceNewlinesWithLineBreaks(text) {
+  return text.replace(/\n/g, "<br />");
+}
+      document.getElementById("form-id").addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  var textarea = document.getElementById("descriptionArea");
+  var text = textarea.value;
+  var replacedText = replaceNewlinesWithLineBreaks(text);
+    console.log("replace text");
+    console.log(replacedText);
+    textarea.value= replacedText;
+      console.log("replace text");
+    document.getElementById('form-id').submit();
+
+});
+
+
+    </script>
 <script>
+
 const textarea = document.getElementById("myTextArea");
 textarea.addEventListener("input", resizeTextarea);
 
@@ -1034,13 +1077,7 @@ function resizeTextarea() {
 
 
   </script>
-    <script>
-      function Post(){
 
-         document.getElementById('form-id').submit();
-      }
-
-    </script>
 
    <script src="{% static 'js/Ajax/Match/user-details-ajax.js'%}"></script>
    <script src="{% static 'js/profile_dropdown.js'%}"></script>

@@ -144,6 +144,7 @@ class Jobs(models.Model):
     city_j = models.CharField(max_length=255)
     country_j = models.CharField(max_length=255)
     salary_per_hour = models.FloatField()
+    tips = models.BooleanField(default=False)
     type_of_work = models.CharField(max_length=50,choices=TypeofWork)
     hour_per_work = models.IntegerField(default=0)
     start_date = models.DateField()

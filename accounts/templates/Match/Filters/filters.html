@@ -79,16 +79,16 @@
        <div class="">
             <div class="input-form inputs-right-margin">
                 {% if i.name == getSub.phase.name%}
-           <button style="padding-left: 20px;" title="{{i.name}}" onclick="showDropDown({{i.id}})" class="applied-button-jobs outline-none all-applicants-button"> {{getSub.name}}</button>
-           <div class="" style="display: flex; align-items: center;padding-top:7%;"">
-               <img style="cursor: pointer;" class="white-icon" src="{% static 'img/white-dropdown-icon.png'%}" alt="">
+               <button style="padding-left: 20px;" title="{{i.name}}" onclick="showDropDown({{i.id}})" class="applied-button-jobs outline-none all-applicants-button"> {{getSub.name}}</button>
+               <div class="" style="display: flex; align-items: center;padding-top:7%;"">
+                   <img style="cursor: pointer;" class="white-icon" src="{% static 'img/white-dropdown-icon.png'%}" alt="">
            </div>
            {% else %}
-           <button style="padding-left: 20px;background-color:white;color:black" title="All Applicants" onclick="showDropDown({{i.id}})" class="applied-button-jobs outline-none all-applicants-button">&nbsp{{i.name}}&nbsp</button>
-             <div class="" style="display: flex; align-items: center;">
-                <img style="cursor: pointer;padding-top:8%;" class="white-icon"
-                    src="{% static 'img/dropdown-icon.png'%}" alt="">
-            </div>
+               <button style="padding-left: 20px;background-color:white;color:black" title="All Applicants" onclick="showDropDown({{i.id}})" class="applied-button-jobs outline-none all-applicants-button">&nbsp{{i.name}}&nbsp</button>
+                 <div class="" style="display: flex; align-items: center;">
+                    <img style="cursor: pointer;padding-top:8%;" class="white-icon"
+                        src="{% static 'img/dropdown-icon.png'%}" alt="">
+                </div>
            {% endif %}
 
             </div>

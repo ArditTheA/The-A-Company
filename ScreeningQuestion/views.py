@@ -315,7 +315,8 @@ def editScreeningQuestion(request,pk):
 
 def editJob(request,pk):
     job = Jobs.objects.get(id=pk)
-
+    city_j= City.objects.all()
+    country_j= Country.objects.all()
     if request.method=="POST":
         form = editjob(request.POST or None, request.FILES or None, instance=job)
         if form.is_valid():
@@ -416,11 +417,10 @@ def editJob(request,pk):
             jobFilter = jobSettings.jobSettings
 
             form = editjob(request.POST or None,request.FILES or None,  instance=job)
-            country = Country.objects.all()
-            city = City.objects.all()
+
             des = job.description
             des = des.replace('<br />', '\n')
-            return render(request, "Jobs/edit.html", dict(form=form,country=country,city=city,des=des,
+            return render(request, "Jobs/edit.html", dict(form=form,country_j=country_j,city_j=city_j,des=des,
                         jobEmail=jobEmail,jobFilter=jobFilter,pk=pk,
                         job1promp=job1promp,job1questionType=job1questionType,job1ideal=job1ideal,job1qualify=job1qualify,
                         job2promp=job2promp,job2questionType=job2questionType,job2ideal=job2ideal,job2qualify=job2qualify,
@@ -431,8 +431,8 @@ def editJob(request,pk):
             city = City.objects.all()
             des = job.description
             des = des.replace('<br />', '\n')
-            return render(request, "Jobs/edit.html", dict(form=form, country=country, city=city, des=des,pk=pk))
-    return render(request, "Jobs/404.html")
+            return render(request, "Jobs/edit.html", dict(form=form, city_j=city_j,country_j=country_j, des=des,pk=pk))
+    return render(request, "Jobs/404.html",dict(city_j=city_j,country_j=country_j))
 
 
 @login_required

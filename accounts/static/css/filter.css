@@ -328,7 +328,7 @@ textarea {
             position: absolute;
             display: none;
             background-color: #ffffff;
-            max-height: 140px;
+            max-height: 150px;
             margin-top: 10px;
             overflow-y: scroll !important;
             z-index: 2;

@@ -200,11 +200,11 @@ class editjob(ModelForm):
             "salary_per_hour": forms.NumberInput(attrs={'class': 'name-input mutual-stats font-fam next-none'}),
 
             "approved": forms.CheckboxInput(),
-            "city_j": forms.TextInput(attrs={"class": "name-input mutual-stats font-fam next-none","list":"cityList"}),
+            "city_j": forms.TextInput(attrs={"class": "name-input mutual-stats font-fam next-none","list":"city_jlist"}),
             "type_of_work": forms.Select(attrs={"class": "custom-select sel select-options-input next-none padding-of-inputs"}),
             "housing": forms.Select(attrs={"class": "custom-select sel select-options-input next-none padding-of-inputs"}),
             "program": forms.Select(attrs={"class": "custom-select sel select-options-input next-none padding-of-inputs"}),
-            "country_j": forms.TextInput(attrs={"class": "name-input mutual-stats font-fam next-none","type":"text","list":"countryList"}),
+            "country_j": forms.TextInput(attrs={"class": "name-input mutual-stats font-fam next-none","type":"text","list":"country_jList"}),
             "description": forms.Textarea(
                 attrs={"class": "scroll inner-text second-next-none","id":"myTextArea", "style": "display: none;"})
 

@@ -595,6 +595,19 @@
             {{job_form.salary_per_hour}}
             <label class="next-none margin-top-bottom margin-left " id="SalErr" style="display: none;color:red;">This field is required</label>
          </div>
+         <div class="form-group" style="margin-top:10px;">
+             <label class="margin-top-bottom margin-left next-none" for="id_tips">Tips Include</label>
+
+                <select class="next-none" name="tips" id="id_tips">
+
+
+                        <option></option>
+                        <option value="True">Yes</option>
+                        <option value="False">No</option>
+
+                </select>
+
+         </div>
          <div class="form-group" style="margin: 0;">
             <label class="margin-top-bottom margin-left next-none" for="id_type_of_work">Type of work</label>
             <select name="type_of_work" class="next-none" required="" id="id_type_of_work" onchange="checkForm()">
@@ -867,9 +880,26 @@
 
    </body>
 
-   <script>
+<script>
+function replaceNewlinesWithLineBreaks(text) {
+  return text.replace(/\n/g, "<br />");
+}
+      document.getElementById("form-id").addEventListener("submit", function(event) {
+  event.preventDefault();
 
-</script>
+  var textarea = document.getElementById("descriptionArea");
+  var text = textarea.value;
+  var replacedText = replaceNewlinesWithLineBreaks(text);
+    console.log("replace text");
+    console.log(replacedText);
+    textarea.value= replacedText;
+      console.log("replace text");
+    document.getElementById('form-id').submit();
+
+});
+
+
+    </script>
 
 <script>
     function changeAnsType(id){

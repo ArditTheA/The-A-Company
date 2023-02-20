@@ -78,12 +78,13 @@ class OneSelFilter(View):
             else:
                 filterCompany=""
         if request.GET.get("Location") != None:
-            if request.GET.get("Location") != "Location":
+            if request.GET.get("Location") != "Countries":
                 filterLocation=request.GET.get("Location")
                 loc=request.GET.get("Location")
 
             else:
                 filterLocation=""
+
 
 
         if request.GET.get("Salary") != None:
@@ -106,37 +107,41 @@ class OneSelFilter(View):
                 filterDate=""
         location=filterLocation
 
-        if filterLocation != "":
-            getCityLoc=filterLocation.split()
-            filterLocation=getCityLoc[0]
-            filterLocation=filterLocation.rstrip(filterLocation[-1])
+        print("-------------")
+        print("-------------")
+        print(filterLocation)
+        print("-------------")
+        print("-------------")
+
         if filterProgram == "" and  filterTitle ==  "" and filterCompany == "" and filterLocation == "" and filterSalary == ""  and filterDate == "":
+            print("inn")
             job = Jobs.objects.filter(approved=True).filter(status="Open").order_by("-id")
 
         elif filterProgram == "Recommended":
-            job = Jobs.objects.filter(approved=True).filter(status="Open").filter(recommended=True).filter(job_title__icontains=filterTitle).filter(company__contains=filterCompany).filter(city_j__icontains=filterLocation).order_by(filterSalary).order_by(filterSalary)
+            job = Jobs.objects.filter(approved=True).filter(status="Open").filter(recommended=True).filter(job_title__icontains=filterTitle).filter(company__contains=filterCompany).filter(country_j__icontains=filterLocation).order_by(filterSalary).order_by(filterSalary)
         else:
+            print("inn1")
+
             if filterDate ==  "":
-                job = Jobs.objects.filter(approved=True).filter(status="Open").filter(program__icontains=filterProgram).filter(job_title__icontains=filterTitle).filter(company__contains=filterCompany).filter(city_j__icontains=filterLocation).order_by(filterSalary)
+                print("inn2")
+
+                job = Jobs.objects.filter(approved=True).filter(status="Open").filter(program__icontains=filterProgram).filter(job_title__icontains=filterTitle).filter(company__contains=filterCompany).filter(country_j__icontains=filterLocation).order_by(filterSalary)
             else:
-                if filterDate=="Today":
-                    job = Jobs.objects.filter(approved=True).filter(status="Open").filter(program__icontains=filterProgram).filter(job_title__icontains=filterTitle).filter(company__icontains=filterCompany).filter(city_j__icontains=filterLocation).order_by(filterSalary).filter(postDate=datetime.now()).order_by("-id")
-                    dateF="Today"
-                elif filterDate=="Last Month":
-                    lastmonth=datetime.now().month-1
-                    job = Jobs.objects.filter(approved=True).filter(status="Open").filter(program__icontains=filterProgram).filter(job_title__icontains=filterTitle).filter(company__icontains=filterCompany).filter(city_j__icontains=filterLocation).order_by(filterSalary).filter(postDate__month=lastmonth).order_by("-id")
-                    dateF="Last Month"
-                elif filterDate=="Last Week":
-                    lastweek=date.today().isocalendar()[1]-1
-                    job = Jobs.objects.filter(approved=True).filter(status="Open").filter(program__icontains=filterProgram).filter(job_title__icontains=filterTitle).filter(company__icontains=filterCompany).filter(city_j__icontains=filterLocation).order_by(filterSalary).filter(postDate__week=lastweek).order_by("-id")
-                    dateF="Last Week"
+                if filterDate=="Newest to oldest":
+                    job = Jobs.objects.filter(approved=True).filter(status="Open").filter(program__icontains=filterProgram).filter(job_title__icontains=filterTitle).filter(company__icontains=filterCompany).filter(country_j__icontains=filterLocation).order_by(filterSalary).order_by("-postDate").order_by("-id")
+                    dateF="Newest to oldest"
+                elif filterDate=="Oldest to newest":
+
+                    job = Jobs.objects.filter(approved=True).filter(status="Open").filter(program__icontains=filterProgram).filter(job_title__icontains=filterTitle).filter(company__icontains=filterCompany).filter(country_j__icontains=filterLocation).order_by(filterSalary).order_by("postDate").order_by("id")
+                    dateF="Oldest to newest"
+
 
         #Filter Clean Up And  Sort
         if len(job)>=1:
             program = job.values_list("program", flat=True)
             title = job.values_list("job_title", flat=True)
             comp = job.values_list("company", flat=True)
-            city_j = job.values_list("city_j", flat=True)
+            country_j = job.values_list("country_j", flat=True)
             salary = job.values_list("salary_per_hour", flat=True)
 
 
@@ -149,13 +154,8 @@ class OneSelFilter(View):
             for i in comp:
                 if i not in sortCompany:
                     sortCompany.append(i)
-            for i in city_j:
-                if i not in sortCity:
-                    sortCity.append(i)
-            for i in sortCity:
-                if City.objects.filter(name=i).exists():
-                    cit = City.objects.get(name=i)
-                    cityName.append(str(cit))
+
+            cityName = list(dict.fromkeys(country_j))
 
             salUSA =[]
             salEu =[]

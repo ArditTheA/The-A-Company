@@ -5,28 +5,53 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Jobs</title>
-<link rel="stylesheet" href="{% static 'css/authenticated.css'%}">
-<link rel="stylesheet" href="{% static 'css/jobs.css'%}">
-<link rel="stylesheet" href="{% static 'css/profile-header.css'%}">
-<link rel="stylesheet" href="{% static 'css/posted-jobs-media-queries.css'%}">
 
-<div class="jobs-buttons">
-    <div class="mutual-padding-of-div plus-div">
-
-        <a href="{% url 'addJob'%}"><img title="Add a Job" class="plus-icon-jobs" src="{% static 'img/add.png'%}"
-                alt=""></a>
-    </div>
-    <div class="mutual-padding-of-div">
-        <input name="submit" type="submit" class="posted-button-posted-jobs" value="Applied"
-            onClick="location.href ='{% url 'appliedJob' %}'">
+   <link rel="stylesheet" href="{% static 'css/Match/authenticated.css'%}">
+    <link rel="stylesheet" href="{% static 'css/Match/jobs.css'%}">
+    <link rel="stylesheet" href="{% static 'css/profile-header.css'%}">
+    <link rel="stylesheet" href="{% static 'css/Match/posted-jobs-media-queries.css'%}">
+    <link rel="stylesheet" href="{% static 'css/all-applicant.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
 
-    </div>
-    <div class="mutual-padding-of-div">
-        <input name="submit" type="submit" class="applied-button-posted-jobs " value="Posted"
-            onClick="location.href ='{% url 'postedJob' %}'">
-    </div>
+<div class="main-buttons-div" style="position: relative;">
+  <div class="jobs-buttons second-jobs-buttons scrolling-wrapper">
+    <form class="card" action="{% url 'home'%}" style="margin-top:0px;">
+        <img style="cursor: pointer;" title="Search by job or location"
+            class="plus-icon-jobs search-icon-jobs inputs-right-margin" src="{% static 'img/search (1).png'%}"
+            alt="">
+            <div class="mutual-padding-of-div input-search-div" style="border-radius: 20px;">
+                <div class="second-input-form" style="">
+                <input style="" name="q" placeholder="Search by job or location"
+                    class="search-input inputs-right-margin" id="input-removed"
+                    style="padding-top: 8px; padding-bottom: 8px; padding-left: 20px; background-color: white; " autocomplete="off" onchange="SearchFunction()">
+                </input>
+                <img style="display: none;" class="input-exit-button" title="Exit" src="{% static 'img/Vector 81 (1).png'%}" style="width: 8px; height: 8px; background-color: red;" alt="">
+            </div>
+        </div>
+    </form>
+<!--      <form style="display: flex;" class="buttons-form card" id="myForm" action="{% url 'filter' %}">-->
+<!--        &lt;!&ndash; Program &ndash;&gt;-->
+<!--        <div class="">-->
+<!--            <div class="input-form margin inputs-right-margin">-->
+<!--             <button style="padding-left: 20px;top;background-color:white;color:black;" title="All Jobs" onclick="Close();" class="applied-button-jobs outline-none all-applicants-button">&nbspAll Jobs&nbsp</button>-->
+<!--                <div class="" style="display: flex; align-items: center;">-->
+<!--                <img style="cursor: pointer;padding-top:8%;" class="white-icon" src="{% static 'img/dropdown-icon.png'%}" alt="">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--             <div class="all-applicants-dropdown All"  style="overflow-y: scroll; max-height: 140px; flex-direction: column ; overflow-x: scroll; padding-bottom: 5px;">-->
+<!--               <label onclick="Qualified()" for="Q" id="1" class="testbutton dropdown-content dropdown-content-text checked" style="margin-bottom: 15px; margin-top: 0px; cursor: pointer;" class=""><input id="Q" style="display: none;" type="checkbox" class="input_type"-->
+<!--                    onchange="checkboxStatusChange()" value="Active Jobs" name="Active Jobs" />Active Jobs</label>-->
+<!--                &lt;!&ndash; <div class="dropdown-content"><a href="" class="dropdown-content-text">Qualified</a></div> &ndash;&gt;-->
+<!--                <label onclick="NoQualified()" for="notQ" class="testbutton dropdown-content dropdown-content-text checked" style="margin-top: -30px; cursor: pointer;"><input id="notQ" style="display: none;" type="checkbox" class="input_type"-->
+<!--                value="Inactive Jobs" name="Inactive Jobs"/>Inactive Jobs</label>-->
+<!--                 <div title="Select an option to click here" class="move-phase-button phaseButton" style="display: none; cursor: pointer; background-color: rgb(221, 221, 221); color: rgb(145, 143, 143); font-weight: 500; padding: 10px 0px; width: 100%; font-weight: 100;">Select to move</div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--      </form>-->
+  </div>
 </div>
+
 {% if check %}
 
 <div class="jobs-main-div" style="display: flex; justify-content: space-between; width: 100%;">
@@ -99,41 +124,44 @@
 
 
 {% endif %}
+
+    <script>
+       function showDropDown(id){
+           var dropName = "drop"+id;
+          var elem = document.getElementById(dropName);
+          var foo = window.getComputedStyle(elem, null);
+          if(elem.style.display == "flex"){
+            elem.style.display="none";
+          }else{
+            $('.drop').css('display','none');
+            elem.style.display="flex"
+          }
+       }
+   </script>
 <script type="text/javascript" src="{% static 'js/Ajax/applied-jobs-ajax.js'%}"></script>
 <script type="text/javascript" src="{% static 'js/dropdown-jobs.js'%}"></script>
-<script type="text/javascript">
-    var dropdown = document.querySelectorAll(".dropdown");
-    var work_and_travel_dropdown = document.querySelectorAll(".dropdown-work-and-travel");
-    var profile = document.querySelectorAll("#profile-image-button");
-    var work_and_travel_button = document.querySelectorAll('.button-work-and-travel');
-    var mutual_button_div = document.querySelectorAll('.mutual-padding-of-div');
-    var jobs_buttons_icon = document.querySelectorAll('.icon')
-    var jobs_buttons_white_icon = document.querySelectorAll('.white-icon')
-    var show_dropdown = document.querySelectorAll('.showDropdown');
-    var button_content = document.querySelectorAll('.button-content');
-    for (let i = 0; i < dropdown.length; i++) {
-        profile[i].addEventListener("click", function () {
-            if (dropdown[i].style.display == "block") {
-                dropdown[i].style.display = "none";
-            }
-            else {
-                dropdown[i].style.display = "block";
-            }
-        })
-        document.addEventListener('click', function (e) {
-            if (!dropdown[i].contains(e.target) && !profile[i].contains(e.target)) {
-                dropdown[i].style.display = 'none';
-            }
-        });
 
-    }
-</script>
 
 <!-- <script src="{% static 'js/main.js'%}"></script>-->
 <script src="{% static 'js/jobs-img.js'%}"></script>
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script src="{% static 'js/exit-job-description-button.js'%}"></script>
 
+
+
+    <script src="{% static 'js/profile_dropdown.js'%}"></script>
+
+
+<script src="{% static 'js/Match/main.js' %}"></script>
+
+
+
+
+
+        <script src="{% static 'js/Match/all-applicants-dropdown.js'%}"></script>
+        <script src="{% static 'js/select-all-button.js'%}"></script>
+        <script src="{% static 'js/add-phase.js'%}"></script>
+        <script src="{% static 'js/add-subphase.js'%}"></script>
 
 
 {% endblock content%}

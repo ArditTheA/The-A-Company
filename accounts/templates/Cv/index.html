@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <title>{{user.first_name}}-{{user.last_name}} CV</title>
+	  <style>
+
+
+		  body{
+		  	background-color:#f1f1f1;
+		  	font-family: 'Spline Sans', sans-serif;
+		  }
+		  .a4-container,.row{
+		  width: 210mm;
+		  height: 297mm;
+		  margin: 0 auto;
+		  background-color:white;
+		}
+		.text-left {
+			text-align: left;
+			display: inline-block;
+		  }
+
+		  .text-center {
+			text-align: center;
+			display: inline-block;
+		  }
+
+		  .text-right {
+			text-align: right;
+			display: inline-block;
+		  }
+		  .head{
+		  	margin:0;
+		  }
+		  textarea{
+		  	border:solid white 0px;
+		  	resize:none;
+		  }
+
+
+	  </style>
+  </head>
+  <body>
+    <div class="a4-container">
+		<div class="col-md-12" style="text-align:center;padding-top:20px;">
+			<h4 class="head" style="text-transform: uppercase;">{{user.first_name}} {{user.last_name}}</h4>
+			<p class="head">{{user.email}}</p>
+			<p class="head">{{user.phone_number}}</p>
+		</div><br/>
+		<div class="row" style="height:auto;">
+			<div class="col-md-2" style=""><h6>Education</h6></div>
+			{% for i in userEdu %}
+				<div class="col-md-10" style="">
+					<div class="col-md-8"  style="float:left;text-align:left;"><h6>{{i.university}}, {{i.field_of_study}}<br/>{{i.degree}}</h6>
+
+					</div>
+					<div class="col-md-4"  style="float:right;text-align:right;"><h6>{{i.city_e}}, {{i.country_e}}<br/>{{i.start_year|date:'d/m/Y'}} -
+							{% if i.end_year == null%}
+							Present
+							{% else %}
+							{{i.end_year |date:'d/m/Y'}}
+							{% endif%}</h6>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+		<br/><br/>
+
+		<div class="row" style="height:auto;">
+			<div class="col-md-2" style=""><h6>Experience</h6></div>
+
+			<div class="col-md-10" style="">
+
+
+
+					<div class="row" style="width:100%;height:100%;">
+					{% for i in userExperience %}
+						<div class="col-md-12">
+							<div class="col-sm-6" style="height:auto;padding:0;float:left;">
+							<h6>{{i.company}}<br/>{{i.title}}</h6>
+							</div>
+							<div class="col-md-6"  style="float:right;text-align:right;"><h6>{{i.city_usExp}}, {{i.Country}}<br/>{{i.start_date|date:'d/m/Y'}} -
+								{% if i.end_date == null%}
+								Present
+								{% else %}
+								{{i.end_date |date:'d/m/Y'}}
+								{% endif%}</h6>
+							</div>
+						</div>
+						<div class="col-md-12">
+
+							<textarea id="myTextarea" class="my-textarea" style="width: 100%;">{{res}}</textarea>
+						</div>
+						<div class="col-md-12"></div>
+					{% endfor %}
+						</div>
+
+			</div>
+
+		</div>
+
+		<br/>
+
+		<div class="row" style="height:auto;">
+			<div class="col-md-2" style=""><h6>Language</h6></div>
+
+		<div class="col-md-10" style="">
+
+			{% for i in userLanguage %}
+			<div class="col-md-6"  style="float:left;text-align:left;"><h6>{{i.language}}</h6>
+			</div>
+			<div class="col-md-6"  style="float:right;text-align:right;"><h6>{{i.level}}</h6> </div>
+			<br/>
+			{% endfor %}
+		</div>
+
+		</div>
+
+
+
+	</div>
+
+ <script>
+document.addEventListener("DOMContentLoaded", function() {
+  // get all the textarea elements
+  var textareas = document.querySelectorAll(".my-textarea");
+
+  // add event listeners to each textarea
+  textareas.forEach(function(textarea) {
+    // update the rows attribute on input
+
+
+    // update the rows attribute on keydown
+    textarea.addEventListener("keydown", function(e) {
+      if (e.which === 13) {
+        this.rows += 1;
+      }
+    });
+  });
+});
+</script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
