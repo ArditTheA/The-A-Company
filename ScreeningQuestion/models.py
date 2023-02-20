@@ -13,7 +13,7 @@ class JobQuestion(models.Model):
     qualify = models.BooleanField(default=False)
 
     def __str__(self):
-        return str(self.job_id.id)+" - "+self.promp+" "+self.question_type+" ± "+self.ideal_answer
+        return str(self.job_id.id)+" - "+str(self.promp)+" "+str(self.question_type)+" ± "+str(self.ideal_answer)
 
 
 class JobSettings(models.Model):
