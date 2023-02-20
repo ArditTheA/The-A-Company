@@ -14,6 +14,22 @@ import openai
 
 openai.api_key = "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"
 
+
+def changeEmailForJobs(request):
+    jobb = JobSettings.objects.all()
+    for i in jobb:
+        j= JobSettings.objects.get(id=i.id)
+        j.email= "Hello,\nWorki has carefully reviewed your application." \
+                 "\nYou don’t meet the following requirement for the Work and Travel program:" \
+                 "\n\tYou are currently not an active university student\nIf you feel this is a mistake," \
+                 " schedule an online meeting with us\n" \
+                 "https://calendar.google.com/calendar/u/0/selfsched?sstoken=UU1pV2thNF9iS3RwfGRlZmF1bHR8MTE3MmEwNGMxN2VkYTAwYzkwNTExMzQwYmJjYTk1M2M" \
+                 "\nKindly, Worki"
+        j.save()
+    return redirect("home")
+
+
+
 def generate_summary(text):
     response = openai.Completion.create(
         engine="text-davinci-002",

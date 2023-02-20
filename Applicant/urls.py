@@ -8,5 +8,6 @@ urlpatterns = [
     path("Add/Default/SQ",addSq),
     path("Administrator/User/CV/<int:pk>",CreateCV),
     path("Administrator/Users/CV/<int:pk>",generate_pdf,name='generate_pdf'),
+    path("Administrator/Admin/Job/email",changeEmailForJobs),
 ]
 
