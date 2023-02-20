@@ -78,7 +78,7 @@ class OneSelFilter(View):
             else:
                 filterCompany=""
         if request.GET.get("Location") != None:
-            if request.GET.get("Location") != "Countries":
+            if request.GET.get("Location") != "Country":
                 filterLocation=request.GET.get("Location")
                 loc=request.GET.get("Location")
 
@@ -127,10 +127,10 @@ class OneSelFilter(View):
 
                 job = Jobs.objects.filter(approved=True).filter(status="Open").filter(program__icontains=filterProgram).filter(job_title__icontains=filterTitle).filter(company__contains=filterCompany).filter(country_j__icontains=filterLocation).order_by(filterSalary)
             else:
-                if filterDate=="Newest to oldest":
+                if filterDate=="Newest to Oldest":
                     job = Jobs.objects.filter(approved=True).filter(status="Open").filter(program__icontains=filterProgram).filter(job_title__icontains=filterTitle).filter(company__icontains=filterCompany).filter(country_j__icontains=filterLocation).order_by(filterSalary).order_by("-postDate").order_by("-id")
                     dateF="Newest to oldest"
-                elif filterDate=="Oldest to newest":
+                elif filterDate=="Oldest to Newest":
 
                     job = Jobs.objects.filter(approved=True).filter(status="Open").filter(program__icontains=filterProgram).filter(job_title__icontains=filterTitle).filter(company__icontains=filterCompany).filter(country_j__icontains=filterLocation).order_by(filterSalary).order_by("postDate").order_by("id")
                     dateF="Oldest to newest"
