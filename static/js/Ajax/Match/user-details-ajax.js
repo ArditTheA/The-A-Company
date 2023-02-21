@@ -27,6 +27,14 @@
         document.getElementById("location").innerHTML= data["city"];
         document.getElementById("appdate").innerHTML= data["applyDate"];
 
+       var button = document.getElementById("cv")
+
+        // set the button's click event
+        document.getElementById("cv").style.marginTop = "33px";
+        url = "/Administrator/Users/CV/"+id
+        button.innerHTML = '<a href="'+url+'" class="applied-button-jobs outline-none" style="text-decoration:none;margin-top: 18px; width: fit-content; padding-top: 8px; padding-bottom: 8px;">Download CV</a>';
+
+
         if( data["userExpCount"] != "0"){
         for (let i = 0; i < data["userExpCount"]; i++) {
           var title = "title"+i
@@ -51,6 +59,8 @@
             var uniYear = "unidate"+i
             $('#UserEdu').append($('<div class="experience-rows-img JSAdded" style=""><img class="experience-education-img" src="/static/img/worki_icons-18.jpg" alt="" title="Education"><div class="experience-rows"><div class="experience-first-row" id="university">'+data[university]+'</div><div class="experience-second-row" id="uniField">'+data[uniField]+'</div><div class="experience-third-row" id="uniLoc">'+data[location]+'</div><div class="experience-fourth-row" id="uniYear">'+data[uniYear]+'</div></div></div>'));
         }
+
+
 
         }
         if(data["countLang"] != "0"){

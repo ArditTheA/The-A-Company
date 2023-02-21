@@ -99,13 +99,25 @@
         var tt  = Math.floor(total);
         if(data["country"]== "USA"){
         var salary = document.getElementById("salary")
+        if(data["tips"]){
+        salary.innerHTML ="$"+ data ["salary"]+"/hour + tips"
+        }else{
         salary.innerHTML ="$"+ data ["salary"]+"/hour"
-        document.getElementById("totsalary").innerHTML="$"+tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" total income";
+
+        }
+        document.getElementById("totsalary").innerHTML="$"+tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" total income ";
 
         }else{
             var salary = document.getElementById("salary")
+        if(data["tips"]){
+        salary.innerHTML ="€"+ data ["salary"]+"/hour + tips"
+        }else{
         salary.innerHTML ="€"+ data ["salary"]+"/hour"
-        document.getElementById("totsalary").innerHTML="€"+tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" total income";
+        }
+
+
+                document.getElementById("totsalary").innerHTML="€"+tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" total income";
+
 
         }
         var typeOfWork = document.getElementById('typeOfWork')
