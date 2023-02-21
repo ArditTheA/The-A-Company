@@ -37,14 +37,7 @@ body {
     vertical-align: middle;
 }
 
-#profile-image-button {
-    margin-right: 40px;
-    cursor: pointer;
-    height: 36px;
-    width: 36px;
-    border-radius: 50%;
-    object-fit: cover;
-}
+
 
 .dropdown, .dropdown-work-and-travel, .edit_dropdown, .all-applicants-dropdown {
     border: none;
