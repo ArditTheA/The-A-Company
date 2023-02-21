@@ -465,7 +465,7 @@ class AjaxHandler(View):
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
 class AppliedJobs(View):
     def get(self, request):
-      
+
         if request.GET.get("searchApplied") is not None:
             query = request.GET.get("searchApplied")
 
