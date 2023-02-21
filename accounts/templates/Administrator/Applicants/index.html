@@ -69,7 +69,12 @@
       <td>{{i.job_id.job_title}}</td>
       <td>{{i.job_id.country_j}}</td>
       <td>{{i.job_id.city_j}}</td>
-      <td>{% for j in Ustat %}{% if i.user_id == j.user_id %}{{j.answer}}{%endif%}{%endfor%}</td>
+      <td>{% for j in ApplicantANS %}
+                {% if i.job_id == j.question_id.job_id and i.user_id == j.applicant_id%}
+                    {{j.user_answer}}
+                {%endif%}
+          {%endfor%}
+      </td>
       <td>{{i.apply_date}}</td>
       <td><a class="btn btn-primary" href="{% url 'visitJob' i.job_id.id %}">View Job</a></td>
       <td><a class="btn btn-primary" href="{% url 'visitProfile' i.user_id.id %}">View Profile</a></td>

@@ -11,7 +11,7 @@ from Applicant.models import *
 import json
 from accounts.views import *
 from allauth import *
-
+from ScreeningQuestion.models import ApplicantAnswer
 def CoseJob(request,pk):
     us = request.user
     job = Jobs.objects.get(id=pk)
@@ -55,9 +55,9 @@ def GetJobApplicant(request):
     co = Country.objects.all()
     ci = City.objects.all()
     appCount = Applicant.count()
-
+    ApplicantANS = ApplicantAnswer.objects.all()
     allApp=False
-    return render(request, "Administrator/Applicants/index.html",dict(app=Applicant,co=co,ci=ci,appNo=appCount,Ustat=StudentStat,allApp=allApp))
+    return render(request, "Administrator/Applicants/index.html",dict(app=Applicant,co=co,ci=ci,appNo=appCount,Ustat=StudentStat,allApp=allApp,ApplicantANS=ApplicantANS))
 @login_required()
 def GetUserProfile(request,pk):
     us = CustomUser.objects.get(id=pk)
@@ -84,7 +84,8 @@ def GetAllApplication(request):
     StudentStat = ActiveStudent.objects.all()
     appCount = Applicant.count()
     allApp = True
-    return render(request, "Administrator/Applicants/index.html",dict(app=Applicant,appNo=appCount,Ustat=StudentStat,allApp=allApp))
+    ApplicantANS = ApplicantAnswer.objects.all()
+    return render(request, "Administrator/Applicants/index.html",dict(app=Applicant,appNo=appCount,Ustat=StudentStat,allApp=allApp,ApplicantANS=ApplicantANS))
 @login_required()
 def GetStats(request):
     allUser = CustomUser.objects.all().count()
