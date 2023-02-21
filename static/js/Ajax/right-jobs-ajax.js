@@ -68,12 +68,12 @@
         var countApplicant = document.getElementById("countApplicant")
        
         if(data["appNo"]==0){
-            countApplicant.innerHTML = data["appNo"]+" Applicants"
+            countApplicant.innerHTML = data["appNo"]+" applicants"
         }else if(data["appNo"]>=2){
-            countApplicant.innerHTML = data["appNo"]+" Applicants"
+            countApplicant.innerHTML = data["appNo"]+" applicants"
         }
         else{
-            countApplicant.innerHTML = data["appNo"]+" Applicant"
+            countApplicant.innerHTML = data["appNo"]+" applicant"
         }
 
         var start_date = document.getElementById("sDate");
