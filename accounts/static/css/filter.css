@@ -425,6 +425,17 @@ textarea {
 
         @media screen and (max-width: 480px) {
 
+            .jobs-left {
+                /* height: 100vh; */
+                height: calc(100% - 170px) !important;
+                position: absolute;
+            }
+            .right-jobs{
+                /* height: 100vh; */
+                height: calc(100% - 137px) !important;
+                position: absolute;
+            }
+
             .inputs-right-margin {
                 margin-right: 10px;
             }
