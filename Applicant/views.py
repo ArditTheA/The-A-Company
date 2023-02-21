@@ -24,7 +24,7 @@ def changeEmailForJobs(request):
                  "\n-You are currently not an active university student\n\nIf you feel this is a mistake," \
                  " schedule an online meeting with us\n\n" \
                  "https://calendar.google.com/calendar/u/0/selfsched?sstoken=UU1pV2thNF9iS3RwfGRlZmF1bHR8MTE3MmEwNGMxN2VkYTAwYzkwNTExMzQwYmJjYTk1M2M" \
-                 "\n\nKindly,\n Worki"
+                 "\n\nKindly,\nWorki"
         j.save()
     return redirect("home")
 
