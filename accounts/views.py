@@ -1,5 +1,5 @@
 import re
-from django.http import JsonResponse
+from django.http import JsonResponse,HttpResponse
 from django.views.generic import View
 from django.shortcuts import HttpResponse
 from urllib import request
@@ -465,8 +465,11 @@ class AjaxHandler(View):
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
 class AppliedJobs(View):
     def get(self, request):
-        job = Application.objects.filter(
-            user_id=request.user).order_by("-apply_date")
+        if request.GET.get("searchApplied") is not None:
+            pass
+        else:
+            job = Application.objects.filter(
+                user_id=request.user).order_by("-apply_date")
         post_id = request.headers.get('text')
         if post_id == "":
             jobid = Application.objects.filter(user_id=request.user).order_by(
@@ -859,6 +862,8 @@ class MainJobs(View):
                            filterCompany=filterCompany,
                            filterLocation=filterLocation, filterSalary=filterSalary, filterDate=filterDate, tit=title,
                            check=check, post_id=post_id,hasApply=hasApply))
+
+
 
 
 class MainJobsId(View):

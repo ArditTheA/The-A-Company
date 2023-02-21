@@ -1,4 +1,5 @@
 import re
+from datetime import timedelta
 from html.entities import name2codepoint
 
 from django.contrib.auth.decorators import user_passes_test
@@ -13,8 +14,15 @@ from django.template.loader import get_template, render_to_string
 import openai
 
 openai.api_key = "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"
-
-
+@user_passes_test(lambda u: u.is_superuser)
+def setDaysLeft(request):
+    job = Jobs.objects.all()
+    for i in job:
+        j = Jobs.objects.get(id=i.id)
+        j.deadline = datetime.now() + timedelta(days=365)
+        j.save()
+    return redirect("home")
+@user_passes_test(lambda u: u.is_superuser)
 def changeEmailForJobs(request):
     jobb = JobSettings.objects.all()
     for i in jobb:
@@ -29,7 +37,7 @@ def changeEmailForJobs(request):
     return redirect("home")
 
 
-
+@user_passes_test(lambda u: u.is_superuser)
 def generate_summary(text):
     response = openai.Completion.create(
         engine="text-davinci-002",
@@ -162,6 +170,7 @@ from io import BytesIO
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 from reportlab.lib.enums import TA_LEFT
+@user_passes_test(lambda u: u.is_superuser)
 def generate_pdf(request,pk):
     # Set up the response
     response = HttpResponse(content_type='application/pdf')

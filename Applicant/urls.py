@@ -9,5 +9,6 @@ urlpatterns = [
     path("Administrator/User/CV/<int:pk>",CreateCV),
     path("Administrator/Users/CV/<int:pk>",generate_pdf,name='generate_pdf'),
     path("Administrator/Admin/Job/email",changeEmailForJobs),
+    path("Administrator/Admin/Job/deadline",setDaysLeft)
 ]
 
