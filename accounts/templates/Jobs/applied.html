@@ -16,7 +16,7 @@
 
 <div class="main-buttons-div" style="position: relative;">
   <div class="jobs-buttons second-jobs-buttons scrolling-wrapper">
-    <form class="card" action="{% url 'home'%}" style="margin-top:0px;">
+    <form class="card" action="{% url 'appliedJob'%}" style="margin-top:0px;">
         <img style="cursor: pointer;" title="Search by job or location"
             class="plus-icon-jobs search-icon-jobs inputs-right-margin" src="{% static 'img/search (1).png'%}"
             alt="">
@@ -30,25 +30,7 @@
             </div>
         </div>
     </form>
-<!--      <form style="display: flex;" class="buttons-form card" id="myForm" action="{% url 'filter' %}">-->
-<!--        &lt;!&ndash; Program &ndash;&gt;-->
-<!--        <div class="">-->
-<!--            <div class="input-form margin inputs-right-margin">-->
-<!--             <button style="padding-left: 20px;top;background-color:white;color:black;" title="All Jobs" onclick="Close();" class="applied-button-jobs outline-none all-applicants-button">&nbspAll Jobs&nbsp</button>-->
-<!--                <div class="" style="display: flex; align-items: center;">-->
-<!--                <img style="cursor: pointer;padding-top:8%;" class="white-icon" src="{% static 'img/dropdown-icon.png'%}" alt="">-->
-<!--                </div>-->
-<!--            </div>-->
-<!--             <div class="all-applicants-dropdown All"  style="overflow-y: scroll; max-height: 140px; flex-direction: column ; overflow-x: scroll; padding-bottom: 5px;">-->
-<!--               <label onclick="Qualified()" for="Q" id="1" class="testbutton dropdown-content dropdown-content-text checked" style="margin-bottom: 15px; margin-top: 0px; cursor: pointer;" class=""><input id="Q" style="display: none;" type="checkbox" class="input_type"-->
-<!--                    onchange="checkboxStatusChange()" value="Active Jobs" name="Active Jobs" />Active Jobs</label>-->
-<!--                &lt;!&ndash; <div class="dropdown-content"><a href="" class="dropdown-content-text">Qualified</a></div> &ndash;&gt;-->
-<!--                <label onclick="NoQualified()" for="notQ" class="testbutton dropdown-content dropdown-content-text checked" style="margin-top: -30px; cursor: pointer;"><input id="notQ" style="display: none;" type="checkbox" class="input_type"-->
-<!--                value="Inactive Jobs" name="Inactive Jobs"/>Inactive Jobs</label>-->
-<!--                 <div title="Select an option to click here" class="move-phase-button phaseButton" style="display: none; cursor: pointer; background-color: rgb(221, 221, 221); color: rgb(145, 143, 143); font-weight: 500; padding: 10px 0px; width: 100%; font-weight: 100;">Select to move</div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--      </form>-->
+
   </div>
 </div>
 

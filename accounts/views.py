@@ -465,8 +465,19 @@ class AjaxHandler(View):
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
 class AppliedJobs(View):
     def get(self, request):
+      
         if request.GET.get("searchApplied") is not None:
-            pass
+            query = request.GET.get("searchApplied")
+
+            t = query.split(" ")
+            t = remove_null(t)
+            if query.isspace() != True:
+                query = Q()
+                for s in t:
+                    query |= Q(job_id__job_title__contains=s) | Q(job_id__company__contains=s) | Q(job_id__country_j__contains=s)
+
+                job = Application.objects.filter(user_id=request.user).filter(query).order_by("-apply_date")
+
         else:
             job = Application.objects.filter(
                 user_id=request.user).order_by("-apply_date")
