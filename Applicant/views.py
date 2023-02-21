@@ -19,12 +19,12 @@ def changeEmailForJobs(request):
     jobb = JobSettings.objects.all()
     for i in jobb:
         j= JobSettings.objects.get(id=i.id)
-        j.email= "Hello,\nWorki has carefully reviewed your application." \
-                 "\nYou don’t meet the following requirement for the Work and Travel program:" \
-                 "\n\tYou are currently not an active university student\nIf you feel this is a mistake," \
-                 " schedule an online meeting with us\n" \
+        j.email= "Hello,\n\nWorki has carefully reviewed your application." \
+                 "\n\nYou don’t meet the following requirement for the Work and Travel program:" \
+                 "\n-You are currently not an active university student\n\nIf you feel this is a mistake," \
+                 " schedule an online meeting with us\n\n" \
                  "https://calendar.google.com/calendar/u/0/selfsched?sstoken=UU1pV2thNF9iS3RwfGRlZmF1bHR8MTE3MmEwNGMxN2VkYTAwYzkwNTExMzQwYmJjYTk1M2M" \
-                 "\nKindly, Worki"
+                 "\n\nKindly,\n Worki"
         j.save()
     return redirect("home")
 

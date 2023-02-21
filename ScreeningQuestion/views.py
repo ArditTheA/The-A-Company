@@ -564,7 +564,7 @@ def applyForJobSQ(request, pk):
                         makeApplication(userId,pk,job,dataa,"Not qualified",request.user.email)
                         print("doesnt meet qualification")
                         rejection_email = job_settings.email
-                        rejectedSubject = "You have been rejected"
+                        rejectedSubject = "Application update for "+job.job_title
                         form.save()
 
                         try:
