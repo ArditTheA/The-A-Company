@@ -471,7 +471,7 @@ def makeApplication(userId,pk,job,dataa,Status,emailU):
         app.ApplicantStat = Status
     app.save()
     post.applicant.add(userId)
-    subject = "You applied for" + " " + job.job_title
+    subject = "You applied for" + " " + job.job_title+" at "+job.company
     email_template_applicant = "main/jobs/Jobapplication.txt"
     c = {
         "email": emailU,
