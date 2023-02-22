@@ -29,9 +29,9 @@
                    <span class="experience-rows">
                    <span class="experience-first-row">{{i.job_title}} </span>
                        {% if i.country_j == "USA" %}
-                            <span class="experience-second-row">${{i.salary_per_hour|floatformat:2}}/hour</span>
+                            <span class="experience-second-row">${{i.salary_per_hour|floatformat:2}}/hour{%if i.tips %} + tips {% endif %} </span>
                        {% else %}
-                            <span class="experience-second-row">€{{i.salary_per_hour|floatformat:2}}/hour</span>
+                            <span class="experience-second-row">€{{i.salary_per_hour|floatformat:2}}/hour{%if i.tips %} + tips {% endif %}</span>
                        {% endif%}
                    <span class="experience-third-row">{{i.company}}</span>
 
