@@ -22,17 +22,7 @@ def add_JobScreeningQuestion(request):
         job_question_formset = JobQuestionFormSet(request.POST, prefix='job_question')
         job_settings_formset = JobSettingsFormSet(request.POST, prefix='job_settings')
         job_form.initial["user_id"] = uid
-        print("-1 job_form-------")
-        print(job_form.is_valid())
-        print("--------")
-        print("--2 jobbQuestiion------")
-        print(job_question_formset.is_valid())
-        print(job_question_formset.errors)
-        print(job_question_formset)
-        print("--------")
-        print("-----3 job settings ------")
-        print(job_settings_formset.is_valid())
-        print("--------")
+
 
 
         if job_form.is_valid() and job_question_formset.is_valid():
@@ -45,9 +35,10 @@ def add_JobScreeningQuestion(request):
                 job_settings.save()
 
             for form in job_question_formset:
-                job_question = form.save(commit=False)
-                job_question.job_id = job
-                job_question.save()
+                if form.cleaned_data.get('promp') is not None:
+                        job_question = form.save(commit=False)
+                        job_question.job_id = job
+                        job_question.save()
 
             CountryJob(getCountry)
 
