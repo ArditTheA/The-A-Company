@@ -1,11 +1,9 @@
 {% load static %}
 {% load socialaccount %}
-
-
 <!DOCTYPE html>
 <html lang="en" >
 <head>
-    
+
     {{ analytics_code }}
     <!-- Google tag (gtag.js) -->
 <!-- Google tag (gtag.js) -->
@@ -17,7 +15,7 @@
 
   gtag('config', 'G-0YYCLJRQPV');
 </script>
-   
+
 <script>
     (function(h,o,t,j,a,r){
         h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
@@ -28,11 +26,11 @@
         a.appendChild(r);
     })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
 </script>
-    
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <title>Worki</title>
     <link rel="stylesheet" href="{% static 'css/filter.css'%}">
     <link rel="stylesheet" href="{% static 'css/authenticated.css'%}">
@@ -93,10 +91,10 @@ input[type=number] {
 
             <a href="{% url 'home'%}"><img class="jobs-icon-button" title="Jobs"
                     src="{% static 'img/JOBS_Icon.png' %}"></a>
-            
+
             <img src="{{user.profile.url}}" id="profile-image-button" title="Profile" alt="">
 
-           
+
 
 
 
@@ -139,71 +137,48 @@ input[type=number] {
 
 </body>
 <script>
-    // Set the target date and time
-    var targetDate = new Date("2023-03-01T00:00:00");
+    var dropdown = document.querySelectorAll(".dropdown");
+var work_and_travel_dropdown = document.querySelectorAll(".dropdown-work-and-travel");
+var profile = document.querySelectorAll("#profile-image-button");
+var work_and_travel_button = document.querySelectorAll('.button-work-and-travel');
+var mutual_button_div = document.querySelectorAll('.mutual-padding-of-div');
+var jobs_buttons_icon = document.querySelectorAll('.icon');
+var jobs_buttons_white_icon = document.querySelectorAll('.white-icon')
+var show_dropdown = document.querySelectorAll('.showDropdown');
+var button_content = document.querySelectorAll('.button-content');
+var dropdown_all_applicants = document.querySelector('.dropdown');
 
-    // Update the count down every 1 second
-    var x = setInterval(function() {
-      // Get the current date and time
-      var currentDate = new Date().getTime();
+for (let i = 0; i < dropdown.length; i++) {
+profile[i].addEventListener("click", function() {
+   if (dropdown[i].style.display == "block") {
+      dropdown[i].style.display = "none";
+   }
+   else {
+      dropdown[i].style.display = "block";
+   }
+})
+document.addEventListener('click', function(e) {
+   if (!dropdown[i].contains(e.target) && !profile[i].contains(e.target)) {
+       dropdown[i].style.display = 'none';
+   }
+});
 
-      // Calculate the difference between the current and target dates in milliseconds
-      var diff = targetDate - currentDate;
+}
+</script>
 
-      // Time calculations for days, hours, minutes and seconds
-      var days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      var minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      var seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-
-      // Display the result
-      if (days < 2) {
-        document.getElementById("countdown").innerHTML = days + " day, " + hours + " hours, "
-      + minutes + " minutes, " + seconds + " seconds " + "left.";
-      }
-      if (hours < 2) {
-        document.getElementById("countdown").innerHTML = days + " days, " + hours + " hour, "
-      + minutes + " minutes, " + seconds + " seconds " + "left.";
-      }
-      if (minutes < 2) {
-        document.getElementById("countdown").innerHTML = days + " days, " + hours + " hours, "
-      + minutes + " minute, " + seconds + " seconds " + "left.";
-      }
-      if (seconds < 2) {
-        document.getElementById("countdown").innerHTML = days + " days, " + hours + " hours, "
-      + minutes + " minutes, " + seconds + " second " + "left.";
-      }
-      else{
-        document.getElementById("countdown").innerHTML = days + " days, " + hours + " hours, "
-      + minutes + " minutes, " + seconds + " seconds left.";
-      }
-
-      var div = document.getElementById("banner");
-      if (div.style.display === "none") {
-        div.style.display = "block";
-      }
-
-      // If the count down is finished, write some text
-      if (diff < 0) {
-        clearInterval(x);
-        document.getElementById("countdown").innerHTML = "EXPIRED";
-      }
-    }, 1000);
-  </script>
 <script>
     function MMDDYYYY(value, event) {
       let newValue = value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');
-    
+
       const dayOrMonth = (index) => index % 2 === 1 && index < 4;
-    
-      // on delete key.  
+
+      // on delete key.
       if (!event.data) {
         return value;
       }
-    
+
       return newValue.split('').map((v, i) => dayOrMonth(i) ? v + '/' : v).join('');;
-      
+
       ducument.getElementById("test").innerHTML(newValue)
     }
     </script>
@@ -240,52 +215,6 @@ input[type=number] {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.2/umd/popper.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-    var dropdown = document.querySelectorAll(".dropdown");
-    var work_and_travel_dropdown = document.querySelectorAll(".dropdown-work-and-travel");
-    var profile = document.querySelectorAll("#profile-image-button");
-    var work_and_travel_button = document.querySelectorAll('.button-work-and-travel');
-    var mutual_button_div = document.querySelectorAll('.mutual-padding-of-div');
-    var jobs_buttons_icon = document.querySelectorAll('.icon');
-    var jobs_buttons_white_icon = document.querySelectorAll('.white-icon')
-    var show_dropdown = document.querySelectorAll('.showDropdown');
-    var button_content = document.querySelectorAll('.button-content');
-    for (let i = 0; i < dropdown.length; i++) {
-        profile[i].addEventListener("click", function () {
-            if (dropdown[i].style.display == "block") {
-                dropdown[i].style.display = "none";
-            }
-            else {
-                dropdown[i].style.display = "block";
-            }
-        })
-        document.addEventListener('click', function (e) {
-            if (!dropdown[i].contains(e.target) && !profile[i].contains(e.target)) {
-                dropdown[i].style.display = 'none';
-            }
-        });
-
-    }
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

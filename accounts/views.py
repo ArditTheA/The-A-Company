@@ -465,7 +465,10 @@ class AjaxHandler(View):
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
 class AppliedJobs(View):
     def get(self, request):
-
+        print("--------------------------")
+        print(request.GET.get("filterApply"))
+        print("--------------------------")
+        job = ""
         if request.GET.get("searchApplied") is not None:
             query = request.GET.get("searchApplied")
 
@@ -477,6 +480,16 @@ class AppliedJobs(View):
                     query |= Q(job_id__job_title__contains=s) | Q(job_id__company__contains=s) | Q(job_id__country_j__contains=s)
 
                 job = Application.objects.filter(user_id=request.user).filter(query).order_by("-apply_date")
+
+        elif request.GET.get("filterApply") is not None:
+            filterJ = request.GET.get("filterApply")
+            if filterJ == "Active Jobs":
+                job = Application.objects.filter(user_id=request.user).filter(job_id__status="Open").order_by("-apply_date")
+            elif filterJ == "Inactive Jobs":
+                job = Application.objects.filter(user_id=request.user).filter(job_id__status="Close").order_by("-apply_date")
+            elif filterJ == "Progress Jobs":
+                job = Application.objects.filter(user_id=request.user).order_by("-apply_date")
+
 
         else:
             job = Application.objects.filter(
@@ -591,14 +604,16 @@ class AppliedJobs(View):
                          program=program, programCost=programCost,SDate=SDate,EDate=EDate,
                          posted=posted, post_id=post_id, applied=applied, appNo=appNo), safe=True)
         check = True
+        filterSel = request.GET.get("filterApply")
+
         if len(job) != 0:
             check = True
             post_id=job[0].id
-            return render(request, "Jobs/applied.html", dict(job=job, check=check,post_id=post_id))
+            return render(request, "Jobs/applied.html", dict(job=job, check=check,post_id=post_id,filterSel=filterSel))
         else:
             check = False
 
-        return render(request, "Jobs/applied.html", dict(job=job, check=check))
+        return render(request, "Jobs/applied.html", dict(job=job, check=check,filterSel=filterSel))
 
 
 #########################################################################################
