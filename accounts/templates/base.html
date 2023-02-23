@@ -92,15 +92,14 @@ input[type=number] {
             <a href="{% url 'home'%}"><img class="jobs-icon-button" title="Jobs"
                     src="{% static 'img/JOBS_Icon.png' %}"></a>
 
-            <img src="{{user.profile.url}}" id="profile-image-button" title="Profile" alt="">
-
+            <img src="{{user.profile.url}}" id="profile-image-button" onclick="toggleDropdownMenu()" title="Profile" alt="">
 
 
 
 
         </div>
     </header>
-    <div class="dropdown">
+    <div class="dropdown" id="dropdownA">
         <div class="dropdown-content"><a href="{% url 'profile'  %}" class="dropdown-content-text">My profile</a></div>
         <div class="dropdown-mid-content"><a href="{% url 'appliedJob'%}" class="dropdown-content-text">My jobs</a>
         </div>
@@ -115,10 +114,10 @@ input[type=number] {
         <div id="jobs-and-profile">
             <a href="{% url 'home'%}"><img class="jobs-icon-button" title="Jobs"
                     src="{% static 'img/JOBS_Icon.png' %}"></a>
-            <img src="{% static 'img/defaultProfile.jpg' %}" id="profile-image-button" title="Profile" alt="">
+            <img src="{% static 'img/defaultProfile.jpg' %}" id="profile-image-button" onclick="toggleDropdownMenu()" title="Profile" alt="">
         </div>
     </header>
-    <div class="dropdown">
+    <div class="dropdown" id="dropdownA">
         <div style="padding-left: 20px; padding-right: 20px;" class="dropdown-content"><a href="{% url 'login'%}"
                 class="dropdown-content-text">Sign in</a></div>
         <div style="padding-bottom: 20px; padding-right: 20px; padding-left: 20px" class="dropdown-mid-content"><a
@@ -136,35 +135,9 @@ input[type=number] {
     {% endblock content%}
 
 </body>
-<script>
-    var dropdown = document.querySelectorAll(".dropdown");
-var work_and_travel_dropdown = document.querySelectorAll(".dropdown-work-and-travel");
-var profile = document.querySelectorAll("#profile-image-button");
-var work_and_travel_button = document.querySelectorAll('.button-work-and-travel');
-var mutual_button_div = document.querySelectorAll('.mutual-padding-of-div');
-var jobs_buttons_icon = document.querySelectorAll('.icon');
-var jobs_buttons_white_icon = document.querySelectorAll('.white-icon')
-var show_dropdown = document.querySelectorAll('.showDropdown');
-var button_content = document.querySelectorAll('.button-content');
-var dropdown_all_applicants = document.querySelector('.dropdown');
+<script src="{% static 'js/DropDown/main.js' %}" >
 
-for (let i = 0; i < dropdown.length; i++) {
-profile[i].addEventListener("click", function() {
-   if (dropdown[i].style.display == "block") {
-      dropdown[i].style.display = "none";
-   }
-   else {
-      dropdown[i].style.display = "block";
-   }
-})
-document.addEventListener('click', function(e) {
-   if (!dropdown[i].contains(e.target) && !profile[i].contains(e.target)) {
-       dropdown[i].style.display = 'none';
-   }
-});
 
-}
-</script>
 
 <script>
     function MMDDYYYY(value, event) {
