@@ -6,9 +6,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Jobs</title>
 <link rel="stylesheet" href="{% static 'css/Match/authenticated.css'%}">
-<!--<link rel="stylesheet" href="{% static 'css/Match/jobs.css'%}">-->
-<!--<link rel="stylesheet" href="{% static 'css/Match/profile-header.css'%}">-->
-<link rel="stylesheet" href="{% static 'css/Match/posted-jobs-media-queries.css'%}">
+
+<link rel="stylesheet" href="{% static 'css/labels.css' %}">
+<link rel="stylesheet" href="{% static 'css/MyJobs/my-jobs-media-screen.css' %}">
+
+<!-- <link rel="stylesheet" href="{% static 'css/posted-jobs-media-queries.css' %}">-->
+<link rel="stylesheet" href="{% static 'css/jobi.css' %}">
 
 <style>
 
@@ -129,12 +132,11 @@
 </div>
 
 {% if check %}
-<div class="jobs-main-div" style="display: flex; justify-content: space-between; width: 100%;">
-
-    <div class="jobs-left applied-jobs-left" style="margin-top: 0;height:auto !important;">
+<div class="jobs-main-div" style="display: flex; justify-content: space-between;">
+    <div class="jobs-left  mobile-margin-top" style="height:85.9vh !important;" id="myDIV">
         {% for i in job %}
 
-        <div onclick="getNumber({{i.id}})" class="jobs-rows-img second-jobs pixel" id="select{{i.id}}">
+        <div onclick="getNumber({{i.id}})" class="jobs-rows-img second-jobs margin-top-jobs-rows-img  same-background-jobs pixel first-job-applied" id="select{{i.id}}">
                 <img class="experience-education-img" src="{{i.logo.url}}" alt="">
                 <div class="experience-rows">
                     <div class="first-row-and-edit-img">
@@ -158,7 +160,7 @@
                     <div class="experience-fourth-row">{{i.total_applicant}} applicants · {{i.status}}</div>
                 </div>
             </div>
-            <div class="move"></div>
+        <div class="move"></div>
         {% endfor %}
 
 

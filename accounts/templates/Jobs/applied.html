@@ -6,41 +6,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Jobs</title>
 
-<link rel="stylesheet" href="{% static 'css/jobi.css' %}">
 <link rel="stylesheet" href="{% static 'css/labels.css' %}">
+<link rel="stylesheet" href="{% static 'css/MyJobs/my-jobs-media-screen.css' %}">
 
-<!-- <link rel="stylesheet" href="{% static 'css/posted-jobs-media-queries.css' %}"> -->
-
-<!--<div class="main-buttons-div" style="position: relative;">-->
-<!--  <div class="jobs-buttons second-jobs-buttons scrolling-wrapper">-->
-<!--    <form class="card" action="{% url 'appliedJob'%}" style="margin-top:0px;">-->
-<!--        <img style="cursor: pointer;" title="Search by job or location"-->
-<!--            class="plus-icon-jobs search-icon-jobs inputs-right-margin" src="{% static 'img/search (1).png'%}"-->
-<!--            alt="">-->
-<!--            <div class="mutual-padding-of-div input-search-div" style="border-radius: 20px;">-->
-<!--                <div class="second-input-form" style="">-->
-<!--                <input style="" name="searchApplied" placeholder="Search by job or location"-->
-<!--                    class="search-input inputs-right-margin" id="input-removed"-->
-<!--                    style="padding-top: 8px; padding-bottom: 8px; padding-left: 20px; background-color: white; " autocomplete="off" onchange="SearchFunction()">-->
-<!--                </input>-->
-<!--                <img style="display: none;" class="input-exit-button" title="Exit" src="{% static 'img/Vector 81 (1).png'%}" style="width: 8px; height: 8px; background-color: red;" alt="">-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </form>-->
-
-<!--  </div>-->
-<!--</div>-->
+ <link rel="stylesheet" href="{% static 'css/posted-jobs-media-queries.css' %}">
+<link rel="stylesheet" href="{% static 'css/jobi.css' %}">
+<style>
+    .left-jobs,.right-jobs{
+        height:85.9vh !important;
+    }
+</style>
 {% include "Filters/appliedFilter.html" %}
 
 {% if check %}
 
-<div class="jobs-main-div" style="display: flex; justify-content: space-between; width: 100%;">
-    <div class="jobs-left applied-jobs-left" style="margin-top: 0;">
+<div class="jobs-main-div" style="display: flex; justify-content: space-between;">
+    <div class="jobs-left mobile-margin-top" style="" id="myDIV">
         {% for i in job %}
 
 
         <div onclick="getNumber({{i.job_id.id}})"
-            class="jobs-rows-img second-jobs margin-top-jobs-rows-img same-background-jobs pixel first-job-applied" id="select{{i.job_id.id}}">
+            class="jobs-rows-img second-jobs margin-top-jobs-rows-img  same-background-jobs pixel first-job-applied" id="select{{i.job_id.id}}">
             <img class="experience-education-img" src="{{i.job_id.logo.url}}" alt="">
             <div class="experience-rows">
                 <div class="experience-first-row">{{i.job_id.job_title}}</div>
@@ -59,7 +45,7 @@
 
 
     </div>
-    <div class="right-jobs-main-div">
+      <div class="right-jobs-main-div right-job-margin-top">
         <div class="right-jobs" id="detailsRow" style="display:none;flex-direction: column;">
 
         <div class="right-jobs-rows-img" style="padding: 3; margin-left: 10px; background-color: white;">
@@ -87,7 +73,9 @@
                         <div style="" class="experience-fourth-row mobile-rows-font-size jobs-mutual-margin-rows">
                             <span id="program"></span>&nbsp;&nbsp;·&nbsp;&nbsp;<span id="programCost"></span>
                         </div>
-                        
+                        <div style="" class="experience-fourth-row mobile-rows-font-size jobs-mutual-margin-rows">
+                            <span id="applyon"></span>
+                        </div>
                     </div>
                 </div>
                 <div class="right-jobs-rows-img-second">

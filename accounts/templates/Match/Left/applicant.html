@@ -1,10 +1,11 @@
 {% load static %}
-<div class="jobs-left applied-jobs-left" style="">
+
+    <div class="jobs-left mobile-margin-top" style="height:85.9vh !important;" id="myDIV">
     <input type="text" id="sectedUser" style="display:none;" value="{{uid}}">
 
             {% for i in users %}
             {% if i.user_id.id == uid %}
-            <div onclick="getUser({{i.user_id.id}})" class="jobs-rows-img different-background-jobs left-user-first first-job-applied">
+            <div onclick="getUser({{i.user_id.id}})" class="jobs-rows-img second-jobs margin-top-jobs-rows-img  same-background-jobs pixel first-job-applied">
                 <img class="experience-education-img" src="{{i.user_id.profile.url}}" alt="" style="border-radius: 10px;">
                 <div class="experience-rows">
                 <div style="display: flex;">
