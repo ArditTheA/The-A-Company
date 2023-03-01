@@ -1,5 +1,55 @@
+
+
+
 .jobs-left, .right-jobs {
     overflow-y: scroll;
-    height: calc(85.9vh - 61px) !important;
-    margin-bottom: 0;
+    height:calc(85.9vh - 10px) !important;
+    padding-bottom: 20px;
+    margin-bottom: 0px !important;
 }
+
+
+.under-header-wishes {
+    /* display: none; */
+}
+
+@media screen and (max-width: 767px) and (min-width: 481px) {
+
+
+.right-jobs {
+    overflow-y: scroll;
+    height: calc(100% - 100px) !important;
+    padding-bottom: 20px !important;
+    position: absolute;
+}
+.jobs-left {
+    overflow-y: scroll;
+    height: calc(85.9vh - 10px) !important;
+    position: absolute;
+    width: calc(100% - 10px);
+    padding-bottom: 30px !important;
+}
+
+}
+
+@media screen and (max-width: 480px) {
+
+    .jobs-left {
+        /* height: 100vh; */
+        height:calc(100% - 113px) !important;
+        position: absolute;
+        padding-bottom: 0px !important;
+    }
+    .right-jobs {
+        height: calc(100% - 70px) !important;
+        position:absolute;
+        padding-bottom: 0px !important;
+    }
+}
+
+
+
+
+
+
+

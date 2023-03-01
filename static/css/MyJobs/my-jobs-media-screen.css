@@ -1,0 +1,43 @@
+.jobs-left, .right-jobs {
+    height: 85.9vh;
+    margin-bottom: 0px !important;
+    /* margin-bottom: 20px !important; */
+}
+
+
+@media screen and (max-width: 480px) {
+
+    .jobs-left {
+        /* height: 100vh; */
+        height: calc(100% - 114px);
+        position: absolute;
+    }
+}
+
+
+@media screen and (max-width: 767px) and (min-width: 481px) {
+
+    .jobs-left {
+        /* height: 100vh; */
+        height: calc(100% - 171px) !important;
+        position: absolute;
+    }
+    .right-jobs {
+        height: calc(100% - 38px) !important;
+        padding-bottom: 10px;
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+    .jobs-left {
+        height: calc(100% - 114px) !important;
+        position: absolute;
+    }
+    .right-jobs {
+            height: calc(100% - 70px) !important;
+            position: absolute;
+    }
+
+}
+
