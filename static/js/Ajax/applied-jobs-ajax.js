@@ -128,7 +128,8 @@ async function getNumber(id) {
     var programCost = document.getElementById("programCost")
     programCost.innerHTML = "Program Cost: €"+data["programCost"]
 
-
+    var applyOn  = document.getElementById("applyon")
+    applyOn.innerHTML = "Applied on: "+data["applied"]
 
     var firstMediaQuery = window.matchMedia('(min-width: 768px');
     const mediaQuery = window.matchMedia('(max-width: 767px)');
