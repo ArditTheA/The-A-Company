@@ -19,7 +19,9 @@
 #mySelectOptions::-webkit-scrollbar {
             display: none;
         }
-
+#mySelectOptions label:hover{
+    color:black !important;
+}
 
 textarea {
     height:auto;
