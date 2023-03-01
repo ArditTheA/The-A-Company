@@ -36,12 +36,13 @@
 
     .jobs-left {
         /* height: 100vh; */
-        height:calc(100% - 114px) !important;
+        height:calc(100% - 113px) !important;
         position: absolute;
         padding-bottom: 0px !important;
     }
     .right-jobs {
         height: calc(100% - 70px) !important;
+        position:absolute;
         padding-bottom: 0px !important;
     }
 }
