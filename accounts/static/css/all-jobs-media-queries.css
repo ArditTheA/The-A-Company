@@ -3,7 +3,7 @@
 
 .jobs-left, .right-jobs {
     overflow-y: scroll;
-    height:calc(85.9vh - 10px) !important;
+    height:calc(85.9vh - 20px) !important;
     padding-bottom: 20px;
     margin-bottom: 0px !important;
 }
@@ -24,7 +24,7 @@
 }
 .jobs-left {
     overflow-y: scroll;
-    height: calc(85.9vh - 10px) !important;
+    height: calc(100% - 136px) !important;
     position: absolute;
     width: calc(100% - 10px);
     padding-bottom: 30px !important;
