@@ -1,0 +1,16 @@
+
+body {
+    background-color: #f1f1f1;
+    margin: 0 !important;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    -ms-overflow-style: none;
+    scrollbar-width: 0 !important;
+    height:100vh;
+}
+body::-webkit-scrollbar {
+    display: none;
+}
+body {
+    font-family: 'Spline Sans';
+}

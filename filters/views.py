@@ -35,7 +35,7 @@ def getList(request):
 
     sorted_x = sorted(secList.items(), key=lambda kv: kv[1], reverse=True)
 
-    return render(request, "MainJobs/asd.html", {"sorted_x": sorted_x})
+    return render(request, "MainJobs/UserSearch.html", {"sorted_x": sorted_x})
 
 
 

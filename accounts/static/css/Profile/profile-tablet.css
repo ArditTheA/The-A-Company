@@ -1,0 +1,141 @@
+@media screen and (max-width: 767px) and (min-width: 481px) {
+    .profile-header {
+        margin: 20px;
+        border-radius: 35px;
+    }
+    .last-input-form {
+    }
+    #title-experience {
+        font-size: 32px !important;
+    }
+
+
+    .profile-image-and-edit {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .pro-img {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 100%;
+        border-radius: 20px;
+    }
+    .second-part-profile-header {
+        padding: 0px 0px 20px 0px;
+    }
+    .profile-image {
+        margin-top: -55px;
+        width: 110px;
+        height: 110px;
+    }
+    #plus-icon, .edit-button-cover {
+        height: 26px;
+        width: 26px;
+    }
+    .edit-button {
+        position: absolute;
+        right: 30px;
+        bottom: 20px;
+        width: 26px;
+        height: 26px;
+    }
+    .edit-button-cover {
+        position: absolute;
+        right: 20px;
+        top: 20px;
+        width: 21px;
+        height: 21px;
+    }
+
+    .profile-name {
+        margin-top: 10px;
+        text-align: center;
+    }
+    .profile-birthplace {
+        margin-top: 10px;
+        text-align: center;
+    }
+    .experience-education-languages {
+        margin: 20px;
+    }
+    .experience-paragraph-img-rows {
+        padding: 30px 0px 30px 30px;
+    }
+    .experience-rows-img {
+        margin-top: 30px;
+    }
+    .add-experience-button {
+        width: 26px;
+        height: 26px;
+    }
+    .edit-experience {
+        width: 26px;
+        height: 26px;
+    }
+
+
+    .experience-education-img {
+        margin-right: 30px;
+    }
+    .add-and-edit-experience {
+        padding-top: 30px;
+        padding-right: 30px;
+    }
+    .second-experience-div {
+        margin-top: 20px;
+    }
+    .second-rows-img {
+        margin-top: 10px;
+    }
+    .back-icon {
+        width: 26px;
+        height: 26px;
+    }
+    .two-imgs-experience {
+        position: absolute;
+        right: 30px;
+    }
+    .languages-paragraphs-div {
+        padding: 30px 0px 30px 30px;
+    }
+}
+
+
+
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+    .experience-education-languages {
+        margin: 20px 30px 20px 30px;
+    }
+    .experience-paragraph-img-rows {
+        padding: 40px 0px 40px 40px;
+    }
+    .experience-rows-img {
+        margin-top: 20px;
+    }
+    .add-experience-button {
+        width: 28px;
+        height: 28px;
+    }
+    .edit-experience {
+        width: 28px;
+        height: 28px;
+    }
+    .experience-education-img {
+        margin-right: 30px;
+        }
+    .add-and-edit-experience {
+        padding-top: 40px;
+        padding-right: 40px;
+    }
+    .back-icon {
+        width: 28px;
+
+    }
+    .two-imgs-languages {
+        position: absolute;
+        right: 40px;
+    }
+}
+

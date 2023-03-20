@@ -1,0 +1,32 @@
+{% load static %}
+<div class="experience-main-div experience-education-languages">
+    <div class="experience-div">
+        <div class="experience-paragraph-img-rows">
+            <div class="aaa">
+            <p class="experience-paragraph">Experience </p>
+            {% for i in usExp%}
+            <div class="experience-rows-img">
+                <img class="experience-education-img" src="{% static 'img/worki_icons-18.jpg' %}" alt="">
+                <div class="experience-rows">
+                <div class="experience-first-row">{{i.title}}</div>
+                <div class="experience-second-row">{{i.company}}</div>
+                <div class="experience-third-row">{{i.city_usExp}}, {{i.Country}}</div>
+                <div class="experience-fourth-row">{{i.start_date|date:'d/m/Y'}} - {% if i.start_date == i.end_date%}Present
+                    {%elif i.end_date == null %} Present {% else %} {{i.end_date|date:'d/m/Y'}}{% endif %} </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        </div>
+        <div class="add-and-edit-experience">
+            <img class="add-experience-button" title="Add Experience" onclick="disableScroll()" src="{% static 'img/Vector 80.png' %}" alt="">
+            <a href="{% url 'editExprience' %}"><img class="edit-experience" title="Edit Experience" src="{% static 'img/Ikona_edit-01 56.png' %}" alt=""></a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

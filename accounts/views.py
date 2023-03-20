@@ -27,6 +27,21 @@ import locale
 today = timezone.now
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #################### product before Suggestions ######################
 def UniUser(university, user):
     uni = university
@@ -97,12 +112,9 @@ from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView
 
 
-def profile(request):
-    return render(request, "profile/profile.html")
-
 
 def Terms(request):
-    return render(request, "accounts/Terms.html")
+    return render(request, "Terms/index.html")
 
 
 class passChange(PasswordChangeView):
@@ -110,9 +122,6 @@ class passChange(PasswordChangeView):
     success_url = reverse_lazy('home')
 
 
-def HomeTemp(request):
-    template_name = "home/home.html"
-    return render(request, "home/home.html")
 
 
 class LoginView(auth_views.LoginView):
@@ -148,7 +157,7 @@ def registration(request):
             }
             email = render_to_string(email_template_applicant, c)
             try:
-                send_mail(subject, email, 'hello@worki.global',
+                send_mail(subject, email, 'Worki hello@worki.global',
                           [NewClinetemail], fail_silently=False)
                 # send_mail(subject,oemail,'rinor@theacompany.xyz',[emailOwner],fail_silently=False)
             except BadHeaderError:
@@ -202,7 +211,7 @@ def update_profile(request):
     coun = []
     for i in countrys:
         coun.append(i.country)
-    return render(request, 'profile/profile.html',
+    return render(request, 'UserProfile/index.html',
                   {"usExp": usExp,
                    "usEdu": usEdu,
                    "form": form,
@@ -222,7 +231,7 @@ def update_profile(request):
 @login_required
 def Edit_user_exp(request):
     user_id = request.user.id
-    userExp = UserExperiece.objects.filter(user_id=request.user.id)
+    usExp = UserExperiece.objects.filter(user_id=request.user.id)
 
     for_usExp = add_user_Exp(request.POST or None)
     country = Country.objects.all()
@@ -235,8 +244,8 @@ def Edit_user_exp(request):
     if (user_id != ''):
         for_usExp.initial["user_id"] = user_id
 
-    return render(request, "profile/experiences.html",
-                  {"userExp": userExp, "for_usExp": for_usExp, "country": country, "city": city})
+    return render(request, "UserProfile/EditAdd/experiences.html",
+                  {"usExp": usExp, "for_usExp": for_usExp, "country": country, "city": city})
 
 
 @login_required
@@ -251,7 +260,7 @@ def Edit_user_expId(request, pk):
         edit.save()
         return redirect("editExprience")
 
-    return render(request, "profile/expreriencesId.html",
+    return render(request, "UserProfile/EditAdd/expreriencesId.html",
                   {"userExp": userExp, "edit": edit, "countrys": countrys, "citys": citys})
 
 
@@ -270,7 +279,7 @@ def Edit_user_edu(request):
         return redirect("editEdu")
     if (user_id != ''):
         edit.initial['user_id'] = user_id
-    return render(request, "profile/education.html",
+    return render(request, "UserProfile/EditAdd/education.html",
                   {"edit": edit, "userEdu": userEdu, "country": country, "city": city})
 
 
@@ -288,7 +297,7 @@ def Edit_user_EduId(request, pk):
         return redirect("editEdu")
     if (user_id != ''):
         edit.initial['user_id'] = user_id
-    return render(request, "profile/educationId.html",
+    return render(request, "UserProfile/EditAdd/educationId.html",
                   {"edit": edit, "userEdu": userEdu, "country": country, "city": city, "university": university})
 
 
@@ -304,7 +313,7 @@ def Edit_user_language(request):
         return redirect("editLanguage")
     if (user_id != ''):
         edit.initial['user_id'] = user_id
-    return render(request, "profile/language.html", {"User_lang": User_lang, "edit": edit, "lang": lang})
+    return render(request, "UserProfile/EditAdd/language.html", {"User_lang": User_lang, "edit": edit, "lang": lang})
 
 
 @login_required
@@ -323,7 +332,7 @@ def Edit_User_langId(request, pk):
     if (user_id != ''):
         edit.initial['user_id'] = user_id
 
-    return render(request, "profile/languageId.html",
+    return render(request, "UserProfile/EditAdd/languageId.html",
                   {"edit": edit, "User_lang": User_lang, "lang": lang, "uslang": uslang, "asd1": asd1})
 
 
@@ -456,18 +465,13 @@ class AjaxHandler(View):
         else:
             check = False
 
-
-
-
-        return render(request, "Jobs/Posted.html", dict(job=job, check=check,jpk=1))
+        return render(request, "Recruiter/index.html", dict(job=job, check=check,jpk=1))
 
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
 class AppliedJobs(View):
     def get(self, request):
-        print("--------------------------")
-        print(request.GET.get("filterApply"))
-        print("--------------------------")
+
         job = ""
         if request.GET.get("searchApplied") is not None:
             query = request.GET.get("searchApplied")
@@ -499,7 +503,9 @@ class AppliedJobs(View):
             jobid = Application.objects.filter(user_id=request.user).order_by(
                 "-apply_date").values_list("job_id_id", flat=True).first()
             post_id = jobid
+
             if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                checkMainJobs = False
                 description = Jobs.objects.filter(id=post_id).values_list(
                     'description', flat=True).first()
                 title = Jobs.objects.filter(id=post_id).values_list(
@@ -545,9 +551,12 @@ class AppliedJobs(View):
                 appNo = Jobs.objects.get(id=post_id).applicant.count()
                 locale.setlocale(locale.LC_ALL, '')  # set the locale to the user's default
                 programCost = locale.format("%d", programCost, grouping=True)
+                print("test")
+                print(checkMainJobs)
+                print("test")
                 return JsonResponse(
                     dict(description=description, title=title, city_j=city_j, country=country, start_date=start_date,
-                         salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
+                         salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,checkMainJobs=checkMainJobs,
                          typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
                          program=program, programCost=programCost,SDate=SDate,EDate=EDate,
                          posted=posted, post_id=post_id, applied=applied, appNo=appNo))
@@ -596,24 +605,30 @@ class AppliedJobs(View):
                 end_date = format(end_date, "%d/%m/%Y")
                 posted = format(posted, "%d/%m/%Y")
                 applied = format(applied, "%d/%m/%Y")
-
+                checkMainJobs="False"
+                print(checkMainJobs)
                 return JsonResponse(
                     dict(description=description, title=title, city_j=city_j, country=country, start_date=start_date,
                          salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
                          typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
-                         program=program, programCost=programCost,SDate=SDate,EDate=EDate,
+                         program=program, programCost=programCost,SDate=SDate,EDate=EDate,checkMainJobs=checkMainJobs,
                          posted=posted, post_id=post_id, applied=applied, appNo=appNo), safe=True)
         check = True
         filterSel = request.GET.get("filterApply")
 
         if len(job) != 0:
             check = True
-            post_id=job[0].id
-            return render(request, "Jobs/applied.html", dict(job=job, check=check,post_id=post_id,filterSel=filterSel))
+            post_id=job[0].job_id.id
+            print("----------------------")
+            print("----------------------")
+            print(post_id)
+            print("----------------------")
+            print("----------------------")
+            return render(request, "MyJobs/index.html", dict(job=job, check=check,post_id=post_id,filterSel=filterSel))
         else:
             check = False
-
-        return render(request, "Jobs/applied.html", dict(job=job, check=check,filterSel=filterSel))
+        checkMainJobs = False
+        return render(request, "MyJobs/index.html", dict(job=job, check=check,filterSel=filterSel,checkMainJobs=checkMainJobs))
 
 
 #########################################################################################
@@ -625,6 +640,7 @@ class MainJobs(View):
     def get(self, request):
         post_id = request.headers.get("text")
         test = request.headers.get("text")
+        checkMainJobs = True
         job = Jobs.objects.filter(approved=True).filter(status="Open").order_by("-postDate").order_by("-id")
         # job = Jobs.objects.filter(approved=True).filter(status="Open").order_by("-postDate").order_by("-id")
 
@@ -799,7 +815,7 @@ class MainJobs(View):
                          start_date=start_date,SDate=SDate,EDate=EDate,
                          salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
                          typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
-                         program=program, programCost=programCost,
+                         program=program, programCost=programCost,checkMainJobs=checkMainJobs,
                          posted=posted, post_id=post_id, appNo=appNo, hasApply=hasApply,
                          hasApplyDate=hasApplyDate), safe=True)
         # take selected post byy id
@@ -860,7 +876,7 @@ class MainJobs(View):
                     dict(description=description, title=title, city_j=city_j, country=country, start_date=start_date,
                          salary=salary,tips=tips, hourWeek=hourWeek, company=company, end_date=end_date,
                          typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
-                         program=program, programCost=programCost,SDate=SDate,EDate=EDate,
+                         program=program, programCost=programCost,SDate=SDate,EDate=EDate,checkMainJob=checkMainJobs,
                          posted=posted, post_id=post_id, appNo=appNo, hasApply=hasApply, safe=True,applyDate=hasApplyDate))
         filterProgram = ""
         filterTitle = ""
@@ -881,13 +897,14 @@ class MainJobs(View):
                 if Application.objects.filter(job_id=post_id).filter(user_id=request.user.id).exists():
                     hasApply = True
 
-
+        checkMainJobs = True
         return render(request, "MainJobs/index.html",
                       dict(job=job, prog=sortProgram, title=sortTitle, company=sortCompany, city=cityName,
                            salary=sortSalary, filterProgram=filterProgram, filterTitle=filterTitle,
                            filterCompany=filterCompany,
                            filterLocation=filterLocation, filterSalary=filterSalary, filterDate=filterDate, tit=title,
-                           check=check, post_id=post_id,hasApply=hasApply))
+                           check=check, post_id=post_id,hasApply=hasApply,
+                           checkMainJobs=checkMainJobs))
 
 
 
@@ -1295,13 +1312,14 @@ class MainJobsId(View):
                 if Application.objects.filter(job_id=post_id).filter(user_id=request.user.id).exists():
                     hasApply = True
 
-
+        checkMainJobs = True
         return render(request, "MainJobs/JobIndex.html",
                       dict(FJob=FJob,job=Jobb, prog=sortProgram, title=sortTitle, company=sortCompany, city=cityName,
                            salary=sortSalary, filterProgram=filterProgram, filterTitle=filterTitle,
                            filterCompany=filterCompany,getMonth=getMonth,getYear=getYear,
                            filterLocation=filterLocation, filterSalary=filterSalary, filterDate=filterDate, tit=title,
-                           check=check, post_id=post_id,hasApply=hasApply))
+                           check=check, post_id=post_id,hasApply=hasApply,
+                           checkMainJobs=checkMainJobs))
 
 
 

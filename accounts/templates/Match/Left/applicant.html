@@ -1,51 +1,56 @@
 {% load static %}
-
-    <div class="jobs-left mobile-margin-top" style="height:85.9vh !important;" id="myDIV">
     <input type="text" id="sectedUser" style="display:none;" value="{{uid}}">
+    <div class="job-left" style="" id="myDIV">
 
             {% for i in users %}
             {% if i.user_id.id == uid %}
-            <div onclick="getUser({{i.user_id.id}})" class="jobs-rows-img second-jobs margin-top-jobs-rows-img  same-background-jobs pixel first-job-applied">
-                <img class="experience-education-img" src="{{i.user_id.profile.url}}" alt="" style="border-radius: 10px;">
-                <div class="experience-rows">
+            <div onclick="getUser({{i.user_id.id}})" class="job-left-row pixel" id="select{{i.user_id.id}}">
+                <img class="job-logo" src="{{i.user_id.profile.url}}" alt="" style="border-radius: 10px;">
+                <div class="job-left-content">
                 <div style="display: flex;">
 
-                <div style="width: 200px;" class="experience-first-row jobs-first-row">{{i.user_id.first_name}} {{i.user_id.last_name}}</div>
+                <div style="width: 200px;" class=" job-left-title">{{i.user_id.first_name}} {{i.user_id.last_name}}</div>
                 <label for="select-all" title="Select all" style="position: absolute; right: 31.7px; top: 15px; background-color: #E7F1FE; cursor: pointer;">
                     <input title="Select all" value="Select" onclick="Check()" name="select-all" type="checkbox" class="select-all-button selAll" id="select-all" style="display: none;"></input>All</label>
                 <input title="Select applicant" class="checkbox-jobs" onchange="Check({{i.user_id.id}})" name="checkb" id="{{i.user_id.id}}" style="height: 22px; width: 22px; position: absolute; right: 20px; top: 40px;" type="checkbox"></input>
                 </div>
-                <div class="experience-second-row">{{i.user_id.email}}</div>
-                <div class="experience-third-row">{{i.user_id.phone_number}}</div>
-                <div class="experience-fourth-row">{{i.user_id.city}}, {{i.user_id.country}}</div>
+                <div class="job-left-details">{{i.user_id.email}}</div>
+                <div class="job-left-details">{{i.user_id.phone_number}}</div>
+                <div class="job-left-details">{{i.user_id.city}}, {{i.user_id.country}}</div>
 
                 </div>
             </div>
+            <div class="move"></div>
             {% else %}
-                <div onclick="getUser({{i.user_id.id}})" class="jobs-rows-img left-user-first second-jobs move same-background-jobs">
-                <img class="experience-education-img" src="{{i.user_id.profile.url}}" alt="">
-                <div class="experience-rows">
-                <div class="experience-first-row">{{i.user_id.first_name}} {{i.user_id.last_name}}</div>
-                <input title="Select applicant" name="checkb" onchange="Check({{i.user_id.id}})" id="{{i.user_id.id}}" class="checkbox-jobs" id="check" style="height: 22px; width: 22px; position: absolute; right: 20px;" type="checkbox"></input>
-                <div class="experience-second-row">{{i.user_id.email}}</div>
-                <div class="experience-third-row">{{i.user_id.phone_number}}</div>
-                <div class="experience-fourth-row">{{i.user_id.city}}, {{i.user_id.country}}</div>
+            <div onclick="getUser({{i.user_id.id}})" class="job-left-row pixel"  id="select{{i.user_id.id}}">
+                <img class="job-logo" src="{{i.user_id.profile.url}}" alt="">
+                <div class="job-left-content">
+                    <div style="display: flex;">
+
+                        <div style="width: 200px;" class=" job-left-title">{{i.user_id.first_name}} {{i.user_id.last_name}}</div>
+
+                            <input title="Select all" value="Select" onclick="Check()" name="select-all" type="checkbox" class="select-all-button selAll" id="select-all" style="display: none;"></input>
+                        <input title="Select applicant" class="checkbox-jobs" onchange="Check({{i.user_id.id}})" name="checkb" id="{{i.user_id.id}}" style="height: 22px; width: 22px; position: absolute; right: 20px; top: 40px;" type="checkbox"></input>
+                    </div>
+                    <div class=" job-left-details">{{i.user_id.email}}</div>
+                    <div class="job-left-details">{{i.user_id.phone_number}}</div>
+                    <div class="job-left-details">{{i.user_id.city}}, {{i.user_id.country}}</div>
                 </div>
             </div>
+            <div class="move"></div>
+
             {% endif %}
             {% endfor %}
 </div>
 
-<script src="{% static 'js/Ajax/Match/user-details-ajax.js'%}"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.2/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.2/umd/popper.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
 
    <script>
         $(".jobs-rows-img input").click(function (e) {

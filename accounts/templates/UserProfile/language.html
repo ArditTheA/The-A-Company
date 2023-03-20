@@ -1,0 +1,20 @@
+{% load static %}
+
+<div class="experience-education-languages languages-main-div">
+    <div class="languages-div">
+        <div class="languages-paragraphs-div">
+            <div class="experience-paragraph language-paragraph">Languages</div>
+            {% for i in usLang %}
+            <div style="" class="experience-rows-img-languages">
+                <div class="education-second-paragraph">{{i.language}}</div>
+                <div class="language-rate">{{i.level}}</div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="add-and-edit-experience">
+            <img class="add-experience-button add-languages-button" id="" title="Add Language"  onclick="disableScroll()" src="{% static 'img/Vector 80.png' %}" alt="">
+            <a href="{% url 'editLanguage'%}">
+            <img class="edit-experience" title="Edit Languages" src="{% static 'img/Ikona_edit-01 56.png' %}" alt=""></a>
+        </div>
+    </div>
+</div>

@@ -1,180 +1,34 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
-
-
-
-<link rel="stylesheet" href="{% static 'css/jobi.css' %}">
-<link rel="stylesheet" href="{% static 'css/labels.css' %}">
-
-<!-- <link rel="stylesheet" href="{% static 'css/posted-jobs-media-queries.css' %}"> -->
-
-
 {% include "Filters/filters.html" %}
 {% if check %}
+<input type="hidden" id="MainJobs" name="variable" value="{{checkMainJobs}}">
 <input style="display:none;" id="PostID" value="{{post_id}}">
-<div class="jobs-main-div" style="display: flex; justify-content: space-between;">
+<div class="jobs-main-div" >
 
-    <div class="jobs-left mobile-margin-top" style="" id="myDIV">
-        <div onclick="getNumber('{{FJob.id}}')" class="jobs-rows-img second-jobs  margin-top-jobs-rows-img same-background-jobs pixel"  id="select{{FJob.id}}">
-               <img class="experience-education-img" src="{{FJob.logo.url}}" alt="">
-               <span class="experience-rows">
-               <span class="experience-first-row">{{FJob.job_title}}</span>
+    <div class="job-left" style="" id="myDIV">
+        <div onclick="getNumber('{{FJob.id}}')" class="job-left-row pixel"  id="select{{FJob.id}}">
+               <img class="job-logo" src="{{FJob.logo.url}}" alt="">
+               <span class="job-left-content">
+               <span class="job-left-title">{{FJob.job_title}}</span>
                    {% if FJob.country_j == "USA" %}
-                        <span class="experience-second-row">${{FJob.salary_per_hour|floatformat:2}}/hour{%if FJob.tips %} + tips {% endif %}</span>
+                        <span class="job-left-salary job-left-details">${{FJob.salary_per_hour|floatformat:2}}/hour{%if FJob.tips %} + tips {% endif %}</span>
                    {% else %}
-                        <span class="experience-second-row">€{{FJob.salary_per_hour|floatformat:2}}/hour{%if FJob.tips %} + tips {% endif %}</span>
+                        <span class="job-left-salary job-left-details">€{{FJob.salary_per_hour|floatformat:2}}/hour{%if FJob.tips %} + tips {% endif %}</span>
                    {% endif%}
-               <span class="experience-third-row">{{FJob.company}}</span>
-               <span class="experience-fourth-row">{{FJob.city_j}}, {{FJob.country_j}}</span>
-                   <div class="experience-fifth-row">
-                       {% if FJob.positionLeft <= 3 and FJob.positionLeft > 0 %}
-                    <div class="jobs-availability experience-fifth-row-positions" title="{{FJob.positionLeft}} positions left">{{FJob.positionLeft}} {% if FJob.positionLeft == 1 %}position{%else%}positions{% endif %} left</div>
+               <span class="job-left-company job-left-details">{{FJob.company}}</span>
+               <span class="job-left-details">{{FJob.city_j}}, {{FJob.country_j}}</span>
 
-                       {% endif %}
-                       {% if FJob.daysLeftDeadline <= 7 and FJob.daysLeftDeadline > 0 %}
-                           <div class="jobs-availability experience-fifth-row-days" title="Expiring in {{FJob.daysLeftDeadline}} days">{{FJob.daysLeftDeadline}} days left</div>
-                           {% endif %}
-                       {% if FJob.postDate.year == getYear and FJob.postDate.month == getMonth %}
-                        <div class="jobs-availability experience-fifth-row-new" title="New job">New</div>
-                       {% endif %}
-
-                    </div>
                </span>
            </div>
         <div class="move"></div>
-
-    {% for i in job %}
-
-           <div onclick="getNumber('{{i.id}}')" class="jobs-rows-img second-jobs  margin-top-jobs-rows-img same-background-jobs pixel"  id="select{{i.id}}">
-               <img class="experience-education-img" src="{{i.logo.url}}" alt="">
-               <span class="experience-rows">
-               <span class="experience-first-row">{{i.job_title}}</span>
-                   {% if i.country_j == "USA" %}
-                        <span class="experience-second-row">${{i.salary_per_hour|floatformat:2}}/hour{%if i.tips %} + tips {% endif %}</span>
-                   {% else %}
-                        <span class="experience-second-row">€{{i.salary_per_hour|floatformat:2}}/hour{%if i.tips %} + tips {% endif %}</span>
-                   {% endif%}
-               <span class="experience-third-row">{{i.company}}</span>
-               <span class="experience-third-row">{{i.city_j}}, {{i.country_j}}</span>
-                   <div class="experience-fifth-row">
-                       {% if i.positionLeft <= 3 and i.positionLeft > 0 %}
-                    <div class="jobs-availability experience-fifth-row-positions" title="{{i.positionLeft}} positions left">{{i.positionLeft}} {% if i.positionLeft == 1 %}position{%else%}positions{% endif %} left</div>
-
-                       {% endif %}
-                       {% if i.daysLeftDeadline <= 7 and i.daysLeftDeadline > 0 %}
-                           <div class="jobs-availability experience-fifth-row-days" title="Expiring in {{i.daysLeftDeadline}} days">{{i.daysLeftDeadline}} days left</div>
-                           {% endif %}
-                       {% if i.postDate.year == getYear and i.postDate.month == getMonth %}
-                        <div class="jobs-availability experience-fifth-row-new" title="New job">New</div>
-                       {% endif %}
-
-                    </div>
-               </span>
-           </div>
-        {% if forloop.last %}
-                {%else %}
-        <div class="move"></div>
-                {% endif %}
-
-   {% endfor %}
-   {% for j in jobi %}
-
-           <div onclick="getNumber('{{i.id}}')" class="jobs-rows-img second-jobs margin-top-jobs-rows-img same-background-jobs pixel"  id="select{{i.id}}">
-               <img class="experience-education-img" src="{{i.logo.url}}" alt="">
-               <span class="experience-rows">
-               <span class="experience-first-row">{{j.job_title}}</span>
-                   {% if j.country_j == "USA" %}
-                        <span class="experience-second-row">${{j.salary_per_hour|floatformat:2}}/hour{%if j.tips %} + tips {% endif %}</span>
-                   {% else %}
-                        <span class="experience-second-row">€{{j.salary_per_hour|floatformat:2}}/hour{%if j.tips %} + tips {% endif %}</span>
-                   {% endif%}
-                   <span class="experience-third-row">{{j.company}}</span>
-
-               <span class="experience-third-row">{{j.city_j}}, {{j.country_j}}</span>
-                   <div class="experience-fifth-row">
-                       {% if i.positionLeft <= 3 and i.positionLeft > 0 %}
-                        <div class="jobs-availability experience-fifth-row-positions" title="{{i.positionLeft}} positions left">{{i.positionLeft}} positions left</div>
-
-                           {% endif %}
-
-                            {% if i.days_left <= 7 and i.days_left > 0 %}
-                                    <div class="jobs-availability experience-fifth-row-days" title="Expiring in {{i.days_left}} days">{{i.days_left}} days left</div>
-                           {% endif %}
-
-                           {% if i.day_left_new <= 30 and i.day_left_new >= 0 %}
-                            <div class="jobs-availability experience-fifth-row-new" title="New job">New</div>
-                           {% endif %}
-
-                    </div>
-               </span>
-           </div>
-  {% if forloop.last %}
-                {%else %}
-        <div class="move"></div>
-                {% endif %}
-
-   {% endfor %}
-  
+        {% include "MainJobs/left-jobs.html" %}
     </div>
-    <div class="right-jobs-main-div right-job-margin-top">
-        <div class="right-jobs" id="detailsRow" style="display:none;flex-direction: column;">
-
-        <div class="right-jobs-rows-img" style="padding: 3; margin-left: 10px; background-color: white;">
-                    <div class="experience-rows" style="">
-                        <img class="exit-job-description" title="Exit" style="float: left; cursor: pointer;"
-                            src="{% static 'img/Vector 81 (1).png'%}" alt="">
-                        <div class="first-row-jobs mobile-title-font-size" id="job_title"></div>
-                        <div class="second-row-jobs mobile-under-title-font-size">
-                            <span id="salary"></span>
-                            <span style="color: #858585;">
-                                &nbsp;·&nbsp;
-                            <span id="totsalary" style="color:#00AA11;" ></span>&nbsp;&nbsp;·&nbsp;
-                            <span id="countApplicant"></span></span></div>
-
-                        <div style="" class="jobs-third-row mobile-rows-font-size"><span id="company"></span></div>
-                        <div style="" class="experience-fourth-row mobile-rows-font-size  jobs-mutual-margin-rows"><span id="city"></span></div>
-                        <div  class="experience-fourth-row mobile-rows-font-size  jobs-mutual-margin-rows">
-                            <span id="typeOfWork"></span>&nbsp;·&nbsp;
-                            <span id="hourPerWork"></span>
-                        </div>
-                        <div style="" class="experience-fourth-row mobile-rows-font-size jobs-mutual-margin-rows" id="sDate"></div>
-                        <div style="" class="experience-fourth-row mobile-rows-font-size jobs-mutual-margin-rows">
-                            <span id="housing"></span>&nbsp;&nbsp;·&nbsp;&nbsp;<span id="housingCost"></span>
-                        </div>
-                        <div style="" class="experience-fourth-row mobile-rows-font-size jobs-mutual-margin-rows">
-                            <span id="program"></span>&nbsp;&nbsp;·&nbsp;&nbsp;<span id="programCost"></span>
-                        </div>
-
-                        <div id="button" style="margin-top: 20px;padding-bottom: 8px"></div>
-                    </div>
-                </div>
-                <div class="right-jobs-rows-img-second">
-                    <div class="experience-rows">
-                        <span id="message" ></span>
-                </div>
-  
-
-            </div>
-    </div>
-    
-
-</div>
+    {% include "MainJobs/right-jobs.html" %}
 {% else %}
     <div class="experience-first-row NoResult" style="">No results were found</div>
 
 {% endif %}
-
-
-<script src="{% static 'js/Ajax/right-JobId-ajax.js'%}"></script>
-
-<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
-
-
-
-
 
 {% endblock content %}

@@ -1,3 +1,5 @@
+
+
  async function getUser(id) {
         document.getElementById("sectedUser").value = id;
         console.log(id)
@@ -57,7 +59,7 @@
             var uniField = "field"+i;
             var uniloc = "uniloc"+i
             var uniYear = "unidate"+i
-            $('#UserEdu').append($('<div class="experience-rows-img JSAdded" style=""><img class="experience-education-img" src="/static/img/worki_icons-18.jpg" alt="" title="Education"><div class="experience-rows"><div class="experience-first-row" id="university">'+data[university]+'</div><div class="experience-second-row" id="uniField">'+data[uniField]+'</div><div class="experience-third-row" id="uniLoc">'+data[location]+'</div><div class="experience-fourth-row" id="uniYear">'+data[uniYear]+'</div></div></div>'));
+            $('#UserEdu').append($('<div class="job-left-row JSAdded" style=""><img class="job-logo" src="/static/img/worki_icons-18.jpg" alt="" title="Education"><div class="job-left-content"><div class="job-left-title" id="university">'+data[university]+'</div><div class="job-left-details" id="uniField">'+data[uniField]+'</div><div class="job-left-detailsw" id="uniLoc">'+data[location]+'</div><div class="job-left-details" id="uniYear">'+data[uniYear]+'</div></div></div>'));
         }
 
 

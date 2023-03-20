@@ -1,7 +1,7 @@
-var second_jobs_img = document.querySelectorAll('.jobs-rows-img');
+var second_jobs_img = document.querySelectorAll('.pixel');
 var right_jobs = document.querySelectorAll('.right-jobs');
 var right_jobs_main_div = document.querySelector('.right-jobs-main-div');
-var jobs_left = document.querySelector('.jobs-left');
+var jobs_left = document.querySelector('.pixel');
 var parent = document.querySelector('.jobs-main-div');
 var a = document.querySelector("body");
 var jobs_buttons = document.querySelector('.jobs-buttons');
@@ -11,7 +11,7 @@ const MQ = window.matchMedia('(max-width: 767px)');
 
         const mediaQuery1 = window.matchMedia('(max-width: 767px)');
         var right_jobs_main_div = document.querySelector('.right-jobs-main-div');
-        var jobs_left = document.querySelector('.jobs-left');
+        var jobs_left = document.querySelector('.pixel');
         var jobs_buttons = document.querySelector('.jobs-buttons');
         
         if (mediaQuery1.matches) {
@@ -28,10 +28,6 @@ const MQ = window.matchMedia('(max-width: 767px)');
             if (firstMQ.matches) {
             right_jobs_main_div.style.display = null;
             second_jobs_img[i].classList.add('different-background-jobs');
-            $(second_jobs_img[i]).siblings().removeClass('different-background-jobs').addClass("same-background-jobs");
-            
-            //  second_jobs_img[i].style.backgroundColor = "red";
-            //  $(second_jobs_img[i]).siblings().css("background-color", "white");
             }
             right_jobs[i].style.display = "flex";
             $(right_jobs[i]).siblings().css("display", "none");
@@ -45,42 +41,9 @@ const MQ = window.matchMedia('(max-width: 767px)');
 
     }
 
-    if (firstMQ.matches) {
-        for (let i = 0; i < second_jobs_img.length; i++) {
-        }
-    }
-
-    if (MQ.matches) {
-        for (let i = 0; i < second_jobs_img.length; i++) {
-            
-        }
-    }
 
 
 
-    // var url = $("#clickable a").attr("href");s
-
-    // $("#clickable").click(function() {
-    //     window.location = url;
-    //     return true;
-    // });
-
-
-
-
-    // $(".edit-job-button")[i].click(function(e) {
-    //     // Do something
-    //     e.stopPropagation();
-    // });        
-
-
-    // $(".jobs-rows-img")[i].click(function(e) {
-    //     var senderElement = e.target;
-    //     // Check if sender is the <div> element e.g.
-    //     // if($(e.target).is("div")) {
-    //     window.location = url;
-    //     return true;
-    // });
 
      
     

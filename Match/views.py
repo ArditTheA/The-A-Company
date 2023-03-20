@@ -646,6 +646,6 @@ def moveToPhase(request,pk,phaseid,userId):
 def getTopJobs(request):
     job = Jobs.objects.filter(approved=True)
 
-    return render(request,"JobTotal/index.html",{"job":job})
+    return render(request,"JobsList.html",{"job":job})
 
 

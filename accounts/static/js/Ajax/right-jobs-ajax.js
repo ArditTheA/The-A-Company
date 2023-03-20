@@ -1,6 +1,5 @@
      async function getNumber(id) {
-        window.history.pushState("","","")
-        window.history.pushState("","", id)
+
         var elements = document.getElementsByClassName('pixel'); // get all elements
 
         for(var i = 0; i < elements.length; i++){
@@ -8,12 +7,7 @@
         }
 
         post_id=id
-//        if(id == ""){
-//            if (data["post_id"] != ""){
-//                post_id=data["post_id"]
-//            }
-//        }
-    
+
         let response = await fetch('/',{
 
             method: "get",
@@ -27,8 +21,13 @@
         }
 
         )
-
         let data = await response.json()
+
+        var mainJobs = document.getElementById("MainJobs").value;
+        if(mainJobs){
+            window.history.pushState("","","")
+            window.history.pushState("","", id)
+        }
         var auth = data["auth"]
         var element = document.getElementById("detailsRow");
 
@@ -39,7 +38,7 @@
                 element.style.display = "flex";
             }
         }
-        const mobile = window.matchMedia('(max-width: 767px)');
+        const mobile = window.matchMedia('(max-width: 768px)');
         if(mobile.matches){
 
         }else{
@@ -149,28 +148,29 @@
         var auth=data["auth"]
 
         if(!hasApply){
-            document.getElementById("button").style.marginTop = "33px";
 
-            button.innerHTML = '<a href="'+url+'" class="applied-button-jobs outline-none" style="text-decoration:none;margin-top: 18px; width: fit-content; padding-top: 8px; padding-bottom: 8px;">Apply</a>';
+            document.getElementById("button").style.backgroundColor = "#1877f2";
+            document.getElementById("button").style.padding = "8px 30px";
+            button.innerHTML = '<a href="'+url+'" class="" >Apply</a>';
 
 
         }else{
-            document.getElementById("button").style.marginTop = "20px";
 
+            document.getElementById("button").style.backgroundColor = "white";
+            document.getElementById("button").style.padding = "0";
             button.innerHTML="Applied on "+data["applyDate"]
         }
-
-
         var firstMediaQuery = window.matchMedia('(min-width: 768px');
         const mediaQuery = window.matchMedia('(max-width: 767px)');
         var right_jobs_main_div = document.querySelector('.right-jobs-main-div');
-        var jobs_left = document.querySelector('.jobs-left');
+        var jobs_left = document.querySelector('.job-left');
         var jobs_buttons = document.querySelector('.jobs-buttons');
 
         if (mediaQuery.matches) {
-                right_jobs_main_div.style.display = "flex";
+                right_jobs_main_div.style.display = "block";
                 jobs_left.style.display = "none";
                 jobs_buttons.style.display = "none";
+
                 if(id==0){
                 var select = document.getElementById('select'+id)
                 select.style.backgroundColor = "white";
@@ -178,34 +178,51 @@
         }
         ;
     }
-    
 
-    
         function myFunction(x) {
             var element = document.getElementById("detailsRow");
         if (x.matches) {
-            var getJobList = document.querySelector(".jobs-rows-img")
-            getJobList.style.backgroundColor = "white"
+
             element.style.display = "none"
+            var elements = document.getElementsByClassName('pixel'); // get all elements
+
+            for(var i = 0; i < elements.length; i++){
+                elements[i].style.backgroundColor = "white";
+            }
+
 
         } else {
             element.style.display = "flex";
             var c =document.getElementById("PostID").value;
-
+            console.log("c")
+            console.log(c)
+            console.log("c")
+            console.log("x")
+            console.log(x)
+            console.log("x")
             getNumber(c);
 
         }
         }
 
         // Create a MediaQueryList object
-        const mmObj = window.matchMedia("(max-width: 480px)")
+        const mmObj = window.matchMedia("(max-width: 768px)")
 
         // Call the match function at run time:
         myFunction(mmObj);
 
         // Add the match function as a listener for state changes:
         mmObj.addListener(myFunction)
-        
+
+
+        function closeButton(){
+            var right_jobs_main_div = document.querySelector('.right-jobs-main-div');
+            var jobs_left = document.querySelector('.job-left');
+            var jobs_buttons = document.querySelector('.jobs-buttons');
+            right_jobs_main_div.style.display = "none";
+            jobs_buttons.style.display = "flex";
+            jobs_left.style.display = "flex";
+        }
         
        
 

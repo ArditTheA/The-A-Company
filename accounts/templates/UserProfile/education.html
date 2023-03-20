@@ -1,0 +1,31 @@
+{% load static %}
+<div class="languages-main-div experience-education-languages">
+    <div class="education-div">
+        <div class="experience-paragraph-img-rows">
+            <div class="aaa">
+            <p class="experience-paragraph">Education</p>
+            {% for i in usEdu%}
+            <div class="experience-rows-img">
+                <img class="experience-education-img" src="{% static 'img/worki_icons-19.jpg' %}" alt="">
+                <div class="experience-rows">
+                <div class="experience-first-row">{{i.university}}</div>
+                <div class="experience-second-row">{{i.field_of_study}}</div>
+                <div class="experience-third-row">{{i.city_e}}, {{i.country_e}}</div>
+
+                <div class="experience-fourth-row">{{i.start_year|date:'d/m/Y'}} -
+                    {% if i.end_year == null%}
+                    Present
+                    {% else %}
+                    {{i.end_year |date:'d/m/Y'}}
+                    {% endif%}</div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        </div>
+        <div class="add-and-edit-experience">
+            <img class="add-experience-button add-education-button" title="Add Education"  onclick="disableScroll()" src="{% static 'img/Vector 80.png' %}" alt="">
+            <a href="{% url 'editEdu' %}"><img class="edit-experience" title="Edit Education" src="{% static 'img/Ikona_edit-01 56.png' %}" alt=""></a>
+        </div>
+    </div>
+</div>

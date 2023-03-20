@@ -5,8 +5,7 @@
     document.getElementById("myForm").submit();
   }
 </script>
-    <link rel="stylesheet" href="{% static 'css/filter.css'%}">
-    <link rel="stylesheet" href="{% static 'css/jobi.css'%}">
+
 
 
 
@@ -41,7 +40,7 @@
         <option value="{{filterProgram}}" class="first-input-option">{{filterProgram}}</option>
       </select>
       <div class="" style="display: flex; align-items: center;">
-        <img class="icon" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
+        <img class="icon-filter" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
         <img style="cursor: pointer; display: block;" class="white-icon"
           src="{% static 'img/white-dropdown-icon.png' %}" alt="">
       </div>
@@ -52,7 +51,7 @@
         <option class="first-input-option">All Jobs</option>
       </select>
       <div class="" style="display: flex; align-items: center;">
-        <img class="icon" src="{% static 'img/dropdown-icon.png'%}" alt="">
+        <img class="icon-filter" src="{% static 'img/dropdown-icon.png'%}" alt="">
         <img style="cursor: pointer; display: none;" class="white-icon" src="{% static 'img/white-dropdown-icon.png' %}" alt="">
       </div>
 
@@ -106,7 +105,7 @@
         <option value="{{filterTitle}}" id="" class="first-input-option">{{filterTitle}}</option>
       </select>
       <div class="" style="display: flex; align-items: center;">
-        <img class="icon" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
+        <img class="icon-filter" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
         <img style="cursor: pointer; display: block;" class="white-icon" src="{% static 'img/white-dropdown-icon.png' %}" alt="">
       </div>
       {% else %}
@@ -115,7 +114,7 @@
         <option class="first-input-option">Job Position</option>
       </select>
       <div class="" style="display: flex; align-items: center;">
-        <img class="icon" src="{% static 'img/dropdown-icon.png'%}" alt="">
+        <img class="icon-filter" src="{% static 'img/dropdown-icon.png'%}" alt="">
         <img style="cursor: pointer; display: none;" class="white-icon" src="{% static 'img/white-dropdown-icon.png' %}" alt="">
       </div>
 
@@ -155,7 +154,7 @@
               <option value="{{filterSalary}}" id="" class="first-input-option"> {{filterSalary}}</option>
             </select>
             <div class="" style="display: flex; align-items: center;">
-              <img class="icon" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
+              <img class="icon-filter" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
               <img style="cursor: pointer; display: block;" class="white-icon"
                 src="{% static 'img/white-dropdown-icon.png' %}" alt="">
             </div>
@@ -166,7 +165,7 @@
               <option class="first-input-option">Salary</option>
             </select>
             <div class="" style="display: flex; align-items: center;">
-              <img class="icon" src="{% static 'img/dropdown-icon.png' %}" alt="">
+              <img class="icon-filter" src="{% static 'img/dropdown-icon.png' %}" alt="">
               <img style="cursor: pointer; display: none;" class="white-icon"
                 src="{% static 'img/white-dropdown-icon.png' %}" alt="">
             </div>
@@ -206,7 +205,7 @@
         <option value="{{filterCompany}}" id="" class="first-input-option">{{filterCompany}}</option>
       </select>
       <div class="" style="display: flex; align-items: center;">
-        <img class="icon" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
+        <img class="icon-filter" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
         <img style="cursor: pointer; display: block;" class="white-icon"  src="{% static 'img/white-dropdown-icon.png' %}" alt="">
       </div>
       {% else %}
@@ -215,7 +214,7 @@
         <option class="first-input-option">Company</option>
       </select>
       <div class="" style="display: flex; align-items: center;">
-        <img class="icon" src="{% static 'img/dropdown-icon.png'%}" alt="">
+        <img class="icon-filter" src="{% static 'img/dropdown-icon.png'%}" alt="">
         <img style="cursor: pointer; display: none;" class="white-icon" src="{% static 'img/white-dropdown-icon.png' %}" alt="">
       </div>
 
@@ -249,7 +248,7 @@
         <option value="{{filterLocation}}" class="first-input-option">{{filterLocation}}</option>
       </select>
       <div class="" style="display: flex; align-items: center;">
-        <img class="icon" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
+        <img class="icon-filter" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
         <img style="cursor: pointer; display: block;" class="white-icon"
           src="{% static 'img/white-dropdown-icon.png' %}" alt="">
       </div>
@@ -260,7 +259,7 @@
         <option class="first-input-option" >Country</option>
       </select>
       <div class="" style="display: flex; align-items: center;">
-        <img class="icon" src="{% static 'img/dropdown-icon.png' %}" alt="">
+        <img class="icon-filter" src="{% static 'img/dropdown-icon.png' %}" alt="">
         <img style="cursor: pointer; display: none;" class="white-icon"
           src="{% static 'img/white-dropdown-icon.png' %}" alt="">
       </div>
@@ -296,7 +295,7 @@
         <option value="{{filterDate}}" id="" class="first-input-option">{{filterDate}}</option>
       </select>
       <div class="" style="display: flex; align-items: center;">
-        <img class="icon" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
+        <img class="icon-filter" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
         <img style="cursor: pointer; display: block;" class="white-icon"
           src="{% static 'img/white-dropdown-icon.png' %}" alt="">
       </div>
@@ -307,7 +306,7 @@
         <option class="first-input-option">Date Posted</option>
       </select>
       <div class="" style="display: flex; align-items: center;">
-        <img class="icon" src="{% static 'img/dropdown-icon.png' %}" alt="">
+        <img class="icon-filter" src="{% static 'img/dropdown-icon.png' %}" alt="">
         <img style="cursor: pointer; display: none;" class="white-icon"
           src="{% static 'img/white-dropdown-icon.png' %}" alt="">
       </div>

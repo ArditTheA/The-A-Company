@@ -1,0 +1,104 @@
+
+@media screen and (max-width: 480px) {
+.mobile-left-margin{
+    margin-bottom:-10px;
+}
+    .move{
+        margin-top:10px !important;
+    }
+    .move:last-child{
+        margin-top:0;
+    }
+    .jobs-main-div{
+        margin-top:0;
+    }
+    .job-left-row{
+        margin-right:10px;
+        margin-top:0px;
+        margin-left:10px;
+        padding: 20px;
+    border-radius: 20px;
+    }
+
+    .job-left {
+        margin-top:20px;
+        width: 100% !important;
+        position: absolute;
+        height: calc(100% - 133px) !important;
+
+    }
+    .right-jobs {
+        display:none;
+        height: calc(100% - 70px) !important;
+        position:absolute;
+        margin-top:20px;
+        margin-bottom: 0px !important;
+    }
+    .card{
+        margin-bottom:0 !important;
+    }
+
+    /*   merge from jobi and filter.css   */
+    /*  from jobi.css  */
+
+    .jobs-buttons {
+        margin: 0;
+        margin-top: 20px;
+        display: flex;
+        justify-content: flex-start;
+        margin-left: 10px !important;
+    }
+
+
+        /*  from filter.css  */
+
+    .main-buttons-div {
+        margin-top: -10px;
+        margin-bottom: -10px;
+    }
+
+    .inputs-right-margin {
+        margin-right: 10px !important;
+    }
+
+
+
+    /*  Right Jobs   */
+    .job-right-description {
+        margin-top:10px;
+    }
+    .right-jobs-main-div{
+        margin-top:0px;
+        display:none;
+        width:100% !important;
+    }
+    .right-jobs {
+
+        margin-bottom: 10px;
+        width: 100%;
+
+    }
+    .job-right-exit{
+        margin-bottom:20px;
+        display:block;
+        width:15px;
+        height:15px;
+    }
+    .job-right-details{
+        margin-right:10px;
+        border-radius:20px;
+
+
+    }
+    .right-jobs::-webkit-scrollbar{
+        display:none;
+    }
+    .job-left::-webkit-scrollbar{
+        display:none;
+    }
+    .job-right-description{
+        margin-bottom:10px;
+    }
+
+
+}

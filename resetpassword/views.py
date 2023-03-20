@@ -39,3 +39,31 @@ def password_reset_request(request):
 					return redirect ("/password_reset/done/")
 	password_reset_form = PasswordResetForm()
 	return render(request=request, template_name="main/password/password_reset.html", context={"password_reset_form":password_reset_form})
+
+
+
+
+
+
+
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import get_template
+from django.template import Context
+from django.conf import settings
+
+def send_email_with_template(request):
+    # Render the template
+    context = {'image_url': 'https://worki.global/static/img/12.jpeg',
+               'link_url': 'https://worki.global'}
+    template = get_template('emailTemplate.html')
+    html_content = template.render(context)
+
+    # Create and send the email
+    msg = EmailMultiAlternatives(
+        'Welcome to our site!',
+        'Thank you for creating an account with us.',
+        'Worki hello@worki.global',
+        [request.user.email]
+    )
+    msg.attach_alternative(html_content, "text/html")
+    msg.send()

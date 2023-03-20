@@ -1,0 +1,37 @@
+{% load static %}
+
+{% if user.is_authenticated %}
+
+    <header class="profileHeader" >
+        <a href="{% url 'home'%}"><img class="header-icon header-icon-radius header-icon-logo" src="{% static 'img/12.jpeg' %}" title="Worki"></a>
+        <div class="jobs-and-profile">
+
+            <a href="{% url 'home'%}"><img class="header-icon header-icon-job"  title="Jobs"
+                    src="{% static 'img/JOBS_Icon.png' %}"></a>
+
+            <img src="{{user.profile.url}}" class="header-icon header-icon-radius header-icon-profile"  title="Profile" alt="">
+        </div>
+    </header>
+    <div class="profileDropDown">
+        <div class="profileDropDown-content"><a href="{% url 'profile'  %}" class="profileDropDown-text">My profile</a></div>
+        <div class="profileDropDown-content"><a href="{% url 'appliedJob'%}" class="profileDropDown-text">My jobs</a>
+        </div>
+        <div class="profileDropDown-content" ><a href="{% url 'postedJob'%}" class="profileDropDown-text">Recruiter</a>
+                </div>
+        <div class="profileDropDown-content"><a href="{% url 'logout' %}" class="profileDropDown-text">Sign out</a></div>
+    </div>
+
+    {% else %}
+    <header class="profileHeader">
+        <a href="{% url 'home'%}"><img class="header-icon header-icon-radius header-icon-logo"  src="{% static 'img/12.jpeg' %}" title="Worki"></a>
+        <div class="jobs-and-profile">
+            <a href="{% url 'home'%}"><img class="header-icon header-icon-job" title="Jobs"
+                    src="{% static 'img/JOBS_Icon.png' %}"></a>
+            <img src="{% static 'img/defaultProfile.jpg' %}" class="header-icon header-icon-radius header-icon-profile"   title="Profile" alt="">
+        </div>
+    </header>
+    <div class="profileDropDown" >
+        <div class="profileDropDown-content"><a href="{% url 'login'%}" class="profileDropDown-text">Sign in</a></div>
+        <div class="profileDropDown-content"><a href="{% url 'register'%}" class="profileDropDown-text">Create Account</a></div>
+    </div>
+{% endif %}

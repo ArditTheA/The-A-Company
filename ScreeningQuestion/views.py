@@ -57,7 +57,7 @@ def add_JobScreeningQuestion(request):
             email = render_to_string(email_template_applicant, c)
 
             try:
-                send_mail(subject, email, 'hello@worki.global',
+                send_mail(subject, email, 'Worki hello@worki.global',
                           [request.user.email], fail_silently=False)
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
@@ -122,7 +122,7 @@ def getUserAnswer(request,pk):
             email = render_to_string(email_template_applicant, c)
 
             try:
-                send_mail(subject, email, 'hello@worki.global',
+                send_mail(subject, email, 'Worki hello@worki.global',
                           [request.user.email], fail_silently=False)
                 # send_mail(subject,oemail,'rinor@theacompany.xyz',[emailOwner],fail_silently=False)
             except BadHeaderError:
@@ -173,7 +173,7 @@ def addJob(request):
             email = render_to_string(email_template_applicant, c)
 
             try:
-                send_mail(subject, email, 'hello@worki.global',
+                send_mail(subject, email, 'Worki hello@worki.global',
                           [request.user.email], fail_silently=False)
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
@@ -476,7 +476,7 @@ def makeApplication(userId,pk,job,dataa,Status,emailU):
     email = render_to_string(email_template_applicant, c)
 
     try:
-        send_mail(subject, email, 'hello@worki.global',[emailU], fail_silently=False)
+        send_mail(subject, email, 'Worki hello@worki.global',[emailU], fail_silently=False)
     except BadHeaderError:
         return HttpResponse('Invalid header found.')
 
@@ -559,7 +559,7 @@ def applyForJobSQ(request, pk):
                         form.save()
 
                         try:
-                            send_mail(rejectedSubject,rejection_email,"hello@worki.global",[request.user.email],fail_silently=False)
+                            send_mail(rejectedSubject,rejection_email,"Worki hello@worki.global",[request.user.email],fail_silently=False)
                         except BadHeaderError:
                             return HttpResponse('Invalid header found.')
                         return redirect('appSuc')

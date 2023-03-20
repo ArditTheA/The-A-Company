@@ -1,0 +1,100 @@
+{% load static %}
+
+
+
+
+<div class="main-buttons-div" style="position: relative;">
+  <div class="jobs-buttons second-jobs-buttons scrolling-wrapper">
+    <form class="card" action="{% url 'appliedJob'%}">
+        <img style="cursor: pointer;" title="Search by job or location"
+            class="plus-icon-jobs search-icon-jobs inputs-right-margin" src="{% static 'img/search (1).png'%}"
+            alt="">
+            <div class="mutual-padding-of-div input-search-div" style="border-radius: 20px;">
+                <div class="second-input-form" style="">
+                <input style="" name="searchApplied" placeholder="Search by job or location"
+                    class="search-input inputs-right-margin" id="input-removed"
+                    style="padding-top: 8px; padding-bottom: 8px; padding-left: 20px; background-color: white; " autocomplete="off" onchange="SearchFunction()">
+
+                <img style="display: none;" class="input-exit-button" title="Exit" src="{% static 'img/Vector 81 (1).png'%}" style="width: 8px; height: 8px; background-color: red;" alt="">
+            </div>
+        </div>
+    </form>
+<form style="display: flex;" class="buttons-form card" id="myForm" action="{% url 'appliedJob' %}">
+        <!-- Program -->
+<div class="container-fluid " style="cursor: pointer;">
+  <div id="mySelectLabel" class="selectBox" style="z-index: 99; position: static">
+    <div class="input-form margin inputs-right-margin" style="">
+                {% if filterSel%}
+                    {% if filterSel  == "Active Jobs" %}
+                        <select id="selTitle" style="color: #f1f1f1; background-color: #1877f2;border: none; font-size: 18px; padding-top: 0; padding-bottom: 0;padding: 8px 30px; padding-left: 20px;" name="Job Position" class="form-select" id="second_form_select">
+                            <option value="" id="" class="first-input-option">{{filterSel}}</option>
+                        </select>
+                          <div class="" style="display: flex; align-items: center;">
+                            <img class="icon-filter" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
+                            <img style="cursor: pointer; display: block;" class="white-icon" src="{% static 'img/white-dropdown-icon.png' %}" alt="">
+                          </div>
+
+                    {% endif %}
+                    {% if filterSel  == "Inactive Jobs" %}
+                        <select id="selTitle" style="color: #f1f1f1; background-color: #1877f2;border: none; font-size: 18px; padding-top: 0; padding-bottom: 0;padding: 8px 30px; padding-left: 20px;" name="Job Position" class="form-select" id="second_form_select">
+                            <option value="" id="" class="first-input-option">{{filterSel}}</option>
+                          </select>
+                          <div class="" style="display: flex; align-items: center;">
+                            <img class="icon-filter" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
+                            <img style="cursor: pointer; display: block;" class="white-icon" src="{% static 'img/white-dropdown-icon.png' %}" alt="">
+                          </div>
+                    {% endif %}
+                    {% if filterSel  == "Progress Jobs" %}
+                        <select id="selTitle" style="color: #f1f1f1; background-color: #1877f2;border: none; font-size: 18px; padding-top: 0; padding-bottom: 0;padding: 8px 30px; padding-left: 20px;" name="Job Position" class="form-select" id="second_form_select">
+                            <option value="" id="" class="first-input-option">{{filterSel}}</option>
+                        </select>
+                        <div class="" style="display: flex; align-items: center;">
+                            <img class="icon-filter" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
+                            <img style="cursor: pointer; display: block;" class="white-icon" src="{% static 'img/white-dropdown-icon.png' %}" alt="">
+                        </div>
+                    {% endif %}
+
+
+
+              {% else %}
+          <select style="color: #65676B; border: none; font-size: 18px; padding-top: 0; padding-bottom: 0;
+            padding: 8px 30px; padding-left: 20px;" class="form-select" name="filterApply" id="second_form_select">
+            <option class="first-input-option">All Jobs</option>
+          </select>
+          <div class="" style="display: flex; align-items: center;">
+            <img class="icon-filter" src="{% static 'img/dropdown-icon.png'%}" alt="">
+            <img style="cursor: pointer; display: none;" class="white-icon" src="{% static 'img/white-dropdown-icon.png' %}" alt="">
+          </div>
+            {% endif %}
+        <div class="overSelect" onclick="showDropDown(0)"></div>
+
+
+    </div>
+    <div id="mySelectOptions" class="drop0 selectOptions dropdown-elements " style="z-index: 99;">
+        {% if filterSel  == "Active Jobs" %}
+        <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type" onclick="checkboxStatusChange();setTimeout(this.form.submit(),50)" value="Active Jobs" /> Active Jobs</label>
+        {% elif filterSel  == "Inactive Jobs" %}
+        <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type" onchange="" onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="Inactive Jobs" /> Inactive Jobs</label>
+        {% elif filterSel  == "Progress Jobs" %}
+        <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type" onchange="" onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="Progress Jobs" /> Progress Jobs</label>
+        {% else %}
+
+        <label class="labels-stats first-label-margin"><input type="checkbox"  class="input_type" onclick="checkboxStatusChange();setTimeout(this.form.submit(),50)" value="Active Jobs" /> Active Jobs</label>
+        <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type" onchange="" onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="Inactive Jobs" /> Inactive Jobs</label>
+        <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type" onchange="" onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="Progress Jobs" /> Progress Jobs</label>
+        {% endif %}
+
+
+    </div>
+  </div>
+</div>
+<!-- End  of programs -->
+</form>
+  </div>
+</div>
+
+
+
+
+
+

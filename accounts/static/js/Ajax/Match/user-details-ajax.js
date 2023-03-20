@@ -1,6 +1,13 @@
  async function getUser(id) {
         document.getElementById("sectedUser").value = id;
         console.log(id)
+        var elements = document.getElementsByClassName('pixel'); // get all elements
+
+        for(var i = 0; i < elements.length; i++){
+            elements[i].style.backgroundColor = "white";
+        }
+
+
         let response = await fetch('',{
 
             method: "get",
@@ -14,7 +21,7 @@
         });
 
         let data =  await response.json();
-        console.log(data);
+
          var list = document.getElementsByClassName("JSAdded");
          for(var i = list.length - 1; 0 <= i; i--){
          if(list[i] && list[i].parentElement)
@@ -57,7 +64,7 @@
             var uniField = "field"+i;
             var uniloc = "uniloc"+i
             var uniYear = "unidate"+i
-            $('#UserEdu').append($('<div class="experience-rows-img JSAdded" style=""><img class="experience-education-img" src="/static/img/worki_icons-18.jpg" alt="" title="Education"><div class="experience-rows"><div class="experience-first-row" id="university">'+data[university]+'</div><div class="experience-second-row" id="uniField">'+data[uniField]+'</div><div class="experience-third-row" id="uniLoc">'+data[location]+'</div><div class="experience-fourth-row" id="uniYear">'+data[uniYear]+'</div></div></div>'));
+            $('#UserEdu').append($('<div class="job-right-content JSAdded" style=""><img class="job-logo" src="/static/img/worki_icons-18.jpg" alt="" title="Education"><div class=""><div class="job-left-title" id="university">'+data[university]+'</div><div class="job-left-details" id="uniField">'+data[uniField]+'</div><div class="job-left-detailsw" id="uniLoc">'+data[location]+'</div><div class="job-left-details" id="uniYear">'+data[uniYear]+'</div></div></div>'));
         }
 
 
@@ -78,14 +85,26 @@
         var jobs_left = document.querySelector('.jobs-left');
         var jobs_buttons = document.querySelector('.jobs-buttons');
 
+
         if (mediaQuery.matches) {
                 right_jobs_main_div.style.display = "flex";
                 jobs_left.style.display = "none";
                 jobs_buttons.style.display = "none";
                 if(id==0){
-                var select = document.getElementById('select'+id)
-                select.style.backgroundColor = "white";
+                    var select = document.getElementById('select'+id)
+                    select.style.backgroundColor = "white";
                 }
+        }else{
+            if(id != 0){
+                var select = document.getElementById('select'+id)
+                select.style.backgroundColor = "#E7F1FE";
+            }
+
+            if(id == 0){
+                id=data["post_id"]
+                var select = document.getElementById('select'+id)
+                select.style.backgroundColor = "#E7F1FE";
+            }
         }
         ;
        }

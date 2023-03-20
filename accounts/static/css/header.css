@@ -1,0 +1,107 @@
+.profileHeader{
+    background-color: white;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 0 5px #e7e7e7;
+
+}
+/*    Profile DropDown  */
+ .profileDropDown{
+    right: 0;
+    transition: all 0.5s ease-in-out;
+    -webkit-box-shadow: 0 0 5px #e7e7e7;
+    box-shadow: 0 0 5px #e7e7e7;
+    border: none;
+    display: none;
+    text-align: center;
+    font-size: 18px;
+    background-color: white;   /*display: none = nuk mund te perdoret transition: ... */
+    border-radius: 16px;
+    overflow: hidden;
+    position: absolute;
+    z-index: 99;
+    margin-top: 10px;
+    padding-bottom:20px;
+    padding-top:5px;
+}
+.profileDropDown-content{
+    padding:15px 20px 0px 20px;
+    text-decoration: none;
+    color: #65676B;
+}
+.profileDropDown-text{
+    text-decoration: none;
+    color: #65676B;
+}
+.profileDropDown-text:hover {
+    color: black;
+}
+
+.header-icon{
+    cursor: pointer !important;
+    height: 35px;
+    width: 35px;
+    object-fit: cover;
+    vertical-align: middle;
+}
+.header-icon-radius{
+    border-radius: 10px;
+}
+.header-icon-job{
+    margin-right: 20px;
+    cursor: pointer !important;
+
+}
+.header-icon-profile{
+    margin-right: 40px;
+
+}
+.header-icon-logo{
+    margin-left: 40px;
+}
+
+.jobs-and-profile {
+    float: right;
+    display: flex;
+    align-items: center;
+}
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+    .header-icon-logo{
+        margin-left: 30px;
+    }
+    .header-icon-profile{
+        margin-right: 30px;
+    }
+}
+
+@media screen and (max-width: 767px) and (min-width: 481px) {
+    .header-icon-logo {
+        margin-left: 20px;
+    }
+    .header-icon-job{
+        margin-right: 20px;
+    }
+    .header-icon-profile {
+        margin-right: 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .header-icon-logo{
+        margin-left: 10px;
+    }
+    .header-icon-job {
+        margin-right: 20px;
+    }
+    .header-icon-profile{
+        margin-right: 10px;
+    }
+    .profileDropDown {
+        font-size: 16px;
+    }
+}

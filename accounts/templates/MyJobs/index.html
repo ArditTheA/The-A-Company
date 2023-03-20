@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% if check %}
+{% include "MyJobs/myjobs-filter.html" %}
+<input style="display:none;" id="PostID" value="{{post_id}}">
+<input type="hidden" id="MainJobs" name="variable" value="{{checkMainJobs}}">
+
+<div class="jobs-main-div" >
+    {% include "MyJobs/left-jobs.html" %}
+    {% include "MyJobs/right-jobs.html" %}
+</div>
+{% else %}
+<div class="job-first-row NoResult" style="">No results were found</div>
+{% endif %}
+{% endblock content %}

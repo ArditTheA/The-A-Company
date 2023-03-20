@@ -1,0 +1,136 @@
+@media screen and (max-width: 480px){
+    .profile-header {
+        margin: 10px;
+        border-radius:20px;
+    }
+    .pro-img {
+        border-radius: 15px;
+    }
+    .edit-button-cover {
+        display:block;
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        width: 17px;
+        height: 17px;
+    }
+    .second-part-profile-header {
+        padding: 0px 0px 20px 0px;
+    }
+
+    .profile-image-and-edit {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .profile-image {
+        width: 100px;
+        height: 100px;
+        margin-top: -50px;
+    }
+    #plus-icon, .add-experience-button {
+        width: 22px;
+        height: 22px;
+    }
+    .edit-button, .edit-experience {
+    width: 22px;
+    height: 22px;
+    }
+    .edit-button {
+    vertical-align: middle;
+    margin-top: 10px;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    }
+
+    .profile-name {
+        font-size: 30px;
+        margin-top: 10px;
+        text-align: center;
+    }
+    .profile-birthplace {
+    font-size: 16px;
+    margin-top: 10px;
+    text-align: center;
+    }
+    .experience-education-languages {
+        margin: 0px 10px 10px 10px;
+        border-radius: 20px;
+    }
+    .experience-paragraph-img-rows {
+        padding: 20px 0px 20px 20px;
+    }
+    .experience-paragraph {
+    margin-bottom: 30px;
+    }
+    .experience-paragraph {
+        margin: 0;
+        font-size: 18px;
+    }
+    .experience-first-row {
+        font-size: 16px;
+    }
+    .experience-second-row {
+        font-size: 16px;
+    }
+    .experience-third-row, .experience-fourth-row {
+        font-size: 16px;
+    }
+    .experience-third-row, .experience-fourth-row {
+        font-size: 16px;
+    }
+
+    #plus-icon, .add-experience-button {
+    width: 22px;
+    height: 22px;
+    }
+    .experience-rows-img-languages {
+    margin-top: 40px;
+    }
+    .language-rate {
+    color: #9E9E9E;
+    font-size: 16px;
+    }
+
+    .back-icon {
+        height: 22px;
+    }
+    .experience-education-img {
+    margin-right: 20px;
+}
+    .add-and-edit-experience {
+        padding-right: 20px;
+        padding-top: 20px;
+    }
+    .second-experience-div{
+        margin-top:10px;
+    }
+    .plus-button-exp {
+    margin-right: 0;
+}
+.two-imgs-experience {
+    position: absolute;
+    right: 20px;
+}
+.add-experience, .add-education, .add-languages {
+    width: calc(100% - 20px);
+    height: calc(100% - 20px);
+    padding: 0;
+    padding: 20px 20px 20px 20px;
+    border-radius: 20px;
+    position: fixed;
+}
+.under-container{
+    width: 100%;
+    margin: auto;
+    height: 100%;
+}
+
+.edit-experience {
+    width: 22px;
+    height: 22px;
+}
+
+}

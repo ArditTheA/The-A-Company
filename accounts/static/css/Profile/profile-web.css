@@ -1,0 +1,225 @@
+.profile-header {
+    margin: 20px 40px 20px 40px;
+    background-color: white;
+    border-radius: 40px;
+    position: relative;
+}
+.pro-img {
+    height: 18vw;
+    background-image: url({{}});
+    background-color: #cccccc;
+    width: 100%;
+    border-radius: 40px;
+    vertical-align: middle;
+    object-fit: cover;
+    background-size: cover;
+    position: relative;
+}
+
+/*   Cover Edits  */
+.edit-button-cover {
+    width: 30px;
+    height: 30px;
+    right: 40px;
+    top: 40px;
+    cursor: pointer;
+
+
+}
+.edit-button-cover {
+    display: none;
+    position:absolute;
+}
+
+.pro-img:hover + .edit-button-cover {
+    display: inline-block;
+    color: red;
+}
+
+.edit-button-cover:hover {
+    display: block;
+
+}
+
+
+.second-part-profile-header {
+    padding: 0px 40px 40px 40px;
+    position: relative;
+}
+.profile-image-and-edit {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.profile-image-and-add-button {
+    display: flex;
+    align-items: center;
+    position: relative;
+    display: inline-block;
+}
+.profile-image {
+    vertical-align: middle;
+    margin-top: -80px;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+
+.edit-button {
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+#plus-icon {
+    position: absolute;
+    border-radius: 50%;
+    right: 0;
+    bottom: 0;
+    background-color: #F1F1F1;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+
+/*    info       */
+
+.profile-name {
+    margin-top: 20px;
+    font-size: 40px;
+    color: #000000;
+}
+.profile-birthplace, .profile-birthplace1 {
+    margin-top: 15px;
+    color: #858585;
+    font-size:20px;
+}
+
+
+
+
+
+/*    Experience       */
+
+
+.experience-education-languages {
+    margin: 20px 40px 20px 40px;
+    border-radius: 40px;
+    background-color: white;
+}
+
+.experience-div, .education-div, .languages-div {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.experience-paragraph-img-rows {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 0px 40px 40px;
+}
+.experience-paragraph {
+    margin: 0;
+    font-size: 22px;
+}
+
+.experience-rows-img {
+    height: 100%;
+    display: flex;
+    margin-top: 40px;
+}
+
+.experience-education-img {
+    width: 60px;
+    height: 60px;
+    vertical-align: middle;
+    margin-top: 0;
+    margin-right: 30px;
+    border-radius: 10px;
+}
+.experience-rows {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    font-size: 18px;
+    color: #858585;
+}
+.experience-first-row {
+    margin-top: 0;
+    font-size: 20px;
+    color: #131419;
+    padding-bottom: 5px;
+}
+.experience-second-row {
+    margin: 0;
+    font-size: 18px;
+    padding-bottom: 5px;
+    color: #1877F2;
+}
+.experience-third-row {
+    font-size: 18px;
+    padding-bottom: 5px;
+    color: #858585;
+}
+.experience-fourth-row {
+    font-size: 18px;
+    color: #858585;
+}
+.add-and-edit-experience {
+    display: flex;
+    padding-right: 40px;
+    padding-top: 40px;
+}
+.add-experience-button, .second-add-languages-button, .second-add-experience-button, .second-add-education-button {
+    width: 30px;
+    height: 30px;
+    margin-right: 12px;
+    cursor: pointer;
+}
+.edit-experience {
+width: 30px;
+height: 30px;
+cursor: pointer;
+vertical-align: middle;
+}
+
+
+
+/*    language    */
+.languages-paragraphs-div {
+padding: 40px 0px 40px 40px;
+}
+.experience-rows-img-languages {
+margin-top: 40px;
+}
+
+
+
+.language-rate {
+color: #9E9E9E;
+font-size: 18px;
+}
+.education-second-paragraph {
+font-size: 20px;
+padding-bottom: 5px;
+}
+
+
+
+.back-icon {
+    height: 30px;
+    vertical-align: middle;
+    margin-right: 20px;
+}
+.two-imgs-experience {
+    position: absolute;
+    right: 40px;
+}
+

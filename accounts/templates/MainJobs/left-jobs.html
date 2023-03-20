@@ -1,0 +1,20 @@
+{% load static %}
+
+    {% for i in job %}
+    <div onclick="getNumber('{{i.id}}')" class="job-left-row pixel"  id="select{{i.id}}">
+        <img class="job-logo" src="{{i.logo.url}}" alt="">
+        <div class="job-left-content">
+            <div class="job-left-title">{{i.job_title}}</div>
+            {% if i.country_j == "USA" %}
+            <div class="job-left-salary job-left-details">${{i.salary_per_hour|floatformat:2}}/hour{%if i.tips %} + tips {% endif %} </div>
+            {% else %}
+            <div class="job-left-salary job-left-details">€{{i.salary_per_hour|floatformat:2}}/hour{%if i.tips %} + tips {% endif %}</div>
+            {% endif%}
+            <div class="job-left-company job-left-details">{{i.company}}</div>
+            <div class="job-left-details">{{i.city_j}}, {{i.country_j}}</div>
+        </div>
+    </div>
+    <div class="move"></div>
+
+
+    {% endfor %}
