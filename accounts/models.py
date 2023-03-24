@@ -76,7 +76,8 @@ class CustomUser(AbstractUser):
 
     def save(self, *args, **kwargs):
         if self.profile:
-            img = Image.open(self.profile)
+            img = Image.open(self.profile).convert('RGBA')
+            img = img.convert('RGB')
 
             # Rotate the image based on its Exif Orientation data
             if hasattr(img, '_getexif'):
@@ -100,7 +101,8 @@ class CustomUser(AbstractUser):
             # Set the content type and filename of the compressed image
             self.profile.file = InMemoryUploadedFile(output, 'ImageField', "%s.jpg" % self.profile.name.split('.')[0], 'image/jpeg', output.getbuffer().nbytes, None)
         if self.cover:
-            img = Image.open(self.cover)
+            img = Image.open(self.cover).convert('RGBA')
+            img = img.convert('RGB')
             # Rotate the image based on its Exif Orientation data
             if hasattr(img, '_getexif'):
                 exif = img._getexif()
@@ -252,7 +254,8 @@ class Jobs(models.Model):
         return str(self.id)+" - "+str(self.job_title)+ " - " +str(self.company)+" - "+str(self.city_j)+ " - "+str(format(self.postDate,"%d/%m/%Y"))+  " - "+ str(self.approved)+" - "+str(self.id)+" - "+str(self.total_applicant)
     def save(self, *args, **kwargs):
         if self.logo:
-            img = Image.open(self.logo)
+            img = Image.open(self.logo).convert('RGBA')
+            img = img.convert('RGB')
 
             # Rotate the image based on its Exif Orientation data
             if hasattr(img, '_getexif'):
