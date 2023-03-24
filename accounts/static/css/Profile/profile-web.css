@@ -314,10 +314,16 @@ padding-bottom: 5px;
     align-items: center;
     display: none;
 }
+.add-experience , .add-education{
+    padding: 30px 40px 40px 40px;
+}
+.edit-experience-pop-up {
+    padding:30px 40px 0px 40px;
+}
 .add-experience, .add-education, .edit-experience-pop-up {
     text-align: center;
     background-color: white;
-    padding: 30px 40px 40px 40px;
+
     border-radius: 40px;
     box-sizing: border-box;
     position: absolute;

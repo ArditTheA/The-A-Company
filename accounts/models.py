@@ -251,9 +251,7 @@ class Jobs(models.Model):
         return str(self.id)+" - "+str(self.job_title)+ " - " +str(self.company)+" - "+str(self.city_j)+ " - "+str(format(self.postDate,"%d/%m/%Y"))+  " - "+ str(self.approved)+" - "+str(self.id)+" - "+str(self.total_applicant)
     def save(self, *args, **kwargs):
         if self.logo:
-            img = Image.open(self.logo).convert('RGBA')
-            img = img.convert('RGB')
-
+            img = Image.open(self.logo)
             # Rotate the image based on its Exif Orientation data
             if hasattr(img, '_getexif'):
                 exif = img._getexif()
