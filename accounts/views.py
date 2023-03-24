@@ -261,7 +261,7 @@ def Edit_user_expId(request, pk):
         return redirect("editExprience")
 
     return render(request, "UserProfile/EditAdd/expreriencesId.html",
-                  {"userExp": userExp, "edit": edit, "countrys": countrys, "citys": citys})
+                  {"usExp": userExp, "edit": edit, "countrys": countrys, "citys": citys})
 
 
 # Edit profile Education ##############3

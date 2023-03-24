@@ -54,7 +54,8 @@ from django.conf import settings
 def send_email_with_template(request):
     # Render the template
     context = {'image_url': 'https://worki.global/static/img/12.jpeg',
-               'link_url': 'https://worki.global'}
+               'link_url': 'https://worki.global',
+			   "user":request.user}
     template = get_template('emailTemplate.html')
     html_content = template.render(context)
 

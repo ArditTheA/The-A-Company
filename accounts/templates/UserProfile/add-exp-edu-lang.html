@@ -66,7 +66,7 @@
                 </div>
 
                 <label for="id_cover">
-                    <img class="changed-cover" id="coverPic" height="250"  src="{{user.cover.url}}" title="Profile Cover" alt="">
+                    <img class="changed-cover" id="coverPic" height="250"  src="{{user.cover.url}}" title="Profile Cover" alt="" accept="image/*" size="20971520">
                 </label>
                 {{form.cover}}
             </div>
@@ -229,7 +229,7 @@
         </form>
     </div>
 </div>
-<div class="add-education">
+<div class="add-education edit-education-parent-scroll">
     <div class="under-container">
         <div class="exit-img exit-img-edit-profile">
                 <img title="Exit" class="exit-button exit-button-edit-profile" onclick="enableScroll()"  src="{% static 'img/Vector 81 (1).png' %}" alt="">
@@ -312,7 +312,7 @@
 
 
 
-            <div class="save-button save-edu">
+            <div class="save-button save-edu save-button-edit-add-education-480">
             <a href=""><input name="save" type="submit" class="save-submit-input font-fam" value="Save"></a>
             </div>
         </form>

@@ -1,59 +1,81 @@
-@media screen and (max-width: 480px){
+
+@media screen and (max-width: 480px) {
+    .profile-header, .experience-div {
+        border-radius: 20px;
+    }
     .profile-header {
         margin: 10px;
-        border-radius:20px;
+    }
+    .experience-rows-img {
+        margin-top: -10px;
+    }
+    .profile-image-and-edit {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
     .pro-img {
-        border-radius: 15px;
+        border-radius: 20px;
+    }
+    .experience-paragraph {
+        font-size: 16px;
+    }
+    .education-second-paragraph {
+        font-size: 16px;
+    }
+    .exit-button-edit-profile {
+        margin-bottom: 30px;
+    }
+    #title-experience {
+        padding-bottom: 30px;
+        font-size: 30px;
+    }
+    .right-jobs-rows-img, .right-jobs-rows-img-second {
+        border-radius: 20px;
+    }
+    .right-jobs-rows-img-second {
+        margin-bottom: 10px !important;
+    }
+
+    .second-part-profile-header {
+        padding: 0px 0px 20px 0px;
+    }
+    .profile-image {
+        margin-top: -45px;
+        width: 90px;
+        height: 90px;
+    }
+    .edit-button {
+        vertical-align: middle;
+        margin-top: 10px;
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+    }
+    .exit-button-second-add-experience, .exit-button-second-add-education {
+        width: 14px;
+        height: 14px;
+    }
+    .edit-button, .edit-experience {
+        width: 22px;
+        height: 22px;
     }
     .edit-button-cover {
-        display:block;
         position: absolute;
         right: 15px;
         top: 15px;
         width: 17px;
         height: 17px;
     }
-    .second-part-profile-header {
-        padding: 0px 0px 20px 0px;
-    }
-
-    .profile-image-and-edit {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .profile-image {
-        width: 100px;
-        height: 100px;
-        margin-top: -50px;
-    }
-    #plus-icon, .add-experience-button {
-        width: 22px;
-        height: 22px;
-    }
-    .edit-button, .edit-experience {
-    width: 22px;
-    height: 22px;
-    }
-    .edit-button {
-    vertical-align: middle;
-    margin-top: 10px;
-    position: absolute;
-    right: 20px;
-    bottom: 20px;
-    }
-
     .profile-name {
         font-size: 30px;
         margin-top: 10px;
         text-align: center;
     }
     .profile-birthplace {
-    font-size: 16px;
-    margin-top: 10px;
-    text-align: center;
+        font-size: 16px;
+        margin-top: 10px;
+        text-align: center;
     }
     .experience-education-languages {
         margin: 0px 10px 10px 10px;
@@ -62,75 +84,378 @@
     .experience-paragraph-img-rows {
         padding: 20px 0px 20px 20px;
     }
-    .experience-paragraph {
-    margin-bottom: 30px;
+    .experience-paragraph-img-rows {
     }
     .experience-paragraph {
-        margin: 0;
-        font-size: 18px;
+        margin-bottom: 20px;
     }
-    .experience-first-row {
-        font-size: 16px;
+    .exit-img {
+        padding-top: 0;
     }
-    .experience-second-row {
-        font-size: 16px;
+    .under-container {
     }
-    .experience-third-row, .experience-fourth-row {
-        font-size: 16px;
+    .add-and-edit-experience {
+        padding-right: 20px;
+        padding-top: 20px;
     }
-    .experience-third-row, .experience-fourth-row {
-        font-size: 16px;
-    }
-
-    #plus-icon, .add-experience-button {
-    width: 22px;
-    height: 22px;
-    }
-    .experience-rows-img-languages {
-    margin-top: 40px;
-    }
-    .language-rate {
-    color: #9E9E9E;
-    font-size: 16px;
+    .experience-education-img {
+        margin-right: 20px;
     }
 
     .back-icon {
         height: 22px;
     }
-    .experience-education-img {
+    .second-experience-div {
+        margin-top: 10px;
+    }
+    .languages-paragraphs-div {
+        padding: 20px 0px 20px 20px !important;
+    }
+    .languages-div {
+        margin-top: 10px;
+    }
+    .education-second-paragraph {
+        font-size: 16px !important;
+    }
+    .experience-first-row {
+        font-size: 16px !important;
+    }
+    .experience-second-row, .experience-third-row, .experience-fourth-row, .experience-fifth-row-positions, .experience-fifth-row-days, .experience-fifth-row-new, .language-rate  {
+        font-size: 16px !important;
+    }
+
+    .language-edit-button-parent {
+        margin-top: -20px;
+    }
+    .job-left-details {
+        font-size: 16px !important;
+    }
+    .add-experience, .add-education, .add-languages {
+        width: calc(100% - 20px);
+        height: calc(100% - 20px);
+        padding: 0;
+        padding: 20px !important;
+        border-radius: 20px !important;
+    }
+
+.save-button-edit-add-education-480 {
+    padding-bottom: 40px;
+}
+.save-submit-input, .paragraphs-stats {
+    font-size: 14px !important;
+}
+input[type=text], input[type=date]  {
+    font-size: 16px;
+}
+
+
+.save-submit-input {
+    margin-top: -10px;
+                     /* qe i bie margin-top: 30px nga 40px sa eshte ne fillim */
+}
+.save-button {
+    margin-bottom: 20px;
+}
+
+
+#plus-icon, .add-experience-button {
+    width: 22px !important;
+    height: 22px !important;
+}
+
+.back-icon {
+    height: 22px !important;
+    vertical-align: middle;
     margin-right: 20px;
 }
-    .add-and-edit-experience {
-        padding-right: 20px;
-        padding-top: 20px;
+
+.second-experience-rows-img, .second-education-rows-img {
+    margin-top: 20px;
+}
+
+.experience-education-languages {
+    margin: 0px 10px 10px 10px !important;
+    border-radius: 20px !important;
+    background-color: white;
+}
+.experience-paragraph-img-rows {
+    padding: 20px 0px 20px 20px !important;
+}
+.experience-paragraph {
+    font-size: 16px !important;
+}
+.add-and-edit-experience {
+    padding-top: 20px !important;
+    padding-right: 20px !important;
+}
+.add-experience-button {
+    margin-right: 10px;
+}
+
+.edit-experience-pop-up-button {
+    margin-right: -20px;
+}
+.edit-experience {
+    width: 22px !important;
+    height: 22px !important;
+    vertical-align: middle;
+}
+.add-experience-button, .second-add-languages-button, .second-add-experience-button, .second-add-education-button {
+    width: 22px !important;
+    height: 22px !important;
+}
+.experience-rows-img {
+    margin-top: 20px;
+}
+
+    .bg-add-and-edit, .bg-edit-experience, .bg-languages, .bg-edit-languages, .bg-edit-education {
+        background-color: #f1f1f1 !important;
     }
-    .second-experience-div{
-        margin-top:10px;
+    .bg-edit-languages {}
+
+    .under-container {
+        width: 100%;
+        margin: auto;
+        height: 100%;
+    }
+    .exit-button-edit-profile, .exit-button-edit-experience {
+        margin-bottom: 30px;
+    }
+
+    .exit-img-edit-experience {
+        margin-bottom: 30px !important;
+    }
+    .second-title-experience {}
+    .save-experience-languages-education {
+    }
+    .university-start-input {
+        width: 47%;
+    }
+    .university-end-input {
+        width: 47%;
+    }
+    .exit-img-add-experience-education-languages {
+        margin-top: 0px;    /* margin-top: 0px, e kthen nga vlera negative (ku ka qene margin-top: 10px) dhe kthehet ne margin-top: 20px */
+    }
+
+    .bg-change-profile-picture {
+        background-color: #f1f1f1;
+        justify-content: center;
+        align-items: flex-start;
+        width: 100%;
+        padding: 0;
+    }
+    .change-profile-picture {
+        width: 100%;
+        height: calc(100% - 20px);
+        padding: 20px;
+        border-radius: 20px;
+        margin: 10px;
+    }
+    #title {
+        font-size: 30px;
+    }
+
+    .changed-picture {
+        width: 100px;
+        height: 100px;
+        margin-top: -10px;  /* shenohet margin-top: -10px, per ta arritur hapesiren (marginen) 30px ndermjet changed picture dhe title
+                              ndersa hapesira ndermjet chenged picture dhe butonit Save veq se eshte 30px. */
+    }
+    .div-of-upload-button {
+        margin-top: 30px;
+        width: 140px;
+        font-size: 13px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .upload-button {
+        margin-left: -5px;
+    }
+    .exit-img-profile-picture {
+        margin-bottom: 30px !important;
+        vertical-align: middle !important;
+    }
+    .exit-button {
+        width: 14px;
+        height: 14px;
+    }
+    .edit-profile-bg {
+        background-color: #f1f1f1;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    .container-edit-profile {
+        width: calc(100% - 20px);
+        height: calc(100% - 20px);
+        padding: 20px;
+        margin: 10px 10px 20px 10px;
+        border-radius: 20px;
+    }
+
+    .under-container-edit-profile {
+        width: 100%;
+    }
+    #title {
+        margin-bottom: -20px;       /* pasi qe paragraph-stats ka margin-top: 10px, atehere title eshte e larguar: 50px nga paragrafet, keshtu
+                                    qe shenojme margin-bottom: -20px, qe ta kemi hapesiren (margin) 30px ndermjet title dhe paragraph-stats (paragrafet) */
+    }
+    .mutual-stats {
+        font-size: 14px;
+    }
+    .paragraphs-stats {
+        font-size: 14px;
+    }
+    .save-button-edit-profile {
+    }
+    .save-submit-input {
+        font-size: 14px;
+        padding: 7px 21px;
+    }
+    .exit-img-edit-profile {
+        margin: 0;
+    }
+    .exit-button {
+        width: 14px !important;
+        height: 14px !important;
+    }
+
+    .first-paragraph, .second-paragraph {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+    .third-paragraph {
+        padding-top: 15px;
+    }
+    .first-paragraph, .second-paragraph, .third-paragraph {
+        font-size: 13px;
+    }
+    .name-input, .surname-input, .email-input, .password-input, .sign-up-submit-input, .sign-up-google {
+        font-size: 16px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+    .bg-cover-edit {
+        background-color: #f1f1f1;
+        justify-content: center;
+        align-items: flex-start;
+        width: 100%;
+        padding: 0;
+    }
+    .cover-edit {
+        width: 100%;
+        height: calc(100% - 20px);
+        padding: 20px;
+        border-radius: 20px;
+        margin: 10px;
+    }
+    .change-cover-picture-title {
+        font-size: 30px;
+        margin-bottom: -10px;
+    }
+    .div-of-upload-button {
+        margin-top: 25px;
+        width: 140px;
+        font-size: 13px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .exit-button-cover-picture {
+    }
+    .upload-button {
+        margin-left: -5px;
+    }
+    .exit-button {
+        width: 14px;
+        height: 14px;
+    }
+    .changed-cover {
+        width: 100%;
+        height: 70px;
+        border-radius: 20px;
+    }
+    .bg-change-profile-picture {
+        background-color: #f1f1f1;
+        justify-content: center;
+        align-items: flex-start;
+        width: 100%;
+        padding: 0;
+    }
+    .change-profile-picture-title {
+        font-size: 30px;
+    }
+    .changed-picture {
+        width: 100px;
+        height: 100px;
+        margin-top: -10px;  /* shenohet margin-top: -10px, per ta arritur hapesiren (marginen) 30px ndermjet changed picture dhe title
+                              ndersa hapesira ndermjet chenged picture dhe butonit Save veq se eshte 30px. */
+    }
+    .div-of-upload-button {
+        margin-top: 30px;
+        width: 140px;
+        font-size: 13px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .upload-button {
+        margin-left: -5px;
+    }
+    .exit-button {
+        width: 14px;
+        height: 14px;
     }
     .plus-button-exp {
-    margin-right: 0;
-}
-.two-imgs-experience {
-    position: absolute;
-    right: 20px;
-}
-.add-experience, .add-education, .add-languages {
-    width: calc(100% - 20px);
-    height: calc(100% - 20px);
-    padding: 0;
-    padding: 20px 20px 20px 20px;
-    border-radius: 20px;
-    position: fixed;
-}
-.under-container{
-    width: 100%;
-    margin: auto;
-    height: 100%;
-}
+        width: 21px;
+        height: 21px;
+    }
+    .bg-edit-experience {
+    }
+    .date-paragraphs-of-eduaction {
+        font-size: 14px;
+    }
+    .paragraph-of-end-date {
+    }
+    .start-date-div {
+    }
+    .end-date-div {
+    }
+    .edit-experience-pop-up, .edit-languages-pop-up {
+        width: calc(100% - 20px) !important;
+        height: calc(100% - 20px) !important;
+        border-radius: 20px !important;
+        padding-top: 20px !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+    .save-button {
+        margin-bottom: 20px !important;
+    }
 
-.edit-experience {
-    width: 22px;
-    height: 22px;
-}
+    .save-button-second-experience-pop-up {
+    }
+    .under-container {
+        width: 100% !important;
+    }
+    #title-experience {
+        font-size: 30px !important;
+        padding-bottom: 30px !important;
+    }
+    #title {
+        font-size: 30px !important;
+    }
 
+    .under-container {
+    }
+    .exit-button-edit-experience {
+        width: 14px;
+        height: 14px;
+    }
+    .header-border {
+        display: none;
+    }
+    .start-job-date {
+        width: auto;
+        margin-left: 10px;
+    }
 }

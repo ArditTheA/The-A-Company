@@ -1,18 +1,24 @@
-from distutils.command.upload import upload
-from email.policy import default
-from hashlib import blake2b
-from random import choices
-from tkinter.tix import Tree
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
 from datetime import datetime
 from django.urls import reverse 
 from django.utils import timezone
-from django.conf import settings
+from datetime import datetime
+
+from django.contrib.auth.models import AbstractUser
+from django.db import models
+from django.urls import reverse
+from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
+
 today = timezone.now
 
+from io import BytesIO
+from PIL import Image
 
+from django.core.files.uploadedfile import InMemoryUploadedFile
+from django.core.exceptions import ValidationError
 
 class Country(models.Model):
     country = models.CharField(max_length=255)
@@ -34,6 +40,15 @@ def user_directory_path_cover(instance, filename):
 def user_directory_path_profile(instance, filename):
     return '{0}/Images/Profile/{1}'.format(instance.email, filename)
 
+
+
+
+def validate_file_size(value):
+    filesize= value.size
+    if filesize > 20971520:
+        raise ValidationError("The maximum file size that can be uploaded is 20MB")
+    else:
+        return value
 class CustomUser(AbstractUser):
     sex_choice=[
         ("M","Male"),
@@ -51,11 +66,63 @@ class CustomUser(AbstractUser):
     phone_number= models.CharField(max_length=255,null=True,blank=True)
     birthday = models.DateField(null = True,blank=True)
     picture = models.TextField(null=True, blank=True)
+
+
     def __str__(self):
         return self.email+" "+ self.first_name+" "+ self.last_name
 
     def get_absolute_url(self):
         return reverse("profile", kwargs={"pk": self.pk})
+
+    def save(self, *args, **kwargs):
+        if self.profile:
+            img = Image.open(self.profile)
+
+            # Rotate the image based on its Exif Orientation data
+            if hasattr(img, '_getexif'):
+                exif = img._getexif()
+                if exif is not None:
+                    orientation = exif.get(0x0112)
+                    if orientation == 3:
+                        img = img.transpose(Image.ROTATE_180)
+                    elif orientation == 6:
+                        img = img.transpose(Image.ROTATE_270)
+                    elif orientation == 8:
+                        img = img.transpose(Image.ROTATE_90)
+
+            img.thumbnail((1280, 980))
+
+            # Compress the image
+            output = BytesIO()
+            img.save(output, format='JPEG', optimize=True, quality=60)
+            output.seek(0)
+
+            # Set the content type and filename of the compressed image
+            self.profile.file = InMemoryUploadedFile(output, 'ImageField', "%s.jpg" % self.profile.name.split('.')[0], 'image/jpeg', output.getbuffer().nbytes, None)
+        if self.cover:
+            img = Image.open(self.cover)
+            # Rotate the image based on its Exif Orientation data
+            if hasattr(img, '_getexif'):
+                exif = img._getexif()
+                if exif is not None:
+                    orientation = exif.get(0x0112)
+                    if orientation == 3:
+                        img = img.transpose(Image.ROTATE_180)
+                    elif orientation == 6:
+                        img = img.transpose(Image.ROTATE_270)
+                    elif orientation == 8:
+                        img = img.transpose(Image.ROTATE_90)
+
+            img.thumbnail((1280, 980))
+            # Compress the image
+            output = BytesIO()
+            img.save(output, format='JPEG', optimize=True, quality=60)
+            output.seek(0)
+            # Set the content type and filename of the compressed image
+            self.cover.file = InMemoryUploadedFile(output, 'ImageField', "%s.jpg" % self.cover.name.split('.')[0],
+                                                     'image/jpeg', output.getbuffer().nbytes, None)
+        super(CustomUser, self).save(*args, **kwargs)
+
 
 class Languages(models.Model):
     language = models.CharField(max_length=255)
@@ -183,7 +250,33 @@ class Jobs(models.Model):
 
     def __str__(self):
         return str(self.id)+" - "+str(self.job_title)+ " - " +str(self.company)+" - "+str(self.city_j)+ " - "+str(format(self.postDate,"%d/%m/%Y"))+  " - "+ str(self.approved)+" - "+str(self.id)+" - "+str(self.total_applicant)
+    def save(self, *args, **kwargs):
+        if self.logo:
+            img = Image.open(self.logo)
 
+            # Rotate the image based on its Exif Orientation data
+            if hasattr(img, '_getexif'):
+                exif = img._getexif()
+                if exif is not None:
+                    orientation = exif.get(0x0112)
+                    if orientation == 3:
+                        img = img.transpose(Image.ROTATE_180)
+                    elif orientation == 6:
+                        img = img.transpose(Image.ROTATE_270)
+                    elif orientation == 8:
+                        img = img.transpose(Image.ROTATE_90)
+
+            img.thumbnail((1280, 980))
+
+            # Compress the image
+            output = BytesIO()
+            img.save(output, format='JPEG', optimize=True, quality=60)
+            output.seek(0)
+
+            # Set the content type and filename of the compressed image
+            self.logo.file = InMemoryUploadedFile(output, 'ImageField', "%s.jpg" % self.logo.name.split('.')[0],
+                                                     'image/jpeg', output.getbuffer().nbytes, None)
+        super(Jobs, self).save(*args, **kwargs)
 
 class ActiveStudent(models.Model):
     Answer_type={

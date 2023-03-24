@@ -17,28 +17,21 @@
 }
 
 /*   Cover Edits  */
-.edit-button-cover {
-    width: 30px;
-    height: 30px;
-    right: 40px;
-    top: 40px;
-    cursor: pointer;
 
-
-}
 .edit-button-cover {
     display: none;
     position:absolute;
 }
-
-.pro-img:hover + .edit-button-cover {
-    display: inline-block;
-    color: red;
+#example1:hover {  /*  =>  main-div   */
+    filter: brightness(0.93);
 }
 
 .edit-button-cover:hover {
     display: block;
+}
 
+.pro-img:hover + .edit-button-cover {
+    display: inline-block;
 }
 
 
@@ -67,13 +60,6 @@
     object-fit: cover;
 }
 
-
-.edit-button {
-    width: 30px;
-    height: 30px;
-    vertical-align: middle;
-    cursor: pointer;
-}
 #plus-icon {
     position: absolute;
     border-radius: 50%;
@@ -84,7 +70,16 @@
     height: 30px;
     cursor: pointer;
 }
+.add-experience-button {
+    margin-right: 10px;
+}
 
+.edit-button {
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+    cursor: pointer;
+}
 
 /*    info       */
 
@@ -98,19 +93,13 @@
     color: #858585;
     font-size:20px;
 }
-
-
-
-
-
-/*    Experience       */
-
-
 .experience-education-languages {
     margin: 20px 40px 20px 40px;
     border-radius: 40px;
     background-color: white;
 }
+
+/*    Experience       */
 
 .experience-div, .education-div, .languages-div {
     display: flex;
@@ -172,24 +161,11 @@
     font-size: 18px;
     color: #858585;
 }
-.add-and-edit-experience {
-    display: flex;
-    padding-right: 40px;
-    padding-top: 40px;
-}
 .add-experience-button, .second-add-languages-button, .second-add-experience-button, .second-add-education-button {
     width: 30px;
     height: 30px;
-    margin-right: 12px;
     cursor: pointer;
 }
-.edit-experience {
-width: 30px;
-height: 30px;
-cursor: pointer;
-vertical-align: middle;
-}
-
 
 
 /*    language    */
@@ -200,8 +176,6 @@ padding: 40px 0px 40px 40px;
 margin-top: 40px;
 }
 
-
-
 .language-rate {
 color: #9E9E9E;
 font-size: 18px;
@@ -211,15 +185,624 @@ font-size: 20px;
 padding-bottom: 5px;
 }
 
+.edit-education-parent-scroll {
+    overflow-y: scroll;
+    height: 70vh;
+}
 
+.edit-education-scroll {
+    margin-bottom: 40px;
+}
+
+.edit-education-scroll::-webkit-scrollbar {
+    display: none;
+}
+.add-education-scroll::-webkit-scrollbar {
+    display: none;
+}
+.margin-right-back-icon {
+    margin-right: 20px;
+    color: #939598;
+}
 
 .back-icon {
-    height: 30px;
+    height: 27px;
     vertical-align: middle;
     margin-right: 20px;
 }
+.add-and-edit-experience {
+    display: flex;
+    padding-right: 40px;
+    padding-top: 40px;
+    align-items: center;
+}
+.different_exp {
+    position: relative;
+}
+.edit-experience {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    vertical-align: middle;
+}
 .two-imgs-experience {
     position: absolute;
-    right: 40px;
+    right: 40px !important;
+}
+.bg-change-profile-picture {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+.change-profile-picture {
+    text-align: center;
+    box-sizing: border-box;
+    background-color: white;
+    padding: 30px 40px 40px 40px;
+    border-radius: 40px;
 }
 
+.exit-img-profile-picture {
+    display: flex;
+    justify-content: flex-start;
+}
+.exit-button-profile-picture {
+}
+.change-profile-picture-title {
+    margin: 0;
+    padding-bottom: 40px;
+    font-size: 40px;
+    font-weight: 400;
+    color: #1877F2;
+}
+.changed-picture {
+    vertical-align: middle;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    margin: 0;
+    object-fit: cover;
+    cursor: pointer;
+}
+.changed-picture:hover {
+    filter: brightness(0.93);
+}
+
+.upload-a-button {
+    text-decoration: none;
+}
+.changed-profile {
+    border-radius: 40px;
+}
+.upload-button {
+    color: white;
+    width: 160px;
+    background-color: #1877F2;
+    color: white;
+    font-size: 18px;
+    border: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 30px;
+    margin-top: 40px;
+    cursor: pointer;
+}
+.save-picture {
+    float: none;
+}
+#array-icon {
+    border-radius: 50%;
+    border: solid white 2px;
+}
+
+.div-of-changed-picture>input {
+    display: none;
+}
+.bg-add-and-edit, .bg-edit-experience, .bg-languages, .bg-edit-languages, .bg-edit-education {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    position: fixed;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+.add-experience, .add-education, .edit-experience-pop-up {
+    text-align: center;
+    background-color: white;
+    padding: 30px 40px 40px 40px;
+    border-radius: 40px;
+    box-sizing: border-box;
+    position: absolute;
+    overflow-y: scroll;
+}
+.edit-button-cover {
+    width: 30px;
+    height: 30px;
+    right: 40px;
+    top: 40px;
+    cursor: pointer;
+    position: absolute;
+}
+
+
+.add-languages {
+    text-align: center;
+    background-color: white;
+    padding: 30px 40px 40px 40px;
+    border-radius: 40px;
+    box-sizing: border-box;
+    position: absolute;
+}
+
+.edit-languages-pop-up, .add-languages-pop-up {
+    text-align: center;
+    background-color: white;
+    padding: 30px 40px 40px 40px;
+    border-radius: 40px;
+    box-sizing: border-box;
+    position: absolute;
+}
+
+.add-experience::-webkit-scrollbar {
+    display: none;
+}
+.edit-experience-pop-up::-webkit-scrollbar {
+    display: none;
+}
+.add-education::-webkit-scrollbar {
+    display: none;
+}
+
+
+#title-experience {
+    width: 300px;
+    font-size: 40px;
+    font-weight: 400;
+    color: #1877F2;
+    margin: auto;
+    padding-bottom: 40px;
+    text-align: center;
+}
+.exit-img-edit-experience {
+    margin-bottom: 40px;
+}
+
+.font-fam {
+    font-family: 'Spline Sans', sans-serif;
+}
+
+.under-container {
+    width: 400px;
+    margin-top: 0;
+}
+
+.mutual-stats {
+    border-radius: 30px;
+    padding: 10px 0px 10px 10px;
+    font-size: 18px;
+    border: 0.5px solid #9E9E9E;
+    background-color: white;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.mutual-stats:focus {
+    outline: none;
+}
+
+.mutual-stats::placeholder {
+    color: #9E9E9E;
+}
+
+.div-of-job-experience {
+    margin: 0;
+}
+
+.city-input, .program-input {
+    border-radius: 30px;
+    padding: 10px 0px 10px 10px;
+    font-size: 18px;
+    border: 0.5px solid #9E9E9E;
+    background-color: white;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#password:focus {
+    outline: none;
+}
+
+.password-input::placeholder {
+    color: #9E9E9E;
+}
+
+.surname-input {
+    font-family: 'Spline Sans', sans-serif;
+}
+
+.exit-img {
+    display: flex;
+    justify-content: flex-start;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.exit-button {
+
+}
+
+.exp-experience {
+    margin-top: 40px;
+}
+
+.same-color-of-paragraphs {
+    color: #9E9E9E;
+}
+
+.terms-conditions-link, .sign-in-link {
+    color: #1877F2;
+    text-decoration: none;
+}
+
+.sign-in-link {
+    text-decoration: none;
+}
+
+.paragraphs-stats {
+    font-size: 16px;
+    float: left;
+    margin: 0;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    color: #9E9E9E;
+}
+
+.paragraph-of-surname, .paragraph-of-country, .paragraph-of-city, .paragraph-of-program, .paragraph-of-start-date, .paragraph-of-end-date {
+    margin-top: 10px;
+}
+
+.second-paragraph {
+    text-align: center;
+}
+.first-paragraph, .second-paragraph {
+    margin: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 16px;
+}
+
+.second-paragraph .sign-up-submit-input {
+    text-align: center;
+}
+
+.start-date-input {
+}
+
+.end-date-input {
+    font-family: 'Spline Sans', sans-serif;
+}
+
+.save-button {
+    padding-top: 40px;
+}
+
+.sign-up-google {
+    text-align: center;
+    color: #9E9E9E;
+    text-decoration: none;
+}
+
+.save-submit-input {
+    padding: 10px 30px;
+    border-radius: 30px;
+    background-color: #1877F2;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+    border: 0.5px solid #1877F2;
+    float: right;
+    outline: none;
+}
+.save-button-edit-add-education-480 {
+    padding-bottom: 80px;
+}
+
+.sign-up-submit-input:focus {
+    outline: none;
+}
+
+.third-paragraph {
+    font-size: 16px;
+    padding-left: 10px;
+    margin: 0;
+    padding-top: 20px;
+}
+
+.input-form {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    position: relative;
+}
+.university-start-input {
+    width: 48%;
+}
+.university-end-input {
+    width: 48%;
+}
+body {
+    margin: 0;
+    background-color: #f1f1f1;
+    font-family: 'Spline Sans', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.edit-profile-bg {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.container-edit-profile {
+    box-sizing: border-box;
+    border-radius: 40px;
+    background-color: white;
+    padding: 30px 40px 40px 40px;
+    transition: 1s ease;
+}
+
+#title {
+    width: 300px;
+    font-size: 40px;
+    font-weight: 400;
+    color: #1877F2;
+    margin: auto;
+    padding-bottom: 40px;
+    text-align: center;
+}
+
+.font-fam {
+    font-family: 'Spline Sans', sans-serif;
+}
+
+.under-container-edit-profile {
+    width: 400px;
+    margin-top: 0;
+}
+
+.edit-profile-first-name {
+    margin: 0;
+}
+
+.mutual-stats {
+    padding: 10px 0px 10px 10px;
+}
+
+.mutual-stats:focus {
+    outline: none;
+}
+
+.mutual-stats::placeholder {
+    color: #9E9E9E;
+}
+
+.city-input {
+}
+
+#password:focus {
+    outline: none;
+}
+
+.password-input::placeholder {
+    color: #9E9E9E;
+}
+
+.surname-input {
+    font-family: 'Spline Sans', sans-serif;
+}
+
+.exit-img {
+    margin-bottom: 40px;
+}
+
+.exit-button {
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    vertical-align: top;
+    vertical-align: bottom;
+    margin: 0;
+    cursor: pointer;
+}
+
+.same-color-of-paragraphs {
+    color: #9E9E9E;
+}
+
+.terms-conditions-link, .sign-in-link {
+    color: #1877F2;
+    text-decoration: none;
+}
+
+.sign-in-link {
+    text-decoration: none;
+}
+
+.paragraphs-stats {
+    font-size: 16px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    color: #9E9E9E;
+}
+
+.paragraph-of-surname, .paragraph-of-country, .paragraph-of-city {
+    margin-top: 10px;
+}
+input[type=text] {
+    outline: none;
+    border: 0.5px solid #9E9E9E;
+    border-radius: 30px;
+    padding: 10px 0px 10px 10px;
+    font-size: 18px;
+    width: 100%;
+    box-sizing: border-box;
+}
+  input[type="text"]::placeholder {
+      color: black;
+  }
+
+.second-paragraph {
+    text-align: center;
+}
+.first-paragraph, .second-paragraph {
+    margin: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 16px;
+}
+
+.second-paragraph .sign-up-submit-input {
+    text-align: center;
+}
+
+.save-button {
+    padding-top: 40px;
+}
+
+.sign-up-google {
+    text-align: center;
+    color: #9E9E9E;
+    text-decoration: none;
+}
+
+.save-submit-input {
+    padding: 10px 24px;
+    border-radius: 30px;
+    background-color: #1877F2;
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    border: 0.5px solid #1877F2;
+    float: right;
+    outline: none;
+}
+
+.sign-up-submit-input:focus {
+    outline: none;
+}
+
+.third-paragraph {
+    font-size: 16px;
+    padding-left: 10px;
+    margin: 0;
+    padding-top: 20px;
+}
+
+.input-form {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    position: relative;
+}
+
+.icon {
+    position: absolute;
+    left: 10px;
+    height: 80%;
+}
+
+#togglePassword {
+    position: absolute;
+    right: 22px;
+}
+.bg-cover-edit {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+.cover-edit {
+    text-align: center;
+    box-sizing: border-box;
+    background-color: white;
+    padding: 30px 40px 40px 40px;
+    border-radius: 40px;
+    position: relative;
+}
+
+.exit-img-cover-picture {
+    margin: 0px 0px 30px 0px;
+}
+.exit-button-profile-picture {
+}
+.change-cover-picture-title {
+    margin: 0;
+    padding-bottom: 40px;
+    font-size: 40px;
+    font-weight: 400;
+    color: #1877F2;
+}
+.changed-cover {
+    height: 120px;
+    vertical-align: middle;
+    width: 700px;
+    border-radius: 30px;
+    margin: auto;
+    margin: 0;
+    object-fit: cover;
+    cursor: pointer;
+}
+.changed-cover:hover {
+    filter: brightness(0.92);
+}
+
+.div-of-changed-cover>input {
+    display: none;
+}
+
+.upload-a-button {
+    text-decoration: none;
+}
+.upload-button {
+    color: white;
+    width: 160px;
+    background-color: #1877F2;
+    font-size: 18px;
+    border: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 30px;
+    cursor: pointer;
+}
+.save-submit-input {
+}
+
+.save-cover {
+    font-size: 16px;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+#array-icon {
+    border-radius: 50%;
+    border: solid white 2px;
+}

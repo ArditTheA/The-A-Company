@@ -1,18 +1,7 @@
 {% extends 'base.html'%}
 {% load static %}
 {% block content %}
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Experience</title>
-    <link rel="stylesheet" href="{% static 'css/authenticated.css' %}">
-    <link rel="stylesheet" href="{% static 'css/profile-header.css' %}">
-    <link rel="stylesheet" href="{% static 'css/edit-profile.css' %}">
-    <link rel="stylesheet" href="{% static 'css/add-profile-picture.css' %}">
-    <link rel="stylesheet" href="{% static 'css/experience-font-family.css' %}">
-    <link rel="stylesheet" href="{% static 'css/add-experience.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <link rel="stylesheet" href="{% static 'css/edit-cover.css' %}">
+
 
 
        
@@ -41,17 +30,18 @@
             </div>
             </div>
             <div class="add-and-edit-experience">
-              <a href="profile.html"><img class="back-icon" title="Go Back" src="{% static 'img/backButton.png' %}" alt=""></a>         
+                <a href="{% url 'profile'%}"><img class="back-icon" title="Go Back" src="{% static 'img/backButton.png' %}" alt=""></a>
+
               <img class="add-experience-button plus-button-exp" title="Add Experience" src="{% static 'img/Vector 80.png' %}" alt="">
             </div>
         </div>
     </div>
-    <div class="bg-edit-experience" style="display: flex;">
+    <div class="bg-edit-experience  edit-education-parent-scroll" style="display: flex;">
 
         <div class="edit-experience-pop-up edit-education-parent-scroll">
             <div class="under-container edit-education-scroll" style="overflow-y: scroll;">
                 <div class="exit-img exit-img-edit-experience">
-                       <a href="{% url 'editEdu'%}"> <img title="Exit" style="vertical-align: middle;" class="exit-button exit-button-edit-experience" src="{% static 'img/Vector 81 (1).png' %}" alt=""></a>
+                       <a href="{% url 'editEdu'%}"><img title="Exit" style="vertical-align: middle;" class="exit-button" src="{% static 'img/Vector 81 (1).png' %}" alt=""></a>
                 </div>
                 <h1 id="title-experience" class="second-title-experience">Edit Education</h1>
                 <form method="POST" action="" class="sign-up-form">
@@ -145,7 +135,7 @@
                     <div style="display: none;">
                         {{edit.user_id}}
                     </div>
-                    <div class="save-button save-button-edit-add-education-480">
+                    <div class="save-button ">
                     <a href=""><input name="save" type="submit" class="save-submit-input font-fam" value="Save"></a>
                     </div>
                 </form>
@@ -156,9 +146,6 @@
     </div>
 </body>
 
-<script src="{% static 'js/profile_dropdown.js' %}"></script>
-<script src="{% static 'js/edit-experience-button.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/add-experience-education-language.js'%}"></script>
 
 
 {% endblock content %}

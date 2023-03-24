@@ -8,6 +8,13 @@
     #title-experience {
         font-size: 32px !important;
     }
+    .change-profile-picture-title {
+        font-size: 32px;
+    }
+    .changed-picture {
+        width: 200px;
+        height: 200px;
+    }
 
 
     .profile-image-and-edit {
@@ -100,16 +107,25 @@
     .languages-paragraphs-div {
         padding: 30px 0px 30px 30px;
     }
+    #title {
+        font-size: 32px;
+    }
+        .change-cover-picture-title {
+        font-size: 32px;
+    }
 }
 
 
 
 @media screen and (max-width: 1024px) and (min-width: 768px) {
+    .profile-header {
+        margin: 20px 30px 20px 30px;
+    }
     .experience-education-languages {
         margin: 20px 30px 20px 30px;
     }
     .experience-paragraph-img-rows {
-        padding: 40px 0px 40px 40px;
+        padding: 30px 0px 30px 30px;
     }
     .experience-rows-img {
         margin-top: 20px;
@@ -137,5 +153,69 @@
         position: absolute;
         right: 40px;
     }
-}
+    .changed-picture {
+        width: 220px;
+        height: 220px;
+    }
+    #title {
+        font-size: 36px;
+    }
+    .change-cover-picture-title {
+        font-size: 36px;
+    }
+    .profile-header {
+        margin: 20px 30px 20px 30px;
+    }
+    .pro-img {
+        border-radius: 30px;
+    }
+    #title-experience {
+        font-size: 36px !important;
+    }
 
+    .profile-image-and-add-button {
+    }
+    .profile-image-and-edit {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .second-part-profile-header {
+        padding: 0px 0px 30px 0px;
+        width: 100%;
+    }
+    #plus-icon {
+    }
+    .profile-image {
+        width: 140px;
+        height: 140px;
+        margin-top: -70px;
+    }
+    .edit-button {
+        position: absolute;
+        right: 40px;
+        bottom: 30px;
+    }
+    .edit-button-cover {
+        position: absolute;
+        right: 30px;
+        top: 30px;
+        width: 25px;
+        height: 25px;
+    }
+    .profile-name {
+        margin-top: 0px;
+        text-align: center;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    .profile-birthplace {
+        text-align: center;
+        margin-top: 0;
+    }
+    .experience-rows-img {
+        margin-top: 30px;
+    }
+
+
+}

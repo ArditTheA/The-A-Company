@@ -1,16 +1,6 @@
 {% extends 'base.html'%}
 {% block content %}
 {% load static %}
-<link rel="stylesheet" href="{% static 'css/authenticated.css' %}">
-<link rel="stylesheet" href="{% static 'css/profile-header.css' %}">
-<link rel="stylesheet" href="{% static 'css/edit-profile.css' %}">
-<link rel="stylesheet" href="{% static 'css/add-profile-picture.css' %}">
-<link rel="stylesheet" href="{% static 'css/experience-font-family.css' %}">
-<link rel="stylesheet" href="{% static 'css/add-experience.css' %}">
-<link rel="stylesheet" href="{% static 'css/edits-experience.css' %}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-<link rel="stylesheet" href="{% static 'css/edit-cover.css' %}">
-
 <div class="experience-main-div experience-education-languages different_exp">
     <div class="experience-div second-experience-div">
         <div class="experience-paragraph-img-rows">
@@ -55,9 +45,9 @@
 <div class="bg-add-and-edit bg-add-experience">
     <div class="add-experience">
         <div class="under-container">
-            <div class="exit-img exit-img-edit-profile">
+            <div class="exit-img exit-img-edit-experience">
                 <a href="{% url 'editExprience'%}">
-                    <img class="exit-button exit-button-edit-profile" src="{% static 'img/Vector 81 (1).png' %}" alt="">
+                    <img class="exit-button " src="{% static 'img/Vector 81 (1).png' %}" alt="">
                 </a>
             </div>
             <h1 id="title-experience">Add Experience</h1>
@@ -121,27 +111,4 @@
         </div>
     </div>
 </div>
-
-
-<script src="{% static 'js/profile_dropdown.js' %}"></script>
-<script src="{% static 'js/js.js' %}"></script>
-
-<script src="{% static 'js/edit-button.js' %}"></script>
-
-<script src="{% static 'js/change-profile.js' %}"></script>
-
-<script src="{% static 'js/exit-button.js' %}"></script>
-
-<script src="{% static 'js/edit-button.js' %}"></script>
-
-<script src="{% static 'js/add-button.js' %}"></script>
-
-<script src="{% static 'js/add-experience-button.js' %}"></script>
-
-<script src="{% static 'js/edit-experience-button.js' %}"></script>
-
-<script src="{% static 'js/edit-cover.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/add-experience-education-language.js'%}"></script>
-
-
 {% endblock content %}
