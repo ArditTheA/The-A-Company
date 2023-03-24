@@ -99,8 +99,7 @@ class CustomUser(AbstractUser):
             # Set the content type and filename of the compressed image
             self.profile.file = InMemoryUploadedFile(output, 'ImageField', "%s.jpg" % self.profile.name.split('.')[0], 'image/jpeg', output.getbuffer().nbytes, None)
         if self.cover:
-            img = Image.open(self.cover).convert('RGBA')
-            img = img.convert('RGB')
+            img = Image.open(self.cover)
             # Rotate the image based on its Exif Orientation data
             if hasattr(img, '_getexif'):
                 exif = img._getexif()
