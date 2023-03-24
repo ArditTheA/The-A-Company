@@ -485,7 +485,10 @@ padding-bottom: 5px;
 
 .start-date-input {
 }
-
+.proImg{
+    width:250px;
+    height:250px;
+}
 .end-date-input {
     font-family: 'Spline Sans', sans-serif;
 }
