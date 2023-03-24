@@ -76,9 +76,7 @@ class CustomUser(AbstractUser):
 
     def save(self, *args, **kwargs):
         if self.profile:
-            img = Image.open(self.profile).convert('RGBA')
-            img = img.convert('RGB')
-
+            img = Image.open(self.profile)
             # Rotate the image based on its Exif Orientation data
             if hasattr(img, '_getexif'):
                 exif = img._getexif()
