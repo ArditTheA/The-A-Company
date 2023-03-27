@@ -24,6 +24,7 @@
         let data = await response.json()
 
         var mainJobs = document.getElementById("MainJobs").value;
+        console.log(mainJobs);
         if(mainJobs){
             window.history.pushState("","","")
             window.history.pushState("","", id)
@@ -194,12 +195,6 @@
         } else {
             element.style.display = "flex";
             var c =document.getElementById("PostID").value;
-            console.log("c")
-            console.log(c)
-            console.log("c")
-            console.log("x")
-            console.log(x)
-            console.log("x")
             getNumber(c);
 
         }
