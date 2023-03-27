@@ -1,13 +1,9 @@
-
 @media screen and (max-width: 480px) {
-.mobile-left-margin{
-    margin-bottom:-10px;
-}
+    .job-logo {
+        margin-right: 20px;
+    }
     .move{
         margin-top:10px !important;
-    }
-    .move:last-child{
-        margin-top:0;
     }
     .jobs-main-div{
         margin-top:0;
@@ -17,22 +13,24 @@
         margin-top:0px;
         margin-left:10px;
         padding: 20px;
-    border-radius: 20px;
+        border-radius: 20px;
     }
 
+
     .job-left {
-        margin-top:20px;
+        margin-top:20px !important;
         width: 100% !important;
         position: absolute;
-        height: calc(100% - 133px) !important;
+        height: calc(100% - 132px) !important;
 
     }
     .right-jobs {
         display:none;
-        height: calc(100% - 70px) !important;
+        height: calc(100% - 69px) !important;
         position:absolute;
-        margin-top:20px;
         margin-bottom: 0px !important;
+        margin-top: 20px !important;
+        padding-bottom: 0px;
     }
     .card{
         margin-bottom:0 !important;
@@ -51,16 +49,6 @@
 
 
         /*  from filter.css  */
-
-    .main-buttons-div {
-        margin-top: -10px;
-        margin-bottom: -10px;
-    }
-
-    .inputs-right-margin {
-        margin-right: 10px !important;
-    }
-
 
 
     /*  Right Jobs   */
@@ -87,17 +75,41 @@
     .job-right-details{
         margin-right:10px;
         border-radius:20px;
+        padding: 20px;
+    }
 
-
-    }
-    .right-jobs::-webkit-scrollbar{
-        display:none;
-    }
-    .job-left::-webkit-scrollbar{
-        display:none;
-    }
     .job-right-description{
         margin-bottom:10px;
+    }
+    .job-left-details, .job-left-title {
+        font-size: 16px;
+    }
+    select {
+        font-size: 16px !important;
+    }
+    .labels-stats {
+        font-size: 16px;
+    }
+    /* .last-job-margin-bottom {
+        margin-bottom: -10px;
+    } */
+    .job-left-row:last-child {
+        margin-bottom: -10px;
+    }
+    .job-right-text-details {
+        margin-top: 20px;
+    }
+    .job-right-company, .jobs-third-row, .first-row-jobs-third-row-second-div {
+        margin-top: 40px;
+    }
+    .experience-rows {
+        font-size: 16px;
+    }
+    .mobile-rows-font-size, .second-row-second-div, .second-div-second-paragraph, .mobile-mutual-font-size {
+        font-size: 16px;
+    }
+    .job-right-apply-button {
+        font-size: 16px;
     }
 
 
