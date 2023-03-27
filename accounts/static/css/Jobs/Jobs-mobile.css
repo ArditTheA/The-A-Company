@@ -9,6 +9,9 @@
     .move:last-child{
         margin-top:0;
     }
+    .NoResult{
+        padding: 20px 10px;
+    }
     .jobs-main-div{
         margin-top:0;
     }

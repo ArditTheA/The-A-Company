@@ -62,6 +62,9 @@
     margin-right: 30px;
     border-radius: 10px;
 }
+.NoResult{
+    padding: 20px 40px;
+}
 .job-left{
     display: flex;
     flex-direction: column;
