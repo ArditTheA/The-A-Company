@@ -468,8 +468,8 @@ class AjaxHandler(View):
             check = True
             post_id=job[0].id
             return render(request, "Recruiter/index.html", dict(job=job, check=check, jpk=1,post_id=post_id))
-
-        return render(request, "Recruiter/index.html", dict(job=job, check=check,jpk=1))
+        checkMainJobs = False
+        return render(request, "Recruiter/index.html", dict(job=job, check=check,jpk=1,checkMainJobs=checkMainJobs))
 
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
@@ -1317,13 +1317,14 @@ class MainJobsId(View):
                     hasApply = True
 
         checkMainJobs = True
+
         return render(request, "MainJobs/JobIndex.html",
                       dict(FJob=FJob,job=Jobb, prog=sortProgram, title=sortTitle, company=sortCompany, city=cityName,
                            salary=sortSalary, filterProgram=filterProgram, filterTitle=filterTitle,
                            filterCompany=filterCompany,getMonth=getMonth,getYear=getYear,
                            filterLocation=filterLocation, filterSalary=filterSalary, filterDate=filterDate, tit=title,
                            check=check, post_id=post_id,hasApply=hasApply,
-                           checkMainJobs=checkMainJobs))
+                           checkMainJobs=True))
 
 
 

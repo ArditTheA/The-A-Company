@@ -3,8 +3,8 @@
 {% block content %}
 {% include "Filters/filters.html"%}
 {% if check %}
-<input style="display:none;" id="PostID" value="{{post_id}}">
-<input type="hidden" id="MainJobs" name="variable" value="{{checkMainJobs}}">
+<input type="hidden" id="PostID" value="{{post_id}}">
+<input type="hidden" id="MainJobs" name="variable" value=True>
 <div class="jobs-main-div" >
     <div class="job-left" style="" id="myDIV">
     {% include "MainJobs/left-jobs.html" %}
