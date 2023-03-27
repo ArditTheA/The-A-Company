@@ -464,6 +464,10 @@ class AjaxHandler(View):
             check = True
         else:
             check = False
+        if len(job) != 0:
+            check = True
+            post_id=job[0].id
+            return render(request, "Recruiter/index.html", dict(job=job, check=check, jpk=1,post_id=post_id))
 
         return render(request, "Recruiter/index.html", dict(job=job, check=check,jpk=1))
 
