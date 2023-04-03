@@ -90,11 +90,24 @@
         width:15px;
         height:15px;
     }
+    .job-right-text-details{
+        margin-top:20px;
+    }
+    .job-right-apply-button{
+
+        margin-top:20px;
+        font-size:16px;
+        padding:7px 25px;
+    }
     .job-right-details{
         margin-right:10px;
         border-radius:20px;
+        padding:20px;
 
 
+    }
+    .job-right-company{
+        margin-top:40px;
     }
     .right-jobs::-webkit-scrollbar{
         display:none;

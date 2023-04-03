@@ -127,9 +127,7 @@
     .language-edit-button-parent {
         margin-top: -20px;
     }
-    .job-left-details {
-        font-size: 16px !important;
-    }
+
     .add-experience, .add-education, .add-languages {
         width: calc(100% - 20px);
         height: calc(100% - 20px);

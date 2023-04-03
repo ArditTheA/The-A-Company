@@ -151,7 +151,6 @@
         if(!hasApply){
 
             document.getElementById("button").style.backgroundColor = "#1877f2";
-            document.getElementById("button").style.padding = "8px 30px";
             button.innerHTML = '<a href="'+url+'" class="" >Apply</a>';
 
 
