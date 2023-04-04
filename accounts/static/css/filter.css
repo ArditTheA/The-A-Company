@@ -358,11 +358,11 @@ textarea {
 
         @media screen and (max-width: 480px) {
 
+                .plus-div {
+                padding-right: 10px;
+            }
 
 
-
-
-            
                 select  {
                     font-size: 16px !important;
                 }
