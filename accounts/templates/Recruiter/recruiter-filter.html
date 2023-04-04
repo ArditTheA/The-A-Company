@@ -1,13 +1,15 @@
 {% load static %}
-<div class="jobs-buttons">
-    <div class="mutual-padding-of-div plus-div">
+<div class="main-buttons-div">
+    <div class="jobs-buttons">
+        <div class="mutual-padding-of-div plus-div">
 
-        <a href="{% url 'addJob'%}"><img title="Add a Job" class="plus-icon-jobs" src="{% static 'img/add.png'%}"
-                alt=""></a>
-    </div>
+            <a href="{% url 'addJob'%}"><img title="Add a Job" class="plus-icon-jobs" src="{% static 'img/add.png'%}"
+                    alt=""></a>
+        </div>
 
-    <div class="mutual-padding-of-div">
-        <input name="submit" type="submit" class="applied-button-posted-jobs" value="Posted"
-            onClick="location.href ='{% url 'postedJob' %}'">
+        <div class="mutual-padding-of-div">
+            <input name="submit" type="submit" class="applied-button-posted-jobs" value="Posted"
+                onClick="location.href ='{% url 'postedJob' %}'">
+        </div>
     </div>
 </div>
