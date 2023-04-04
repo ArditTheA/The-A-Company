@@ -9,16 +9,16 @@
 .jobs-main-div {
     display: flex;
     justify-content: space-between;
-    margin-top:20px;
+    margin-top: 20px;
 }
-.move{
-    margin-top:20px;
+.move {
+    margin-top: 20px;
 }
-.move:last-child{
-    margin-top:0;
+.move:last-child {
+    margin-top: 0;
 }
-.card{
-    margin-bottom:0;
+.card {
+    margin-bottom: 0;
 }
 .plus-icon-jobs {
     width: 18px;
@@ -39,7 +39,7 @@
 .edit-job-button:hover {
     filter: brightness(0.80);
 }
-.recruter-job-dropdown{
+.recruter-job-dropdown {
     right: 30px;
     top: 60px;
 }
@@ -49,12 +49,12 @@
     font-size: 20px;
     color: #131419;
     padding-bottom: 5px;
-    display:flex;
-    }
+    display: flex;
+}
 
 /*   Job left */
 
-.job-logo{
+.job-logo {
     width: 60px;
     height: 60px;
     vertical-align: middle;
@@ -62,10 +62,10 @@
     margin-right: 30px;
     border-radius: 10px;
 }
-.NoResult{
+.NoResult {
     padding: 20px 40px;
 }
-.job-left{
+.job-left {
     display: flex;
     flex-direction: column;
     margin-right: 10px;
@@ -73,40 +73,40 @@
     z-index: 0;
     overflow-y: scroll;
 }
-.job-left-row{
+.job-left-row {
     padding: 30px;
     background-color: white;
     position: relative;
-    cursor:pointer;
-    margin-left:40px;
+    cursor: pointer;
+    margin-left: 40px;
     display: flex;
     border-radius: 40px;
 
 }
-.job-left-content{
+.job-left-content {
     display: flex;
     flex-direction: column;
     margin: 0;
     color: #858585;
 }
-.job-left-details{
-    font-size:18px;
+.job-left-details {
+    font-size: 18px;
     color: #858585;
     margin: 0;
 }
-.job-left-title{
+.job-left-title {
     margin-top: 0;
     font-size: 20px;
     color: #131419;
     padding-bottom: 5px;
 }
 
-.job-left-salary{
-    color: #1877F2 ;
+.job-left-salary {
+    color: #1877F2;
     padding-bottom: 5px;
 }
-.job-left-company{
-    padding-bottom:5px;
+.job-left-company {
+    padding-bottom: 5px;
 
 }
 
@@ -117,36 +117,36 @@
 
 
 
-.right-jobs-main-div{
-    width:50%;
+.right-jobs-main-div {
+    width: 50%;
 
     flex-direction: column;
-    margin-bottom: 0px ;
+    margin-bottom: 0px;
 }
 .job-left, .right-jobs {
     height: calc(100vh - 155px) !important;
     padding-bottom: 20px;
     overflow-y: scroll;
-    margin-bottom:0;
+    margin-bottom: 0;
 }
 
 
-.job-right-details{
-    margin-left:10px;
-    background-color:white;
-    padding:30px;
-    margin-right:40px;
-    display:flex;
-    border-radius:40px;
+.job-right-details {
+    margin-left: 10px;
+    background-color: white;
+    padding: 30px;
+    margin-right: 40px;
+    display: flex;
+    border-radius: 40px;
 }
 
-.job-right-content{
+.job-right-content {
     display: flex;
     flex-direction: column;
     margin: 0;
     color: #858585;
 }
-.job-right-exit{
+.job-right-exit {
     float: left;
     cursor: pointer;
     margin-bottom: 50px;
@@ -154,52 +154,52 @@
     width: 8px;
     height: 8px;
 }
-.job-right-company{
-    margin-top:50px;
+.job-right-company {
+    margin-top: 50px;
 }
-.job-right-text-details{
-    margin-top:25px;
-}
-
-
-.job-right-description{
-    margin-top:20px;
-    font-size:18px;
+.job-right-text-details {
+    margin-top: 25px;
 }
 
-.job-right-apply-button{
-    margin-top:25px;
+
+.job-right-description {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.job-right-apply-button {
+    margin-top: 25px;
     padding: 8px 30px;
-    font-size:18px;
-    background-color:#1877f2;
-    width:fit-content;
+    font-size: 18px;
+    background-color: #1877f2;
+    width: fit-content;
 
-    border-radius:20px;
+    border-radius: 20px;
 
 
-    font-size:18px;
+    font-size: 18px;
 
-    height:20px;
+    height: 20px;
 
 
 }
-.job-right-apply-button a{
-    text-decoration:none;
-    color:white;
-    cursor:pointer;
+.job-right-apply-button a {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
 
 }
 
 
 
-.job-right-title{
-    padding-bottom:10px;
+.job-right-title {
+    padding-bottom: 10px;
 }
 .right-jobs-main-div {
     width: 50%;
 }
-.move{
-margin-top:20px;
+.move {
+    margin-top: 20px;
 }
 
 .exit-job-description {
@@ -212,8 +212,8 @@ margin-top:20px;
     font-size: 18px;
     color: #1877F2;
 }
-#message{
-    line-height:2;
+#message {
+    line-height: 2;
 }
 
 .jobs-third-row {
@@ -226,4 +226,3 @@ margin-top:20px;
 .jobs-mutual-margin-rows {
     margin-top: 25px;
 }
-
