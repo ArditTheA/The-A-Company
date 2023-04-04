@@ -361,7 +361,16 @@ textarea {
                 .plus-div {
                 padding-right: 10px;
             }
-
+            .search-icon-jobs, .plus-icon-jobs {
+                width: 16px !important;
+                height: 16px !important;
+            }
+            .posted-button-posted-jobs {
+                font-size: 16px;
+            }
+            .applied-button-posted-jobs{
+                font-size:16px;
+            }
 
                 select  {
                     font-size: 16px !important;
