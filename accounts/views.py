@@ -27,7 +27,7 @@ from filters.models import Search, UserCountry, UserCity, UserUni
 
 import locale
 
-from .GoogleAnalytic.HelloAnalytics import *
+
 
 today = timezone.now
 
@@ -38,13 +38,7 @@ from django.shortcuts import render
 
 
 from django.shortcuts import render
-from .GoogleAnalytic import HelloAnalytics
 
-def my_view(request):
-    countries = get_top_countries()
-    users = get_number_of_users()
-    userYT = get_yesterday_today_user()
-    return render(request, 'analytics.html', {'users': users,"countries":countries,"userYT":userYT })
 
 
 
