@@ -17,6 +17,8 @@ from django.db.models.query_utils import Q
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
+from google.oauth2.gdch_credentials import ServiceAccountCredentials
+
 from accounts.forms import *
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
@@ -24,15 +26,25 @@ import itertools
 from filters.models import Search, UserCountry, UserCity, UserUni
 
 import locale
+
+from .GoogleAnalytic.HelloAnalytics import *
+
 today = timezone.now
 
+from google.oauth2 import service_account
+from googleapiclient.discovery import build
+from django.conf import settings
+from django.shortcuts import render
 
 
+from django.shortcuts import render
+from .GoogleAnalytic import HelloAnalytics
 
-
-
-
-
+def my_view(request):
+    countries = get_top_countries()
+    users = get_number_of_users()
+    userYT = get_yesterday_today_user()
+    return render(request, 'analytics.html', {'users': users,"countries":countries,"userYT":userYT })
 
 
 
@@ -348,9 +360,10 @@ def Edit_User_langId(request, pk):
 class AjaxHandler(View):
 
     def get(self, request):
-
-        job = Jobs.objects.filter(
-            user_id=request.user.id).order_by("-postDate")
+        if request.user.is_staff:
+            job = Jobs.objects.all().order_by("-postDate")
+        else:
+            job = Jobs.objects.filter(user_id=request.user.id).order_by("-postDate")
         post_id = request.headers.get('text')
 
         if post_id == "":
