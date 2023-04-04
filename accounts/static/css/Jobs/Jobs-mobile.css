@@ -1,8 +1,13 @@
 
 @media screen and (max-width: 480px) {
-.mobile-left-margin{
-    margin-bottom:-10px;
-}
+    .mobile-left-margin{
+        margin-bottom:-10px;
+    }
+    .edit-job-button {
+        width: 20px;
+        height: 20px;
+        margin-right: 20px;
+    }
     .move{
         margin-top:10px !important;
     }
