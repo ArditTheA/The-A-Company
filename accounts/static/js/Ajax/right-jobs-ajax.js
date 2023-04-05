@@ -137,9 +137,6 @@
         }
         var program = document.getElementById('program');
         program.innerHTML = data["program"];
-
-    
-
         var programCost = document.getElementById("programCost")
         programCost.innerHTML = "Program Cost: €"+data["programCost"]
         var button = document.getElementById("button")
@@ -148,17 +145,29 @@
         var hasApply = data["hasApply"]
         var auth=data["auth"]
 
-        if(!hasApply){
+        if (!document.querySelector("#button")) {
 
-            document.getElementById("button").style.backgroundColor = "#1877f2";
-            button.innerHTML = '<a href="'+url+'" class="" >Apply</a>';
+        } else {
+            if(!hasApply){
+                const mediaQuery = window.matchMedia('(max-width: 767px)');
+                document.getElementById("button").style.backgroundColor = "#1877f2";
+                 if (mediaQuery.matches) {
+                                 document.getElementById("button").style.padding = "7px 25px";
+
+                 }else{
+                                 document.getElementById("button").style.padding = "8px 30px";
+
+                 }
+
+                button.innerHTML = '<a href="'+url+'" class="" >Apply</a>';
 
 
-        }else{
+            }else{
 
-            document.getElementById("button").style.backgroundColor = "white";
-            document.getElementById("button").style.padding = "0";
-            button.innerHTML="Applied on "+data["applyDate"]
+                document.getElementById("button").style.backgroundColor = "white";
+                document.getElementById("button").style.padding = "0";
+                button.innerHTML="Applied on "+data["applyDate"]
+            }
         }
         var firstMediaQuery = window.matchMedia('(min-width: 768px');
         const mediaQuery = window.matchMedia('(max-width: 767px)');
