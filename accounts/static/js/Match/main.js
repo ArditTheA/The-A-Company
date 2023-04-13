@@ -1,4 +1,4 @@
- var qualified_button = document.getElementById("qualify");
+var qualified_button = document.getElementById("qualify");
  var input_type = document.querySelectorAll(".input_type");
 
 
@@ -47,12 +47,7 @@ var x1 = document.querySelector(".all-applicants-dropdown");
 // var c = document.querySelectorAll(".checkbox-jobs");
 
 $('[name="checkb"]').click(function(e) {
-
+    console.log("testttt");
 })
-
-
-
-
-
 
 

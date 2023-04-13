@@ -1,5 +1,4 @@
 
-
 import os
 from pickle import TRUE
 
@@ -15,23 +14,35 @@ SECRET_KEY = '0x-zrhf@)(t)%-630q&s&9g_c^lvh_9cehy@7vx==@bxgn_s_='
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = True
+DEBUG = False
+
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
 SILENCED_SYSTEM_CHECKS = ["auth.W004"]
+
 ALLOWED_HOSTS = ["*"]
+
 CSRF_TRUSTED_ORIGINS = ['https://worki.global']
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
 SILENCED_SYSTEM_CHECKS = ["auth.W004"]
+
 ALLOWED_HOSTS = ['*']
 
-SOCIALACCOUNT_LOGIN_ON_GET=True
-SOCIALACCOUNT_QUERY_EMAIL=True
+SOCIALACCOUNT_LOGIN_ON_GET =True
+
+SOCIALACCOUNT_QUERY_EMAIL =True
 # Application definition
-DATE_INPUT_FORMATS = ('%d/%m/%Y','%d-%m-%Y','%Y-%m-%d')
+
+DATE_INPUT_FORMATS = ('%d/%m/%Y' ,'%d-%m-%Y' ,'%Y-%m-%d')
+
 USE_L10N = True
+
 HOTJAR_SITE_ID ='3217621'
+
 GOOGLE_ANALYTICS_KEY = 'G-0YYCLJRQPV'
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -39,7 +50,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'accounts.apps.AccountsConfig',
     'filters',
     'resetpassword',
@@ -47,29 +57,27 @@ INSTALLED_APPS = [
     "Applicant",
     "ScreeningQuestion",
     'documents',
+    'stripe',
 
-    #3party login providers
+    # 3party login providers
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
 
-    #extra forms
+    # extra forms
     'crispy_forms',
 
-    #django filters
+    # django filters
     'django_filters',
-
     'analytical',
-
-
     'rangefilter',
 ]
 
 SOCIAL_AUTH_PIPELINE = (
-  'social_core.pipeline.social_auth.social_details',
-  'social_core.pipeline.social_auth.associate_by_email',
-  'accounts.views.update_user_social_data'
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.associate_by_email',
+    'accounts.views.update_user_social_data'
 )
 
 MIDDLEWARE = [
@@ -82,8 +90,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'accounts.middleware.SetCookieMiddleware',
 ]
-
-
 
 ROOT_URLCONF = 'Worki.urls'
 
@@ -105,7 +111,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Worki.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
@@ -115,7 +120,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -135,7 +139,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -149,7 +152,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 if DEBUG:
@@ -159,9 +161,9 @@ if DEBUG:
     MEDIA_URL = '/media/'
 else:
     STATIC_URL = '/static/'
-    MEDIA_URL='static/media/'
-    STATIC_ROOT=os.path.join(BASE_DIR,'static')
-    MEDIA_ROOT=os.path.join(BASE_DIR,'static/media/')
+    MEDIA_URL = 'static/media/'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media/')
 
 # New configs
 
@@ -180,30 +182,38 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 LOGIN_REDIRECT_URL = 'home'
 LOGIN_URL = 'login'
-LOGOUT_REDIRECT_URL='home'
+LOGOUT_REDIRECT_URL = 'home'
 LOGIN_REDIRECT_URL = 'home'
 ACCOUNT_LOGOUT_REDIRECT_URL = 'home'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
-EMAIL_USE_TLS=True
+EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "hello@worki.global"
 EMAIL_HOST_PASSWORD = "hcrnhhhdbytoxyrr"
 
-
-
-
 # Image Resizing :
-
-
-
 DJANGORESIZED_DEFAULT_SIZE = [1024, 768]
+
 DJANGORESIZED_DEFAULT_QUALITY = 75
+
 DJANGORESIZED_DEFAULT_KEEP_META = True
+
 DJANGORESIZED_DEFAULT_FORCE_FORMAT = 'JPEG'
+
 DJANGORESIZED_DEFAULT_FORMAT_EXTENSIONS = {'JPEG': ".jpg"}
+
 DJANGORESIZED_DEFAULT_NORMALIZE_ROTATION = True
 
+# Google analytic api
 
 
+GOOGLE_ANALYTICS_VIEW_ID = '287665087'
+
+GOOGLE_ANALYTICS_KEY_FILE = "../accounts/GoogleAnalytic/workianalyticreportv-1-6a64b579323b.json"
+
+# stripe api
+STRIPE_PUBLIC_KEY = 'pk_live_51MfP4FAWWrYDd3ExSA1IyvC4omDNkDJLdtoeW4FHpvXPVb8IeeQL4VObupRKOTb1JxOwC77bLbhJYLxdOxfXrXlX00tUOq7puq'
+
+STRIPE_SECRET_KEY = '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'

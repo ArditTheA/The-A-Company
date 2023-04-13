@@ -1,4 +1,18 @@
 {% load static %}
+<script>
+function OpenJobs() {
+  window.location.href = "{% url 'postedJobOpen' %}";
+}
+function ClosedJobs() {
+  window.location.href = "{% url 'postedJobClosed' %}";
+}
+function MainJobs(){
+  window.location.href = "{% url 'postedJob' %}";
+
+}
+</script>
+
+
 <!--header script -->
 <script src="{% static 'js/DropDown/profileDropDown.js' %}" ></script>
 <!--end of header script-->
@@ -131,5 +145,13 @@
 </script>
 
 
+
+
+
+
+<!--Match-->
+<!--<script src="{% static 'js/Match/main.js' %}"></script>-->
+<script src="{% static 'js/Match/all-applicants-dropdown.js'%}"></script>
+<!--<script src="{% static 'js/select-all-button.js'%}"></script>-->
 
 

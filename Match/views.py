@@ -16,14 +16,14 @@ def CoseJob(request,pk):
     us = request.user
     job = Jobs.objects.get(id=pk)
 
-    if us == job.user_id:
+    if us == job.user_id or request.user.is_staff:
         job.status="Close"
         job.save()
     return redirect("postedJob")
 def OpenJob(request,pk):
     us = request.user
     job = Jobs.objects.get(id=pk)
-    if us == job.user_id:
+    if us == job.user_id or request.user.is_staff:
         job.status = "Open"
         job.save()
     return redirect("postedJob")
@@ -327,7 +327,7 @@ class GetJobIdApplicantQualified(View):
         JobOwner = Jobs.objects.get(id=jpk)
         phase = Phase.objects.filter(user_id=request.user).filter(job_id=jpk)
         subphase = subPhase.objects.all()
-        if CurrentUser==JobOwner.user_id:
+        if CurrentUser==JobOwner.user_id or CurrentUser.is_staff:
             if Application.objects.filter(job_id=jpk).filter(ApplicantStat="Qualified").exists():
                 users = Application.objects.filter(job_id=jpk).filter(ApplicantStat="Qualified")
 
@@ -433,7 +433,7 @@ class GetJobIdApplicantQualified(View):
                 return render(request,"Match/Applicant/index.html",dict(q=q,app=app,jpk=jpk,phase=phase,subphase=subphase))
         else:
             pass
-        return render(request,"Match/Applicant/index.html")
+        return render(request,"Match/Applicant/index.html",{"jpk":jpk})
 class GetJobIdApplicantNQualified(View):
     def get(self,request,pk):
         CurrentUser = request.user
@@ -442,7 +442,7 @@ class GetJobIdApplicantNQualified(View):
         JobOwner = Jobs.objects.get(id=jpk)
         phase = Phase.objects.filter(user_id=request.user).filter(job_id=jpk)
         subphase = subPhase.objects.all()
-        if CurrentUser==JobOwner.user_id:
+        if CurrentUser==JobOwner.user_id or CurrentUser.is_staff:
             if Application.objects.filter(job_id=jpk).filter(ApplicantStat="Not qualified").exists():
                 users = Application.objects.filter(job_id=jpk).filter(ApplicantStat="Not qualified")
 
@@ -549,7 +549,7 @@ class GetJobIdApplicantNQualified(View):
                 return render(request,"Match/Applicant/index.html",dict(q=q,app=app,jpk=jpk,phase=phase,subphase=subphase))
         else:
             return render(request,"Match/Applicant/index.html")
-        return render(request,"Match/Applicant/index.html")
+        return render(request,"Match/Applicant/index.html",{"jpk":jpk})
 
 
 

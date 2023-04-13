@@ -1,128 +1,43 @@
-   {% load static %}
-
-   <link rel="stylesheet" href="{% static 'css/filter.css'%}">
-    <link rel="stylesheet" href="{% static 'css/jobi.css'%}">
-
-   <div class="jobs-buttons applied-posted-buttons-mobile all-aplicants-main-div">
-       {% if q == "All" %}
-         <div class="">
-            <div class="input-form inputs-right-margin">
-                {% if getSub.name is None%}
-             <button style="padding-left: 20px;" title="All Applicants" onclick="Close();" class="applied-button-jobs outline-none all-applicants-button">&nbspAll Applicants&nbsp</button>
-             <div class="" style="display: flex; align-items: center;">
-                <img style="cursor: pointer;padding-top:7%;" class="white-icon"
-                    src="{% static 'img/white-dropdown-icon.png'%}" alt="">
-            </div>
-                {% else %}
-             <button style="padding-left: 20px;background-color:white;color:black;" title="All Applicants" onclick="Close();" class="applied-button-jobs outline-none all-applicants-button">&nbspAll Applicants&nbsp</button>
-                <div class="" style="display: flex; align-items: center;">
-                <img style="cursor: pointer;padding-top:8%;" class="white-icon" src="{% static 'img/dropdown-icon.png'%}" alt="">
-                </div>
-                {% endif %}
-            </div>
-             <div class="all-applicants-dropdown All"  style="overflow-y: scroll; max-height: 140px; flex-direction: column ; overflow-x: scroll; padding-bottom: 5px;">
-               <label onclick="Qualified()" for="Q" id="1" class="testbutton dropdown-content dropdown-content-text checked" style="margin-bottom: 15px; margin-top: 0px; cursor: pointer;" class=""><input id="Q" style="display: none;" type="checkbox" class="input_type"
-                    onchange="checkboxStatusChange()" value="Qualified" name="Qualified" />Qualified</label>
-                <!-- <div class="dropdown-content"><a href="" class="dropdown-content-text">Qualified</a></div> -->
-                <label onclick="NoQualified()" for="notQ" class="testbutton dropdown-content dropdown-content-text checked" style="margin-top: -30px; cursor: pointer;"><input id="notQ" style="display: none;" type="checkbox" class="input_type"
-                value="NQualified" name="Not Qualified"/>Not Qualified</label>
-
-                 <div title="Select an option to click here" class="move-phase-button phaseButton" style="display: none; cursor: pointer; background-color: rgb(221, 221, 221); color: rgb(145, 143, 143); font-weight: 500; padding: 10px 0px; width: 100%; font-weight: 100;">Select to move</div>
-
-            </div>
-         </div>
-       {% elif q == "Q" %}
-        <div class="">
-            <div class="input-form inputs-right-margin">
-             <button style="padding-left: 20px;" title="All Applicants" onclick="Close()" class="applied-button-jobs outline-none all-applicants-button">&nbspQualified&nbsp</button>
-             <div class="" style="display: flex; align-items: center;">
-                <img style="cursor: pointer;padding-top:7%;" class="white-icon"
-                    src="{% static 'img/white-dropdown-icon.png'%}" alt="">
+{% load static %}
+<div class="main-buttons-div">
+    <div class="jobs-buttons applied-posted-buttons-mobile all-aplicants-main-div scrolling-wrapper">
+         <div class="main-input-form">
+            <div class="input-form inputs-right-margin all-applicants-button-form" style="">
+             <button title="All Applicants" class="applied-button-jobs outline-none all-applicants-button">{% if q == "All" %}All Applicants{% elif q == "Q" %}Qualified {% else %} Not Qualified {% endif %}</button>
+             <div class="div-white-icon" style="">
+                <img style="cursor: pointer;top:3;position: absolute;right: 10px;" class=""
+                    src="{% static 'img/white-dropdown-icon.png' %}" alt="">
             </div>
             </div>
-             <div class="all-applicants-dropdown All"  style="overflow-y: scroll; max-height: 140px; flex-direction: column ; overflow-x: scroll; padding-bottom: 5px;">
-               <label onclick="AllApplicant()" for="all" id="qualify" class="testbutton dropdown-content dropdown-content-text checked" style="margin-bottom: 15px; margin-top: 0px; cursor: pointer;" class=""><input id="all" style="display: none;" type="checkbox" class="input_type"
-                    onchange="checkboxStatusChange()" value="All" disabled />All Applicants</label>
-                <!-- <div class="dropdown-content"><a href="" class="dropdown-content-text">Qualified</a></div> -->
-                <label onclick="NoQualified()" for="notQ" class="testbutton dropdown-content dropdown-content-text checked" style="margin-top: -30px; cursor: pointer;"><input id="notQ" style="display: none;" type="checkbox" class="input_type"
-                value="NQualified" name="Not Qualified"/>Not Qualified</label>
 
-                 <div title="Select an option to click here" class="move-phase-button phaseButton" style="display: none; cursor: pointer; background-color: rgb(221, 221, 221); color: rgb(145, 143, 143); font-weight: 500; padding: 10px 0px; width: 100%; font-weight: 100;">Select to move</div>
+             <div class="all-applicants-dropdown profileDropDown" id="all-applicants-dropdown">
+                 {% if q == "Q" %}
+               <label for="mutual1" onclick="AllApplicant()" id="qualify" class="profileDropDown-content profileDropDown-text"><input id="mutual1" style="display: none;" type="checkbox" class="input_type"
+                    onchange="checkboxStatusChange()" disabled value="Qualified" name="Qualified" />All Applicants</label>
+                <label style="" onclick="NoQualified()" id="nqualify" class="profileDropDown-content all-applicants-dropdown-content profileDropDown-text"><input style="display: none;" type="checkbox" class="input_type"
+                value="NQualified"  name="Not Qualified" />Not Qualified</label>
+                 {% elif q == "notQ" %}
 
-            </div>
-        </div>
-
-       {% elif q == "notQ" %}
-       <div class="">
-            <div class="input-form inputs-right-margin">
-             <button style="padding-left: 20px;" title="All Applicants" onclick="Close()" class="applied-button-jobs outline-none all-applicants-button">&nbspNot Qualify&nbsp</button>
-             <div class="" style="display: flex; align-items: center;">
-                <img style="cursor: pointer;padding-top:7%;" class="white-icon"
-                    src="{% static 'img/white-dropdown-icon.png'%}" alt="">
-            </div>
-            </div>
-             <div class="all-applicants-dropdown All"  style="overflow-y: scroll; max-height: 140px; flex-direction: column ; overflow-x: scroll; padding-bottom: 5px;">
-               <label onclick="AllApplicant()" for="all" id="qualify" class="testbutton dropdown-content dropdown-content-text checked" style="margin-bottom: 15px; margin-top: 0px; cursor: pointer;" class=""><input id="all" style="display: none;" type="checkbox" class="input_type"
-                    onchange="checkboxStatusChange()" value="All" disabled/>All Applicants</label>
-                <!-- <div class="dropdown-content"><a href="" class="dropdown-content-text">Qualified</a></div> -->
-                <label onclick="Qualified()" for="qualify" class="testbutton dropdown-content dropdown-content-text checked" style="margin-top: -30px; cursor: pointer;"><input id="qualify" style="display: none;" type="checkbox" class="input_type"
-                value="Qualified" name="Qualified"/>Qualified</label>
-
-                 <div title="Select an option to click here" class="move-phase-button phaseButton" style="display: none; cursor: pointer; background-color: rgb(221, 221, 221); color: rgb(145, 143, 143); font-weight: 500; padding: 10px 0px; width: 100%; font-weight: 100;">Select to move</div>
-
-            </div>
-        </div>
-
-       {% endif %}
-
-    {% for i in phase %}
-       <div class="">
-            <div class="input-form inputs-right-margin">
-                {% if i.name == getSub.phase.name%}
-               <button style="padding-left: 20px;" title="{{i.name}}" onclick="showDropDown({{i.id}})" class="applied-button-jobs outline-none all-applicants-button"> {{getSub.name}}</button>
-               <div class="" style="display: flex; align-items: center;padding-top:7%;"">
-                   <img style="cursor: pointer;" class="white-icon" src="{% static 'img/white-dropdown-icon.png'%}" alt="">
-           </div>
-           {% else %}
-               <button style="padding-left: 20px;background-color:white;color:black" title="All Applicants" onclick="showDropDown({{i.id}})" class="applied-button-jobs outline-none all-applicants-button">&nbsp{{i.name}}&nbsp</button>
-                 <div class="" style="display: flex; align-items: center;">
-                    <img style="cursor: pointer;padding-top:8%;" class="white-icon"
-                        src="{% static 'img/dropdown-icon.png'%}" alt="">
-                </div>
-           {% endif %}
-
-            </div>
-             <div class="all-applicants-dropdown drop" id="drop{{i.id}}" style="overflow-y: scroll; flex-direction: column ; overflow-x: scroll; padding-bottom: 5px;">
-                 {% for j in subphase %}
-                   {% if i == j.phase %}
-                 <div style="margin-bottom:20px;"></div>
-                     {% if j.name == getSub.name %}
-                 <label  onclick="AllApplicant()"  for="subphase{{j.id}}"  name="{{j.name}}" class="dropdown-content-text checked" style="padding:0px 20px 0px 20px;margin-top: 0 !important;" class=""><input id="subphase{{j.id}}" style="display: none;" type="checkbox" disabled class="input_type"
-                    onchange="checkboxStatusChange()" value="{{j.id}}" name="{{j.name}}" />&nbsp{{j.name}}&nbsp</label>
+                 <label for="mutual1" onclick="AllApplicant()" id="qualify" class="profileDropDown-content profileDropDown-text"><input id="mutual1" style="display: none;" type="checkbox" class="input_type"
+                    onchange="checkboxStatusChange()" disabled value="All Applicant" name="All Applicant" /> All Applicant</label>
+                <label style="" onclick="NoQualified()" id="nqualify" class="profileDropDown-content all-applicants-dropdown-content profileDropDown-text"><input style="display: none;" type="checkbox" class="input_type"
+                value="Qualified"  name="Qualified" /> Qualified</label>
 
                  {% else %}
-
-           <label onclick="GoToSubphase('{{j.id}}')"  for="subphase{{j.id}}"  name="{{j.name}}" class="testbutton dropdown-content-text checked" style="padding:0px 20px 0px 20px;margin-top: 0 !important;" class=""><input id="subphase{{j.id}}" style="display: none;" type="checkbox" class="input_type"
-                    onchange="checkboxStatusChange()" value="{{j.id}}" name="{{j.name}}"/>&nbsp{{j.name}}&nbsp</label>
+                <label for="mutual1" onclick="Qualified()" id="qualify" class="profileDropDown-content profileDropDown-text filterDropDown"><input id="mutual1" style="display: none;" type="checkbox" class="input_type"
+                    onchange="checkboxStatusChange()"   value="Qualified" name="Qualified" /> Qualified</label>
+                <label style="" onclick="NoQualified()" id="nqualify" class="profileDropDown-content all-applicants-dropdown-content profileDropDown-text filterDropDown"><input style="display: none;" type="checkbox" class="input_type"
+                value="NQualified"  name="Not Qualified" /> Not Qualified </label>
                  {% endif %}
 
-
-               {% endif %}
-           {% endfor %}
-                 <div style="margin-bottom:15px;"></div>
-                 <button title="Select an option to click here" class="move-phase-button phaseButton" style="display: none; cursor: pointer; background-color: rgb(221, 221, 221); color: rgb(145, 143, 143); font-weight: 500; padding: 10px 0px; width: 100%; font-weight: 100; border:none;font-size:18px;">Select to move</button>
-
+                 <a title="Select an option to click here" class="move-phase-button phaseButton " id="moveToPhase" style="text-align:center;width: calc(100% - 40px);">Select to move  </a>
+              </div>
             </div>
-                </div>
-
-
-
-
-       {% endfor %}
-
+        </div>
     </div>
-<script src="{% static 'js/Match/main.js' %}"></script>
-   <script>
+
+
+ <script>
     function Qualified(){
         window.location="{% url 'qualified-applicant' jpk %}";
     }
@@ -132,10 +47,7 @@
     function AllApplicant(){
         window.location="{% url 'applicant' jpk %}";
     }
-    function GoToSubphase(subphase){
-        url = "/Administrator/Applicant/JobId="+{{jpk}}+"/Phase="+subphase;
-        window.location = url;
-    }
+
        function Close(){
        var on = document.getElementById("All");
        $('.drop').css('display','none');
@@ -144,18 +56,5 @@
               } else {
                 on.style.display = "none";
               }
-       }
-   </script>
-   <script>
-       function showDropDown(id){
-           var dropName = "drop"+id;
-          var elem = document.getElementById(dropName);
-          var foo = window.getComputedStyle(elem, null);
-          if(elem.style.display == "flex"){
-            elem.style.display="none";
-          }else{
-            $('.drop').css('display','none');
-            elem.style.display="flex"
-          }
        }
    </script>

@@ -228,9 +228,15 @@ class Jobs(models.Model):
     postDate = models.DateField(default=datetime.now(),blank=True,null=True)
     user_id = models.ForeignKey(CustomUser,on_delete=models.CASCADE, null=True,blank=True)
     approved = models.BooleanField(default=False)
-
+    shareWith = models.ManyToManyField(CustomUser,related_name="shared",blank=True)
     applicant = models.ManyToManyField(CustomUser, related_name="applicant", blank=True)
-    
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            self.save_author = True
+        super(Jobs, self).save(*args, **kwargs)
+        if hasattr(self, 'save_author'):
+            self.shareWith.add(CustomUser.objects.get(pk=kwargs['request'].user.pk))
 
     @property
     def total_applicant(self):
@@ -249,32 +255,7 @@ class Jobs(models.Model):
 
     def __str__(self):
         return str(self.id)+" - "+str(self.job_title)+ " - " +str(self.company)+" - "+str(self.city_j)+ " - "+str(format(self.postDate,"%d/%m/%Y"))+  " - "+ str(self.approved)+" - "+str(self.id)+" - "+str(self.total_applicant)
-    def save(self, *args, **kwargs):
-        if self.logo:
-            img = Image.open(self.logo)
-            # Rotate the image based on its Exif Orientation data
-            if hasattr(img, '_getexif'):
-                exif = img._getexif()
-                if exif is not None:
-                    orientation = exif.get(0x0112)
-                    if orientation == 3:
-                        img = img.transpose(Image.ROTATE_180)
-                    elif orientation == 6:
-                        img = img.transpose(Image.ROTATE_270)
-                    elif orientation == 8:
-                        img = img.transpose(Image.ROTATE_90)
 
-            img.thumbnail((1280, 980))
-
-            # Compress the image
-            output = BytesIO()
-            img.save(output, format='JPEG', optimize=True, quality=60)
-            output.seek(0)
-
-            # Set the content type and filename of the compressed image
-            self.logo.file = InMemoryUploadedFile(output, 'ImageField', "%s.jpg" % self.logo.name.split('.')[0],
-                                                     'image/jpeg', output.getbuffer().nbytes, None)
-        super(Jobs, self).save(*args, **kwargs)
 
 class ActiveStudent(models.Model):
     Answer_type={

@@ -62,12 +62,11 @@
 
 var phase = "";
 const ct = [];
+var url;
 
-$(".phaseButton").click(function(event){
-    var jobid={{jpk}};
-    var url = "/Administrator/Applicant/JobId="+jobid+"/Phase="+phase+"/applicant="+ct.toString();
-    window.location = url;
-});
+
+
+
 
 
 
@@ -102,22 +101,20 @@ $(".phaseButton").click(function(event){
             if(!$('.all-applicants-dropdown').is(':visible')) {
 
 
-            // $(".all-applicants-button").after(function() {
-            //
-<!--            $('.all-applicants-button').css("background-color", "#71a6eb");-->
+
             $('.all-applicants-button').css("opacity", "1");
             $('.all-applicants-button').css("display", "block");
 
             $('.all-applicants-button').css("content", "");
             $('.all-applicants-button').css({
-                                 transition : 'all 0.8s'
+               transition : 'all 0.8s'
             });
             $('.all-applicants-button').toggleClass('changed');
 
 
         }
 
-            $('#qualify').prop("onclick", null).off("click");
+        $('#qualify').prop("onclick", null).off("click");
 
             $('.input_type').click(function(e) {
 
@@ -128,13 +125,28 @@ $(".phaseButton").click(function(event){
                 if (this.checked) {
 
                     $('#qualify').prop("onclick", null).off("click");
+                    $('#nqualify').prop("onclick", null).off("click");
                     $('.all-applicants-dropdown').css("alignItems", "flex-start");
                     $('.move-phase-button').css("background-color", "#1877F2");
                     $('.move-phase-button').css("color", "white");
 
                     $('.move-phase-button').text("Move to" + " " + $('.input_type:checked').attr("name"));
-
+                    var nameCh = ""+$('.input_type:checked').attr("name");
+                    console.log(nameCh);
                     $('.move-phase-button').css("cursor", "pointer");
+
+                    if(nameCh === "Qualified"){
+                        url = "JobID="+job+"/userid="+ct.toString();
+                    }else
+                    {
+                        url = "/Administrator/Applicant/No/JobID="+job+"/userid="+ct.toString();
+                    }
+                    console.log(url);
+
+                    $('#moveToPhase').attr('href',url);
+
+
+
 
 
 
@@ -279,6 +291,7 @@ $(".phaseButton").click(function(event){
                     console.log(ct);
                     var url = "JobID="+job+"/userid="+ct.toString();
                     console.log(url)
+                    console.log("damm im here ");
                     document.getElementById("qualify").href=url;
                     document.getElementById("notqualify").href="/Administrator/Applicant/No/"+url;
 

@@ -46,7 +46,7 @@
 
 
 
-          $('#UserExp').append($('<div class="experience-rows-img JSAdded" id="asd"> <img class="experience-education-img" src="/static/img/worki_icons-18.jpg" alt="" title="Experience"><div class="experience-rows"><div class="experience-first-row" id="title">'+data[title]+'</div><div class="experience-second-row" id="Compexp1">'+data[company]+'</div><div class="experience-third-row" id="Locexp1">'+data[location]+'</div><div class="experience-fourth-row" id="date1">'+data[date]+'</div></div></div>'));
+          $('#UserExp').append($('<div class="experience-rows-img JSAdded" id="asd"> <img class="experience-education-img" src="/static/img/worki_icons-18.jpg" alt="" title="Experience"><div class="experience-rows"><div class="experience-first-row" id="">'+data[title]+'</div><div class="experience-second-row" id="">'+data[company]+'</div><div class="experience-third-row" id="">'+data[location]+'</div><div class="experience-fourth-row" id="">'+data[date]+'</div></div></div>'));
         }
 
         }

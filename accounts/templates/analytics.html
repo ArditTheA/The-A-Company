@@ -1,0 +1,31 @@
+<!-- analytics.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google Analytics</title>
+</head>
+<body>
+    <h1>Google Analytics</h1>
+    <p>Number of Users: {{ users }}</p>
+    <p>Number of New Users: {{ userYT }}</p>
+
+<h1>Top 5 Countries by User Count</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Country</th>
+        <th>Users</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for country in countries %}
+        <tr>
+          <td>{{ country.0 }}</td>
+          <td>{{ country.1 }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>

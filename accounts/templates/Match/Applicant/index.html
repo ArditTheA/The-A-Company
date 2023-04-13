@@ -2,31 +2,7 @@
 {% load static %}
 {% block content %}
 
-<style>
-    input[type="checkbox"]::before {
-        outline: none;
-    }
 
-    .plus-icon-jobs:hover {
-        filter: brightness(0.9);
-
-    }
-    .noApp{
-    margin-left: 40px; margin-top: 20px; font-size: 16px; color: #65676B;
-    }
-
-    @media screen and (max-width: 480px){
-    .right-profile{
-    margin-top:20px;
-    }
-    .left-user-first{
-        margin-top:10px;
-    }
-    .noApp{
-    margin-left: 20px; margin-top: 20px; font-size: 16px; color: #65676B;
-    }
-    }
-</style>
 {% if app %}
 {% include 'Match/Filters/filters.html'%}
     <div class="jobs-main-div" >
@@ -39,39 +15,6 @@
         You don't have any applicants
     </div>
 {% endif %}
-<script>
-    var dropdown = document.querySelectorAll(".dropdown");
-    var work_and_travel_dropdown = document.querySelectorAll(".dropdown-work-and-travel");
-    var profile = document.querySelectorAll("#profile-image-button");
-    var work_and_travel_button = document.querySelectorAll('.button-work-and-travel');
-    var mutual_button_div = document.querySelectorAll('.mutual-padding-of-div');
-    var jobs_buttons_icon = document.querySelectorAll('.icon');
-    var jobs_buttons_white_icon = document.querySelectorAll('.white-icon')
-    var show_dropdown = document.querySelectorAll('.showDropdown');
-    var button_content = document.querySelectorAll('.button-content');
-    var dropdown_all_applicants = document.querySelector('.dropdown');
 
-for (let i = 0; i < dropdown.length; i++) {
-profile[i].addEventListener("click", function() {
-   if (dropdown[i].style.display == "block") {
-      dropdown[i].style.display = "none";
-   }
-   else {
-      dropdown[i].style.display = "block";
-   }
-})
-document.addEventListener('click', function(e) {
-   if (!dropdown[i].contains(e.target) && !profile[i].contains(e.target)) {
-       dropdown[i].style.display = 'none';
-   }
-});
 
-}
-</script>
-<script src="{% static 'js/DropDown/main.js' %}" >
-</script>
-<!--<script src="{% static 'js/profile_dropdown.js'%}"></script>-->
-<script src="{% static 'js/Match/main.js' %}"></script>
-<script src="{% static 'js/Match/all-applicants-dropdown.js'%}"></script>
-<script src="{% static 'js/select-all-button.js'%}"></script>
 {% endblock content %}

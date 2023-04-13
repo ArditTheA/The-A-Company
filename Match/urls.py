@@ -12,6 +12,8 @@ urlpatterns = [
 
     path("Administrator/Applicant/JobID=<int:jpk>/userid=<str:userid>",moveToQualify,name="qualify"),
     path("Administrator/Applicant/No/JobID=<int:jpk>/userid=<str:userid>",moveToNoQualify,name="noqualify"),
+
+
     path("Administrator/Applicant/JobId=<int:pk>/Phase=<str:phaseid>",getAppPhase.as_view(), name="subphaseA"),
     path("Administrator/Applicant/JobId=<int:pk>/Phase=<str:phaseid>/applicant=<str:userId>",moveToPhase,name="moveApplicant"),
     path("Administrator/Jobs",getTopJobs),

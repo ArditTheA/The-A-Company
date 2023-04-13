@@ -348,6 +348,7 @@ def Edit_User_langId(request, pk):
 class AjaxHandler(View):
 
     def get(self, request):
+        hasApply = False
         if request.user.is_staff:
             job = Jobs.objects.all().order_by("-postDate")
         else:
@@ -406,7 +407,7 @@ class AjaxHandler(View):
                          salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
                          typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
                          program=program, programCost=programCost,SDate=SDate,EDate=EDate,
-                         posted=posted, post_id=post_id, appNo=appNo))
+                         posted=posted, post_id=post_id, appNo=appNo,hasApply=False))
         else:
             if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
                 description = Jobs.objects.filter(id=post_id).values_list(
@@ -459,7 +460,7 @@ class AjaxHandler(View):
                          salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
                          typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
                          program=program, programCost=programCost,SDate=SDate,EDate=EDate,
-                         posted=posted, appNo=appNo,post_id=post_id))
+                         posted=posted, appNo=appNo,post_id=post_id,hasApply=False))
         check = True
         if len(job) != 0:
             check = True
@@ -472,7 +473,256 @@ class AjaxHandler(View):
         checkMainJobs = False
         return render(request, "Recruiter/index.html", dict(job=job, check=check,jpk=1,checkMainJobs=checkMainJobs))
 
+class RecruiterOpenJobs(View):
+    def get(self,request):
+        hasApply = False
+        if request.user.is_staff:
+            job = Jobs.objects.filter(status="Open").order_by("-postDate")
+        else:
+            job = Jobs.objects.filter(user_id=request.user.id).filter(status="Open").order_by('-postDate')
+        post_id = request.headers.get("text")
+        if post_id == "":
+            jobid = Jobs.objects.filter(user_id=request.user.id).order_by(
+                "-postDate").values_list("id", flat=True).first()
+            post_id = jobid
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                description = Jobs.objects.filter(id=post_id).values_list(
+                    'description', flat=True).first()
+                title = Jobs.objects.filter(id=post_id).values_list(
+                    'job_title', flat=True).first()
+                start_date = Jobs.objects.filter(id=post_id).values_list(
+                    'start_date', flat=True).first()
+                end_date = Jobs.objects.filter(id=post_id).values_list(
+                    'end_date', flat=True).first()
+                salary = Jobs.objects.filter(id=post_id).values_list(
+                    "salary_per_hour", flat=True).first()
+                hourWeek = Jobs.objects.filter(id=post_id).values_list(
+                    "hour_per_work", flat=True).first()
+                company = Jobs.objects.filter(id=post_id).values_list(
+                    "company", flat=True).first()
+                typeOfWork = Jobs.objects.filter(id=post_id).values_list(
+                    "type_of_work", flat=True).first()
+                hourPerWork = Jobs.objects.filter(id=post_id).values_list(
+                    "hour_per_work", flat=True).first()
+                housing = Jobs.objects.filter(id=post_id).values_list(
+                    "housing", flat=True).first()
+                housingCost = Jobs.objects.filter(id=post_id).values_list(
+                    "housing_cost_per_week", flat=True).first()
+                program = Jobs.objects.filter(id=post_id).values_list(
+                    "program", flat=True).first()
+                programCost = Jobs.objects.filter(id=post_id).values_list(
+                    "programCost", flat=True).first()
+                posted = Jobs.objects.filter(id=post_id).values_list(
+                    "postDate", flat=True).first()
 
+                city_j = Jobs.objects.filter(
+                    id=post_id).values_list("city_j").first()
+                country = Jobs.objects.filter(
+                    id=post_id).values_list("country_j").first()
+
+                appNo = 0
+                appNo = Jobs.objects.get(id=post_id).applicant.count()
+                SDate = start_date
+                EDate = end_date
+                salary = format(salary, '.2f')
+                start_date = format(start_date, "%d/%m/%Y")
+                end_date = format(end_date, "%d/%m/%Y")
+                posted = format(posted, "%d/%m/%Y")
+                return JsonResponse(
+                    dict(description=description, title=title, city_j=city_j, country=country, start_date=start_date,
+                         salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
+                         typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
+                         program=program, programCost=programCost, SDate=SDate, EDate=EDate,
+                         posted=posted, post_id=post_id, appNo=appNo, hasApply=False))
+        else:
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                description = Jobs.objects.filter(id=post_id).values_list(
+                    'description', flat=True).first()
+                title = Jobs.objects.filter(id=post_id).values_list(
+                    'job_title', flat=True).first()
+                start_date = Jobs.objects.filter(id=post_id).values_list(
+                    'start_date', flat=True).first()
+                end_date = Jobs.objects.filter(id=post_id).values_list(
+                    'end_date', flat=True).first()
+                salary = Jobs.objects.filter(id=post_id).values_list(
+                    "salary_per_hour", flat=True).first()
+                hourWeek = Jobs.objects.filter(id=post_id).values_list(
+                    "hour_per_work", flat=True).first()
+                company = Jobs.objects.filter(id=post_id).values_list(
+                    "company", flat=True).first()
+                typeOfWork = Jobs.objects.filter(id=post_id).values_list(
+                    "type_of_work", flat=True).first()
+                hourPerWork = Jobs.objects.filter(id=post_id).values_list(
+                    "hour_per_work", flat=True).first()
+                housing = Jobs.objects.filter(id=post_id).values_list(
+                    "housing", flat=True).first()
+                housingCost = Jobs.objects.filter(id=post_id).values_list(
+                    "housing_cost_per_week", flat=True).first()
+                program = Jobs.objects.filter(id=post_id).values_list(
+                    "program", flat=True).first()
+                programCost = Jobs.objects.filter(id=post_id).values_list(
+                    "programCost", flat=True).first()
+                posted = Jobs.objects.filter(id=post_id).values_list(
+                    "postDate", flat=True).first()
+
+                city_j = Jobs.objects.filter(
+                    id=post_id).values_list("city_j").first()
+                country = Jobs.objects.filter(
+                    id=post_id).values_list("country_j").first()
+                salary = format(salary, '.2f')
+                SDate = start_date
+                EDate = end_date
+                start_date = format(start_date, "%d/%m/%Y")
+                end_date = format(end_date, "%d/%m/%Y")
+                posted = format(posted, "%d/%m/%Y")
+
+                appNo = 0
+                appNo = Jobs.objects.get(id=post_id).applicant.count()
+                locale.setlocale(locale.LC_ALL, '')  # set the locale to the user's default
+                programCost = locale.format("%d", programCost, grouping=True)
+
+                return JsonResponse(
+                    dict(description=description, title=title, city_j=city_j, country=country, start_date=start_date,
+                         salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
+                         typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
+                         program=program, programCost=programCost, SDate=SDate, EDate=EDate,
+                         posted=posted, appNo=appNo, post_id=post_id, hasApply=False))
+        if len(job) != 0:
+            check = True
+        else:
+            check = False
+        if len(job) != 0:
+            check = True
+            post_id=job[0].id
+            return render(request, "Recruiter/index.html", dict(job=job, check=check, jpk=1,post_id=post_id, filterJobs="Open Jobs"))
+        checkMainJobs = False
+        filterJobs = "Open Jobs"
+        return render(request, "Recruiter/index.html", dict(job=job, check=check,jpk=1,checkMainJobs=checkMainJobs))
+class RecruiterClosedJobs(View):
+    def get(self,request):
+        hasApply = False
+        if request.user.is_staff:
+            job = Jobs.objects.filter(status = "Close").order_by("-postDate")
+        else:
+            job = Jobs.objects.filter(user_id=request.user.id).filter(status="Close").order_by('-postDate')
+        post_id = request.headers.get("text")
+        if post_id == "":
+            jobid = Jobs.objects.filter(user_id=request.user.id).order_by(
+                "-postDate").values_list("id", flat=True).first()
+            post_id = jobid
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                description = Jobs.objects.filter(id=post_id).values_list(
+                    'description', flat=True).first()
+                title = Jobs.objects.filter(id=post_id).values_list(
+                    'job_title', flat=True).first()
+                start_date = Jobs.objects.filter(id=post_id).values_list(
+                    'start_date', flat=True).first()
+                end_date = Jobs.objects.filter(id=post_id).values_list(
+                    'end_date', flat=True).first()
+                salary = Jobs.objects.filter(id=post_id).values_list(
+                    "salary_per_hour", flat=True).first()
+                hourWeek = Jobs.objects.filter(id=post_id).values_list(
+                    "hour_per_work", flat=True).first()
+                company = Jobs.objects.filter(id=post_id).values_list(
+                    "company", flat=True).first()
+                typeOfWork = Jobs.objects.filter(id=post_id).values_list(
+                    "type_of_work", flat=True).first()
+                hourPerWork = Jobs.objects.filter(id=post_id).values_list(
+                    "hour_per_work", flat=True).first()
+                housing = Jobs.objects.filter(id=post_id).values_list(
+                    "housing", flat=True).first()
+                housingCost = Jobs.objects.filter(id=post_id).values_list(
+                    "housing_cost_per_week", flat=True).first()
+                program = Jobs.objects.filter(id=post_id).values_list(
+                    "program", flat=True).first()
+                programCost = Jobs.objects.filter(id=post_id).values_list(
+                    "programCost", flat=True).first()
+                posted = Jobs.objects.filter(id=post_id).values_list(
+                    "postDate", flat=True).first()
+
+                city_j = Jobs.objects.filter(
+                    id=post_id).values_list("city_j").first()
+                country = Jobs.objects.filter(
+                    id=post_id).values_list("country_j").first()
+
+                appNo = 0
+                appNo = Jobs.objects.get(id=post_id).applicant.count()
+                SDate = start_date
+                EDate = end_date
+                salary = format(salary, '.2f')
+                start_date = format(start_date, "%d/%m/%Y")
+                end_date = format(end_date, "%d/%m/%Y")
+                posted = format(posted, "%d/%m/%Y")
+                return JsonResponse(
+                    dict(description=description, title=title, city_j=city_j, country=country, start_date=start_date,
+                         salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
+                         typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
+                         program=program, programCost=programCost, SDate=SDate, EDate=EDate,
+                         posted=posted, post_id=post_id, appNo=appNo, hasApply=False))
+        else:
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                description = Jobs.objects.filter(id=post_id).values_list(
+                    'description', flat=True).first()
+                title = Jobs.objects.filter(id=post_id).values_list(
+                    'job_title', flat=True).first()
+                start_date = Jobs.objects.filter(id=post_id).values_list(
+                    'start_date', flat=True).first()
+                end_date = Jobs.objects.filter(id=post_id).values_list(
+                    'end_date', flat=True).first()
+                salary = Jobs.objects.filter(id=post_id).values_list(
+                    "salary_per_hour", flat=True).first()
+                hourWeek = Jobs.objects.filter(id=post_id).values_list(
+                    "hour_per_work", flat=True).first()
+                company = Jobs.objects.filter(id=post_id).values_list(
+                    "company", flat=True).first()
+                typeOfWork = Jobs.objects.filter(id=post_id).values_list(
+                    "type_of_work", flat=True).first()
+                hourPerWork = Jobs.objects.filter(id=post_id).values_list(
+                    "hour_per_work", flat=True).first()
+                housing = Jobs.objects.filter(id=post_id).values_list(
+                    "housing", flat=True).first()
+                housingCost = Jobs.objects.filter(id=post_id).values_list(
+                    "housing_cost_per_week", flat=True).first()
+                program = Jobs.objects.filter(id=post_id).values_list(
+                    "program", flat=True).first()
+                programCost = Jobs.objects.filter(id=post_id).values_list(
+                    "programCost", flat=True).first()
+                posted = Jobs.objects.filter(id=post_id).values_list(
+                    "postDate", flat=True).first()
+
+                city_j = Jobs.objects.filter(
+                    id=post_id).values_list("city_j").first()
+                country = Jobs.objects.filter(
+                    id=post_id).values_list("country_j").first()
+                salary = format(salary, '.2f')
+                SDate = start_date
+                EDate = end_date
+                start_date = format(start_date, "%d/%m/%Y")
+                end_date = format(end_date, "%d/%m/%Y")
+                posted = format(posted, "%d/%m/%Y")
+
+                appNo = 0
+                appNo = Jobs.objects.get(id=post_id).applicant.count()
+                locale.setlocale(locale.LC_ALL, '')  # set the locale to the user's default
+                programCost = locale.format("%d", programCost, grouping=True)
+
+                return JsonResponse(
+                    dict(description=description, title=title, city_j=city_j, country=country, start_date=start_date,
+                         salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
+                         typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
+                         program=program, programCost=programCost, SDate=SDate, EDate=EDate,
+                         posted=posted, appNo=appNo, post_id=post_id, hasApply=False))
+        if len(job) != 0:
+            check = True
+        else:
+            check = False
+        if len(job) != 0:
+            check = True
+            post_id=job[0].id
+            return render(request, "Recruiter/index.html", dict(job=job, check=check, jpk=1,post_id=post_id,filterJobs="Closed Jobs"))
+        checkMainJobs = False
+
+        return render(request, "Recruiter/index.html", dict(job=job, check=check,jpk=1,checkMainJobs=checkMainJobs))
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
 class AppliedJobs(View):
     def get(self, request):

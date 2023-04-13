@@ -1,15 +1,66 @@
 {% load static %}
-<div class="main-buttons-div">
-    <div class="jobs-buttons">
+
+
+
+
+<div class="main-buttons-div" style="position: relative;">
+  <div class="jobs-buttons second-jobs-buttons scrolling-wrapper">
+
         <div class="mutual-padding-of-div plus-div">
-
-            <a href="{% url 'addJob'%}"><img title="Add a Job" class="plus-icon-jobs" src="{% static 'img/add.png'%}"
-                    alt=""></a>
+            <a href="{% url 'addJob'%}"><img title="Add a Job" class="plus-icon-jobs applied-posted-plus-icon-mobile" src="{% static 'img/add.png'%}" alt=""></a>
         </div>
 
-        <div class="mutual-padding-of-div">
-            <input name="submit" type="submit" class="applied-button-posted-jobs" value="Posted"
-                onClick="location.href ='{% url 'postedJob' %}'">
-        </div>
+
+        <!-- Program -->
+<div class="container-fluid " style="cursor: pointer;">
+  <div id="mySelectLabel" class="selectBox" style="z-index: 99; position: static">
+    <div class="input-form margin inputs-right-margin" style="">
+                {% if filterJobs%}
+
+                        <select id="selTitle" style="color: #f1f1f1; background-color: #1877f2;border: none; font-size: 18px; padding-top: 0; padding-bottom: 0;padding: 8px 30px; padding-left: 20px;" name="Job Position" class="form-select" id="second_form_select">
+                            <option value="" id="" class="first-input-option">{{filterJobs}}</option>
+                        </select>
+                          <div class="" style="display: flex; align-items: center;">
+                            <img class="icon-filter" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
+                            <img style="cursor: pointer; display: block;" class="white-icon" src="{% static 'img/white-dropdown-icon.png' %}" alt="">
+                          </div>
+
+              {% else %}
+          <select style="color: #65676B; border: none; font-size: 18px; padding-top: 0; padding-bottom: 0;
+            padding: 8px 30px; padding-left: 20px;" class="form-select" name="filterApply" id="second_form_select">
+            <option class="first-input-option">All Jobs</option>
+          </select>
+          <div class="" style="display: flex; align-items: center;">
+            <img class="icon-filter" src="{% static 'img/dropdown-icon.png'%}" alt="">
+            <img style="cursor: pointer; display: none;" class="white-icon" src="{% static 'img/white-dropdown-icon.png' %}" alt="">
+          </div>
+            {% endif %}
+        <div class="overSelect" onclick="showDropDown(0)"></div>
+
+
     </div>
+    <div id="mySelectOptions" class="drop0 selectOptions dropdown-elements " style="z-index: 99;">
+        {% if filterJobs  == "Open Jobs" %}
+        <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type" onclick="MainJobs()" value="Active Jobs" /> Open Jobs</label>
+        {% elif filterJobs  == "Closed Jobs" %}
+        <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type" onchange="" onclick="MainJobs()" value="Closed Jobs" /> Closed Jobs</label>
+        {% else %}
+
+        <label class="labels-stats first-label-margin"><input type="checkbox"  class="input_type" onclick="OpenJobs()" value="Open Jobs" /> Open Jobs</label>
+        <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type" onclick="ClosedJobs()" value="Closed Jobs" /> Closed Jobs</label>
+        {% endif %}
+
+
+    </div>
+  </div>
 </div>
+<!-- End  of programs -->
+
+  </div>
+</div>
+
+
+
+
+
+

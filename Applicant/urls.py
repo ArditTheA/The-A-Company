@@ -6,7 +6,6 @@ urlpatterns = [
     path("Make/Jobs/Mine/all",MakeAllJobs),
     path("Make/Jobs/Add/Phase",addPhase),
     path("Add/Default/SQ",addSq),
-    path("Administrator/User/CV/<int:pk>",CreateCV1),
     path("Administrator/Users/CV/<int:pk>",generate_cv,name='generate_pdf'),
     path("Administrator/Admin/Job/email",changeEmailForJobs),
     path("Administrator/Admin/Job/deadline",setDaysLeft),

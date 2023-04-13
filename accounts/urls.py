@@ -1,3 +1,4 @@
+
 from django.contrib import admin
 
 from Match.views import *
@@ -27,6 +28,8 @@ urlpatterns = [
     path("Jobs/Add", add_JobScreeningQuestion, name="addJob"),
     path("Jobs/Edit/<int:pk>", editJob, name="editJob"),
     path("Jobs/Posted", AjaxHandler.as_view(), name="postedJob"),
+    path("Jobs/Posted/Open", RecruiterOpenJobs.as_view(), name="postedJobOpen"),
+    path("Jobs/Posted/Closed", RecruiterClosedJobs.as_view(), name="postedJobClosed"),
     path("Jobs/Applied", AppliedJobs.as_view(), name="appliedJob"),
 
     # MainJobs

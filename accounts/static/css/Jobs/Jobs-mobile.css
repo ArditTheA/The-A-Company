@@ -1,5 +1,8 @@
 
 @media screen and (max-width: 480px) {
+    .noApp{
+        margin:10px 20px;
+    }
     .mobile-left-margin{
         margin-bottom:-10px;
     }
@@ -11,9 +14,20 @@
     .move{
         margin-top:10px !important;
     }
-    .move:last-child{
-        margin-top:0;
+
+    .move:first-child{
+        margin-top:0px !important;
     }
+
+
+    .move:last-child{
+        display:none;
+        margin:0;
+        padding:0;
+        height:0;
+    }
+
+
     .NoResult{
         padding: 20px 10px;
     }
@@ -27,13 +41,14 @@
         padding: 20px;
     border-radius: 20px;
     }
-
+    .job-left-row:last-child {
+        margin-bottom:-10px !important;
+    }
     .job-left {
         margin-top:20px;
         width: 100% !important;
         position: absolute;
         height: calc(100% - 133px) !important;
-
     }
     .job-left-details, .job-left-title {
         font-size: 16px;
@@ -43,7 +58,7 @@
         height: calc(100% - 70px) !important;
         position:absolute;
         margin-top:20px;
-        margin-bottom: 0px !important;
+        padding-bottom: 0px !important;
     }
     .card{
         margin-bottom:0 !important;
@@ -64,7 +79,7 @@
         /*  from filter.css  */
 
     .main-buttons-div {
-        margin-top: -10px;
+        margin-top: -10px !important;
         margin-bottom: -10px;
     }
 

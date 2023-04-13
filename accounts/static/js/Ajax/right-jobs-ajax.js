@@ -192,7 +192,7 @@
             var element = document.getElementById("detailsRow");
         if (x.matches) {
 
-            element.style.display = "none"
+            element.style.display = "flex"
             var elements = document.getElementsByClassName('pixel'); // get all elements
 
             for(var i = 0; i < elements.length; i++){

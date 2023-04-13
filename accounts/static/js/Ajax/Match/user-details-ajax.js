@@ -51,7 +51,7 @@
 
 
 
-          $('#UserExp').append($('<div class="experience-rows-img JSAdded" id="asd"> <img class="experience-education-img" src="/static/img/worki_icons-18.jpg" alt="" title="Experience"><div class="experience-rows"><div class="experience-first-row" id="title">'+data[title]+'</div><div class="experience-second-row" id="Compexp1">'+data[company]+'</div><div class="experience-third-row" id="Locexp1">'+data[location]+'</div><div class="experience-fourth-row" id="date1">'+data[date]+'</div></div></div>'));
+          $('#UserExp').append($('<div class="experience-rows-img JSAdded" style="margin-top:30px;" id="asd"> <img class="experience-education-img" src="/static/img/worki_icons-18.jpg" alt="" title="Experience"><div class="experience-rows"><div class="experience-first-row" id="titleExp">'+data[title]+'</div><div class="experience-second-row" id="Compexp1">'+data[company]+'</div><div class="experience-third-row" id="Locexp1">'+data[location]+'</div><div class="experience-fourth-row" id="date1">'+data[date]+'</div></div></div>'));
         }
 
         }
@@ -64,7 +64,7 @@
             var uniField = "field"+i;
             var uniloc = "uniloc"+i
             var uniYear = "unidate"+i
-            $('#UserEdu').append($('<div class="job-right-content JSAdded" style=""><img class="job-logo" src="/static/img/worki_icons-18.jpg" alt="" title="Education"><div class=""><div class="job-left-title" id="university">'+data[university]+'</div><div class="job-left-details" id="uniField">'+data[uniField]+'</div><div class="job-left-detailsw" id="uniLoc">'+data[location]+'</div><div class="job-left-details" id="uniYear">'+data[uniYear]+'</div></div></div>'));
+            $('#UserEdu').append($('<div class="experience-rows-img JSAdded" style="margin-top:30px;"><img class="experience-education-img" src="/static/img/worki_icons-19.jpg" alt="" title="Education"><div class="experience-rows"><div class="experience-first-row" id="university">'+data[university]+'</div><div class="experience-second-row" id="uniField">'+data[uniField]+'</div><div class="experience-third-row" id="uniLoc">'+data[location]+'</div><div class="experience-fourth-row" id="uniYear">'+data[uniYear]+'</div></div></div>'));
         }
 
 
@@ -75,14 +75,14 @@
             var lang = "language"+i;
             var level = "languageLevel"+i;
             console.log(data[lang]+data[level])
-                 $('#UserLang').append($('<div style="" class="experience-rows-img-languages JSAdded"><div class="education-second-paragraph">'+data[lang]+'</div><div class="language-rate">'+data[level]+'</div></div></div>'));
+                 $('#UserLang').append($('<div style="" class="experience-rows-img-languages JSAdded" style="margin-top:30px;"><div class="education-second-paragraph">'+data[lang]+'</div><div class="language-rate">'+data[level]+'</div></div></div>'));
         }
 
         }
         var firstMediaQuery = window.matchMedia('(min-width: 768px');
         const mediaQuery = window.matchMedia('(max-width: 767px)');
         var right_jobs_main_div = document.querySelector('.right-jobs-main-div');
-        var jobs_left = document.querySelector('.jobs-left');
+        var jobs_left = document.querySelector('.job-left');
         var jobs_buttons = document.querySelector('.jobs-buttons');
 
 
