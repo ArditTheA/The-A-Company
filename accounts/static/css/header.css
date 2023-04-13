@@ -11,8 +11,7 @@
 
 }
 /*    Profile DropDown  */
- .profileDropDown{
-    right: 0;
+ .profileDropDown, .edit_dropdown {
     transition: all 0.5s ease-in-out;
     -webkit-box-shadow: 0 0 5px #e7e7e7;
     box-shadow: 0 0 5px #e7e7e7;
@@ -26,26 +25,42 @@
     position: absolute;
     z-index: 99;
     margin-top: 10px;
-    padding-bottom:20px;
-    padding-top:5px;
+    padding-top: 5px;
 }
-.profileDropDown-content{
+
+.profileDropDown {
+    padding-bottom:20px;
+}
+.all-applicants-dropdown {
+    padding-bottom:0px;
+}
+
+
+.profileDropDown {
+    right: 0;
+}
+.recruter-job-dropdown {
+    right: 30px;
+    top: 60px;
+}
+
+.profileDropDown-content {
     padding:15px 20px 0px 20px;
-    text-decoration: none;
+    text-decoration: none !important;
     color: #65676B;
 }
 .profileDropDown-text{
-    text-decoration: none;
+    text-decoration: none !important;
     color: #65676B;
+    cursor: pointer;
 }
 .profileDropDown-text:hover {
     color: black;
 }
-
 .header-icon{
-    cursor: pointer !important;
+    cursor: pointer;
     height: 35px;
-    width: 35px;
+    width: fit-content;
     object-fit: cover;
     vertical-align: middle;
 }
@@ -54,7 +69,6 @@
 }
 .header-icon-job{
     margin-right: 20px;
-    cursor: pointer !important;
 
 }
 .header-icon-profile{
@@ -69,6 +83,9 @@
     float: right;
     display: flex;
     align-items: center;
+}
+.all-applicants-dropdown {
+    right: auto;
 }
 @media screen and (max-width: 1024px) and (min-width: 768px) {
     .header-icon-logo{
