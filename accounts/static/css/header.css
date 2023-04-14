@@ -60,7 +60,7 @@
 .header-icon{
     cursor: pointer;
     height: 35px;
-    width: fit-content;
+    width: auto;
     object-fit: cover;
     vertical-align: middle;
 }
