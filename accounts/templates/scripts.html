@@ -147,7 +147,20 @@ function MainJobs(){
 
 
 
+        <script>
 
+            var input_type = document.querySelectorAll(".input_type");
+        $(".job-left-row input").click(function (e) {
+            // Do something
+            e.stopPropagation();
+        });
+
+        $(".job-left-row .label-all").click(function (e) {
+            // Do something
+            e.stopPropagation();
+        });
+
+        </script>
 
 <!--Match-->
 <!--<script src="{% static 'js/Match/main.js' %}"></script>-->
