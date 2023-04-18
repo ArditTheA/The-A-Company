@@ -14,9 +14,9 @@
                     <input title="Select all" value="Select" onclick="Check()" name="select-all" type="checkbox" class="select-all-button selAll" id="select-all" style="display: none;"></input>All</label>
                 <input title="Select applicant" class="checkbox-jobs" onchange="Check({{i.user_id.id}})" name="checkb" id="{{i.user_id.id}}" style="height: 22px; width: 22px; position: absolute; right: 20px; top: 40px;" type="checkbox"></input>
                 </div>
-                <div class="job-left-details">{{i.user_id.email}}</div>
-                <div class="job-left-details">{{i.user_id.phone_number}}</div>
-                <div class="job-left-details">{{i.user_id.city}}, {{i.user_id.country}}</div>
+                <div class="job-left-details job-left-company">{{i.user_id.email}}</div>
+                <div class="job-left-details job-left-company">{{i.user_id.phone_number}}</div>
+                <div class="job-left-details job-left-company">{{i.user_id.city}}, {{i.user_id.country}}</div>
 
                 </div>
             </div>
@@ -32,9 +32,9 @@
                             <input title="Select all" value="Select" onclick="Check()" name="select-all" type="checkbox" class="select-all-button selAll" id="select-all" style="display: none;"></input>
                         <input title="Select applicant" class="checkbox-jobs" onchange="Check({{i.user_id.id}})" name="checkb" id="{{i.user_id.id}}" style="height: 22px; width: 22px; position: absolute; right: 20px; top: 40px;" type="checkbox"></input>
                     </div>
-                    <div class=" job-left-details">{{i.user_id.email}}</div>
-                    <div class="job-left-details">{{i.user_id.phone_number}}</div>
-                    <div class="job-left-details">{{i.user_id.city}}, {{i.user_id.country}}</div>
+                    <div class=" job-left-details job-left-company">{{i.user_id.email}}</div>
+                    <div class="job-left-details job-left-company">{{i.user_id.phone_number}}</div>
+                    <div class="job-left-details job-left-company">{{i.user_id.city}}, {{i.user_id.country}}</div>
                 </div>
             </div>
             <div class="move"></div>
