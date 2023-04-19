@@ -231,12 +231,7 @@ class Jobs(models.Model):
     shareWith = models.ManyToManyField(CustomUser,related_name="shared",blank=True)
     applicant = models.ManyToManyField(CustomUser, related_name="applicant", blank=True)
 
-    def save(self, *args, **kwargs):
-        if not self.pk:
-            self.save_author = True
-        super(Jobs, self).save(*args, **kwargs)
-        if hasattr(self, 'save_author'):
-            self.shareWith.add(CustomUser.objects.get(pk=kwargs['request'].user.pk))
+    
 
     @property
     def total_applicant(self):
