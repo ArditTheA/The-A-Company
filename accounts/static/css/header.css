@@ -1,15 +1,33 @@
+.header-icon-logo {
+    width: auto;
+    height: 30px;
+    position: absolute;
+    left: calc(50% - 70px);
+}
+.header-icon-profile {
+    border-radius: 50%;
+}
+
 .profileHeader{
-    background-color: white;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    border-bottom-right-radius: 20px;
-    border-bottom-left-radius: 20px;
+    background-color: #f1f1f1;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0 0 5px #e7e7e7;
+    box-shadow: none;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: row-reverse;
 
+    align-items: center;
+    width: 100%;
+    position: relative;
 }
+.header-icon-job {
+    margin-right: 30px;
+}
+
+
 /*    Profile DropDown  */
  .profileDropDown, .edit_dropdown {
     transition: all 0.5s ease-in-out;
@@ -43,7 +61,6 @@
     right: 30px;
     top: 60px;
 }
-
 .profileDropDown-content {
     padding:15px 20px 0px 20px;
     text-decoration: none !important;
@@ -64,6 +81,9 @@
     object-fit: cover;
     vertical-align: middle;
 }
+.all-applicants-dropdown {
+    right: auto;
+}
 .header-icon-radius{
     border-radius: 10px;
 }
@@ -73,6 +93,7 @@
 }
 .header-icon-profile{
     margin-right: 40px;
+    width:40px;
 
 }
 .header-icon-logo{
@@ -84,9 +105,7 @@
     display: flex;
     align-items: center;
 }
-.all-applicants-dropdown {
-    right: auto;
-}
+
 @media screen and (max-width: 1024px) and (min-width: 768px) {
     .header-icon-logo{
         margin-left: 30px;

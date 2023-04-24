@@ -3,11 +3,11 @@
 {% if user.is_authenticated %}
 
     <header class="profileHeader" >
-        <a href="{% url 'home'%}"><img class="header-icon header-icon-radius header-icon-logo" src="{% static 'img/12.jpeg' %}" title="Worki"></a>
+        <a class="header-icon header-icon-radius header-icon-logo" href="{% url 'home'%}"><img class="header-icon header-icon-radius header-icon-logo" src="{% static 'img/Header/Workilogo.png' %}" title="Worki"></a>
         <div class="jobs-and-profile">
 
             <a href="{% url 'home'%}"><img class="header-icon header-icon-job"  title="Jobs"
-                    src="{% static 'img/JOBS_Icon.png' %}"></a>
+                    src="{% static 'img/Header/Jobicon.png' %}"></a>
 
             <img src="{{user.profile.url}}" class="header-icon header-icon-radius header-icon-profile"  title="Profile" alt="">
         </div>
@@ -23,11 +23,11 @@
 
     {% else %}
     <header class="profileHeader">
-        <a href="{% url 'home'%}"><img class="header-icon header-icon-radius header-icon-logo"  src="{% static 'img/12.jpeg' %}" title="Worki"></a>
+        <a class="header-icon header-icon-radius header-icon-logo" href="{% url 'home'%}"><img class="header-icon header-icon-radius header-icon-logo"  src="{% static 'img/Header/Workilogo.png' %}" title="Worki"></a>
         <div class="jobs-and-profile">
             <a href="{% url 'home'%}"><img class="header-icon header-icon-job" title="Jobs"
-                    src="{% static 'img/JOBS_Icon.png' %}"></a>
-            <img src="{% static 'img/defaultProfile.jpg' %}" class="header-icon header-icon-radius header-icon-profile"   title="Profile" alt="">
+                    src="{% static 'img/Header/Jobicon.png' %}"></a>
+            <img src="{% static 'img/Header/profile.png' %}" class="header-icon header-icon-radius header-icon-profile"   title="Profile" alt="">
         </div>
     </header>
     <div class="profileDropDown" >
