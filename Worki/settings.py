@@ -191,7 +191,7 @@ EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "hello@worki.global"
-EMAIL_HOST_PASSWORD = "hcrnhhhdbytoxyrr"
+EMAIL_HOST_PASSWORD = "nvggbzgdmsvoxsmb"
 
 # Image Resizing :
 DJANGORESIZED_DEFAULT_SIZE = [1024, 768]
