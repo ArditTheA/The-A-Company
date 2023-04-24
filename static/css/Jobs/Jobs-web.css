@@ -124,7 +124,7 @@
     margin-bottom: 0px;
 }
 .job-left, .right-jobs {
-    height: calc(100vh - 155px) !important;
+    height: calc(100vh - 176px) !important;
     padding-bottom: 20px;
     overflow-y: scroll;
     margin-bottom: 0;
