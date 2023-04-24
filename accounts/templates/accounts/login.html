@@ -1,9 +1,10 @@
+{% extends 'base.html' %}
+
 {% load static %}
 {% load crispy_forms_tags %}
 {% load socialaccount %}
-<!DOCTYPE html>
-<html lang="en">
 
+{% block content %}
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,12 +18,7 @@
     <title>Sign In</title>
 </head>
 
-<body>
-    <header class="header-border">
-        <div class="first-image">
-            <img class="worki-image" src="{% static 'img/Worki_Logo_Black.png'%}" title="Worki">
-        </div>
-    </header>
+
 
     <div class="container">
         <div class="under-container">
@@ -30,7 +26,7 @@
             <div class="input-form">
                <a class="sign-in-google input-text" href="{% provider_login_url 'google' %}"><div class="">Sign in with Google</div>
                </a>
-                <img class="icon" src="{% static 'img/google-01 8.png'%}">
+                <img class="iconGoogle" src="{% static 'img/google-01 8.png'%}">
             </div>
             <p class="second-paragraph same-color-of-paragraphs">or</p>
             <form method="POST" action="" class="sign-in-form">
@@ -72,8 +68,8 @@
         </div>
     </div>
 
-</body>
+
 
 <script src="{% static 'js/password_icon.js'%}"></script>
 
-</html>
+{% endblock content %}

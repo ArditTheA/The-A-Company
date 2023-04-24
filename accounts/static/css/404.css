@@ -63,6 +63,7 @@ body {
 }
 
 #notfound {
+    margin-top:60px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -190,6 +191,7 @@ body {
       margin-bottom: 30px;
   }
   #notfound {
+      margin-top:70px;
       width: calc(100% - 20px);
       height: calc(100% - 20px);
       border-radius: 30px;
