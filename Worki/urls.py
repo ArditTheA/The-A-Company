@@ -29,7 +29,7 @@ from ScreeningQuestion.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', LoginView.as_view(), name='login'),
-    path('register/', registration, name='register'),
+    path('create-account/', registration, name='register'),
     path('logout/', userViews.LogoutView.as_view(template_name='home/home.html'), name='logout'),
     path('', MainJobs.as_view(), name='home'),
 
