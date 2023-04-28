@@ -55,7 +55,7 @@
     }
     .right-jobs {
         display:none;
-        height: calc(100% - 70px) !important;
+        height: calc(100% - 10px) !important;
         position:absolute;
         margin-top:20px;
         padding-bottom: 0px !important;

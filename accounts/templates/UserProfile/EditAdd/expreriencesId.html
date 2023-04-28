@@ -1,4 +1,5 @@
-{% extends 'base.html'%}
+{% include "header-links.html" %}
+
 {% load static %}
 {% block content %}
 <div class="parent_container">
@@ -127,6 +128,9 @@
     </div>
 </div>
 </body>
+
+    {% include 'scripts.html' %}
+
 <script src="{% static 'js/profile_dropdown.js'%}"></script>
 <script src="{% static 'js/edit-experience.js'%}"></script>
 <script src="{% static 'js/profile_dropdown_2.js'%}"></script>

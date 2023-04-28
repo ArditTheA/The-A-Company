@@ -1,4 +1,4 @@
-{% extends 'base.html'%}
+{% include "header-links.html" %}
 {% load static %}
 {% block content %}
 <div class="experience-main-div experience-education-languages different_exp">
@@ -110,5 +110,6 @@
         </div>
     </div>
 </div>
+    {% include 'scripts.html' %}
 
 {% endblock content %}

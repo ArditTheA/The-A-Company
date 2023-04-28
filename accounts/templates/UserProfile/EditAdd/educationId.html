@@ -1,4 +1,5 @@
-{% extends 'base.html'%}
+{% include "header-links.html" %}
+
 {% load static %}
 {% block content %}
 
@@ -146,6 +147,7 @@
     </div>
 </body>
 
+    {% include 'scripts.html' %}
 
 
 {% endblock content %}

@@ -1,11 +1,14 @@
-{% extends 'base.html' %}
+
 {% block content %}
 {% load static %}
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+{% include "header-links.html" %}
 <style type="text/css">
+    form{
 
+        overflow-x:hidden;
+    }
     body {
 		background-color: #f1f1f1;
 		font-family: 'Spline Sans', sans-serif;
@@ -33,6 +36,7 @@
 		max-width: none;
 		position: relative;
 		margin: 20px 40px 20px 40px;
+		height: calc(100% - 20px);
 
     }
 
@@ -327,7 +331,7 @@
 	}
 	@media screen and (max-width: 480px) {
 		.parent_container {
-			height: calc(100% - 60px);
+			height: calc(100% - 100px);
 			width: 100%;
 			position: absolute;
 			padding-bottom: 20px !important;
@@ -340,7 +344,6 @@
 		}
 		.register-form {
 			width: 100%;
-			height: 100%;
 			overflow-y: scroll;
 		}
 		.register-form::-webkit-scrollbar {
@@ -408,7 +411,7 @@
     </style>
 <div class="parent_container">
 <div class="container-add-a-job">
-        <form class="register-form" id="answerForm" action="" method="POST">
+    <form class="register-form" id="answerForm"  method="POST">
             {% csrf_token %}
 		    <div class="inside-the-container" style="">
             <h1 class="next-none mid title-font-size f-title">Apply fast</h1>
@@ -540,14 +543,5 @@ const ct =[];
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 {% endblock content %}
-
-
-
-
-<form style="display: flex;" class="buttons-form card" id="myForm" >
-
-
-</form>
-
 
 

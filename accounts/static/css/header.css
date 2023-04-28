@@ -92,6 +92,10 @@
 }
 .header-icon-job{
     margin-right: 20px;
+    max-width:40px;
+    border-radius:6px;
+    background-size: cover;
+    background-position: center;
 
 }
 .header-icon-profile{
@@ -99,9 +103,8 @@
     height:40px;
     width:40px !important;
     border-radius:30px;
-    image-rendering: -webkit-optimize-contrast;
-
-
+    background-size: cover;
+    background-position: center;
 }
 
 
@@ -142,5 +145,6 @@
     }
     .profileDropDown {
         font-size: 16px;
+        margin-top:0;
     }
 }

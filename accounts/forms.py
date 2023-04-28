@@ -224,7 +224,7 @@ class setupProfile(ModelForm):
         widgets = {
             "first_name":forms.TextInput(attrs={'class':'next-none',"required":"required"}),
             "last_name":forms.TextInput(attrs={'class':'next-none',"required":"required"}),
-            "country":forms.TextInput(attrs={"class":"test name-input mutual-stats font-fam","list":"countryList"}),
+            "country":forms.TextInput(attrs={"class":"test mutual-stats font-fam","list":"countryList"}),
             "city": forms.TextInput(attrs={"class": "test name-input mutual-stats font-fam","required":"required","list":"cityList"}),
             "email": forms.TextInput(attrs={"class": "next-none padding-of-inputs","type":"email","required":"required"}),
             "phone_number": forms.TextInput(attrs={"class": "next-none padding-of-inputs","required":"required"}),
