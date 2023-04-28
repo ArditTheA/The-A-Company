@@ -29,6 +29,12 @@
             window.history.pushState("","","")
             window.history.pushState("","", id)
         }
+        $('#detailsRow').animate({
+
+            scrollTop: 0 // scroll back to the top of the element
+          }, 600);
+
+
         var auth = data["auth"]
         var element = document.getElementById("detailsRow");
 
@@ -41,7 +47,8 @@
         }
         const mobile = window.matchMedia('(max-width: 768px)');
         if(mobile.matches){
-
+            $('.profileHeader').css('display', 'none');
+            $('#detailsRow').css('margin-top', '30px');
         }else{
             if(post_id != 0){
                 var select = document.getElementById('select'+id)
@@ -54,7 +61,7 @@
                 select.style.backgroundColor = "#E7F1FE";
             }
         }
-        
+
         let textarea = document.getElementById('message');
         textarea.innerHTML=data["description"]
 
@@ -66,7 +73,7 @@
         city_jobs.innerHTML = data["city_j"]+",  "+data["country"]
 
         var countApplicant = document.getElementById("countApplicant")
-       
+
         if(data["appNo"]==0){
             countApplicant.innerHTML = data["appNo"]+" applicants"
         }else if(data["appNo"]>=2){
@@ -225,6 +232,7 @@
             right_jobs_main_div.style.display = "none";
             jobs_buttons.style.display = "flex";
             jobs_left.style.display = "flex";
+            $('.profileHeader').css('display', 'flex');
         }
         
        
