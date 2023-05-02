@@ -8,7 +8,7 @@
 <div class="jobs-main-div" >
 
     <div class="job-left" style="" id="myDIV">
-        <div onclick="getNumber('{{FJob.id}}')" class="job-left-row pixel"  id="select{{FJob.id}}">
+        <div onclick="getNumber('{{FJob.id}}')" class="job-left-row move pixel"  id="select{{FJob.id}}">
                <img class="job-logo" src="{{FJob.logo.url}}" alt="">
                <span class="job-left-content">
                <span class="job-left-title">{{FJob.job_title}}</span>
@@ -22,7 +22,7 @@
 
                </span>
            </div>
-        <div class="move"></div>
+
         {% include "MainJobs/left-jobs.html" %}
     </div>
     {% include "MainJobs/right-jobs.html" %}
