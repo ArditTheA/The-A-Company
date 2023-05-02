@@ -21,9 +21,7 @@
 .move {
     margin-top: 20px;
 }
-.move:last-child {
-    margin-top: 0;
-}
+
 .card {
     margin-bottom: 0;
 }
