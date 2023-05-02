@@ -1,5 +1,11 @@
 
 @media screen and (max-width: 480px) {
+    .job-left:last-child{
+        margin-bottom:-20px !important;
+    }
+        .last-child-job {
+        margin-bottom: -10px !important;
+    }
     .noApp{
         margin:10px 20px;
     }
@@ -19,14 +25,9 @@
         margin-top:0px !important;
     }
 
-
-    .move:last-child{
-        display:none;
-        margin:0;
-        padding:0;
-        height:0;
-    }
-
+  .job-left-row:last-child{
+    margin-bottom:-10px !important;
+  }
 
     .NoResult{
         padding: 20px 10px;
@@ -41,14 +42,12 @@
         padding: 20px;
     border-radius: 20px;
     }
-    .job-left-row:last-child {
-        margin-bottom:-10px !important;
-    }
+
     .job-left {
         margin-top:20px;
         width: 100% !important;
         position: absolute;
-        height: calc(100% - 133px) !important;
+        height: calc(100% - 143px) !important;
     }
     .job-left-details, .job-left-title {
         font-size: 16px;
