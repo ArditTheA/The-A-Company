@@ -11,16 +11,16 @@ body {
 .header-border {
     display: flex;
     justify-content: center;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
-.worki-image {
-    height: 60px;
+.worki-image{
+    height:35px;
 }
 
 .create-account-container {
     width: 100%;
-    margin: auto auto auto auto;
+    margin: 20px auto auto auto;
     box-sizing: border-box;
     border-radius: 40px !important;
     background-color: white;
@@ -144,7 +144,7 @@ body {
     position: relative;
 }
 
-.icon {
+.iconGoogle {
     position: absolute;
     left: 10px;
     height: 80%;
@@ -254,6 +254,7 @@ body {
         padding-top: 30px;
         padding-bottom: 30px;
         border-radius: 20px !important;
+        margin:0;
     }
     .create-account-under-container {
         padding-left: 20px;

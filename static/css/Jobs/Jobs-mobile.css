@@ -1,5 +1,14 @@
 
 @media screen and (max-width: 480px) {
+    .job-left:last-child{
+        margin-bottom:-20px !important;
+    }
+        .last-child-job {
+        margin-bottom: -10px !important;
+    }
+    .noApp{
+        margin:10px 20px;
+    }
     .mobile-left-margin{
         margin-bottom:-10px;
     }
@@ -11,9 +20,15 @@
     .move{
         margin-top:10px !important;
     }
-    .move:last-child{
-        margin-top:0;
+
+    .move:first-child{
+        margin-top:0px !important;
     }
+
+  .job-left-row:last-child{
+    margin-bottom:-10px !important;
+  }
+
     .NoResult{
         padding: 20px 10px;
     }
@@ -32,18 +47,17 @@
         margin-top:20px;
         width: 100% !important;
         position: absolute;
-        height: calc(100% - 133px) !important;
-
+        height: calc(100% - 143px) !important;
     }
     .job-left-details, .job-left-title {
         font-size: 16px;
     }
     .right-jobs {
         display:none;
-        height: calc(100% - 70px) !important;
+        height: calc(100% - 10px) !important;
         position:absolute;
         margin-top:20px;
-        margin-bottom: 0px !important;
+        padding-bottom: 0px !important;
     }
     .card{
         margin-bottom:0 !important;
@@ -64,7 +78,7 @@
         /*  from filter.css  */
 
     .main-buttons-div {
-        margin-top: -10px;
+        margin-top: -20px !important;
         margin-bottom: -10px;
     }
 
@@ -87,6 +101,7 @@
 
         margin-bottom: 10px;
         width: 100%;
+        margin-top: 30px;
 
     }
     .job-right-exit{

@@ -15,7 +15,7 @@
     }
     .right-jobs {
         overflow-y: scroll;
-        height: calc(100% - 99px) !important;
+        height: calc(100% - 40px) !important;
         padding-bottom: 20px !important;
         position: absolute;
         flex-direction: column;

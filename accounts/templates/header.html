@@ -6,7 +6,7 @@
         <a class="header-icon header-icon-radius header-icon-logo" href="{% url 'home'%}"><img class="header-icon header-icon-radius header-icon-logo" src="{% static 'img/Header/Vector.svg' %}" title="Worki"></a>
         <div class="jobs-and-profile">
 
-            <a href="{% url 'jobs'%}"><img class="header-icon header-icon-job"  title="Jobs"
+            <a href="{% url 'home'%}"><img class="header-icon header-icon-job"  title="Jobs"
                     src="{% static 'img/Header/job.jpg' %}"></a>
 
             <img src="{{user.profile.url}}" class="header-icon header-icon-radius header-icon-profile"  title="Profile" alt="">
@@ -25,7 +25,7 @@
     <header class="profileHeader">
         <a class="header-icon header-icon-radius header-icon-logo" href="{% url 'home'%}"><img class="header-icon header-icon-radius header-icon-logo"  src="{% static 'img/Header/Vector.svg' %}" title="Worki"></a>
         <div class="jobs-and-profile">
-            <a href="{% url 'jobs'%}"><img class="header-icon header-icon-job" title="Jobs"
+            <a href="{% url 'home'%}"><img class="header-icon header-icon-job" title="Jobs"
                     src="{% static 'img/Header/job.jpg' %}"></a>
             <img src="{% static 'img/Header/profile.jpg' %}" class="header-icon header-icon-radius header-icon-profile"   title="Profile" alt="">
         </div>

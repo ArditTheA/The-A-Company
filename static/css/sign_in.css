@@ -8,19 +8,20 @@ body {
     padding-bottom: 40px;
     font-family: 'Spline Sans', sans-serif;
 }
+.worki-image{
+    height:35px;
+}
 .header-border {
     display: flex;
     justify-content: center;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
-.worki-image {
-    height: 60px;
-}
+
 
 .container {
     width: 100%;
-    margin: auto auto auto auto;
+    margin: 20px auto auto auto;
     box-sizing: border-box;
     border-radius: 40px;
     background-color: white;
@@ -162,7 +163,7 @@ body {
     position: relative;
 }
 
-.icon {
+.iconGoogle {
     position: absolute;
     left: 10px;
     height: 80%;
@@ -183,11 +184,11 @@ body {
         padding-bottom: 36px;
     }
     .header-border {
-        padding-top: 36px;
-        padding-bottom: 36px;
+        padding-top: 20px;
+        padding-bottom: 20px;
     }
     .worki-image {
-        height: 55px;
+        height: 35px;
     }
     .under-container {
         width: 420px;
@@ -227,11 +228,11 @@ body {
         padding-bottom: 30px;
     }
     .header-border {
-        padding-top: 30px;
-        padding-bottom: 30px;
+        padding-top: 15px;
+        padding-bottom: 15px;
     }
     .worki-image {
-        height: 50px;
+        height: 35px;
     }
     .under-container {
         width: 380px;
@@ -270,6 +271,7 @@ body {
         padding-top: 30px;
         padding-bottom: 30px;
         border-radius: 20px;
+        margin: 0;
     }
     .header-border {
         display: none;

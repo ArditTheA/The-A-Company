@@ -8,6 +8,8 @@
     form{
 
         overflow-x:hidden;
+		overflow-y: scroll;
+		height: 100%;
     }
     body {
 		background-color: #f1f1f1;
@@ -331,7 +333,7 @@
 	}
 	@media screen and (max-width: 480px) {
 		.parent_container {
-			height: calc(100% - 100px);
+			height: 100%;
 			width: 100%;
 			position: absolute;
 			padding-bottom: 20px !important;
@@ -344,6 +346,7 @@
 		}
 		.register-form {
 			width: 100%;
+			height: 100%;
 			overflow-y: scroll;
 		}
 		.register-form::-webkit-scrollbar {

@@ -48,7 +48,6 @@
         const mobile = window.matchMedia('(max-width: 768px)');
         if(mobile.matches){
             $('.profileHeader').css('display', 'none');
-            $('#detailsRow').css('margin-top', '30px');
         }else{
             if(post_id != 0){
                 var select = document.getElementById('select'+id)

@@ -254,6 +254,7 @@ body {
         padding-top: 30px;
         padding-bottom: 30px;
         border-radius: 20px !important;
+        margin:0;
     }
     .create-account-under-container {
         padding-left: 20px;

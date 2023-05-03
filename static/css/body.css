@@ -6,7 +6,8 @@ body {
     -webkit-tap-highlight-color: transparent;
     -ms-overflow-style: none;
     scrollbar-width: 0 !important;
-    height:100vh;
+ 
+
 }
 body::-webkit-scrollbar {
     display: none;
