@@ -8,7 +8,7 @@
 
         post_id=id
 
-        let response = await fetch('/',{
+        let response = await fetch('',{
 
             method: "get",
 

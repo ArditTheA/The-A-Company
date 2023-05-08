@@ -1,0 +1,1429 @@
+body {
+    margin: 0;
+    background-color: #f1f1f1;
+}
+
+.visitors-applicants-users-main-div {
+    margin-top: 20px;
+    display: flex;
+    margin-left: 40px;
+}
+
+
+.visitors-applicants-users {
+    background-color: white;
+    padding: 8px 20px;
+    border-radius:20px;
+    margin-right: 20px;
+    font-size: 16px;
+    color: #65676B;
+    border: none;
+    padding-left: 20px;
+}
+
+.first-form-h1 {
+    font-size: 30px;
+}
+
+h2 {
+    font-size: 22px;
+    color: black;
+}
+.visitors-applicants-users:last-child {
+}
+
+h1, h2 {
+    margin-bottom: 10px !important;
+    margin: 0;
+}
+
+.learn-more-margin-bottom {
+    margin-bottom: 40px;
+}
+.learn-more-div {
+    font-size: 18px;
+}
+.learn-more-div, .second-h2-title {
+    text-align: center;
+}
+.landing-page-first-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-radius: 40px;
+}
+
+.all-forms-outer-margin {
+    margin: 20px 40px 0px 40px !important;
+    padding-top: 60px;
+}
+
+.landing-page-second-form-title, .landing-page-sixth-form-title {
+    font-size: 20px;
+}
+
+.landing-page-second-form-content, .landing-page-sixth-form-content {
+    color: #858585;
+}
+.landing-page-form-content {
+    font-size: 18px;
+}
+
+.mockups-div {
+    margin-top: 20px;
+}
+.landing-page-mockups-form {
+    display: flex;
+    flex-direction: column;
+    margin-left: 40px;
+    /* align-items: center;  */
+    /* justify-content: center;  */
+    background-color: #06191D;
+    border-radius: 40px;
+    margin-bottom: 20px !important;
+}
+
+.match-second-img-div {
+    display: flex;
+    margin-left: 40px;
+}
+.pay-transparency-2-div {
+    display: flex;
+    margin-left: 40px;
+    margin-top: 110px;
+}
+.landing-page-second-form, .landing-page-fifth-form, .landing-page-sixth-form {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+}
+.second-form-left-part {
+    width: 50%;
+    background-color: white;
+    border-radius: 40px;
+    padding-left: 40px;
+    margin-right: 10px;
+    margin-left: 40px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    position: relative;
+}
+.second-form-right-part {
+    width: 50%;
+    background-color: white;
+    border-radius: 40px;
+    margin-right: 40px;
+    padding-left: 40px;
+    margin-left: 10px;
+    padding-top: 40px;
+    position: relative;
+}
+.pay-transparency-1-2-main-div, .post-your-job-1-2-main-div, .match-1-2-main-div {
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+.pay-transparency-1-2-main-div, .match-1-2-main-div {
+    margin-top: 60px;
+}
+.post-your-job-1-2-main-div {
+    margin-top: 90px;
+}
+.pay-transparency-over-main-div, .over-match-1-2-main-div {
+    margin-left: -40px;
+}
+
+
+.post-your-job-img {
+    margin-left: -40px;
+}
+.pay-transparency-2 {
+}
+
+.landing-page-seventh-form, .landing-page-eighth-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #06191D;
+    border-radius: 40px;
+    padding-bottom: 60px;
+}
+.sixth-form-questions-div {
+    width: 800px;
+}
+
+.seventh-form-h1 {
+    text-align: center;
+    font-weight: 100;
+    color: #FDFFFF;
+    padding-bottom: 50px;
+}
+.sixth-form-questions-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.sixth-form-content-mutual {
+    margin-bottom: 40px;
+}
+.third-form-right-part {
+    width: 50%;
+    background-color: white;
+    border-radius: 40px;
+    margin-right: 40px;
+    padding-left: 40px;
+    margin-left: 10px;
+    padding-top: 40px;
+    position: relative;
+}
+.landing-page-third-form {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+}
+.landing-page-sixth-form {
+    margin-top: 20px;
+}
+.third-form-left-part {
+    position: relative;
+    width: 50%;
+    background-color: white;
+    border-radius: 40px;
+    margin-right: 40px;
+    padding-left: 40px;
+    margin-right: 10px;
+    padding-top: 40px;
+    margin-left: 40px;
+}
+.right-profile-img-div {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+    margin-left: -120px;
+}
+.landing-page-fourth-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-radius: 40px;
+    padding-bottom: 20px;
+}
+.landing-page-fifth-form {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.landing-page-eighth-form {
+    margin-bottom: 20px;
+}
+.generate-applicants-hand-mockup-div {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-left: -230px;
+}
+.qualify-hand-mockup-div {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-left: 130px;
+}
+.fifth-form-left-part, .sixth-form-left-part {
+
+    width: 50%;
+    background-color: white;
+    border-radius: 40px;
+    margin-right: 40px;
+    padding-left: 40px;
+    margin-right: 10px;
+    padding-top: 40px;
+    position: relative;
+    margin-left: 40px;
+}
+
+.fifth-form-right-part, .sixth-form-right-part {
+    width: 50%;
+    background-color: white;
+    border-radius: 40px;
+    margin-right: 40px;
+    padding-left: 40px;
+    margin-left: 10px;
+    padding-top: 40px;
+    position: relative;
+}
+.landing-page-seventh-form, .landing-page-eighth-form {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.visitors-applicants-users:last-child {
+    margin-right: 40px;
+}
+
+.mutual-partners-style {
+    margin-right: 80px;
+}
+.scrolling-wrapper {
+    overflow-x: auto;
+}
+
+.scrolling-wrapper::-webkit-scrollbar {
+    display: none;
+}
+.jobs-buttons {
+    display: flex;
+    align-items: center;
+    margin: 20px 0px 0px 40px;
+}
+
+.card {
+    display: inline-block;
+    flex: 0 0 auto;
+}
+
+.scrolling-wrapper-flexbox {
+    display: flex;
+    flex-wrap: nowrap;
+}
+.seventh-form-partners {
+    display: flex;
+}
+.first-seventh-form-partners {
+    margin-bottom: 80px;
+    align-items: center;
+    width: max-content;
+    margin: auto;
+}
+
+.first-partner {
+    margin-left: 40px;
+}
+
+.landing-page-seventh-form, .landing-page-eighth-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #06191D;
+    border-radius: 40px;
+}
+
+.landing-page-seventh-form {
+    padding-bottom: 60px;
+}
+.our-partners-div {
+    color: #FDFFFF;
+    padding-bottom: 90px;
+    font-size: 20px;
+}
+
+.seventh-form-question {
+    color: #FDFFFF;
+    font-size: 20px;
+}
+.fast-reply-img-div {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-left: -140px;
+}
+.easy-apply-img-div {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-left: 75px;
+}
+
+.seventh-form-partners-div {
+    width: 100%;
+}
+
+.seventh-form-partners-div::-webkit-scrollbar {
+    display: none;
+}
+
+.seventh-form-partners-div {
+    overflow-x: scroll;
+}
+.seventh-form-partners-under-div {
+    width: max-content;
+    display: flex;
+    align-items: center;
+    overflow-x: scroll;
+}
+
+.fifth-partner {
+    margin-right: 40px;
+}
+
+.seventh-form-partners-under-div::-webkit-scrollbar {
+    display: none;
+}
+.match-second-img-div {
+margin-top: 150px;
+}
+.right-arrow-pay-transparency {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+}
+.right-arrow {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+}
+.landing-page-eighth-form {
+    margin-bottom: 20px !important;
+    padding-bottom: 120px;
+}
+
+@media screen and (max-width: 1160px) and (min-width: 1025px) {
+    .pay-transparency-1-2-main-div {
+    }
+    .pay-transparency-1 {
+        width: 170px;
+        height: auto;
+        margin-left: 0px;
+    }
+    .pay-transparency-1-2-main-div {
+        margin-top: 40px;
+    }
+    .easy-apply-img {
+        width: 260px;
+        height: auto;
+        margin-left: -20px;
+    }
+    .fast-reply-img {
+        width: 290px;
+        height: auto;
+        margin-left: 20px;
+    }
+    .match-first-image {
+        width: 155px;
+        height: auto;
+    }
+    .pay-transparency-2 {
+        width: 125px;
+        height: auto;
+    }
+    .pay-transparency-2-div {
+
+    }
+    .right-profile-img {
+        width: 190px;
+        height: auto;
+        margin-bottom: 40px;
+        margin-left: 30px;
+    }
+
+    .generate-applicants-hand-mockup {
+        width: 310px;
+        height: auto;
+    }
+    .generate-applicants-hand-mockup-div {
+        margin-left: -170px;
+    }
+
+    .match-first-image, .match-second-image {
+        width: 160px;
+        height: auto;
+    }
+    .match-1-2-main-div {
+        /* margin-bottom: 106px; */
+    }
+    .match-1-2-main-div {
+        margin-top: 40px;
+    }
+
+    .match-second-img-div {
+        margin-top: 110px;
+    }
+    .match-1-2-main-div {
+        margin-top: 50px;
+    }
+
+    .qualify-hand-mockup {
+        width: 325px;
+        height: auto;
+    }
+    .qualify-hand-mockup-div {
+        margin-left: 80px;
+
+    }
+    .post-your-job-img {
+        width: 155px;
+        height: auto;
+        margin-top: -10px;
+    }
+
+}
+ /* @media screen and (max-width: 1088px) and (min-width: 1025px) {
+    .pay-transparency-1-div {
+    }
+    .pay-transparency-1 {
+        width: 180px;
+        height: fit-content;
+    }
+    .pay-transparency-2 {
+        width: 122px;
+        height: fit-content;
+    }
+    .pay-transparency-2-div {
+
+    }
+}
+ */
+
+/* @media screen and (max-width: 1024px) { */
+
+    @media screen and (max-width: 1024px) {
+        .landing-page-second-form, .landing-page-third-form, .landing-page-fifth-form, .landing-page-sixth-form {
+            display: flex;
+            flex-direction: column;
+            margin-right: 30px;
+        }
+        .generate-applicants-hand-mockup-div {
+            margin-left: -220px;
+        }
+        .qualify-hand-mockup-div {
+            margin-left: 120px;
+        }
+    }
+
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+    .second-form-left-part, .third-form-left-part, .fifth-form-left-part, .sixth-form-left-part {
+        width: calc(100% - 100px);
+        margin-bottom: 20px;
+        margin-left: 30px;
+    }
+    .second-form-right-part, .third-form-right-part, .fifth-form-right-part, .sixth-form-right-part {
+        width: calc(100% - 100px);
+        margin-left: 30px;
+
+    }
+    .right-profile-img-div, .post-your-job-img {
+        margin-bottom: 106px;
+    }
+    .lptop-mockup {
+        margin-top: -10px;
+    }
+    .visitors-applicants-users:last-child {
+        margin-right: 30px;
+    }
+    .main-buttons-div {
+        margin-left: -10px;
+    }
+    .first-partner {
+        margin-left: 30px;
+    }
+    .fifth-partner {
+        margin-right: 30px;
+    }
+    .pay-transparency-2-div {
+        margin-left: 80px !important;
+    }
+    .sixth-form-right-part {
+        padding-bottom: 40px;
+    }
+}
+@media screen and (max-width: 1024px) and (min-width: 481px) {
+
+.pay-transparency-2-div {
+    margin-top: 90px;
+}
+.pay-transparency-1-2-main-div, .match-1-2-main-div {
+    padding-bottom: 60px;
+}
+
+}
+
+
+
+@media screen and (max-width: 767px) and (min-width: 481px) {
+
+.match-second-img-div {
+    margin-left:20px;
+}
+.arrow-down-questions {
+    width: 22px;
+    height: auto;
+}
+.second-seventh-form-partners {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 30px;
+    margin-right: 30px;
+    justify-content: center;
+}
+.third-partner {
+}
+/* .fifth-partner {
+    margin-left: 70px;
+    margin-right: 70px;
+} */
+.second-seventh-form-partners {
+    /* background-color: red; */
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.first-seventh-form-partners {
+    margin-bottom: 60px;
+}
+.two-partners-div {
+    width: 800px;
+    display: flex;
+    justify-content: center;
+}
+.pay-transparency-1-2-main-div, .match-1-2-main-div {
+    padding-bottom: 40px;
+}
+.sixth-form-right-part {
+    padding-bottom: 40px;
+}
+
+}
+
+/* @media screen and (max-width: 670px) and (min-width: 481px) {
+    .fifth-partner {
+        margin-top: 50px;
+    }
+    .our-partners-div {
+        padding-bottom: 50px;
+    }
+    .first-seventh-form-partners {
+        margin-bottom: 50px;
+    }
+    .landing-page-eighth-form {
+        padding-bottom: 100px;
+    }
+    .landing-page-seventh-form {
+        padding-bottom: 40px;
+    }
+} */
+
+@media screen and (max-width: 671px) and (min-width: 572px) {
+
+    .generate-applicants-hand-mockup {
+        width: 350px;
+        height: auto;
+        margin-left: 40px;
+    }
+
+    .qualify-hand-mockup {
+        width: 350px;
+        height: auto;
+        margin-right: 20px;
+    }
+    .post-your-job-img {
+        width: 182px;
+        height: auto;
+        font-size: 16px;
+    }
+    .fast-reply-img {
+        width: 350px;
+        height: max-content;
+        margin-left: 20px;
+    }
+    .pay-transparency-1 {
+        width: 200px;
+        height: auto;
+        margin-left: 0px;
+    }
+    .pay-transparency-2 {
+        width: 133px;
+        height: auto;
+    }
+    .right-profile-img {
+        width: 225px;
+        height: auto;
+        margin-left: 20px;
+    }
+    .match-first-image {
+        width: 190px;
+        height: auto;
+    }
+    .match-second-image {
+        width: 190px;
+        height: auto;
+    }
+    .all-jobs-mockup {
+        width: 290px;
+        height: auto;
+    }
+    /* .seventh-form-partners-div {
+        width: calc(100% - 60px);
+    } */
+    .first-partner {
+        width: 196px;
+        height: auto;
+        margin-right: 60px;
+    }
+    .second-partner, .third-partner {
+        width: 202px;
+        height: auto;
+    }
+    .fourth-partner {
+        width: 131px;
+        height: auto;
+    }.fifth-partner {
+        width: 133px;
+        height: auto;
+    }
+    .pay-transparency-2-div {
+        margin-top: 105px !important;
+        margin-left: 50px;
+    }
+    .pay-transparency-2-div {
+        margin-left: 50px !important;
+    }
+    .match-second-img-div {
+        margin-top: 130px;
+    }
+
+}
+
+/* @media screen and (max-width: 571px) {
+    .first-partner {
+        margin-right: 30px;
+    }
+    .fourth-partner {
+        margin-left: 50px;
+    }
+} */
+
+@media screen and (max-width: 571px) and (min-width: 481px) {
+    .generate-applicants-hand-mockup {
+        width: 305px;
+        height: auto;
+        margin-right: -60px;
+    }
+
+    .qualify-hand-mockup {
+        width: 305px;
+        height: auto;
+        margin-right: 40px;
+    }
+    .post-your-job-img {
+        width: 142px;
+        height: auto;
+        font-size: 16px;
+    }
+    .fast-reply-img {
+        margin-left: 20px;
+    }
+    .easy-apply-img {
+        margin-right: 20px;
+    }
+    .easy-apply-img {
+        width: 270px;
+        height: auto;
+    }
+    .fast-reply-img {
+        width: 280px;
+        height: auto;
+    }
+    .pay-transparency-1 {
+        width: 189px;
+        height: auto;
+        margin-left: 0px;
+    }
+    .pay-transparency-2 {
+        width: 124px;
+        height: auto;
+    }
+    .right-profile-img {
+        width: 202px;
+        height: auto;
+        margin-left: 30px;
+    }
+    .match-first-image {
+        width: 163px;
+        height: auto;
+    }
+    .match-second-image {
+        width: 163px;
+        height: auto;
+    }
+    .all-jobs-mockup {
+        width: 260px;
+        height: auto;
+    }
+    .first-partner {
+        width: 173px;
+        height: auto;
+        margin-right: 60px;
+    }
+    .second-partner, .third-partner {
+        width: 179px;
+        height: auto;
+    }
+    .fourth-partner {
+        width: 114px;
+        height: auto;
+    }.fifth-partner {
+        width: 116px;
+        height: auto;
+    }
+    /* .seventh-form-partners-div {
+        width: calc(100% - 60px);
+    } */
+    .first-partner {
+        margin-right: 30px;
+    }
+    .pay-transparency-2-div {
+        margin-top: 100px !important;
+    }
+    .match-second-img-div {
+        margin-top: 115px;
+    }
+}
+
+
+@media screen and (max-width: 926px) and (min-width: 481px) {
+
+    .lptop-mockup {
+        width: calc(100% - 60px);
+        height: auto;
+    }
+
+}
+/* @media screen and (max-width: 849px) and (min-width: 800px) {
+
+    .lptop-mockup {
+        width: 680px;
+        height: fit-content;
+    }
+
+}
+
+@media screen and (max-width: 799px) and (min-width: 700px) {
+
+    .lptop-mockup {
+        width: 630px;
+        height: fit-content;
+    }
+
+} */
+
+
+
+
+
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+
+.all-forms-outer-margin {
+    margin: 20px 30px 0px 30px !important;
+    padding-top: 40px;
+}
+.seventh-form-h1 {
+    padding-bottom: 30px;
+}
+.landing-page-mockups-form {
+    margin-bottom: 20px !important;
+}
+
+.post-your-job-1-2-main-div {
+    margin-top: 40px;
+}
+.landing-page-eighth-form {
+    margin-bottom: 20px !important;
+}
+.first-partner, .second-partner, .third-partner, .fourth-partner {
+    margin-right: 60px;
+}
+}
+
+@media screen and (max-width: 1160px) and (min-width: 672px) {
+    .first-partner {
+        width: 240px;
+        height: auto;
+    }
+    .second-partner, .third-partner {
+        width: 249px;
+        height: auto;
+    }
+    .fourth-partner {
+        width: 161px;
+        height: auto;
+    }
+    .fifth-partner {
+        width: 165px;
+        height: auto;
+    }
+
+}
+
+@media screen and (max-width: 767px) and (min-width: 632px) {
+    .first-seventh-form-partners {
+        margin-bottom: 60px;
+    }
+}
+
+@media screen and (max-width: 1024px) and (min-width: 672px) {
+    /* .seventh-form-partners-div {
+        width: calc(100% - 60px);
+    } */
+    .first-partner {
+        width: 220px;
+        height: auto;
+        margin-right: 60px;
+    }
+    .second-partner, .third-partner {
+        width: 228px;
+        height: auto;
+    }
+    .fourth-partner {
+        width: 148px;
+        height: auto;
+    }.fifth-partner {
+        width: 151px;
+        height: auto;
+    }
+    .pay-transparency-2-div {
+        margin-top: 120px !important;
+    }
+    .pay-transparency-2-div {
+        margin-left: 60px !important;
+    }
+    .all-jobs-mockup {
+        width: 320px;
+        height: auto;
+    }
+
+}
+
+@media screen and (max-width: 767px) and (min-width: 481px) {
+
+    .all-forms-outer-margin {
+        margin: 20px 20px 0px 20px !important;
+        padding-top: 30px;
+    }
+
+    .seventh-form-h1 {
+        padding-bottom: 30px;
+    }
+    .sixth-form-content-mutual {
+        margin-bottom: 30px;
+    }
+    .second-form-left-part, .third-form-left-part, .fifth-form-left-part, .sixth-form-left-part {
+        width: calc(100% - 80px);
+        margin-bottom: 20px;
+        margin-left: 20px;
+    }
+    .second-form-right-part, .third-form-right-part, .fifth-form-right-part, .sixth-form-right-part {
+        width: calc(100% - 80px);
+        margin-left: 20px;
+    }
+    h1 {
+        font-size: 26px !important;
+    }
+    h2 {
+        font-size: 20px !important;
+        color: black;
+    }
+    .lptop-mockup {
+        margin-top: -10px;
+    }
+    .right-profile-img-div, .post-your-job-img {
+        margin-bottom: 96px;
+    }
+    .post-your-job-1-2-main-div {
+        margin-top: 30px;
+    }
+    .landing-page-mockups-form {
+        margin-bottom: 20px !important;
+    }
+    .main-buttons-div {
+        margin-left: -20px;
+    }
+    .visitors-applicants-users:last-child {
+        margin-right: 20px;
+    }
+    .sixth-form-question {
+        font-size: 18px;
+    }
+    .seventh-form-question {
+        font-size: 18px;
+    }
+    /* .landing-page-eighth-form {
+        margin-bottom: 20px !important;
+    } */
+    .pay-transparency-1-2-main-div, .match-1-2-main-div {
+        margin-top: 40px;
+    }
+    .our-partners-div {
+        padding-bottom: 40px;
+    }
+    .first-partner, .second-partner, .third-partner, .fourth-partner {
+        margin-right: 40px;
+    }
+    .first-partner {
+        margin-left: 30px;
+    }
+}
+
+@media screen and (max-width: 942px) and (min-width: 570px) {
+
+    .sixth-form-questions-div {
+        width: calc(100% - 80px);
+    }
+
+}
+
+@media screen and (max-width: 569px) and (min-width: 481px) {
+
+    .sixth-form-questions-div {
+        width: calc(100% - 60px);
+    }
+
+}
+
+@media screen and (max-width: 1350px) and (min-width: 1161px) {
+
+    .generate-applicants-hand-mockup {
+        width: 351px;
+        height: auto;
+    }
+    .generate-applicants-hand-mockup-div {
+        margin-left: -200px;
+    }
+    .match-first-image, .match-second-image {
+        width: 190px;
+        height: auto;
+    }
+    .match-1-2-main-div {
+        margin-top: 40px;
+    }
+
+
+
+    .qualify-hand-mockup {
+        width: 370px;
+        height: auto;
+    }
+    .qualify-hand-mockup-div {
+        margin-left: 100px;
+
+    }
+    .post-your-job-img {
+        width: 191px;
+        height: auto;
+        margin-top: -10px;
+    }
+    .pay-transparency-1 {
+        width: 201px;
+        height: auto;
+        margin-left: 0px;
+    }
+    .easy-apply-img {
+        width: 290px;
+        height: auto;
+        margin-left: -20px;
+    }
+    .fast-reply-img {
+        width: 320px;
+        height: auto;
+        margin-left: 20px;
+    }
+    .match-first-image {
+        width: 155px;
+        height: auto;
+    }
+    .pay-transparency-2 {
+        width: 125px;
+        height: auto;
+    }
+    .pay-transparency-2-div {
+
+    }
+    .right-profile-img {
+        width: 215px;
+        height: auto;
+        margin-top: 20px;
+        margin-bottom: 40px;
+        margin-left: 30px;
+
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+    .second-form-left-part, .third-form-left-part, .fifth-form-left-part, .sixth-form-left-part {
+        margin-bottom: 10px;
+    }
+    .second-form-right-part, .fifth-form-right-part, .sixth-form-right-part {
+        width: calc(100% - 20px);
+
+    }
+    .right-profile-img-div, .post-your-job-img, .match-1-2-main-div {
+    }
+
+    .lptop-mockup {
+        margin-top: -10px;
+    }
+    .visitors-applicants-users:last-child {
+        margin-right: 10px;
+    }
+    .main-buttons-div {
+        margin-left: -10px;
+    }
+    .all-jobs-mockup {
+    }
+    .landing-page-fifth-form {
+        margin-top: 10px;
+    }
+    .landing-page-fourth-form {
+        margin-left: 10px !important;
+        width: calc(100% - 20px) !important;
+        margin-top: 10px !important;
+        padding-bottom: 20px;
+    }
+
+    .sixth-form-questions-div {
+        width: calc(100% - 40px);
+    }
+    .seventh-form-question {
+        font-size: 16px;
+        margin-right: 30px;
+    }
+    .arrow-down-questions {
+        width: 20px;
+        height: auto;
+    }
+    .sixth-form-content-mutual {
+        margin-bottom: 30px;
+    }
+    .seventh-form-h1 {
+        padding-bottom: 20px !important;
+        font-size: 24px;
+    }
+    .all-forms-outer-margin {
+        padding-top: 30px;
+    }
+    .landing-page-seventh-form, .landing-page-eighth-form, .landing-page-first-form {
+        margin-left: 10px !important;
+        margin-right: 40px !important;
+        margin-top: 0px !important;
+    }
+    .landing-page-first-form {
+        padding-bottom: 20px;
+    }
+    .all-jobs-mockup {
+        width: 220px;
+        height: auto;
+    }
+    .pay-transparency-over-main-div {
+        margin-left: -20px;
+    }
+    .pay-transparency-2-div, .match-second-img-div {
+        margin-left: 30px;
+    }
+    .over-match-1-2-main-div {
+        margin-left: -20px;
+    }
+    .our-partners-div {
+        padding-bottom: 100px;
+    }
+
+    .landing-page-eighth-form {
+        margin-top: 10px !important;
+    }
+    .landing-page-first-form {
+        margin-top: 10px !important;
+    }
+    .right-profile-img-div {
+        margin: auto !important;
+    }
+    .mockups-div {
+        margin-top: 0px;
+    }
+    .right-profile-img {
+        width: 180px;
+        margin-left: -20px !important;
+        margin-top: 50px;
+    }
+    .match-first-image {
+        width: 135px;
+        height: auto;
+    }
+    .match-second-image {
+        width: 136px;
+        height: auto;
+    }
+    .sixth-form-right-part {
+        margin: 10px;
+        margin-top: 0px;
+    }
+    .over-match-1-2-main-div {
+
+    }
+    /* .pay-transparency-2 {
+        margin-bottom: -3px !important;
+    } */
+    .landing-page-sixth-form-title, .landing-page-sixth-form-contet, .landing-page-sixth-form-content {
+    }
+
+    .landing-page-seventh-form, .landing-page-eighth-form, .landing-page-mockups-form, .landing-page-first-form {
+        width: calc(100% - 20px) !important;
+        padding-top: 30px;
+    }
+
+    .all-forms-outer-margin {
+        padding-top: 60px;
+    }
+    .match-second-img-div {
+        margin-top: 110px;
+    }
+    .pay-transparency-1-2-main-div, .match-1-2-main-div {
+        margin-top: 50px;
+    }
+    .pay-transparency-2-div {
+        margin-top: 95px;
+    }
+    .learn-more-div, .our-partners-div, .landing-page-form-content {
+        font-size: 16px;
+    }
+    h1 {
+        font-size: 26px !important;
+    }
+    h2 {
+        font-size: 20px !important;
+    }
+    .seventh-form-partners-div {
+        width: calc(100% - 40px);
+    }
+    .first-partner {
+        width: 165px;
+        height: auto;
+        margin-right: 30px;
+    }
+    .second-partner, .third-partner {
+        width: 171px;
+        height: auto;
+        margin-right: 30px;
+    }
+    .fourth-partner {
+        width: 109px;
+        height: auto;
+        margin-left: 0px;
+        margin-right: 30px;
+    }
+
+    .fifth-partner {
+        width: 122px;
+        height: auto;
+        margin-right: 0px;
+    }
+    .all-forms-outer-margin{
+        width: 100%;
+        padding-top: 30px;
+    }
+    .qualify-hand-mockup {
+        width: 310px;
+        height: auto;
+    }
+
+    .qualify-hand-mockup-div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .mutual-width-mockup-div {
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        margin-top: 40px;
+    }
+
+    .mutual-width-mockup {
+        width: 300px;
+        height: auto;
+    }
+    .easy-apply-img {
+        width: 250px;
+        height: auto;
+        margin-left: 40px;
+    }
+    .fast-reply-img {
+        width: 270px;
+        height: auto;
+    }
+    .qualify-hand-mockup {
+        width: 310px;
+        height: auto;
+    }
+    .pay-transparency-1 {
+        width: 150px;
+        height: auto;
+        margin-left: 0px;
+    }
+    .fast-reply-img-div {
+        margin-left: -10px;
+    }
+    .qualify-hand-mockup-div {
+        display: flex;
+        justify-content: center;
+    }
+    .pay-transparency-2 {
+        width: 110px;
+        height: auto;
+    }
+    .fast-reply-img-div {
+        display: flex;
+        justify-content: center !important;
+    }
+    .easy-apply-img-div {
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+    }
+    .post-your-job-img {
+        width: 120px;
+        height: auto;
+        font-size: 16px;
+    }
+    .post-your-job-1-2-main-div {
+        margin-top: 30px;
+    }
+    .all-forms-outer-margin {
+        width: 100%;
+    }
+    .landing-page-mockups-form {
+        margin-left: 10px !important;
+        margin-top: 10px !important;
+        margin-bottom: 10px !important;
+    }
+    .landing-page-second-form, .landing-page-fifth-form, .landing-page-sixth-form {
+        margin-top: 10px;
+    }
+    .under-form {
+        margin-left: -20px;
+        margin-top: -20px;
+    }
+    .post-your-job-img {
+        margin-left: 0px;
+    }
+    .all-forms-outer-margin, .forms-border-radius-mobile {
+        border-radius: 20px !important;
+    }
+    .landing-page-third-form {
+        margin-top: 10px;
+    }
+    .all-forms-outer-margin {
+        padding-top: 20px;
+    }
+    .seventh-form-partners-under-div {
+        margin-left: -30px;
+    }
+    .jobs-buttons {
+        margin: 0;
+        margin-top: 20px;
+        display: flex;
+        justify-content: flex-start;
+        margin-left: 10px !important;
+    }
+    .main-buttons-div {
+        margin-left: 0px;
+    }
+    .visitors-applicants-users {
+        margin-right: 10px;
+    }
+    .profileHeader {
+    }
+    .lptop-mockup {
+        width: calc(100% - 40px);
+        height: auto;
+    }
+    .generate-applicants-hand-mockup-div, .qualify-hand-mockup-div {
+        margin-left: -20px;
+    }
+
+    .landing-page-eighth-form {
+        margin-bottom: 10px !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    .right-arrow {
+        right: 20px;
+        bottom: 20px;
+        height: 20px;
+        width: auto;
+    }
+    .first-partner {
+        margin-left: 30px;
+    }
+    .form-height-mobile {
+        height: 420px;
+    }
+    .second-form-left-part, .second-form-right-part, .landing-page-fourth-form {
+        padding-bottom: 0px;
+        width: calc(100% - 40px);
+        margin-left: 10px;
+    }
+    .landing-page-fourth-form {
+        padding-bottom: 20px;
+    }
+
+    .third-form-left-part, .third-form-right-part, .fifth-form-right-part .sixth-form-left-part {
+        width: calc(100% - 60px);
+        margin-left: 10px;
+    }
+    .fifth-form-left-part, .fifth-form-right-part, .sixth-form-left-part, .sixth-form-right-part {
+        width: calc(100% - 60px);
+        margin-left: 10px;
+    }
+    .form-height-mobile {
+        position: relative;
+    }
+    .sixth-form-questions-div, .post-your-job-1-2-main-div {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        top: 50%;
+        margin: auto;
+    }
+    .seventh-form-partners-under-div {
+    }
+    .post-your-job-1-2-main-div {
+        margin-top: -20px;
+    }
+    .our-partners-div {
+    }
+    .qualify-hand-mockup-div, .generate-applicants-hand-mockup-div, .fast-reply-img-div {
+        margin-top: 40px;
+    }
+
+    .all-jobs-mockup-div, .easy-apply-img-div, .fast-reply-img-div, .qualify-hand-mockup-div, .generate-applicants-hand-mockup-div {
+        position: absolute;
+        transform: translate(-50%, 0%);
+        left: 50%;
+        bottom: 0%;
+    }
+
+    .qualify-hand-mockup-div, .generate-applicants-hand-mockup-div {
+        margin: auto;
+    }
+
+    .landing-page-seventh-form, .landing-page-eighth-form {
+        padding-top: 30px !important;
+    }
+    .landing-page-seventh-form, .landing-page-eighth-form {
+        padding-bottom: 10px;
+    }
+    .learn-more-margin-bottom {
+        margin-bottom: 50px;
+    }
+    .partners-h1 {
+        margin-bottom: 10px;
+    }
+    .landing-page-first-for, .landing-page-second-form, landing-page-third-form {
+        width: calc(100% - 20px) !important;
+    }
+}
+

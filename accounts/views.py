@@ -34,7 +34,14 @@ today = timezone.now
 
 
 
-
+def landingPage(request):
+    userNo =  CustomUser.objects.all().count()
+    userNo = userNo+2300
+    appNo  = Application.objects.all().count()
+    appNo = appNo+2300
+    visitorNo = 32083
+    jobs = Jobs.objects.all().count()
+    return render(request,"landing-page.html",{"userNo":userNo,"appNo":appNo,"visitorNo":visitorNo,"jobs":jobs})
 
 
 

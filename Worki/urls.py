@@ -31,7 +31,8 @@ urlpatterns = [
     path('login/', LoginView.as_view(), name='login'),
     path('create-account/', registration, name='register'),
     path('logout/', userViews.LogoutView.as_view(template_name='home/home.html'), name='logout'),
-    path('', MainJobs.as_view(), name='home'),
+    path('', landingPage, name='home'),
+    # path('', MainJobs.as_view(), name='home'),
 
     #Jobs  / Profile / Posted / Aplied
     path("",include('accounts.urls')),

@@ -10,7 +10,7 @@ from django.urls import path,include
 urlpatterns = [
 
     path('accounts/', include('allauth.urls')),
-    path('<int:pk>', MainJobsId.as_view(), name="visitJob"),
+    path('jobs/', MainJobs.as_view(),name="jobs"),
     path('jobs/<int:pk>', MainJobsId.as_view()),
     path("TermsAndCondition/", Terms, name="terms"),
 
@@ -25,12 +25,12 @@ urlpatterns = [
 
     # JOBS
 
-    path("Jobs/Add", add_JobScreeningQuestion, name="addJob"),
-    path("Jobs/Edit/<int:pk>", editJob, name="editJob"),
-    path("Jobs/Posted", AjaxHandler.as_view(), name="postedJob"),
-    path("Jobs/Posted/Open", RecruiterOpenJobs.as_view(), name="postedJobOpen"),
-    path("Jobs/Posted/Closed", RecruiterClosedJobs.as_view(), name="postedJobClosed"),
-    path("Jobs/Applied", AppliedJobs.as_view(), name="appliedJob"),
+    path("post-job", add_JobScreeningQuestion, name="addJob"),
+    path("edit-job/<int:pk>", editJob, name="editJob"),
+    path("recruiter", AjaxHandler.as_view(), name="postedJob"),
+    path("recruiter/open", RecruiterOpenJobs.as_view(), name="postedJobOpen"),
+    path("recruiter/closed", RecruiterClosedJobs.as_view(), name="postedJobClosed"),
+    path("my-jobs", AppliedJobs.as_view(), name="appliedJob"),
 
     # MainJobs
     path("apply/<int:pk>", applyForJobSQ, name="apply"),
