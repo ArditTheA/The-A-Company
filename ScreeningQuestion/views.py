@@ -1,7 +1,7 @@
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMultiAlternatives
 from django.http import BadHeaderError, HttpResponse
 from django.shortcuts import render, redirect
-from django.template.loader import render_to_string
+from django.template.loader import render_to_string, get_template
 
 from ScreeningQuestion.models import *
 # Create your views here.
@@ -481,6 +481,45 @@ def makeApplication(userId,pk,job,dataa,Status,emailU):
         return HttpResponse('Invalid header found.')
 
 
+
+def sentQualifiedEmail(request,job,user):
+    # Render the template
+
+    context = {'image_url': 'https://worki.global/static/img/12.jpeg',
+               'link_url': 'https://worki.global',
+               "user": user,
+               "job":job}
+    template = get_template('Emails/QualifiedEmail.html')
+    html_content = template.render(context)
+    subject = "Application update for "+job.job_title+" at "+job.company
+    # Create and send the email
+    msg = EmailMultiAlternatives(
+        subject,
+        '',
+        'Worki hello@worki.global',
+        [request.user.email]
+    )
+    msg.attach_alternative(html_content, "text/html")
+    msg.send()
+
+def sentNQualifiedEmail(request,job,user):
+    # Render the template
+    context = {'image_url': 'https://worki.global/static/img/12.jpeg',
+               'link_url': 'https://worki.global',
+               "user": user,
+               "job":job}
+    template = get_template('Emails/NQualifiedEmail.html')
+    html_content = template.render(context)
+    subject = "Application update for "+job.job_title +" at "+job.company
+    # Create and send the email
+    msg = EmailMultiAlternatives(
+        subject,
+        '',
+        'Worki hello@worki.global',
+        [request.user.email]
+    )
+    msg.attach_alternative(html_content, "text/html")
+    msg.send()
 @login_required
 def applyForJobSQ(request, pk):
     job = Jobs.objects.get(id=pk)
@@ -533,12 +572,14 @@ def applyForJobSQ(request, pk):
                         ApAns.user_answer = request.POST.get(str(i.id))
 
                         if i.qualify == True:
-                            if i.ideal_answer == request.POST.get(str(i.id)) or (i.question_type == "Numeric" and request.POST.get(str(i.id)) >= i.ideal_answer ):
+                            if i.ideal_answer == request.POST.get(str(i.id)) or (i.question_type == "Numeric" and request.POST.get(str(i.id)) >= i.ideal_answer):
 
                                 qualify.append(True)
                             else:
+
                                 qualify.append(False)
                         ApAns.save()
+                us = request.user
 
                 # Filtered Applicant Settings && make applicant qualify or notQualify
                 if job_settings.jobSettings == "F":
@@ -547,6 +588,8 @@ def applyForJobSQ(request, pk):
                     if ckeckList(qualify):
                         makeApplication(userId,pk,job,dataa,"Qualified",request.user.email)
                         form.save()
+                        sentQualifiedEmail(request,job,us)
+
                         return redirect('appSuc')
 
                     # make applicant not qualified
@@ -554,14 +597,9 @@ def applyForJobSQ(request, pk):
 
                         makeApplication(userId,pk,job,dataa,"Not qualified",request.user.email)
                         print("doesnt meet qualification")
-                        rejection_email = job_settings.email
-                        rejectedSubject = "Application update for "+job.job_title
                         form.save()
+                        sentNQualifiedEmail(request,job,us)
 
-                        try:
-                            send_mail(rejectedSubject,rejection_email,"Worki hello@worki.global",[request.user.email],fail_silently=False)
-                        except BadHeaderError:
-                            return HttpResponse('Invalid header found.')
                         return redirect('appSuc')
                 else:
                     makeApplication(userId,pk,job,dataa,"Not qualified",request.user.email)

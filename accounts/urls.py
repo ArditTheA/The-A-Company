@@ -41,5 +41,7 @@ urlpatterns = [
     path("Job/close/<int:pk>",CoseJob,name="closeJob"),
     path("Job/open/<int:pk>",OpenJob,name="openJob"),
 
+
+    path('testt/',sentNQualifiedEmail)
 ]
 

@@ -56,7 +56,7 @@ def send_email_with_template(request):
     context = {'image_url': 'https://worki.global/static/img/12.jpeg',
                'link_url': 'https://worki.global',
 			   "user":request.user}
-    template = get_template('emailTemplate.html')
+    template = get_template('QualifiedEmail.html')
     html_content = template.render(context)
 
     # Create and send the email
