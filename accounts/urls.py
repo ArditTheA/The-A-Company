@@ -11,7 +11,7 @@ urlpatterns = [
 
     path('accounts/', include('allauth.urls')),
     path('jobs/', MainJobs.as_view(),name="jobs"),
-    path('jobs/<int:pk>', MainJobsId.as_view()),
+    path('jobs/<int:pk>', MainJobsId.as_view(),name="visitJob"),
     path("TermsAndCondition/", Terms, name="terms"),
 
     # profile
