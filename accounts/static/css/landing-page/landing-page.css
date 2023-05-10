@@ -1,7 +1,4 @@
-body {
-    margin: 0;
-    background-color: #f1f1f1;
-}
+
 
 .visitors-applicants-users-main-div {
     margin-top: 20px;
@@ -16,7 +13,7 @@ body {
     border-radius:20px;
     margin-right: 20px;
     font-size: 16px;
-    color: #65676B;
+    color: #65676B; 
     border: none;
     padding-left: 20px;
 }
@@ -47,10 +44,10 @@ h1, h2 {
     text-align: center;
 }
 .landing-page-first-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: white;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    background-color: white; 
     border-radius: 40px;
 }
 
@@ -74,56 +71,56 @@ h1, h2 {
     margin-top: 20px;
 }
 .landing-page-mockups-form {
-    display: flex;
-    flex-direction: column;
+    display: flex; 
+    flex-direction: column; 
     margin-left: 40px;
     /* align-items: center;  */
     /* justify-content: center;  */
-    background-color: #06191D;
+    background-color: #06191D; 
     border-radius: 40px;
     margin-bottom: 20px !important;
 }
 
 .match-second-img-div {
-    display: flex;
+    display: flex; 
     margin-left: 40px;
 }
 .pay-transparency-2-div {
-    display: flex;
-    margin-left: 40px;
+    display: flex; 
+    margin-left: 40px; 
     margin-top: 110px;
 }
 .landing-page-second-form, .landing-page-fifth-form, .landing-page-sixth-form {
     display: flex;
-    justify-content: space-between;
-    width: 100%;
+    justify-content: space-between; 
+    width: 100%; 
     margin-top: 20px;
 }
 .second-form-left-part {
-    width: 50%;
-    background-color: white;
-    border-radius: 40px;
-    padding-left: 40px;
-    margin-right: 10px;
-    margin-left: 40px;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    width: 50%; 
+    background-color: white; 
+    border-radius: 40px; 
+    padding-left: 40px; 
+    margin-right: 10px; 
+    margin-left: 40px; 
+    padding-top: 40px; 
+    padding-bottom: 40px; 
     position: relative;
 }
 .second-form-right-part {
-    width: 50%;
-    background-color: white;
-    border-radius: 40px;
-    margin-right: 40px;
-    padding-left: 40px;
-    margin-left: 10px;
-    padding-top: 40px;
+    width: 50%; 
+    background-color: white; 
+    border-radius: 40px; 
+    margin-right: 40px; 
+    padding-left: 40px; 
+    margin-left: 10px; 
+    padding-top: 40px; 
     position: relative;
 }
 .pay-transparency-1-2-main-div, .post-your-job-1-2-main-div, .match-1-2-main-div {
-    width: fit-content;
-    display: flex;
-    justify-content: center;
+    width: fit-content; 
+    display: flex; 
+    justify-content: center; 
     margin: auto;
 }
 .pay-transparency-1-2-main-div, .match-1-2-main-div {
@@ -144,121 +141,121 @@ h1, h2 {
 }
 
 .landing-page-seventh-form, .landing-page-eighth-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #06191D;
-    border-radius: 40px;
-    padding-bottom: 60px;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    background-color: #06191D; 
+    border-radius: 40px; 
+    padding-bottom: 60px; 
 }
 .sixth-form-questions-div {
     width: 800px;
 }
 
 .seventh-form-h1 {
-    text-align: center;
-    font-weight: 100;
-    color: #FDFFFF;
+    text-align: center; 
+    font-weight: 100; 
+    color: #FDFFFF; 
     padding-bottom: 50px;
 }
 .sixth-form-questions-content {
-    display: flex;
-    justify-content: space-between;
+    display: flex; 
+    justify-content: space-between; 
     align-items: center;
 }
 .sixth-form-content-mutual {
-    margin-bottom: 40px;
+    margin-bottom: 40px; 
 }
 .third-form-right-part {
-    width: 50%;
-    background-color: white;
-    border-radius: 40px;
-    margin-right: 40px;
-    padding-left: 40px;
-    margin-left: 10px;
-    padding-top: 40px;
+    width: 50%; 
+    background-color: white; 
+    border-radius: 40px; 
+    margin-right: 40px; 
+    padding-left: 40px; 
+    margin-left: 10px; 
+    padding-top: 40px; 
     position: relative;
 }
 .landing-page-third-form {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
+    display: flex; 
+    justify-content: space-between; 
+    width: 100%; 
     margin-top: 20px;
 }
 .landing-page-sixth-form {
     margin-top: 20px;
 }
 .third-form-left-part {
-    position: relative;
-    width: 50%;
-    background-color: white;
-    border-radius: 40px;
-    margin-right: 40px;
-    padding-left: 40px;
-    margin-right: 10px;
-    padding-top: 40px;
+    position: relative; 
+    width: 50%; 
+    background-color: white; 
+    border-radius: 40px; 
+    margin-right: 40px; 
+    padding-left: 40px; 
+    margin-right: 10px; 
+    padding-top: 40px; 
     margin-left: 40px;
 }
 .right-profile-img-div {
     display: flex;
-    justify-content: center;
-    margin-top: 60px;
+    justify-content: center; 
+    margin-top: 60px; 
     margin-left: -120px;
 }
 .landing-page-fourth-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: white;
-    border-radius: 40px;
-    padding-bottom: 20px;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    background-color: white; 
+    border-radius: 40px; 
+    padding-bottom: 20px; 
 }
 .landing-page-fifth-form {
-    display: flex;
-    justify-content: space-between;
+    display: flex; 
+    justify-content: space-between; 
     margin-top: 20px;
 }
 .landing-page-eighth-form {
     margin-bottom: 20px;
 }
 .generate-applicants-hand-mockup-div {
-    display: flex;
-    justify-content: center;
-    margin-top: 40px;
+    display: flex; 
+    justify-content: center; 
+    margin-top: 40px; 
     margin-left: -230px;
 }
 .qualify-hand-mockup-div {
-    display: flex;
-    justify-content: center;
-    margin-top: 40px;
+    display: flex; 
+    justify-content: center; 
+    margin-top: 40px; 
     margin-left: 130px;
 }
 .fifth-form-left-part, .sixth-form-left-part {
 
     width: 50%;
-    background-color: white;
-    border-radius: 40px;
-    margin-right: 40px;
-    padding-left: 40px;
-    margin-right: 10px;
-    padding-top: 40px;
-    position: relative;
+    background-color: white; 
+    border-radius: 40px; 
+    margin-right: 40px; 
+    padding-left: 40px; 
+    margin-right: 10px; 
+    padding-top: 40px; 
+    position: relative; 
     margin-left: 40px;
 }
 
 .fifth-form-right-part, .sixth-form-right-part {
-    width: 50%;
-    background-color: white;
-    border-radius: 40px;
-    margin-right: 40px;
-    padding-left: 40px;
-    margin-left: 10px;
-    padding-top: 40px;
+    width: 50%; 
+    background-color: white; 
+    border-radius: 40px; 
+    margin-right: 40px; 
+    padding-left: 40px; 
+    margin-left: 10px; 
+    padding-top: 40px; 
     position: relative;
 }
 .landing-page-seventh-form, .landing-page-eighth-form {
-    display: flex;
-    justify-content: space-between;
+    display: flex; 
+    justify-content: space-between; 
     margin-top: 20px;
 }
 .visitors-applicants-users:last-child {
@@ -305,10 +302,10 @@ h1, h2 {
 }
 
 .landing-page-seventh-form, .landing-page-eighth-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #06191D;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    background-color: #06191D; 
     border-radius: 40px;
 }
 
@@ -316,25 +313,25 @@ h1, h2 {
     padding-bottom: 60px;
 }
 .our-partners-div {
-    color: #FDFFFF;
+    color: #FDFFFF; 
     padding-bottom: 90px;
     font-size: 20px;
 }
 
 .seventh-form-question {
-    color: #FDFFFF;
+    color: #FDFFFF; 
     font-size: 20px;
 }
 .fast-reply-img-div {
-    display: flex;
-    justify-content: center;
-    margin-top: 40px;
+    display: flex; 
+    justify-content: center; 
+    margin-top: 40px; 
     margin-left: -140px;
 }
 .easy-apply-img-div {
-    display: flex;
+    display: flex; 
     justify-content: center;
-    margin-top: 40px;
+    margin-top: 40px; 
     margin-left: 75px;
 }
 
@@ -350,9 +347,9 @@ h1, h2 {
     overflow-x: scroll;
 }
 .seventh-form-partners-under-div {
-    width: max-content;
-    display: flex;
-    align-items: center;
+    width: max-content; 
+    display: flex; 
+    align-items: center; 
     overflow-x: scroll;
 }
 
@@ -367,19 +364,19 @@ h1, h2 {
 margin-top: 150px;
 }
 .right-arrow-pay-transparency {
-    position: absolute;
-    bottom: 40px;
+    position: absolute; 
+    bottom: 40px; 
     right: 40px;
 }
 .right-arrow {
-    position: absolute;
-    bottom: 40px;
+    position: absolute; 
+    bottom: 40px; 
     right: 40px;
 }
 .landing-page-eighth-form {
     margin-bottom: 20px !important;
     padding-bottom: 120px;
-}
+}    
 
 @media screen and (max-width: 1160px) and (min-width: 1025px) {
     .pay-transparency-1-2-main-div {
@@ -452,14 +449,14 @@ margin-top: 150px;
     }
     .qualify-hand-mockup-div {
         margin-left: 80px;
-
+        
     }
     .post-your-job-img {
         width: 155px;
         height: auto;
         margin-top: -10px;
     }
-
+    
 }
  /* @media screen and (max-width: 1088px) and (min-width: 1025px) {
     .pay-transparency-1-div {
@@ -467,7 +464,7 @@ margin-top: 150px;
     .pay-transparency-1 {
         width: 180px;
         height: fit-content;
-    }
+    }    
     .pay-transparency-2 {
         width: 122px;
         height: fit-content;
@@ -485,7 +482,7 @@ margin-top: 150px;
             display: flex;
             flex-direction: column;
             margin-right: 30px;
-        }
+        }    
         .generate-applicants-hand-mockup-div {
             margin-left: -220px;
         }
@@ -499,7 +496,7 @@ margin-top: 150px;
         width: calc(100% - 100px);
         margin-bottom: 20px;
         margin-left: 30px;
-    }
+    }   
     .second-form-right-part, .third-form-right-part, .fifth-form-right-part, .sixth-form-right-part {
         width: calc(100% - 100px);
         margin-left: 30px;
@@ -507,7 +504,7 @@ margin-top: 150px;
     }
     .right-profile-img-div, .post-your-job-img {
         margin-bottom: 106px;
-    }
+    }    
     .lptop-mockup {
         margin-top: -10px;
     }
@@ -522,7 +519,7 @@ margin-top: 150px;
     }
     .fifth-partner {
         margin-right: 30px;
-    }
+    }    
     .pay-transparency-2-div {
         margin-left: 80px !important;
     }
@@ -534,7 +531,7 @@ margin-top: 150px;
 
 .pay-transparency-2-div {
     margin-top: 90px;
-}
+}    
 .pay-transparency-1-2-main-div, .match-1-2-main-div {
     padding-bottom: 60px;
 }
@@ -602,7 +599,7 @@ margin-top: 150px;
     }
     .landing-page-seventh-form {
         padding-bottom: 40px;
-    }
+    }    
 } */
 
 @media screen and (max-width: 671px) and (min-width: 572px) {
@@ -632,7 +629,7 @@ margin-top: 150px;
         width: 200px;
         height: auto;
         margin-left: 0px;
-    }
+    }    
     .pay-transparency-2 {
         width: 133px;
         height: auto;
@@ -676,13 +673,13 @@ margin-top: 150px;
     .pay-transparency-2-div {
         margin-top: 105px !important;
         margin-left: 50px;
-    }
+    }    
     .pay-transparency-2-div {
         margin-left: 50px !important;
     }
     .match-second-img-div {
         margin-top: 130px;
-    }
+    }        
 
 }
 
@@ -692,7 +689,7 @@ margin-top: 150px;
     }
     .fourth-partner {
         margin-left: 50px;
-    }
+    }    
 } */
 
 @media screen and (max-width: 571px) and (min-width: 481px) {
@@ -730,7 +727,7 @@ margin-top: 150px;
         width: 189px;
         height: auto;
         margin-left: 0px;
-    }
+    }    
     .pay-transparency-2 {
         width: 124px;
         height: auto;
@@ -776,7 +773,7 @@ margin-top: 150px;
     }
     .pay-transparency-2-div {
         margin-top: 100px !important;
-    }
+    }    
     .match-second-img-div {
         margin-top: 115px;
     }
@@ -854,7 +851,7 @@ margin-top: 150px;
         width: 165px;
         height: auto;
     }
-
+    
 }
 
 @media screen and (max-width: 767px) and (min-width: 632px) {
@@ -893,7 +890,7 @@ margin-top: 150px;
         width: 320px;
         height: auto;
     }
-
+    
 }
 
 @media screen and (max-width: 767px) and (min-width: 481px) {
@@ -902,7 +899,7 @@ margin-top: 150px;
         margin: 20px 20px 0px 20px !important;
         padding-top: 30px;
     }
-
+    
     .seventh-form-h1 {
         padding-bottom: 30px;
     }
@@ -920,23 +917,23 @@ margin-top: 150px;
     }
     h1 {
         font-size: 26px !important;
-    }
+    }        
     h2 {
         font-size: 20px !important;
         color: black;
-    }
+    }    
     .lptop-mockup {
         margin-top: -10px;
     }
     .right-profile-img-div, .post-your-job-img {
         margin-bottom: 96px;
-    }
+    }    
     .post-your-job-1-2-main-div {
         margin-top: 30px;
     }
     .landing-page-mockups-form {
         margin-bottom: 20px !important;
-    }
+    }    
     .main-buttons-div {
         margin-left: -20px;
     }
@@ -964,7 +961,7 @@ margin-top: 150px;
     .first-partner {
         margin-left: 30px;
     }
-}
+}    
 
 @media screen and (max-width: 942px) and (min-width: 570px) {
 
@@ -998,7 +995,7 @@ margin-top: 150px;
     .match-1-2-main-div {
         margin-top: 40px;
     }
-
+    
 
 
     .qualify-hand-mockup {
@@ -1007,7 +1004,7 @@ margin-top: 150px;
     }
     .qualify-hand-mockup-div {
         margin-left: 100px;
-
+        
     }
     .post-your-job-img {
         width: 191px;
@@ -1046,7 +1043,7 @@ margin-top: 150px;
         margin-top: 20px;
         margin-bottom: 40px;
         margin-left: 30px;
-
+        
     }
 
 }
@@ -1054,7 +1051,7 @@ margin-top: 150px;
 @media screen and (max-width: 480px) {
     .second-form-left-part, .third-form-left-part, .fifth-form-left-part, .sixth-form-left-part {
         margin-bottom: 10px;
-    }
+    }   
     .second-form-right-part, .fifth-form-right-part, .sixth-form-right-part {
         width: calc(100% - 20px);
 
@@ -1145,7 +1142,7 @@ margin-top: 150px;
         width: 180px;
         margin-left: -20px !important;
         margin-top: 50px;
-    }
+    }    
     .match-first-image {
         width: 135px;
         height: auto;
@@ -1159,7 +1156,7 @@ margin-top: 150px;
         margin-top: 0px;
     }
     .over-match-1-2-main-div {
-
+        
     }
     /* .pay-transparency-2 {
         margin-bottom: -3px !important;
@@ -1212,7 +1209,7 @@ margin-top: 150px;
         margin-left: 0px;
         margin-right: 30px;
     }
-
+    
     .fifth-partner {
         width: 122px;
         height: auto;
@@ -1261,7 +1258,7 @@ margin-top: 150px;
         width: 150px;
         height: auto;
         margin-left: 0px;
-    }
+    } 
     .fast-reply-img-div {
         margin-left: -10px;
     }
@@ -1329,6 +1326,7 @@ margin-top: 150px;
     }
     .main-buttons-div {
         margin-left: 0px;
+        margin-bottom: 0px ;
     }
     .visitors-applicants-users {
         margin-right: 10px;
@@ -1348,7 +1346,7 @@ margin-top: 150px;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-    }
+    }    
     .right-arrow {
         right: 20px;
         bottom: 20px;
@@ -1409,7 +1407,7 @@ margin-top: 150px;
     .qualify-hand-mockup-div, .generate-applicants-hand-mockup-div {
         margin: auto;
     }
-
+    
     .landing-page-seventh-form, .landing-page-eighth-form {
         padding-top: 30px !important;
     }
@@ -1426,4 +1424,5 @@ margin-top: 150px;
         width: calc(100% - 20px) !important;
     }
 }
+
 
