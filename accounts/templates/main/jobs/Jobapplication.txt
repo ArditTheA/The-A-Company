@@ -5,8 +5,7 @@ You have successfully applied for {{job.job_title}}.
 You’re guaranteed to hear in 72 hours via email or phone call about your job application.
 
 We’ll be in touch soon,
-
-Worki Team
+Worki
 
 
 
