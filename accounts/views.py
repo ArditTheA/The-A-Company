@@ -39,7 +39,7 @@ def landingPage(request):
     userNo = userNo+2300
     appNo  = Application.objects.all().count()
     appNo = appNo+2300
-    visitorNo = 32083
+    visitorNo = 32083+2023
     jobs = Jobs.objects.all().count()
     return render(request,"landing-page.html",{"userNo":userNo,"appNo":appNo,"visitorNo":visitorNo,"jobs":jobs})
 
