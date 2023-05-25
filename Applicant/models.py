@@ -15,7 +15,7 @@ class subPhase(models.Model):
         return self.name+" - "+str(self.phase)
 
 class ApplicantSubPhase(models.Model):
-    subPhase = models.ForeignKey(subPhase,on_delete=models.CASCADE)
+    subPhase = models.CharField(max_length=255)
     user_id = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
     job_id = models.ForeignKey(Jobs,on_delete=models.CASCADE,null=True,blank=True)
     def __str__(self):

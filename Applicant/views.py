@@ -7,6 +7,28 @@ from Applicant.models import *
 from ScreeningQuestion.models import *
 
 
+
+def moveApplicantToPhase(request,jpk,appSub,userList):
+    job_id = Jobs.objects.get(id=jpk)
+    appPhase = appSub
+    print(appSub)
+    useridList = userList.split(",")
+    for i in useridList:
+        if(ApplicantSubPhase.objects.filter(user_id=i).filter(job_id=jpk).exists()):
+            getAPP = ApplicantSubPhase.objects.filter(user_id=i).filter(job_id=jpk)
+            print(getAPP[0].id)
+            aps = ApplicantSubPhase.objects.get(id=getAPP[0].id)
+            aps.subPhase = appSub
+            aps.save()
+        else:
+            aps = ApplicantSubPhase()
+            aps.user_id = CustomUser.objects.get(id=i)
+            aps.subPhase=appSub
+            aps.job_id=job_id
+            aps.save()
+    print("done")
+    return redirect("applicant", jpk)
+
 @user_passes_test(lambda u: u.is_superuser)
 def setDaysLeft(request):
     job = Jobs.objects.all()
@@ -31,43 +53,8 @@ def changeEmailForJobs(request):
 
 
 
-@user_passes_test(lambda u: u.is_superuser)
-def MakeAllJobs(request):
-    job = Jobs.objects.all()
-    for i in job:
-        jo = Jobs.objects.get(id=i.id)
-        jo.user_id = request.user
-        jo.save()
-    return redirect("postedJob")
 
-@user_passes_test(lambda u: u.is_superuser)
-def addPhase(request):
-    job = Jobs.objects.all()
-    for i in job:
-        jp = Phase()
-        jp.name="Aboard"
-        jp.user_id=request.user
-        jp.job_id=i
-        jp.save()
-    return redirect("postedJob")
 
-@user_passes_test(lambda u: u.is_superuser)
-def addSq(request):
-    job = Jobs.objects.all()
-    for i in  job:
-        jq= JobQuestion()
-        jq.job_id=i
-        jq.promp ="Are you an active university student?"
-        jq.question_type="Yes/No"
-        jq.ideal_answer="Yes"
-        jq.qualify=True
-        jq.save()
-        js = JobSettings()
-        js.job_id=i
-        js.email = "Hello,\nWorki has carefully reviewed your application.\nYou don’t meet the following requirement for the Work and Travel program:\n\tYou are currently not an active university student\nIf you feel this is a mistake, schedule an online meeting with us here.\nKindly, Worki"
-        js.jobSettings="F"
-        js.save()
-    return redirect("postedJob")
 
 
 from django.http import HttpResponse
