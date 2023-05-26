@@ -1,7 +1,9 @@
+import json
 from datetime import timedelta
 
 from django.contrib.auth.decorators import user_passes_test
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
+from django.views import View
 
 from Applicant.models import *
 from ScreeningQuestion.models import *
@@ -28,6 +30,89 @@ def moveApplicantToPhase(request,jpk,appSub,userList):
             aps.save()
     print("done")
     return redirect("applicant", jpk)
+
+class getApplicantOnPhase(View):
+    def get(self,request,appSub,jpk):
+        JobOwner = Jobs.objects.get(id=jpk)
+        CurrentUser = request.user
+        usID = request.POST.get("user_id")
+
+        users = ApplicantSubPhase.objects.filter(subPhase=appSub).filter(job_id=jpk)
+
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            userid = request.headers.get("userid")
+            newDic = {}
+
+            user = CustomUser.objects.get(id=userid)
+            newDic["fname"] = user.first_name
+            newDic["lname"] = user.last_name
+            newDic["email"] = user.email
+            newDic["phone"] = user.phone_number
+
+            Status = Application.objects.filter(job_id=jpk).filter(user_id=userid).values_list("ApplicantStat",
+                                                                                               flat=True).first()
+            newDic["Status"] = str(Status)
+
+            if user.city == None:
+                newDic["city"] = user.country
+            else:
+                newDic["city"] = user.city + ", " + user.country
+            appdate = Application.objects.filter(user_id=userid).filter(job_id=jpk).values_list("apply_date",
+                                                                                                flat=True).first()
+            newDic["applyDate"] = format(appdate, "%d/%m/%Y")
+
+            ########### User Experience ##########
+            count = 0
+            uExp = UserExperiece.objects.filter(user_id=userid)
+            uExpCount = UserExperiece.objects.filter(user_id=userid).count()
+            newDic["userExpCount"] = uExpCount
+
+            for i in uExp:
+                title = "title" + str(count)
+                newDic[title] = i.title
+                company = "company" + str(count)
+                newDic[company] = i.company
+                country = "country" + str(count)
+                newDic[country] = i.Country
+                city = "cityexp" + str(count)
+                newDic[city] = i.city_usExp
+                date = "date" + str(count)
+                dateQuery = ""
+                if i.end_date is None:
+                    dateQuery = format(i.start_date, "%d/%m/%Y") + " - Present"
+                else:
+                    dateQuery = format(i.start_date, "%d/%m/%Y") + " - " + format(i.end_date, "%d/%m/%Y")
+                newDic[date] = dateQuery
+                count += 1
+
+            ############# User Education ########
+            userEdu = UserEducation.objects.filter(user_id=userid)
+            userEduCount = UserEducation.objects.filter(user_id=userid).count()
+            newDic["userEduCount"] = userEduCount
+            countEdu = 0
+            for i in userEdu:
+                university = "university" + str(countEdu)
+                newDic[university] = i.university
+                field = "field" + str(countEdu)
+                newDic[field] = i.field_of_study
+                location = "uniloc" + str(countEdu)
+
+                if i.city_e is None:
+                    newDic[location] = i.country_e
+                else:
+                    newDic[location] = i.city_e + " - " + i.country_e
+
+                date = "unidate" + str(countEdu)
+                if i.end_year is None:
+                    newDic[date] = format(i.start_year, "%d/%m/%Y") + " - Present"
+                else:
+                    newDic[date] = format(i.start_year, "%d/%m/%Y") + " - " + format(i.end_year, "%d/%m/%Y")
+                countEdu += 1
+            return HttpResponse(json.dumps(newDic), content_type='application/json; charset=utf8')
+        app = True
+        return render(request, "Match/Applicant/index.html",
+                      dict( jpk=jpk, users=users,app=app))
+
 
 @user_passes_test(lambda u: u.is_superuser)
 def setDaysLeft(request):
