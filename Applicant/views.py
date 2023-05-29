@@ -8,6 +8,8 @@ from django.views import View
 from Applicant.models import *
 from ScreeningQuestion.models import *
 
+OnBoardPhase = ["Payment","Meet With Us","Documents for work permit","Your work permit is here"]
+onboardPhaseName = ["Payment","Meet-With-Us","Documents-for-work-permit","Your-work-permit-is-here"]
 
 
 def moveApplicantToPhase(request,jpk,appSub,userList):
@@ -36,9 +38,14 @@ class getApplicantOnPhase(View):
         JobOwner = Jobs.objects.get(id=jpk)
         CurrentUser = request.user
         usID = request.POST.get("user_id")
-
+        print("------------------------------")
+        print("------------------------------")
+        print(appSub)
+        print("------------------------------")
+        print("------------------------------")
+        jpk = int(jpk)
         users = ApplicantSubPhase.objects.filter(subPhase=appSub).filter(job_id=jpk)
-
+    
         if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
             userid = request.headers.get("userid")
             newDic = {}
@@ -59,8 +66,13 @@ class getApplicantOnPhase(View):
                 newDic["city"] = user.city + ", " + user.country
             appdate = Application.objects.filter(user_id=userid).filter(job_id=jpk).values_list("apply_date",
                                                                                                 flat=True).first()
-            newDic["applyDate"] = format(appdate, "%d/%m/%Y")
-
+            print("-----------------------")
+            print(appdate)
+            print("-----------------------")
+            if appdate != None:
+                newDic["applyDate"] = format(appdate, "%d/%m/%Y")
+            else:
+                newDic["applyDate"]=""
             ########### User Experience ##########
             count = 0
             uExp = UserExperiece.objects.filter(user_id=userid)
@@ -108,10 +120,12 @@ class getApplicantOnPhase(View):
                 else:
                     newDic[date] = format(i.start_year, "%d/%m/%Y") + " - " + format(i.end_year, "%d/%m/%Y")
                 countEdu += 1
+                print(newDic)
             return HttpResponse(json.dumps(newDic), content_type='application/json; charset=utf8')
         app = True
+        
         return render(request, "Match/Applicant/index.html",
-                      dict( jpk=jpk, users=users,app=app))
+                      dict( jpk=jpk, users=users,app=app,appSub=appSub,OnBoardPhase=OnBoardPhase))
 
 
 @user_passes_test(lambda u: u.is_superuser)

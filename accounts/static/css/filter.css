@@ -31,6 +31,7 @@ select {
     -webkit-appearance: none;
 }
 
+
 textarea {
     height: auto;
     resize: none;
