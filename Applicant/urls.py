@@ -9,6 +9,8 @@ urlpatterns = [
     path("Administrator/Admin/Job/deadline",setDaysLeft),
     path('download-cv/<int:pk>', generate_cv, name='download_cv'),
     path("test/app/<int:jpk>/<str:appSub>/<str:userList>",moveApplicantToPhase),
-    path("test/app/<str:appSub>/<int:jpk>",getApplicantOnPhase.as_view(),name="goToPhase")
+    path("test/app/<str:appSub>/<int:jpk>",getApplicantOnPhase.as_view(),name="goToPhase"),
+    path('upload/document/<int:doc>/<int:userId>', UploadDocument, name='upload_document'),
+
 ]
 

@@ -1,13 +1,14 @@
 import json
 from datetime import timedelta
 
-from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.decorators import user_passes_test, login_required
 from django.shortcuts import redirect, render
 from django.views import View
 
+from Applicant.forms import DocumentForm
 from Applicant.models import *
 from ScreeningQuestion.models import *
-
+from documents.models import  *
 OnBoardPhase = ["Payment","Meet With Us","Documents for work permit","Your work permit is here"]
 onboardPhaseName = ["Payment","Meet-With-Us","Documents-for-work-permit","Your-work-permit-is-here"]
 
@@ -33,6 +34,30 @@ def moveApplicantToPhase(request,jpk,appSub,userList):
     print("done")
     return redirect("applicant", jpk)
 
+
+
+@login_required
+def UploadDocument(request,doc,userId):
+    if request.method == 'POST':
+        document = request.FILES.get('document')
+        if documents_users.objects.filter(id_document__id=doc).filter(user__id=userId).exists():
+            document_user = documents_users.objects.get(id_document__id=doc,user__id=userId)
+            document_user.document = document
+            document_user.save()
+        else:
+
+            document_user = documents_users()
+            document_user.id_document = documents_list.objects.get(id=doc)
+            document_user.user = CustomUser.objects.get(id=userId)
+            document_user.document = document
+            document_user.save()
+        return redirect("home")
+
+    else:
+
+
+        return render(request, 'upload_document.html')
+    return render(request, 'upload_document.html')
 class getApplicantOnPhase(View):
     def get(self,request,appSub,jpk):
         JobOwner = Jobs.objects.get(id=jpk)

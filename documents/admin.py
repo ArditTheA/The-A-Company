@@ -3,3 +3,4 @@ from documents.models import *
 # Register your models here.
 admin.site.register(documents_list)
 admin.site.register(documents_users)
+admin.site.register(RecruiterDocument)
