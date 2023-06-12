@@ -12,6 +12,7 @@ import json
 from accounts.views import *
 from allauth import *
 from ScreeningQuestion.models import ApplicantAnswer
+from Applicant.views import OnBoardPhase
 def CoseJob(request,pk):
     us = request.user
     job = Jobs.objects.get(id=pk)
@@ -209,7 +210,7 @@ class GetJobIdApplicant(View):
 
                 app=True
                 q="All"
-                return render(request, "Match/Applicant/index.html", dict(users=users,q=q,app=app,phase=phase,subphase=subphase,us=detailUser,uExp=ExpUser,uEdu=EduUser,uLang = LangUser,jpk=jpk,uid=uid))
+                return render(request, "Match/Applicant/index.html", dict(users=users,q=q,app=app,phase=phase,subphase=subphase,us=detailUser,uExp=ExpUser,uEdu=EduUser,uLang = LangUser,jpk=jpk,uid=uid,OnBoardPhase=OnBoardPhase))
             else:
                 q = "All"
                 app=False
@@ -311,11 +312,11 @@ class GetJobIdApplicant(View):
                 q = "All"
                 return render(request, "Match/Applicant/index.html",
                               dict(users=users, q=q, app=app, phase=phase, subphase=subphase, us=detailUser,
-                                   uExp=ExpUser, uEdu=EduUser, uLang=LangUser, jpk=jpk, uid=uid))
+                                   uExp=ExpUser, uEdu=EduUser, uLang=LangUser, jpk=jpk, uid=uid,OnBoardPhase=OnBoardPhase))
             else:
                 q = "All"
                 app = False
-                return render(request, "Match/Applicant/index.html", dict(q=q, app=app, jpk=jpk))
+                return render(request, "Match/Applicant/index.html", dict(q=q, app=app, jpk=jpk,OnBoardPhase=OnBoardPhase))
         else:
             pass
         return render(request,"Match/Applicant/index.html")

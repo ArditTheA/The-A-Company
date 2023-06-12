@@ -34,8 +34,43 @@ def moveApplicantToPhase(request,jpk,appSub,userList):
     print("done")
     return redirect("applicant", jpk)
 
+@login_required
+def UploadDocumentRecruiter(request,doc,jpk,userid):
+    print("--------------------------")
+    print("--------------------------")
+    print(doc)
+    print("--------------------------")
+    print("--------------------------")
+    if request.method == "POST":
+        document = request.FILES.get("document")
+        if RecruiterDocument.objects.filter(id_document=doc, user__id=userid, jobId__id=jpk).exists():
+            document_recruiter = RecruiterDocument.objects.get(id_document=doc,user__id=userid,jobId__id=jpk)
+            document_recruiter.id_document = doc
+            document_recruiter.document=document
+            document_recruiter.save()
+            return redirect("home")
+        else:
+            document_recruiter = RecruiterDocument()
+            document_recruiter.id_document = doc
+            document_recruiter.user = CustomUser.objects.get(id=userid)
+            document_recruiter.jobId=Jobs.objects.get(id=jpk)
+            document_recruiter.document=document
+            document_recruiter.save()
+            return redirect("home")
+    else:
+        return render(request, 'upload_document.html')
+    return render(request, 'upload_document.html')
 
 
+def UploadUserRecruiterDoc(request,doc,jpk,userid):
+    if request.method == "POST":
+        document = request.FILES.get("document")
+        document_recruiter = RecruiterDocument.objects.get(id_document=doc,user__id=userid,jobId__id=jpk)
+        document_recruiter.document=document
+        document_recruiter.signed=True
+        document_recruiter.save()
+        return redirect("home")
+    return render(request,"upload_document.html")
 @login_required
 def UploadDocument(request,doc,userId):
     if request.method == 'POST':

@@ -12,5 +12,10 @@ urlpatterns = [
     path("test/app/<str:appSub>/<int:jpk>",getApplicantOnPhase.as_view(),name="goToPhase"),
     path('upload/document/<int:doc>/<int:userId>', UploadDocument, name='upload_document'),
 
+
+
+    path("test/recruiter/<str:doc>/<int:jpk>/<int:userid>",UploadDocumentRecruiter),
+    path("test/user/<str:doc>/<int:jpk>/<int:userid>",UploadUserRecruiterDoc)
+
 ]
 
