@@ -46,6 +46,7 @@ urlpatterns = [
     #Screening Question
     path("", include('ScreeningQuestion.urls')),
     path("",include("Applicant.urls")),
+    path("",include("stripe.urls")),
 
                   path("password_reset", password_reset_request, name="password_reset"),
 

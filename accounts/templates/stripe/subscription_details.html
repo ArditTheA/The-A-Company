@@ -1,0 +1,30 @@
+<h1>Subscription Details</h1>
+
+{% if subscriptions %}
+  <table>
+    <tr>
+      <th>Subscription ID</th>
+      <th>Cardholder Name</th>
+      <th>Card Number</th>
+      <th>Expiry Date</th>
+      <th>Actions</th>
+    </tr>
+    {% for subscription in subscriptions %}
+      <tr>
+        <td>{{ subscription.subscription_id }}</td>
+        <td>{{ subscription.cardholder_name }}</td>
+        <td>{{ subscription.card_number }}</td>
+        <td>{{ subscription.expiry_date }}</td>
+        <td>
+          {% if subscription.canceled_at %}
+            <span>Canceled on {{ subscription.canceled_at }}</span>
+          {% else %}
+            <a href="{% url 'cancel_subscription' subscription.subscription_id %}">Cancel</a>
+          {% endif %}
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+{% else %}
+  <p>No subscriptions found.</p>
+{% endif %}

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Subscription Cancellation Confirmation</title>
+</head>
+<body>
+    <h4>Subscription Cancellation Confirmation</h4>
+    <p>Dear {{ subscription.user.username }},</p>
+    <p>We would like to inform you that your subscription with ID {{ subscription.subscription_id }} has been canceled.</p>
+    <p>Cancellation Date: {{ subscription.canceled_at }}</p>
+    <p>If you have any questions or need further assistance, please don't hesitate to contact us.</p>
+    <p>Thank you for being our valued customer.</p>
+    <p>Sincerely,</p>
+    <p>Worki</p>
+</body>
+</html>

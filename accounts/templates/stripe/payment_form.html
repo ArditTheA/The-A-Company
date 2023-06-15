@@ -1,0 +1,30 @@
+<form method="post" action="{% url 'payment_process' %}">
+  {% csrf_token %}
+
+  <!-- Cardholder Name -->
+  <div class="form-group">
+    <label for="cardholder_name">Cardholder Name</label>
+    <input type="text" id="cardholder_name" name="cardholder_name" class="form-control" required>
+  </div>
+
+  <!-- Card Number -->
+  <div class="form-group">
+    <label for="card_number">Card Number</label>
+    <input type="text" id="card_number" name="card_number" class="form-control" required>
+  </div>
+
+  <!-- Expiry Date -->
+  <div class="form-group">
+    <label for="expiry_date">Expiry Date</label>
+    <input type="text" id="expiry_date" name="expiry_date" class="form-control" required>
+  </div>
+
+  <!-- CVC -->
+  <div class="form-group">
+    <label for="cvc">CVC</label>
+    <input type="text" id="cvc" name="cvc" class="form-control" required>
+  </div>
+
+  <!-- Submit Button -->
+  <button type="submit" class="btn btn-primary">Pay</button>
+</form>

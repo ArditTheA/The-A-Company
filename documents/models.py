@@ -66,4 +66,4 @@ class RecruiterDocument(models.Model):
 
     def __str__(self):
         name_display = [status[1] for status in self.recruiter_doc_list if status[0] == self.id_document]
-        return str(name_display[0]) + " - " + str(self.user.email) + " - " + str(self.signed)
+        return str(name_display[0]) + " - "+self.jobId.job_title+ " - "+ str(self.user.email) + " - " + str(self.signed)
