@@ -1,4 +1,5 @@
-import re
+import requests
+
 from django.http import JsonResponse,HttpResponse
 from django.views.generic import View
 from django.shortcuts import HttpResponse
@@ -30,6 +31,97 @@ import locale
 
 
 today = timezone.now
+
+
+
+def CalendlyData(em,date,meet):
+    if CustomUser.objects.filter(email=em).exists():
+        user = CustomUser.objects.get(email=em)
+        start_time = date
+        googleMeetU = meet
+        applicant = Application.objects.filter(user_id = user)
+        for i in applicant:
+            app = Application.objects.get(id=i.id)
+            app.meetWithUs = start_time
+            app.meetWithUsLink = googleMeetU
+            app.save()
+        print("Done")
+
+
+
+def CalendlyAPI():
+    access_token = 'eyJraWQiOiIxY2UxZTEzNjE3ZGNmNzY2YjNjZWJjY2Y4ZGM1YmFmYThhNjVlNjg0MDIzZjdjMzJiZTgzNDliMjM4MDEzNWI0IiwidHlwIjoiUEFUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJodHRwczovL2F1dGguY2FsZW5kbHkuY29tIiwiaWF0IjoxNjg2NzM2OTExLCJqdGkiOiJlNzM5YTM5NC1iNzE4LTRhN2QtYTNhMS02ZWUyMjVmNmU4OTEiLCJ1c2VyX3V1aWQiOiJkMGQxNjIyYS1lZDdmLTQxNjUtOTQ2OS1hYzQwZmUzNzAzNzgifQ.NYLAShAIGTfk2NCZBGD-n8Yh4j0AhHq1wr5pKdRfRRarf-AFh5tCX45AbLwg6FvTEg6vEk-wFA2pCkHugSwI2Q'
+    organization_id = "https://api.calendly.com/organizations/20b4e8ad-dbc3-4063-ae8d-e3a71219d111"
+    start_time = datetime.now().isoformat()
+
+    headers = {
+        "Authorization": f"Bearer {access_token}",
+        "Content-Type": "application/json"
+    }
+
+    params = {
+        "min_start_time": start_time,
+        "organization": organization_id
+    }
+
+    url = "https://api.calendly.com/scheduled_events"
+
+    response = requests.get(url, headers=headers, params=params)
+    def get_invitees(api_token, event_id):
+        headers = {
+            'Authorization': f'Bearer {api_token}',
+            'Content-Type': 'application/json'
+        }
+
+        url = f'https://api.calendly.com/scheduled_events/{event_id}/invitees'
+
+        response = requests.get(url, headers=headers)
+
+        if response.status_code == 200:  # Successful response
+            data = response.json()
+
+            if 'collection' in data:
+                invitees = data['collection']
+                return invitees
+            else:
+                print("No invitees found in the response.")
+        else:
+            print("Failed to retrieve invitees. Status code:", response.status_code)
+
+
+
+    if response.status_code == 200:
+        upcoming_events = response.json()
+        for event in upcoming_events["collection"]:
+            event_uri = event.get("uri")
+            join_url = event.get("location", {}).get("join_url")
+            event_start_time = event["start_time"]
+
+
+            last_part = event_uri.split("/")[-1]
+            print(last_part)
+            parsed_date = datetime.strptime(event_start_time, "%Y-%m-%dT%H:%M:%S.%fZ")
+            formatted_date = parsed_date.strftime("%d-%m-%Y %H:%M")
+            invitees_list = get_invitees(access_token, last_part)
+            if invitees_list:
+                for invitee in invitees_list:
+                    print("----------")
+                    print("----------")
+                    name = invitee['name']
+                    email = invitee['email']
+                    print("Name:", name)
+                    print("Email:", email)
+                    print(f"Google meet url: {join_url}")
+                    print(f"Start Time: {formatted_date}")
+                    if join_url != None:
+                        CalendlyData(email,formatted_date,join_url)
+
+
+    else:
+        print("Error occurred while fetching events.")
+        print(response.text)
+
+
 
 
 
@@ -730,10 +822,19 @@ class RecruiterClosedJobs(View):
         checkMainJobs = False
 
         return render(request, "Recruiter/index.html", dict(job=job, check=check,jpk=1,checkMainJobs=checkMainJobs))
+
+
+
+
+
+class getAppliantMetting():
+    print("test")
+
+
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
 class AppliedJobs(View):
     def get(self, request):
-
+        # CalendlyAPI()
         job = ""
         if request.GET.get("searchApplied") is not None:
             query = request.GET.get("searchApplied")
@@ -813,6 +914,15 @@ class AppliedJobs(View):
                 appNo = Jobs.objects.get(id=post_id).applicant.count()
                 locale.setlocale(locale.LC_ALL, '')  # set the locale to the user's default
                 programCost = locale.format("%d", programCost, grouping=True)
+
+                meetingTime = Application.objects.filter(job_id=post_id).filter(
+                    user_id=request.user).values_list("meetWithUs", flat=True).first()
+                meetingLink = Application.objects.filter(job_id=post_id).filter(
+                    user_id=request.user).values_list("meetWithUsLink", flat=True).first()
+                print("---------------")
+                print(f"meetingTime: {meetingTime}")
+                print(f"meetingLink: {meetingLink}")
+                print("---------------")
                 print("test")
                 print(checkMainJobs)
                 print("test")
@@ -821,7 +931,7 @@ class AppliedJobs(View):
                          salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,checkMainJobs=checkMainJobs,
                          typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
                          program=program, programCost=programCost,SDate=SDate,EDate=EDate,
-                         posted=posted, post_id=post_id, applied=applied, appNo=appNo))
+                         posted=posted, post_id=post_id, applied=applied, appNo=appNo,meetingLink=meetingLink,meetingTime=meetingTime))
         else:
             if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
                 description = Jobs.objects.filter(id=post_id).values_list(
@@ -855,6 +965,15 @@ class AppliedJobs(View):
                 applied = Application.objects.filter(job_id=post_id).filter(
                     user_id=request.user).values_list("apply_date", flat=True).first()
 
+                meetingTime = Application.objects.filter(job_id=post_id).filter(
+                    user_id=request.user).values_list("meetWithUs", flat=True).first()
+                meetingLink = Application.objects.filter(job_id=post_id).filter(
+                    user_id=request.user).values_list("meetWithUsLink", flat=True).first()
+
+                print("---------------")
+                print(f"meetingTime: {meetingTime}")
+                print(f"meetingLink: {meetingLink}")
+                print("---------------")
                 city_j = Jobs.objects.filter(
                     id=post_id).values_list("city_j").first()
                 country = Jobs.objects.filter(
@@ -874,7 +993,7 @@ class AppliedJobs(View):
                          salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
                          typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
                          program=program, programCost=programCost,SDate=SDate,EDate=EDate,checkMainJobs=checkMainJobs,
-                         posted=posted, post_id=post_id, applied=applied, appNo=appNo), safe=True)
+                         posted=posted, post_id=post_id, applied=applied, appNo=appNo,meetingTime=meetingTime,meetingLink=meetingLink), safe=True)
         check = True
         filterSel = request.GET.get("filterApply")
 

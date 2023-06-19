@@ -277,6 +277,8 @@ class Application(models.Model):
     apply_date = models.DateField(default=today)
     status = models.CharField(max_length=50,choices=Stat_type,default="Pennding")
     ApplicantStat = models.CharField(max_length=50,choices=Applicant_stat,null=True,blank=True)
+    meetWithUs = models.CharField(max_length=1000,blank=True,null=True)
+    meetWithUsLink = models.CharField(max_length=1000,blank=True,null=True)
 
     def __str__(self):
         return str(self.job_id)+" | "+str(self.user_id)+" | "+str(self.apply_date)

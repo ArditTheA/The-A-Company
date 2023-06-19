@@ -16,6 +16,8 @@ from django.conf import settings
 
 
 
+
+
 stripe.api_key = 'sk_test_51MfP4FAWWrYDd3Ex3UdXVUsgjFblWSAiI8yvsEPm83iAlH1LaWGnS9fquylP0AknVsr7HfKs6m3wsArtQgVFaliw00QqQKsitp'
 
 
@@ -144,3 +146,7 @@ def subscription_details(request):
     subscriptions = Subscription.objects.filter(user=request.user)
     context = {'subscriptions': subscriptions}
     return render(request, 'stripe/subscription_details.html', context)
+
+
+
+
