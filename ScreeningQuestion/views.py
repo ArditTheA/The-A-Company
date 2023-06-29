@@ -606,11 +606,11 @@ def applyForJobSQ(request, pk):
                     return redirect('appSuc')
 
             return render(request, "ApplySQ/reserve.html", dict(form=form, country=country,question=question))
-        #
+
     else:
         if request.method == "POST" and form.is_valid():
             makeApplication(userId,pk,job,dataa,"",request.user.email)
             return redirect('appSuc')
-        return render(request, "ApplySQ/reserve.html", dict(form=form, country=country))
+        return render(request, "ApplySQ/reserve.html", dict(form=form, country=country,question=question))
 
     return render(request, "MainJobs/apply.html")
