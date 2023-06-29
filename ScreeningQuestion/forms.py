@@ -35,7 +35,7 @@ class JobForm(forms.ModelForm):
                 attrs={'class': 'next-none name-input mutual-stats font-fam', "list": "country_jList",
                        "onchange": "checkForm()"}),
             "description": forms.Textarea(
-                attrs={"class": "scroll inner-text second-next-none", "id": "myTextArea", "style": "display: none;"})
+                attrs={"class": "scroll inner-text second-next-none", "id": "myTextArea",})
 
         }
 
@@ -49,6 +49,7 @@ class JobQuestionForm(forms.ModelForm):
         model = JobQuestion
         fields = ['promp', 'question_type','ideal_answer','qualify']
 
+
+JobQuestionFormSet = formset_factory(JobQuestionForm, extra=3, min_num=0)
 JobSettingsFormSet = formset_factory(JobSettingsForm, extra=1)
 
-JobQuestionFormSet = formset_factory(JobQuestionForm, extra=3)

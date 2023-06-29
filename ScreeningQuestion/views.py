@@ -20,7 +20,6 @@ def add_JobScreeningQuestion(request):
         jobTitle = request.POST.get("job_title")
         job_form = JobForm(request.POST,request.FILES)
         job_question_formset = JobQuestionFormSet(request.POST, prefix='job_question')
-        job_settings_formset = JobSettingsFormSet(request.POST, prefix='job_settings')
         job_form.initial["user_id"] = uid
 
 
@@ -29,10 +28,10 @@ def add_JobScreeningQuestion(request):
             job = job_form.save(commit=False)
             job.user_id = request.user
             job.save()
-            for form in job_settings_formset:
-                job_settings = form.save(commit=False)
-                job_settings.job_id = job
-                job_settings.save()
+            # for form in job_settings_formset:
+            #     job_settings = form.save(commit=False)
+            #     job_settings.job_id = job
+            #     job_settings.save()
 
             for form in job_question_formset:
                 if form.cleaned_data.get('promp') is not None:
@@ -65,12 +64,13 @@ def add_JobScreeningQuestion(request):
             return redirect('postedJob')
 
 
+
+
     else:
         job_form = JobForm()
         job_question_formset = JobQuestionFormSet(prefix='job_question')
-        job_settings_formset = JobSettingsFormSet(prefix='job_settings')
 
-    return render(request,"Jobs/add.html", {'job_form': job_form, 'job_question_formset': job_question_formset,"job_settings_formset":job_settings_formset})
+    return render(request,"Jobs/postJob.html", {'job_form': job_form, 'job_question_formset': job_question_formset})
 
 def getQuestion(request,pk):
     question = JobQuestion.objects.filter(job_id=pk).order_by("-id")
@@ -605,12 +605,12 @@ def applyForJobSQ(request, pk):
                     makeApplication(userId,pk,job,dataa,"Not qualified",request.user.email)
                     return redirect('appSuc')
 
-            return render(request, "ApplySQ/index.html", dict(form=form, country=country,question=question))
+            return render(request, "ApplySQ/reserve.html", dict(form=form, country=country,question=question))
         #
     else:
         if request.method == "POST" and form.is_valid():
             makeApplication(userId,pk,job,dataa,"",request.user.email)
             return redirect('appSuc')
-        return render(request, "ApplySQ/index.html", dict(form=form, country=country))
+        return render(request, "ApplySQ/reserve.html", dict(form=form, country=country))
 
     return render(request, "MainJobs/apply.html")

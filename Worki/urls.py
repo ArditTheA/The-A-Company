@@ -18,6 +18,8 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path,include
 
+from accounts.task import scheduler
+
 assert isinstance(settings.STATIC_ROOT, object)
 from django.contrib.auth import views as auth_views
 from django.contrib.auth import views as userViews
@@ -63,4 +65,21 @@ urlpatterns = [
                       template_name='main/password/password_reset_complete.html'), name='password_reset_complete'),
 
               ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# Start the APScheduler when the Django app is ready
+def start_scheduler(sender, **kwargs):
+    scheduler.start()
+
+# Signal to start the scheduler when the Django app is ready
+from django.apps import AppConfig
+
+class AccountConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'account'
+
+    def ready(self):
+        start_scheduler(self)
+
+# Assign the AppConfig to your app
+default_app_config = 'account.AccountConfig'
 

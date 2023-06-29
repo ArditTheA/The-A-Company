@@ -7,9 +7,9 @@ class JobQuestion(models.Model):
         ("Yes/No","Yes/No")
     }
     job_id = models.ForeignKey(Jobs,on_delete=models.CASCADE)
-    promp = models.CharField(max_length=500)
+    promp = models.CharField(max_length=500,null=True,blank=True)
     question_type = models.CharField(choices=ansType,blank=True,null=True,max_length=100)
-    ideal_answer = models.CharField(max_length=100,null=True)
+    ideal_answer = models.CharField(max_length=100,null=True,blank=True)
     qualify = models.BooleanField(default=False)
 
     def __str__(self):

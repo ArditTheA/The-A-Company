@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>QR Code Scanner</title>
+    <script src="https://unpkg.com/@zxing/library@0.18.6"></script>
+  </head>
+  <body>
+    <video id="video" width="100%" height="100%"></video>
+    <script>
+      // Access the camera stream
+      navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+        .then(function (stream) {
+          var videoElement = document.getElementById('video');
+          videoElement.srcObject = stream;
+          videoElement.play();
+
+          // Create a code reader
+          var codeReader = new ZXing.BrowserQRCodeReader();
+
+          // Start scanning
+          codeReader.decodeOnceFromVideoDevice(undefined, 'video', function (result) {
+            console.log('QR code content:', result.text);
+          });
+        })
+        .catch(function (error) {
+          console.error('Error accessing camera:', error);
+        });
+    </script>
+  </body>
+</html>

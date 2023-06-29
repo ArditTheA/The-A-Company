@@ -217,3 +217,15 @@ GOOGLE_ANALYTICS_KEY_FILE = "../accounts/GoogleAnalytic/workianalyticreportv-1-6
 STRIPE_PUBLIC_KEY = 'pk_live_51MfP4FAWWrYDd3ExSA1IyvC4omDNkDJLdtoeW4FHpvXPVb8IeeQL4VObupRKOTb1JxOwC77bLbhJYLxdOxfXrXlX00tUOq7puq'
 
 STRIPE_SECRET_KEY = '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'
+
+
+
+
+
+# Configure APScheduler
+SCHEDULER_JOB_DEFAULTS = {
+    'coalesce': False,
+    'max_instances': 3
+}
+
+SCHEDULER_API_ENABLED = True

@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
+
+    
+
+    <form class="reserveForm" id="answerForm"  method="POST">
+    {% csrf_token %}
+        {{form.errors}}
+
+
+<div id="reserve-form" class=" second-reserve-form reserve-form" method="POST">
+    <div class="contact-information-form">
+        <div class="under-c-i-f" style="">
+        <div class="second-under-c-i-f under-c-i-f">
+            <div class="program-duration-main-div" style="">
+            <!-- <div class="program-duration-div pd-ci-cursor">Program Duration</div> -->
+            </div>
+            <div class="program-duration-under-div">
+
+        <div class="contact-information-title">Contact Information</div>
+        <div class="inputs-div contact-information-margin-bottom first-and-last-name" style="display: flex;">
+            <input style="" name="first_name" placeholder="First Name" value="{{user.first_name}}" id="id_first_name" class="apply-first-name apply-name-surname all-inputs mutual-input"></input>
+
+
+            <input placeholder="Last Name" name="last_name" id="id_last_name" value="{{user.last_name}}" class="apply-last-name apply-name-surname all-inputs mutual-input"></input>
+        </div>
+        <div class="inputs-div second-inputs-div">
+            <input type="email" name="email" id="id_email" placeholder="Email" value="{{user.email}}" class="all-inputs mutual-input contact-information-mutual-stats contact-information-margin-bottom" required>
+            <!-- <input placeholder="Date of Birth" class="all-inputs contact-information-mutual-stats contact-information-margin-bottom mutual-input date-of-birth-input" style=""></input> -->
+            <input type="tel" placeholder="Phone Number" name="phone_number" value="{{user.phone_number}}" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="all-inputs2 contact-information-mutual-stats contact-information-margin-bottom mutual-input" required>
+            <input placeholder="Country of Residence"value="{{user.country}}" name="country"class="all-inputs contact-information-mutual-stats mutual-input"></input>
+            <!-- <input placeholder="Address" class="all-inputs contact-information-mutual-stats mutual-input" style=""></input> -->
+            <!-- <input placeholder="Student Status" class="all-inputs contact-information-mutual-stats mutual-input" style="border: 1px solid #D4D5D6; width: 434px; padding: 10px 0px 10px 10px; border-radius: 40px;"></input> -->
+        </div>
+                                                                                                                                            
+        <div class="back-and-next-buttons" style="width: 100%; display: flex; justify-content: space-between;">
+            <a href="jobs.html" class="btn back-button next-none contact-information-back-button" style="">Back</a>
+            <a id="next-button" class="next-button btn submit-button next-none" style="">Next</a>
+        </div>
+    </div>
+    <div class="second-screening-question-div" style="padding-top: 20px; padding-bottom: 20px; border-bottom: 40px; margin-left: 30px; color: #D4D5D6;">
+        <div class="screening-questions-title second-screening-question mutual-font-size-18px">Screening Questions</div>
+    </div>
+</div>
+
+
+</div>
+
+</div>
+</div>
+<div class="third-reserve-form reserve-form" style="display: none;">
+    <div class="program-duration-form screening-question-form">
+            <div class="program-duration-main-div">
+            </div>
+            <div class="contact-information-div-third-page">
+                <div class="contact-information-third-page pd-ci-cursor font-size-18px-16px">Contact Information</div>
+            </div>
+
+        <div class="screening-question-only-form" style="">
+            <div class="screening-question-third-page font-size-18px-16px">Screening Questions</div>
+
+            {% for i in question %}
+                {% if i.question_type == "Numeric" %}
+                                    <div class="third-form-question">{{i.promp}}</div>
+                            <input type="number" placeholder="0" value="" id="screening-question-select-options" class="custom-select" required>
+
+                {%else %}
+                                                <div class="third-form-question">{{i.promp}}</div>
+
+                    <select title="{{i.promp}}"name="{{i.id}}" id="screening-question-select-options" style="" class="custom-select" >
+                        <!-- <option disabled selected style="display: none;" value="">Are you an active student?</option> -->
+                        <option disabled selected style="display: none;" value="">Yes / No</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                  </select>
+                {% endif %}
+
+
+            {% endfor %}
+          <div class="under-select-university-student-status" style="margin-top: 5px; color: #1877F2; display: none; position: absolute;">You must be an active university student</div>
+        <div class="back-and-next-buttons" style="width: 100%; display: flex; justify-content: space-between;">
+            <a class="btn back-button next-none screening-question-back" style="">Back</a>
+            <a id="next-button" type="submit" onclick="document.getElementById('answerForm').submit(); return false;" class="next-button third-next-button btn submit-button next-none" style="">Submit</a>
+            <!-- <a id="next-button" class="next-button third-next-button btn submit-button next-none" style="">Next</a> -->
+        </div>
+    </div>
+
+</div>
+</div>
+
+</form>
+
+<script>
+    var all_buttons = document.querySelectorAll(".choose-duration");
+    var submit_button_reserve = document.querySelector(".submit-button");
+
+    
+for (let i = 0; i < all_buttons.length; i++) {
+    all_buttons[i].addEventListener("click", function() {
+        if (all_buttons[i].style.border == "1px solid #1877F2" && all_buttons[i].style.color == "#1877F2") {
+        all_buttons[i].style.border = "1px solid #D4D5D6";
+        all_buttons[i].style.color = "#858585";
+        
+    }
+
+   else {
+        for(j = 0; j < all_buttons.length; j++){
+            all_buttons[j].style.border = "1px solid #D4D5D6";
+            all_buttons[j].style.color = "#858585";
+        }
+      all_buttons[i].style.color = "#1877F2";
+      all_buttons[i].style.border = "1px solid #1877F2";
+
+   }
+
+   })
+
+}
+</script>
+<script src="{% static 'js/reserve/reserve-second-6-months.js'%}"></script>
+<!-- <script src="reserve-second-otpion.html"></script> -->
+<script src="{% static 'js/reserve/reserve-second-12-months.js'%}"></script>
+<script src="{% static 'js/reserve/reserve-second-18-months.js'%}"></script>
+<script src="{% static 'js/worki-icon-reload-page.js'%}"></script>
+<script src="{% static 'js/reserve/reserve-effect-button.js'%}"></script>
+<script src="{% static 'js/reserve/reserve-post-a-job-back-button.js'%}"></script>
+<script src="{% static 'js/reserve/reserve-second-next.js'%}"></script>
+<script src="{% static 'js/reserve/reserve-program-duration.js'%}"></script>
+<script src="{% static 'js/reserve/reserve-valid-email.js'%}"></script>
+<script src="{% static 'js/reserve/reserve-third-page.js'%}"></script>
+<script src="{% static 'js/reserve/reserve-screening-question.js'%}"></script>
+<script src="{% static 'js/reserve/reserve-date-of-birth.js'%}"></script>
+<!-- <script src="../js/reserve-add-other-months.js"></script> -->
+
+
+<script>
+    var button1 = document.querySelectorAll(".choose-month-buttons");
+    var first_12_buttons = Array.from(button1).slice(0, 12);
+var button2 = document.querySelectorAll(".choose-duration");
+
+
+for (let i = 0; i < button1.length; i++) {
+
+first_12_buttons[i].addEventListener("click", () => {
+// button2[0].classList.add("animated");
+// button2[1].classList.add("animated");
+// button2[2].classList.add("animated");
+button2.forEach(button => button.classList.add("animated"));
+
+
+
+setTimeout(() => {
+    button2.forEach(button => button.classList.remove("animated"));
+// button2[0].classList.remove("animated");
+// button2[1].classList.remove("animated");
+// button2[2].classList.remove("animated");
+}, 500);
+});
+}
+</script>
+
+
+<!-- <script src="../js/reserve-6-months-button.js"></script>
+<script src="../js/reserve-12-months-button.js"></script> -->
+
+{% endblock content %}

@@ -224,7 +224,7 @@ class Jobs(models.Model):
     recommended = models.BooleanField(default=False)
     positionLeft = models.IntegerField(default=0,null=True,blank=True)
     deadline = models.DateField(default=datetime.now(),blank=True,null=True)
-    status = models.CharField(max_length=20,choices=Stat,default="Open")
+    status = models.CharField(max_length=20,choices=Stat,default="Open",blank=True,null=True)
     postDate = models.DateField(default=datetime.now(),blank=True,null=True)
     user_id = models.ForeignKey(CustomUser,on_delete=models.CASCADE, null=True,blank=True)
     approved = models.BooleanField(default=False)

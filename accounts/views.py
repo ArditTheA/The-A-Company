@@ -1,3 +1,4 @@
+
 import requests
 
 from django.http import JsonResponse,HttpResponse
@@ -32,7 +33,8 @@ import locale
 
 today = timezone.now
 
-
+def testQR(request):
+    return render(request,"testcamera.html")
 
 def CalendlyData(em,date,meet):
     if CustomUser.objects.filter(email=em).exists():
@@ -50,8 +52,8 @@ def CalendlyData(em,date,meet):
 
 
 def CalendlyAPI():
-    access_token = 'eyJraWQiOiIxY2UxZTEzNjE3ZGNmNzY2YjNjZWJjY2Y4ZGM1YmFmYThhNjVlNjg0MDIzZjdjMzJiZTgzNDliMjM4MDEzNWI0IiwidHlwIjoiUEFUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJodHRwczovL2F1dGguY2FsZW5kbHkuY29tIiwiaWF0IjoxNjg2NzM2OTExLCJqdGkiOiJlNzM5YTM5NC1iNzE4LTRhN2QtYTNhMS02ZWUyMjVmNmU4OTEiLCJ1c2VyX3V1aWQiOiJkMGQxNjIyYS1lZDdmLTQxNjUtOTQ2OS1hYzQwZmUzNzAzNzgifQ.NYLAShAIGTfk2NCZBGD-n8Yh4j0AhHq1wr5pKdRfRRarf-AFh5tCX45AbLwg6FvTEg6vEk-wFA2pCkHugSwI2Q'
-    organization_id = "https://api.calendly.com/organizations/20b4e8ad-dbc3-4063-ae8d-e3a71219d111"
+    access_token = 'eyJraWQiOiIxY2UxZTEzNjE3ZGNmNzY2YjNjZWJjY2Y4ZGM1YmFmYThhNjVlNjg0MDIzZjdjMzJiZTgzNDliMjM4MDEzNWI0IiwidHlwIjoiUEFUIiwiYWxnIjoiRVMyNTYifQ.eyJpc3MiOiJodHRwczovL2F1dGguY2FsZW5kbHkuY29tIiwiaWF0IjoxNjg2NzUzNzY2LCJqdGkiOiJmYTY2ZmY0Zi05ZTE2LTRjYzgtODU4My0xZTE0MDMzODlkODMiLCJ1c2VyX3V1aWQiOiJhNDZlMjk4Ni0wMGI3LTRkMGYtOTNkOS0yZGNhZGFhM2FmYTQifQ.BsBybdStVNGLNvKIroTfVcEhjImmQCvNMxvnzLBltS52NTE6YdbtjVSQmLYwkfPKIqO0MO52Y7GuWSgWFif7NA'
+    organization_id = "https://api.calendly.com/organizations/d380dd99-d4bf-448c-95d7-230f5c0d8ab3"
     start_time = datetime.now().isoformat()
 
     headers = {
@@ -834,7 +836,6 @@ class getAppliantMetting():
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
 class AppliedJobs(View):
     def get(self, request):
-        # CalendlyAPI()
         job = ""
         if request.GET.get("searchApplied") is not None:
             query = request.GET.get("searchApplied")

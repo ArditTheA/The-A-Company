@@ -135,6 +135,12 @@ class GetJobIdApplicant(View):
                     newDic["lname"] = user.last_name
                     newDic["email"]= user.email
                     newDic["phone"] = user.phone_number
+                    meetingTime = Application.objects.filter(job_id=jpk).filter(
+                        user_id=request.user).values_list("meetWithUs", flat=True).first()
+                    meetingLink = Application.objects.filter(job_id=jpk).filter(
+                        user_id=request.user).values_list("meetWithUsLink", flat=True).first()
+                    newDic["meetingTime"]=meetingTime
+                    newDic["meetingLink"]=meetingLink
 
                     Status = Application.objects.filter(job_id=jpk).filter(user_id=userid).values_list("ApplicantStat",flat=True).first()
                     newDic["Status"]=str(Status)
@@ -238,6 +244,14 @@ class GetJobIdApplicant(View):
                     Status = Application.objects.filter(job_id=jpk).filter(user_id=userid).values_list("ApplicantStat",
                                                                                                        flat=True).first()
                     newDic["Status"] = str(Status)
+
+                    meetingTime = Application.objects.filter(job_id=jpk).filter(
+                        user_id=request.user).values_list("meetWithUs", flat=True).first()
+                    meetingLink = Application.objects.filter(job_id=jpk).filter(
+                        user_id=request.user).values_list("meetWithUsLink", flat=True).first()
+                    newDic["meetingTime"] = meetingTime
+                    newDic["meetingLink"] = meetingLink
+
                     if user.city == None:
                         newDic["city"] = user.country
                     else:

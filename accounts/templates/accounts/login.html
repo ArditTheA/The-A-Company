@@ -25,44 +25,31 @@
     <body>
     <div class="container">
         <div class="under-container">
-            <h1 id="title">Sign in to start</h1>
-            <div class="input-form">
-               <a class="sign-in-google input-text" href="{% provider_login_url 'google' %}"><div class="">Sign in with Google</div>
-               </a>
-                <img class="iconGoogle" src="{% static 'img/google-01 8.png'%}">
-            </div>
-            <p class="second-paragraph same-color-of-paragraphs">or</p>
+            <div id="title">Sign in</div>
             <form method="POST" action="" class="sign-in-form">
                 {% csrf_token %}
-                {% if form.username.value == None and form.password.value == None %}
-                <input name="username" type="email" id="id_username" class="email-input input-text font-fam" placeholder="Email"></input>
                 <div class="input-form">
-                    <input name="password" id="password" type="password" id="password" class="input-text password-input font-fam" placeholder="Password"></input>
-                    <i class="bi bi-eye-slash" id="togglePassword"></i>
-                </div>
-                <p class="first-paragraph same-color-of-paragraphs"><a class="password-link" href="{% url 'password_reset' %}">Forgot
-                        password?</a></p>
-                <div class="sign-in-input">
-                    <input name="submit" type="submit" class="sign-in-submit-input font-fam" value="Sign in">
-                </div>
-                {%else%}
-                    <input name="username" type="email" value="{{form.username.value}}" id="id_username" class="email-input input-text font-fam" placeholder="Email"></input>
+                    <a class="sign-in-google input-text" href="{% provider_login_url 'google' %}"><div class="">Sign in with Google</div>
+                    </a>
+                     <img class="icon" src="{% static 'img/google-01 8.png'%}">
+                 </div>
+
+                 <p class="second-paragraph same-color-of-paragraphs">or</p>
+                <input name="username" type="email" class="email-input input-text font-fam" placeholder="Email"></input>
                 <div class="input-form">
-                    <input name="password" id="password" type="password" value="{{form.password.value}}"id="password" class="input-text password-input font-fam" placeholder="Password"></input>
-                    <i class="bi bi-eye-slash" id="togglePassword"></i>
+                    <input name="password" type="password" id="password" class="input-text password-input font-fam" placeholder="Password"></input>
+                    <i title="Show Password" class="bi bi-eye-slash" id="togglePassword"></i>
                 </div>
                 {% if form.errors %}
-                    <p class="first-paragraph " style="margin:0;padding-top:10px;padding-bottom:10px;color:red">Your email or password is incorrect</p>
+                    <p class="first-paragraph " style="margin:0;padding-top:10px;padding-bottom:10px;color:red">{{form.errors}}Your email or password is incorrect</p>
                 {% endif %}
-                <p class="first-paragraph same-color-of-paragraphs" style="padding-top:10px;"><a class="password-link" href="{% url 'password_reset' %}">Forgot
+                <p class="first-paragraph same-color-of-paragraphs"><a class="password-link" href="">Forgot
                         password?</a></p>
                 <div class="sign-in-input">
                     <input name="submit" type="submit" class="sign-in-submit-input font-fam" value="Sign in">
                 </div>
-
-
-                {% endif %}
             </form>
+
             <p class="third-paragraph same-color-of-paragraphs">Not a user? <a class="sign-up-link"
                     href="{% url 'register' %}">Create account</a></p>
         </div>

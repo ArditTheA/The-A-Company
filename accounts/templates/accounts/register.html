@@ -28,38 +28,36 @@
 
     <div class="create-account-container">
         <div class="create-account-under-container">
-            <h1 id="create-account-title">Create account to start</h1>
-
-            <div class="input-form">
-                <a href="{% provider_login_url 'google' %}" class="sign-up-google input-text">
-                    <div>Create account with Google</div>
-                </a>
-                <img class="iconGoogle" src="{% static 'img/google-01 8.png'%}">
-            </div>
-
-            <p class="second-paragraph same-color-of-paragraphs">or</p>
-
+            <div id="create-account-title">Create an account</div>
             <form method="POST" action="" class="sign-up-form">
                 {% csrf_token %}
-
-                <input name="first_name" id="id_first_name"  class="input-text name-surname-width name-input" placeholder="First Name"></input>
-                <input name="last_name" id="id_last_name"  class="input-text name-surname-width surname-input"
-                    placeholder="Last Name"></input>
-                <input name="email" type="email" class="input-text email-input"
-                    placeholder="Email" id="id_email"></input>
                 <div class="input-form">
-                    <input name="password1" type="password" id="password" class="input-text password-input"
-                        placeholder="Password" id="id_password1"></input>
+                    <a href="{% provider_login_url 'google' %}" class="sign-up-google input-text">
+                        <div>Create account with Google</div>
+                    </a>
+                    <img class="icon" src="{% static 'img/google-01 8.png'%}">
+                </div>
+
+                <p class="second-paragraph same-color-of-paragraphs">or</p>
+                <input name="fname" type="text" id="id_first_name" class="input-text name-surname-width name-input" placeholder="First Name"></input>
+                <input name="lname" type="text" id="id_last_name" class="input-text name-surname-width surname-input"
+                    placeholder="Last Name"></input>
+                <input name="email"id="id_email" type="email" class="input-text email-input"
+                    placeholder="Email"></input>
+                <div class="input-form">
+
+                    <input name="password1" type="password" id="id_password" id="id_password1"  class="input-text password-input"
+                        placeholder="Password"></input>
                     <i class="bi bi-eye-slash" id="togglePassword"></i>
                 </div>
-                <p class="first-paragraph same-color-of-paragraphs">By creating account, you agree to <a 
-                        class="terms-conditions-link" href="{% url 'terms'%}">terms and conditions</a></p>
+                <p class="first-paragraph same-color-of-paragraphs">By creating account, you agree to <a
+                        class="terms-conditions-link" href="">terms and conditions</a></p>
                 <div class="sign-up-input">
                     <input name="submit" type="submit" class="sign-up-submit-input input-text font-fam" value="Create account">
                 </div>
+
             </form>
 
-            
             <p class="third-paragraph same-color-of-paragraphs">Already a user? <a class="sign-in-link"
                     href="{% url 'login'%}">Sign in</a></p>
         </div>

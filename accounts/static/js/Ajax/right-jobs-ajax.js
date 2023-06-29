@@ -151,13 +151,7 @@
         var hasApply = data["hasApply"]
         var auth=data["auth"]
 
-        if (!document.querySelector("meetingTime")){
-            var meetingTime = document.getElementById("meetingTime");
-            meetingTime.innerHTML = data["meetingTime"];
-            var meetingLink = document.getElementById("meetingLink");
-            
-            meetingLink.innerHTML = '<a href="'+data["meetingLink"]+'" class="" >Interview link</a>'
-        };
+
         if (!document.querySelector("#button")) {
 
         } else {

@@ -33,6 +33,8 @@
         document.getElementById("phone").innerHTML= data["phone"];
         document.getElementById("location").innerHTML= data["city"];
         document.getElementById("appdate").innerHTML= data["applyDate"];
+        document.getElementById("meetingTime").innerHTML= data["meetingTime"];
+        document.getElementById("meetingLink").innerHTML = '<a href="'+data["meetingLink"]+'" class="" >Interview link</a>'
 
        var button = document.getElementById("cv")
 

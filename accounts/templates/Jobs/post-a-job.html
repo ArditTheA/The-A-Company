@@ -1,0 +1,475 @@
+
+{% load static %}
+        <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/body.css' %}">
+    <link rel="icon" href="{% static 'img/123.png' %}">
+
+
+    <link rel="stylesheet" href="{% static 'css/sq-backup.css'%}">
+        <link rel="stylesheet" href="{% static 'css/reserve-post-a-job.css' %}">
+
+
+
+
+        {% include 'header.html' %}
+
+
+
+    <form class="postAJobForm"  id="form-id" method="post" enctype="multipart/form-data" action="{% url 'addJob'%}" >
+                {% csrf_token %}
+        {{ job_question_formset.management_form }}
+
+
+    <div id="reserve-form" class=" second-reserve-form reserve-form first-post-a-job-form" style="">
+        <div class="contact-information-form">
+            <div class="under-c-i-f">
+            <div class="second-under-c-i-f under-c-i-f">
+                <div class="program-duration-main-div">
+                <div class="job-details-div first-job-details pd-ci-cursor font-size-18px-16px">Job Details</div>
+                </div>
+                <div class="post-a-job-under-div">
+  
+            <div class="inputs-div second-inputs-div">
+                <div style="display:none;">
+                  {{job_form.status}}
+                  {{job_form.recommended}}
+                  {{job_form.postDate}}
+                  {{job_form.approved}}
+                  {{job_form.user_id}}
+                  {{job_form.applicant}}
+               </div>
+                <input type="text" name="job_title" id="id_job_title" placeholder="Job title" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom" required></input>
+                <input type="text" name="company" id="id_company" placeholder="Company" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input"></input>
+                <div class="inputs-div contact-information-margin-bottom first-and-last-name" style="display: flex;">
+                    <input placeholder="Country" name="country_j" id="id_country_j" class="apply-first-name inputs-job-details apply-name-surname all-inputs mutual-input country-margin-bottom"></input>
+                    <!-- <input placeholder="City" class="apply-last-name inputs-job-details apply-name-surname all-inputs mutual-input"></input> -->
+                    <input placeholder="City" name="city_j" id="id_city_j" class="apply-last-name inputs-job-details apply-name-surname all-inputs mutual-input"></input>
+                </div>
+                <input type="number" name="salary_per_hour"id="id_salary_per_hour" placeholder="Salary per hour" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input" oninput="displaySalary()" onkeydown="handlePlaceholder(event)">
+                <select class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input" name="tips" id="id_tips">
+                    <option disabled selected style="display: none;" value="">Tips</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <select class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input" name="type_of_work" id="id_type_of_work">
+                    <option disabled selected style="display: none;" value="">Type of Work</option>
+                    <option value="Full Time">Full Time</option>
+                    <option value="Part Time">Part Time</option>
+                </select>
+                <input type="number" name="hour_per_work" id="id_hour_per_work" placeholder="Hours per week" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input"></input>
+                <div class="inputs-div contact-information-margin-bottom first-and-last-name">
+                   <input id="id_start_date" class="start-date-input date-of-birth-input inputs-job-details start-end-date all-inputs mutual-input"
+                    name="start_date" onchange="checkForm();checkStartDate();" value="" type="tel" maxlength="10" 
+                    placeholder="Start Date (mm/dd/yyyy)" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
+                    <input id="id_end_date" class="end-date-input date-of-birth-input inputs-job-details start-end-date all-inputs mutual-input" 
+                    name="end_date" onchange="checkForm();checkStartDate();" value="" type="tel" maxlength="10" 
+                    placeholder="End Date (mm/dd/yyyy)" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
+        
+                </div>
+                        <!-- <input type="text" placeholder="Housing" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input"></input> -->
+                        <select name="housing" id="id_housing" style="" class="custom-select contact-information-margin-bottom contact-information-mutual-stats mutual-input inputs-job-details" name="data[areYouActiveStudent]">
+
+                          <option disabled selected style="display: none;" value="">Housing</option>
+                          <option value="Provided">Yes</option>
+                          <option value="Not provided">No</option>
+                        </select>
+                <input type="number" name="housing_cost_per_week" id="id_housing_cost_per_week" placeholder="Housing cost per week" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input">
+                <select name="program" id="id_program" class="custom-select contact-information-margin-bottom contact-information-mutual-stats mutual-input inputs-job-details" name="data[areYouActiveStudent]"> -->
+                  <option disabled selected style="display: none;" value="">Program</option>
+                  <option value="Ausbildung">Ausbildung</option>
+                  <option value="Internship">Internship</option>
+                  <option value="Work and Travel">Work and Travel</option>
+                  <option value="Trainee">Trainee</option>
+                </select>
+                <input type="number" name="programCost" id="id_programCost" placeholder="Program cost" class="all-inputs inputs-job-details contact-information-margin-bottom contact-information-mutual-stats mutual-input"></input>
+                <div class="div-of-changed-picture">
+                  <label for="id_logo">
+                      <div class="input-form">
+                        <div style="cursor: pointer; display: flex; align-items: center;" class="upload-file-div logo-input-main-div">
+                          <div class="logo-input-div">Logo</div>
+                      <img class="icon-post" src="{% static 'img/gallery-upload.png'%}" alt="">
+                    </div>
+                    </div>
+                  </label>
+                  <input style="display: none;" class name="logo" accept="image/*" id="id_logo" type="file"/>
+              </div>
+      
+                <!-- <input placeholder="Student Status" class="all-inputs contact-information-mutual-stats mutual-input" style="border: 1px solid #D4D5D6; width: 434px; padding: 10px 0px 10px 10px; border-radius: 40px;"></input> -->
+            </div>
+
+            <div class="back-and-next-buttons" style="width: 100%; display: flex; justify-content: space-between;">
+                <a class="btn back-button next-none contact-information-back-button">Back</a>
+                <a id="first-next-button-job-details" class="first-next-button btn submit-button next-none">Next</a>
+            </div>
+        </div>
+        <div class="first-job-description-post-a-job" style="padding-top: 20px; padding-bottom: 20px; border-bottom: 40px; margin-left: 30px; color: #D4D5D6;">
+            <div class="second-screening-question mutual-font-size-18px font-size-18px-16px">Job Description</div>
+
+        </div>
+    </div>
+    <div class="second-payment-div" style="padding-top: 20px; padding-bottom: 20px; border-bottom: 40px; margin-left: 30px; color: #D4D5D6;">
+        <div class="second-payment mutual-font-size-18px first-additional-feature font-size-18px-16px">Additional Feature</div>
+    </div>
+    
+    </div>
+    </div>
+    </div>
+    <div id="reserve-form" class=" second-reserve-form reserve-form second-post-a-job-form"  style="display: none;">
+        <div class="contact-information-form job-description-form">
+          
+            <div class="under-c-i-f job-description-under-form">
+            <div class="second-under-c-i-f under-c-i-f">
+                <div class="program-duration-main-div second-job-details-div">
+                <div class="program-duration-div second-job-details-title pd-ci-cursor font-size-18px-16px">Job Details</div>
+                </div>
+                <div class="program-duration-under-div job-description-under-div">
+    
+            <div class="contact-information-title job-description-title font-size-18px-16px">Job Description</div>
+
+            <div>
+            <textarea name="description" id="descriptionArea" class="scroll inner-text editable" oninput="updateNextButton()" style="background-color: white; border-radius: 40px;resize: none;"></textarea>
+            <input type="submit" value="Submit" style="display: none;">
+            </div>
+                                                                                                                                                
+            <div class="back-and-next-buttons" style="width: 100%; display: flex; justify-content: space-between;">
+                <a class="btn back-button next-none job-description-back-button">Back</a>
+                <a id="next-button-job-description" class="next-button-job-description btn submit-button next-none" onclick="validateTextarea()">Next</a>
+            </div>
+        </div>
+        <div class="second-screening-question-div" style="padding-top: 20px; padding-bottom: 20px; border-bottom: 40px; margin-left: 30px; color: #D4D5D6;">
+            <div class="second-screening-question mutual-font-size-18px font-size-18px-16px second-additional-feature">Additional Feature</div>
+        </div>
+    </div>
+    </div>
+    
+    </div>
+    </div>
+    <div class="additional-feature-form reserve-form" style="display: none;">
+        <div class="program-duration-form additional-feature-form-main-div">
+                <div class="program-duration-main-div third-job-details-div">
+                <div class="program-duration-div third-job-details pd-ci-cursor font-size-18px-16px third-page-job-details-description">Job Details</div>
+                </div>
+                <div class="job-description-third-page-div">
+                    <div class="job-description-third-page pd-ci-cursor font-size-18px-16px">Job Description</div>
+                </div>
+    
+            <div class="third-additional-feature-main-div">
+                <div class="third-additional-feature font-size-18px-16px">Additional Feature</div>
+                
+                <input type="number" placeholder="Number of Positions" class="all-inputs contact-information-mutual-stats contact-information-margin-bottom positions-deadline-date-inputs"></input>
+                <!-- <input type="text" placeholder="Deadline Date" class="all-inputs contact-information-mutual-stats input-deadline-date positions-deadline-date-inputs"></input> -->
+                <input id="id_deadline_date" class="positions-deadline-date-inputs date-of-birth-input start-end-date all-inputs mutual-input"
+                name="start_date" onchange="checkForm();checkStartDate();" value="" type="tel" maxlength="10" 
+                placeholder="Deadline Date (mm/dd/yyyy)" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
+
+
+
+                    <div class="form-group form-group-add-question" style="display: none;">
+
+                        <textarea style="" name="job_question-0-promp" id="id_job_question-0-promp" class="textarea-question textarea-color form-control" placeholder="Question 1" rows="4"></textarea>
+
+                        <div class="row">
+                          <div class="answer-type-select">
+
+                            <!-- <label class="mutual-color">Answer type: </label> -->
+                        <select onchange="changeAnsType(0)" class="form-control select-width" id="id_job_question-0-question_type" name="job_question-0-question_type">
+
+                                 <option class="first-option" style="display: none;"></option>
+                                 <option value="Yes/No">Yes / No</option>
+                                 <option value="Numeric">Numeric</option>
+
+                         </select>
+
+                          </div>
+                          <div class="ideal-answer-div">
+
+                            <!-- <label for="ideal" class="width-labels mutual-color">Ideal answer:</label> -->
+                            <div class="idealAns0" id="idealAns0">
+                              <input value="Ideal Answer" class="disable-inputs" name="secondAnswer0" disabled>
+
+                            </div>
+
+                          </div>
+                        </div>
+                        <div class="must-have-qualification-div" style="">
+                            <!-- <label ><input type="checkbox" id="qualify1" name="qualify1"> Requried to be same as ideal answer</label> -->
+                                <label class="must-have-qualification-label screening-questions-mutual-color mutual-color" for="id_job_question-0-qualify">
+                                <input class="must-have-qualification-input" name="job_question-0-qualify" id="id_job_question-0-qualify" type="checkbox">Must-have qualification</label>
+                        </div>
+
+                    </div>
+
+<!--                Question 2-->
+                  <div class="form-group form-group-add-question margin-between-question-and-answer" style="display: none;">
+                    <textarea id="id_job_question-1-promp" name="job_question-1-promp"  class="textarea-question textarea-color form-control" placeholder="Question 2" cols="30" rows="4"></textarea>
+
+                    <div class="row">
+                      <div class="answer-type-select">
+
+
+                        <select onchange="changeAnsType(1)" class="form-control select-width select-arrow" id="id_job_question-1-question_type" name="job_question-1-question_type">
+
+                        <option value="Yes/No">Yes / No</option>
+                        <option value="Numeric" >Numeric</option>
+                    </select>
+                      </div>
+                      <div class="ideal-answer-div">
+                        <div class="idealAns2" id="idealAns1">
+                          <input value="Ideal Answer" class="disable-inputs" id="id_job_question-1-ideal_answer" name="job_question-1-ideal_answer" disabled>
+
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div class="must-have-qualification-div">
+                        <label class="must-have-qualification-label screening-questions-mutual-color mutual-color" for="id_job_question-1-qualify">
+                            <input class="must-have-qualification-input" name="job_question-1-qualify" id="id_job_question-1-qualify" type="checkbox">Must-have qualification</label>
+
+
+                      </div>
+
+                  </div>
+                <!--    End of question 2-->
+
+
+
+                    <!--    Question 3-->
+                  <div class="form-group form-group-add-question margin-between-question-and-answer" style="display: none;">
+                    <textarea id="id_job_question-2-promp" name="job_question-2-promp" class="textarea-question textarea-color form-control" placeholder="Question 3"cols="30" rows="4"></textarea>
+
+
+                    <div class="row">
+                      <div class="answer-type-select">
+
+                        <select onchange="changeAnsType(2)" class="form-control select-width select-arrow" id="id_job_question-2-question_type" name="job_question-2-question_type">
+
+                        <option value="Yes/No">Yes / No</option>
+                        <option value="Numeric" >Numeric</option>
+                    </select>
+                      </div>
+                      <div class="ideal-answer-div">
+                        <div class="idealAns3" id="idealAns2">
+                          <input value="Ideal Answer" class="disable-inputs" id="id_job_question-2-ideal_answer" name="job_question-2-ideal_answer" name="secondAnswer3" disabled>
+
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <div class="must-have-qualification-div">
+                        <label class="must-have-qualification-label screening-questions-mutual-color mutual-color" for="id_job_question-2-qualify">
+                        <input class="must-have-qualification-input" name="job_question-2-qualify" id="id_job_question-2-qualify" type="checkbox">Must-have qualification</label>
+
+                    </div>
+                  </div>
+
+
+
+<!--                Question 3-->
+                <div title="You can add up to three questions for students" type="text" class=" add-question-button" onclick="showNextFormGroup()"><span style="padding-right: 10px;">+</span>Add Question</div>
+            <div class="back-and-next-buttons" style="width: 100%; display: flex; justify-content: space-between;">
+                <a cl ass="btn back-button next-none additional-feature-back-button">Back</a>
+                <a type="submit" id="additional-feature-submit-button" class="next-button btn submit-button next-none" onclick="clickAndDisable(this);Post();">Submit</a>
+            </div>
+            
+    
+        </div>
+    </div>
+    </div>
+    </form>
+
+<script>
+function Post(){
+
+         document.getElementById('form-id').submit();
+      }
+</script>
+<script>
+
+    function replaceNewlinesWithLineBreaks(text) {
+      return text.replace(/\n/g, "<br />");
+    }
+         document.getElementById("form-id").addEventListener("submit", function(event) {
+          event.preventDefault();
+
+          var textarea = document.getElementById("descriptionArea");
+          var text = textarea.value;
+          var replacedText = replaceNewlinesWithLineBreaks(text);
+            console.log("replace text");
+            console.log(replacedText);
+            textarea.value= replacedText;
+              console.log("replace text");
+            document.getElementById('form-id').submit();
+
+    });
+
+function clickAndDisable(link) {
+     link.onclick = function(event) {
+        event.preventDefault();
+     }
+   }
+
+    </script>
+<script>
+
+    function changeAnsType(id){
+         var question_id = id;
+         var choice = "id_job_question-"+question_id+"-question_type";
+
+         var selected = document.getElementById(choice).value;
+         var getName = "#idealAns"+question_id;
+         var setName = "job_question-"+question_id+"-ideal_answer";
+         var setId = "id_job_question-"+question_id+"-ideal_answer";
+         var inputText = "secondAnswer"+question_id;
+
+        var elements = document.getElementsByName(inputText);
+        var elements1 = document.getElementsByName(setName);
+        if (elements.length > 0) {
+          elements[0].remove();
+        }
+        if (elements1.length > 0) {
+          elements1[0].remove();
+        }
+
+
+         if(selected == "Yes/No") {
+            console.log(getName)
+
+            var x = $('<select class="disable-inputs '+setName+'" id='+setId+' name='+setName+'><option>Yes</option><option>No</option></select>')
+
+
+            $(getName).append(x);
+
+         }else if(selected == "Numeric") {
+
+          var y = $('<input type="number" name="'+setName+'" class="disable-inputs '+setName+'" id="'+setId+'">');
+          $(getName).append(y);
+
+
+         }
+        }
+
+    
+  </script>
+
+  <script>
+      let formGroupIndex = 0;
+      const formGroups = document.querySelectorAll('.form-group-add-question');
+      const add_question_button = document.querySelector(".add-question-button");
+
+function showNextFormGroup() {
+
+  if (formGroupIndex < formGroups.length) {
+    formGroups[formGroupIndex].style.display = 'block';
+    formGroupIndex++;
+  }
+  if (formGroupIndex === formGroups.length) {
+            add_question_button.style.display = "none";
+        }
+    else {
+        add_question_button.style.display = "block";
+    }
+}
+
+</script>
+  
+  <script>
+    const question = [];
+    const ansType = [];
+    const ideal = [];
+    const req = [];
+    function SaveQuestion(){
+        question.push(document.getElementById("question1").value);
+        question.push(document.getElementById("question2").value);
+        question.push(document.getElementById("question3").value);
+  
+        ansType.push(document.getElementById("ans_type1").value);
+        ansType.push(document.getElementById("ans_type2").value);
+        ansType.push(document.getElementById("ans_type3").value);
+  
+        ideal.push(document.getElementById("idealAnsF1").value);
+        ideal.push(document.getElementById("idealAnsF2").value);
+        ideal.push(document.getElementById("idealAnsF3").value);
+  
+  
+        req.push($('#qualify1').is(':checked'));
+        req.push($('#qualify2').is(':checked'));
+        req.push($('#qualify3').is(':checked'));
+        
+  
+  
+        console.log(question.toStrisng())
+        console.log(ansType.toString())
+        console.log(ideal.toString())
+        console.log(req.toString())
+  
+  
+        window.location.href ="/SQ/Add/push/"+question.toString()+"/"+ansType.toString()+"/"+ideal.toString()+"/"+req.toString()
+  
+  
+  
+    }
+  
+  </script>
+
+<script>
+    var selectElement = document.querySelectorAll(".select-width");
+      for (let i = 0; i < selectElement.length; i++) {
+      selectElement[i].addEventListener("focus", function() {
+        this.options[0].style.display = "none";
+      });
+    }
+
+</script>
+
+<script>
+
+</script>
+
+      <script>
+      var fileInput = document.getElementById('id_profile');
+      var imageElement = document.getElementById('profilePic');
+      var main_profile_picture = document.getElementById('profile-image');
+      
+      // Add an event listener to the file input element
+      fileInput.addEventListener('change', function() {
+        // Get the selected file
+        var file = fileInput.files[0];
+      
+        // Create a FileReader object to read the file
+        var reader = new FileReader();
+      
+        // Set the callback function when the file is loaded
+        reader.onload = function(e) {
+          // Update the image source with the data URL of the selected file
+          imageElement.src = e.target.result;
+          main_profile_picture.src = e.target.result;
+        };
+      
+        // Read the selected file as a data URL
+        reader.readAsDataURL(file);
+      });
+    </script>
+
+      <script src="{% static 'js/post-a-job/post-a-job-first-next-button-enable.js'%}"></script>
+      <script src="{% static 'js/post-a-job/post-a-job-textarea.js'%}"></script>
+      <script src="{% static 'js/post-a-job/post-a-job-salary-per-hour.js'%}"></script>
+    <script src="{% static 'js/Ajax/Match/user-details-ajax.js'%}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.2/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'js/reserve/reserve-date-of-birth.js'%}"></script>
+    <script src="{% static 'js/post-a-job/post-a-job-details-description-top.js'%}"></script>
+    <script src="{% static 'js/reserve/reserve-post-a-job-back-button.js'%}"></script>
+    <script src="{% static 'js/post-a-job/post-a-job-add-question.js'%}"></script>
+    <script src="{% static 'js/post-a-job/post-a-job-additional-feature-submit-button-enable.js'%}"></script>
+    <script src="{% static 'js/post-a-job/post-a-job-start-end-date.js'%}"></script>
+    </html>
+
