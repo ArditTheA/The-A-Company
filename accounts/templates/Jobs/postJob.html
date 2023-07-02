@@ -17,9 +17,8 @@
 
 <form class="register-form"  id="form-id" method="post" enctype="multipart/form-data" action="{% url 'addJob'%}" >
    {% csrf_token %}
-   {{job_form.errors}}
+
    {{ job_question_formset.management_form }}
-   {{job_question_formset.errors}}
 
    <div  class=" second-reserve-form reserve-form first-post-a-job-form" style="">
       <div class="contact-information-form">
