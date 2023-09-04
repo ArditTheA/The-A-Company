@@ -14,8 +14,10 @@ body {
 .worki-image {
     height: 35px;
     width: auto;
+    vertical-align: middle;
 }
 
+.bi-eye-slash {}
 .create-account-container {
     width: 508px;
     margin: auto auto auto auto;
@@ -28,7 +30,7 @@ body {
     padding-bottom: 30px;
     padding-left: 30px;
     padding-right: 30px;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 #create-account-title {
@@ -53,6 +55,7 @@ body {
     background-color: white;
     width: 100%;
     box-sizing: border-box;
+    color: #9E9E9E;
 }
 
 .input-text:focus {
@@ -148,7 +151,14 @@ body {
 
 #togglePassword {
     position: absolute;
-    right: 22px;
+    right: 20px;
+}
+
+.incorrect-div {
+    padding-left: 10px;
+    margin-bottom: 20px;
+    color: #FF0000;
+
 }
 
 @media screen and (max-width: 1024px) and (min-width: 481px) {
@@ -240,9 +250,18 @@ body {
         padding: 10px;
     }
 
+    .create-account-container {
+        margin-top: 0px;
+    }
+
     .header-border {
         display: none;
     }
+    #togglePassword {
+        position: absolute;
+        right: 15px;
+    }
+
     .create-account-container {
         padding-top: 20px;
         padding-bottom: 20px;
@@ -264,11 +283,16 @@ body {
         padding-top: 20px;
     }
     .first-paragraph, .second-paragraph, .third-paragraph {
-        font-size: 14px;
+        /* font-size: 14px; */
     }
-    .name-input, .surname-input, .email-input, .password-input, .sign-up-submit-input, .sign-up-google {
-        font-size: 14px;
+    .name-input, .surname-input, .email-input, .password-input, .sign-up-google {
+        /* font-size: 14px; */
         padding: 8px 0px 8px 8px;
+    }
+
+    .sign-up-submit-input {
+        height: 36px;
+        padding: 0px;
     }
     .name-input {
         /* margin-bottom: 15px; */

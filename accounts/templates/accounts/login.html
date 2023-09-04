@@ -43,7 +43,7 @@
                 {% if form.errors %}
                     <p class="first-paragraph " style="margin:0;padding-top:10px;padding-bottom:10px;color:red">{{form.errors}}Your email or password is incorrect</p>
                 {% endif %}
-                <p class="first-paragraph same-color-of-paragraphs"><a class="password-link" href="">Forgot
+                <p class="first-paragraph same-color-of-paragraphs"><a class="password-link" href="{% url 'password_reset' %}">Forgot
                         password?</a></p>
                 <div class="sign-in-input">
                     <input name="submit" type="submit" class="sign-in-submit-input font-fam" value="Sign in">

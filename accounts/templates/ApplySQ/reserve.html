@@ -3,7 +3,7 @@
 {% load static %}
 {% block content %}
 
-    
+
 
     <form class="reserveForm" id="answerForm"  method="POST">
     {% csrf_token %}
@@ -21,22 +21,23 @@
 
         <div class="contact-information-title">Contact Information</div>
         <div class="inputs-div contact-information-margin-bottom first-and-last-name" style="display: flex;">
-            <input style="" name="first_name" placeholder="First Name" value="{{user.first_name}}" id="id_first_name" class="apply-first-name apply-name-surname all-inputs mutual-input"></input>
+            <input style="" name="first_name" placeholder="First Name" {% if user.first_name %}value="{{user.first_name}}"{% endif%} id="id_first_name" class="apply-first-name apply-name-surname all-inputs mutual-input"></input>
 
 
-            <input placeholder="Last Name" name="last_name" id="id_last_name" value="{{user.last_name}}" class="apply-last-name apply-name-surname all-inputs mutual-input"></input>
+            <input placeholder="Last Name" name="last_name" id="id_last_name" class="apply-last-name apply-name-surname all-inputs mutual-input" {% if user.last_name %}value="{{ user.last_name }}"{% endif %}>
+
         </div>
         <div class="inputs-div second-inputs-div">
             <input type="email" name="email" id="id_email" placeholder="Email" value="{{user.email}}" class="all-inputs mutual-input contact-information-mutual-stats contact-information-margin-bottom" required>
             <!-- <input placeholder="Date of Birth" class="all-inputs contact-information-mutual-stats contact-information-margin-bottom mutual-input date-of-birth-input" style=""></input> -->
-            <input type="tel" placeholder="Phone Number" name="phone_number" value="{{user.phone_number}}" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="all-inputs2 contact-information-mutual-stats contact-information-margin-bottom mutual-input" required>
-            <input placeholder="Country of Residence"value="{{user.country}}" name="country"class="all-inputs contact-information-mutual-stats mutual-input"></input>
+            <input type="tel" placeholder="Phone Number" name="phone_number" {% if user.phone_number %} value="{{user.phone_number}}" {% endif %} pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="all-inputs2 contact-information-mutual-stats contact-information-margin-bottom mutual-input" required>
+            <input placeholder="Country of Residence" {% if user.country%} value="{{user.country}}"{% endif %} name="country"class="all-inputs contact-information-mutual-stats mutual-input"></input>
             <!-- <input placeholder="Address" class="all-inputs contact-information-mutual-stats mutual-input" style=""></input> -->
             <!-- <input placeholder="Student Status" class="all-inputs contact-information-mutual-stats mutual-input" style="border: 1px solid #D4D5D6; width: 434px; padding: 10px 0px 10px 10px; border-radius: 40px;"></input> -->
         </div>
                                                                                                                                             
         <div class="back-and-next-buttons" style="width: 100%; display: flex; justify-content: space-between;">
-            <a href="jobs.html" class="btn back-button next-none contact-information-back-button" style="">Back</a>
+            <a href="{% url 'home' %}" class="btn back-button next-none contact-information-back-button" style="">Back</a>
             <a id="next-button" class="next-button btn submit-button next-none" style="">Next</a>
         </div>
     </div>
@@ -71,7 +72,7 @@
 
                     <select title="{{i.promp}}"name="{{i.id}}" id="screening-question-select-options" style="" class="custom-select" >
                         <!-- <option disabled selected style="display: none;" value="">Are you an active student?</option> -->
-                        <option disabled selected style="display: none;" value="">Yes / No</option>
+                        <option disabled selected style="display: none;" value="">Select option</option>
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
                   </select>

@@ -129,6 +129,8 @@ def CalendlyAPI():
 
 
 def landingPage(request):
+    return redirect("jobs")
+def landingPage1(request):
     userNo =  CustomUser.objects.all().count()
     userNo = userNo+2300
     appNo  = Application.objects.all().count()
@@ -242,10 +244,20 @@ class RegisterView(generic.CreateView):
 def registration(request):
     if request.POST:
         NewClinetemail = request.POST.get("email")
-        first_name = request.POST.get("first_name")
         form = RegisterForm(request.POST)
         if form.is_valid():
+            # Extract "first_name" and "last_name" from the form
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+
+            # Create the user object and save it
             user = form.save()
+
+            # Set "first_name" and "last_name" on the user object
+            user.first_name = first_name
+            user.last_name = last_name
+            user.save()
+
             subject = "Welcome to Worki"
             email_template_applicant = "main/register/Welcome.txt"
             c = {
@@ -254,17 +266,18 @@ def registration(request):
                 'site_name': 'Worki',
                 'user': request.user,
                 'first_name': first_name,
-
             }
             email = render_to_string(email_template_applicant, c)
             try:
                 send_mail(subject, email, 'Worki hello@worki.global',
                           [NewClinetemail], fail_silently=False)
-                # send_mail(subject,oemail,'rinor@theacompany.xyz',[emailOwner],fail_silently=False)
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
-            login(request, user)
 
+            login(request, user)
+            next_url = request.GET.get('next')
+            if next_url:
+                return redirect(next_url)  # Redirect to the URL specified in 'next'
             return redirect('home')
     else:
         form = RegisterForm()
@@ -292,7 +305,6 @@ def update_profile(request):
 
         if form.is_valid():
             CountryUser(request.POST.get("country"), request.user)
-            CityUser(request.POST.get("country"), request.POST.get("city"), request.user)
 
             form.save()
 

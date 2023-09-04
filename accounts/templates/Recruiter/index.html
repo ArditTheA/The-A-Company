@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-{% if check %}
 {% include "Recruiter/recruiter-filter.html" %}
+
+{% if check %}
 <input style="display:none;" id="PostID" value="{{post_id}}">
 <input type="hidden" id="MainJobs" name="variable" value="{{checkMainJobs}}">
 <div class="jobs-main-div" >

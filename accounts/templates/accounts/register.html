@@ -3,7 +3,6 @@
 {% load crispy_forms_tags %}
 {% load socialaccount %}
 
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -39,19 +38,19 @@
                 </div>
 
                 <p class="second-paragraph same-color-of-paragraphs">or</p>
-                <input name="fname" type="text" id="id_first_name" class="input-text name-surname-width name-input" placeholder="First Name"></input>
-                <input name="lname" type="text" id="id_last_name" class="input-text name-surname-width surname-input"
+                <input name="first_name" type="text" id="id_first_name" class="input-text name-surname-width name-input" placeholder="First Name"></input>
+                <input name="last_name" type="text" id="id_last_name" class="input-text name-surname-width surname-input"
                     placeholder="Last Name"></input>
                 <input name="email"id="id_email" type="email" class="input-text email-input"
                     placeholder="Email"></input>
                 <div class="input-form">
 
-                    <input name="password1" type="password" id="id_password" id="id_password1"  class="input-text password-input"
+                    <input name="password1" type="password"  id="id_password1"  class="input-text password-input"
                         placeholder="Password"></input>
                     <i class="bi bi-eye-slash" id="togglePassword"></i>
                 </div>
                 <p class="first-paragraph same-color-of-paragraphs">By creating account, you agree to <a
-                        class="terms-conditions-link" href="">terms and conditions</a></p>
+                        class="terms-conditions-link" href="{% url 'terms' %}">terms and conditions</a></p>
                 <div class="sign-up-input">
                     <input name="submit" type="submit" class="sign-up-submit-input input-text font-fam" value="Create account">
                 </div>
@@ -66,7 +65,25 @@
 
 </body>
 
-<script src="{% static 'js/password_icon.js' %}"></script>
+<script>
+
+
+    var password = document.getElementById("id_password1");
+    var togglePassword = document.getElementById("togglePassword");
+    togglePassword.addEventListener("click", function() {
+
+        if (password.type === "password") {
+          password.type = "text";
+        }
+        else {
+          password.type = "password";
+        }
+
+        this.classList.toggle("bi-eye");
+  });
+
+1
+</script>
 
 
 

@@ -520,7 +520,7 @@ def sentNQualifiedEmail(request,job,user):
     )
     msg.attach_alternative(html_content, "text/html")
     msg.send()
-@login_required
+@login_required(login_url="register")
 def applyForJobSQ(request, pk):
     job = Jobs.objects.get(id=pk)
 
