@@ -2,7 +2,7 @@ Hello, {{user.first_name}}!
 
 You have successfully applied for {{job.job_title}} at {{job.company}}.
 
-You’re guaranteed to hear in 72 hours via email or phone call about your job application.
+You’re guaranteed to hear in 72 hours via email or phone call about your application.
 
 We’ll be in touch soon,
 Worki

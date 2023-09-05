@@ -1,40 +1,6 @@
-
-/* Safari 3-4, iOS 1-3.2, Android 1.6- */
-@-webkit-viewport { width: device-width; }
-@-webkit-keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
-@-webkit-keyframes fadeout { from { opacity: 1; } to { opacity: 0; } }
-
-/* Safari 5.1-6 */
-@-webkit-keyframes bounce { 0%, 20%, 50%, 80%, 100% { -webkit-transform: translateY(0); } 40% { -webkit-transform: translateY(-30px); } 60% { -webkit-transform: translateY(-15px); } }
-
-/* Safari 7.0+ */
-@keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-30px); } 60% { transform: translateY(-15px); } }
-
-/* Safari specific styles */
-select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  padding: 10px;
- font-size: 16px;
-
-}
-
-/* Other browser specific styles */
-select::-ms-expand {
-  display: none;
-}
-
-/* Default styles for all browsers */
-select {
-  /* Your additional styles for the select element */
-}
-
-
-
 .duration-buttons {
     border: 1px solid #D4D5D6;
-    width: 120px; 
+    width: 120px;
     text-align: center;
     color: #858585;
     border-radius: 25px;
@@ -50,9 +16,12 @@ select {
     width: 100% !important;
 }
 .third-additional-feature {
-    padding-top: 30px; 
-    padding-bottom: 30px; 
+    padding-top: 30px;
+    padding-bottom: 30px;
     font-size: 18px;
+}
+.custom-select {
+    color: #858585;
 }
 
 .months-div {
@@ -63,10 +32,10 @@ select {
     margin-right: -60px;
 }
 .first-job-description-post-a-job-div {
-    padding-top: 20px; 
-    padding-bottom: 20px; 
-    border-bottom: 40px; 
-    margin-left: 30px; 
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 40px;
+    margin-left: 30px;
     color: #D4D5D6;
     pointer-events: none;
 }
@@ -95,21 +64,21 @@ select {
 } */
 
 .program-duration-form {
-    background-color: white; 
-    margin: auto; 
-    width: max-content; 
+    background-color: white;
+    margin: auto;
+    width: max-content;
     border-radius: 40px;
 }
 .under-program-duration-form {
-    background-color: white; 
+    background-color: white;
     border-width: 100%;
-    margin: auto; 
-    width: max-content; 
-    border-radius: 40px; 
-    border-bottom-left-radius: 40px; 
-    border-bottom-right-radius: 40px; 
-    border-bottom: 1px solid #f0f0f0; 
-    border-left: 1px solid #f0f0f0; 
+    margin: auto;
+    width: max-content;
+    border-radius: 40px;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    border-bottom: 1px solid #f0f0f0;
+    border-left: 1px solid #f0f0f0;
     border-right: 1px solid #f0f0f0;
 }
 
@@ -118,22 +87,22 @@ select {
     flex-wrap: wrap; /* Allow wrapping to multiple rows if needed */
     justify-content: flex-start; /* Align items to the start of each row */
   }
-  
+
 .added-items-container {
     display: flex;
     flex-wrap: wrap;
 }
 
 .choose-duration-buttons {
-    border-radius: 40px; 
+    border-radius: 40px;
     padding-top: 8px;
     padding-bottom: 8px;
 }
 .post-a-job-under-div {
-    border-bottom-left-radius: 40px; 
-    border-bottom-right-radius: 40px; 
-    border-bottom: 1px solid #f0f0f0; 
-    border-left: 1px solid #f0f0f0; 
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    border-bottom: 1px solid #f0f0f0;
+    border-left: 1px solid #f0f0f0;
     border-right: 1px solid #f0f0f0;
 }
 
@@ -143,54 +112,54 @@ select {
 }
 .contact-information-form {
     background-color: white;
-    margin: auto; 
-    width: max-content; 
+    margin: auto;
+    width: max-content;
     border-radius: 40px;
 }
 .under-c-i-f {
-    background-color: white; 
-    border-width: 100%; 
-    margin: auto; 
-    width: max-content; 
-    border-radius: 40px; 
-    border-bottom-left-radius: 40px; 
-    border-bottom-right-radius: 40px; 
-    border-bottom: 1px solid #f0f0f0; 
-    border-left: 1px solid #f0f0f0; 
+    background-color: white;
+    border-width: 100%;
+    margin: auto;
+    width: max-content;
+    border-radius: 40px;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    border-bottom: 1px solid #f0f0f0;
+    border-left: 1px solid #f0f0f0;
     border-right: 1px solid #f0f0f0;
 }
 .contact-information-div {
-    padding-top: 20px; 
-    padding-bottom: 20px; 
-    border-bottom: 40px; 
-    margin-left: 30px; 
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 40px;
+    margin-left: 30px;
     color: #D4D5D6;
 }
 .first-screening-question-div {
-    padding-top: 20px; 
-    padding-bottom: 20px; 
-    border-bottom: 40px; 
-    margin-left: 30px; 
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 40px;
+    margin-left: 30px;
     color: #D4D5D6;
 }
 .first-payment-div {
-    padding-top: 20px; 
-    padding-bottom: 20px; 
-    border-bottom: 40px; 
-    margin-left: 30px; 
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 40px;
+    margin-left: 30px;
     color: #D4D5D6;
 }
 .choose-duration-title {
-    margin-top: 30px; 
+    margin-top: 30px;
     font-size: 16px;
 }
 .second-inputs-div {
-    display: flex; 
+    display: flex;
     flex-direction: column;
     width: 446px;
 }
 .duration-buttons-div, .duration-buttons-div-2 {
-    display: flex; 
+    display: flex;
     justify-content: space-between;
     margin-top: 20px;
 }
@@ -206,16 +175,16 @@ select {
     padding-bottom: 12px;
 }
 .contact-information-third-page {
-    color: black; 
-    font-size: 18px; 
-    padding-top: 30px; 
+    color: black;
+    font-size: 18px;
+    padding-top: 30px;
     padding-bottom: 15px;
 }
 .over-duration-buttons {
     padding-right: 40px;
 }
 .contact-information-title {
-    font-size: 18px; 
+    font-size: 18px;
     margin-bottom: 30px;
     margin-top: 30px;
 }
@@ -226,8 +195,8 @@ select {
     color: white;
 }
 .choose-starting-month-div {
-    color: black; 
-    font-size: 16px; 
+    color: black;
+    font-size: 16px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -254,10 +223,10 @@ select {
     padding: 10px 120px;
 }
 .additional-feature-form-main-div {
-    background-color: white; 
-    margin: auto; 
-    width: max-content; 
-    border-radius: 40px; 
+    background-color: white;
+    margin: auto;
+    width: max-content;
+    border-radius: 40px;
     width: 508px;
 }
     .first-second-buttons {
@@ -297,7 +266,7 @@ input[type="number"]:hover::-webkit-inner-spin-button {
 
 input[type="number"]:focus::-webkit-inner-spin-button,
 input[type="number"]:focus::-webkit-outer-spin-button,
-input[type="number"]:active::-webkit-inner-spin-button,                                          j     
+input[type="number"]:active::-webkit-inner-spin-button,                                          j
 input[type="number"]:active::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
@@ -310,23 +279,23 @@ input[type="number"]:active::-webkit-outer-spin-button {
     cursor: pointer !important;
 }
 .second-main-program-duration-form {
-    background-color: white; 
-    padding: 30px; 
-    border-width: 100%; 
-    margin: auto; 
-    width: max-content; 
-    border-radius: 40px; 
-    border-bottom-left-radius: 40px; 
-    border-bottom-right-radius: 40px; 
-    border-bottom: 1px solid #f0f0f0; 
-    border-left: 1px solid #f0f0f0; 
+    background-color: white;
+    padding: 30px;
+    border-width: 100%;
+    margin: auto;
+    width: max-content;
+    border-radius: 40px;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    border-bottom: 1px solid #f0f0f0;
+    border-left: 1px solid #f0f0f0;
     border-right: 1px solid #f0f0f0;
 }
 .program-duration-div {
-    color: black; 
-    font-size: 18px; 
-    margin-left: 31px; 
-    padding-top: 30px; 
+    color: black;
+    font-size: 18px;
+    margin-left: 31px;
+    padding-top: 30px;
     padding-bottom: 15px;
 }
 
@@ -369,11 +338,11 @@ input {
 }
 
 .job-description-third-page-div {
-    border-width: 100%; 
-    padding-left: 31px; 
+    border-width: 100%;
+    padding-left: 31px;
     margin: auto;
-    border-top-left-radius: 40px; 
-    border-top-right-radius: 40px; 
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
     border-top: 1px solid #f0f0f0;
 }
 .job-description-third-page {
@@ -386,10 +355,10 @@ input {
 }
 
 .screening-question-form {
-    background-color: white; 
-    margin: auto; 
-    width: max-content; 
-    border-radius: 40px; 
+    background-color: white;
+    margin: auto;
+    width: max-content;
+    border-radius: 40px;
     width: 508px;
 }
 
@@ -414,18 +383,18 @@ input {
 }
 
 .program-duration-third-page {
-    color: black; 
-    font-size: 18px; 
-    margin-left: 31px; 
-    padding-top: 30px; 
+    color: black;
+    font-size: 18px;
+    margin-left: 31px;
+    padding-top: 30px;
     padding-bottom: 15px;
 }
 .contact-information-div-third-page {
-    border-width: 100%; 
-    padding-left: 31px; 
-    margin: auto; 
-    border-top-left-radius: 40px; 
-    border-top-right-radius: 40px; 
+    border-width: 100%;
+    padding-left: 31px;
+    margin: auto;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
     border-top: 1px solid #f0f0f0;
 }
 
@@ -463,7 +432,7 @@ input {
     margin-right: 10px;
   }
 
-  
+
 
   #screening-question-select-options {
     height: auto;
@@ -478,6 +447,10 @@ input {
     background-position: 5px center;
   }
 
+  select {
+    font-size: 16px;
+  }
+
   .month-button.displayed {
     display: block;
   }
@@ -487,7 +460,7 @@ input {
     background-size: 12px;
     padding-right: 20px !important;
   } */
-  
+
 
 .third-next-button-2 {
     background-color: #1877F2 !important;
@@ -520,8 +493,8 @@ input {
     margin-right: 20px;
 }
 .contact-information-mutual-stats, .add-question-button {
-    border: 1px solid #D4D5D6; 
-    padding: 10px 0px 10px 10px; 
+    border: 1px solid #D4D5D6;
+    padding: 10px 0px 10px 10px;
     border-radius: 40px;
     color: #858585;
 }
@@ -537,10 +510,10 @@ input {
 }
 .first-and-last-name {
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
     width: 100%;
 }
-  
+
 /* .button-effect:after {
     content: "";
     display: block;
@@ -554,7 +527,7 @@ input {
     transition: all 0.5s;
     box-shadow: 0 0 10px 40px white;
   }
-  
+
   .button-effect:active:after {
     box-shadow: 0 0 0 0 white;
     position: absolute;
@@ -562,7 +535,7 @@ input {
     opacity: 1;
     transition: 0s;
   } */
-  
+
   .animated {
     border-radius: 4em;
     transition: all 0.3s;
@@ -574,12 +547,12 @@ input {
   }
 
   .animated:active::after{
-    
+
   }
 
   .animated {
     animation: shake 0.7s ease;
-    
+
   }
   input {
     font-size: 16px;
@@ -587,7 +560,7 @@ input {
     color: #858585;
   }
 
-  
+
   @keyframes shake {
     0% { transform: translateX(0); }
     10%, 90% { transform: translateX(-1.5px); }
@@ -635,12 +608,12 @@ input {
 } */
 .program-duration-under-div, .post-a-job-under-div {
     width: max-content;
-    background-color: white; 
-    border-width: 100%; 
-    padding-left: 30px; 
-    padding-right: 30px; 
-    padding-bottom: 30px; 
-    margin: auto; 
+    background-color: white;
+    border-width: 100%;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    margin: auto;
 }
 
 .first-and-last-name {
@@ -649,8 +622,8 @@ input {
 
 .program-duration-under-div {
     border-radius: 40px;
-    border-top-left-radius: 40px; 
-    border-top-right-radius: 40px; 
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
     border: 1px solid #f0f0f0;
 }
 
@@ -663,9 +636,9 @@ input {
 }
 .job-details-div {
     color: black;
-    font-size: 18px; 
-    margin-left: 30px; 
-    padding-top: 30px; 
+    font-size: 18px;
+    margin-left: 30px;
+    padding-top: 30px;
     padding-bottom: 20px;
     cursor: auto;
 }
@@ -673,28 +646,29 @@ input {
     width: 446px;
 }
 .third-page-job-details-discription {
-    color: black; 
-    font-size: 18px; 
-    margin-left: 30px; 
-    padding-top: 30px; 
+    color: black;
+    font-size: 18px;
+    margin-left: 30px;
+    padding-top: 30px;
     padding-bottom: 15px;
 }
 
 .scroll {
-    width: 100%;
+    width: calc(100% - 40px);
     height: 340px;
-    background-color: white; 
+    background-color: white;
     border-radius: 40px;
-    resize: none; 
+    resize: none;
     border: 1px solid #f0f0f0;
-    font-size: 16px; 
+    font-size: 16px;
     color: #757575;
+    padding-left: 10px;
     margin: auto;
     outline: none;
-    padding:20px;
-} 
+    padding: 20px;
+}
 .screening-question-third-page {
-    padding-top: 30px; 
+    padding-top: 30px;
     font-size: 18px;
 }
 .second-screening-question-div {
@@ -705,21 +679,21 @@ input {
     padding-top: 30px;
 }
 .third-payment-div {
-    padding-top: 20px; 
-    padding-bottom: 20px; 
-    border-bottom: 40px; 
-    margin-left: 30px; 
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 40px;
+    margin-left: 30px;
     color: #D4D5D6;
 }
 .screening-question-only-form {
-    border-width: 100%; 
-    padding-left: 30px; 
-    padding-right: 30px; 
-    padding-bottom: 30px; 
-    margin: auto; 
-    border-radius: 40px; 
-    border-top-left-radius: 40px; 
-    border-top-right-radius: 40px; 
+    border-width: 100%;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    margin: auto;
+    border-radius: 40px;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
     border: 1px solid #f0f0f0;
 }
 .logo-label {
@@ -739,7 +713,7 @@ input {
     border: none;
 }
 
-.icon-post {
+.icon {
     position: absolute;
     height: 22px;
     width: 22px;
@@ -748,13 +722,13 @@ input {
     right: 20px;
 }
 .third-additional-feature-main-div {
-    border-width: 100%; 
-    padding-left: 30px; 
-    padding-right: 30px; 
-    padding-bottom: 30px; 
-    margin: auto; 
-    border-top-left-radius: 40px; 
-    border-top-right-radius: 40px; 
+    border-width: 100%;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    margin: auto;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
     border: 1px solid #f0f0f0;
 }
 /* .upload-file-content-div {
@@ -771,6 +745,7 @@ input {
 } */
 
 @media screen and (max-width: 1024px) and (min-width: 481px) {
+
     .first-second-buttons {
         margin-right: 30px;
     }
@@ -806,7 +781,7 @@ input {
     .additional-feature-form-main-div {
         width: 488px;
     }
-    
+
     /* .months-div {
         width: 435px;
         margin-right: -5px !important;
@@ -814,6 +789,9 @@ input {
 }
 
 @media screen and (max-width: 480px) {
+.reserve-form{
+        margin-top: 0 !important;
+    }
     .first-reserve-form {
         width: calc(100% - 20px);
         margin: auto;
@@ -830,8 +808,8 @@ input {
     .program-duration-form {
         width: 100%;
         margin: auto;
-        border-bottom-right-radius: 30px;
-        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 20px;
         margin-bottom: 10px;
     }
     .under-program-duration-form {
@@ -847,7 +825,7 @@ input {
     .second-main-program-duration-form {
         width: calc(100% - 40px);
         padding: 20px;
-        border-top-left-radius: 20px;        
+        border-top-left-radius: 20px;
         border-top-right-radius: 20px;
         border-bottom-right-radius: 30px;
         border-bottom-left-radius: 30px;
@@ -864,7 +842,7 @@ input {
         font-size: 16px;
     }
     .choose-duration-title, .choose-starting-month-div {
-        margin-top: 20px; 
+        margin-top: 20px;
         font-size: 14px;
     }
     .font-size-18px-16px, .job-details-div {
@@ -877,7 +855,7 @@ input {
     .first-second-buttons {
         /* margin-right: 40px; */
     }
-    
+
         .duration-buttons-div {
         width: 100%;
         /* display: flex; */
@@ -894,7 +872,7 @@ input {
     .second-reserve-form {
         width: calc(100% - 1px);
         margin: auto;
-        padding-top: 20px;
+        padding-top: 0px;
         margin-left: -1px;
         margin-bottom: 10px;
     }
@@ -916,9 +894,10 @@ input {
         width: 100%;
     }
     .program-duration-under-div {
-        border-top-left-radius: 20px; 
-        border-top-right-radius: 20px; 
-    }    
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        border-radius: 20px;
+    }
     .job-details-div {
         padding-top: 20px;
     }
@@ -936,18 +915,15 @@ input {
     }
     .first-and-last-name {
     }
-    input, .upload-file-div {
-        font-size: 14px;
-    }
+
     .contact-information-title {
-        font-size: 16px; 
+        font-size: 16px;
         margin-bottom: 20px;
     }
     .submit-button, .back-button {
         margin-top: 20px;
-        padding: 8px 27px;
-        font-size: 14px;
-    }    
+        padding: 8px 30px;
+    }
     .contact-information-form {
         width: calc(100% - 20px);
     }
@@ -957,10 +933,9 @@ input {
         border-top-left-radius: 20px;
     }
     .third-form-question {
-        font-size: 14px;
+        padding-top: 0px;
     }
     #screening-question-select-options {
-        font-size: 14px;
         padding: 8px;
     }
     .program-duration-third-page, .contact-information-third-page, .screening-question-third-page {
@@ -976,9 +951,10 @@ input {
         padding-left: 20px;
     }
     .screening-question-only-form {
-        padding-left: 20px; 
-        padding-right: 20px; 
-        padding-bottom: 20px; 
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
+        border-radius: 0px;
     }
     .job-details-div {
         margin-left: 19px;
@@ -1054,5 +1030,9 @@ input {
     .contact-information-div-third-page {
         border-top-left-radius: 20px;
         border-top-right-radius: 20px;
+    }
+    .under-c-i-f {
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
     }
 }

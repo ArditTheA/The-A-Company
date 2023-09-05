@@ -156,17 +156,20 @@
 
         } else {
             if(!hasApply){
-                const mediaQuery = window.matchMedia('(max-width: 767px)');
-                document.getElementById("button").style.backgroundColor = "#1877f2";
-                 if (mediaQuery.matches) {
-                                 document.getElementById("button").style.padding = "7px 25px";
 
-                 }else{
-                                 document.getElementById("button").style.padding = "8px 30px";
 
-                 }
+                // Get a reference to the div element by its ID
+                var divElement = document.getElementById("button");
+                divElement.textContent = "Apply";
+                divElement.style.color = "white";
+                divElement.style.padding = "8px 30px";
+                divElement.onclick = function() {
+                    // Redirect to the desired URL when the div is clicked
+                    window.location.href = url;
+                };
 
-                button.innerHTML = '<a href="'+url+'" class="" >Apply</a>';
+                // Set a cursor pointer style to indicate the element is clickable
+                divElement.style.cursor = "pointer";
 
 
             }else{
