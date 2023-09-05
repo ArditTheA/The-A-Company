@@ -163,6 +163,7 @@
                 divElement.textContent = "Apply";
                 divElement.style.color = "white";
                 divElement.style.padding = "8px 30px";
+                divElement.style.backgroundColor = "#1877f2";
                 divElement.onclick = function() {
                     // Redirect to the desired URL when the div is clicked
                     window.location.href = url;
