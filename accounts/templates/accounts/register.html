@@ -57,8 +57,14 @@
 
             </form>
 
-            <p class="third-paragraph same-color-of-paragraphs">Already a user? <a class="sign-in-link"
-                    href="{% url 'login'%}">Sign in</a></p>
+            <p class="third-paragraph same-color-of-paragraphs">Already a user?
+                {% if request.GET.next %}
+                <a class="sign-in-link" href="{% url 'login' %}?next={{ request.GET.next }}">Sign in</a>
+
+                {% else %}
+                <a class="sign-in-link" href="{% url 'login'%}">Sign in</a>
+                {% endif %}
+            </p>
         </div>
 
     </div>
