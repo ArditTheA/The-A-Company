@@ -50,8 +50,14 @@
                 </div>
             </form>
 
-            <p class="third-paragraph same-color-of-paragraphs">Not a user? <a class="sign-up-link"
-                    href="{% url 'register' %}">Create account</a></p>
+            <p class="third-paragraph same-color-of-paragraphs">Not a user?
+                {% if request.GET.next %}
+                <a class="sign-up-link" href="{% url 'register' %}?next={{ request.GET.next }}">Create account</a>
+                {% else %}
+                <a class="sign-up-link" href="{% url 'register' %}">Create account</a>
+
+                {% endif %}
+            </p>
         </div>
     </div>
     </body>
