@@ -18,6 +18,9 @@ body {
     height: 35px;
     vertical-align: middle;
 }
+.sign-in-submit-input {
+    font-weight: normal !important;
+}
 
 .container {
     width: 508px;
