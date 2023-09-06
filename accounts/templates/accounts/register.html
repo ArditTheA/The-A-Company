@@ -3,6 +3,8 @@
 {% load crispy_forms_tags %}
 {% load socialaccount %}
 
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -10,25 +12,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/create_account.css'%}">
-    
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-    <link rel="icon" href="{% static 'img/123.png' %}">
 
     <title>Create Account</title>
 </head>
 
 <body>
-<header class="header-border">
-        <div class="first-image">
-            <a href="{% url 'home' %}"><img class="worki-image" src="{% static 'img/Header/Vector.svg' %}" title="Worki"></a>
-        </div>
-    </header>
+
 
     <div class="create-account-container">
         <div class="create-account-under-container">
             <div id="create-account-title">Create an account</div>
-            <form method="POST" action="" class="sign-up-form">
+            <form method="POST" id="signupForm" action="" class="sign-up-form">
                 {% csrf_token %}
                 <div class="input-form">
                     <a href="{% provider_login_url 'google' %}" class="sign-up-google input-text">
@@ -38,58 +35,58 @@
                 </div>
 
                 <p class="second-paragraph same-color-of-paragraphs">or</p>
-                <input name="first_name" type="text" id="id_first_name" class="input-text name-surname-width name-input" placeholder="First Name"></input>
-                <input name="last_name" type="text" id="id_last_name" class="input-text name-surname-width surname-input"
+                <input name="first_name" type="text" id="id_first_name"  class="input-text name-surname-width name-input" placeholder="First Name"></input>
+                <input name="last_name" type="text" id="id_last_name"  class="input-text name-surname-width surname-input"
                     placeholder="Last Name"></input>
-                <input name="email"id="id_email" type="email" class="input-text email-input"
+                <input name="email"id="id_email" type="email"  class="input-text email-input"
                     placeholder="Email"></input>
                 <div class="input-form">
 
-                    <input name="password1" type="password"  id="id_password1"  class="input-text password-input"
+                    <input name="password1" type="password" id="id_password" id="id_password1" class="input-text password-input"
                         placeholder="Password"></input>
-                    <i class="bi bi-eye-slash" id="togglePassword"></i>
+                    <i class="bi bi-eye-slash" id="togglePassword" onclick="ShowOrHidePassword()"></i>
                 </div>
+                {% if form.errors %}
+                <div class="incorrect-div" style="">The data you've entered is incorrect or incomplete</div>
+                {% endif %}
                 <p class="first-paragraph same-color-of-paragraphs">By creating account, you agree to <a
-                        class="terms-conditions-link" href="{% url 'terms' %}">terms and conditions</a></p>
+                        class="terms-conditions-link" href="{% url 'terms'%}">terms and conditions</a></p>
                 <div class="sign-up-input">
-                    <input name="submit" type="submit" class="sign-up-submit-input input-text font-fam" value="Create account">
+                <input id="subButton"  class="sign-up-submit-input input-text font-fam" value="Create account">
                 </div>
 
             </form>
 
             <p class="third-paragraph same-color-of-paragraphs">Already a user?
-                {% if request.GET.next %}
+            {% if request.GET.next %}
                 <a class="sign-in-link" href="{% url 'login' %}?next={{ request.GET.next }}">Sign in</a>
 
                 {% else %}
                 <a class="sign-in-link" href="{% url 'login'%}">Sign in</a>
-                {% endif %}
-            </p>
+                {% endif %}</p>
         </div>
 
     </div>
 
 </body>
 
+<script src="{% static 'GigsJS/password_icon.js' %}"></script>
 <script>
+const button = document.getElementById("subButton");
 
+button.addEventListener("click", disableButton);
 
-    var password = document.getElementById("id_password1");
-    var togglePassword = document.getElementById("togglePassword");
-    togglePassword.addEventListener("click", function() {
-
-        if (password.type === "password") {
-          password.type = "text";
-        }
-        else {
-          password.type = "password";
-        }
-
-        this.classList.toggle("bi-eye");
-  });
-
-1
+function disableButton(event) {
+    if (event.type === "click") {  // Check if the event is a click event (web)
+        button.disabled = true;
+        button.style.color = "white";
+        console.log("Button disabled on web");
+        const signupForm = document.getElementById("signupForm");
+        signupForm.submit();
+    }
+}
 </script>
+
 
 
 

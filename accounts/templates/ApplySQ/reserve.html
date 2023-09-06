@@ -1,13 +1,13 @@
-{% extends 'base.html' %}
+
 
 {% load static %}
 {% block content %}
 
-
+{% include 'header-links.html' %}
 
     <form class="reserveForm" id="answerForm"  method="POST">
     {% csrf_token %}
-        {{form.errors}}
+
 
 
 <div id="reserve-form" class=" second-reserve-form reserve-form" method="POST">
