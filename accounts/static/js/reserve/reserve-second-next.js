@@ -1,30 +1,11 @@
-// const input1 = document.querySelector('.all-inputs1');
-// const input2 = document.querySelector('.all-inputs2');
-// const myButton = document.getElementById('next-button');
-
-// function checkInputs() {
-//   if (input1.value.trim() !== '' && input2.value.trim() !== '') {
-//     myButton.addEventListener("click", function() {
-//         window.location = "jobs.html";
-//     })
-//   } 
-// }
-
 const inputFields = Array.from(document.querySelectorAll('.mutual-input'));
 const myButton = document.getElementById('next-button');
-// var reserve_form_next = document.querySelector(".first-reserve-form");
 var second_reserve_form_next = document.querySelector(".second-reserve-form");
 var third_reserve_form_next = document.querySelector(".third-reserve-form");
-// var payment = document.querySelector(".second-payment");
-// var second_payment_div = document.querySelector(".second-payment-div");
-// var payment_1 = document.querySelector(".first-payment");
-// var payment_div_1 = document.querySelector(".first-payment-div");
 var screening_question_div_1 = document.querySelector(".first-screening-question-div");
-// var screening_question_1 = document.querySelector(".first-screening-question");
 var screening_question_div = document.querySelector(".second-screening-question-div");
 var screening_question = document.querySelector(".second-screening-question");
 
-// second_payment_div.style.pointerEvents = "none";
 screening_question_div.style.pointerEvents = "none";
 
 var myClickFunction = function() {
@@ -42,79 +23,30 @@ function checkInputs() {
   const emailInput = document.getElementById('id_email');
   const emailValue = emailInput.value.trim();
   const isEmailValid = /^[^\s@]+(\.[^\s@]+)*@[^\s@]+\.[^\s@]+$/.test(emailValue);
-  // const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue);
   const allInputsFilled = inputFields.every(input => input.value.trim() !== '');
   const hasDomainExtension = emailValue.endsWith('.com') || emailValue.endsWith('.cn') || emailValue.endsWith('.xyz') || emailValue.endsWith('.net') // Modify as needed
-  // const domainExtensionPattern = /\.(?:[a-zA-Z]{2,}|[^\s.]{2,})$/;
-
-  // const hasDomainExtension = domainExtensionPattern.test(emailValue);
 
   myButton.disabled = !allInputsFilled || !isEmailValid || !hasDomainExtension;
   
   if (myButton.disabled === false) {
     // isValidEmail(email);
     myButton.classList.add("second-next-button");
+    myButton.style.cursor = "pointer";
+    myButton.style.pointerEvents = "auto";
     myButton.addEventListener("click", myClickFunction);
-    // payment_div.style.cursor = "pointer";
-    // payment_div_1.style.cursor = "pointer";
-    // payment_div.style.pointerEvents = "auto";  
-    // payment_div_1.style.pointerEvents = "auto";
+
     screening_question_div.style.cursor = "pointer";
-    // screening_question_div_1.style.cursor = "pointer";
     screening_question_div.style.pointerEvents = "auto";
-    // screening_question_div_1.style.pointerEvents = "auto";
-    // screening_question.addEventListener("click", myPaymentFunction);
-    // screening_question_div.addEventListener("click", myPaymentFunction);
-    // screening_question_div_1.addEventListener("click", myPaymentFunction);
     screening_question_div.addEventListener("click", myClickFunction);
 
   }
   else {
     myButton.classList.remove("second-next-button");
     myButton.removeEventListener("click", myClickFunction);
-    // screening_question_1.removeEventListener("click", myPaymentFunction);
-    // screening_question_div_1.removeEventListener("click", myPaymentFunction);
     screening_question_div.removeEventListener("click", myClickFunction);
     screening_question_div.style.pointerEvents = "none";
-    // screening_question_div_1.style.pointerEvents = "none";
 
   }
 }
 window.onload = checkInputs;
 inputFields.forEach(input => input.addEventListener('input', checkInputs));
-
-// const inputFields = document.querySelectorAll('input');
-// const myButton = document.getElementById('next-button');
-
-// function checkInputs() {
-//     let allInputsFilled = true;
-//     inputFields.forEach((input) => {
-//       if (input.value.trim() === '') {
-//         allInputsFilled = false;
-//         myButton.addEventListener("click", function() {
-//             window.location = "jobs.html";
-//         })
-//       }
-//     });
-//     myButton.disabled = !allInputsFilled;
-//   }
-  
-//   inputFields.forEach((input) => {
-//     input.addEventListener('input', checkInputs);
-//   });
-// const inputFields = document.querySelectorAll('input');
-// const myButton = document.getElementById('next-button');
-
-// function checkInputs() {
-//   const allInputsFilled = Array.from(inputFields).every(input => input.value.trim() !== '');
-//   myButton.disabled = allInputsFilled;
-//   myButton.addEventListener("click", function() {
-//     window.location = "jobs.html";
-//   })
-// }
-
-// inputFields.forEach((input) => {
-//   input.addEventListener('input', checkInputs);
-// });
-  
-  

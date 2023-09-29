@@ -766,6 +766,7 @@ class RecruiterClosedJobs(View):
                 start_date = format(start_date, "%d/%m/%Y")
                 end_date = format(end_date, "%d/%m/%Y")
                 posted = format(posted, "%d/%m/%Y")
+
                 return JsonResponse(
                     dict(description=description, title=title, city_j=city_j, country=country, start_date=start_date,
                          salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
@@ -820,7 +821,7 @@ class RecruiterClosedJobs(View):
                 programCost = locale.format("%d", programCost, grouping=True)
 
                 return JsonResponse(
-                    dict(description=description, title=title, city_j=city_j, country=country, start_date=start_date,
+                    dict(description=description,title=title, city_j=city_j, country=country, start_date=start_date,
                          salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
                          typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
                          program=program, programCost=programCost, SDate=SDate, EDate=EDate,
@@ -875,6 +876,7 @@ class AppliedJobs(View):
             job = Application.objects.filter(
                 user_id=request.user).order_by("-apply_date")
         post_id = request.headers.get('text')
+        hasApply =  True
         if post_id == "":
             jobid = Application.objects.filter(user_id=request.user).order_by(
                 "-apply_date").values_list("job_id_id", flat=True).first()
@@ -940,7 +942,7 @@ class AppliedJobs(View):
                 print(checkMainJobs)
                 print("test")
                 return JsonResponse(
-                    dict(description=description, title=title, city_j=city_j, country=country, start_date=start_date,
+                    dict(description=description,hasApply=hasApply, title=title, city_j=city_j, country=country, start_date=start_date,
                          salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,checkMainJobs=checkMainJobs,
                          typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
                          program=program, programCost=programCost,SDate=SDate,EDate=EDate,
@@ -998,11 +1000,11 @@ class AppliedJobs(View):
                 start_date = format(start_date, "%d/%m/%Y")
                 end_date = format(end_date, "%d/%m/%Y")
                 posted = format(posted, "%d/%m/%Y")
-                applied = format(applied, "%d/%m/%Y")
+                applyDate = format(applied, "%d/%m/%Y")
                 checkMainJobs="False"
                 print(checkMainJobs)
                 return JsonResponse(
-                    dict(description=description, title=title, city_j=city_j, country=country, start_date=start_date,
+                    dict(description=description,hasApply=hasApply,applyDate=applyDate, title=title, city_j=city_j, country=country, start_date=start_date,
                          salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
                          typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
                          program=program, programCost=programCost,SDate=SDate,EDate=EDate,checkMainJobs=checkMainJobs,
@@ -1708,7 +1710,7 @@ class MainJobsId(View):
 
         checkMainJobs = True
 
-        return render(request, "MainJobs/JobIndex.html",
+        return render(request, "MainJobs/index.html",
                       dict(FJob=FJob,job=Jobb, prog=sortProgram, title=sortTitle, company=sortCompany, city=cityName,
                            salary=sortSalary, filterProgram=filterProgram, filterTitle=filterTitle,
                            filterCompany=filterCompany,getMonth=getMonth,getYear=getYear,

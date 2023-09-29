@@ -1,7 +1,7 @@
 {% load static %}
-<div class="job-left" style="" id="myDIV">
+
     {% for i in job %}
-    <div onclick="getNumber('{{i.job_id.id}}')" class="job-left-row pixel"  id="select{{i.job_id.id}}">
+    <div onclick="getNumber('{{i.job_id.id}}');showRightJobsMainDiv();" class="job-left-row pixel move"  id="select{{i.job_id.id}}">
         <img class="job-logo" src="{{i.job_id.logo.url}}" alt="">
         <div class="job-left-content">
             <div class="job-left-title">{{i.job_id.job_title}}</div>
@@ -14,6 +14,5 @@
             <div class="job-left-details">{{i.job_id.city_j}}, {{i.job_id.country_j}}</div>
         </div>
     </div>
-    <div class="move"></div>
+
     {% endfor %}
-</div>

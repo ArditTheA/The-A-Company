@@ -2,17 +2,17 @@
 
 {% if user.is_authenticated %}
 
-    <header class="profileHeader" >
-        <a class="header-icon header-icon-radius header-icon-logo" href="{% url 'home'%}"><img class="header-icon header-icon-radius header-icon-logo" src="{% static 'img/Header/Vector.svg' %}" title="Worki"></a>
-        <div class="jobs-and-profile">
 
-            <a href="{% url 'jobs'%}"><img class="header-icon header-icon-job"  title="Jobs"
-                    src="{% static 'img/Header/job.jpg' %}"></a>
+    <header class="profileHeader" style="">
+        <a class="header-icon header-icon-radius header-icon-logo"  href="{% url 'home' %}" ><img class="header-icon header-icon-radius header-icon-logo" src="{% static 'img/Header/Vector.svg' %}" title="Worki"></a>
 
-            <img src="{{user.profile.url}}" class="header-icon header-icon-radius header-icon-profile"  title="Profile" alt="">
+        <div class="jobs-and-profile" style="">
+            <a href="{% url 'jobs'%}"><img class="header-icon header-icon-job" title="Jobs" src="{% static 'img/Header/job.jpg' %}"></a>
+                <img src="{{user.profile.url}}" class="header-icon header-icon-radius header-icon-profile" title="Profile" alt="">
         </div>
     </header>
-    <div class="profileDropDown">
+
+    <div class="profileDropDown" id="dropdownA">
         <div class="profileDropDown-content"><a href="{% url 'profile'  %}" class="profileDropDown-text">My profile</a></div>
         <div class="profileDropDown-content"><a href="{% url 'appliedJob'%}" class="profileDropDown-text">My jobs</a>
         </div>
@@ -21,9 +21,10 @@
         <div class="profileDropDown-content"><a href="{% url 'logout' %}" class="profileDropDown-text">Sign out</a></div>
     </div>
 
+
     {% else %}
     <header class="profileHeader">
-        <a class="header-icon header-icon-radius header-icon-logo" href="{% url 'home'%}"><img class="header-icon header-icon-radius header-icon-logo"  src="{% static 'img/Header/Vector.svg' %}" title="Worki"></a>
+        <a class="header-icon header-icon-radius header-icon-logo"  ></a>
         <div class="jobs-and-profile">
             <a href="{% url 'jobs'%}"><img class="header-icon header-icon-job" title="Jobs"
                     src="{% static 'img/Header/job.jpg' %}"></a>
@@ -34,5 +35,6 @@
         <div class="profileDropDown-content"><a href="{% url 'login'%}" class="profileDropDown-text">Sign in</a></div>
         <div class="profileDropDown-content"><a href="{% url 'register'%}" class="profileDropDown-text">Create Account</a></div>
     </div>
-
 {% endif %}
+
+

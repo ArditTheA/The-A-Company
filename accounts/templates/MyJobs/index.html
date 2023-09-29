@@ -6,12 +6,122 @@
 <input style="display:none;" id="PostID" value="{{post_id}}">
 <input type="hidden" id="MainJobs" name="variable" value="{{checkMainJobs}}">
 
-<div class="jobs-main-div" >
+<div class="jobs-main-div jobs-gigs-main-div" style="display: flex; justify-content: space-between;">
 
+  <div class="job-left" id="detailsRow" style="">
     {% include "MyJobs/left-jobs.html" %}
-    {% include "MyJobs/right-jobs.html" %}
+  </div>
+    {% include "MainJobs/right-jobs.html" %}
 </div>
 {% else %}
 <div class="job-first-row NoResult" style="">No results were found</div>
 {% endif %}
+<script>
+
+// Trigger a click on the first .job-left-row element when the window loads
+$(document).ready(function() {
+    $('.job-left-row').eq(0).click();
+
+});
+</script>
+
+<script>
+  const mediaQuery = window.matchMedia('(max-width: 480px');
+    if (mediaQuery.matches) {
+        $(document).ready(function() {
+            // Function to show right jobs and hide left jobs
+            function showRightJobsMainDiv() {
+                $('.job-left, .profileHeader, .header-wishes, .jobs-buttons').hide();
+                $('.right-jobs, .right-jobs-main-div').show();
+                history.pushState({ showJobLeft: true }, '');
+            }
+
+            // Function to show left jobs and hide right job
+            function showJobLeft() {
+                $('.job-left, .profileHeader, .header-wishes, .jobs-buttons').show();
+                $('.right-jobs, .right-jobs-main-div').hide();
+            }
+
+            // Event listener for back button
+            window.addEventListener('popstate', function(event) {
+                if (event.state) {
+                    if (event.state.showJobLeft) {
+                        showJobLeft(); // Show the job-left div
+                    } else {
+                        showRightJobsMainDiv(); // Show the right-jobs-main-div
+                    }
+                }
+            });
+
+            // Attach click events to elements
+            $('.job-left-row').click(function() {
+                showRightJobsMainDiv();
+                var id =  $(this).attr('id'); // Your ID
+                var strippedId = id.substring("select".length);
+
+
+                history.pushState({ showJobLeft: false }, "","");
+            });
+
+            // You can add more click event handlers as needed
+            // For example, if you have a close button to go back to left jobs
+            $('.job-right-exit').click(function() {
+                showJobLeft();
+                // Push a state to the history to track the change
+
+                history.pushState({ showJobLeft: true }, '','');
+            });
+        });
+  }else{
+    $(document).ready(function() {
+            var newURL = window.location.origin + "/jobs" + '/' + '{{post_id}}';
+
+            history.pushState({ showJobLeft: false }, "","");
+            // Function to show right jobs and hide left jobs
+            function showRightJobsMainDiv() {
+                $('.job-left, .profileHeader, .header-wishes, .jobs-buttons').show();
+                $('.right-jobs, .right-jobs-main-div').show();
+                history.pushState({ showJobLeft: true }, 't');
+            }
+
+            // Function to show left jobs and hide right jobs
+            function showJobLeft() {
+                $('.job-left, .profileHeader, .header-wishes, .jobs-buttons').show();
+                $('.right-jobs, .right-jobs-main-div').show();
+            }
+
+            // Event listener for back button
+            window.addEventListener('popstate', function(event) {
+                if (event.state) {
+                    if (event.state.showJobLeft) {
+                        showJobLeft(); // Show the job-left div
+                    } else {
+                        showRightJobsMainDiv(); // Show the right-jobs-main-div
+                    }
+                }
+            });
+
+            // Attach click events to elements
+            $('.job-left-row').click(function() {
+                var id =  $(this).attr('id'); // Your ID
+                var strippedId = id.substring("select".length);
+
+                console.log(strippedId); // This will print "147"
+                showRightJobsMainDiv();
+                // Push a state to the history to track the change
+                var newURL = window.location.origin + "/jobs" + '/' + strippedId;
+                history.pushState({ showJobLeft: false }, "","");
+            });
+
+            // You can add more click event handlers as needed
+            // For example, if you have a close button to go back to left jobs
+            $('.job-right-exit').click(function() {
+                showJobLeft();
+                // Push a state to the history to track the change
+                history.pushState({ showJobLeft: true }, '');
+            });
+        });
+  }
+</script>
+
 {% endblock content %}
