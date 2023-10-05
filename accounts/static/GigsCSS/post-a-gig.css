@@ -1030,7 +1030,7 @@ select {
     .second-reserve-form {
         width: 100%;
         margin: auto;
-        padding-top: 20px;
+        padding-top: 10px;
         margin-left: -1px;
         margin-bottom: 10px;
     }
@@ -1061,7 +1061,9 @@ select {
     .under-c-i-f {
         width: auto;
         border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
         border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
     }
     .pay-form {
         margin-bottom: 10px !important;

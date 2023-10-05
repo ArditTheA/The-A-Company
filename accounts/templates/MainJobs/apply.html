@@ -1,25 +1,28 @@
 
 {% load static %}
 {% block content %}
+{% include 'header-links.html'%}
     <link rel="icon" href="{% static 'img/123.png' %}">
-    <link rel="stylesheet" href="{% static 'css/404.css'%}">
+    <link rel="stylesheet" href="{% static 'css/reserve-post-a-job.css'%}">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <div id="notfound">
-        <div class="notfound">
-            <h1 class="h" >You have successfully applied</h1>
-            <div style="" class="notfound-404">
-
-            </div>
-            <p style="" class="p">Please check your email for updates on your application.</p>
-            <!-- <input name="submit" type="submit" class="sign-in-submit-input font-fam" value="Go Back" onClick="location.href='jobs.html'"> -->
-            <a style="border-radius: 30px;" href="{% url 'jobs'%}" name="submit" type="submit" class="sign-in-submit-input font-fam">Go Back</a>
-
+    <div id="reserve-form" class="successfully-applied-form reserve-form" method="POST" style="text-align: center;">
+    <div class="contact-information-form under-successfully-applied-form">
+       <div class="successfully-applied-content-div">
+        <img class="applying-img" src="{% static 'img/Applying Icon.png' %}" alt="">
+        <div class="successfully-applied-div">You have successfully applied</div>
+        <div class="check-email-div">Please check your email for updates on your application</div>
+        <div class="done-button-div" style="">
+           <a href="{% url 'home' %}" id="" class="done-successful-applying" style="">Done</a>
+        </div>
+<!-- <div class="second-payment-div" style="padding-top: 20px; padding-bottom: 20px; border-bottom: 40px; margin-left: 30px; color: #D4D5D6;">
+    <div style="" class="second-payment mutual-font-size-18px">Payment</div>
+</div> -->
         </div>
     </div>
-   
+</div>
 
 
 {% endblock content %}

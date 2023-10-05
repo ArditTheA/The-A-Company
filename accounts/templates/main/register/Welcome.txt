@@ -1,4 +1,6 @@
-Hello {{first_name}}, Welcome to Worki. You have successfully created an account.
-Together we’ll create the future of work.
-See you around,
-Worki Team
+Hello {{first_name}},
+
+You have successfully created an account. Welcome to the Worki community.
+
+Warm regards,
+Worki

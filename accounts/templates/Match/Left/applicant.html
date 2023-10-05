@@ -41,6 +41,17 @@
             {% endif %}
             {% endfor %}
 </div>
+<script>
+    function closeButton(){
+var right_jobs_main_div = $('.right-jobs-main-div');
+var jobs_left = $('.job-left');
+var jobs_buttons = $('.jobs-buttons');
+right_jobs_main_div.hide();
+jobs_left.css('display', 'flex');
+jobs_buttons.css('display', 'flex');
+
+};
+</script>
 
      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.2/umd/popper.min.js"></script>
@@ -62,11 +73,6 @@
 var phase = "";
 const ct = [];
 var url;
-
-
-
-
-
 
 
           function Check(id){

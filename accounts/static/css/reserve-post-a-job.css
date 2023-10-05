@@ -20,8 +20,9 @@
     padding-bottom: 30px;
     font-size: 18px;
 }
-.custom-select {
+option {
     color: #858585;
+    font-size: 16px;
 }
 
 .months-div {
@@ -39,29 +40,14 @@
     color: #D4D5D6;
     pointer-events: none;
 }
-/* .months-div-2 {s
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    width: 440px;
-} */
 
-.duration-buttons-div {
-    /* display: flex;
-    justify-content: space-between; */
-    /* margin-right: 40px; */
+.under-successfully-applied-form {
+    width: 508px !important;
 }
 
-.months-div-2 {
-    /* margin-right: 0px !important; */
+.successfully-applied-content-div {
+    padding: 30px;
 }
-.second-months-div {
-    /* width: 700px !important; */
-}
-
-/* .duration-buttons-div {
-    width: 446px;
-} */
 
 .program-duration-form {
     background-color: white;
@@ -200,21 +186,50 @@
     margin-top: 20px;
     margin-bottom: 20px;
 }
+.check-email-div {
+    color: #858585;
+}
+.successfully-applied-div {
+    font-size: 18px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+.applying-img {
+    vertical-align: middle;
+}
 .submit-button, .back-button {
     margin-top: 30px;
     border-radius: 30px;
-    padding: 10px 35px;
+    padding: 8px 30px;
     background-color: #1877F2;
     font-size: 16px;
     cursor: pointer;
     line-height: normal !important;
     text-decoration: none;
 }
+
+.done-button-div {
+    margin-top: 38px !important;
+    margin-bottom: 8px;
+}
+
+.done-successful-applying {
+    background-color: #1877F2 !important;
+    color: white;
+    padding: 8px 30px;
+    border-radius: 40px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.done-successful-applying:hover {
+    filter: brightness(0.95);
+}
 /* .submit-button {
     background-color: #1877F2;
     color: white;
 } */
-.first-next-button, #next-button, .start-trial-button, #additional-feature-submit-button, .next-button-job-description {
+.first-next-button, #next-button, .start-trial-button, #additional-feature-submit-button, .next-button-job-description, .submit-button {
     background-color: #D4D5D6;
     color: white;
     cursor: not-allowed;
@@ -359,7 +374,6 @@ input {
     margin: auto;
     width: max-content;
     border-radius: 40px;
-    width: 508px;
 }
 
 .add-question-button {
@@ -375,6 +389,7 @@ input {
 .form-group-add-question {
     margin-top: 20px;
 }
+
 .add-question-button-second-margin-top {
     margin-top: 30px;
 }
@@ -437,7 +452,7 @@ input {
   #screening-question-select-options {
     height: auto;
     border-color: #9E9E9E;
-    width: 100%;
+    width: 446px;
     border-radius: 40px;
     border: 1px solid #D4D5D6;
     padding: 10px;
@@ -745,7 +760,6 @@ input {
 } */
 
 @media screen and (max-width: 1024px) and (min-width: 481px) {
-
     .first-second-buttons {
         margin-right: 30px;
     }
@@ -789,8 +803,14 @@ input {
 }
 
 @media screen and (max-width: 480px) {
-.reserve-form{
-        margin-top: 10px !important;
+    .successfully-applied-div {
+        font-size:16px;
+    }
+    .contact-information-form{
+        border-radius:20px;
+    }
+    .successfully-applied-content-div{
+        padding:20px;
     }
     .first-reserve-form {
         width: calc(100% - 20px);
@@ -801,8 +821,14 @@ input {
         margin: 0;
         padding: 0px !important; */
     }
+    .reserve-form {
+        margin-top: 10px !important;
+    }
     .second-inputs-div {
         width: 100%;
+    }
+    .profileHeader {
+        display: none;
     }
 
     .program-duration-form {
@@ -852,6 +878,9 @@ input {
         padding-top: 10px;
         padding-bottom: 10px;
     }
+    #screening-question-select-options {
+        width: 100%;
+    }
     .first-second-buttons {
         /* margin-right: 40px; */
     }
@@ -872,7 +901,8 @@ input {
     .second-reserve-form {
         width: calc(100% - 1px);
         margin: auto;
-        padding-top: 0px;
+        /* padding-top: 20px with header; */
+        padding-top: 0px;  /* without header */
         margin-left: -1px;
         margin-bottom: 10px;
     }
@@ -925,8 +955,9 @@ input {
         padding: 8px 30px;
     }
     .contact-information-form {
-        width: calc(100% - 20px);
+        width: calc(100% - 20px) !important;
     }
+
     .screening-question-form {
         width: calc(100% - 20px);
         border-top-right-radius: 20px;
@@ -955,9 +986,6 @@ input {
         padding-right: 20px;
         padding-bottom: 20px;
         border-radius: 0px;
-        border-top-left-radius:20px !important;
-        border-top-right-radius:20px !important;
-
     }
     .job-details-div {
         margin-left: 19px;

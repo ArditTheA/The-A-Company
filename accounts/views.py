@@ -135,6 +135,7 @@ def landingPage1(request):
     userNo = userNo+2300
     appNo  = Application.objects.all().count()
     appNo = appNo+2300
+    appNo = "{:,}".format(appNo)
     visitorNo = 32083+2023
     jobs = Jobs.objects.all().count()
     return render(request,"landing-page.html",{"userNo":userNo,"appNo":appNo,"visitorNo":visitorNo,"jobs":jobs})
@@ -509,6 +510,7 @@ class AjaxHandler(View):
 
                 appNo = 0
                 appNo = Jobs.objects.get(id=post_id).applicant.count()
+                appNo = "{:,}".format(appNo)
                 SDate = start_date
                 EDate = end_date
                 salary = format(salary, '.2f')
@@ -565,6 +567,7 @@ class AjaxHandler(View):
 
                 appNo = 0
                 appNo = Jobs.objects.get(id=post_id).applicant.count()
+                appNo = "{:,}".format(appNo)
                 locale.setlocale(locale.LC_ALL, '')  # set the locale to the user's default
                 programCost = locale.format("%d", programCost, grouping=True)
 
@@ -635,6 +638,7 @@ class RecruiterOpenJobs(View):
 
                 appNo = 0
                 appNo = Jobs.objects.get(id=post_id).applicant.count()
+                appNo = "{:,}".format(appNo)
                 SDate = start_date
                 EDate = end_date
                 salary = format(salary, '.2f')
@@ -691,6 +695,7 @@ class RecruiterOpenJobs(View):
 
                 appNo = 0
                 appNo = Jobs.objects.get(id=post_id).applicant.count()
+                appNo = "{:,}".format(appNo)
                 locale.setlocale(locale.LC_ALL, '')  # set the locale to the user's default
                 programCost = locale.format("%d", programCost, grouping=True)
 
@@ -760,6 +765,7 @@ class RecruiterClosedJobs(View):
 
                 appNo = 0
                 appNo = Jobs.objects.get(id=post_id).applicant.count()
+                appNo = "{:,}".format(appNo)
                 SDate = start_date
                 EDate = end_date
                 salary = format(salary, '.2f')
@@ -817,6 +823,7 @@ class RecruiterClosedJobs(View):
 
                 appNo = 0
                 appNo = Jobs.objects.get(id=post_id).applicant.count()
+                appNo = "{:,}".format(appNo)
                 locale.setlocale(locale.LC_ALL, '')  # set the locale to the user's default
                 programCost = locale.format("%d", programCost, grouping=True)
 
@@ -927,6 +934,7 @@ class AppliedJobs(View):
                 posted = format(posted, "%d/%m/%Y")
                 applied = format(applied, "%d/%m/%Y")
                 appNo = Jobs.objects.get(id=post_id).applicant.count()
+                appNo = "{:,}".format(appNo)
                 locale.setlocale(locale.LC_ALL, '')  # set the locale to the user's default
                 programCost = locale.format("%d", programCost, grouping=True)
 
@@ -941,6 +949,7 @@ class AppliedJobs(View):
                 print("test")
                 print(checkMainJobs)
                 print("test")
+
                 return JsonResponse(
                     dict(description=description,hasApply=hasApply, title=title, city_j=city_j, country=country, start_date=start_date,
                          salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,checkMainJobs=checkMainJobs,
@@ -994,6 +1003,7 @@ class AppliedJobs(View):
                 country = Jobs.objects.filter(
                     id=post_id).values_list("country_j").first()
                 appNo = Jobs.objects.get(id=post_id).applicant.count()
+                appNo = "{:,}".format(appNo)
                 salary = format(salary, '.2f')
                 SDate = start_date
                 EDate = end_date
@@ -1161,6 +1171,7 @@ class MainJobs(View):
                     "apply_date", flat=True).first()
                 hasApplyDate = format(hasApplyDate, "%d/%m/%Y")
             appNo = Jobs.objects.get(id=post_id).applicant.count()
+            appNo = "{:,}".format(appNo)
 
             if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
                 description = Jobs.objects.filter(id=post_id).values_list(
@@ -1261,6 +1272,7 @@ class MainJobs(View):
                 programCost = locale.format("%d", programCost, grouping=True)
                 appNo = 0
                 appNo = Jobs.objects.get(id=post_id).applicant.count()
+                appNo = "{:,}".format(appNo)
                 SDate = start_date
                 EDate=end_date
                 salary = format(salary, '.2f')
@@ -1578,6 +1590,7 @@ class MainJobsId(View):
                     "apply_date", flat=True).first()
                 hasApplyDate = format(hasApplyDate, "%d/%m/%Y")
             appNo = Jobs.objects.get(id=post_id).applicant.count()
+            appNo = "{:,}".format(appNo)
 
             if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
                 description = Jobs.objects.filter(id=post_id).values_list(
@@ -1675,6 +1688,7 @@ class MainJobsId(View):
 
                 appNo = 0
                 appNo = Jobs.objects.get(id=post_id).applicant.count()
+                appNo = "{:,}".format(appNo)
                 SDate = start_date
                 EDate = end_date
 

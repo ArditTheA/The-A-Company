@@ -84,12 +84,14 @@
         var firstMediaQuery = window.matchMedia('(min-width: 768px');
         const mediaQuery = window.matchMedia('(max-width: 767px)');
         var right_jobs_main_div = document.querySelector('.right-jobs-main-div');
+        var right_jobs = document.querySelector('.right-jobs');
         var jobs_left = document.querySelector('.job-left');
         var jobs_buttons = document.querySelector('.jobs-buttons');
 
 
         if (mediaQuery.matches) {
                 right_jobs_main_div.style.display = "flex";
+                right_jobs.style.display = "flex";
                 jobs_left.style.display = "none";
                 jobs_buttons.style.display = "none";
                 if(id==0){
@@ -112,10 +114,12 @@
        }
 const mediaQuery = window.matchMedia('(max-width: 767px)');
 var right_jobs_main_div = document.querySelector('.right-jobs-main-div');
+var right_jobs = document.querySelector('.right-jobs');
 var jobs_left = document.querySelector('.jobs-left');
-
+        var jobs_buttons = document.querySelector('.jobs-buttons');
 if (mediaQuery.matches) {
 right_jobs_main_div.style.display = "none";
+right_jobs.style.display = "none";
                 jobs_left.style.display = "flex";
                 jobs_buttons.style.display = "flex";
 }
@@ -124,3 +128,5 @@ var c =document.getElementById("sectedUser").value;
 
 getUser(c);
 }
+
+

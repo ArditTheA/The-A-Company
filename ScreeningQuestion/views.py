@@ -6,9 +6,11 @@ from django.template.loader import render_to_string, get_template
 from ScreeningQuestion.models import *
 # Create your views here.
 from accounts.forms import *
+
 from accounts.views import *
 
 from .forms import *
+import time
 def add_JobScreeningQuestion(request):
     country_j = Country.objects.all()
     city_j = City.objects.all()

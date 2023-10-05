@@ -7,10 +7,24 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
+
+<style>
+
+
+        #countrySelect {
+            margin-top: 20px;
+        }
+
+        .iti__selected-flag {
+            padding: 0 5px 0 10px ;
+        }
+        .iti--allow-dropdown input {
+            padding-left: 49px !important;
+        }
+    </style>
     <form class="reserveForm" id="answerForm"  method="POST">
     {% csrf_token %}
-
-
 
 <div id="reserve-form" class=" second-reserve-form reserve-form" method="POST">
     <div class="contact-information-form">
@@ -34,7 +48,7 @@
             <!-- <input placeholder="Date of Birth" class="all-inputs contact-information-mutual-stats contact-information-margin-bottom mutual-input date-of-birth-input" style=""></input> -->
 <!--            <input type="tel" placeholder="Phone Number" name="phone_number" {% if user.phone_number %} value="{{user.phone_number}}" {% endif %} pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="all-inputs2 contact-information-mutual-stats contact-information-margin-bottom mutual-input" required>-->
 
-            <input type="tel" name="phone_number" id="phone-input" style="width:100%;margin-bottom:40px;" class="all-inputs2 contact-information-mutual-stats contact-information-margin-bottom mutual-input"  placeholder="Phone number">
+            <input type="tel" name="phone_number" id="phone-input" style="width:100%;margin-bottom:40px;" oninput="preventDeletion();addPlusIfEmpty();" class="all-inputs2 contact-information-mutual-stats contact-information-margin-bottom mutual-input"  placeholder="Phone number">
             <div class="contact-information-margin-bottom"></div>
 
 
@@ -72,6 +86,7 @@
         <div class="screening-question-only-form" style="">
             <div class="screening-question-third-page font-size-18px-16px">Screening Questions</div>
 
+
             {% for i in question %}
                 {% if i.question_type == "Numeric" %}
                                     <div class="third-form-question">{{i.promp}}</div>
@@ -88,8 +103,9 @@
                   </select>
                 {% endif %}
 
-
             {% endfor %}
+
+
           <div class="under-select-university-student-status" style="margin-top: 5px; color: #1877F2; display: none; position: absolute;">You must be an active university student</div>
         <div class="back-and-next-buttons" style="width: 100%; display: flex; justify-content: space-between;">
             <a class="btn back-button next-none screening-question-back" style="">Back</a>
@@ -97,10 +113,46 @@
         </div>
     </div>
 
+
 </div>
 </div>
 
 </form>
+<!-- Calendly inline widget begin -->
+
+
+
+
+<!-- Calendly badge widget begin -->
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+<script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/theacompany/green-card?hide_event_type_details=1&hide_gdpr_banner=1', text: 'Schedule time with me', color: '#0069ff', textColor: '#ffffff', branding: true }); }</script>
+<!-- Calendly badge widget end -->
+<script>
+  const input = document.getElementById("phone-input");
+  let previousValue = input.value;
+
+  function preventDeletion() {
+    if (input.value.length < previousValue.length) {
+      // If the input length is decreasing, it means a character is being deleted
+      // Check if the cursor is at the beginning
+      if (input.selectionStart === 0) {
+        // Restore the previous value
+        input.value = previousValue;
+      }
+    }
+    // Update the previous value for the next input event
+    previousValue = input.value;
+  }
+    function addPlusIfEmpty() {
+  const phoneInput = document.getElementById("phone-input");
+  if (phoneInput.value.trim() === "") {
+    phoneInput.value = "+";
+  }
+}
+
+</script>
+
 {% if user.phone_number %}
 <script>
     const fullPhoneNumber = "{{ user.phone_number }}";
@@ -119,7 +171,7 @@
     // Initialize intl-tel-input
     const iti = window.intlTelInput(phoneInput, {
         utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-        preferredCountries: ["us", "gb"], // Set your preferred countries here
+        preferredCountries: ["xk", "al"], // Set your preferred countries here
         formatOnDisplay: false, // Disable auto-formatting
     });
 
@@ -141,7 +193,7 @@
         // Initialize intl-tel-input
         const iti = window.intlTelInput(phoneInput, {
             utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-            preferredCountries: ["us", "gb"], // Set your preferred countries here
+            preferredCountries: ["xk", "al"], // Set your preferred countries here
             formatOnDisplay: false, // Disable auto-formatting
         });
 
@@ -165,32 +217,203 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-        const countries = [
-            "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan",
-            "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi",
-            "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo (Congo-Brazzaville)", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czechia (Czech Republic)",
-            "Democratic Republic of the Congo (Congo-Kinshasa)", "Denmark", "Djibouti", "Dominica", "Dominican Republic",
-            "East Timor (Timor-Leste)", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini (fmr. Swaziland)", "Ethiopia",
-            "Fiji", "Finland", "France",
-            "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana",
-            "Haiti", "Holy See", "Honduras", "Hungary",
-            "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy",
-            "Jamaica", "Japan", "Jordan",
-            "Kazakhstan", "Kenya", "Kiribati", "Kosovo", "Kuwait", "Kyrgyzstan",
-            "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg",
-    "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar (formerly Burma)",
-    "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "North Macedonia (formerly Macedonia)", "Norway",
-    "Oman",
-    "Pakistan", "Palau", "Palestine State", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal",
-    "Qatar",
-    "Romania", "Russia", "Rwanda",
-    "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Korea", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria",
-    "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste (East Timor)", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu",
-    "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States of America", "Uruguay", "Uzbekistan",
-    "Vanuatu", "Vatican City", "Venezuela", "Vietnam",
-    "Yemen",
-            "Zambia", "Zimbabwe"
-        ];
+        const countries = ["Kosovo","Albania","Afghanistan",
+  "Algeria",
+  "Andorra",
+  "Angola",
+  "Antigua and Barbuda",
+  "Argentina",
+  "Armenia",
+  "Australia",
+  "Austria",
+  "Azerbaijan",
+  "The Bahamas",
+  "Bahrain",
+  "Bangladesh",
+  "Barbados",
+  "Belarus",
+  "Belgium",
+  "Belize",
+  "Benin",
+  "Bhutan",
+  "Bolivia",
+  "Bosnia and Herzegovina",
+  "Botswana",
+  "Brazil",
+  "Brunei",
+  "Bulgaria",
+  "Burkina Faso",
+  "Burundi",
+  "Cambodia",
+  "Cameroon",
+  "Canada",
+  "Cape Verde",
+  "Central African Republic",
+  "Chad",
+  "Chile",
+  "China",
+  "Colombia",
+  "Comoros",
+  "Republic of the Congo",
+  "Democratic Republic of the Congo",
+  "Costa Rica",
+  "Croatia",
+  "Cuba",
+  "Cyprus",
+  "Czech Republic",
+  "Denmark",
+  "Djibouti",
+  "Dominica",
+  "Dominican Republic",
+  "East Timor",
+  "Ecuador",
+  "Egypt",
+  "El Salvador",
+  "Equatorial Guinea",
+  "Eritrea",
+  "Estonia",
+  "Eswatini",
+  "Ethiopia",
+  "Fiji",
+  "Finland",
+  "France",
+  "Gabon",
+  "The Gambia",
+  "Georgia",
+  "Germany",
+  "Ghana",
+  "Greece",
+  "Grenada",
+  "Guatemala",
+  "Guinea",
+  "Guinea-Bissau",
+  "Guyana",
+  "Haiti",
+  "Holy See (Vatican City)",
+  "Honduras",
+  "Hungary",
+  "Iceland",
+  "India",
+  "Indonesia",
+  "Iran",
+  "Iraq",
+  "Ireland",
+  "Israel",
+  "Italy",
+  "Ivory Coast",
+  "Jamaica",
+  "Japan",
+  "Jordan",
+  "Kazakhstan",
+  "Kenya",
+  "Kiribati",
+  "North Korea",
+  "South Korea",
+  "Kuwait",
+  "Kyrgyzstan",
+  "Laos",
+  "Latvia",
+  "Lebanon",
+  "Lesotho",
+  "Liberia",
+  "Libya",
+  "Liechtenstein",
+  "Lithuania",
+  "Luxembourg",
+  "Madagascar",
+  "Malawi",
+  "Malaysia",
+  "Maldives",
+  "Mali",
+  "Malta",
+  "Marshall Islands",
+  "Mauritania",
+  "Mauritius",
+  "Mexico",
+  "Micronesia",
+  "Moldova",
+  "Monaco",
+  "Mongolia",
+  "Montenegro",
+  "Morocco",
+  "Mozambique",
+  "Myanmar (Burma)",
+  "Namibia",
+  "Nauru",
+  "Nepal",
+  "Netherlands",
+  "New Zealand",
+  "Nicaragua",
+  "Niger",
+  "Nigeria",
+  "North Macedonia",
+  "Norway",
+  "Oman",
+  "Pakistan",
+  "Palau",
+  "Palestine",
+  "Panama",
+  "Papua New Guinea",
+  "Paraguay",
+  "Peru",
+  "Philippines",
+  "Poland",
+  "Portugal",
+  "Qatar",
+  "Romania",
+  "Russia",
+  "Rwanda",
+  "Saint Kitts and Nevis",
+  "Saint Lucia",
+  "Saint Vincent and the Grenadines",
+  "Samoa",
+  "San Marino",
+  "São Tomé and Príncipe",
+  "Saudi Arabia",
+  "Senegal",
+  "Serbia",
+  "Seychelles",
+  "Sierra Leone",
+  "Singapore",
+  "Slovakia",
+  "Slovenia",
+  "Solomon Islands",
+  "Somalia",
+  "South Africa",
+  "South Sudan",
+  "Spain",
+  "Sri Lanka",
+  "Sudan",
+  "Suriname",
+  "Sweden",
+  "Switzerland",
+  "Syria",
+  "Tajikistan",
+  "Tanzania",
+  "Thailand",
+  "Togo",
+  "Tonga",
+  "Trinidad and Tobago",
+  "Tunisia",
+  "Turkey",
+  "Turkmenistan",
+  "Tuvalu",
+  "Uganda",
+  "Ukraine",
+  "United Arab Emirates",
+  "United Kingdom",
+  "United States",
+  "Uruguay",
+  "Uzbekistan",
+  "Vanuatu",
+  "Venezuela",
+  "Vietnam",
+  "Yemen",
+  "Zambia",
+  "Zimbabwe"
+];
+        console.log("--------------");
+        console.log(countries.length);
         var selectedCountry = "{{ user.country }}";
 var select = document.getElementById("id_country");
 
