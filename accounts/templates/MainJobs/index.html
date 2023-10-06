@@ -34,6 +34,7 @@ $(document).ready(function() {
   const mediaQuery = window.matchMedia('(max-width: 480px');
     if (mediaQuery.matches) {
         $(document).ready(function() {
+
             // Function to show right jobs and hide left jobs
             function showRightJobsMainDiv() {
                 $('.job-left, .profileHeader, .header-wishes, .jobs-buttons').hide();
@@ -60,6 +61,10 @@ $(document).ready(function() {
 
             // Attach click events to elements
             $('.job-left-row').click(function() {
+
+
+
+
                 showRightJobsMainDiv();
                 var id =  $(this).attr('id'); // Your ID
                 var strippedId = id.substring("select".length);
@@ -80,20 +85,34 @@ $(document).ready(function() {
         });
   }else{
     $(document).ready(function() {
+
             var newURL = window.location.origin + "/jobs" + '/' + '{{post_id}}';
 
             history.pushState({ showJobLeft: false }, "",newURL);
             // Function to show right jobs and hide left jobs
             function showRightJobsMainDiv() {
+                if (mediaQuery.matches){
+                    $('.job-left, .profileHeader, .header-wishes, .jobs-buttons').hide();
+                $('.right-jobs, .right-jobs-main-div').show();
+                history.pushState({ showJobLeft: true }, '');
+
+                }else{
+
                 $('.job-left, .profileHeader, .header-wishes, .jobs-buttons').show();
                 $('.right-jobs, .right-jobs-main-div').show();
                 history.pushState({ showJobLeft: true }, 't');
+                }
             }
 
             // Function to show left jobs and hide right jobs
             function showJobLeft() {
+                if (mediaQuery.matches) {
+                $('.job-left, .profileHeader, .header-wishes, .jobs-buttons').show();
+                $('.right-jobs, .right-jobs-main-div').hide();
+                }else{
                 $('.job-left, .profileHeader, .header-wishes, .jobs-buttons').show();
                 $('.right-jobs, .right-jobs-main-div').show();
+                }
             }
 
             // Event listener for back button
