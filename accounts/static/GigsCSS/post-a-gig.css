@@ -936,6 +936,12 @@ select {
 }
 
 @media screen and (max-width: 480px) {
+.reserve-form {
+margin-top: 10px;
+}
+.third-form-question {
+padding-top: 0px;
+}
     .first-reserve-form {
         width: calc(100% - 20px);
         margin: auto;
@@ -1053,7 +1059,8 @@ select {
     }
     .program-duration-under-div {
         border-top-left-radius: 20px; 
-        border-top-right-radius: 20px; 
+        border-top-right-radius: 20px;
+        border-radius:20px;
     }    
     .job-details-div {
         padding-top: 20px;
@@ -1121,7 +1128,8 @@ select {
     .screening-question-only-form {
         padding-left: 20px; 
         padding-right: 20px; 
-        padding-bottom: 20px; 
+        padding-bottom: 20px;
+        border-radius:20px;
     }
     .job-details-div {
         margin-left: 19px;
