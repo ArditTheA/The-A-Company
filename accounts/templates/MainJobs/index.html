@@ -82,6 +82,12 @@ $(document).ready(function() {
                 var newURL = window.location.origin + "/jobs/"
                 history.pushState({ showJobLeft: true }, '',newURL);
             });
+            function closeButton(){
+                showJobLeft();
+                // Push a state to the history to track the change
+                var newURL = window.location.origin + "/jobs/"
+                history.pushState({ showJobLeft: true }, '',newURL);
+            }
         });
   }else{
     $(document).ready(function() {
@@ -140,11 +146,19 @@ $(document).ready(function() {
 
             // You can add more click event handlers as needed
             // For example, if you have a close button to go back to left jobs
-            $('.job-right-exit').click(function() {
+
+            function closeButton(){
+                if (mediaQuery.matches) {
+                showJobLeft();
+                // Push a state to the history to track the change
+                var newURL = window.location.origin + "/jobs/"
+                history.pushState({ showJobLeft: true }, '',newURL);
+                }else{
                 showJobLeft();
                 // Push a state to the history to track the change
                 history.pushState({ showJobLeft: true }, '');
-            });
+                }
+            }
         });
   }
 </script>
