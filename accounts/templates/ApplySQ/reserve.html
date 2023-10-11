@@ -48,7 +48,7 @@
             <!-- <input placeholder="Date of Birth" class="all-inputs contact-information-mutual-stats contact-information-margin-bottom mutual-input date-of-birth-input" style=""></input> -->
 <!--            <input type="tel" placeholder="Phone Number" name="phone_number" {% if user.phone_number %} value="{{user.phone_number}}" {% endif %} pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="all-inputs2 contact-information-mutual-stats contact-information-margin-bottom mutual-input" required>-->
 
-            <input type="tel" name="phone_number" id="phone-input" style="width:100%;margin-bottom:40px;" oninput="preventDeletion();addPlusIfEmpty();" class="all-inputs2 contact-information-mutual-stats contact-information-margin-bottom mutual-input"  placeholder="Phone number">
+            <input type="tel" name="phone_number" id="phone-input" data-intl-tel-input-id="0" style="width:100%;margin-bottom:40px;" oninput="addPlusPrefix(this);" class="all-inputs2 contact-information-mutual-stats contact-information-margin-bottom mutual-input"  placeholder="Phone number">
             <div class="contact-information-margin-bottom"></div>
 
 
@@ -128,39 +128,31 @@
 <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 <script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/theacompany/green-card?hide_event_type_details=1&hide_gdpr_banner=1', text: 'Schedule time with me', color: '#0069ff', textColor: '#ffffff', branding: true }); }</script>
 <!-- Calendly badge widget end -->
-<script>
-  const input = document.getElementById("phone-input");
-  let previousValue = input.value;
 
-  function preventDeletion() {
-    if (input.value.length < previousValue.length) {
-      // If the input length is decreasing, it means a character is being deleted
-      // Check if the cursor is at the beginning
-      if (input.selectionStart === 0) {
-        // Restore the previous value
-        input.value = previousValue;
-      }
+    <script>
+    function addPlusPrefix(input) {
+        let inputValue = input.value;
+
+        // Check if the input value already starts with "+"
+        if (inputValue.charAt(0) !== '+') {
+            input.value = '+' + inputValue;
+        } else {
+            // If there's more than one "+", remove additional "+" characters
+            input.value = '+' + inputValue.replace(/\+/g, '');
+        }
     }
-    // Update the previous value for the next input event
-    previousValue = input.value;
-  }
-    function addPlusIfEmpty() {
-  const phoneInput = document.getElementById("phone-input");
-  if (phoneInput.value.trim() === "") {
-    phoneInput.value = "+";
-  }
-}
-
 </script>
-
 {% if user.phone_number %}
 <script>
-    const fullPhoneNumber = "{{ user.phone_number }}";
-    console.log(fullPhoneNumber);
+
+    let fullPhoneNumber = "{{ user.phone_number }}";
+
+if (!fullPhoneNumber.startsWith('+')) {
+    fullPhoneNumber = '+' + fullPhoneNumber;
+}
 
     function autoFill() {
         const input = document.querySelector("#phone-input");
-        console.log(input);
         input.value = fullPhoneNumber;
     }
 
@@ -412,8 +404,7 @@
   "Zambia",
   "Zimbabwe"
 ];
-        console.log("--------------");
-        console.log(countries.length);
+
         var selectedCountry = "{{ user.country }}";
 var select = document.getElementById("id_country");
 
@@ -433,6 +424,7 @@ function populateCountries() {
             if (select.options[i].text === selectedCountry) {
                 // Set the selected option
                 select.selectedIndex = i;
+                checkInputs();
                 break; // Exit the loop
             }
         }

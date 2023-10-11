@@ -11,18 +11,14 @@
     <div id="reserve-form" class="successfully-applied-form reserve-form" method="POST" style="text-align: center;">
     <div class="contact-information-form under-successfully-applied-form">
        <div class="successfully-applied-content-div">
-        <img class="applying-img" src="{% static 'img/Applying Icon.png' %}" alt="">
+        <img class="applying-img" width="55" src="{% static 'img/checkbox2.svg' %}" alt="">
         <div class="successfully-applied-div">You have successfully applied</div>
         <div class="check-email-div">Please check your email for updates on your application</div>
         <div class="done-button-div" style="">
            <a href="{% url 'home' %}" id="" class="done-successful-applying" style="">Done</a>
         </div>
-<!-- <div class="second-payment-div" style="padding-top: 20px; padding-bottom: 20px; border-bottom: 40px; margin-left: 30px; color: #D4D5D6;">
-    <div style="" class="second-payment mutual-font-size-18px">Payment</div>
-</div> -->
         </div>
     </div>
 </div>
-
 
 {% endblock content %}
