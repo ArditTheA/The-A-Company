@@ -30,7 +30,7 @@ from Match.views import *
 from ScreeningQuestion.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', LoginView.as_view(), name='login'),
+    path('sign-in/', LoginView.as_view(), name='login'),
     path('create-account/', registration, name='register'),
     path('logout/', userViews.LogoutView.as_view(template_name='home/home.html'), name='logout'),
     path('', landingPage, name='home'),
@@ -45,10 +45,13 @@ urlpatterns = [
     path("", include('Match.urls')),
     #reset password
     path("", include('resetpassword.urls')),
+    path("", include('documents.urls')),
     #Screening Question
     path("", include('ScreeningQuestion.urls')),
     path("",include("Applicant.urls")),
     path("",include("stripe.urls")),
+    path('sitemap.xml', TemplateView.as_view(template_name='Worki_Sitemap.xml', content_type='text/xml'),name='sitemap'),
+    path('robots.txt', TemplateView.as_view(template_name='robots.txt', content_type='text/plain'), name='robots.txt'),
 
                   path("password_reset", password_reset_request, name="password_reset"),
 

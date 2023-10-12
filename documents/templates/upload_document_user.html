@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Documents</title>
+    <script>
+        function validateFileInputs() {
+            var uploadedFiles = new Set();
+            var fileInputs = document.querySelectorAll('[type="file"]');
+
+            for (var i = 0; i < fileInputs.length; i++) {
+                var fileInput = fileInputs[i];
+                var selectedFile = fileInput.files[0];
+
+                if (selectedFile) {
+                    if (uploadedFiles.has(selectedFile.name)) {
+                        alert('Each document must be unique.');
+                        fileInput.value = '';  // Clear the file input
+                        return false;
+                    }
+                    uploadedFiles.add(selectedFile.name);
+                }
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <h1>Upload Documents</h1>
+    <form method="post" enctype="multipart/form-data" onsubmit="return validateFileInputs();">
+        {% csrf_token %}
+        <hr>
+
+
+
+            {{ form.id }}
+            {{ form.management_form }}
+            <div>
+            <p>Document:  <select name="form-0-id_document" id="id_form-0-id_document">
+                  <option value="1" selected>Passport</option>
+                </select>
+            </p>
+                <p> <select name="form-0-user" id="id_form-0-user">
+                    <option value="{{user.id}}">{{user}}</option>
+                </select></p>
+
+            <p>Document:  <input type="file" name="form-0-document" id="id_form-0-document"> </p></div>
+        <div>
+            <p>Document:  {{ form.id_document }} </p>
+            <p>User:  {{ form.user }} </p>
+            <p>Document:  {{ form.document }} </p></div>
+            <hr>
+
+        <button type="submit">Upload</button>
+    </form>
+</body>
+</html>

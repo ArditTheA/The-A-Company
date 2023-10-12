@@ -58,8 +58,8 @@ def UploadDocumentRecruiter(request,doc,jpk,userid):
             document_recruiter.save()
             return redirect("home")
     else:
-        return render(request, 'upload_document.html')
-    return render(request, 'upload_document.html')
+        return render(request, 'upload_document_user.html')
+    return render(request, 'upload_document_user.html')
 
 
 def UploadUserRecruiterDoc(request,doc,jpk,userid):
@@ -70,7 +70,7 @@ def UploadUserRecruiterDoc(request,doc,jpk,userid):
         document_recruiter.signed=True
         document_recruiter.save()
         return redirect("home")
-    return render(request,"upload_document.html")
+    return render(request,"upload_document_user.html")
 @login_required
 def UploadDocument(request,doc,userId):
     if request.method == 'POST':
@@ -91,8 +91,8 @@ def UploadDocument(request,doc,userId):
     else:
 
 
-        return render(request, 'upload_document.html')
-    return render(request, 'upload_document.html')
+        return render(request, 'upload_document_user.html')
+    return render(request, 'upload_document_user.html')
 class getApplicantOnPhase(View):
     def get(self,request,appSub,jpk):
         JobOwner = Jobs.objects.get(id=jpk)

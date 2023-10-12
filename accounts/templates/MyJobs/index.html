@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block title %}My Jobs{% endblock %}
+{% block description %}View and manage your temporary job applications on Worki.{% endblock %}
+
 {% block content %}
 {% if check %}
 {% include "MyJobs/myjobs-filter.html" %}
