@@ -1,6 +1,7 @@
 {% load static %}
     {% if FJob %}
-    <div onclick="getNumber('{{FJob.id}}');showRightJobsMainDiv();" class="job-left-row pixel move"  id="select{{FJob.id}}">        <img class="job-logo" src="{{i.logo.url}}" alt="">
+    <div onclick="getNumber('{{FJob.id}}');showRightJobsMainDiv();" class="job-left-row pixel move"  id="select{{FJob.id}}">
+        <img class="job-logo" src="{{FJob.logo.url}}" alt="">
         <div class="job-left-content">
             <div class="job-left-title">{{FJob.job_title}}</div>
             {% if FJob.country_j == "USA" %}
