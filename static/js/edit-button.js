@@ -4,24 +4,15 @@ var bg_change_profile_picture = document.querySelector(".bg-change-profile-pictu
 
 editButton.addEventListener("click", function() {
     modalBg.style.display = "flex";
+    document.body.style.overflow = "hidden";
 });
 
 window.addEventListener('click', function(event) {
     if (event.target == modalBg) {
         modalBg.style.display = "none";
+        document.body.style.overflow = "scroll";
     }
 });
-
-
-                // OR //
-
-
-/* window.onclick = function(event) {
-    if (event.target == modalBg) {
-      modalBg.style.display = "none";
-    }
-} */
-
 
 
                 

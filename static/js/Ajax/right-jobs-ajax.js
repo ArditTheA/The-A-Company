@@ -4,11 +4,12 @@
 
         for(var i = 0; i < elements.length; i++){
             elements[i].style.backgroundColor = "white";
-        }
+        };
 
-        post_id=id
+        post_id=id;
 
-        let response = await fetch('/',{
+
+        let response = await fetch('',{
 
             method: "get",
 
@@ -20,57 +21,17 @@
 
         }
 
-        )
-        let data = await response.json()
-
-        var mainJobs = document.getElementById("MainJobs").value;
-        console.log(mainJobs);
-        if(mainJobs){
-            window.history.pushState("","","")
-            window.history.pushState("","", id)
-        }
-        $('#detailsRow').animate({
-
-            scrollTop: 0 // scroll back to the top of the element
-          }, 600);
+        );
+        let data = await response.json();
 
 
-        var auth = data["auth"]
-        var element = document.getElementById("detailsRow");
+        var mainJobs = false;
 
-        if (element) {
-            var display = element.style.display;
 
-            if (display == "none") {
-                element.style.display = "flex";
-            }
-        }
-        const mobile = window.matchMedia('(max-width: 768px)');
-        if(mobile.matches){
-            $('.profileHeader').css('display', 'none');
-        }else{
-            if(post_id != 0){
-                var select = document.getElementById('select'+id)
-                select.style.backgroundColor = "#E7F1FE";
-            }
-
-            if(id == 0){
-                id=data["post_id"]
-                var select = document.getElementById('select'+id)
-                select.style.backgroundColor = "#E7F1FE";
-            }
-        }
-
-        let textarea = document.getElementById('message');
-        textarea.innerHTML=data["description"]
-
+        var auth = data["auth"];
 
         var element = document.getElementById("job_title");
-        element.innerHTML = data["title"]
-
-        var city_jobs = document.getElementById("city")
-        city_jobs.innerHTML = data["city_j"]+",  "+data["country"]
-
+        element.innerHTML = data["title"];
         var countApplicant = document.getElementById("countApplicant")
 
         if(data["appNo"]==0){
@@ -81,13 +42,6 @@
         else{
             countApplicant.innerHTML = data["appNo"]+" applicant"
         }
-
-        var start_date = document.getElementById("sDate");
-        start_date.innerHTML = data["start_date"] +" - "+data["end_date"];
-        var comp = document.getElementById("company")
-        comp.innerHTML=data["company"]
-
-
 
         function getMonthDifference(startDate, endDate) {
           return (
@@ -100,139 +54,109 @@
         var c= (getMonthDifference(
           new Date(data["SDate"]), new Date(data["EDate"]))
         );
-        var total = (data["salary"]*data['hourPerWork'])*4*c;
-
+        var total = (data ["salary"]*data['hourPerWork'])*4*c;
         var tt  = Math.floor(total);
+        var SalaryPerHour = document.getElementById("salary");
+        SalaryPerHour.innerHTML="€"+tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" total income"
+
+
         if(data["country"]== "USA"){
-        var salary = document.getElementById("salary")
-        if(data["tips"]){
-        salary.innerHTML ="$"+ data ["salary"]+"/hour + tips"
-        }else{
-        salary.innerHTML ="$"+ data ["salary"]+"/hour"
+            var salary = document.getElementById("salary")
+            salary.innerHTML ="$"+ data ["salary"]+"/hour"
+            if(data["tips"]){
+                document.getElementById("totsalary").innerHTML="$"+tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" total income / +tips";
 
-        }
-        document.getElementById("totsalary").innerHTML="$"+tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" total income ";
-
+            }
+            else{
+                document.getElementById("totsalary").innerHTML="$"+tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" total income ";
+            }
         }else{
             var salary = document.getElementById("salary")
-        if(data["tips"]){
-        salary.innerHTML ="€"+ data ["salary"]+"/hour + tips"
-        }else{
-        salary.innerHTML ="€"+ data ["salary"]+"/hour"
+            salary.innerHTML ="€"+ data ["salary"]+"/hour"
+            if(data["tips"]){
+            document.getElementById("totsalary").innerHTML="€"+tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" total income / +tips";
+            }else{
+                    document.getElementById("totsalary").innerHTML="€"+tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" total income";
+
+            }
         }
 
 
-                document.getElementById("totsalary").innerHTML="€"+tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" total income";
+
+        var Company = document.getElementById("company");
+        Company.innerHTML=data["company"];
 
 
-        }
+
+        let Description = document.getElementById('message');
+        Description.innerHTML=data["description"];
+
+        var Address = document.getElementById("city");
+        Address.innerHTML = data["city_j"]+",  "+data["country"];
+
+        var ShiftDate = document.getElementById("sDate");
+        ShiftDate.innerHTML = data["start_date"]+" - "+data["end_date"];
+
         var typeOfWork = document.getElementById('typeOfWork')
         typeOfWork.innerHTML = data["typeOfWork"]+" "
-
         var hourPerWork = document.getElementById('hourPerWork')
         hourPerWork.innerHTML = " "+data['hourPerWork']+" hours/week"
 
+
+
         var housing = document.getElementById("housing")
         housing.innerHTML = "Housing "+data['housing']
+
         if(data["country"]=="USA"){
-        var housingCost = document.getElementById("housingCost")
-        housingCost.innerHTML = "$"+data["housingCost"]+"/week"
+            var housingCost = document.getElementById("housingCost")
+            housingCost.innerHTML = "$"+data["housingCost"]+"/week"
         }else{
             var housingCost = document.getElementById("housingCost")
-        housingCost.innerHTML = "€"+data["housingCost"]+"/week"
+            housingCost.innerHTML = "€"+data["housingCost"]+"/week"
         }
+
+
         var program = document.getElementById('program');
         program.innerHTML = data["program"];
+
+
+
         var programCost = document.getElementById("programCost")
         programCost.innerHTML = "Program Cost: €"+data["programCost"]
-        var button = document.getElementById("button")
-        var url= "apply/"+id
-        var dateApply=data["hasApplyDate"]
-        var hasApply = data["hasApply"]
+
+
         var auth=data["auth"]
-
-        if (!document.querySelector("#button")) {
-
-        } else {
-            if(!hasApply){
-                const mediaQuery = window.matchMedia('(max-width: 767px)');
-                document.getElementById("button").style.backgroundColor = "#1877f2";
-                 if (mediaQuery.matches) {
-                                 document.getElementById("button").style.padding = "7px 25px";
-
-                 }else{
-                                 document.getElementById("button").style.padding = "8px 30px";
-
-                 }
-
-                button.innerHTML = '<a href="'+url+'" class="" >Apply</a>';
+        var button = document.getElementById("button")
+        var rB = document.getElementById("recruiterR")
+        var hasApply = data["hasApply"];
+        if(!rB){
+            if(button){
+                if (!hasApply){
+                        var url= "apply/"+id
+                        button.innerHTML = '<a href="'+url+'" class="right-jobs-directions-accept-job accept-job-offer-button accept-confetti" onclick="CallCanvas(event);startConfetti();" title="Accept job">Apply</a>';
 
 
-            }else{
-
-                document.getElementById("button").style.backgroundColor = "white";
-                document.getElementById("button").style.padding = "0";
-                button.innerHTML="Applied on "+data["applyDate"]
-            }
-        }
-        var firstMediaQuery = window.matchMedia('(min-width: 768px');
-        const mediaQuery = window.matchMedia('(max-width: 767px)');
-        var right_jobs_main_div = document.querySelector('.right-jobs-main-div');
-        var jobs_left = document.querySelector('.job-left');
-        var jobs_buttons = document.querySelector('.jobs-buttons');
-
-        if (mediaQuery.matches) {
-                right_jobs_main_div.style.display = "block";
-                jobs_left.style.display = "none";
-                jobs_buttons.style.display = "none";
-
-                if(id==0){
-                var select = document.getElementById('select'+id)
-                select.style.backgroundColor = "white";
+                }else{
+                    button.innerHTML="Applied on "+data["applyDate"]
                 }
-        }
-        ;
-    }
-
-        function myFunction(x) {
-            var element = document.getElementById("detailsRow");
-        if (x.matches) {
-
-            element.style.display = "flex"
-            var elements = document.getElementsByClassName('pixel'); // get all elements
-
-            for(var i = 0; i < elements.length; i++){
-                elements[i].style.backgroundColor = "white";
             }
-
-
-        } else {
-            element.style.display = "flex";
-            var c =document.getElementById("PostID").value;
-            getNumber(c);
-
         }
-        }
+        const mediaQuery = window.matchMedia('(max-width: 767px)');
 
-        // Create a MediaQueryList object
-        const mmObj = window.matchMedia("(max-width: 768px)")
+        if (!mediaQuery.matches) {
+        var select = document.getElementById('select'+post_id);
+        select.style.backgroundColor = "#E7F1FE";
 
-        // Call the match function at run time:
-        myFunction(mmObj);
-
-        // Add the match function as a listener for state changes:
-        mmObj.addListener(myFunction)
+        };
 
 
-        function closeButton(){
-            var right_jobs_main_div = document.querySelector('.right-jobs-main-div');
-            var jobs_left = document.querySelector('.job-left');
-            var jobs_buttons = document.querySelector('.jobs-buttons');
-            right_jobs_main_div.style.display = "none";
-            jobs_buttons.style.display = "flex";
-            jobs_left.style.display = "flex";
-            $('.profileHeader').css('display', 'flex');
-        }
+}
+
+
+
+
+
+
         
        
 

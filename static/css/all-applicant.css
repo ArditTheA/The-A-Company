@@ -2,27 +2,39 @@
     margin: 0px 40px 20px 10px;
 }
 
-.pro-img {
-    height: 9vw;
+
+.profileDropDown-content:first-child {
+    padding-bottom: 0px;
 }
 
-.experience-education-languages {
-    margin: 0px 20px 20px 10px;
-}
-/* .right-jobs {
-} */
-
-.experience-education-margin-bottom {
-    margin: 20px 20px 20px 10px;
-}
-.experience-education-languages {
-    margin: 0px 40px 20px 10px;
+.all-applicants-dropdown-content {
+    margin-bottom: 20px;
 }
 
-.profile-image {
-    width: 140px;
-    height: 140px;
-    margin-top: -70px;
+
+
+
+
+.all-applicants-over-main {
+    display: flex;
+    align-items: center;
+}
+.label-all {
+    position: absolute;
+    right: 31.6px;
+    top: 15px;
+    background-color: #E7F1FE;
+    cursor: pointer;
+}
+
+.checkbox-jobs {
+    height: 22px;
+    width: 22px;
+    position: absolute;
+    right: 20px;
+}
+.first-checkbox-jobs {
+    top: 40px;
 }
 /* .all-applicants-button {
     position: relative;
@@ -44,4 +56,331 @@
 
 }
 
+.div-white-icon {
+    display: flex;
+    align-items: center;
+    position: absolute;
+}
+.jobs-main-div {
+    display: flex;
+    justify-content: space-between;
+}
+.right-jobs-rows-img {
+    margin-left: 10px;
+    background-color: white;
+    margin-bottom: 20px;
+}
 
+.all-applicants-button {
+    padding-left: 20px;
+}
+.label-all {
+}
+.all-applicants-dropdown {
+    overflow-y: scroll;
+    max-height: 140px;
+    flex-direction: column;
+    overflow-x: scroll;
+    padding-bottom: 5px;
+}
+
+.move-phase-button {
+    display: none;
+    cursor: pointer;
+    background-color: rgb(221, 221, 221);
+    color: rgb(145, 143, 143);
+    font-weight: 500;
+    padding: 10px 20px;
+    width: 100%;
+    font-weight: 100;
+    border: none;
+    font-size: 18px;
+}
+.first-dropdown-content {
+    margin-bottom: 15px !important;
+    margin-top: 20px !important;
+    padding-top: 0px !important;
+}
+
+.dropdown-content-text {
+    margin-top: -15px;
+    padding-top: 0px;
+}
+.dropdown-content {
+    cursor: pointer;
+}
+.main-buttons-div {
+    margin-top: 0px !important;
+}
+@media screen and (max-width: 970px) and (min-width: 768px) {
+
+    .experience-first-row {
+        width: 100% !important;
+    }
+
+}
+
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+    .jobs-rows-img {
+        margin-left: 30px;
+    }
+    .right-jobs-rows-img, .right-jobs-rows-img-second {
+        margin-right: 30px;
+    }
+    .right-jobs-main-div {
+    }
+    .edit-job-button {
+        width: 28px;
+        height: 28px;
+    }
+    .right-jobs-main-div {
+    }
+    .main-buttons-div {
+        margin-left: -10px;
+    }
+
+    .last-input-form {
+        margin-right: 30px;
+    }
+    .jobs-buttons {
+        margin: 20px 0px 0px 40px;
+    }
+
+}
+
+@media screen and (max-width: 767px) and (min-width: 481px) {
+    .jobs-rows-img {
+        margin-bottom: 20px !important;
+    }
+    .right-jobs {
+        width: calc(100% - 10px);
+        margin-left: 10px !important;
+
+    }
+    .experience-education-languages {
+        margin-right: 20px !important;
+    }
+    .checkbox-jobs {
+        width: 20px;
+        height: 20px;
+    }
+    .jobs-buttons {
+        margin: 20px 0px 0px 20px;
+    }
+    .exit-job-description {
+        margin-bottom: 30px;
+        display: block;
+        width: 18px;
+        height: 18px;
+    }
+
+    .exit-job-description:hover {    }
+
+    .jobs-rows-img {
+        margin: 0px 10px 20px 20px;
+
+    }
+    .last-job-margin-bottom {
+        margin-bottom: -10px;
+    }
+    .right-jobs-rows-img-second {
+        margin-top: 20px;
+    }
+    .last-input-form {
+        margin-right: 20px;
+    }
+    .mutual-padding-of-div {
+    }
+
+    .edit-job-button {
+        width: 26px;
+        height: 26px;
+        margin-right: 30px;
+    }
+
+    .edit-job-button-different-margin {
+        margin-top: 30px;
+    }
+    .jobs-rows-img {
+        padding-left: 30px;
+    }
+
+    .main-buttons-div {
+        margin: 0;
+        display: flex;
+        justify-content: flex-start;
+    }
+    .container-fluid {
+    }
+
+    .right-jobs-rows-img, .right-jobs-rows-img-second {
+        margin-right: 20px;
+    };
+}
+
+@media screen and (min-width: 948px) {
+    .jobs-left, .right-jobs {
+        height: calc(85.9vh - 20px) !important;
+        padding-bottom: 20px;
+        margin-bottom: -10px !important;
+    }
+}
+
+
+@media screen and (max-width: 947px) and (min-width: 768px) {
+
+
+
+.jobs-rows-img {
+    margin: 0px 20px 20px 30px;
+}
+.right-jobs {
+    width: calc(100% - 20px);
+    overflow-y: scroll;
+    position: absolute;
+    height: calc(100% - 80px) !important;
+}
+
+.main-input-form {
+    margin-left: 0px !important;
+}
+
+.right-jobs {
+}
+.experience-education-languages {
+    margin-right: 30px !important;
+}
+
+
+}
+
+@media screen and (max-width: 947px) {
+
+.different-background-jobs {
+    background-color: white;
+}
+.label-all {
+    background-color: white;
+}
+
+
+}
+
+
+@media screen and (max-width: 947px) and (min-width: 481px) {
+    .jobs-left {
+        margin-bottom: 0px !important;
+        position: absolute;
+        height: calc(100% - 137px) !important;
+    }
+
+
+    .exit-job-description {
+        margin-bottom: 30px;
+        display: block;
+        width: 18px;
+        height: 18px;
+    }
+    .languages-main-div {
+        margin-top: 0px !important;
+        margin-bottom: 20px !important;
+    }
+
+
+    .right-jobs-main-div {
+        display: none;                     /* e zhvendosim display: none nga css te javascript (per responsive 767px - 481px) */
+        width: 100% !important;
+    }
+    .right-jobs {
+        margin-left: 20px;
+        overflow-y: scroll;
+        position: absolute;
+        height: calc(100% - 80px) !important;
+    }
+    .jobs-left {
+        width: calc(100% - 10px);
+    }
+
+    .last-input-form {
+
+    }
+}
+
+/* @media screen and (max-width: 1024px) and (min-width: 768px) and (orientation: landscape) {
+    .right-jobs-main-div {
+        display: block !important;
+    }
+} */
+
+
+@media screen and (max-width: 480px) {
+     .checkbox-jobs  {
+        width: 16px;
+        height: 16px;
+        right: 10px;
+     }
+    .all-applicants-over-main {
+        margin-right: 0px !important;
+    }
+    .main-input-form-second {
+        margin-right: 10px !important;
+        margin-left: -10px;
+    }
+    .main-input-form {
+    }
+    .mDiv {
+        margin-right: -10px !important;
+    }
+    .phase-plus-icon {
+    }
+     .jobs-left {
+        margin-right: -10px !important;
+        margin-bottom: 0px !important;
+        position: absolute;
+        height: calc(100% - 114px);
+    }
+    .jobs-left::-webkit-scrollbar {
+        display: none !important;
+    }
+    .right-jobs-rows-img {
+        margin-bottom: 10px;
+    }
+    .languages-div {
+
+    }
+    .right-jobs {
+        width: 100% !important;
+        height: calc(100% - 70px);
+        margin-top: 10px;
+    }
+
+     .label-all {
+        font-size: 14px;
+        right: 20px;
+        top: 10px;
+     }
+     .first-checkbox-jobs {
+        top: 30px;
+     }
+
+
+
+     .dropdown-content-text, .search-input-without-width {
+        font-size: 16px !important;
+     }
+     .search-input-without-width {
+        width: 118px !important;
+        display: flex;
+        align-items: center;
+        margin-left: -10px;
+     }
+     .white-icon, .icon {
+        top: 50%;
+    }
+    .all-applicants-button {
+    }
+    .move-phase-button {
+        font-size: 16px !important;
+    }
+
+}

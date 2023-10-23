@@ -1,0 +1,157 @@
+.header-icon-logo {
+    width: fit-content; 
+    height: 35px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+}
+.header-icon-profile {
+    width: 35px !important;
+    border-radius: 50% !important;
+}
+
+.profileHeader{
+    background-color: #f1f1f1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: none;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    position: relative;
+}
+.header-icon-job {
+    margin-right: 30px;
+}
+
+
+/*    Profile DropDown  */
+ .profileDropDown, .edit_dropdown {
+    transition: all 0.5s ease-in-out;
+    -webkit-box-shadow: 0 0 5px #e7e7e7;
+    box-shadow: 0 0 5px #e7e7e7;
+    border: none;
+    display: none;
+    text-align: center;
+    font-size: 16px;
+    background-color: white;   /*display: none = nuk mund te perdoret transition: ... */
+    border-radius: 16px;
+    overflow: hidden;
+    position: absolute;
+    z-index: 99;
+    padding-top: 5px;
+}
+
+.margin-bottom {
+    margin-bottom: 10px !important;
+}
+
+.profileDropDown {
+    text-align: left;
+}
+
+.edit_dropdown {
+    margin-top: 10px;
+}
+
+.profileDropDown {
+    padding-bottom:20px;
+}
+.all-applicants-dropdown {
+    padding-bottom:0px;
+    margin-top: 10px;
+}
+
+
+.profileDropDown {
+    right: 10px;
+}
+.recruter-job-dropdown {
+    right: 30px;
+    top: 60px;
+}
+.profileDropDown-content {
+    padding:15px 20px 0px 20px;
+    text-decoration: none !important;
+    color: #65676B;
+}
+.profileDropDown-text{
+    text-decoration: none !important;
+    color: #65676B;
+    cursor: pointer;
+}
+.profileDropDown-text:hover {
+    color: black;
+}
+.header-icon{
+    cursor: pointer;
+    height: 35px;
+    width: fit-content;
+    object-fit: cover;
+    vertical-align: middle;
+    width: auto;
+}
+.all-applicants-dropdown {
+    right: auto;
+}
+/* .header-icon-radius{
+    border-radius: 10px;
+} */
+.header-icon-job{
+    margin-right: 20px;
+    max-width: 40px;
+    border-radius: 6px;
+}
+
+.header-icon-profile{
+    margin-right: 40px;
+    width: 40px !important;
+    height: 40px !important;
+
+}
+.header-icon-logo{
+}
+
+.jobs-and-profile {
+    float: right;
+    display: flex;
+    align-items: center;
+}
+
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+    .header-icon-logo{
+    }
+    .header-icon-profile{
+        margin-right: 30px;
+    }
+}
+
+@media screen and (max-width: 767px) and (min-width: 481px) {
+    .header-icon-logo {
+    }
+    .header-icon-job{
+        margin-right: 20px;
+    }
+    .header-icon-profile {
+        margin-right: 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .header-icon-logo{
+    }
+    .header-icon-job {
+        margin-right: 15px;
+    }
+    .header-icon-profile{
+        margin-right: 10px;
+    }
+    .profileDropDown {
+        font-size: 16px;
+        margin-top: -10px;
+    }
+}

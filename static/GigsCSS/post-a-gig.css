@@ -1,0 +1,1298 @@
+.duration-buttons {
+    border: 1px solid #D4D5D6;
+    width: 120px; 
+    text-align: center;
+    color: #858585;
+    border-radius: 25px;
+}
+
+.main-divs-color {
+    color: #858585;
+}
+.second-color-of-divs {
+    color: black;
+}
+.post-the-GIG-button {
+    width: 100%;
+    margin-left: 30px;
+    text-align: center;
+    border: none;
+    color:white;
+}
+.addedItemsContainer {
+    width: 100% !important;
+}
+.third-additional-feature {
+    padding-top: 30px; 
+    padding-bottom: 30px; 
+    font-size: 18px;
+}
+.custom-select {
+    color: #858585;
+}
+.total-payment-color {
+    color: #1877F2;
+}
+
+
+.months-div {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 506px;
+    margin-right: -60px;
+}
+.first-job-description-post-a-job-div {
+    padding-top: 20px; 
+    padding-bottom: 20px; 
+    border-bottom: 40px; 
+    margin-left: 30px; 
+    color: #D4D5D6;
+    pointer-events: none;
+}
+/* .months-div-2 {s
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 440px;
+} */
+
+.duration-buttons-div {
+    /* display: flex;
+    justify-content: space-between; */
+    /* margin-right: 40px; */
+}
+
+.months-div-2 {
+    /* margin-right: 0px !important; */
+}
+.second-months-div {
+    /* width: 700px !important; */
+}
+
+/* .duration-buttons-div {
+    width: 446px;
+} */
+
+.program-duration-form {
+    background-color: white; 
+    margin: auto; 
+    width: max-content; 
+    border-radius: 40px;
+}
+.under-program-duration-form {
+    background-color: white;
+    border-width: 100%;
+    margin: auto; 
+    width: max-content; 
+    border-radius: 40px; 
+    border-bottom-left-radius: 40px; 
+    border-bottom-right-radius: 40px; 
+    border-bottom: 1px solid #f0f0f0; 
+    border-left: 1px solid #f0f0f0;
+    border-right: 1px solid #f0f0f0;
+}
+.description-location-schedule-pay {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 40px; 
+    margin-left: 30px; 
+    color: #D4D5D6;
+}
+.under-main-contact-information-form, .under-contact-information-form, .main-description-form {
+    background-color: white;
+    border-width: 100%; 
+    margin: auto;
+    width: max-content; 
+    border-radius: 40px;
+    border-bottom-left-radius: 40px; 
+    border-bottom-right-radius: 40px; 
+    border-bottom: 1px solid #f0f0f0;
+    border-left: 1px solid #f0f0f0;
+    border-right: 1px solid #f0f0f0;
+}
+
+
+.container {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping to multiple rows if needed */
+    justify-content: flex-start; /* Align items to the start of each row */
+  }
+  
+.added-items-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.choose-duration-buttons {
+    border-radius: 40px; 
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+.post-a-job-under-div {
+    border-bottom-left-radius: 40px; 
+    border-bottom-right-radius: 40px; 
+    border-bottom: 1px solid #f0f0f0; 
+    border-left: 1px solid #f0f0f0; 
+    border-right: 1px solid #f0f0f0;
+}
+
+.reserve-form {
+    border-radius: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.contact-information-form {
+    background-color: white;
+    margin: auto; 
+    width: max-content; 
+    border-radius: 40px;
+}
+.under-c-i-f {
+    background-color: white; 
+    border-width: 100%; 
+    margin: auto; 
+    width: max-content; 
+    border-radius: 40px; 
+    border-bottom-left-radius: 40px; 
+    border-bottom-right-radius: 40px; 
+    border-bottom: 1px solid #f0f0f0; 
+    border-left: 1px solid #f0f0f0; 
+    border-right: 1px solid #f0f0f0;
+}
+.contact-information-div {
+    padding-top: 20px; 
+    padding-bottom: 20px; 
+    border-bottom: 40px; 
+    margin-left: 30px; 
+    color: #D4D5D6;
+}
+.first-screening-question-div {
+    padding-top: 20px; 
+    padding-bottom: 20px; 
+    border-bottom: 40px; 
+    margin-left: 30px; 
+    color: #D4D5D6;
+}
+.first-payment-div {
+    padding-top: 20px; 
+    padding-bottom: 20px; 
+    border-bottom: 40px; 
+    margin-left: 30px; 
+    color: #D4D5D6;
+}
+.choose-duration-title {
+    margin-top: 30px; 
+    font-size: 16px;
+}
+.second-inputs-div {
+    display: flex; 
+    flex-direction: column;
+    width: 446px;
+}
+.duration-buttons-div, .duration-buttons-div-2 {
+    display: flex; 
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.selected, .selected_2 {
+    /* border: 1px solid #1877F2;
+    color: #1877F2; */
+}
+
+.choose-month-buttons {
+    border-radius: 25px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+.contact-information-third-page {
+    color: black; 
+    font-size: 18px; 
+    padding-top: 30px; 
+    padding-bottom: 15px;
+}
+.over-duration-buttons {
+    padding-right: 40px;
+}
+.contact-information-title {
+    font-size: 18px; 
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+.logo-input-main-div {
+    padding-left: 12px;
+}
+.logo-input-div {
+    color: white;
+}
+.choose-starting-month-div {
+    color: black; 
+    font-size: 16px; 
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.pay-under-form {
+    background-color: white; 
+    margin: auto; 
+    width: max-content; 
+    border-radius: 40px;
+    width: 508px;
+}
+.submit-button, .back-button {
+    margin-top: 30px;
+    border-radius: 30px;
+    padding: 10px 35px;
+    background-color: #1877F2;
+    font-size: 16px;
+    cursor: pointer;
+    line-height: normal !important;
+    text-decoration: none;
+}
+/* .submit-button {
+    background-color: #1877F2;
+    color: white;
+} */
+.first-next-button, #next-button, #gig-location-form-next-button, .start-trial-button, #additional-feature-submit-button, .next-button-job-description {
+    background-color: #D4D5D6;
+    color: white;
+    cursor: not-allowed;
+}
+
+.start-trial-button {
+    padding: 10px 120px;
+}
+.additional-feature-form-main-div {
+    background-color: white; 
+    margin: auto; 
+    width: max-content; 
+    border-radius: 40px; 
+    width: 508px;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    border: 1px solid #f0f0f0;
+
+}
+    .first-second-buttons {
+        margin-right: 40px;
+    }
+
+.selected, .second-selected {
+    border: 1px solid #1877F2;
+    color: #1877F2;
+}
+
+.next-button-deselected {
+    background-color: #D4D5D6 !important;
+    color: white !important;
+    cursor: not-allowed !important;
+}
+.next-button-deselected:hover {
+    filter: brightness(1) !important;
+}
+.choose-duration, .month-button, .pd-ci-cursor {
+    cursor: pointer;
+}
+.back-button {
+    background-color: white;
+    color: #1877F2;
+    border: 1px solid #1877F2;
+}
+
+/* .program-duration-main-div:hover {
+    filter: brightness(0.70);
+} */
+
+input[type="number"]:hover::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+
+}
+
+input[type="number"]:focus::-webkit-inner-spin-button,
+input[type="number"]:focus::-webkit-outer-spin-button,
+input[type="number"]:active::-webkit-inner-spin-button,                                         
+input[type="number"]:active::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+
+
+.second-next-button {
+    background-color: #1877F2 !important;
+    color: white !important;
+    cursor: pointer !important;
+}
+.second-main-program-duration-form {
+    background-color: white; 
+    padding: 30px; 
+    border-width: 100%; 
+    margin: auto; 
+    width: max-content; 
+    border-radius: 40px; 
+    border-bottom-left-radius: 40px; 
+    border-bottom-right-radius: 40px; 
+    border-bottom: 1px solid #f0f0f0; 
+    border-left: 1px solid #f0f0f0; 
+    border-right: 1px solid #f0f0f0;
+}
+.program-duration-div {
+    color: black; 
+    font-size: 18px; 
+    margin-left: 31px; 
+    padding-top: 30px; 
+    padding-bottom: 15px;
+}
+
+.select-arrow {
+    -webkit-appearance: menulist-button;
+    -moz-appearance: menulist-button;
+    appearance: menulist-button;
+    background-repeat: no-repeat;
+    padding-right: 20px; /* Adjust padding to accommodate the arrow */
+}
+
+select:focus {
+    outline: none;
+}
+.idealAnsF1, .idealAnsF2, .idealAnsF3 {
+    padding-left: 10px;
+    -webkit-appearance: menulist-button;
+    -moz-appearance: menulist-button;
+    appearance: menulist-button;
+}
+.select-arrow::-webkit-menulist-button {
+    color: rgba(0, 0, 0, 0);
+    opacity: 1;
+    background-repeat: no-repeat;
+    background-position: 100% center;
+    cursor: pointer;
+    margin-right: 15px;
+  }
+
+
+.program-duration-title {
+    font-size: 18px;
+}
+
+input {
+    outline: none;
+}
+.second-job-details-title {
+    margin-left: 30px;
+}
+
+.job-description-fourth-page-div {
+    border-width: 100%; 
+    padding-left: 31px; 
+    margin: auto;
+    border-top-left-radius: 40px; 
+    border-top-right-radius: 40px; 
+    border-top: 1px solid #f0f0f0;
+}
+.job-description-third-page {
+    padding-top: 30px;
+    padding-bottom: 15px;
+    font-size: 18px;
+}
+.third-job-details {
+    margin-left: 30px;
+}
+.gig-location-form-description {
+    margin-left: 31px;
+    border-width: 100%; 
+    padding-left: 31px; 
+    margin: auto;
+    border-top-left-radius: 40px; 
+    border-top-right-radius: 40px; 
+    border-top: 1px solid #f0f0f0;
+}
+
+.screening-question-form {
+    background-color: white; 
+    margin: auto; 
+    width: max-content; 
+    border-radius: 40px; 
+    width: 508px;
+}
+
+.add-question-button, .add-shift-button {
+    cursor: pointer;
+    background-color: #1877F2;
+    border: none !important;
+    margin-top: 20px;
+    width: fit-content;
+    color: white !important;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.add-shift-button {
+    width: calc(50% - 20px);
+}
+
+.add-question-button {
+    padding: 10px 25px 10px 15px !important;
+}
+
+.form-group-add-question {
+    margin-top: 20px;
+}
+.add-question-button-second-margin-top {
+    margin-top: 30px;
+}
+.add-question-button::placeholder {
+    color: white;
+}
+
+.program-duration-third-page {
+    color: black; 
+    font-size: 18px; 
+    margin-left: 31px; 
+    padding-top: 30px; 
+    padding-bottom: 15px;
+}
+.contact-information-div-third-page {
+    border-width: 100%; 
+    padding-left: 31px; 
+    margin: auto; 
+    border-top-left-radius: 40px; 
+    border-top-right-radius: 40px; 
+    border-top: 1px solid #f0f0f0;
+}
+
+.mutual-font-size-18px {
+    font-size: 18px;
+}
+.unpaid-break {
+    margin-top: 20px;
+    width: calc(50% - 20px) !important;
+    box-sizing: inherit !important;
+}
+.schedule-form-div {
+    padding-bottom: 0px;
+}
+
+.third-payment-enable {
+    color: black;
+
+}
+.shift {
+    padding-top: 30px;
+    font-size: 16px;
+    padding-bottom: 20px;
+}
+
+.next-button {
+    background-color: #D4D5D6;
+    color: white;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+
+.date-of-birth-input::-webkit-calendar-picker-indicator {
+    color: rgba(0, 0, 0, 0);
+    opacity: 1;
+    background-repeat: no-repeat;
+    background-position: 100% center;
+    cursor: pointer;
+    margin-right: 15px;
+  }
+  .start-end-date::-webkit-calendar-picker-indicator {
+    color: rgba(0, 0, 0, 0);
+    opacity: 1;
+    background-repeat: no-repeat;
+    background-position: 100% center;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  .input-deadline-date::-webkit-calendar-picker-indicator {
+    color: rgba(0, 0, 0, 0);
+    opacity: 1;
+    background-repeat: no-repeat;
+    background-position: 100% center;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+
+  
+
+  #screening-question-select-options {
+    height: auto;
+    border-color: #9E9E9E;
+    width: 100%;
+    border-radius: 40px;
+    border: 1px solid #D4D5D6;
+    padding: 10px;
+    outline: none;
+    font-size: 16px;
+    padding-right: 20px;
+    background-position: 5px center;
+  }
+
+select {
+    font-size: 16px;
+}
+
+.month-button.displayed {
+    display: block;
+}  
+
+.third-next-button-2 {
+    background-color: #1877F2 !important;
+    color: white !important;
+    cursor: pointer !important;
+}
+
+.back-button:hover {
+    filter: brightness(0.95);
+}
+.new-submit-style:hover {
+    filter: brightness(0.95);
+}
+.second-next-button:hover {
+    filter: brightness(0.95);
+}
+
+.third-next-button-2:hover {
+    filter: brightness(0.95);
+}
+
+.apply-name-surname, .start-end-date {
+    padding: 10px 0px 10px 10px;
+    border: 1px solid #D4D5D6;
+    border-radius: 40px;
+    width: 100%;
+    color: #858585;
+    font-family: 'Spline Sans', sans-serif;
+}
+#phone_number{
+    width:100%;
+}
+.apply-first-name, .start-date-input {
+    margin-right: 20px;
+}
+.contact-information-mutual-stats, .add-question-button, .add-shift-button {
+    border: 1px solid #D4D5D6; 
+    padding: 10px 0px 10px 10px; 
+    border-radius: 40px;
+    color: #858585;
+    box-sizing: border-box;
+
+}
+/* .contact-information-div {
+    width: 434px;
+} */
+.positions-deadline-date-inputs {
+    width: 100%;
+    box-sizing: border-box;
+}
+.contact-information-margin-bottom {
+    margin-bottom: 20px;
+}
+.first-and-last-name {
+    display: flex;
+    justify-content: space-between; 
+    width: 100%;
+}
+  
+/* .button-effect:after {
+    content: "";
+    display: block;
+    position: absolute;
+    border-radius: 4em;
+    left: 0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: all 0.5s;
+    box-shadow: 0 0 10px 40px white;
+  }
+  
+  .button-effect:active:after {
+    box-shadow: 0 0 0 0 white;
+    position: absolute;
+    border-radius: 4em;
+    opacity: 1;
+    transition: 0s;
+  } */
+  
+  .animated {
+    border-radius: 4em;
+    transition: all 0.3s;
+    /* box-shadow: 0 0 0.4px 0.4px #1877F2; */
+    opacity: 1;
+    left: 0;
+    top:0;
+    border: 1px solid #1877F2;
+  }
+
+  .animated:active::after{
+    
+  }
+
+  .animated {
+    animation: shake 0.7s ease;
+    
+  }
+  input {
+    font-size: 16px;
+    outline: none;
+    color: #858585;
+  }
+
+  
+  @keyframes shake {
+    0% { transform: translateX(0); }
+    10%, 90% { transform: translateX(-1.5px); }
+    30%, 70% { transform: translateX(1.5px); }
+    50% { transform: translateX(0); }
+      /* 0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(3); opacity: 0; } */
+
+  }
+  .duration-buttons-div:first-child {
+    margin-top: 0px;
+  }
+
+  /* .months-div {
+    overflow-y: scroll;
+    max-height: 325px;
+  } */
+
+  .months-div::-webkit-scrollbar {
+    display: none;
+  }
+  .months-div-2::-webkit-scrollbar {
+    display: none;
+  }
+  .duration-buttons-main-div {
+    margin-top: 20px;
+  }
+  .input-form {
+    display: flex;
+    flex-direction: row-reverse;
+    position: relative;
+    outline: none;
+    align-items: center;
+}
+.first-job-details {
+    margin-left: 30px !important;
+}
+.input-card-img {
+    position: absolute;
+    right: 10px;
+}
+
+/* .duration-buttons-div-2 {
+    margin-right: 40px;
+} */
+.program-duration-under-div, .post-a-job-under-div {
+    width: max-content;
+    background-color: white; 
+    border-width: 100%; 
+    padding-left: 30px; 
+    padding-right: 30px; 
+    padding-bottom: 30px; 
+    margin: auto; 
+}
+
+.first-and-last-name {
+    display: flex;
+}
+
+.program-duration-under-div {
+    border-radius: 40px;
+    border-top-left-radius: 40px; 
+    border-top-right-radius: 40px; 
+    border: 1px solid #f0f0f0;
+}
+
+.input-form {
+    display: flex;
+    flex-direction: row-reverse;
+    position: relative;
+    outline: none;
+    align-items: center;
+}
+.job-details-div {
+    color: black;
+    font-size: 18px; 
+    margin-left: 30px; 
+    padding-top: 30px; 
+    padding-bottom: 20px;
+    cursor: auto;
+}
+.job-description-under-div {
+    width: 446px;
+}
+.third-page-job-details-discription {
+    color: black; 
+    font-size: 18px; 
+    margin-left: 30px; 
+    padding-top: 30px; 
+    padding-bottom: 15px;
+}
+
+.scroll {
+    width: 100%;
+    height: 340px;
+    background-color: white; 
+    border-radius: 40px;
+    resize: none; 
+    border: 1px solid #f0f0f0;
+    font-size: 16px; 
+    color: #757575; 
+    padding-left: 10px;
+    margin: auto;
+    outline: none;
+    padding: 20px;  
+} 
+.screening-question-third-page {
+    padding-top: 30px; 
+    font-size: 18px;
+}
+.second-screening-question-div {
+    pointer-events: none;
+}
+.third-form-question {
+    padding-bottom: 20px;
+    padding-top: 30px;
+}
+.third-payment-div {
+    padding-top: 20px; 
+    padding-bottom: 20px; 
+    border-bottom: 40px; 
+    margin-left: 30px; 
+    color: #D4D5D6;
+}
+.screening-question-only-form {
+    border-width: 100%; 
+    padding-left: 30px; 
+    padding-right: 30px; 
+    padding-bottom: 30px; 
+    margin: auto; 
+    border-radius: 40px; 
+    border-top-left-radius: 40px; 
+    border-top-right-radius: 40px; 
+    border: 1px solid #f0f0f0;
+}
+.logo-label {
+    width: 100%;
+}
+
+.upload-file-div {
+    border: 0.5px solid #9E9E9E;
+    border-radius: 30px;
+    padding: 10px 10px 10px 12px;
+    font-size: 16px;
+    background-color: #1877F2;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    color: white;
+    border: none;
+}
+
+.icon {
+    position: absolute;
+    height: 22px;
+    width: 22px;
+    border-radius: 4px;
+    vertical-align: middle;
+    right: 20px;
+}
+.third-additional-feature-main-div {
+    border-width: 100%; 
+    padding-left: 30px; 
+    padding-right: 30px; 
+    padding-bottom: 30px; 
+    margin: auto; 
+    border-top-left-radius: 40px; 
+    border-top-right-radius: 40px; 
+    border-bottom-left-radius: 40px; 
+    border-bottom-right-radius: 40px;
+
+    border: 1px solid #f0f0f0;
+}
+.d-l-s-p-mobile-margin-left {
+    padding-top: 20px; 
+    padding-bottom: 20px; 
+    border-bottom: 40px; 
+    margin-left: 20px; 
+    color: #D4D5D6;
+}
+
+.d-l-sch-p {
+    padding-top: 20px; 
+    padding-bottom: 20px; 
+    border-bottom: 40px; 
+    margin-left: 30px; 
+    color: #D4D5D6;
+}
+
+.pay-inputs-in-row {
+    width: 100%; 
+    display: flex; 
+    justify-content: space-between; 
+    padding-bottom: 30px;
+}
+
+.inside-pay-form {
+    border-width: 100%; 
+    padding-left: 30px; 
+    padding-right: 30px; 
+    padding-bottom: 30px; 
+    margin: auto; 
+    border-radius: 40px; 
+    border-top-left-radius: 40px; 
+    border-top-right-radius: 40px; 
+    border: 1px solid #f0f0f0;
+}
+
+.pay-input-mutual {
+    border: 1px solid #D4D5D6; 
+    padding: 10px 0px 10px 10px; 
+    border-radius: 40px;
+    width: 100%;
+}
+
+.pay-div-pay-form {
+    padding-top: 30px; 
+    padding-bottom: 30px; 
+    font-size: 18px;
+}
+
+.pay-mm-yy-input {
+    margin-right: 30px;
+}
+
+.pay-form-d-d-l-sch {
+    color: black;
+    font-size: 18px;
+    padding-bottom: 15px;
+}
+
+.pay-form-div-d-d-l-sch {
+    border-width: 100%; 
+    padding-left: 30px;
+    margin: auto; 
+    border-top-left-radius: 40px; 
+    border-top-right-radius: 40px; 
+    border-top: 1px solid #f0f0f0;
+}
+
+/* .upload-file-content-div {
+    margin-left: 33px !important;
+    } */
+
+
+
+/* .months-div-2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 500px !important;
+} */
+
+@media screen and (max-width: 1024px) and (min-width: 481px) {
+    .first-second-buttons {
+        margin-right: 30px;
+    }
+    .months-div {}
+    /* .duration-buttons-div-2 {
+        margin-right: 30px;
+    } */
+    .months-div-2 {
+        /* background-color: red !important; */
+    }
+    .months-div {
+        width: 460px;
+    }
+    .months-div-2 {
+        /* width: calc(460px - 30px) !important; */
+    }
+    .itemContainer {
+        /* padding-right: 30px !important; */
+    }
+    /* .months-div-2 {
+        width: 420px !important;
+    } */
+    .inputs-div {
+         width: 100%;
+    }
+
+    .contact-information-mutual-stats {
+        width: 100%;
+    }
+        .program-duration-under-div, .post-a-job-under-div {
+        width: 426px !important;
+    }
+    .additional-feature-form-main-div {
+        width: 488px;
+    }
+    
+}
+
+@media screen and (max-width: 480px) {
+.reserve-form {
+margin-top: 10px;
+}
+.third-form-question {
+padding-top: 0px;
+}
+    .first-reserve-form {
+        width: calc(100% - 20px);
+        margin: auto;
+        padding-top: 20px;
+        margin-left: 7px;
+        /* width: 100% !important;
+        margin: 0;
+        padding: 0px !important; */
+    }
+    .second-inputs-div {
+        width: 100%;
+    }
+
+    .program-duration-form {
+        width: 100%;
+        margin: auto;
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+    }
+    .under-program-duration-form {
+        width: calc(100% - 0px);
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+    }
+    .second-under-program-duration-form {
+        width: 100%;
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+    }
+    .second-main-program-duration-form {
+        width: calc(100% - 40px);
+        padding: 20px;
+        border-top-left-radius: 20px;        
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 30px;
+        border-bottom-left-radius: 30px;
+
+
+    }
+
+    .gig-location-form-description {
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+
+    }
+
+    .under-main-contact-information-form, .under-contact-information-form, .main-description-form, .fourth-c-i-f-details {
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }
+    .location-under-form, .third-additional-feature-main-div {
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }
+    .duration-buttons {
+        width: 120px;
+        font-size: 14px;
+        border-radius: 15px !important;
+        /* margin-right: 0px; */
+    }
+    .mutual-font-size-18px {
+        font-size: 16px;
+    }
+    .choose-duration-title, .choose-starting-month-div {
+        margin-top: 20px; 
+        font-size: 14px;
+    }
+    .font-size-18px-16px, .job-details-div {
+        font-size: 16px;
+    }
+    .choose-month-buttons {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .first-second-buttons {
+        /* margin-right: 40px; */
+    }
+    
+        .duration-buttons-div {
+        width: 100%;
+        /* display: flex; */
+        /* justify-content: flex-start; */
+    }
+    .months-div {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .program-duration-div {
+        width: calc(100% - 30px);
+    }
+    .second-reserve-form {
+        width: 100%;
+        margin: auto;
+        padding-top: 10px;
+        margin-left: -1px;
+        margin-bottom: 10px;
+    }
+    .program-duration-under-div, .post-a-job-under-div {
+        width: calc(100% - 39px);
+        padding: 20px;
+        margin-left: -1px;
+    }
+    .post-a-job-under-div {
+        padding-top: 0px;
+    }
+    .program-duration-div {
+        font-size: 16px;
+        margin-left: 19px;
+        padding-top: 20px;
+
+    }
+    .input-div {
+        width: 100%;
+    }
+    .program-duration-under-div {
+        border-top-left-radius: 20px; 
+        border-top-right-radius: 20px;
+        border-radius:20px;
+    }    
+    .job-details-div {
+        padding-top: 20px;
+    }
+    .under-c-i-f {
+        width: auto;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }
+    .pay-form {
+        margin-bottom: 10px !important;
+    }
+    .fourth-c-i-f-details {
+        margin-left: -1px;
+    }
+    .second-job-details-title {
+        margin-left: 20px !important;
+    }
+    .job-description-title {
+        margin-top: 0px;
+    }
+    .contact-information-mutual-stats {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .first-and-last-name {
+    }
+    .contact-information-title {
+        font-size: 16px; 
+        margin-bottom: 20px;
+    }
+    .submit-button, .back-button {
+        margin-top: 20px;
+        padding: 8px 27px;
+    }    
+    .contact-information-form {
+        width: calc(100% - 20px);
+    }
+    .screening-question-form {
+        width: calc(100% - 20px);
+        border-top-right-radius: 20px;
+        border-top-left-radius: 20px;
+    }
+    .third-form-question {
+        font-size: 14px;
+    }
+    #screening-question-select-options {
+        font-size: 14px;
+        padding: 8px;
+    }
+    .program-duration-third-page, .contact-information-third-page, .screening-question-third-page {
+        padding-top: 20px;
+    }
+    .screening-question-third-page {
+        padding-bottom: 20px;
+    }
+    .program-duration-third-page {
+        margin-left: 20px;
+    }
+    .contact-information-div-third-page {
+        padding-left: 20px;
+    }
+    .screening-question-only-form {
+        padding-left: 20px; 
+        padding-right: 20px; 
+        padding-bottom: 20px;
+        border-radius:20px;
+    }
+    .job-details-div {
+        margin-left: 19px;
+    }
+    .additional-feature-form-main-div {
+        width: calc(100% - 19px);
+        border-radius: 20px;
+    }
+    .program-duration-main-div {
+        width: calc(100% - 40px);
+    }
+
+    .job-description-fourth-page-div {
+        padding-left: 20px;
+    }
+    .third-job-details {
+        margin-left: 20px;
+    }
+    .d-l-sch-p {
+        margin-left: 20px;
+    }
+    .third-additional-feature-main-div {
+        padding: 20px;
+    }
+    .third-additional-feature {
+        padding-top: 0px;
+    }
+    .third-additional-feature {
+        padding-bottom: 20px;
+    }
+    .job-description-third-page {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .add-question-button, .add-shift-button {
+        font-size: 16px;
+    }
+    .contact-information-title {
+        margin-top: 0px;
+    }
+    .schedule-form-div {
+        padding-bottom: 0px;
+    }
+    .first-and-last-name {
+        display: flex;
+        flex-direction: column;
+    }
+    .start-end-date {
+        box-sizing: border-box;
+    }
+    .start-date-input {
+        margin-bottom: 20px;
+    }
+    .apply-name-surname{
+        box-sizing: border-box;
+    }
+    .country-margin-bottom {
+        margin-bottom: 20px;
+    }
+    .logo-input-div {
+        font-size: 14px;
+    }
+    .first-job-details {
+        margin-left: 19.5px !important;
+    }
+    .apply-first-name {
+        margin-bottom: 20px;
+    }
+    .contact-information-div-third-page, .third-additional-feature-main-div {
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+
+    .under-contact-information-form {
+        width: 100%;
+    }
+    .job-description-form {
+        width: 100% !important;
+    }
+    .under-main-contact-information-form {
+        width: 100%;
+    }
+
+    .main-description-form {
+        width: calc(100% - 18px);
+        border-radius: 20px;
+    }
+
+    .under-main-contact-information-form, .under-contact-information-form {
+        width: 100%;
+    }
+
+    .location-under-form {
+        width: calc(100% - 18px);
+    }
+    .gig-location-form-description {
+        padding-left: 20px;
+    }
+    .location-under-second-form {
+        width: auto;
+    }
+
+    .pay-form {
+        width: calc(100% - 18px);
+        margin: auto;
+    }
+    .pay-under-form {
+        width: auto;
+    }
+    .pay-inputs-in-row {
+        width: fit-content;
+        box-sizing: border-box;
+    }
+
+    .inside-pay-form {
+        padding: 0px 20px 20px 20px;
+    }
+
+    .pay-div-pay-form {
+        font-size: 16px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .pay-mm-yy-input {
+        margin-right: 20px;
+    }
+
+    input {
+        padding-top: 8px !important;
+        padding-bottom: 8px !important;
+    }
+    .pay-form-div-d-d-l-sch, .details-pay-form {
+        padding-left: 20px;
+        border-top-right-radius: 20px;
+        border-top-left-radius: 20px;
+    }
+    .pay-form-d-d-l-sch {
+        font-size: 16px;
+        padding-bottom: 20px;
+    }
+
+    .pay-under-form {
+        margin-top: 20px;
+        border: 1px solid #f0f0f0;
+        border-top-right-radius: 20px;
+        border-top-left-radius: 20px;
+    }
+
+    .add-shift-button {
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+
+    .program-duration-div {
+        padding-bottom: 20px;
+    }
+
+    .job-description-fourth-page-div, .inside-pay-form {
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+    .shift {
+        padding-top: 20px;
+    }
+}

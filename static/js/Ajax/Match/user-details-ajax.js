@@ -1,8 +1,13 @@
-
-
  async function getUser(id) {
         document.getElementById("sectedUser").value = id;
         console.log(id)
+        var elements = document.getElementsByClassName('pixel'); // get all elements
+
+        for(var i = 0; i < elements.length; i++){
+            elements[i].style.backgroundColor = "white";
+        }
+
+
         let response = await fetch('',{
 
             method: "get",
@@ -16,7 +21,7 @@
         });
 
         let data =  await response.json();
-        console.log(data);
+
          var list = document.getElementsByClassName("JSAdded");
          for(var i = list.length - 1; 0 <= i; i--){
          if(list[i] && list[i].parentElement)
@@ -28,6 +33,8 @@
         document.getElementById("phone").innerHTML= data["phone"];
         document.getElementById("location").innerHTML= data["city"];
         document.getElementById("appdate").innerHTML= data["applyDate"];
+        document.getElementById("meetingTime").innerHTML= data["meetingTime"];
+        document.getElementById("meetingLink").innerHTML = '<a href="'+data["meetingLink"]+'" class="" >Interview link</a>'
 
        var button = document.getElementById("cv")
 
@@ -46,7 +53,7 @@
 
 
 
-          $('#UserExp').append($('<div class="experience-rows-img JSAdded" id="asd"> <img class="experience-education-img" src="/static/img/worki_icons-18.jpg" alt="" title="Experience"><div class="experience-rows"><div class="experience-first-row" id="">'+data[title]+'</div><div class="experience-second-row" id="">'+data[company]+'</div><div class="experience-third-row" id="">'+data[location]+'</div><div class="experience-fourth-row" id="">'+data[date]+'</div></div></div>'));
+          $('#UserExp').append($('<div class="experience-rows-img JSAdded" style="margin-top:30px;" id="asd"> <img class="experience-education-img" src="/static/img/worki_icons-18.jpg" alt="" title="Experience"><div class="experience-rows"><div class="experience-first-row" id="titleExp">'+data[title]+'</div><div class="experience-second-row" id="Compexp1">'+data[company]+'</div><div class="experience-third-row" id="Locexp1">'+data[location]+'</div><div class="experience-fourth-row" id="date1">'+data[date]+'</div></div></div>'));
         }
 
         }
@@ -59,7 +66,7 @@
             var uniField = "field"+i;
             var uniloc = "uniloc"+i
             var uniYear = "unidate"+i
-            $('#UserEdu').append($('<div class="job-left-row JSAdded" style=""><img class="job-logo" src="/static/img/worki_icons-18.jpg" alt="" title="Education"><div class="job-left-content"><div class="job-left-title" id="university">'+data[university]+'</div><div class="job-left-details" id="uniField">'+data[uniField]+'</div><div class="job-left-detailsw" id="uniLoc">'+data[location]+'</div><div class="job-left-details" id="uniYear">'+data[uniYear]+'</div></div></div>'));
+            $('#UserEdu').append($('<div class="experience-rows-img JSAdded" style="margin-top:30px;"><img class="experience-education-img" src="/static/img/worki_icons-19.jpg" alt="" title="Education"><div class="experience-rows"><div class="experience-first-row" id="university">'+data[university]+'</div><div class="experience-second-row" id="uniField">'+data[uniField]+'</div><div class="experience-third-row" id="uniLoc">'+data[location]+'</div><div class="experience-fourth-row" id="uniYear">'+data[uniYear]+'</div></div></div>'));
         }
 
 
@@ -70,33 +77,49 @@
             var lang = "language"+i;
             var level = "languageLevel"+i;
             console.log(data[lang]+data[level])
-                 $('#UserLang').append($('<div style="" class="experience-rows-img-languages JSAdded"><div class="education-second-paragraph">'+data[lang]+'</div><div class="language-rate">'+data[level]+'</div></div></div>'));
+                 $('#UserLang').append($('<div style="" class="experience-rows-img-languages JSAdded" style="margin-top:30px;"><div class="education-second-paragraph">'+data[lang]+'</div><div class="language-rate">'+data[level]+'</div></div></div>'));
         }
 
         }
         var firstMediaQuery = window.matchMedia('(min-width: 768px');
         const mediaQuery = window.matchMedia('(max-width: 767px)');
         var right_jobs_main_div = document.querySelector('.right-jobs-main-div');
-        var jobs_left = document.querySelector('.jobs-left');
+        var right_jobs = document.querySelector('.right-jobs');
+        var jobs_left = document.querySelector('.job-left');
         var jobs_buttons = document.querySelector('.jobs-buttons');
+
 
         if (mediaQuery.matches) {
                 right_jobs_main_div.style.display = "flex";
+                right_jobs.style.display = "flex";
                 jobs_left.style.display = "none";
                 jobs_buttons.style.display = "none";
                 if(id==0){
-                var select = document.getElementById('select'+id)
-                select.style.backgroundColor = "white";
+                    var select = document.getElementById('select'+id)
+                    select.style.backgroundColor = "white";
                 }
+        }else{
+            if(id != 0){
+                var select = document.getElementById('select'+id)
+                select.style.backgroundColor = "#E7F1FE";
+            }
+
+            if(id == 0){
+                id=data["post_id"]
+                var select = document.getElementById('select'+id)
+                select.style.backgroundColor = "#E7F1FE";
+            }
         }
         ;
        }
 const mediaQuery = window.matchMedia('(max-width: 767px)');
 var right_jobs_main_div = document.querySelector('.right-jobs-main-div');
+var right_jobs = document.querySelector('.right-jobs');
 var jobs_left = document.querySelector('.jobs-left');
-
+        var jobs_buttons = document.querySelector('.jobs-buttons');
 if (mediaQuery.matches) {
 right_jobs_main_div.style.display = "none";
+right_jobs.style.display = "none";
                 jobs_left.style.display = "flex";
                 jobs_buttons.style.display = "flex";
 }
@@ -105,3 +128,5 @@ var c =document.getElementById("sectedUser").value;
 
 getUser(c);
 }
+
+

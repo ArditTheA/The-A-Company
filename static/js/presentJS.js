@@ -3,7 +3,7 @@
         var textbox = document.getElementById('id_end_date')
         if (textbox.disabled) {
             textbox.disabled = false;
-            textbox.placeholder = "dd/mm/yyyy";
+            textbox.placeholder = "End Date dd/mm/yyyy";
         }else{
             textbox.disabled = true;
             textbox.placeholder = "Present";
@@ -16,7 +16,7 @@
         var textbox = document.getElementById('id_end_year')
         if (textbox.disabled) {
             textbox.disabled = false;
-            textbox.placeholder = "dd/mm/yyyy";
+            textbox.placeholder = "End Year dd/mm/yyyy";
         }else{
             textbox.disabled = true;
             textbox.placeholder = "Present";
