@@ -1,0 +1,13 @@
+<!-- custom_social_login.html -->
+{% extends "account/base.html" %}
+
+{% block content %}
+  <h2>Custom Social Login</h2>
+  <p>Login with your social account:</p>
+  
+  <a href="{% provider_login_url 'google' %}" class="btn btn-primary">Login with Google</a>
+  
+  <!-- Add other social login buttons if needed -->
+  
+  <p>Or, you can <a href="{% url 'account_login' %}">log in with your email and password</a></p>
+{% endblock %}

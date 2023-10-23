@@ -24,92 +24,91 @@
         </div>
         </div>
         <div class="add-and-edit-experience">
-          <a href="{% url 'profile'%}"><img class="back-icon" title="Go Back" src="{% static 'img/backButton.png' %}" alt=""></a>         
-          <img class="add-experience-button plus-button-exp" title="Add Experience" src="{% static 'img/Vector 80.png' %}" alt="">
-        </div>
+                    <a href="{% url 'profile'%}"><img class="back-icon add-edit-buttons-hover" title="Go Back" src="{% static 'img/backButton.png' %}" alt=""></a>
+                    <img class="second-add-languages-button plus-button-exp add-edit-buttons-hover" title="Add Languages" src="{% static 'img/Vector 80.png' %}" alt="">
+                </div>
     </div>
 </div>
 
-<div class="bg-edit-experience" style="display: flex;">
-    <div class="edit-languages-pop-up">
-        <div class="under-container">
-            <div class="exit-img exit-img-edit-experience">
-                <a href="{% url 'editLanguage'%}">
-                    <img class="exit-button" src="{% static 'img/Vector 81 (1).png' %}" alt="">
-                </a>
-            </div>
-            <h1 id="title-experience">Edit Language</h1>
-            <form method="POST" action="" class="sign-up-form">
-                {% csrf_token %}
-                <div style="display: none;">
-                    {{edit.user_id}}
-                </div>
-                <div class="div-of-job-experience">
-                    <p class="paragraph-of-name paragraphs-stats">Language</p>
-                    <select name="language" required="" id="id_language">
-                        
-                        
-                        {% for i in lang %}
+<div class="bg-edit-languages" style="display: flex;" id="editLanguageDiv">
+
+<div class="add-languages under-container-mutual-mutual-stats" >
+ 
+    <div class="add-language-title mutual-titles-pop-ups-stats">Edit Language</div>
+    <form method="POST" action="" class="sign-up-form add-language-form">
+        {% csrf_token %}
+        <div style="display: none;">
+            {{edit.user_id}}
+        </div>
+        <div class="div-of-job-experience">
+            <select name="language" required="" id="id_language" class="profile-all-inputs-option">
+                {% for i in lang %}
                         {% if i == uslang %}
                         <option value="{{i.id}}" selected>{{i}}</option>
                         {% else  %}
                         <option value="{{i.id}}">{{i}}</option>
                         {% endif %}
                         {% endfor %}
-                    </select>
-                </div>
-
-                <div>
-                    <p class="paragraph-of-surname paragraphs-stats">Level</p>
-                    <select name="level" required="" id="id_level">
-                        
-                      
-                        {% if asd1 == "N/A" %}
-                        <option value="N/A" selected>N/A</option>
-                        {% else %}
-                        <option value="N/A">N/A</option>
-
-                        {% endif %}
-                        {% if asd1 == "Basic" %}
-                        <option value="Basic" selected>Basic</option>
-                        {% else %}
-                        <option value="Basic">Basic</option>
-
-                        {% endif %}
-                        {% if asd1 == "Low-Intermediate" %}
-                        <option value="Low-Intermediate" selected>Low-Intermediate</option>
-
-                        {% else %}
-                        <option value="Low-Intermediate">Low-Intermediate</option>
-
-                        {% endif %}
-
-                        {% if asd1 == "High-Intermediate" %}
-                        <option value="High-Intermediate" selected>High-Intermediate</option>
-                        {% else %}
-                        <option value="High-Intermediate">High-Intermediate</option>
-                        {% endif %}
-                        {% if  asd1 == "Advanced" %}
-                        <option value="Advanced" selected>Advanced</option>
-                        {% else %}
-                        <option value="Advanced">Advanced</option>
-                        
-                        {% endif %}
-                      
-                      </select>
-
-                    
-
-
-                </div>
-                
-                <div class="save-button save-button-edit-add-education-480">
-                    <input name="save" type="submit" class="save-submit-input save-picture font-fam" value="Save">
-                </div>  
-            </form>
+            </select>
         </div>
-    </div>
+        
+        <div>
+        <select id="id_level" name="level" type="text" required class="surname-input mutual-stats font-fam">
+            {% if asd1 == "N/A" %}
+            <option value="N/A" selected>N/A</option>
+            {% else %}
+            <option value="N/A">N/A</option>
+
+            {% endif %}
+            {% if asd1 == "Basic" %}
+            <option value="Basic" selected>Basic</option>
+            {% else %}
+            <option value="Basic">Basic</option>
+
+            {% endif %}
+            {% if asd1 == "Low-Intermediate" %}
+            <option value="Low-Intermediate" selected>Low-Intermediate</option>
+
+            {% else %}
+            <option value="Low-Intermediate">Low-Intermediate</option>
+
+            {% endif %}
+
+            {% if asd1 == "High-Intermediate" %}
+            <option value="High-Intermediate" selected>High-Intermediate</option>
+            {% else %}
+            <option value="High-Intermediate">High-Intermediate</option>
+            {% endif %}
+            {% if  asd1 == "Advanced" %}
+            <option value="Advanced" selected>Advanced</option>
+            {% else %}
+            <option value="Advanced">Advanced</option>
+            
+            {% endif %}
+        </select>
+        </div>
+        <div class="save-button save-button-edit-profile">
+            <input title="Back to Profile" name="back" type="button" class="back-button-edit font-fam back-save-buttons" value="Back" onclick="backtoEditExpPage();">
+            <input title="Save Profile Data" name="save" type="submit" class="save-submit-input font-fam back-save-buttons" value="Save">
+        </div>
+    </form>
 </div>
+</div>
+
+ <script>
+       $(document).ready(function() {
+            $("#editLanguageDiv").click(function() {
+                    window.location.href = "{% url 'editLanguage' %}";
+
+            });
+        });
+        $(".under-container-mutual-mutual-stats").click(function(event) {
+            event.stopPropagation();
+        });
+        function backtoEditExpPage() {
+    window.location.href = "{% url 'editLanguage' %}";
+}
+    </script>
     {% include 'scripts.html' %}
 
 {% endblock content %}

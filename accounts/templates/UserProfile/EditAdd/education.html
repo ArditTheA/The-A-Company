@@ -2,7 +2,6 @@
 {% block content %}
 {% load static %}
 
-
 <div class="experience-main-div experience-education-languages different_exp">
     <div class="experience-div second-experience-div">
         <div class="experience-paragraph-img-rows">
@@ -35,101 +34,277 @@
         </div>
         </div>
         <div class="add-and-edit-experience">
-          <a href="{% url 'profile'%}"><img class="back-icon" title="Go Back" src="{% static 'img/backButton.png' %}" alt=""></a>         
-          <img class="add-experience-button plus-button-exp" title="Add Experience" src="{% static 'img/Vector 80.png' %}" alt="">
-        </div>
+              <a href="{% url 'profile'%}"><img class="back-icon add-edit-buttons-hover" title="Go Back" src="{% static 'img/backButton.png' %}" alt=""></a>
+              <img class="second-add-education-button plus-button-exp add-edit-buttons-hover" title="Add Education" src="{% static 'img/Vector 80.png' %}" alt="">
+            </div>
     </div>
 </div>
-<div class="bg-add-and-edit bg-add-experience">
-    <div class="edit-experience-pop-up edit-education-parent-scroll">
-        <div class="under-container" style="overflow-y: scroll;">
-            <div class="exit-img exit-img-edit-experience">
-                <a href="{% url 'editEdu'%}">
-                    <img class="exit-button exit-button-second-add-education" src="{% static 'img/Vector 81 (1).png' %}" alt="">
-                </a>
-            </div>
-            <h1 id="title-experience">Add Education</h1>
-            <form method="POST" action="" class="sign-up-form">
-                {% csrf_token %}
-                <div style="display: none;">
-                    {{edit.user_id}}
-                </div>
-                <div class="div-of-job-experience">
-                    <p class="paragraph-of-name paragraphs-stats">University</p>
-                    {{edit.university}}
-                </div>
-                <div>
-                    <p class="paragraph-of-country paragraphs-stats">Field Of Study</p>
-                    {{edit.field_of_study}}
-                </div>
-
-                <div>
-                    <p class="paragraph-of-surname paragraphs-stats">Degree</p>
-                    <select name="degree" required="" id="id_degree">
-						<option selected></option>
-						<option value="Bachelor" >Bachelor’s Degree</option>
-
-						<option value="Master" >Master’s Degree</option>
-					</select>
-                </div>
-                <div>
-                    <p class="paragraph-of-surname paragraphs-stats">Country</p>
-                    {{edit.country_e}}
-                    <datalist id="EduCountryList">
-                        {% for i in country %}
-                        <option>{{i}}</option>
-                        {% endfor %}
-                    </datalist>
-                </div>
-                <div>
-                    <p class="paragraph-of-surname paragraphs-stats">City</p>
-                    {{edit.city_e}}
-                    <datalist id="EduCityList">
-                        {% for i in city %}
-                        <option>{{i.name}}</option>
-                        {% endfor %}
-                    </datalist>
-                </div>
-                
-                <div>
-                    <p class="paragraph-of-country paragraphs-stats">Total Exams Passed</p>
-                    <input type="number" name="total_examples_passed" placeholder="0" class="name-input mutual-stats font-fam" required="" id="id_total_examples_passed">
-                </div>
-                <div>
-                    <p class="paragraph-of-country paragraphs-stats">GPA</p>
-                    <input type="number" name="GPA" placeholder="0.0" class="name-input mutual-stats font-fam" step="any" required="" id="id_GPA">
-                </div>
-                
-                <div>
-
-                    <div style="display: flex; justify-content: space-between;">
-                        <div style="width: 48%;">
-                            <p class="paragraphs-stats paragraph-of-start-date">Start date</p>
-                            <input id="id_start_year" class="start-date-input mutual-stats font-fam" name="start_year" onchange="checkStartYear()" type="tel" maxlength="10" placeholder="dd/mm/yyyy" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
-                            <p class="paragraphs-stats paragraph-of-start-date" id="sYear" style="color:red;display: none;">Date not valid </p>
-
-                        </div>
-                        <div style="width: 48%;
-                    float: right;">
-                            <p class="paragraphs-stats paragraph-of-end-date">End date</p>
-                            <input id="id_end_year" class="end-date-input mutual-stats font-fam" name="end_year" onchange="checkEndYear()" type="tel" maxlength="10" placeholder="dd/mm/yyyy" oninput="this.value = MMDDYYYY(this.value, event)" />
-                            <input class="paragraphs-stats  paragraph-of-end-date" style="margin-right:0;" onchange="presentEnd()"type="checkbox" >
-                            <label class="paragraphs-stats paragraph-of-end-date" style="margin-top: 8px;">Present</label>
-                            <p class="paragraphs-stats paragraph-of-start-date" id="eYear" style="color:red;display: none;">Date not valid </p>
-
-                            
-                        </div>
-                    </div>
-                    </div>
-                    <div class="save-button save-button-edit-add-education-480">
-                        <input name="save" type="submit" class="save-submit-input save-picture font-fam" value="Save">
-
-                    </div>
-            </form>
+<!-- add Education -->
+<div class="bg-add-and-edit">
+<div class="add-education edit-education-parent-scroll under-container-mutual-mutual-stats edit-education-scroll">
+    <div class="add-education-title mutual-titles-pop-ups-stats">Add Education</div>
+    <form method="POST" action="" class="sign-up-form forms-inputs-placeholder">
+        {% csrf_token %}
+        <div style="display: none;">
+            <input type="hidden" name="first_name" id="id_first_name" class="profile-all-inputs-option" value="{{form.first_name.value}}"/>
+                <input type="hidden" name="last_name" id="id_last_name" class="profile-all-inputs-option" value="{{form.last_name.value}}"/>
+                <input type="hidden" name="country" id="id_country" class="profile-all-inputs-option" value="{{form.country.value}}"/>
+                <input type="hidden" name="city" id="id_city" class="profile-all-inputs-option" value="{{form.city.value}}"/>
+                <input type="hidden" name="phone_number" id="id_phone_number" class="profile-all-inputs-option" value="{{form.phone_number.value}}"/>
+                {{form.cover}}
+                {{form.profile}}
+            {{edit.user_id}}
         </div>
-    </div>
+        {{edit.university}}
+        {{edit.field_of_study}}
+        
+        <select name="degree" required="" id="id_degree" class="profile-all-inputs-option">
+            <option style="display: none;" selected>Degree</option>
+            <option value="Bachelor" >Bachelor’s Degree</option>
+
+            <option value="Master" >Master’s Degree</option>
+        </select>
+        
+        {{edit.country_e}}
+        
+        {{edit.city_e}}
+        
+        <input type="number" name="total_examples_passed" value="" class="name-input profile-all-inputs-option" placeholder="Total Exams Passed" required="" id="id_total_examples_passed">
+        
+        <input type="number" name="GPA" value="" class="name-input profile-all-inputs-option" placeholder="GPA" step="any" required="" id="id_GPA">
+        
+
+        <div class="start-and-end-date-main-div">
+            <input id="id_start_year" class="start-date-input date-of-birth-input inputs-job-details start-end-date all-inputs mutual-input" 
+            name="start_year" onchange="checkForm();checkStartDate();" value="" type="text" maxlength="10" 
+            placeholder="Start Year (mm/dd/yyyy)" oninput="this.value = MMDDYYYY(this.value, event)" />
+            <input id="id_end_year" class="end-date-input date-of-birth-input inputs-job-details start-end-date all-inputs mutual-input" 
+            name="end_year" onchange="checkForm();checkStartDate();" value="" type="text" maxlength="10" 
+            placeholder="End Year (mm/dd/yyyy)" oninput="this.value = MMDDYYYY(this.value, event)" />
+            
+        </div>
+        <div style="float: right; border:0;width:auto;font-size: 16px;color: #858585;padding:0;" class="profile-all-inputs-option">
+            <label class="" style=""><input class="" style="" onchange="presentEnd()"type="checkbox" > Present</label>
+        </div>
+        <div class="save-button save-button-edit-profile-photo save-button-add-education">
+            <input name="back" title="Back to Profile" type="button" class="back-input font-fam back-save-buttons" value="Back">
+            <input title="Save Profile Data" name="save" type="submit" class="save-submit-input font-fam back-save-buttons" value="Save">
+        </div>
+
+    </form>
+</div>
 </div>
     
+
+<script>
+          const countries = ["Kosovo","Albania","Afghanistan",
+  "Algeria",
+  "Andorra",
+  "Angola",
+  "Antigua and Barbuda",
+  "Argentina",
+  "Armenia",
+  "Australia",
+  "Austria",
+  "Azerbaijan",
+  "The Bahamas",
+  "Bahrain",
+  "Bangladesh",
+  "Barbados",
+  "Belarus",
+  "Belgium",
+  "Belize",
+  "Benin",
+  "Bhutan",
+  "Bolivia",
+  "Bosnia and Herzegovina",
+  "Botswana",
+  "Brazil",
+  "Brunei",
+  "Bulgaria",
+  "Burkina Faso",
+  "Burundi",
+  "Cambodia",
+  "Cameroon",
+  "Canada",
+  "Cape Verde",
+  "Central African Republic",
+  "Chad",
+  "Chile",
+  "China",
+  "Colombia",
+  "Comoros",
+  "Republic of the Congo",
+  "Democratic Republic of the Congo",
+  "Costa Rica",
+  "Croatia",
+  "Cuba",
+  "Cyprus",
+  "Czech Republic",
+  "Denmark",
+  "Djibouti",
+  "Dominica",
+  "Dominican Republic",
+  "East Timor",
+  "Ecuador",
+  "Egypt",
+  "El Salvador",
+  "Equatorial Guinea",
+  "Eritrea",
+  "Estonia",
+  "Eswatini",
+  "Ethiopia",
+  "Fiji",
+  "Finland",
+  "France",
+  "Gabon",
+  "The Gambia",
+  "Georgia",
+  "Germany",
+  "Ghana",
+  "Greece",
+  "Grenada",
+  "Guatemala",
+  "Guinea",
+  "Guinea-Bissau",
+  "Guyana",
+  "Haiti",
+  "Holy See (Vatican City)",
+  "Honduras",
+  "Hungary",
+  "Iceland",
+  "India",
+  "Indonesia",
+  "Iran",
+  "Iraq",
+  "Ireland",
+  "Israel",
+  "Italy",
+  "Ivory Coast",
+  "Jamaica",
+  "Japan",
+  "Jordan",
+  "Kazakhstan",
+  "Kenya",
+  "Kiribati",
+  "North Korea",
+  "South Korea",
+  "Kuwait",
+  "Kyrgyzstan",
+  "Laos",
+  "Latvia",
+  "Lebanon",
+  "Lesotho",
+  "Liberia",
+  "Libya",
+  "Liechtenstein",
+  "Lithuania",
+  "Luxembourg",
+  "Madagascar",
+  "Malawi",
+  "Malaysia",
+  "Maldives",
+  "Mali",
+  "Malta",
+  "Marshall Islands",
+  "Mauritania",
+  "Mauritius",
+  "Mexico",
+  "Micronesia",
+  "Moldova",
+  "Monaco",
+  "Mongolia",
+  "Montenegro",
+  "Morocco",
+  "Mozambique",
+  "Myanmar (Burma)",
+  "Namibia",
+  "Nauru",
+  "Nepal",
+  "Netherlands",
+  "New Zealand",
+  "Nicaragua",
+  "Niger",
+  "Nigeria",
+  "North Macedonia",
+  "Norway",
+  "Oman",
+  "Pakistan",
+  "Palau",
+  "Palestine",
+  "Panama",
+  "Papua New Guinea",
+  "Paraguay",
+  "Peru",
+  "Philippines",
+  "Poland",
+  "Portugal",
+  "Qatar",
+  "Romania",
+  "Russia",
+  "Rwanda",
+  "Saint Kitts and Nevis",
+  "Saint Lucia",
+  "Saint Vincent and the Grenadines",
+  "Samoa",
+  "San Marino",
+  "São Tomé and Príncipe",
+  "Saudi Arabia",
+  "Senegal",
+  "Serbia",
+  "Seychelles",
+  "Sierra Leone",
+  "Singapore",
+  "Slovakia",
+  "Slovenia",
+  "Solomon Islands",
+  "Somalia",
+  "South Africa",
+  "South Sudan",
+  "Spain",
+  "Sri Lanka",
+  "Sudan",
+  "Suriname",
+  "Sweden",
+  "Switzerland",
+  "Syria",
+  "Tajikistan",
+  "Tanzania",
+  "Thailand",
+  "Togo",
+  "Tonga",
+  "Trinidad and Tobago",
+  "Tunisia",
+  "Turkey",
+  "Turkmenistan",
+  "Tuvalu",
+  "Uganda",
+  "Ukraine",
+  "United Arab Emirates",
+  "United Kingdom",
+  "United States",
+  "Uruguay",
+  "Uzbekistan",
+  "Vanuatu",
+  "Venezuela",
+  "Vietnam",
+  "Yemen",
+  "Zambia",
+  "Zimbabwe"
+];
+function populateCountries2() {
+  const select = document.getElementById("id_country_e");
+
+  for (const country of countries) {
+    const option = document.createElement("option");
+    option.value = country;
+    option.text = country;
+    select.appendChild(option);
+  }
+}
+populateCountries2();
+
+</script>
 
     {% include 'scripts.html' %}
 

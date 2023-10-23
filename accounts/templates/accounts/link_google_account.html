@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Link Your Google Account</h2>
+{% if not social_account %}
+    <p>Your Google account is not linked yet.</p>
+    <a href="{% url 'socialaccount_signup_google' %}" class="btn btn-primary">Link Google Account</a>
+{% else %}
+    <p>Your Google account is already linked.</p>
+{% endif %}
+{% endblock %}

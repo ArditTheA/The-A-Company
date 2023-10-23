@@ -27,8 +27,10 @@
             <form method="POST" action="" class="sign-in-form" style="margin-bottom: 0px;">
                 {% csrf_token %}
                 <div class="input-form">
-                    <a class="sign-in-google input-text" href="{% provider_login_url 'google' %}"><div class="">Sign in with Google</div>
+                    <a class="sign-in-google input-text" href="{% provider_login_url 'google' %}">
+                        <div class="">Sign in with Google</div>
                     </a>
+
                      <img class="icon" src="{% static 'img/google-01 8.png'%}">
                  </div>
 

@@ -6,10 +6,16 @@ from ScreeningQuestion.views import *
 from filters.views import getList
 from .views import *
 from django.urls import path,include
+from allauth.socialaccount import views as socialaccount_views
 
 urlpatterns = [
 
     path('accounts/', include('allauth.urls')),
+    path('link-google-account/', link_google_account, name='link_google_account'),
+    path('custom_google_connections_page/', custom_google_connections, name='custom_google_connections'),
+
+    path('accounts/social/signup/google/', socialaccount_views.signup, name='socialaccount_signup_google'),
+
     path('jobs/', MainJobs.as_view(),name="jobs"),
     path('jobs/<int:pk>', MainJobsId.as_view(),name="visitJob"),
     path("TermsAndCondition/", Terms, name="terms"),

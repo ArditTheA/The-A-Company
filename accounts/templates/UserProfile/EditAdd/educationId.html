@@ -2,22 +2,29 @@
 
 {% load static %}
 {% block content %}
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
        
-        <div class="experience-main-div experience-education-languages different_exp">
-        <div class="experience-div second-experience-div">
-            <div class="experience-paragraph-img-rows">
-                <div class="aaa">
-                <p class="experience-paragraph">Education</p>
-                {% for i in userEdu%}
-                <div class="experience-rows-img">
-                    <img class="experience-education-img" src="{% static 'img/worki_icons-19.jpg' %}" alt="">
-                    <div class="experience-rows">
+<div class="experience-main-div experience-education-languages different_exp" >
+    <div class="experience-div second-experience-div">
+        <div class="experience-paragraph-img-rows">
+            <div class="aaa">
+            <p class="experience-paragraph">Education</p>
+            {% for i in userEdu%}
+            <div class="experience-rows-img" style="">
+                <img class="experience-education-img" src="{% static 'img/worki_icons-19.jpg' %}" alt="">
+                <div class="experience-rows">
+                <div style="display: flex; width: 100%;">
                     <div class="experience-first-row">{{i.university}}</div>
-                    <div class="experience-second-row">{{i.degree}}, {{i.field_of_study}}</div>
-                    <div class="experience-third-row">{{i.city_e}}, {{i.country_e}}</div>
+                    <div class="two-imgs-experience">
+
+                <a href="{% url 'editEduId' i.id %}">
+                    <img class="edit-experience edit-experience-pop-up-button" title="Edit Experience" src="{% static 'img/Ikona_edit-01 56.png' %}" alt=""></a>
+                </div>
+                </div>
+                <div class="experience-second-row">{{i.field_of_study}}</div>
+                <div class="experience-third-row">{{i.city_e}}, {{i.country_e}}</div>
 
                     <div class="experience-fourth-row">{{i.start_year|date:'d/m/Y'}} -
                         {% if i.end_year == null%}
@@ -26,52 +33,43 @@
                         {{i.end_year |date:'d/m/Y'}}
                         {% endif%}</div>
                     </div>
-                </div>
-                {% endfor %}
             </div>
-            </div>
-            <div class="add-and-edit-experience">
-                <a href="{% url 'profile'%}"><img class="back-icon" title="Go Back" src="{% static 'img/backButton.png' %}" alt=""></a>
-
-              <img class="add-experience-button plus-button-exp" title="Add Experience" src="{% static 'img/Vector 80.png' %}" alt="">
-            </div>
+            {% endfor %}
         </div>
-    </div>
-    <div class="bg-edit-experience  edit-education-parent-scroll" style="display: flex;">
+        </div>
+        <div class="add-and-edit-experience">
+              <a href="{% url 'profile'%}"><img class="back-icon add-edit-buttons-hover" title="Go Back" src="{% static 'img/backButton.png' %}" alt=""></a>
+              <img class="second-add-education-button plus-button-exp add-edit-buttons-hover" title="Add Education" src="{% static 'img/Vector 80.png' %}" alt="">
+            </div>
 
-        <div class="edit-experience-pop-up edit-education-parent-scroll">
-            <div class="under-container " style="overflow-y: scroll;">
-                <div class="exit-img exit-img-edit-experience">
-                       <a href="{% url 'editEdu'%}"><img title="Exit" style="vertical-align: middle;" class="exit-button" src="{% static 'img/Vector 81 (1).png' %}" alt=""></a>
-                </div>
-                <h1 id="title-experience" class="second-title-experience">Edit Education</h1>
-                <form method="POST" action="" class="sign-up-form">
-                    {% csrf_token %}
-                    <div class="div-of-job-experience">
-                    <p class="paragraph-of-name paragraphs-stats">University</p>
-                    {{edit.university}}
-                    <datalist id="uniList">
-                        {% for i in university %}
-                        <option>{{i}}</option>
-                        {% endfor %}
-                    </datalist>
-                    </div>
-                    
-                    <div>
-                    <p class="paragraph-of-surname paragraphs-stats">Field of study</p>
-                    {{edit.field_of_study}}
-                    </div>
-                    <div>
-                        <p class="paragraph-of-surname paragraphs-stats">Degree</p>
-                        <select name="degree" required="" id="id_degree">
-                            <option selected></option>
-                            {% if edit.degree.value == "Bachelor"%}
+    </div>
+</div>
+<div class="bg-edit-education" style="display:flex" id="editEducationDiv">
+    <div class="add-education edit-education-parent-scroll under-container-mutual-mutual-stats edit-education-scroll">
+        <div class="add-education-title mutual-titles-pop-ups-stats">Edit Education</div>
+        <form method="POST" action="" class="sign-up-form forms-inputs-placeholder">
+            {% csrf_token %}
+            <div style="display: none;">
+                <input type="hidden" name="first_name" id="id_first_name" class="profile-all-inputs-option" value="{{form.first_name.value}}"/>
+                    <input type="hidden" name="last_name" id="id_last_name" class="profile-all-inputs-option" value="{{form.last_name.value}}"/>
+                    <input type="hidden" name="country" id="id_country" class="profile-all-inputs-option" value="{{form.country.value}}"/>
+                    <input type="hidden" name="city" id="id_city" class="profile-all-inputs-option" value="{{form.city.value}}"/>
+                    <input type="hidden" name="phone_number" id="id_phone_number" class="profile-all-inputs-option" value="{{form.phone_number.value}}"/>
+                    {{form.cover}}
+                    {{form.profile}}
+                {{edit.user_id}}
+            </div>
+            {{edit.university}}
+            {{edit.field_of_study}}
+
+            <select name="degree" required="" id="id_degree" class="profile-all-inputs-option">
+                {% if edit.degree.value == "Bachelor"%}
                             <option value="Bachelor" selected>Bachelor’s Degree</option>
                             {% else %}
                             <option value="Bachelor" >Bachelor’s Degree</option>
 
                             {% endif %}
-                            
+
                             {% if edit.degree.value == "Master" %}
                             <option value="Master"  selected >Master’s Degree</option>
 
@@ -79,73 +77,67 @@
                             <option value="Master" >Master’s Degree</option>
 
                             {% endif %}
-    
-                        </select>
-                    </div>
-                    <p class="paragraph-of-surname paragraphs-stats">Country</p>
-                        {{edit.country_e}}
-                        <datalist id="EduCountryList">
-                            {% for i in country%}
-                            <option>{{i}}</option>
-                            {% endfor %}
-                        </datalist>
-                    
-                    <div>
-                    <div>
-                    <p class="paragraph-of-surname paragraphs-stats">City</p>
-                        {{edit.city_e}}
-                        <datalist id="EduCityList">
-                            {% for i in city %}
-                            <option>{{i.name}}</option>
-                            {% endfor  %}
-                        </datalist>
-                    </div>
-                    <div style="display: flex; justify-content: space-between;">
-                    <div style="width: 48%;">
-                    <p class="paragraphs-stats paragraph-of-start-date">Start year</p>
-                    <input id="id_start_year" value="{{edit.start_year.value|date:'d/m/Y'}}" onchange="checkStartYear()" class="start-date-input mutual-stats font-fam" name="start_year" type="tel" maxlength="10" placeholder="dd/mm/yyyy" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
-                    <p class="paragraphs-stats paragraph-of-start-date" id="sYear" style="color:red;display: none;">Date not valid </p>
+            </select>
 
-                    </div>
-                    <div style="width: 48%;
-                    float: right;">
-                    <p class="paragraphs-stats paragraph-of-end-date">End year</p>
-                    {% if edit.end_year.value == None %}
-                    <input id="id_end_year" disabled class="end-date-input mutual-stats font-fam" name="end_year" onchange="checkEndYear()" value="{{edit.end_year.value|date:'d/m/Y'}}" type="tel" maxlength="10" placeholder="Present"  oninput="this.value = MMDDYYYY(this.value, event)" />
+            {{edit.country_e}}
 
-                    <input class="paragraphs-stats  paragraph-of-end-date" checked style="margin-right:0;" onchange="presentEnd()"type="checkbox">
-                    {% else %}
-                    <input id="id_end_year" class="end-date-input mutual-stats font-fam" name="end_year" onchange="checkEndYear()" value="{{edit.end_year.value|date:'d/m/Y'}}" type="tel" maxlength="10" placeholder="dd/mm/yyyy"  oninput="this.value = MMDDYYYY(this.value, event)" />
+            {{edit.city_e}}
+            {{edit.total_examples_passed}}
 
-                    <input class="paragraphs-stats  paragraph-of-end-date" style="margin-right:0;" onchange="presentEnd()"type="checkbox">
+            {{edit.GPA}}
 
-                    {% endif %}
-                    <label class="paragraphs-stats paragraph-of-end-date" style="margin-top: 8px;">Present</label>
-                    <p class="paragraphs-stats paragraph-of-start-date" id="eYear" style="color:red;display: none;">Date not valid </p>
 
-                    </div>
-                    </div>
-                    <div>
-                        <p class="paragraph-of-surname paragraphs-stats">Total Exams Passed</p>
-                        {{edit.total_examples_passed}}
-                    </div>
-                    <div>
-                        <p class="paragraph-of-surname paragraphs-stats">GPA</p>
-                        {{edit.GPA}}
-                    </div>
-                    <div style="display: none;">
-                        {{edit.user_id}}
-                    </div>
-                    <div class="save-button save-button-edit-add-education-480">
-                        <a href=""><input name="save" type="submit" class="save-submit-input font-fam" value="Save"></a>
-                    </div>
-                </form>
+            <div class="start-and-end-date-main-div">
+                {{edit.start_year}}
+                {{edit.end_year}}
             </div>
-        </div>
+            <div style="float: right; border:0;width:auto;font-size: 16px;color: #858585;padding:0;" class="profile-all-inputs-option">
+                <label class="" style=""><input class="" style="" onchange="presentEnd()"type="checkbox" id="myCheckbox" > Present</label>
+            </div>
+            <div class="save-button save-button-edit-profile-photo save-button-add-education">
+                <input name="back" title="Back to Profile" type="button" class="back-button-edit font-fam back-save-buttons" value="Back" onclick="backtoEditExpPage();">
+                <input title="Save Profile Data" name="save" type="submit" class="save-submit-input font-fam back-save-buttons" value="Save">
+            </div>
 
-
+        </form>
     </div>
-</body>
+
+</div>
+
+
+
+    <script>
+       $(document).ready(function() {
+            $("#editEducationDiv").click(function() {
+                    window.location.href = "{% url 'editEdu' %}";
+
+            });
+        });
+        $(".under-container-mutual-mutual-stats").click(function(event) {
+            event.stopPropagation();
+        });
+        function backtoEditExpPage() {
+    window.location.href = "{% url 'editEdu' %}";
+}
+    </script>
+
+
+{% if not edit.end_year.value %}
+
+<script>
+    window.onload = function() {
+    // Get a reference to the checkbox element by its ID
+    var checkbox = document.getElementById("myCheckbox");
+
+    // Check the checkbox
+    checkbox.checked = true;
+
+    // Optionally, you can trigger the 'change' event to execute the 'present' function
+    var event = new Event('change', { bubbles: true });
+    checkbox.dispatchEvent(event);
+};
+</script>
+{% endif %}
 
     {% include 'scripts.html' %}
 

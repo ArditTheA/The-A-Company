@@ -3,6 +3,9 @@
     .profile-header, .experience-div {
         border-radius: 20px;
     }
+    .sign-up-form{
+        width: 100%;
+    }
     .profile-header {
         margin: 10px;
     }

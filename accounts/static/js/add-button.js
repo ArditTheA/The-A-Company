@@ -4,16 +4,13 @@ var exit_button = document.querySelector(".exit-button-profile-picture");
 
 addButton.addEventListener("click", function() {
     bg_change_profile_picture.style.display = "flex";
+    document.body.style.overflow = "hidden";
 });
 
 window.addEventListener('click', function(event) {
     if (event.target == bg_change_profile_picture) {
         bg_change_profile_picture.style.display = "none";
-        document.body.style.overflow="scroll";
+        document.body.style.overflow = "scroll";
 
     }
 });
-
-/*exit_button.addEventListener('click', function() {
-    bg_change_profile_picture.style.display = "none";
-}); */

@@ -1,140 +1,116 @@
 {% include "header-links.html" %}
+<style>
 
+</style>
 {% load static %}
 {% block content %}
-<div class="parent_container">
-    <div class="experience-main-div experience-education-languages different_exp">
-        <div class="experience-div second-experience-div">
-            <div class="experience-paragraph-img-rows">
-                <div class="aaa">
-                    <p class="experience-paragraph">Experience</p>
-
-                    {% for i in usExp%}
-                    <div class="experience-rows-img">
-                        <img class="experience-education-img" src="{% static 'img/worki_icons-18.jpg' %}" alt="">
-                        <div class="experience-rows">
+<div class="experience-main-div experience-education-languages different_exp">
+    <div class="experience-div second-experience-div">
+        <div class="experience-paragraph-img-rows">
+            <div class="aaa">
+                <p class="experience-paragraph">Experience</p>
+                {% for i in usExp%}
+                <div class="experience-rows-img" style="">
+                    <img class="experience-education-img" src="{% static 'img/worki_icons-18.jpg' %}" alt="">
+                    <div class="experience-rows">
+                        <div style="display: flex; width: 100%;">
                             <div class="experience-first-row">{{i.title}}</div>
-                            <div class="experience-second-row">{{i.company}}</div>
-                            <div class="experience-third-row">{{i.city_usExp}}, {{i.Country}}</div>
-                            <div class="experience-fourth-row">{{i.start_date|date:'d/m/Y'}},
-                                {% if i.start_date == i.end_date%}Present
-                                {%elif i.end_date == null %} Present {% else %} {{i.end_date|date:'d/m/Y'}}{% endif %}
+                            <div class="two-imgs-experience">
+
+                                <a href="{% url 'editExprienceId' i.id %}">
+                                    <img class="edit-experience edit-experience-pop-up-button" title="Edit Experience"
+                                        src="{% static 'img/Ikona_edit-01 56.png' %}" alt=""></a>
                             </div>
                         </div>
+                        <div class="experience-second-row">{{i.company}}</div>
+                        <div class="experience-third-row">{{i.city_usExp}}, {{i.Country}}</div>
+                        <div class="experience-fourth-row">
+                            {{i.start_date|date:'d/m/Y'}} -
+                            {% if i.end_date == null%}
+                            Present
+                            {% else %}
+                            {{i.end_date |date:'d/m/Y'}}
+                            {% endif%}
+                        </div>
                     </div>
-                    {% endfor %}
                 </div>
-            </div>
-            <div class="add-and-edit-experience">
-                <a href="{% url 'profile'%}"><img class="back-icon" title="Go Back" src="{% static 'img/backButton.png' %}" alt=""></a>
-
-                <img class="add-experience-button plus-button-exp" title="Add Experience"
-                    src="{% static 'img/Vector 80.png'%}" alt="">
+                {% endfor %}
             </div>
         </div>
-    </div>
-    <div class="bg-edit-experience" style="display: flex;">
-
-        <div class="edit-experience-pop-up">
-            <div class="under-container">
-                <div class="exit-img exit-img-edit-experience">
-                    <a href="{% url 'editExprience'%}" class="exit-button ">
-                        <img class="exit-button-edit-experience" src="{% static 'img/Vector 81 (1).png' %}" alt="">
-                    </a>
-                </div>
-                <h1 id="title-experience" class="second-title-experience">Edit Experience</h1>
-                <form method="POST" action="" class="sign-up-form">
-                    {% csrf_token %}
-                    <div style="display: none;">
-                        {{form}}
-                        {{edit.user_id}}
-                    </div>
-                    <div class="div-of-job-experience">
-                        <p class="paragraph-of-name paragraphs-stats">Job title</p>
-                        {{edit.title}}
-                    </div>
-
-                    <div>
-                        <p class="paragraph-of-surname paragraphs-stats">Company </p>
-                        {{edit.company}}
-                    </div>
-                    <div>
-                        <p class="paragraph-of-country paragraphs-stats">Country</p>
-                        {{edit.Country}}
-                        <datalist id="UsExpCountryList">
-                            {% for i in countrys%}
-                            <option>{{i}}</option>
-                            {% endfor %}
-                        </datalist>
-                    </div>
-                    <div>
-                        <p class="paragraph-of-city paragraphs-stats">City</p>
-                        {{edit.city_usExp}}
-                        <datalist id="usExpcityList">
-                            {% for i in citys %}
-                            <option>{{i.name}}</option>
-                            {% endfor %}
-                        </datalist>
-                    </div>
-                    <div>
-
-                        <div style="display: flex; justify-content: space-between;">
-                            <div style="width: 48%;">
-                                <p class="paragraphs-stats paragraph-of-start-date">Start date</p>
-                                <input id="id_start_date" value="{{edit.start_date.value|date:'d/m/Y'}}"
-                                    class="start-date-input mutual-stats font-fam" name="start_date" type="tel"
-                                    maxlength="10" onchange="checkStartDate()" placeholder="dd/mm/yyyy" required=""
-                                    oninput="this.value = MMDDYYYY(this.value, event)" />
-                            <label class="paragraphs-stats paragraph-of-start-date"  id="sdateError" style="padding:0;display: none;color:red;">Date not valid</label>
-                                    
-
-                            </div>
-                            <div style="width: 48%;
-                        float: right;">
-                        
-                                <p class="paragraphs-stats paragraph-of-end-date">End date</p>
-                                
-                                    {% if edit.end_date.value == None %}
-                                    <input id="id_end_date" value="{{edit.end_date.value|date:'d/m/Y'}}"
-                                    class="end-date-input mutual-stats font-fam" name="end_date" type="tel"
-                                    maxlength="10" placeholder="Present" disabled onchange="checkEndDate()"
-                                    oninput="this.value = MMDDYYYY(this.value, event)" />
-                                    <input class="paragraphs-stats paragraph-of-end-date" checked style="margin-right:0;" onchange="present()"type="checkbox" >
-                                    {% else %}
-                                    <input id="id_end_date" value="{{edit.end_date.value|date:'d/m/Y'}}"
-                                    class="end-date-input mutual-stats font-fam" name="end_date" type="tel"
-                                    maxlength="10" placeholder="dd/mm/yyyy"  onchange="checkEndDate()"
-                                    oninput="this.value = MMDDYYYY(this.value, event)" />
-                                    <input class="paragraphs-stats  paragraph-of-end-date" style="margin-right:0;" onchange="present()"type="checkbox" >
-
-                                    <input class="paragraphs-stats  paragraph-of-end-date" style="margin-right:0;" onchange="present()"type="checkbox" >
-
-                                    {% endif%}
-
-                                    <label  class="paragraphs-stats paragraph-of-end-date" style="margin-top: 8px;">Present</label>
-                                    <label class="paragraphs-stats paragraph-of-start-date" id="edateError" style="display: none;color:red;">Date not valid</label>
-
-                                
-                            </div>
-                        </div>
-                        <div class="save-button save-button-edit-add-education-480">
-                            <input name="save" type="submit" class="save-submit-input save-picture font-fam"
-                                value="Save">
-
-                        </div>
-                </form>
-            </div>
+        <div class="add-and-edit-experience">
+            <a href="{% url 'profile'%}"><img class="back-icon" title="Go Back" src="{% static 'img/backButton.png' %}"
+                    alt=""></a>
+            <img class="add-experience-button plus-button-exp" title="Add Experience"
+                src="{% static 'img/Vector 80.png' %}" alt="">
         </div>
     </div>
 </div>
+
+    <div class="bg-add-and-edit bg-edit-experience" style="display: flex;">
+        <div class="add-experience under-container-mutual-mutual-stats">
+            <div class="mutual-titles-pop-ups-stats">Edit Experience</div>
+            <form method="post" class="sign-up-form" enctype="multipart/form-data" style="margin-bottom:0;">
+                {% csrf_token %}
+                <div style="display: none;">
+                    {{form}}
+                    {{edit.user_id}}
+                </div>
+                    {{edit.title}}
+                    {{edit.company}}
+                    {{edit.Country}}
+                    {{edit.city_usExp}}
+                    <div class="start-and-end-date-main-div">
+                        {{edit.start_date}}
+                        {{edit.end_date}}
+                        
+                    </div>
+                    <div style="float: right; border:0;width:auto;font-size: 16px;color: #858585;padding:0;" class="profile-all-inputs-option">
+                        <label class="" style=""><input class="" style="" onchange="present()"type="checkbox" id="myCheckbox" > Present</label>
+                    </div>
+                    <div class="save-button save-button-edit-profile-photo">
+                        <input name="back" title="Back to Profile" type="button" class="back-button-edit font-fam back-save-buttons" value="Back" onclick="backtoEditExpPage()">
+                        <input title="Save Profile Data" name="save" type="submit" class="save-submit-input font-fam back-save-buttons" value="Save">
+                </div>
+            </form>
+    </div>
+
+
+    </div>  
+
+
+</div>
 </body>
+<script>
+    var bgEditExperience = document.querySelector(".bg-edit-experience");
+
+    window.addEventListener('click', function(event) {
+    if (event.target == bgEditExperience) {
+        window.location.href = "{% url 'editExprience' %}";
+    }
+});
+function backtoEditExpPage() {
+    window.location.href = "{% url 'editExprience' %}";
+}
+
+</script>
 
     {% include 'scripts.html' %}
+{% if not edit.end_date.value %}
 
-<script src="{% static 'js/profile_dropdown.js'%}"></script>
-<script src="{% static 'js/edit-experience.js'%}"></script>
-<script src="{% static 'js/profile_dropdown_2.js'%}"></script>
-<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    window.onload = function() {
+    // Get a reference to the checkbox element by its ID
+    var checkbox = document.getElementById("myCheckbox");
+
+    // Check the checkbox
+    checkbox.checked = true;
+    
+    // Optionally, you can trigger the 'change' event to execute the 'present' function
+    var event = new Event('change', { bubbles: true });
+    checkbox.dispatchEvent(event);
+};
+</script>
+{% endif %}
+
 
 {% endblock content %}

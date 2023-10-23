@@ -1,68 +1,84 @@
 {% load static %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+<style>
+    form{
+        margin-bottom: 0;
+    }
+
+    #countrySelect {
+        margin-top: 20px;
+    }
+    .iti{
+        width:100% !important;
+        margin-bottom: 20px;
+    }
+    .iti__selected-flag {
+        padding: 0 5px 0 10px ;
+    }
+    .iti--allow-dropdown input {
+        padding-left: 49px !important;
+    }
+</style>
+
+
+
+<!-- Edit profile -->
 <div class="edit-profile-bg">
-        <div class="container-edit-profile">
-        <div class="under-container-edit-profile">
-            <div class="exit-img exit-img-edit-profile">
-            <img title="Exit" class="exit-button exit-button-edit-profile editprofile" onclick="enableScroll()"src="{% static 'img/Vector 81 (1).png' %}" alt="">
-            </div>
-            <h1 id="title" class="edit-profile-title">Edit Profile</h1>
-            <form method="post" autocomplete="off" enctype="multipart/form-data">
+        <div class="container-edit-profile under-container-mutual-mutual-stats">
+
+            <div class="edit-profile-title mutual-titles-pop-ups-stats">Edit Profile</div>
+            <form method="post" autocomplete="off" enctype="multipart/form-data" class="sign-up-form edit-profile-form forms-inputs-placeholder">
                 {% csrf_token %}
 
-                <div style="margin: 0;">
-                    <p class="paragraph-of-name paragraphs-stats">First name</p>
-                    {{form.first_name}}
-                </div>
-                <div>
-                    <p class="paragraph-of-surname paragraphs-stats">Last name</p>
-                    {{form.last_name}}
-                </div>
-                <div>
-                    <p class="paragraph-of-country paragraphs-stats">Country</p>
-                    {{form.country}}
-                    <datalist id="countryList">
-                        {% for i in countrys %}
-                    <option>{{i}}</option>
-                        {% endfor %}
-                    </datalist>
+                 <div class="first-and-last-name-div" style="">
+                        <div class="edit-profile-first-name edit-profile-first-last">
+                        {{form.first_name}}
+                        </div>
 
-                </div>
-                <div>
-                    <p class="paragraph-of-city paragraphs-stats">City of residence</p>
-                    {{ form.city }}
-                    <datalist id="cityList">
-                        {% for i in cityes %}
-                            <option>{{i.name}}</option>
-                        {% endfor %}
-                    </datalist>
+                        <div class="edit-profile-first-last">
+                        {{form.last_name}}
+                        </div>
+                 </div>
 
-                </div>
-                <div class="save-button">
-                    <input name="save" type="submit" class="save-submit-input font-fam" value="Save">
-                </div>
+
+                <div>
+                            <div class="autocomplete" style="width:100%;">
+                                {{form.country}}
+                            </div>
+                        </div>
+                        <div>
+                        {{ form.city }}
+                        </div>
+                        {{form.phone_number}}                        
+
+                <div class="save-button save-button-edit-profile-photo">
+                            <input name="back" title="Back to Profile" type="button" class="back-input font-fam back-save-buttons" value="Back">
+                            <input title="Save Profile Data" name="save" type="submit" class="save-submit-input font-fam back-save-buttons" value="Save">
+                        </div>
+
 
             </form>
-        </div>
     </div>
-    </div>
+</div>
+
+<!-- edit cover -->
 <div class="bg-cover-edit">
     <div class="cover-edit">
-        <div class="exit-img exit-img-cover-picture">
-            <div>
-                <img title="Exit" class="exit-button exit-button-cover-picture" onclick="enableScroll()" src="{% static 'img/Vector 81 (1).png' %}" alt="">
-            </div>
-        </div>
-        <h2 class="change-cover-picture-title">Edit Cover Picture</h2>
+        <div class="edit-profile-title mutual-titles-pop-ups-stats edit-profile-cover-photo-title">Edit Cover Photo</div>
 
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="div-of-changed-cover">
                 <div style="display: none;">
+                    
+                    <input type="hidden" name="first_name" id="id_first_name" class="profile-all-inputs-option" value="{{form.first_name.value}}"/>
+                    <input type="hidden" name="last_name" id="id_last_name" class="profile-all-inputs-option" value="{{form.last_name.value}}"/>
+                    <input type="hidden" name="country" id="id_country" class="profile-all-inputs-option" value="{{form.country.value}}"/>
+                    <input type="hidden" name="city" id="id_city" class="profile-all-inputs-option" value="{{form.city.value}}"/>
+                    <input type="hidden" name="phone_number" id="id_phone_number" class="profile-all-inputs-option" value="{{form.phone_number.value}}"/>
 
-                    {{form.last_name}}
-                    {{form.first_name}}
-                    {{form.country}}
-                    {{form.city}}
                 </div>
 
                 <label for="id_cover">
@@ -70,146 +86,173 @@
                 </label>
                 {{form.cover}}
             </div>
-
-            <div class="save-button">
-                <input name="save" type="submit" class="save-submit-input save-cover font-fam" value="Save">
-            </div>
+                <div class="save-button save-button-edit-profile-photo">
+                    <input name="back" title="Back to Profile" type="button" class="back-input font-fam back-save-buttons" value="Back">
+                    <input title="Save Profile Data" name="save" type="submit" class="save-submit-input font-fam back-save-buttons" value="Save">
+                </div>
         </form>
 
 
     </div>
 </div>
+
+
+
+<!-- edit profile -->
 <div class="bg-change-profile-picture">
         <div class="change-profile-picture">
-            <div class="exit-img exit-img-profile-picture">
-                <div>
-                    <img title="Exit" class="exit-button exit-button-profile-picture" onclick="enableScroll()" src="{% static 'img/Vector 81 (1).png' %}" alt="">
-                </div>
-            </div>
-            <h2 class="change-profile-picture-title">Edit Profile Picture</h2>
+
+            <div class="edit-profile-title mutual-titles-pop-ups-stats edit-profile-cover-photo-title">Edit Profile Photo</div>
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="div-of-changed-cover">
                     <div style="display: none;">
-                        {{ form.city }}
-                        {{form.country}}
-                        {{form.last_name}}
-                        {{form.first_name}}
+                        <input type="hidden" name="first_name" id="id_first_name" class="profile-all-inputs-option" value="{{form.first_name.value}}"/>
+                    <input type="hidden" name="last_name" id="id_last_name" class="profile-all-inputs-option" value="{{form.last_name.value}}"/>
+                    <input type="hidden" name="country" id="id_country" class="profile-all-inputs-option" value="{{form.country.value}}"/>
+                    <input type="hidden" name="city" id="id_city" class="profile-all-inputs-option" value="{{form.city.value}}"/>
+                    <input type="hidden" name="phone_number" id="id_phone_number" class="profile-all-inputs-option" value="{{form.phone_number.value}}"/>
+
                     </div>
 
                     <label for="id_profile">
-                        <img class="changed-profile  proImg" id="profilePic"  src="{{user.profile.url}}" title="Profile Cover" alt="">
+                        <img class="changed-profile changed-picture proImg" id="profilePic"  src="{{user.profile.url}}" title="Profile Cover" alt="">
 
                     </label>
                     {{form.profile}}
-
-
-
                 </div>
-
-
-                <div class="save-button save-button-edit-add-education-480">
-                    <input name="save" type="submit" class="save-submit-input save-cover font-fam"  value="Save">
+                <div class="save-button save-button-edit-profile-photo">
+                    <input name="back" title="Back to Profile" type="button" class="back-input font-fam back-save-buttons" value="Back">
+                    <input title="Save Profile Data" name="save" type="submit" class="save-submit-input font-fam back-save-buttons" value="Save">
                 </div>
             </form>
+
         </div>
     </div>
+
+
+
+<!-- add experience , education, languge -->
 <div class="bg-add-and-edit">
-    <div class="add-experience">
-        <div class="under-container">
-            <div class="exit-img exit-img-edit-profile">
-                    <img title="Exit" class="exit-button exit-button-edit-profile exp" onclick="enableScroll()" src="{% static 'img/Vector 81 (1).png' %}" alt="">
-            </div>
-            <h1 id="title-experience">Add Experience</h1>
-            <form method="POST" action="" class="sign-up-form">
+
+
+    <!-- Add Experience -->
+    <div class="add-experience under-container-mutual-mutual-stats">
+            <div class="mutual-titles-pop-ups-stats">Add Experience</div>
+            <form method="post" class="sign-up-form" enctype="multipart/form-data" style="margin-bottom:0;">
                 {% csrf_token %}
                 <div style="display: none;">
                     {{form}}
                     {{for_usExp.user_id}}
                 </div>
-                <div class="div-of-job-experience">
-                    <p class="paragraph-of-name paragraphs-stats">Job title</p>
                     {{for_usExp.title}}
-                </div>
-
-                <div>
-                    <p class="paragraph-of-surname paragraphs-stats">Company </p>
                     {{for_usExp.company}}
-                </div>
-                <div>
-                    <p class="paragraph-of-country paragraphs-stats">Country </p>
                     {{for_usExp.Country}}
-                    <datalist id="usExpCountryList">
-                        {% for i in countrys %}
-                            <option>{{i}}</option>
-                        {% endfor %}
-                    </datalist>
-                </div>
-                <div>
-                    <p class="paragraph-of-city paragraphs-stats">City </p>
                     {{for_usExp.city_usExp}}
-                    <datalist id="usExpCityList">
-                        {% for i in cityes %}
-                            <option>{{i.name}}</option>
-                        {% endfor %}
-                    </datalist>
+                    <div class="start-and-end-date-main-div">
+                        <input id="id_start_date" class="start-date-input date-of-birth-input inputs-job-details start-end-date all-inputs profile-all-inputs-option"
+                        name="start_date" onchange="checkForm();checkStartDate();" value="" type="text" maxlength="10"
+                        placeholder="Start Date (mm/dd/yyyy)" oninput="this.value = MMDDYYYY(this.value, event)" />
+                        <input id="id_end_date" class="end-date-input date-of-birth-input inputs-job-details start-end-date all-inputs profile-all-inputs-option"
+                        name="end_date" onchange="checkForm();checkStartDate();" value="" type="text" maxlength="10"
+                        placeholder="End Date (mm/dd/yyyy)" oninput="this.value = MMDDYYYY(this.value, event)" />
+                        
+                    </div>
+                    <div style="float: right; border:0;width:auto;font-size: 16px;color: #858585;padding:0;" class="profile-all-inputs-option">
+                        <label class="" style=""><input class="" style="" onchange="present()"type="checkbox" > Present</label>
+                    </div>
+                    <div class="save-button save-button-edit-profile-photo">
+                    <input name="back" title="Back to Profile" type="button"   class="back-input font-fam back-save-buttons" value="Back">
+                    <input title="Save Profile Data" name="save" type="submit" class="save-submit-input font-fam back-save-buttons" value="Save">
                 </div>
-                <div>
-
-                    <div style="display: flex; justify-content: space-between;">
-                        <div style="width: 48%;">
-                            <p class="paragraphs-stats paragraph-of-start-date">Start date</p>
-                            <input id="id_start_date" class="start-date-input mutual-stats font-fam" onchange="checkStartDate();" name="start_date" type="tel" maxlength="10" placeholder="dd/mm/yyyy" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
-                            <label class="paragraphs-stats paragraph-of-start-date"  id="sdateError" style="padding:0;display: none;color:red;">Date not valid</label>
-
-                        </div>
-                        <div style="width: 48%;
-                    float: right;">
-                            <p class="paragraphs-stats paragraph-of-end-date">End date</p>
-                            <input id="id_end_date" class="end-date-input mutual-stats font-fam" name="end_date" onchange="checkEndDate();" type="tel" maxlength="10" placeholder="dd/mm/yyyy"  oninput="this.value = MMDDYYYY(this.value, event)" />
-                            <input class="paragraphs-stats  paragraph-of-end-date" style="margin-right:0;" onchange="present()"type="checkbox" >
-                            <label class="paragraphs-stats paragraph-of-end-date" style="margin-top: 8px;">Present</label>
-                            <label class="paragraphs-stats paragraph-of-start-date" id="edateError" style="display: none;color:red;">Date not valid</label>
-
-
-                        </div>
-                    </div>
-                    <div class="save-button save-button-edit-add-education-480">
-                        <input name="save" type="submit" class="save-submit-input save-picture font-fam" value="Save">
-
-                    </div>
             </form>
-        </div>
     </div>
-</div>
-<div class="add-languages">
-    <div class="under-container">
-        <div class="exit-img exit-img-edit-profile">
-                <img title="Exit" class="exit-button exit-button-languages" onclick="enableScroll()"  src="{% static 'img/Vector 81 (1).png' %}" alt="">
-        </div>
-        <h1 id="title-experience">Add Languages</h1>
-        <form method="POST" action="" class="sign-up-form">
+
+    <!-- add Education -->
+    <div class="add-education edit-education-parent-scroll under-container-mutual-mutual-stats edit-education-scroll">
+        <div class="add-education-title mutual-titles-pop-ups-stats">Add Education</div>
+        <form method="POST" action="" class="sign-up-form forms-inputs-placeholder">
             {% csrf_token %}
-            <div style="display:none;">
-                {{form}}
-                {{form_usLang.user_id}}
+            <div style="display: none;">
+                <input type="hidden" name="first_name" id="id_first_name" class="profile-all-inputs-option" value="{{form.first_name.value}}"/>
+                    <input type="hidden" name="last_name" id="id_last_name" class="profile-all-inputs-option" value="{{form.last_name.value}}"/>
+                    <input type="hidden" name="country" id="id_country" class="profile-all-inputs-option" value="{{form.country.value}}"/>
+                    <input type="hidden" name="city" id="id_city" class="profile-all-inputs-option" value="{{form.city.value}}"/>
+                    <input type="hidden" name="phone_number" id="id_phone_number" class="profile-all-inputs-option" value="{{form.phone_number.value}}"/>
+                    {{form.cover}}
+                    {{form.profile}}
+                {{form_usEdu.user_id}}
+            </div>
+            {{form_usEdu.university}}
+            {{form_usEdu.field_of_study}}
+            
+            <select name="degree" required="" id="id_degree" class="profile-all-inputs-option">
+                <option style="display: none;" selected>Degree</option>
+                <option value="Bachelor" >Bachelor’s Degree</option>
+
+                <option value="Master" >Master’s Degree</option>
+            </select>
+            
+            {{form_usEdu.country_e}}
+            
+            {{form_usEdu.city_e}}
+            
+            <input type="number" name="total_examples_passed" value="" class="name-input profile-all-inputs-option" placeholder="Total Exams Passed" required="" id="id_total_examples_passed">
+            
+            <input type="number" name="GPA" value="" class="name-input profile-all-inputs-option" placeholder="GPA" step="any" required="" id="id_GPA">
+            
+
+            <div class="start-and-end-date-main-div">
+                <input id="id_start_year" class="start-date-input date-of-birth-input inputs-job-details start-end-date all-inputs mutual-input" 
+                name="start_year" onchange="checkForm();checkStartDate();" value="" type="text" maxlength="10" 
+                placeholder="Start Year (mm/dd/yyyy)" oninput="this.value = MMDDYYYY(this.value, event)" />
+                <input id="id_end_year" class="end-date-input date-of-birth-input inputs-job-details start-end-date all-inputs mutual-input" 
+                name="end_year" onchange="checkForm();checkStartDate();" value="" type="text" maxlength="10" 
+                placeholder="End Year (mm/dd/yyyy)" oninput="this.value = MMDDYYYY(this.value, event)" />
+                
+            </div>
+            <div style="float: right; border:0;width:auto;font-size: 16px;color: #858585;padding:0;" class="profile-all-inputs-option">
+                <label class="" style=""><input class="" style="" onchange="presentEnd()"type="checkbox" > Present</label>
+            </div>
+            <div class="save-button save-button-edit-profile-photo save-button-add-education">
+                <input name="back" title="Back to Profile" type="button" class="back-input font-fam back-save-buttons" value="Back">
+                <input title="Save Profile Data" name="save" type="submit" class="save-submit-input font-fam back-save-buttons" value="Save">
             </div>
 
-            <div class="div-of-job-experience">
-            <p class="paragraph-of-name paragraphs-stats">Language </p>
-            <select name="language" required="" id="id_language">
-                <option value="" selected=""></option>
+        </form>
+    </div>
+
+
+
+
+<div class="add-languages under-container-mutual-mutual-stats">
+ 
+    <div class="add-language-title mutual-titles-pop-ups-stats">Add Language</div>
+    <form method="POST" action="" class="sign-up-form add-language-form">
+        {% csrf_token %}
+        <div style="display: none;">
+            <input type="hidden" name="first_name" id="id_first_name" class="profile-all-inputs-option" value="{{form.first_name.value}}"/>
+                    <input type="hidden" name="last_name" id="id_last_name" class="profile-all-inputs-option" value="{{form.last_name.value}}"/>
+                    <input type="hidden" name="country" id="id_country" class="profile-all-inputs-option" value="{{form.country.value}}"/>
+                    <input type="hidden" name="city" id="id_city" class="profile-all-inputs-option" value="{{form.city.value}}"/>
+                    <input type="hidden" name="phone_number" id="id_phone_number" class="profile-all-inputs-option" value="{{form.phone_number.value}}"/>
+                    {{form.cover}}
+                    {{form.profile}}
+            {{form_usLang.user_id}}
+        </div>
+        <div class="div-of-job-experience">
+            <select name="language" required="" id="id_language" class="profile-all-inputs-option">
+                <option style="display: none;" selected>Language</option>
                 {% for i in lang %}
-                <option value="{{i.id}}">{{i}}</option>
+                    <option value="{{i.id}}">{{i}}</option>
                 {% endfor %}
-              </select>
-            </div>
-
-            <div>
-            <p class="paragraph-of-surname paragraphs-stats">Level </p>
-            <select name="level" required="" id="id_level">
-                <option value="" selected=""></option>
-                <option value="N/A">N/A</option>
+            </select>
+        </div>
+        
+        <div>
+        <select id="id_level" name="level" type="text" required class="surname-input mutual-stats font-fam">
+            <option style="display: none;" selected>Level</option>   
+            <option value="N/A">N/A</option>
                 <option value="Basic">Basic</option>
                 <option value="Low-Intermediate">Low-Intermediate</option>
 
@@ -217,104 +260,346 @@
                 <option value="High-Intermediate">High-Intermediate</option>
 
                 <option value="Advanced">Advanced</option>
-
-
-
-
-              </select>
-            </div>
-            <div class="save-button save-button-edit-add-education-480">
-            <a href=""><input name="save" type="submit" class="save-submit-input font-fam" value="Save"></a>
-            </div>
-        </form>
-    </div>
-</div>
-<div class="add-education edit-education-parent-scroll">
-    <div class="under-container">
-        <div class="exit-img exit-img-edit-profile">
-                <img title="Exit" class="exit-button exit-button-edit-profile" onclick="enableScroll()"  src="{% static 'img/Vector 81 (1).png' %}" alt="">
+        </select>
         </div>
-        <h1 id="title-experience">Add Education</h1>
-        <form method="POST" action="" class="sign-up-form">
-            {% csrf_token %}
-            <div style="display: none;">
-                {{form}}
-                {{form_usEdu.user_id}}
-            </div>
-            <div class="div-of-job-experience">
-            <p class="paragraph-of-name paragraphs-stats">University </p>
-            {{form_usEdu.university}}
-            <datalist id="University" style="width: 100%;">
-                {% for i in uniList %}
-                    <option>{{i}}</option>
-                {% endfor %}
-            </datalist>
-            </div>
-            <div>
-            <p class="paragraph-of-surname paragraphs-stats">Field of study </p>
-            {{form_usEdu.field_of_study}}
-            </div>
-            <div >
-                <p class="paragraph-of-surname paragraphs-stats">Degree </p>
-                <select name="degree" required="" id="id_degree">
-                    <option selected></option>
-                    <option value="Bachelor" >Bachelor’s Degree</option>
-
-                    <option value="Master" >Master’s Degree</option>
-                </select>
-            </div>
-            <div >
-                <p class="paragraph-of-surname paragraphs-stats">Country </p>
-                {{form_usEdu.country_e}}
-                <datalist id="EduCountryList">
-                    {% for i in countrys %}
-                        <option>{{i}}</option>
-                    {% endfor %}
-                </datalist>
-            </div>
-            <div >
-                <p class="paragraph-of-surname paragraphs-stats">City </p>
-                {{form_usEdu.city_e}}
-                <datalist id="EduCityList">
-                    {% for i in cityes %}
-                        <option>{{i.name}}</option>
-
-                    {% endfor %}
-                </datalist>
-            </div>
-            <div>
-                <p class="paragraph-of-surname paragraphs-stats">Total Exams Passed </p>
-                <input type="number" name="total_examples_passed" placeholder="0" class="name-input mutual-stats font-fam" required="" id="id_total_examples_passed">
-            </div>
-            <div>
-                <p class="paragraph-of-surname paragraphs-stats">GPA </p>
-                <input type="number" name="GPA" placeholder="0.0" class="name-input mutual-stats font-fam" step="any" required="" id="id_GPA">
-            </div>
-            <div>
-
-            <div style="display: flex; justify-content: space-between;">
-            <div style="width: 48%;">
-            <p class="paragraphs-stats paragraph-of-start-date">Start year </p>
-            <input id="id_start_year" class="start-date-input mutual-stats font-fam" name="start_year" onchange="checkStartYear()" type="tel" maxlength="10" placeholder="dd/mm/yyyy" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
-            <p class="paragraphs-stats paragraph-of-start-date" id="sYear" style="color:red;display: none;">Date not valid </p>
-
-            </div>
-            <div style="width: 48%;
-            float: right;">
-            <p class="paragraphs-stats paragraph-of-end-date">End year </p>
-            <input id="id_end_year" class="end-date-input mutual-stats font-fam" name="end_year" onchange="checkEndYear()" type="tel" maxlength="10" placeholder="dd/mm/yyyy" oninput="this.value = MMDDYYYY(this.value, event)" />
-            <input class="paragraphs-stats  paragraph-of-end-date" style="margin-right:0;" onchange="presentEnd()"type="checkbox" >
-            <label class="paragraphs-stats paragraph-of-end-date" style="margin-top: 8px;">Present</label>
-            <p class="paragraphs-stats paragraph-of-start-date" id="eYear" style="color:red;display: none;">Date not valid </p>
-
-            </div>
-            </div>
-
-
-
-            <div class="save-button save-edu save-button-edit-add-education-480">
-            <a href=""><input name="save" type="submit" class="save-submit-input font-fam" value="Save"></a>
-            </div>
-        </form>
-    </div>
+        <div class="save-button save-button-edit-profile">
+            <input title="Back to Profile" name="back" type="button" class="back-input font-fam back-save-buttons" value="Back">
+            <input title="Save Profile Data" name="save" type="submit" class="save-submit-input font-fam back-save-buttons" value="Save">
+        </div>
+    </form>
 </div>
+
+
+</div>
+
+
+<script>
+    function addPlusPrefix(input) {
+        let inputValue = input.value;
+
+        // Check if the input value already starts with "+"
+        if (inputValue.charAt(0) !== '+') {
+            input.value = '+' + inputValue;
+        } else {
+            // If there's more than one "+", remove additional "+" characters
+            input.value = '+' + inputValue.replace(/\+/g, '');
+        }
+    }
+</script>
+{% if form.phone_number.value %}
+<script>
+
+    let fullPhoneNumber = "{{ form.phone_number.value }}";
+
+if (!fullPhoneNumber.startsWith('+')) {
+    fullPhoneNumber = '+' + fullPhoneNumber;
+}
+
+    function autoFill() {
+        const input = document.querySelector("#id_phone_number");
+        input.value = fullPhoneNumber;
+    }
+
+    autoFill();
+
+    const phoneInput = document.querySelector("#id_phone_number");
+
+    // Initialize intl-tel-input
+    const iti = window.intlTelInput(phoneInput, {
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+        preferredCountries: ["xk", "al"], // Set your preferred countries here
+        formatOnDisplay: false, // Disable auto-formatting
+    });
+
+    // Listen for changes to the selected country
+    iti.promise.then(function () {
+        iti.setNumber(fullPhoneNumber); // Set the full phone number including the country code
+    });
+
+    // Listen for input changes and update the formatted phone number
+    phoneInput.addEventListener("input", function () {
+        const phoneNumber = iti.getNumber();
+    });
+</script>
+
+{% else %}
+<script>
+        const phoneInput = document.querySelector("#id_phone_number");
+
+        // Initialize intl-tel-input
+        const iti = window.intlTelInput(phoneInput, {
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+            preferredCountries: ["xk", "al"], // Set your preferred countries here
+            formatOnDisplay: false, // Disable auto-formatting
+        });
+
+        // Listen for changes to the selected country
+        iti.promise.then(function () {
+            const selectedCountryData = iti.getSelectedCountryData();
+
+            // Update the input field with the country code when the country changes
+            const countryCode = selectedCountryData.dialCode;
+            phoneInput.value = "+" + countryCode;
+        });
+
+        // Listen for input changes and update the formatted phone number
+        phoneInput.addEventListener("input", function () {
+            const phoneNumber = iti.getNumber();
+        });
+    </script>
+
+{% endif %}
+
+<script>
+        const countries = ["Kosovo","Albania","Afghanistan",
+  "Algeria",
+  "Andorra",
+  "Angola",
+  "Antigua and Barbuda",
+  "Argentina",
+  "Armenia",
+  "Australia",
+  "Austria",
+  "Azerbaijan",
+  "The Bahamas",
+  "Bahrain",
+  "Bangladesh",
+  "Barbados",
+  "Belarus",
+  "Belgium",
+  "Belize",
+  "Benin",
+  "Bhutan",
+  "Bolivia",
+  "Bosnia and Herzegovina",
+  "Botswana",
+  "Brazil",
+  "Brunei",
+  "Bulgaria",
+  "Burkina Faso",
+  "Burundi",
+  "Cambodia",
+  "Cameroon",
+  "Canada",
+  "Cape Verde",
+  "Central African Republic",
+  "Chad",
+  "Chile",
+  "China",
+  "Colombia",
+  "Comoros",
+  "Republic of the Congo",
+  "Democratic Republic of the Congo",
+  "Costa Rica",
+  "Croatia",
+  "Cuba",
+  "Cyprus",
+  "Czech Republic",
+  "Denmark",
+  "Djibouti",
+  "Dominica",
+  "Dominican Republic",
+  "East Timor",
+  "Ecuador",
+  "Egypt",
+  "El Salvador",
+  "Equatorial Guinea",
+  "Eritrea",
+  "Estonia",
+  "Eswatini",
+  "Ethiopia",
+  "Fiji",
+  "Finland",
+  "France",
+  "Gabon",
+  "The Gambia",
+  "Georgia",
+  "Germany",
+  "Ghana",
+  "Greece",
+  "Grenada",
+  "Guatemala",
+  "Guinea",
+  "Guinea-Bissau",
+  "Guyana",
+  "Haiti",
+  "Holy See (Vatican City)",
+  "Honduras",
+  "Hungary",
+  "Iceland",
+  "India",
+  "Indonesia",
+  "Iran",
+  "Iraq",
+  "Ireland",
+  "Israel",
+  "Italy",
+  "Ivory Coast",
+  "Jamaica",
+  "Japan",
+  "Jordan",
+  "Kazakhstan",
+  "Kenya",
+  "Kiribati",
+  "North Korea",
+  "South Korea",
+  "Kuwait",
+  "Kyrgyzstan",
+  "Laos",
+  "Latvia",
+  "Lebanon",
+  "Lesotho",
+  "Liberia",
+  "Libya",
+  "Liechtenstein",
+  "Lithuania",
+  "Luxembourg",
+  "Madagascar",
+  "Malawi",
+  "Malaysia",
+  "Maldives",
+  "Mali",
+  "Malta",
+  "Marshall Islands",
+  "Mauritania",
+  "Mauritius",
+  "Mexico",
+  "Micronesia",
+  "Moldova",
+  "Monaco",
+  "Mongolia",
+  "Montenegro",
+  "Morocco",
+  "Mozambique",
+  "Myanmar (Burma)",
+  "Namibia",
+  "Nauru",
+  "Nepal",
+  "Netherlands",
+  "New Zealand",
+  "Nicaragua",
+  "Niger",
+  "Nigeria",
+  "North Macedonia",
+  "Norway",
+  "Oman",
+  "Pakistan",
+  "Palau",
+  "Palestine",
+  "Panama",
+  "Papua New Guinea",
+  "Paraguay",
+  "Peru",
+  "Philippines",
+  "Poland",
+  "Portugal",
+  "Qatar",
+  "Romania",
+  "Russia",
+  "Rwanda",
+  "Saint Kitts and Nevis",
+  "Saint Lucia",
+  "Saint Vincent and the Grenadines",
+  "Samoa",
+  "San Marino",
+  "São Tomé and Príncipe",
+  "Saudi Arabia",
+  "Senegal",
+  "Serbia",
+  "Seychelles",
+  "Sierra Leone",
+  "Singapore",
+  "Slovakia",
+  "Slovenia",
+  "Solomon Islands",
+  "Somalia",
+  "South Africa",
+  "South Sudan",
+  "Spain",
+  "Sri Lanka",
+  "Sudan",
+  "Suriname",
+  "Sweden",
+  "Switzerland",
+  "Syria",
+  "Tajikistan",
+  "Tanzania",
+  "Thailand",
+  "Togo",
+  "Tonga",
+  "Trinidad and Tobago",
+  "Tunisia",
+  "Turkey",
+  "Turkmenistan",
+  "Tuvalu",
+  "Uganda",
+  "Ukraine",
+  "United Arab Emirates",
+  "United Kingdom",
+  "United States",
+  "Uruguay",
+  "Uzbekistan",
+  "Vanuatu",
+  "Venezuela",
+  "Vietnam",
+  "Yemen",
+  "Zambia",
+  "Zimbabwe"
+];
+
+        var selectedCountry = "{{form.country.value}}";
+        console.log(selectedCountry);
+var select = document.getElementById("id_country");
+
+// Function to populate the select element with countries
+function populateCountries() {
+    for (var i = 0; i < countries.length; i++) {
+        var option = document.createElement("option");
+        option.text = countries[i];
+        select.appendChild(option);
+    }
+
+    // Check if selectedCountry is not null
+    if (selectedCountry !== null) {
+        // Loop through the <select> options
+        for (var i = 0; i < select.options.length; i++) {
+            // Check if the option's text matches the selectedCountry
+            if (select.options[i].text === selectedCountry) {
+                // Set the selected option
+                select.selectedIndex = i;
+                checkInputs();
+                break; // Exit the loop
+            }
+        }
+    }
+}
+
+
+
+function populateCountries1() {
+  const select = document.getElementById("id_Country");
+
+  for (const country of countries) {
+    const option = document.createElement("option");
+    option.value = country;
+    option.text = country;
+    select.appendChild(option);
+  }
+}
+function populateCountries2() {
+  const select = document.getElementById("id_country_e");
+
+  for (const country of countries) {
+    const option = document.createElement("option");
+    option.value = country;
+    option.text = country;
+    select.appendChild(option);
+  }
+}
+
+// Call the function to populate the select element
+populateCountries1();
+populateCountries2();
+// Call the function to populate the select element when the page loads
+window.addEventListener("load", populateCountries);
+</script>

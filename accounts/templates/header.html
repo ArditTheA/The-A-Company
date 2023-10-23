@@ -24,7 +24,7 @@
 
     {% else %}
     <header class="profileHeader">
-        <a class="header-icon header-icon-radius header-icon-logo"  ></a>
+        <a class="header-icon header-icon-radius header-icon-logo"  href="{% url 'home' %}" ><img class="header-icon header-icon-radius header-icon-logo" src="{% static 'img/Header/Vector.svg' %}" title="Worki"></a>
         <div class="jobs-and-profile">
             <a href="{% url 'jobs'%}"><img class="header-icon header-icon-job" title="Jobs"
                     src="{% static 'img/Header/job.jpg' %}"></a>

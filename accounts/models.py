@@ -197,7 +197,8 @@ class Jobs(models.Model):
         ("Work and Travel","Work and Travel"),
         ("Internship","Internship"),
         ("Trainee","Trainee"),
-        ("Ausbildung","Ausbildung")
+        ("Ausbildung","Ausbildung"),
+        ("Temporary Employment","Temporary Employment")
         
 
     }

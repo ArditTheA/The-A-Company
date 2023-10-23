@@ -1,56 +1,111 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Upload Documents</title>
-    <script>
-        function validateFileInputs() {
-            var uploadedFiles = new Set();
-            var fileInputs = document.querySelectorAll('[type="file"]');
+{% extends "base.html" %}
 
-            for (var i = 0; i < fileInputs.length; i++) {
-                var fileInput = fileInputs[i];
-                var selectedFile = fileInput.files[0];
+{% block content %}
 
-                if (selectedFile) {
-                    if (uploadedFiles.has(selectedFile.name)) {
-                        alert('Each document must be unique.');
-                        fileInput.value = '';  // Clear the file input
-                        return false;
-                    }
-                    uploadedFiles.add(selectedFile.name);
-                }
-            }
-            return true;
-        }
-    </script>
-</head>
-<body>
-    <h1>Upload Documents</h1>
-    <form method="post" enctype="multipart/form-data" onsubmit="return validateFileInputs();">
-        {% csrf_token %}
-        <hr>
+<style>
+    /* CSS for the overlay */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
+
+/* CSS for the popup */
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border: 1px solid #ccc;
+  z-index: 2;
+}
 
 
+</style>
+<button id="open-popup">Open Popup</button>
 
-            {{ form.id }}
-            {{ form.management_form }}
-            <div>
-            <p>Document:  <select name="form-0-id_document" id="id_form-0-id_document">
-                  <option value="1" selected>Passport</option>
-                </select>
-            </p>
-                <p> <select name="form-0-user" id="id_form-0-user">
-                    <option value="{{user.id}}">{{user}}</option>
-                </select></p>
-
-            <p>Document:  <input type="file" name="form-0-document" id="id_form-0-document"> </p></div>
-        <div>
-            <p>Document:  {{ form.id_document }} </p>
-            <p>User:  {{ form.user }} </p>
-            <p>Document:  {{ form.document }} </p></div>
-            <hr>
-
-        <button type="submit">Upload</button>
+<div class="overlay">
+  <div class="popup">
+    <button id="close-popup">Close</button>
+    <form id="upload-form" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <p style="display:none;" id="error">file not supported</p>
+      <input type="hidden" name="document_id" id="document_id" value="7" />
+      <button type="submit" id="upload-button">Upload</button>
     </form>
-</body>
-</html>
+    <div id="status"></div>
+  </div>
+</div>
+
+
+<script>
+$(document).ready(function() {
+  $('#open-popup').click(function() {
+    $('.overlay').show();
+    $('.popup').show();
+  });
+
+  $('#close-popup').click(function() {
+    $('.overlay').hide();
+    $('.popup').hide();
+  });
+
+  $('#id_document').on('change', function() {
+    var fileInput = this.files[0];
+
+    if (fileInput) {
+      // Check the file extension
+      var allowedExtensions = ['.pdf', '.jpg', '.jpeg', '.png', '.svg'];
+      var fileExtension = fileInput.name.slice(((fileInput.name.lastIndexOf(".") - 1) >>> 0) + 2);
+      if (allowedExtensions.indexOf('.' + fileExtension.toLowerCase()) === -1) {
+        // Invalid file extension, update the input border color
+        $('#id_document').css('border', '2px solid red');
+        $('#error').css('display', 'block');
+        $('#error').css('color', 'red');
+      } else {
+        // Reset the input border color if the file is valid
+        $('#error').css('display', 'none');
+
+        $('#id_document').css('border', '1px solid #ffff');
+      }
+    }
+  });
+
+  $('#upload-form').submit(function(e) {
+    e.preventDefault();
+
+    var formData = new FormData(this);
+
+    $.ajax({
+      type: 'POST',
+      url: '/upload_documents/',
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function(response) {
+        $('#status').text(response.message);
+        $('#upload-form')[0].reset(); // Reset the form
+
+        // Change the button text
+        $('#open-popup').text('Open Popup (Document Uploaded)');
+      },
+      error: function(response) {
+        $('#status').text(response.responseJSON.error);
+      }
+    });
+  });
+});
+</script>
+
+
+
+{% endblock %}

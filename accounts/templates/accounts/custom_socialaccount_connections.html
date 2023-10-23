@@ -1,0 +1,9 @@
+<!-- custom_socialaccount_connections.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Custom Google Connections Page</h2>
+<!-- Add your custom content here -->
+<p>This is a custom Google-specific connections page.</p>
+<a href="{% url 'socialaccount_signup' 'google' %}" class="btn btn-primary">Link Google Account</a>
+{% endblock %}

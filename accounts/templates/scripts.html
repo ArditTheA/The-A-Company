@@ -15,6 +15,7 @@ function MainJobs(){
 
 <!--header script -->
 <script src="{% static 'js/DropDown/profileDropDown.js' %}" ></script>
+<!-- <script src="{% static 'gigsJS/backExpEduLangPage.js' %}" ></script> -->
 <!--end of header script-->
 
 <!--Online Script-->
@@ -96,18 +97,13 @@ function MainJobs(){
 
     <script src="{% static 'js/edit-cover.js'%}"></script>
     <script src="{% static 'js/plus-languages.js'%}"></script>
+    <script src="{% static 'js/plus-education.js'%}"></script>
+    <script src="{% static 'js/plus-experience.js'%}"></script>
 
 
     <script src="{% static 'js/add-experience-education-language.js'%}"></script>
 <script src="{% static 'js/exit-button.js'%}"></script>
-<script>
-    function disableScroll(){
-        document.body.style.overflow = 'hidden';
-    }
-    function enableScroll(){
-        document.body.style.overflow="scroll";
-    }
-</script>
+
 
 
 
@@ -168,3 +164,277 @@ function MainJobs(){
 <!--<script src="{% static 'js/select-all-button.js'%}"></script>-->
 
 
+
+
+
+
+
+<script>
+    const countries = ["Kosovo","Albania","Afghanistan",
+"Algeria",
+"Andorra",
+"Angola",
+"Antigua and Barbuda",
+"Argentina",
+"Armenia",
+"Australia",
+"Austria",
+"Azerbaijan",
+"The Bahamas",
+"Bahrain",
+"Bangladesh",
+"Barbados",
+"Belarus",
+"Belgium",
+"Belize",
+"Benin",
+"Bhutan",
+"Bolivia",
+"Bosnia and Herzegovina",
+"Botswana",
+"Brazil",
+"Brunei",
+"Bulgaria",
+"Burkina Faso",
+"Burundi",
+"Cambodia",
+"Cameroon",
+"Canada",
+"Cape Verde",
+"Central African Republic",
+"Chad",
+"Chile",
+"China",
+"Colombia",
+"Comoros",
+"Republic of the Congo",
+"Democratic Republic of the Congo",
+"Costa Rica",
+"Croatia",
+"Cuba",
+"Cyprus",
+"Czech Republic",
+"Denmark",
+"Djibouti",
+"Dominica",
+"Dominican Republic",
+"East Timor",
+"Ecuador",
+"Egypt",
+"El Salvador",
+"Equatorial Guinea",
+"Eritrea",
+"Estonia",
+"Eswatini",
+"Ethiopia",
+"Fiji",
+"Finland",
+"France",
+"Gabon",
+"The Gambia",
+"Georgia",
+"Germany",
+"Ghana",
+"Greece",
+"Grenada",
+"Guatemala",
+"Guinea",
+"Guinea-Bissau",
+"Guyana",
+"Haiti",
+"Holy See (Vatican City)",
+"Honduras",
+"Hungary",
+"Iceland",
+"India",
+"Indonesia",
+"Iran",
+"Iraq",
+"Ireland",
+"Israel",
+"Italy",
+"Ivory Coast",
+"Jamaica",
+"Japan",
+"Jordan",
+"Kazakhstan",
+"Kenya",
+"Kiribati",
+"North Korea",
+"South Korea",
+"Kuwait",
+"Kyrgyzstan",
+"Laos",
+"Latvia",
+"Lebanon",
+"Lesotho",
+"Liberia",
+"Libya",
+"Liechtenstein",
+"Lithuania",
+"Luxembourg",
+"Madagascar",
+"Malawi",
+"Malaysia",
+"Maldives",
+"Mali",
+"Malta",
+"Marshall Islands",
+"Mauritania",
+"Mauritius",
+"Mexico",
+"Micronesia",
+"Moldova",
+"Monaco",
+"Mongolia",
+"Montenegro",
+"Morocco",
+"Mozambique",
+"Myanmar (Burma)",
+"Namibia",
+"Nauru",
+"Nepal",
+"Netherlands",
+"New Zealand",
+"Nicaragua",
+"Niger",
+"Nigeria",
+"North Macedonia",
+"Norway",
+"Oman",
+"Pakistan",
+"Palau",
+"Palestine",
+"Panama",
+"Papua New Guinea",
+"Paraguay",
+"Peru",
+"Philippines",
+"Poland",
+"Portugal",
+"Qatar",
+"Romania",
+"Russia",
+"Rwanda",
+"Saint Kitts and Nevis",
+"Saint Lucia",
+"Saint Vincent and the Grenadines",
+"Samoa",
+"San Marino",
+"São Tomé and Príncipe",
+"Saudi Arabia",
+"Senegal",
+"Serbia",
+"Seychelles",
+"Sierra Leone",
+"Singapore",
+"Slovakia",
+"Slovenia",
+"Solomon Islands",
+"Somalia",
+"South Africa",
+"South Sudan",
+"Spain",
+"Sri Lanka",
+"Sudan",
+"Suriname",
+"Sweden",
+"Switzerland",
+"Syria",
+"Tajikistan",
+"Tanzania",
+"Thailand",
+"Togo",
+"Tonga",
+"Trinidad and Tobago",
+"Tunisia",
+"Turkey",
+"Turkmenistan",
+"Tuvalu",
+"Uganda",
+"Ukraine",
+"United Arab Emirates",
+"United Kingdom",
+"United States",
+"Uruguay",
+"Uzbekistan",
+"Vanuatu",
+"Venezuela",
+"Vietnam",
+"Yemen",
+"Zambia",
+"Zimbabwe"
+];
+
+    var selectedCountry = "{{form.country.value}}";
+    console.log(selectedCountry);
+var select = document.getElementById("id_country");
+
+// Function to populate the select element with countries
+function populateCountries() {
+for (var i = 0; i < countries.length; i++) {
+    var option = document.createElement("option");
+    option.text = countries[i];
+    select.appendChild(option);
+}
+
+// Check if selectedCountry is not null
+if (selectedCountry !== null) {
+    // Loop through the <select> options
+    for (var i = 0; i < select.options.length; i++) {
+        // Check if the option's text matches the selectedCountry
+        if (select.options[i].text === selectedCountry) {
+            // Set the selected option
+            select.selectedIndex = i;
+            checkInputs();
+            break; // Exit the loop
+        }
+    }
+}
+}
+
+
+
+function populateCountries1() {
+const select = document.getElementById("id_Country");
+
+for (const country of countries) {
+const option = document.createElement("option");
+option.value = country;
+option.text = country;
+select.appendChild(option);
+}
+}
+function populateCountries2() {
+const select = document.getElementById("id_country_e");
+
+for (const country of countries) {
+const option = document.createElement("option");
+option.value = country;
+option.text = country;
+select.appendChild(option);
+}
+}
+
+// Call the function to populate the select element
+populateCountries1();
+populateCountries2();
+// Call the function to populate the select element when the page loads
+window.addEventListener("load", populateCountries);
+</script>
+
+
+<script>
+    $(document).ready(function() {
+
+            // Your script logic here
+            $(".bg-add-and-edit").click(function() {
+                $(this).hide();
+            });
+
+            $(".under-container-mutual-mutual-stats").click(function(event) {
+                event.stopPropagation();
+            });
+
+    });
+</script>

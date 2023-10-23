@@ -11,15 +11,13 @@ class add_user_Exp(ModelForm):
         model = UserExperiece
         fields = {"user_id", "title", "company", "Country", "city_usExp", "start_date", "end_date"}
         widgets = {
-            "title": forms.TextInput(attrs={"class": "name-input mutual-stats font-fam"}),
-            "company": forms.TextInput(attrs={"class": "name-input mutual-stats font-fam"}),
-            "start_date": forms.DateInput(attrs={"class": "start-date-input mutual-stats font-fam", "type": "date"}),
+            "title": forms.TextInput(attrs={"class": "name-input profile-all-inputs-option",'placeholder':'Job title'}),
+            "company": forms.TextInput(attrs={"class": "name-input profile-all-inputs-option",'placeholder':'Company'}),
+            "start_date": forms.DateInput(attrs={"class": "start-date-input profile-all-inputs-option", "type": "date"}),
             "end_date": forms.DateInput(
                 attrs={"class": "end-date-input mutual-stats font-fam", "type": "date", "required": "false"}),
-            "Country": forms.TextInput(attrs={'class': 'name-input mutual-stats font-fam',"list":"usExpCountryList"}),
-            "city_usExp":forms.TextInput(attrs={"class":"name-input mutual-stats font-fam","list":"usExpCityList"})
-            
-
+            "Country": forms.Select(attrs={'class':'profile-all-inputs-option'}),
+            "city_usExp":forms.TextInput(attrs={"class":"name-input profile-all-inputs-option",'placeholder':'City'})
         }
 
 
@@ -35,15 +33,15 @@ class add_user_edu(ModelForm):
         fields = {"user_id", "university", "degree","country_e","city_e", "field_of_study", "start_year", "end_year",
                   "total_examples_passed", "GPA"}
         widgets = {
-            "university":forms.TextInput(attrs={"class":"name-input mutual-stats font-fam","list":"University"}),
-            "degree": forms.TextInput(attrs={'class': 'name-input mutual-stats font-fam'}),
-            "field_of_study": forms.TextInput(attrs={'class': 'name-input mutual-stats font-fam'}),
-            "country_e":forms.TextInput(attrs={"class":"name-input mutual-stats font-fam","list":"EduCountryList"}),
-            "city_e":forms.TextInput(attrs={"class":"name-input mutual-stats font-fam","list":"EduCityList"}),
-            "start_year": forms.DateInput(attrs={"class": "start-date-input mutual-stats font-fam", "type": "date"}),
-            "end_year": forms.DateInput(attrs={"class": "end-date-input mutual-stats font-fam", "type": "date"}),
-            "total_examples_passed": forms.NumberInput(attrs={'class': 'name-input mutual-stats font-fam'}),
-            "GPA": forms.NumberInput(attrs={'class': 'name-input mutual-stats font-fam'}),
+            "university":forms.TextInput(attrs={"class":"name-input profile-all-inputs-option","placeholder":"University"}),
+            "degree": forms.TextInput(attrs={'class': 'name-input profile-all-inputs-option',"placeholder":"Degree"}),
+            "field_of_study": forms.TextInput(attrs={'class': 'name-input profile-all-inputs-option',"placeholder":"Field of Study"}),
+            "country_e":forms.Select(attrs={"class":"name-input profile-all-inputs-option","list":"EduCountryList","placeholder":"Country"}),
+            "city_e":forms.TextInput(attrs={"class":"name-input profile-all-inputs-option","list":"EduCityList","placeholder":"City"}),
+            "start_year": forms.DateInput(attrs={"class": "start-date-input profile-all-inputs-option", "type": "date"}),
+            "end_year": forms.DateInput(attrs={"class": "end-date-input profile-all-inputs-option", "type": "date"}),
+            "total_examples_passed" :forms.NumberInput(attrs={'class': 'name-input profile-all-inputs-option', 'value': 'null', 'placeholder': 'Total Exams Passed'}),
+            "GPA" : forms.NumberInput(attrs={'class': 'name-input profile-all-inputs-option', 'value': 'null', 'placeholder': 'GPA'}),
 
         }
 
@@ -51,19 +49,19 @@ class add_user_edu(ModelForm):
 class EditProf(ModelForm):
     class Meta:
         model = CustomUser
-        fields = {"first_name", "last_name", "city", "country", "profile", "cover"}
+        fields = {"first_name", "last_name", "city", "country", "profile", "cover","phone_number"}
 
         widgets = {
-            "first_name": forms.TextInput(attrs={'class': 'name-input mutual-stats font-fam'}),
+            "first_name": forms.TextInput(attrs={'class': 'name-input profile-all-inputs-option','placeholder':'First Name'}),
 
-            "last_name": forms.TextInput(attrs={'class': 'surname-input mutual-stats font-fam'}),
-            "city": forms.TextInput(attrs={"type":"text",'class': 'city-input font-fam',"list":"cityList"}),
+            "last_name": forms.TextInput(attrs={'class': 'surname-input  profile-all-inputs-option','placeholder':'Last Name'}),
+            "city": forms.TextInput(attrs={"type":"text",'class': ' profile-all-inputs-option',"placeholder":"City"}),
 
-            "country":forms.TextInput(attrs={"class":"test name-input mutual-stats font-fam","list":"countryList"}),
+            "country":forms.Select(attrs={'id':'id_country','name':'country','class':'profile-all-inputs-option'}),
 
             'profile': forms.FileInput(attrs={'id': 'id_profile',"onchange":"document.getElementById('profilePic').src = window.URL.createObjectURL(this.files[0])"}),
             'cover': forms.FileInput(attrs={'class': 'upload_profile_pic',"id":"id_cover","onchange":"document.getElementById('coverPic').src = window.URL.createObjectURL(this.files[0])"}),
-
+            "phone_number":forms.TextInput(attrs={"class":"profile-all-inputs-option","oninput":"addPlusPrefix(this);"}),
         }
         # fields = '__all__'
 
@@ -81,12 +79,12 @@ class EditExperience(ModelForm):
             "end_date"
         }
         widgets = {
-            "title": forms.TextInput(attrs={'class': 'name-input mutual-stats font-fam'}),
-            "company": forms.TextInput(attrs={'class': 'name-input mutual-stats font-fam'}),
-            "start_date": forms.DateInput(attrs={"class": "start-date-input mutual-stats font-fam", "type": "date"}),
-            "end_date": forms.DateInput(attrs={"class": "end-date-input mutual-stats font-fam", "type": "date"}),
-            "Country": forms.TextInput(attrs={"class":"name-input mutual-stats font-fam","list":"UsExpCountryList"}),
-            "city_usExp":forms.TextInput(attrs={"class":"name-input mutual-stats font-fam","list":"usExpcityList"})
+            "title": forms.TextInput(attrs={'class': 'name-input profile-all-inputs-option'}),
+            "company": forms.TextInput(attrs={'class': 'name-input profile-all-inputs-option'}),
+            "start_date": forms.DateInput(attrs={"maxlength":"10","class": "start-date-input date-of-birth-input inputs-job-details start-end-date all-inputs profile-all-inputs-option", "type": "text","placeholder":"Start Date (mm/dd/yyyy)","oninput":"this.value = MMDDYYYY(this.value, event)"}),
+            "end_date": forms.DateInput(attrs={"maxlength":"10","class": "end-date-input date-of-birth-input inputs-job-details start-end-date all-inputs profile-all-inputs-option", "type": "text","placeholder":"End Date (mm/dd/yyyy)","onchange":"checkForm();checkStartDate();","oninput":"this.value = MMDDYYYY(this.value, event)"}),
+            "Country": forms.TextInput(attrs={"class":"name-input profile-all-inputs-option","list":"UsExpCountryList"}),
+            "city_usExp":forms.TextInput(attrs={"class":"name-input profile-all-inputs-option","list":"usExpcityList"})
         }
 
 
@@ -105,16 +103,17 @@ class EditUserEdu(ModelForm):
             "total_examples_passed",
             "GPA",
         }
+
         widgets = {
-            "university":forms.TextInput(attrs={"class":"name-input mutual-stats font-fam","list":"uniList"}),
-            "country_e":forms.TextInput(attrs={"class":"name-input mutual-stats font-fam","list":"EduCountryList"}),
-            "city_e":forms.TextInput(attrs={"class":"name-input mutual-stats font-fam","list":"EduCityList"}),
-            "degree": forms.TextInput(attrs={'class': 'name-input mutual-stats font-fam'}),
-            "field_of_study": forms.TextInput(attrs={'class': 'name-input mutual-stats font-fam'}),
-            "start_year": forms.DateInput(attrs={"class": "start-date-input mutual-stats font-fam", "type": "date"}),
-            "end_year": forms.DateInput(attrs={"class": "end-date-input mutual-stats font-fam", "type": "date"}),
-            "total_examples_passed": forms.NumberInput(attrs={'class': 'name-input mutual-stats font-fam'}),
-            "GPA": forms.NumberInput(attrs={'class': 'name-input mutual-stats font-fam'}),
+            "university":forms.TextInput(attrs={"class":"name-input profile-all-inputs-option","list":"uniList"}),
+            "country_e":forms.TextInput(attrs={"class":"name-input profile-all-inputs-option","list":"EduCountryList"}),
+            "city_e":forms.TextInput(attrs={"class":"name-input profile-all-inputs-option","list":"EduCityList"}),
+            "degree": forms.TextInput(attrs={'class': 'name-input profile-all-inputs-option'}),
+            "field_of_study": forms.TextInput(attrs={'class': 'name-input profile-all-inputs-option'}),
+            "start_year": forms.DateInput(attrs={"oninput":"this.value = MMDDYYYY(this.value, event)","placeholder":"Start Year (mm/dd/yyyy)","onchange":"checkForm();checkStartDate();","class": "start-date-input date-of-birth-input inputs-job-details start-end-date all-inputs mutual-input", "type": "text"}),
+            "end_year": forms.DateInput(attrs={"onchange":"checkForm();checkStartDate();","placeholder":"End Year (mm/dd/yyyy)","oninput":"this.value = MMDDYYYY(this.value, event)","class": "end-date-input date-of-birth-input inputs-job-details start-end-date all-inputs mutual-input", "type": "text"}),
+            "total_examples_passed": forms.NumberInput(attrs={'class': 'name-input profile-all-inputs-option'}),
+            "GPA": forms.NumberInput(attrs={'class': 'name-input profile-all-inputs-option'}),
 
 
         }
@@ -137,12 +136,43 @@ class EditUserLang(ModelForm):
 class RegisterForm(UserCreationForm):
     class Meta:
         model = get_user_model()
-        fields = ('email', 'first_name', 'last_name', 'password1')
+        fields = ('email', 'first_name', 'last_name',"password1")
+        
 
     def __init__(self, *args, **kwargs):
         super(RegisterForm, self).__init__(*args, **kwargs)
         del self.fields['password2']
         self.fields['password1'].help_text = None
+
+
+
+
+from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import get_user_model
+
+class NewRegisterForm(UserCreationForm):
+    password1 = forms.CharField(
+        label="Password",
+        widget=forms.PasswordInput(attrs={"class": "input-text custom-password-class", "placeholder": "Password"})
+    )
+
+    class Meta:
+        model = get_user_model()
+        fields = ('email', 'first_name', 'last_name')
+        widgets = {
+            "first_name": forms.TextInput(attrs={"class": "input-text name-surname-width name-input", "placeholder": "First Name"}),
+            "last_name": forms.TextInput(attrs={"class": "input-text name-surname-width surname-input", "placeholder": "Last Name"}),
+            "email": forms.TextInput(attrs={"class": "input-text email-input", "placeholder": "Email"}),
+        }
+    def __init__(self, *args, **kwargs):
+        super(NewRegisterForm, self).__init__(*args, **kwargs)
+        del self.fields['password2']
+        self.fields['password1'].help_text = None
+
+    
+
+
 
 
 class LoginForm(AuthenticationForm):
@@ -239,12 +269,12 @@ class setupProfile2(ModelForm):
         model = UserEducation
         fields = "__all__"
         widgets ={
-            "university":forms.TextInput(attrs={"class":"name-input mutual-stats font-fam","required":"required", "list":"univ"}),
-            "start_year": forms.DateInput(attrs={"class": "next-none", "type": "date","required":"required"}),
+            "university":forms.TextInput(attrs={"class":"name-input profile-all-inputs-option","required":"required", "placeholder":"University"}),
+            "start_year": forms.DateInput(attrs={"class": "next-none profile-all-inputs-option", "type": "date","required":"required"}),
             # "end_year": forms.DateInput(attrs={"class": "next-none", "type": "date"},input_formats=settings.DATE_INPUT_FORMATS),
             
-            "country_e":forms.TextInput(attrs={"class":"name-input mutual-stats font-fam","list":"CountryList","required":"required"}),
-            "city_e":forms.TextInput(attrs={"class":"name-input mutual-stats font-fam","list":"CityList","required":"required"}),
+            "country_e":forms.TextInput(attrs={"class":"name-input profile-all-inputs-option","list":"CountryList","required":"required","placeholder":"Country"}),
+            "city_e":forms.TextInput(attrs={"class":"name-input profile-all-inputs-option","list":"CityList","required":"required","placeholder":"City"}),
             "degree":forms.Select(),
         }
 

@@ -20,6 +20,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from google.oauth2.gdch_credentials import ServiceAccountCredentials
+from oauthlib.oauth2 import OAuth2Error
 
 from accounts.forms import *
 from django.contrib.auth.decorators import login_required
@@ -31,7 +32,40 @@ import locale
 
 
 
+
+
 today = timezone.now
+
+
+
+from django.shortcuts import render
+from allauth.socialaccount.models import SocialAccount
+
+def link_google_account(request):
+    if request.user.is_authenticated and request.method == 'POST':
+        try:
+            # Attempt to link the Google account to the currently logged-in user
+            social_account = SocialAccount.objects.filter(user=request.user, provider='google').first()
+        except OAuth2Error as e:
+            # Handle OAuth2Error if there's an issue with the Google API
+            pass
+    else:
+        social_account = None
+
+    return render(request, 'accounts/link_google_account.html', {'social_account': social_account})
+
+
+from django.shortcuts import render
+
+def custom_google_connections(request):
+    return render(request, 'custom_socialaccount_connections.html')
+
+
+
+
+
+
+
 
 def testQR(request):
     return render(request,"testcamera.html")
@@ -126,7 +160,8 @@ def CalendlyAPI():
 
 
 
-
+def login_redirect(request):
+    return redirect('login')
 
 def landingPage(request):
     return redirect("jobs")
@@ -242,6 +277,71 @@ class RegisterView(generic.CreateView):
     template_name = 'accounts/register.html'
 
 
+
+
+
+
+
+from allauth.account.views import SignupView
+from allauth.socialaccount.forms import SignupForm
+
+
+from allauth.socialaccount.views import SignupView, ConnectionsView
+class CustomSocialLoginView(SignupView):
+    template_name = "custom_social_login.html"  # Create this template
+
+class CustomSignupView(SignupView):
+    form_class = SignupForm  # Customize the form used for registration
+    template_name = "custom_signup.html"  # Create this template
+
+
+def newregister(request):
+    if request.method == 'POST':
+        NewClinetemail = request.POST.get("email")
+        form = NewRegisterForm(request.POST)
+        if form.is_valid():
+            # Check if the email already exists
+            email = form.cleaned_data['email']
+            if CustomUser.objects.filter(email=email).exists():
+                form.add_error('email', 'An account with this email already exists.')
+            else:
+                first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+
+            # Create the user object and save it
+            user = form.save()
+
+            # Set "first_name" and "last_name" on the user object
+            user.first_name = first_name
+            user.last_name = last_name
+            user.save()
+
+            subject = "Welcome to Worki"
+            email_template_applicant = "main/register/Welcome.txt"
+            c = {
+                "email": user.email,
+                'domain': 'worki.global',
+                'site_name': 'Worki',
+                'user': request.user,
+                'first_name': first_name,
+            }
+            email = render_to_string(email_template_applicant, c)
+            try:
+                send_mail(subject, email, 'Worki hello@worki.global',
+                          [NewClinetemail], fail_silently=False)
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+
+            login(request, user)
+            next_url = request.GET.get('next')
+            if next_url:
+                return redirect(next_url)  # Redirect to the URL specified in 'next'
+            return redirect('home')
+
+    else:
+        form = NewRegisterForm()
+
+    return render(request, 'accounts/Newregister.html', {'form': form})
 def registration(request):
     if request.POST:
         NewClinetemail = request.POST.get("email")
@@ -305,8 +405,7 @@ def update_profile(request):
     if for_usExp.is_valid() or form.is_valid() or form_usLang.is_valid() or form_usEdu.is_valid():
 
         if form.is_valid():
-            CountryUser(request.POST.get("country"), request.user)
-
+            print(form)
             form.save()
 
         if for_usExp.is_valid():
@@ -1735,6 +1834,13 @@ class MainJobsId(View):
 
 
 def ApplySuc(request):
+    user= request.user
+    app = Application.objects.filter(user_id=user)
+    print("-----------------------------------------------------------")
+    print("-----------------------------------------------------------")
+    print(app)
+    print("-----------------------------------------------------------")
+    print("-----------------------------------------------------------")
     return render(request,"MainJobs/apply.html")
 
 

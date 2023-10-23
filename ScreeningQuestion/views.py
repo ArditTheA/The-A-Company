@@ -11,6 +11,7 @@ from accounts.views import *
 
 from .forms import *
 import time
+@login_required()
 def add_JobScreeningQuestion(request):
     country_j = Country.objects.all()
     city_j = City.objects.all()
@@ -614,5 +615,8 @@ def applyForJobSQ(request, pk):
             makeApplication(userId,pk,job,dataa,"",request.user.email)
             return redirect('appSuc')
         return render(request, "ApplySQ/reserve.html", dict(form=form, country=country,question=question))
+    appdate = ""
+    if Application.objects.filter(user_id=request.user,job_id=job).exists():
+        appDate = Application.objects.get(user_id=request.user,job_id=job).apply_date
 
-    return render(request, "MainJobs/apply.html")
+    return render(request, "MainJobs/apply.html",dict(appDate=appDate))

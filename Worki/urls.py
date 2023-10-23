@@ -28,16 +28,25 @@ from  filters.views import *
 from resetpassword.views import *
 from Match.views import *
 from ScreeningQuestion.views import *
+from social_django import views as social_views
+from django.contrib.auth import views as auth_views
+from accounts.views import *
+
 urlpatterns = [
+
+
+
     path('admin/', admin.site.urls),
     path('sign-in/', LoginView.as_view(), name='login'),
-    path('create-account/', registration, name='register'),
+    path('login/', login_redirect),
+    path('create-account/', newregister, name='register'),
     path('logout/', userViews.LogoutView.as_view(template_name='home/home.html'), name='logout'),
     path('', landingPage, name='home'),
     # path('', MainJobs.as_view(), name='home'),
 
     #Jobs  / Profile / Posted / Aplied
     path("",include('accounts.urls')),
+
 
     # Filters
     path("", include('filters.urls')),

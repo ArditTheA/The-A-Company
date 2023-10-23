@@ -14,6 +14,9 @@
         <img class="applying-img" width="55" src="{% static 'img/checkbox2.svg' %}" alt="">
         <div class="successfully-applied-div">You have successfully applied</div>
         <div class="check-email-div">Please check your email for updates on your application</div>
+           {% if appDate %}
+        <div class="successfully-applied-div">You have applied on: {{appDate}}</div>
+           {% endif %}
         <div class="done-button-div" style="">
            <a href="{% url 'home' %}" id="" class="done-successful-applying" style="">Done</a>
         </div>

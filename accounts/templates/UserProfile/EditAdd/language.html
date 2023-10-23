@@ -15,7 +15,7 @@
                     <div class="two-imgs-experience">
                     
                 <a href="{% url 'editLanguageId' i.id %}">
-                    <img class="edit-experience edit-experience-pop-up-button" title="Edit Experience" src="{% static 'img/Ikona_edit-01 56.png' %}" alt=""></a>
+                    <img class="edit-experience edit-experience-pop-up-button" title="edit Experience" src="{% static 'img/Ikona_edit-01 56.png' %}" alt=""></a>
                 </div>
                 </div>
                 <div class="experience-third-row">{{i.level}}</div>  
@@ -25,62 +25,53 @@
         </div>
         </div>
         <div class="add-and-edit-experience">
-          <a href="{% url 'profile'%}"><img class="back-icon" title="Go Back" src="{% static 'img/backButton.png' %}" alt=""></a>         
-          <img class="second-add-languages-button plus-button-exp" title="Add Experience" src="{% static 'img/Vector 80.png' %}" alt="">
-        </div>
+                    <a href="{% url 'profile'%}"><img class="back-icon add-edit-buttons-hover" title="Go Back" src="{% static 'img/backButton.png' %}" alt=""></a>
+                    <img class="second-add-languages-button plus-button-exp add-edit-buttons-hover" title="Add Languages" src="{% static 'img/Vector 80.png' %}" alt="">
+                </div>
+
     </div>
 </div>
 
 
 
 <div class="bg-add-and-edit">
-<div class="add-languages add-languages-second" style="display: none;">
-    <div class="under-container">
-        <div class="exit-img exit-img-edit-profile exit-img-add-experience-education-languages">
-                <img title="Exit" class="exit-button exit-button-edit-profile exit-button-second-add-languages" src="{% static 'img/Vector 81 (1).png'%}" alt="">
-        </div>
-        <h1 id="title-experience">Add Languages</h1>
-        <form method="POST" action="" class="sign-up-form">
+    <div class="add-languages under-container-mutual-mutual-stats">
+ 
+        <div class="add-language-title mutual-titles-pop-ups-stats">Add Language</div>
+        <form method="POST" action="" class="sign-up-form add-language-form">
             {% csrf_token %}
             <div style="display: none;">
+               
                 {{edit.user_id}}
             </div>
             <div class="div-of-job-experience">
-                <p class="paragraph-of-name paragraphs-stats">Language</p>
-                <select name="language" required="" id="id_language">
-                    <option value="" selected=""></option>
+                <select name="language" required="" id="id_language" class="profile-all-inputs-option">
+                    <option style="display: none;" selected>Language</option>
                     {% for i in lang %}
-                    <option value="{{i.id}}">{{i}}</option>
+                        <option value="{{i.id}}">{{i}}</option>
                     {% endfor %}
-                    
-                  
-                  </select>
-            </div>
-
-            <div>
-                <p class="paragraph-of-surname paragraphs-stats">Level</p>
-                <select name="level" required="" id="id_level">
-                    <option value="" selected=""></option>
-                    <option value="N/A">N/A</option>
-                    <option value="Basic">Basic</option>
-                    <option value="Low-Intermediate">Low-Intermediate</option>
-                  
-                    <option value="High-Intermediate">High-Intermediate</option>
-                  
-                  
-                  
-                    <option value="Advanced">Advanced</option>
-                  
-                  
-                  </select>
+                </select>
             </div>
             
-            <div class="save-button save-button-edit-add-education-480">
-                <input name="save" type="submit" class="save-submit-input save-picture font-fam" value="Save">
-            </div>  
+            <div>
+            <select id="id_level" name="level" type="text" required class="surname-input mutual-stats font-fam">
+                <option style="display: none;" selected>Level</option>   
+                <option value="N/A">N/A</option>
+                    <option value="Basic">Basic</option>
+                    <option value="Low-Intermediate">Low-Intermediate</option>
+    
+    
+                    <option value="High-Intermediate">High-Intermediate</option>
+    
+                    <option value="Advanced">Advanced</option>
+            </select>
+            </div>
+            <div class="save-button save-button-edit-profile">
+                <input title="Back to Profile" name="back" type="button" class="back-input font-fam back-save-buttons" value="Back">
+                <input title="Save Profile Data" name="save" type="submit" class="save-submit-input font-fam back-save-buttons" value="Save">
+            </div>
         </form>
     </div>
-</div>
 </div>
     {% include 'scripts.html' %}
 
