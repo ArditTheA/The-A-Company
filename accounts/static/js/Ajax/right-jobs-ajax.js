@@ -1,4 +1,64 @@
-     async function getNumber(id) {
+    
+   function showElements(shouldShowLeftJobs) {
+    const elementsToShow = shouldShowLeftJobs ? '.job-left, .profileHeader, .header-wishes, .jobs-buttons' : '.right-jobs, .right-jobs-main-div';
+ 
+    if (window.matchMedia('(max-width: 480px)').matches) {
+        if (shouldShowLeftJobs) {
+            $('.job-left, .profileHeader, .header-wishes, .jobs-buttons').show();
+            $('.right-jobs, .right-jobs-main-div').hide();
+        } else {
+            $('.job-left, .profileHeader, .header-wishes, .jobs-buttons').hide();
+            $('.right-jobs, .right-jobs-main-div').show();
+        }
+    } else {
+        $(elementsToShow).show();
+    }
+}
+
+function updateHistoryURL(id) {
+    const newURL = window.location.origin + "/jobs" + (id ? '/' + id : '');
+    history.pushState({ showJobLeft: !id }, '', newURL);
+}
+
+function initialize() {
+    const post_id = getElementById("PostID").value;
+    updateHistoryURL(post_id);
+
+  
+
+    
+
+    // Add more event handlers as needed
+}
+
+$('.job-right-exit').click(function() {
+    updateHistoryURL();
+    showElements(true);
+});
+
+ // Handle popstate for mobile
+ window.addEventListener('popstate', function(event) {
+    if (event.state !== null) {
+        showElements(event.state.showJobLeft);
+    }
+});
+
+// Initial setup based on the screen width
+if (window.matchMedia('(max-width: 480px)').matches) {
+    showElements(true); // Ensure right jobs are initially hidden on mobile
+
+    initialize();
+} else {
+    $(document).ready(initialize);
+}
+
+// Additional code to handle initial history state
+window.addEventListener('load', function() {
+    showElements(history.state && history.state.showJobLeft !== true);
+});
+
+
+    async function getNumber(id) {
 
         var elements = document.getElementsByClassName('pixel'); // get all elements
 
@@ -24,7 +84,7 @@
         );
         let data = await response.json();
 
-
+        console.log(JSON.stringify(data, null, 2));
         var mainJobs = false;
 
 
@@ -148,6 +208,10 @@
         select.style.backgroundColor = "#E7F1FE";
 
         };
+
+        updateHistoryURL(id);
+        console.log(showElements(false));
+        showElements(false);
 
 
 }
