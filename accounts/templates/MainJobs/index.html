@@ -25,72 +25,16 @@
 {% endif %}
 <script>
     $(document).ready(function() {
-        $('.job-left-row').eq(0).click();
-        if (window.innerWidth <= 768){
-            $('.right-jobs, .right-jobs-main-div').hide();
+        
+        if (window.innerWidth >= 768){
+            $('.job-left-row').eq(0).click();
         }
     });
 </script>
 <script>
-    function showElements(shouldShowLeftJobs) {
-        const elementsToShow = shouldShowLeftJobs ? '.job-left, .profileHeader, .header-wishes, .jobs-buttons' : '.right-jobs, .right-jobs-main-div';
-     
-        if (window.matchMedia('(max-width: 480px)').matches) {
-            if (shouldShowLeftJobs) {
-                $('.job-left, .profileHeader, .header-wishes, .jobs-buttons').show();
-                $('.right-jobs, .right-jobs-main-div').hide();
-            } else {
-                $('.job-left, .profileHeader, .header-wishes, .jobs-buttons').hide();
-                $('.right-jobs, .right-jobs-main-div').show();
-            }
-        } else {
-            $(elementsToShow).show();
-        }
-    }
-
-    function updateHistoryURL(id) {
-        const newURL = window.location.origin + "/jobs" + (id ? '/' + id : '');
-        history.pushState({ showJobLeft: !id }, '', newURL);
-    }
-
-    function initialize() {
-        const post_id = '{{post_id}}';
-        updateHistoryURL(post_id);
-
-        $('.job-left-row').click(function() {
-            const id = $(this).attr('id').substring("select".length);
-            updateHistoryURL(id);
-            showElements(false);
-        });
-
-        $('.job-right-exit').click(function() {
-            updateHistoryURL();
-            showElements(true);
-        });
-
-        // Add more event handlers as needed
-    }
-
-    // Handle popstate for mobile
-    window.addEventListener('popstate', function(event) {
-        if (event.state !== null) {
-            showElements(event.state.showJobLeft);
-        }
-    });
-
-    // Initial setup based on the screen width
-    if (window.matchMedia('(max-width: 480px)').matches) {
-        showElements(true); // Ensure right jobs are initially hidden on mobile
-
-        initialize();
-    } else {
-        $(document).ready(initialize);
-    }
-
-    // Additional code to handle initial history state
-    window.addEventListener('load', function() {
-        showElements(history.state && history.state.showJobLeft !== true);
-    });
+    
+   
+   
 </script>
 
 
