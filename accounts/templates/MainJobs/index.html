@@ -26,7 +26,6 @@
 <script>
     $(document).ready(function() {
         $('.job-left-row').eq(0).click();
-        getNumber('{{post_id}}');
         if (window.innerWidth <= 768){
             $('.right-jobs, .right-jobs-main-div').hide();
         }
@@ -60,9 +59,7 @@
 
         $('.job-left-row').click(function() {
             const id = $(this).attr('id').substring("select".length);
-            getNumber(id);
             updateHistoryURL(id);
-            
             showElements(false);
         });
 
