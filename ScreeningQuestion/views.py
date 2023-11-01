@@ -11,6 +11,55 @@ from accounts.views import *
 
 from .forms import *
 import time
+
+
+
+def GSheets(dataa,user,job,AnsList):
+    import gspread
+    from oauth2client.service_account import ServiceAccountCredentials
+    from google.oauth2 import service_account
+
+    scope = [
+        "https://spreadsheets.google.com/feeds",
+        "https://www.googleapis.com/auth/spreadsheets",
+        "https://www.googleapis.com/auth/drive.file",
+        "https://www.googleapis.com/auth/drive"
+    ]
+
+    # Replace these with your actual credentials
+    creds_info = {
+        "type": "service_account",
+        "project_id": "workileads",
+        "private_key_id": "ce792832b16c169fff7c7bde0888d61d3c1d0b95",
+        "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCfVfrLZIrU809U\ngUv5BENvkvSuIJCM46pDbENkzinmJ6QSsDaQ4wSAAtI3hjNpGzoXl42anMfXZxle\n+s8pHOgC5k+ZFPpq7Sm91D0SMxg13QZh03z3L22cTQU8gwvOvN+Fxj2rQS1Zh6WQ\njcf4PfPYvTKdnBxAQotZ6kPKV0seoOQg0D/7VVI9Yu8ZBYNRZKraQGYXRFpoPXkS\nQ1scs9aTKMnpVu1F3pVVTn2YGS8zifD1TTjzHAujRPXxyQDllLswp9fzyT4XHS50\nuGCwmMO6ydN7Bto9kMt2SuRKKP14JNcOVUkqIpae1b0/nB3enbqd1MsvozAzjDVP\n48L83tO1AgMBAAECggEADBOzhR/wtkg0kAfBLIBSTzOWPa4vXqpxRkJ/ZOA2hKDR\nEBnl95CUJP1xwG542O43dpXQux0dOEUILdmOAwRTS/L31LcmbZ0zyn+62vVfT/0v\nMGeGuOKnU3nysWiPvXgLQNkVkAnfktdpU8isqp121+EBTuPIBWaLKEHNfm75ko+J\n6T6r70BjDyRyyoga7r1paDuhj/VcvzHVfCE5oxQeRAGdG5wfNA5+oqE4YltXRnFa\nDEHgykqovzTzvQ0pGEQxwpC4yjPd6HI0H7wMDpyQP+QKeaCUgI2/segSsNabLC5y\n4OEvUvWlZ0RoyB/3sIo4Hny3UU+Jje40/JGJH2MY6QKBgQDNp9QNyf7vkb5D0U9s\nANwAld7+KoXvoXsDZkbcqwqUSUS1hKT/iX8I7/Zh21f54NN3FAzcyQe1fJvxTCgw\nqeNFHUWdzXoXaSSYsWRfO313XgOr0YXZj9pDuqpnUly00HRSgV/EqydI3qNmzq2H\n5648f2VVDJ8rz7C6DWfuSuag6QKBgQDGV1qOurLAcD08WsNvuCv+/1m98SvTYNsw\nBvze+N6VyH2bjlh7C+eAwnFJhMZzFkoAkUagtPZp55zwqwcIEUOpqrlTbXWPoiRg\n1sCs6ug1KSZ04UIw40NTgZei2w0r0ZyqMHC7ynQA4Gukmzrk6JVL9sCxKCWNbgj7\nuokKOTN87QKBgCWQqWBXbFTQV2PF4O8GfSkyNwhQNiTeZzzourrmF0mc1IsfjpAK\nyoSUaHnZeglvstDGfc76fYj+GPILii/RaG0geq3ncYzDLOcjSAVJNZLPPnZtEDj8\nWM8UUroKxlpU1VqYvSiMZuGdoVVPHU182Uu9rYHKi2ySRGLHvhs93UC5AoGAXXq+\nS5biuKAtvExq4DTFR6HCAiuwpCd6JuCkPdK91Ypw6Ofl+9hYe+8oxaW2gnd22V2f\nFA82NCPda/Cvl7XLViQIxLFKPzAERT/x/42Xc7a5UUz5jWEPUkQ525+yTXy1geDi\nwR9iHSeolCQ1Vb3o36yklNp/GHFL+pioDhF3muECgYAlfm3YEap8Ck4WziaUVmm3\nWcTYI66wvl+4Pogh0dY+lPCkbYHimFc2C6O5umQrsYwTgPcLhdIEvYkDJ8n4AoW6\njO9Ky5ftXYvPFRVPpCSHyu/8OBY9PRnflsNSPr1PBtZcpmr31Re+99DXj4AteDsD\ncqB3c9ceSj+gVXHtnXyNhA==\n-----END PRIVATE KEY-----\n",
+        "client_email": "workileads@workileads.iam.gserviceaccount.com",
+        "client_id": "100567195679163321988",
+        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+        "token_uri": "https://oauth2.googleapis.com/token",
+        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+        "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/workileads%40workileads.iam.gserviceaccount.com",
+        "universe_domain": "googleapis.com"
+    }
+
+    creds = service_account.Credentials.from_service_account_info(creds_info, scopes=scope)
+
+    client = gspread.authorize(creds)
+    sh = client.open("Worki_Leads_2024")  # Open the spreadsheet
+
+    # Set the worksheet name where you want to add the data
+
+    worksheet_name = "Leads"
+    worksheet = sh.worksheet(worksheet_name)
+    data_to_send = [
+        ["",dataa,user.first_name, user.last_name,user.email,  user.phone_number,job.program,user.country,job.job_title,job.country_j,job.city_j]+AnsList,
+    ]
+
+
+    # Append the data to the worksheet
+    worksheet.append_rows(data_to_send)
+
+
+
 @login_required()
 def add_JobScreeningQuestion(request):
     country_j = Country.objects.all()
@@ -35,6 +84,10 @@ def add_JobScreeningQuestion(request):
             #     job_settings = form.save(commit=False)
             #     job_settings.job_id = job
             #     job_settings.save()
+            job_settings = JobSettings()
+            job_settings.job_id = job
+            job_settings.jobSettings  = request.POST.get("job_settings")
+            job_settings.save()
 
             for form in job_question_formset:
                 if form.cleaned_data.get('promp') is not None:
@@ -47,6 +100,9 @@ def add_JobScreeningQuestion(request):
             CityJob(getCity, getCountry)
             subject = "Your job posting for " + jobTitle + " is under review"
             email_template_applicant = "main/jobs/postJob.txt"
+
+
+
 
             c = {
                 "email": request.user.email,
@@ -539,6 +595,10 @@ def applyForJobSQ(request, pk):
     answerUS = request.POST.get("answer")
 
     country = Country.objects.all()
+    listQ = []
+    for i in question:
+        listQ.append(request.POST.get(str(i.id)))
+
 
     def ckeckList(lst):
 
@@ -592,6 +652,7 @@ def applyForJobSQ(request, pk):
                         makeApplication(userId,pk,job,dataa,"Qualified",request.user.email)
                         form.save()
                         sentQualifiedEmail(request,job,us)
+                        GSheets(str(dataa),request.user,job,listQ)
 
                         return redirect('appSuc')
 
@@ -601,11 +662,13 @@ def applyForJobSQ(request, pk):
                         makeApplication(userId,pk,job,dataa,"Not qualified",request.user.email)
                         print("doesnt meet qualification")
                         form.save()
+                        GSheets(str(dataa),request.user,job,listQ)
                         sentNQualifiedEmail(request,job,us)
 
                         return redirect('appSuc')
                 else:
                     makeApplication(userId,pk,job,dataa,"Not qualified",request.user.email)
+                    GSheets(str(dataa),request.user,job,listQ)
                     return redirect('appSuc')
 
             return render(request, "ApplySQ/reserve.html", dict(form=form, country=country,question=question))
@@ -613,6 +676,7 @@ def applyForJobSQ(request, pk):
     else:
         if request.method == "POST" and form.is_valid():
             makeApplication(userId,pk,job,dataa,"",request.user.email)
+            GSheets(str(dataa),request.user,job,listQ)
             return redirect('appSuc')
         return render(request, "ApplySQ/reserve.html", dict(form=form, country=country,question=question))
     appdate = ""
