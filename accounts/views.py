@@ -36,7 +36,11 @@ import locale
 
 today = timezone.now
 
+def CompanyLandingPage(request):
+    return render(request,"LandingPage/company.html")
 
+def EmployeesLandingPage(request):
+    return render(request,"LandingPage/employees.html")
 
 from django.shortcuts import render
 from allauth.socialaccount.models import SocialAccount
