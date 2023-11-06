@@ -16,6 +16,10 @@ urlpatterns = [
 
     path('accounts/social/signup/google/', socialaccount_views.signup, name='socialaccount_signup_google'),
 
+    path("companies",CompanyLandingPage,name="companyLandingPage"),
+    path("employees",EmployeesLandingPage,name="employeesLandingPage"),
+   
+
     path('jobs/', MainJobs.as_view(),name="jobs"),
     path('jobs/<int:pk>', MainJobsId.as_view(),name="visitJob"),
     path("TermsAndCondition/", Terms, name="terms"),
