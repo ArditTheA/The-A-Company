@@ -214,14 +214,13 @@ def changeEmailForJobs(request):
 
 
 
-
-
 from django.http import HttpResponse
-from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
+from reportlab.pdfgen import canvas
+from django.core.files.base import ContentFile
+from io import BytesIO
 
-
-def generate_cv(request,pk):
+def generate_cv(request, pk):
     # Create a new PDF file and a canvas to draw on
     response = HttpResponse(content_type='application/pdf')
     user = CustomUser.objects.get(id=pk)
@@ -234,6 +233,7 @@ def generate_cv(request,pk):
     PAGE_WIDTH, PAGE_HEIGHT = A4
     pdf_canvas = canvas.Canvas(response, pagesize=(PAGE_WIDTH, PAGE_HEIGHT))
     y = 800
+
     # Add text to the PDF
     pdf_canvas.setFont('Helvetica-Bold', 16)
     pdf_canvas.drawCentredString(300, y, f'{user.first_name} {user.last_name}')
@@ -247,28 +247,27 @@ def generate_cv(request,pk):
     pdf_canvas.drawString(20, y, 'Education')
     pdf_canvas.setFont('Helvetica', 12)
     y -= 10
+
     for i in userEdu:
         # Add the education information with the start and end years on the same line
         education_line1 = f'{i.degree} of {i.field_of_study} - {i.university}'
         if i.end_year is not None:
-            education_line2 = f'{format(i.start_year,"%d/%m/%Y")} - {format(i.end_year,"%d/%m/%Y")}'
+            education_line2 = f'{format(i.start_year, "%d/%m/%Y")} - {format(i.end_year, "%d/%m/%Y")}'
         else:
-            education_line2 = f'{format(i.start_year,"%d/%m/%Y")} - Present'
+            education_line2 = f'{format(i.start_year, "%d/%m/%Y")} - Present'
 
         education_width1 = pdf_canvas.stringWidth(education_line1, 'Helvetica', 12)
         education_width2 = pdf_canvas.stringWidth(education_line2, 'Helvetica', 12)
-        education_start_x = 550 - education_width2
+        education_start_x = 580 - education_width2
         y -= 20
         pdf_canvas.drawString(80, y, education_line1)
         pdf_canvas.drawString(education_start_x, y, education_line2)
 
     y -= 40
-
     pdf_canvas.setFont('Helvetica-Bold', 14)
     pdf_canvas.drawString(20, y, 'Experience')
     pdf_canvas.setFont('Helvetica', 12)
     y -= 20
-
 
     for i in userExperience:
         # Add the education information with the start and end years on the same line
@@ -278,10 +277,15 @@ def generate_cv(request,pk):
         else:
             education_line2 = f'{format(i.start_date, "%d/%m/%Y")} - Present'
 
+        education_width1 = pdf_canvas.stringWidth(education_line1, 'Helvetica', 12)
+        education_width2 = pdf_canvas.stringWidth(education_line2, 'Helvetica', 12)
+        education_start_x = 580 - education_width2
+        y -= 20
+        pdf_canvas.drawString(80, y, education_line1)
+        pdf_canvas.drawString(education_start_x, y, education_line2)
 
-
-        # Add a section for languages at the bottom of the CV
-    y -= 20
+    # Add a section for languages at the bottom of the CV
+    y -= 40
     pdf_canvas.setFont('Helvetica-Bold', 14)
     pdf_canvas.drawString(20, y, 'Languages')
     pdf_canvas.setFont('Helvetica', 12)
@@ -289,18 +293,11 @@ def generate_cv(request,pk):
 
     for i in userLanguage:
         pdf_canvas.drawString(80, y, f'{i.language}')
-        pdf_canvas.drawRightString(550, y, f'{i.level}')
+        pdf_canvas.drawRightString(580, y, f'{i.level}')
         y -= 20
 
     # Close the PDF
     pdf_canvas.showPage()
     pdf_canvas.save()
+    
     return response
-
-
-
-
-
-
-
-
