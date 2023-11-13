@@ -4,7 +4,7 @@
  
     if (window.matchMedia('(max-width: 480px)').matches) {
         if (shouldShowLeftJobs) {
-            $('.profileHeader').style("display","flex")
+            $('.profileHeader').css('display', 'flex');
             $('.job-left, .profileHeader, .header-wishes, .jobs-buttons').show();
             $('.right-jobs, .right-jobs-main-div').hide();
         } else {
