@@ -139,7 +139,7 @@
          </div>
       </div>
    </div>
-   <div class="additional-feature-form reserve-form" style="display: none;">
+   <div class="additional-feature-form reserve-form" style="display: block;">
       <div class="program-duration-form additional-feature-form-main-div">
          <div class="program-duration-main-div third-job-details-div">
             <div class="program-duration-div third-job-details pd-ci-cursor font-size-18px-16px third-page-job-details-description">Job Details</div>
@@ -163,11 +163,11 @@
                   <div class="answer-type-select">
                      <!-- <label class="mutual-color">Answer type: </label> -->
                      <select onchange="changeAnsType(0)" class="form-control select-width" name="job_question-0-question_type" id="id_job_question-0-question_type">
-                       <option value="" selected=""></option>
-
+                       <option value="" ></option>
+                       <option value="Yes/No" selected>Yes/No</option>                
                        <option value="Numeric">Numeric</option>
 
-                       <option value="Yes/No">Yes/No</option>
+                       
 
                      </select>
 
@@ -196,8 +196,9 @@
 
 
                         <select onchange="changeAnsType(1)" class="form-control select-width select-arrow" id="id_job_question-1-question_type" name="job_question-1-question_type">
+                           <option style="display: none;" ></option>
 
-                        <option value="Yes/No">Yes / No</option>
+                        <option value="Yes/No" selected>Yes / No</option>
                         <option value="Numeric" >Numeric</option>
                     </select>
                       </div>
@@ -231,8 +232,8 @@
                       <div class="answer-type-select">
 
                         <select onchange="changeAnsType(2)" class="form-control select-width select-arrow" id="id_job_question-2-question_type" name="job_question-2-question_type">
-
-                        <option value="Yes/No">Yes / No</option>
+                        <option style="display: none;" ></option>
+                        <option value="Yes/No" selected>Yes / No</option>
                         <option value="Numeric" >Numeric</option>
                     </select>
                       </div>
@@ -246,8 +247,16 @@
 
                     </div>
                   </div>
+                  
 
             <div title="You can add up to three questions for students" type="text" class=" add-question-button" onclick="showNextFormGroup()"><span style="padding-right: 10px;">+</span>Add Question</div>
+            <div class="form-group form-group-add-question">
+               <select name="job_settings" id="job_settings" class="form-control select-width">
+                  <option  ></option>
+                  <option value="F" selected>Filter out & send rejection letters to applicants who dont meet qualifications</option>
+                  <option value="NF">Don’t filter out applicants. I will manually review each application sent to me</option>
+               </select>
+            </div>
             <div class="back-and-next-buttons" style="width: 100%; display: flex; justify-content: space-between;">
                <a class="btn back-button next-none additional-feature-back-button">Back</a>
                <input type="submit" value="Submit" id="additional-feature-submit-button" class="next-button btn submit-button next-none" ></input>

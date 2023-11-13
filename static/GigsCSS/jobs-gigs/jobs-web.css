@@ -6,6 +6,15 @@
     display: flex;
     justify-content: space-between;
 }
+.right-jobs-directions-accept-job {
+text-decoration: none;
+color: white;
+border-radius: 20px;
+padding: 8px 30px;
+background-color: #1877F2;
+cursor: pointer;
+border: 1px solid #1877F2;
+}
 .plus-icon-jobs {
     width: 18px;
     height: 18px;

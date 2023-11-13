@@ -8,6 +8,7 @@ from django.views import View
 from Applicant.forms import DocumentForm
 from Applicant.models import *
 from ScreeningQuestion.models import *
+from Worki import settings
 from documents.models import  *
 OnBoardPhase = ["Payment","Meet With Us","Documents for work permit","Your work permit is here"]
 onboardPhaseName = ["Payment","Meet-With-Us","Documents-for-work-permit","Your-work-permit-is-here"]
@@ -217,8 +218,17 @@ def changeEmailForJobs(request):
 from django.http import HttpResponse
 from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
-from django.core.files.base import ContentFile
 from io import BytesIO
+from reportlab.pdfgen import canvas
+from django.http import HttpResponse
+from django.core.files.storage import FileSystemStorage
+from django.conf import settings
+import os
+
+
+
+
+
 
 def generate_cv(request, pk):
     # Create a new PDF file and a canvas to draw on
@@ -281,8 +291,12 @@ def generate_cv(request, pk):
         education_width2 = pdf_canvas.stringWidth(education_line2, 'Helvetica', 12)
         education_start_x = 580 - education_width2
         y -= 20
+
+
+
         pdf_canvas.drawString(80, y, education_line1)
         pdf_canvas.drawString(education_start_x, y, education_line2)
+
 
     # Add a section for languages at the bottom of the CV
     y -= 40
@@ -299,5 +313,7 @@ def generate_cv(request, pk):
     # Close the PDF
     pdf_canvas.showPage()
     pdf_canvas.save()
-    
+
+
+
     return response

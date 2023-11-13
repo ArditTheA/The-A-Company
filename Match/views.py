@@ -211,16 +211,33 @@ class GetJobIdApplicant(View):
                         langlev = "languageLevel"+str(countLang)
                         newDic[langlev]=str(i.level)
                         countLang+=1
+                    
+                    passaportExists = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Passport").exists()
+                    studentStatusExists = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Student Status").exists()
+                    certificateOfEnrolmentExists = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Certificate of Enrolment").exists()
+                    studentIdExists = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Student ID").exists()
+                    photoExists = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Photo").exists()
+                    serviceContractExists  = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Service contract").exists()
+                    jobOfferExists  = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Job Offer").exists()
+                    workPermitExists  = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Work Permit").exists()
 
+                    newDic["passaportExists"]=passaportExists
+                    newDic["studentStatusExists"] = studentStatusExists
+                    newDic["certificateOfEnrolmentExists"]=certificateOfEnrolmentExists
+                    newDic["studentIdExists"]=studentIdExists
+                    newDic["photoExists"]=photoExists
+                    newDic["serviceContractExists"]=serviceContractExists
+                    newDic["jobOfferExists"]=jobOfferExists
+                    newDic["workPermitExists"]=workPermitExists
                     return HttpResponse(json.dumps(newDic),content_type='application/json; charset=utf8')
 
                 app=True
                 q="All"
-                return render(request, "Match/Applicant/index.html", dict(users=users,q=q,app=app,phase=phase,subphase=subphase,us=detailUser,uExp=ExpUser,uEdu=EduUser,uLang = LangUser,jpk=jpk,uid=uid,OnBoardPhase=OnBoardPhase))
+                return render(request, "Applicant-Doc/index.html", dict(users=users,q=q,app=app,phase=phase,subphase=subphase,us=detailUser,uExp=ExpUser,uEdu=EduUser,uLang = LangUser,jpk=jpk,uid=uid,OnBoardPhase=OnBoardPhase))
             else:
                 q = "All"
                 app=False
-                return render(request,"Match/Applicant/index.html",dict(q=q,app=app,jpk=jpk))
+                return render(request,"Applicant-Doc/index.html",dict(q=q,app=app,jpk=jpk))
         elif request.user.is_staff:
             if Application.objects.filter(job_id=jpk).exists():
                 users = Application.objects.filter(job_id=jpk)
@@ -319,21 +336,37 @@ class GetJobIdApplicant(View):
                         langlev = "languageLevel" + str(countLang)
                         newDic[langlev] = str(i.level)
                         countLang += 1
+                    passaportExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Passport").exists()
+                    studentStatusExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Student Status").exists()
+                    certificateOfEnrolmentExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Certificate of Enrolment").exists()
+                    studentIdExists = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Student ID").exists()
+                    photoExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Photo").exists()
+                    serviceContractExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Service contract").exists()
+                    jobOfferExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Job Offer").exists()
+                    workPermitExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Work Permit").exists()
 
+                    newDic["passaportExists"] = passaportExists
+                    newDic["studentStatusExists"] = studentStatusExists
+                    newDic["certificateOfEnrolmentExists"] = certificateOfEnrolmentExists
+                    newDic["studentIdExists"] = studentIdExists
+                    newDic["photoExists"] = photoExists
+                    newDic["serviceContractExists"] = serviceContractExists
+                    newDic["jobOfferExists"] = jobOfferExists
+                    newDic["workPermitExists"] = workPermitExists
                     return HttpResponse(json.dumps(newDic), content_type='application/json; charset=utf8')
 
                 app = True
                 q = "All"
-                return render(request, "Match/Applicant/index.html",
+                return render(request, "Applicant-Doc/index.html",
                               dict(users=users, q=q, app=app, phase=phase, subphase=subphase, us=detailUser,
                                    uExp=ExpUser, uEdu=EduUser, uLang=LangUser, jpk=jpk, uid=uid,OnBoardPhase=OnBoardPhase))
             else:
                 q = "All"
                 app = False
-                return render(request, "Match/Applicant/index.html", dict(q=q, app=app, jpk=jpk,OnBoardPhase=OnBoardPhase))
+                return render(request, "Applicant-Doc/index.html", dict(q=q, app=app, jpk=jpk,OnBoardPhase=OnBoardPhase))
         else:
             pass
-        return render(request,"Match/Applicant/index.html")
+        return render(request,"Applicant-Doc/index.html")
 class GetJobIdApplicantQualified(View):
     def get(self,request,pk):
         CurrentUser = request.user
@@ -437,18 +470,36 @@ class GetJobIdApplicantQualified(View):
                         newDic[langlev]=str(i.level)
                         countLang+=1
 
+                    passaportExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Passport").exists()
+                    studentStatusExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Student Status").exists()
+                    certificateOfEnrolmentExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Certificate of Enrolment").exists()
+                    studentIdExists = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Student ID").exists()
+                    photoExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Photo").exists()
+                    serviceContractExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Service contract").exists()
+                    jobOfferExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Job Offer").exists()
+                    workPermitExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Work Permit").exists()
+
+                    newDic["passaportExists"] = passaportExists
+                    newDic["studentStatusExists"] = studentStatusExists
+                    newDic["certificateOfEnrolmentExists"] = certificateOfEnrolmentExists
+                    newDic["studentIdExists"] = studentIdExists
+                    newDic["photoExists"] = photoExists
+                    newDic["serviceContractExists"] = serviceContractExists
+                    newDic["jobOfferExists"] = jobOfferExists
+                    newDic["workPermitExists"] = workPermitExists
+
                     return HttpResponse(json.dumps(newDic),content_type='application/json; charset=utf8')
 
                 app=True
                 q="Q"
-                return render(request, "Match/Applicant/index.html", dict(users=users,q=q,app=app,phase=phase,subphase=subphase,us=detailUser,uExp=ExpUser,uEdu=EduUser,uLang = LangUser,jpk=jpk,uid=uid))
+                return render(request, "Applicant-Doc/index.html", dict(users=users,q=q,app=app,phase=phase,subphase=subphase,us=detailUser,uExp=ExpUser,uEdu=EduUser,uLang = LangUser,jpk=jpk,uid=uid))
             else:
                 q = "Q"
                 app = False
-                return render(request,"Match/Applicant/index.html",dict(q=q,app=app,jpk=jpk,phase=phase,subphase=subphase))
+                return render(request,"Applicant-Doc/index.html",dict(q=q,app=app,jpk=jpk,phase=phase,subphase=subphase))
         else:
             pass
-        return render(request,"Match/Applicant/index.html",{"jpk":jpk})
+        return render(request,"Applicant-Doc/index.html",{"jpk":jpk})
 class GetJobIdApplicantNQualified(View):
     def get(self,request,pk):
         CurrentUser = request.user
@@ -552,19 +603,37 @@ class GetJobIdApplicantNQualified(View):
                         newDic[langlev]=str(i.level)
                         countLang+=1
 
+                    passaportExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Passport").exists()
+                    studentStatusExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Student Status").exists()
+                    certificateOfEnrolmentExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Certificate of Enrolment").exists()
+                    studentIdExists = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Student ID").exists()
+                    photoExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Photo").exists()
+                    serviceContractExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Service contract").exists()
+                    jobOfferExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Job Offer").exists()
+                    workPermitExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Work Permit").exists()
+
+                    newDic["passaportExists"] = passaportExists
+                    newDic["studentStatusExists"] = studentStatusExists
+                    newDic["certificateOfEnrolmentExists"] = certificateOfEnrolmentExists
+                    newDic["studentIdExists"] = studentIdExists
+                    newDic["photoExists"] = photoExists
+                    newDic["serviceContractExists"] = serviceContractExists
+                    newDic["jobOfferExists"] = jobOfferExists
+                    newDic["workPermitExists"] = workPermitExists
+
                     return HttpResponse(json.dumps(newDic),content_type='application/json; charset=utf8')
 
                 app=True
                 q="notQ"
 
-                return render(request, "Match/Applicant/index.html", dict(users=users,q=q,app=app,phase=phase,subphase=subphase,us=detailUser,uExp=ExpUser,uEdu=EduUser,uLang = LangUser,jpk=jpk,uid=uid))
+                return render(request, "Applicant-Doc/index.html", dict(users=users,q=q,app=app,phase=phase,subphase=subphase,us=detailUser,uExp=ExpUser,uEdu=EduUser,uLang = LangUser,jpk=jpk,uid=uid))
             else:
                 q="notQ"
                 app=False
-                return render(request,"Match/Applicant/index.html",dict(q=q,app=app,jpk=jpk,phase=phase,subphase=subphase))
+                return render(request,"Applicant-Doc/index.html",dict(q=q,app=app,jpk=jpk,phase=phase,subphase=subphase))
         else:
-            return render(request,"Match/Applicant/index.html")
-        return render(request,"Match/Applicant/index.html",{"jpk":jpk})
+            return render(request,"Applicant-Doc/index.html")
+        return render(request,"Applicant-Doc/index.html",{"jpk":jpk})
 
 
 
@@ -577,7 +646,7 @@ def getApplicantPhase(request,phaseid):
     else:
         app=False
     jpk=0
-    return render(request,"Match/Applicant/indexP.html",dict(users=users,app=app,jpk=jpk))
+    return render(request,"Applicant-Doc/indexP.html",dict(users=users,app=app,jpk=jpk))
 
 class getAppPhase(View):
      def get(self,request,pk,phaseid):
@@ -692,20 +761,20 @@ class getAppPhase(View):
 
                     app=True
                     q="All"
-                    return render(request, "Match/Applicant/index.html", dict(users=users,q=q,app=app,phase=phase,subphase=subphase,us=detailUser,uExp=ExpUser,uEdu=EduUser,uLang = LangUser,jpk=jpk,uid=uid,getSub=getSub))
+                    return render(request, "Applicant-Doc/index.html", dict(users=users,q=q,app=app,phase=phase,subphase=subphase,us=detailUser,uExp=ExpUser,uEdu=EduUser,uLang = LangUser,jpk=jpk,uid=uid,getSub=getSub))
                 else:
                     q = "All"
 
-                    return render(request,"Match/Applicant/index.html",dict(app=False,phase=phase,subphase=subphase,jpk=jpk,getSub=getSub,q=q))
+                    return render(request,"Applicant-Doc/index.html",dict(app=False,phase=phase,subphase=subphase,jpk=jpk,getSub=getSub,q=q))
             else:
                 q = "All"
                 app=False
-                return render(request,"Match/Applicant/index.html",dict(q=q,app=app,jpk=jpk))
+                return render(request,"Applicant-Doc/index.html",dict(q=q,app=app,jpk=jpk))
         else:
             q = "All"
             app = False
-            return render(request,"Match/Applicant/index.html",dict(q=q,app=app,jpk=jpk))
-        return render(request,"Match/Applicant/index.html")
+            return render(request,"Applicant-Doc/index.html",dict(q=q,app=app,jpk=jpk))
+        return render(request,"Applicant-Doc/index.html")
 
 def moveToPhase(request,pk,phaseid,userId):
     user_id = userId.split(",")

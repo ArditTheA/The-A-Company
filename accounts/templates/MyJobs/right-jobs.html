@@ -1,10 +1,49 @@
 {% load static %}
-<div class="right-jobs-main-div right-job-margin-top">
-        <div class="right-jobs" id="detailsRow" style="display:none;flex-direction: column;">
+<style>
+    button{
+        border:0px;
+        background-color: transparent;
+    }
+    .overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
 
-        <div class="job-right-details" style=" ">
+/* CSS for the popup */
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  z-index: 2;
+}
+
+#drop-area {
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+</style>
+<div class="right-jobs-main-div">
+<div class="right-jobs" style="">
+    
+        <div class="job-right-details" >
                     <div class="job-right-content" style="">
-                        <img class="job-right-exit" title="Exit" style=""
+                        <img class="myjob-right-exit" title="Exit" style=""
                             src="{% static 'img/Vector 81 (1).png'%}" onclick="closeButton()" alt="">
                         <div class="job-left-title job-right-title" id="job_title" ></div>
                         <div class=" job-left-details">
@@ -26,10 +65,11 @@
                         <div style="" class="job-right-text-details job-left-details">
                             <span id="program"></span>&nbsp;&nbsp;·&nbsp;&nbsp;<span id="programCost"></span>
                         </div>
-                        <div style="" class="job-right-text-details job-left-details">
-                            <span id="meetingTime"></span>&nbsp;&nbsp;·&nbsp;&nbsp;<span id="meetingLink"></span>
+                        <div class="directions-accept first-buttons-option" id="directionsJobButton" style="">
+                            <div class="under-job-right-apply-button" id="button">
+
+                            </div>
                         </div>
-                        <div id="button" class="job-right-apply-button" style=""></div>
                     </div>
         </div>
         <div class="job-right-details job-right-description">
@@ -39,3 +79,148 @@
         </div>
     </div>
 </div>
+
+
+<div class="overlay">
+    <div class="popup">
+      
+      <form id="upload-form" enctype="multipart/form-data">
+        {% csrf_token %}
+      
+
+      <div id="drop-area">
+        <i class="fa fa-cloud-upload" style="font-size: xxx-large;"></i>
+        <p>Drag & Drop a file here or click to select a file</p>
+        <input type="file"  name="document" id="id_document"  accept=".pdf, .jpg, .jpeg, .png, .svg"  style="display: none;">
+    </div>
+      
+      
+      
+     
+        <p style="display:none;" id="error">file not supported</p>
+
+        <input type="hidden" name="document_id" id="document_id" >
+        <div class="save-button save-button-edit-profile-photo save-button-add-education" style="margin-top:20px;">
+            <input name="back" id="close-popup" title="Back to Profile" type="button" class="back-input font-fam back-save-buttons" value="Back">
+            <button title="Save Profile Data" name="save" type="submit" id="upload-button"   class="save-submit-input font-fam back-save-buttons" value="Save">Save</button>
+        </div>
+      
+        
+      </form>
+      <div id="status"></div>
+    </div>
+  </div>
+  <script>
+    const dropArea = document.getElementById('drop-area');
+    const fileInput = document.getElementById('id_document');
+    const fileList = document.querySelector('#file-list ul');
+    let uploadedFile = null;
+
+    dropArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropArea.style.backgroundColor = '#f0f0f0';
+    });
+
+    dropArea.addEventListener('dragleave', () => {
+        dropArea.style.backgroundColor = '#ffffff';
+    });
+
+    dropArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropArea.style.backgroundColor = '#ffffff';
+        const file = e.dataTransfer.files[0];
+        handleFile(file);
+    });
+
+    fileInput.addEventListener('change', () => {
+        const file = fileInput.files[0];
+        handleFile(file);
+    });
+
+    function handleFile(file) {
+        // Clear previously uploaded file
+        fileList.innerHTML = '';
+        uploadedFile = null;
+
+        if (file) {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${file.name} (${formatSize(file.size)})`;
+            fileList.appendChild(listItem);
+            uploadedFile = file;
+        }
+    }
+
+    function formatSize(bytes) {
+        if (bytes < 1024) {
+            return bytes + " bytes";
+        } else if (bytes < 1048576) {
+            return (bytes / 1024).toFixed(1) + " KB";
+        } else if (bytes < 1073741824) {
+            return (bytes / 1048576).toFixed(1) + " MB";
+        } else {
+            return (bytes / 1073741824).toFixed(1) + " GB";
+        }
+    }
+
+    // Add a click event listener to the drop area to trigger the file input
+    dropArea.addEventListener('click', () => {
+        fileInput.click();
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $('.open-popup').click(function() {
+            var number = $(this).data('number'); // Get the number from the data attribute of the clicked button
+            $('#document_id').val(number); // Set the value of the input field in your popup
+            $('.overlay').show();
+            $('.popup').show();
+        });
+    
+      $('#close-popup').click(function() {
+        $('.overlay').hide();
+        $('.popup').hide();
+      });
+    
+      $('#id_document').on('change', function() {
+        var fileInput = this.files[0];
+    
+        if (fileInput) {
+          // Check the file extension
+          var allowedExtensions = ['.pdf', '.jpg', '.jpeg', '.png', '.svg'];
+          var fileExtension = fileInput.name.slice(((fileInput.name.lastIndexOf(".") - 1) >>> 0) + 2);
+          if (allowedExtensions.indexOf('.' + fileExtension.toLowerCase()) === -1) {
+            // Invalid file extension, update the input border color
+            $('#id_document').css('border', '2px solid red');
+            $('#error').css('display', 'block');
+            $('#error').css('color', 'red');
+          } else {
+            // Reset the input border color if the file is valid
+            $('#error').css('display', 'none');
+    
+            $('#id_document').css('border', '1px solid #ffff');
+          }
+        }
+      });
+    
+      $('#upload-form').submit(function(e) {
+        e.preventDefault();
+    
+        var formData = new FormData(this);
+    
+        $.ajax({
+          type: 'POST',
+          url: '/upload_documents/',
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: function(response) {
+            $('.overlay').hide();
+            $('.popup').hide();
+          },
+          error: function(response) {
+            $('#status').text(response.responseJSON.error);
+          }
+        });
+      });
+    });
+    </script>

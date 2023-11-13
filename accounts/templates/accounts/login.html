@@ -3,7 +3,7 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% load socialaccount %}
-
+{% load account %}
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 
+    <link rel="stylesheet" href="{% static 'GigsCSS/create_account.css'%}">
 
 
     <title>Sign In</title>
@@ -40,6 +41,7 @@
                     <input name="password" type="password" id="password" class="input-text password-input font-fam" placeholder="Password"></input>
                     <i title="Show Password" class="bi bi-eye-slash" id="togglePassword"></i>
                 </div>
+               
 
                 <p class="first-paragraph same-color-of-paragraphs"><a class="password-link" href="{% url 'password_reset'%}">Forgot
                         password?</a></p>

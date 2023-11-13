@@ -28,13 +28,17 @@ from  filters.views import *
 from resetpassword.views import *
 from Match.views import *
 from ScreeningQuestion.views import *
-from social_django import views as social_views
 from django.contrib.auth import views as auth_views
 from accounts.views import *
 
+
+
+
 urlpatterns = [
 
-
+    path('accounts/', include('allauth.urls')),
+    # path('accounts/', include('allauth.socialaccount.urls')),
+    # path('accounts/', include(default_urlpatterns)),
 
     path('admin/', admin.site.urls),
     path('sign-in/', LoginView.as_view(), name='login'),

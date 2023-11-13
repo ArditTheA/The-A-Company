@@ -36,33 +36,15 @@ import locale
 
 today = timezone.now
 
+
 def CompanyLandingPage(request):
     return render(request,"LandingPage/company.html")
 
 def EmployeesLandingPage(request):
     return render(request,"LandingPage/employees.html")
 
-from django.shortcuts import render
-from allauth.socialaccount.models import SocialAccount
-
-def link_google_account(request):
-    if request.user.is_authenticated and request.method == 'POST':
-        try:
-            # Attempt to link the Google account to the currently logged-in user
-            social_account = SocialAccount.objects.filter(user=request.user, provider='google').first()
-        except OAuth2Error as e:
-            # Handle OAuth2Error if there's an issue with the Google API
-            pass
-    else:
-        social_account = None
-
-    return render(request, 'accounts/link_google_account.html', {'social_account': social_account})
 
 
-from django.shortcuts import render
-
-def custom_google_connections(request):
-    return render(request, 'custom_socialaccount_connections.html')
 
 
 
@@ -270,7 +252,9 @@ class passChange(PasswordChangeView):
 class LoginView(auth_views.LoginView):
     form_class = LoginForm
     template_name = 'accounts/login.html'
-
+class GLoginView(auth_views.LoginView):
+    form_class = LoginForm
+    template_name = 'accounts/Glogin.html'
 
 class LogoutView(auth_views.LogoutView):
     template_name = "accouts/login.html"
@@ -284,19 +268,6 @@ class RegisterView(generic.CreateView):
 
 
 
-
-
-from allauth.account.views import SignupView
-from allauth.socialaccount.forms import SignupForm
-
-
-from allauth.socialaccount.views import SignupView, ConnectionsView
-class CustomSocialLoginView(SignupView):
-    template_name = "custom_social_login.html"  # Create this template
-
-class CustomSignupView(SignupView):
-    form_class = SignupForm  # Customize the form used for registration
-    template_name = "custom_signup.html"  # Create this template
 
 
 def newregister(request):
@@ -955,10 +926,13 @@ class RecruiterClosedJobs(View):
 class getAppliantMetting():
     print("test")
 
+from documents.forms import DocumentForm
+from documents.views import *
 
 @method_decorator(login_required(login_url='/login/'), name='dispatch')
 class AppliedJobs(View):
     def get(self, request):
+        
         job = ""
         if request.GET.get("searchApplied") is not None:
             query = request.GET.get("searchApplied")
@@ -1053,12 +1027,19 @@ class AppliedJobs(View):
                 print(checkMainJobs)
                 print("test")
 
+
+
+                
+
                 return JsonResponse(
                     dict(description=description,hasApply=hasApply, title=title, city_j=city_j, country=country, start_date=start_date,
                          salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,checkMainJobs=checkMainJobs,
                          typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
                          program=program, programCost=programCost,SDate=SDate,EDate=EDate,
-                         posted=posted, post_id=post_id, applied=applied, appNo=appNo,meetingLink=meetingLink,meetingTime=meetingTime))
+                         posted=posted, post_id=post_id, applied=applied, appNo=appNo,meetingLink=meetingLink,meetingTime=meetingTime
+                         
+                         
+                         ))
         else:
             if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
                 description = Jobs.objects.filter(id=post_id).values_list(
@@ -1124,7 +1105,15 @@ class AppliedJobs(View):
                          posted=posted, post_id=post_id, applied=applied, appNo=appNo,meetingTime=meetingTime,meetingLink=meetingLink), safe=True)
         check = True
         filterSel = request.GET.get("filterApply")
-
+        passaportExists = documents_users.objects.filter(user_id=request.user, id_document__name__icontains="Passport").exists()
+        studentStatusExists = documents_users.objects.filter(user_id=request.user, id_document__name__icontains="Student Status").exists()
+        certificateOfEnrolmentExists = documents_users.objects.filter(user_id=request.user, id_document__name__icontains="Certificate of Enrolment").exists()
+        
+        print("--------------")
+        print("--------------")
+        print(studentStatusExists)
+        print("--------------")
+        print("--------------")
         if len(job) != 0:
             check = True
             post_id=job[0].job_id.id
@@ -1133,12 +1122,18 @@ class AppliedJobs(View):
             print(post_id)
             print("----------------------")
             print("----------------------")
-            return render(request, "MyJobs/index.html", dict(job=job, check=check,post_id=post_id,filterSel=filterSel))
+            return render(request, "MyJobs/index.html", dict(job=job, check=check,post_id=post_id,filterSel=filterSel,
+                                                        passaportExists=passaportExists,studentStatusExists=studentStatusExists,
+                                                        certificateOfEnrolmentExists=certificateOfEnrolmentExists))
         else:
             check = False
         checkMainJobs = False
-        return render(request, "MyJobs/index.html", dict(job=job, check=check,filterSel=filterSel,checkMainJobs=checkMainJobs))
 
+
+        
+
+        return render(request, "MyJobs/index.html", dict(job=job, check=check,filterSel=filterSel,checkMainJobs=checkMainJobs))
+    
 
 #########################################################################################
 # ------------------------------Posted Jobs---------------------------------------------#

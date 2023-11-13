@@ -1,0 +1,221 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+
+
+ 
+
+    
+    
+</style>
+
+
+<div class="main-buttons-div">
+    <div class="jobs-buttons applied-posted-buttons-mobile all-aplicants-main-div scrolling-wrapper">
+         <div class="main-input-form">
+            <div class="input-form inputs-right-margin all-applicants-button-form" style="">
+             <button title="All Applicants" class="applied-button-jobs outline-none all-applicants-button">{% if q == "All" %}All Applicants{% elif q == "Q" %}Qualified {% else %} Not Qualified {% endif %}</button>
+             <div class="div-white-icon" style="">
+                <img class="icon-filter" src="/static/img/dropdown-icon.png" alt="">
+
+            </div>
+            </div>
+
+             <div class="all-applicants-dropdown profileDropDown mutual-dropdown">
+                 {% if q == "Q" %}
+                 <label style="" class="profileDropDown-content profileDropDown-text"><input style="display: none;" type="checkbox" class="input_type"
+                value="Not Qualified" name="Not Qualified" onclick="AllApplicant()"  />All Applicants</label>
+                 <label style="" class="profileDropDown-content  profileDropDown-text"><input style="display: none;" type="checkbox" class="input_type"
+                value="Not Qualified" name="Not Qualified" onclick="NoQualified()"  />Not Qualified</label>
+                 {% elif q == "notQ" %}
+                 <label style="" class="profileDropDown-content profileDropDown-text"><input style="display: none;" type="checkbox" class="input_type"
+                value="Not Qualified" name="Not Qualified" onclick="AllApplicant()"  />All Applicants</label>
+                <label for="mutual1" id="qualify" class="profileDropDown-content  profileDropDown-text"><input id="mutual1" style="display: none;" type="checkbox" class="input_type"
+                    onchange="checkboxStatusChange()" onclick="Qualified()" value="Qualified" name="Qualified" />Qualified</label>
+                 {% else %}
+                 <label for="mutual1" id="qualify" class="profileDropDown-content profileDropDown-text"><input id="mutual1" style="display: none;" type="checkbox" class="input_type"
+                    onchange="checkboxStatusChange()" onclick="Qualified()" value="Qualified" name="Qualified" />Qualified</label>
+
+                <label style="" class="profileDropDown-content  profileDropDown-text"><input style="display: none;" type="checkbox" class="input_type"
+                value="Not Qualified" name="Not Qualified" onclick="NoQualified()"  />Not Qualified</label>
+                 {% endif %}
+
+
+                
+                 <button title="Select an option to click here" class="move-phase-button">Select to move</button>
+        
+              </div>
+              
+            </div>
+
+            <div class="main-input-form meet-with-us-main-input-form">
+                <div class="input-form inputs-right-margin all-applicants-button-form" style="">
+                 <button class="applied-button-jobs outline-none all-applicants-button">On-boarding</button>
+                 <div class="div-white-icon" style="">
+                    <img class="icon-filter" src="/static/img/dropdown-icon.png" alt="">
+                    </div>
+            </div>
+            <div class="all-applicants-dropdown profileDropDown mutual-dropdown" style="">
+                <label for="mutual2" id="qualify2" class="profileDropDown-content profileDropDown-text documents-for-work-permit-label-dropdown">Documents for Work Permit</label>
+                 <label style="" class="profileDropDown-content all-applicants-dropdown-content profileDropDown-text your-work-permit-is-here-label-dropdown">Your Work Permit is Here</label>         
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="jobs-main-div">
+
+        {% include 'Applicant-Doc/left-applicant.html'%}
+        {% include 'Applicant-Doc/right-applicant.html'%}
+        
+    </div>
+       
+        <div class="bg-add-and-edit" style="display: none;">
+        <div class="popup add-experience under-container-mutual-mutual-stats">
+            <div class="edit-profile-title mutual-titles-pop-ups-stats"><span class="name-document">Document</span></div>
+            <form id="upload-form-recruiter" enctype="multipart/form-data" class="sign-up-form forms-inputs-placeholder">
+                {% csrf_token %}
+            
+                <input type="hidden" name="document_id" id="document_id" value="">
+                <input type="hidden" name="user_id" id="user_id">
+                <div class="drop-area" id="drop-area">
+                    <img src="{% static 'img/upload docs.svg' %}" alt="">
+                    <div class="file-upload">Select a file to upload</div>
+                    <div class="under-upload-file" id="second-line">or drag and drop it here</div>
+                    <input type="file"  name="document" id="id_document"  accept=".pdf, .jpg, .jpeg, .png, .svg"  style="display: none;">
+
+                </div>
+                <div class="save-button save-button-edit-profile-photo">
+                    <input id="close-popup" type="button" name="back" title="Back to Profile" class="back-input font-fam back-save-buttons" value="Back">
+                    <input id="save-button" title="Save Profile Data" name="save" type="submit" class="save-submit-input font-fam back-save-buttons" value="Save">
+                </div>
+            </form>
+        </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+        function Qualified(){
+        window.location="{% url 'qualified-applicant' jpk %}";
+    }
+    function NoQualified(){
+        window.location="{% url 'nonqualified-applicant' jpk %}";
+    }
+    function AllApplicant(){
+        window.location="{% url 'applicant' jpk %}";
+    }
+</script>
+<script>
+function ChangeDiv() {
+    console.log("test");
+    // Hide the first div and show the second div
+    $(".documents-for-work-permit-form-content").hide();
+    $(".your-work-permit-is-here-form-content").show();
+}
+
+</script>
+
+<script>
+    function getDocument(element) {
+        const dataNumber = element.getAttribute('data-number');
+        const dataDocumentId = element.getAttribute('data-document-id');
+        var userId = document.getElementById("user_id").value;
+        const downloadUrl = `/download_document/${dataNumber}/${userId}`;
+    
+        // Create an invisible anchor element to trigger the download.
+        const downloadLink = document.createElement('a');
+        downloadLink.href = downloadUrl;
+        downloadLink.target = '_blank';
+        downloadLink.style.display = 'none';
+
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+        }
+</script>
+
+        <script>
+                $(".job-left-row input").click(function (e) {
+        // Do something
+        e.stopPropagation();
+    });
+        </script>
+<script>
+    function openPopUp(element) {
+     $('.bg-add-and-edit, .popup').css("display", "flex");
+     var titleValue = $(element).attr('title');
+     var dataNumberValue = $(element).attr('data-number');
+     $('#document_id').val(dataNumberValue);
+     $('.name-document').text(titleValue);
+ }
+ </script>
+<script>
+    $(document).ready(function() {
+       
+
+      $('#id_document').on('change', function() {
+        
+        var fileInput = this.files[0];
+        
+
+        if (fileInput) {
+          // Check the file extension
+          var allowedExtensions = ['.pdf', '.jpg', '.jpeg', '.png', '.svg'];
+          var fileExtension = fileInput.name.slice(((fileInput.name.lastIndexOf(".") - 1) >>> 0) + 2);
+          if (allowedExtensions.indexOf('.' + fileExtension.toLowerCase()) === -1) {
+            // Invalid file extension, update the input border color
+            $('#id_document').css('border', '2px solid red');
+            $('#error').css('display', 'block');
+            $('#error').css('color', 'red');
+          } else {
+            // Reset the input border color if the file is valid
+            $('#error').css('display', 'none');
+
+            $('#id_document').css('border', '1px solid #ffff');
+          }
+        }
+      });
+
+      $(document).ready(function() {
+  $('#upload-form-recruiter').submit(function(e) {
+    e.preventDefault();
+
+    var formData = new FormData(this);
+
+    // Get the current domain (including protocol, domain, and port)
+    var currentDomain = window.location.origin;
+
+    // Construct the URL by appending the path
+    var uploadURL = currentDomain + '/upload_documents_recruiter/';
+    var userid = formData.get('user_id');
+    $.ajax({
+      type: 'POST',
+      url: uploadURL,
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function(response) {
+        $('.bg-add-and-edit, .popup').css("display", "none");
+        getUser(userid);
+        // Rest of your success handling code
+      },
+      error: function(xhr, textStatus, errorThrown) {
+        console.log("Error:", textStatus, errorThrown);
+        // Handle the error
+      }
+    });
+  });
+});
+
+
+    });
+    </script>
+    
+
+
+
+    
+
+
+        {% endblock content %}

@@ -7,8 +7,7 @@ from django.core.exceptions import ValidationError
 def validate_file_extension(value):
     allowed_extensions = ['.pdf', '.jpg', '.jpeg', '.png', '.svg']
     ext = value.name.lower()[-4:]  # Get the file extension (e.g., '.pdf')
-    if ext not in allowed_extensions:
-        raise ValidationError(_('File type not supported. Please upload a PDF, JPG, JPEG, PNG, or SVG file.'))
+    
 
 class DocumentForm(forms.ModelForm):
     class Meta:

@@ -22,7 +22,7 @@ class JobSettings(models.Model):
         ("NF","Don’t filter out applicants. I will manually review each application sent to me")
     }
     job_id = models.ForeignKey(Jobs,on_delete=models.CASCADE)
-    email  = models.TextField()
+    email  = models.TextField(null=True,blank=True)
     jobSettings = models.CharField(max_length=500,choices=JobSettings_list)
 
     def __str__(self):

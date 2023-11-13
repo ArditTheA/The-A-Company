@@ -14,7 +14,7 @@ SECRET_KEY = '0x-zrhf@)(t)%-630q&s&9g_c^lvh_9cehy@7vx==@bxgn_s_='
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = False
+DEBUG = True
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
@@ -32,7 +32,9 @@ ALLOWED_HOSTS = ['*']
 
 SOCIALACCOUNT_LOGIN_ON_GET =True
 
-SOCIALACCOUNT_QUERY_EMAIL =True
+SOCIALACCOUNT_QUERY_EMAIL = True
+SOCIALACCOUNT_AUTO_SIGNUP = True
+SOCIALACCOUNT_EMAIL_VERIFICATION = 'none'
 # Application definition
 
 DATE_INPUT_FORMATS = ('%d/%m/%Y' ,'%d-%m-%Y' ,'%Y-%m-%d')
@@ -58,6 +60,7 @@ INSTALLED_APPS = [
     "ScreeningQuestion",
     'documents',
     'stripe',
+    'googleOauth',
 
     # 3party login providers
     'allauth',
@@ -72,6 +75,7 @@ INSTALLED_APPS = [
     'django_filters',
     'analytical',
     'rangefilter',
+    
 ]
 
 SOCIAL_AUTH_PIPELINE = (
@@ -96,7 +100,7 @@ ROOT_URLCONF = 'Worki.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -171,10 +175,7 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 AUTHENTICATION_BACKENDS = ['accounts.backends.EmailBackend']
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
-        'SCOPE': [
-            'profile',
-            'email',
-        ],
+        'SCOPE': ['profile', 'email'],
         'AUTH_PARAMS': {
             'access_type': 'online',
         }
@@ -228,7 +229,10 @@ SCHEDULER_JOB_DEFAULTS = {
     'max_instances': 3
 }
 
-SCHEDULER_API_ENABLED = True
+SCHEDULER_API_ENABLED = True    
 
 
 
+
+
+ACCOUNT_LOGIN_TEMPLATE = 'accounts/registration/login.html'

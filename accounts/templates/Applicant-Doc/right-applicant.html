@@ -1,0 +1,152 @@
+{% load static %}
+
+<div class="right-jobs-main-div applied-posted-right-main-div-mobile" style="">
+    <div class="right-jobs right-applicants" style="display: block;">
+    <div class="mutual-form-stats meet-us-form-content" style="display: none;">
+            <div class="payment-under-form-content" style="background-color: white; margin: auto; border-radius: 40px;">
+                <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; margin: auto; border-radius: 40px; border-top-left-radius: 40px; border-top-right-radius: 40px; border: 1px solid #f0f0f0;">         
+                <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; padding-bottom: 30px; width: 100%; margin-left: -31px; border-radius: 40px; border-top: none; border: 1px solid #f0f0f0;">
+                    <div style="padding-top: 29px; padding-bottom: 20px; font-size: 18px;">Meet With Us</div>
+                    <div style="padding-bottom: 20px;">Interview</div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <div style="display: flex;">
+                            <img src="../img/interview-date-icon.svg" alt="">
+                            <div class="main-divs-color interview-distance-between-div-img">20/06/2023</div>
+                        </div>
+                        <div style="display: flex;">
+                            <img src="../img/interview-time-icon.svg" alt="">
+                            <div class="main-divs-color interview-distance-between-div-img">10:30 am</div>
+                        </div>
+                        <div style="display: flex;">
+                            <img src="../img/interview-link-icon.svg" alt="">
+                            <div class="second-color-of-divs interview-distance-between-div-img interview-link-div">Interview link</div>
+                        </div>
+                    </div>
+            </div>
+            <div class="second-screening-question-div documents-div divs-pointer-event-auto" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px;">
+                <div class="screening-questions-title second-screening-question mutual-font-size-18px">Documents for Work Permit</div>
+            </div>
+            </div>
+            <div class="second-screening-question-div work-permit-div divs-pointer-event-auto" style="padding-top: 20px; padding-bottom: 20px;">
+                <div class="screening-questions-title second-screening-question mutual-font-size-18px">Your Work Permit is here</div>
+            </div>
+        </div>
+    </div>
+    <div class="mutual-form-stats documents-for-work-permit-form-content">
+        <div class="payment-under-form-content" style="">
+            <div class="documents-border-div documents-main-border-div">
+            <div class="documents-border-div documents-under-main-border-div" style="">
+                <img class="myjob-right-exit" title="Exit" style=""
+                src="{% static 'img/Applicant/close(2).png' %}" onclick="closeButton()" alt="">
+                <div class="title_documents" >Documents for Work Permit<a id="DownloadZip"  style="float: right;text-decoration: none;cursor: pointer; color:blue;">Zip</a></div>
+                <div class="document-images" id="documentList">
+                    <input type="hidden" id="applicantID">
+                    <div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">
+                        <div class="main-divs-color mutual-titles-color">Passport</div>
+                        <img data-number="1" title="Upload Passport" class="passport-img open-popup" src="{% static 'img/Applicant/documents-icon.svg' %}" alt="">                            </div>
+                    <div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">
+                        <div class="main-divs-color mutual-titles-color">Student status</div>
+                        <img class="open-popup" data-number="2" title="Upload Student status" src="{% static 'img/Applicant/documents-icon.svg' %}" alt="">                            </div>
+                    <div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">
+                        <div class="main-divs-color mutual-titles-color">Certificate of Enrolment</div>
+                        <img class="open-popup" data-number="3" title="Upload Certificate of Enrolment" src="{% static 'img/Applicant/documents-icon.svg' %}" alt="">                            </div>
+                    <div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">
+                        <div class="main-divs-color mutual-titles-color">Student ID</div>
+                        <img class="open-popup" data-number="4" title="Upload Student ID" src="{% static 'img/Applicant/documents-icon.svg' %}" alt="">
+                    </div>
+                    <div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">
+                        <div class="main-divs-color mutual-titles-color">Photo</div>
+                        <img class="open-popup" data-number="5" title="Upload Photo" src="{% static 'img/Applicant/documents-icon.svg' %}" alt="">                            </div>  
+                    <div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">
+                        <div class="main-divs-color mutual-titles-color">Resume</div>
+                        <img class="open-popup" data-number="6" title="Upload Resume" src="{% static 'img/Applicant/documents-icon.svg' %}" alt="">                            </div>
+                    <div class="main-div-docs" style="display: flex; justify-content: space-between;">
+                        <div class="main-divs-color mutual-titles-color">Service contract</div>
+                        <img class="open-popup" data-number="7" title="Upload Service contract" src="{% static 'img/Applicant/documents-icon.svg' %}" alt="">                            </div>
+                </div>
+    </div>
+        <div class="second-screening-question-div work-permit-div divs-pointer-event-auto" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px;">
+
+            <div class="screening-questions-title second-screening-question mutual-font-size-18px">Your Work Permit is here</div>
+        </div>
+    </div>
+</div>
+</div>
+
+    <div class="mutual-form-stats your-work-permit-is-here-form-content" style="display: none;" id="DocWorkPermit">
+        <div class="payment-under-form-content">
+                <div class="documents-border-div">
+                <div class="documents-div">
+                    <div class="contact-information-third-page pd-ci-cursor font-size-18px-16px">Documents for Work Permit</div>
+                </div>
+                <div class="documents-border-div documents-under-main-border-div">
+                    <img class="myjob-right-exit" title="Exit" style=""
+                src="{% static 'img/Applicant/close(2).png' %}" onclick="closeButton()" alt="">
+                    <div class="work-permit-title">Your Work Permit is Here</div>
+                    <div class="document-images" id="recdocumentList">
+
+                    </div>
+        </div>
+        </div>
+    </div>
+    </div>
+    <div>
+        <div class="job-right-details">
+            <div class="job-right-content">
+                <div class="first-row-jobs mobile-title-font-size" id="fname"></div>
+                <div class="second-row-jobs mobile-under-title-font-size" id="Stat"></div>
+                <div style="" class="jobs-third-row mobile-rows-font-size" id="email"></div>
+                <div style="" class="experience-fourth-row jobs-mutual-margin-rows mobile-rows-font-size" id="phone">
+                </div>
+                <div style="" class="experience-fourth-row jobs-mutual-margin-rows mobile-rows-font-size" id="location"></div>
+                <div style=""
+                    class="experience-fourth-row jobs-mutual-margin-rows mobile-rows-font-size">Applied on: <span id="appdate"></span></div>
+            </div>
+        </div>
+        <div class="job-right-details job-right-description applicants-details">
+        <div class="">
+        <div class="experience-div">
+            <div id="UserExp">
+                <div class="aaa">
+                <p class="experience-paragraph">Experience</p>
+                
+            </div>
+            </div>
+        </div>
+    </div>
+        </div>
+        <div class="job-right-details job-right-description applicants-details">
+        <div class="">
+            <div class="education-div">
+                <div id="UserEdu">
+                    <div class="aaa">
+                    <p class="experience-paragraph">Education</p>
+                    
+                </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="job-right-details job-right-description applicants-details-lang">
+        <div class="">
+            <div class="languages-div">
+                <div id="UserLang">
+                    <div class="experience-paragraph language-paragraph">Languages</div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+

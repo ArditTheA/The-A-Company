@@ -7,7 +7,16 @@
 	    margin:0;
 	    padding:0;
     }
+    .exp-edu-lang-applicants{
 
+        border-radius: 40px;
+        background-color: white;
+        margin-bottom: 10px ;
+    }
+    
+    .mutual-form-stats-second{
+        margin-top: 10px;
+    }
     .check-in-out-list-income {
         max-height: calc(60vh - 265px); /* Using CSS variable for dynamic calculation */
         overflow-y: scroll;

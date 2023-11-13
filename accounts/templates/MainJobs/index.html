@@ -5,6 +5,17 @@
 {% load static %}
 {% block content %}
 {% include "Filters/filters.html"%}
+<style>
+    .right-jobs-directions-accept-job {
+text-decoration: none;
+color: white;
+border-radius: 20px;
+padding: 8px 30px;
+background-color: #1877F2;
+cursor: pointer;
+border: 1px solid #1877F2;
+}
+</style>
 {% if check %}
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <input type="hidden" id="PostID" value="{{post_id}}">
@@ -25,7 +36,6 @@
 {% endif %}
 <script>
     $(document).ready(function() {
-        
         if (window.innerWidth >= 768){
             $('.job-left-row').eq(0).click();
         }

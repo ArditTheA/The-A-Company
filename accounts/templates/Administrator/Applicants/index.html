@@ -69,7 +69,8 @@
       <td>{{i.job_id.job_title}}</td>
       <td>{{i.job_id.country_j}}</td>
       <td>{{i.job_id.city_j}}</td>
-      <td>{% for j in ApplicantANS %}
+      <td>
+          {% for j in ApplicantANS %}
                 {% if i.job_id == j.question_id.job_id and i.user_id == j.applicant_id%}
                     {{j.user_answer}}
                 {%endif%}
