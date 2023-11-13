@@ -1,9 +1,10 @@
     
    function showElements(shouldShowLeftJobs) {
-    const elementsToShow = shouldShowLeftJobs ? '.job-left, .profileHeader, .header-wishes, .jobs-buttons' : '.right-jobs, .right-jobs-main-div';
+    const elementsToShow = shouldShowLeftJobs ? '.job-left, .header-wishes, .jobs-buttons' : '.right-jobs, .right-jobs-main-div';
  
     if (window.matchMedia('(max-width: 480px)').matches) {
         if (shouldShowLeftJobs) {
+            $('.profileHeader').style("display","flex")
             $('.job-left, .profileHeader, .header-wishes, .jobs-buttons').show();
             $('.right-jobs, .right-jobs-main-div').hide();
         } else {
