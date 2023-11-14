@@ -41,6 +41,9 @@
                     <input name="password" type="password" id="password" class="input-text password-input font-fam" placeholder="Password"></input>
                     <i title="Show Password" class="bi bi-eye-slash" id="togglePassword"></i>
                 </div>
+                {% if form.errors %}
+                    <p class="first-paragraph " style="margin:0;padding-bottom:10px;color:red">Your email or password is incorrect</p>
+                {% endif %}
                
 
                 <p class="first-paragraph same-color-of-paragraphs"><a class="password-link" href="{% url 'password_reset'%}">Forgot

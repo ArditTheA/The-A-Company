@@ -77,7 +77,6 @@ window.addEventListener('load', function() {
         );
         let data = await response.json();
 
-        console.log(JSON.stringify(data, null, 2));
         var mainJobs = false;
 
 

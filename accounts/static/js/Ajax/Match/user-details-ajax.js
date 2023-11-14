@@ -54,7 +54,7 @@
             console.log("testtsad-0a-ds");
             newDiv1 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
                 '<div class="main-divs-color mutual-titles-color blue-text">Passport</div>' +
-                '<img data-number="1" data-document-id="1" title="Passport" onclick="getDocument(this)" class="passport-img open-popup downloadImg" src="/static/img/documents-second-icon.svg" alt="">' +
+                '<img data-number="1" data-document-id="1" title="Download Passport" onclick="getDocument(this)" class="passport-img open-popup downloadImg" src="/static/img/documents-second-icon.svg" alt="">' +
             '</div>';
         } else {
             newDiv1 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
@@ -66,7 +66,7 @@
         if (data["studentStatusExists"] === true) {
             newDiv2 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
                 '<div class="main-divs-color mutual-titles-color blue-text">Student status</div>' +
-                '<img data-number="2" title="Student status" class="open-popup" onclick="getDocument(this)" src="/static/img/documents-second-icon.svg" alt="">' +
+                '<img data-number="2" title="Download Student status" class="open-popup" onclick="getDocument(this)" src="/static/img/documents-second-icon.svg" alt="">' +
             '</div>';
         }else{
             newDiv2 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
@@ -78,7 +78,7 @@
         if (data["certificateOfEnrolmentExists"] === true) {
             newDiv3 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
                 '<div class="main-divs-color mutual-titles-color blue-text">Certificate of Enrolment</div>' +
-                '<img data-number="3" title="Certificate of Enrolment" class="open-popup" onclick="getDocument(this)"  src="/static/img/documents-second-icon.svg" alt="">' +
+                '<img data-number="3" title="Download Certificate of Enrolment" class="open-popup" onclick="getDocument(this)"  src="/static/img/documents-second-icon.svg" alt="">' +
             '</div>';
         }else{
             newDiv3 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
@@ -90,7 +90,7 @@
         if (data["studentIdExists"] === true){
             newDiv4 =  '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
                 '<div class="main-divs-color mutual-titles-color blue-text">Student ID</div>' +
-                '<img data-number="4" title="Student ID" class="open-popup"  onclick="getDocument(this)" src="/static/img/documents-second-icon.svg" alt="">' +
+                '<img data-number="4" title="Download Student ID" class="open-popup"  onclick="getDocument(this)" src="/static/img/documents-second-icon.svg" alt="">' +
             '</div>';
         }else{
             newDiv4 =  '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
@@ -103,7 +103,7 @@
         if(data["photoExists"] === true){
             var newDiv5 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
             '<div class="main-divs-color mutual-titles-color blue-text">Photo</div>' +
-            '<img data-number="5" title="Photo" class="open-popup" onclick="getDocument(this)"  src="/static/img/documents-second-icon.svg" alt="">' +
+            '<img data-number="5" title="Download Photo" class="open-popup" onclick="getDocument(this)"  src="/static/img/documents-second-icon.svg" alt="">' +
         '</div>';
         }else{
             var newDiv5 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
@@ -117,12 +117,12 @@
         
         var newDiv6 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
             '<div class="main-divs-color mutual-titles-color blue-text">Resume</div>' +
-            '<a href="' + url + '"><img data-number="6" title="Resume" class="open-popup" src="/static/img/documents-second-icon.svg" alt=""></a>' +
+            '<a href="' + url + '"><img data-number="6" title="Download Resume" class="open-popup" src="/static/img/documents-second-icon.svg" alt=""></a>' +
         '</div>';
         if(data["serviceContractExists"] === true){
             var newDiv7 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; ">' +
                 '<div class="main-divs-color mutual-titles-color blue-text">Service contract</div>' +
-                '<img data-number="7" title="Service contract"  class="open-popup" onclick="getDocument(this)"  src="/static/img/documents-second-icon.svg" alt="">' +
+                '<img data-number="7" title="Download Service contract"  class="open-popup" onclick="getDocument(this)"  src="/static/img/documents-second-icon.svg" alt="">' +
             '</div>';
         }else{
             var newDiv7 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; ">' +
@@ -141,18 +141,18 @@
         if(data["jobOfferExists"] === true){
             var newDiv8 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
                 '<div class="main-divs-color mutual-titles-color blue-text">Job Offer</div>' +
-                '<img data-number="8" title="Job Offer"  class="open-popup" onclick="getDocument(this)"  src="/static/img/documents-second-icon.svg" alt="">' +
+                '<img data-number="8" title="Download Job Offer"  class="open-popup" onclick="getDocument(this)"  src="/static/img/documents-second-icon.svg" alt="">' +
             '</div>';
         }else{
             var newDiv8 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
                 '<div class="main-divs-color mutual-titles-color">Job Offer</div>' +
-                '<img data-number="8" title="Upload Job Offer"  class="open-popup" onclick="openPopUp(this)"  src="/static/img/Applicant/documents-icon.svg" alt="">' +
+                '<img data-number="8" title="Download Upload Job Offer"  class="open-popup" onclick="openPopUp(this)"  src="/static/img/Applicant/documents-icon.svg" alt="">' +
             '</div>';
         }
         if(data["workPermitExists"] === true){
             var newDiv9 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; ">' +
                 '<div class="main-divs-color mutual-titles-color blue-text">Work Permit</div>' +
-                '<img data-number="9" title="Work Permit"  class="open-popup" onclick="getDocument(this)"  src="/static/img/documents-second-icon.svg" alt="">' +
+                '<img data-number="9" title="Download Work Permit"  class="open-popup" onclick="getDocument(this)"  src="/static/img/documents-second-icon.svg" alt="">' +
             '</div>';
         }else{
             var newDiv9 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; ">' +
