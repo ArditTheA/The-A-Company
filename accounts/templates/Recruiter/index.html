@@ -63,8 +63,7 @@ $(document).ready(function() {
             // Attach click events to elements
             $('.job-left-row').click(function() {
                 showRightJobsMainDiv();
-                var id =  $(this).attr('id'); // Your ID
-                var strippedId = id.substring("select".length);
+
 
 
                 history.pushState({ showJobLeft: false }, "","");
@@ -81,7 +80,6 @@ $(document).ready(function() {
         });
   }else{
     $(document).ready(function() {
-            var newURL = window.location.origin + "/jobs" + '/' + '{{post_id}}';
 
             history.pushState({ showJobLeft: false }, "","");
             // Function to show right jobs and hide left jobs
@@ -116,7 +114,7 @@ $(document).ready(function() {
                 console.log(strippedId); // This will print "147"
                 showRightJobsMainDiv();
                 // Push a state to the history to track the change
-                var newURL = window.location.origin + "/jobs" + '/' + strippedId;
+
                 history.pushState({ showJobLeft: false }, "","");
             });
 
