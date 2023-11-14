@@ -1,7 +1,7 @@
 {% load static %}
 
     {% for i in job %}
-    <div onclick="getNumber('{{i.id}}');showRightJobsMainDiv();" class="job-left-row pixel move"  id="select{{i.id}}">
+    <div onclick="getMyJobs('{{i.id}}');showRightJobsMainDiv();" class="job-left-row pixel move"  id="select{{i.id}}">
         <img class="job-logo" src="{{i.logo.url}}" alt="">
         <div class="job-left-content">
             <div class="first-row-and-edit-img ">
