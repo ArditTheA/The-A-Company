@@ -1,3 +1,35 @@
+input[type="checkbox"]::before {
+    outline: none;
+}
+.drop-area {
+    border: 2px dashed #ccc;
+    border-radius: 30px;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.2em;
+    cursor: pointer;
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.under-upload-file {
+    color: #858585;
+    font-size: 16px;
+    padding-top: 10px;
+}
+.file-upload {
+    font-size: 18px;
+    padding-top: 15px;
+}
+.blue-text {
+    color: #1877F2 !important;
+}
+.light-gray-text {
+    color: #858585;
+}
+
 .profile-header {
     margin: 0px 40px 20px 10px;
 }
@@ -7,7 +39,7 @@
 }
 
 .experience-education-languages {
-    margin: 0px 20px 20px 10px; 
+    margin: 0px 20px 20px 10px;
 }
 /* .right-jobs {
 } */
@@ -27,7 +59,6 @@
 
 .right-jobs {
 }
-
 
 .education-all-applicants {
     margin-bottom: 20px !important;
@@ -88,8 +119,8 @@
 }
 
 .div-white-icon {
-    display: flex; 
-    align-items: center; 
+    display: flex;
+    align-items: center;
     position: absolute;
 }
 .jobs-main-div {
@@ -107,10 +138,8 @@
 .all-applicants-button {
     padding-left: 20px;
 }
-.label-all {
-}
 .mutual-dropdown {
-    flex-direction: column; 
+    flex-direction: column;
 }
 
 .move-phase-button {
@@ -150,6 +179,7 @@
 .all-applicants-dropdown-content {
     margin-bottom: 20px;
 }
+
 @media screen and (max-width: 970px) and (min-width: 768px) {
 
     .experience-first-row {
@@ -492,7 +522,3 @@
     }
     
 }
-
-
-
-

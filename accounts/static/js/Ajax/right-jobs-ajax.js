@@ -1,14 +1,14 @@
     
    function showElements(shouldShowLeftJobs) {
-    const elementsToShow = shouldShowLeftJobs ? '.job-left, .header-wishes, .jobs-buttons' : '.right-jobs, .right-jobs-main-div';
+    const elementsToShow = shouldShowLeftJobs ? '.job-left, .under-header-wishes, .jobs-buttons' : '.right-jobs, .right-jobs-main-div';
  
     if (window.matchMedia('(max-width: 480px)').matches) {
         if (shouldShowLeftJobs) {
             $('.profileHeader').css('display', 'flex');
-            $('.job-left, .profileHeader, .header-wishes, .jobs-buttons').show();
+            $('.job-left, .profileHeader, .under-header-wishes, .jobs-buttons').show();
             $('.right-jobs, .right-jobs-main-div').hide();
         } else {
-            $('.job-left, .profileHeader, .header-wishes, .jobs-buttons').hide();
+            $('.job-left, .profileHeader, .under-header-wishes, .jobs-buttons').hide();
             $('.right-jobs, .right-jobs-main-div').show();
         }
     } else {

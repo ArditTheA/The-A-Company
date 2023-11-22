@@ -1,4 +1,20 @@
+.under-header-wishes {
+    background-color: #2d2d2d;
+    width: 100%; 
+    text-align: center; 
+    color: white; 
+    font-size: 16px;
+    /* height: 40px; */
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.job-left-ribbon, .right-jobs-ribbon {
+    height: calc(100vh - 226.33px) !important;
+}
 
+.wishes-child {
+    padding-top: 3px;
+}
 .jobs-main-div {
     display: flex;
     justify-content: space-between;
@@ -15,8 +31,8 @@
     cursor: pointer;
 }
 .mutual-form-stats {
-    width: calc(100% - 50px); 
-    margin-left: 10px; 
+    width: calc(100% - 50px);
+    margin-left: 10px;
     margin-bottom: 20px;
 }
 
@@ -62,8 +78,8 @@
     position:sticky;
 }
 .title_documents, .work-permit-title {
-    padding-top: 30px; 
-    padding-bottom: 20px; 
+    padding-top: 30px;
+    padding-bottom: 20px;
     font-size: 18px;
 }
 .your-work-permit-is-here-form-content {
@@ -71,21 +87,21 @@
 }
 .payment-under-form-content {
     background-color: white;
-    margin: auto; 
+    margin: auto;
     border-radius: 40px;
 }
 .documents-border-div {
-    border-width: 100%; 
-    margin: auto; 
-    border-radius: 40px; 
-    border-top: none; 
+    border-width: 100%;
+    margin: auto;
+    border-radius: 40px;
+    border-top: none;
     border: 1px solid #f0f0f0;
-    padding-left: 30px; 
-    padding-right: 30px; 
+    padding-left: 30px;
+    padding-right: 30px;
 }
 .documents-under-main-border-div {
-    padding-bottom: 30px; 
-    width: 100%; 
+    padding-bottom: 30px;
+    width: 100%;
     margin-left: -31px;
 }
 .job-left, .right-jobs {
@@ -170,7 +186,6 @@
     display: none;
 }
 
-
 .job-right-details{
     margin-left:10px;
     background-color:white;
@@ -208,7 +223,7 @@
     cursor:pointer;
     height:20px;
     margin-top: calc(8px + 25px);
-    margin-bottom: 6px;
+    margin-bottom: 7px;
 
 }
 .job-right-apply-button a{
@@ -232,25 +247,6 @@ margin-top:20px;
 .move:first-child {
     margin-top: 0px;
 }
-* {
-    scrollbar-width: thin;
-  }
-  
-  /* Works on Chrome, Edge, and Safari */
-  *::-webkit-scrollbar {
-    width: 7px;
-  }
-  
-  *::-webkit-scrollbar-track {
-  }
-  
-  *::-webkit-scrollbar-thumb {
-    /* background-color: #e7e7e7; */
-    background-color: #f1f1f1;
-    border-radius: 16px;
-    position: absolute;
-  }
-
 
   .job-right-exit, .myjob-right-exit {
     display: none;
@@ -290,9 +286,10 @@ margin-top:20px;
 .first-row-jobs, .first-row-second-div {
     color: #131419;
     padding-bottom: 10px;
-
 }
-.first-row-jobs{
-    font-size:18px;
+.first-row-jobs {
+    font-size: 18px;
 }
-
+.main-div-docs:last-child {
+    padding-bottom: 0px !important;
+}

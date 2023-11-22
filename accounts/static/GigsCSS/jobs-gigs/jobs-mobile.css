@@ -2,7 +2,9 @@
     .job-logo {
         margin-right: 20px;
     }
-
+    .under-header-wishes {
+        margin-bottom: 10px;
+    }
     .move{
         margin-top:10px !important;
     }
@@ -26,6 +28,13 @@
         width: 100% !important;
         position: absolute;
         height: calc(100% - 143.21px);
+    }
+    .job-left-ribbon {
+        height: calc(100% - 204.61px) !important;
+    }
+    .job-right-exit {
+        padding: 5px;
+        margin: -5px -5px 15px -5px !important;
     }
     .right-jobs {
         display:none;
@@ -55,16 +64,15 @@
         width:100% !important;
     }
     .right-jobs {
-
         margin-bottom: 10px;
         width: 100%;
-
     }
     .job-right-exit, .myjob-right-exit{
-        margin-bottom: 20px;
+        margin-bottom: 15px;
         display: block;
         width: 15px;
         height: 15px;
+        cursor: pointer;
     }
 
     .under-container-mutual-mutual-stats {
@@ -119,11 +127,14 @@
     .job-right-description{
         margin-bottom: 10px;
     }
-    .job-left-details, .job-left-title,.first-row-jobs{
+    .job-left-details, .job-left-title, .first-row-jobs {
         font-size: 16px;
     }
     .right-applicants {
         margin-top: 9px !important;
+    }
+    .work-permit-title {
+        padding-bottom: 20px;
     }
     .applicants-details-lang {
         margin-bottom: 10px;

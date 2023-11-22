@@ -1,5 +1,5 @@
     
-   function showElements(shouldShowLeftJobs) {
+   function showElements1(shouldShowLeftJobs) {
     const elementsToShow = shouldShowLeftJobs ? '.job-left, .profileHeader, .header-wishes, .jobs-buttons' : '.right-jobs, .right-jobs-main-div';
  
     if (window.matchMedia('(max-width: 480px)').matches) {
@@ -26,19 +26,19 @@ function initialize() {
 }
 
 $('.myjob-right-exit').click(function() {
-    showElements(true);
+    showElements1(true);
 });
 
  // Handle popstate for mobile
  window.addEventListener('popstate', function(event) {
     if (event.state !== null) {
-        showElements(event.state.showJobLeft);
+        showElements1(event.state.showJobLeft);
     }
 });
 
 // Initial setup based on the screen width
 if (window.matchMedia('(max-width: 480px)').matches) {
-    showElements(true); // Ensure right jobs are initially hidden on mobile
+    showElements1(true); // Ensure right jobs are initially hidden on mobile
 
     initialize();
 } else {
@@ -47,7 +47,7 @@ if (window.matchMedia('(max-width: 480px)').matches) {
 
 // Additional code to handle initial history state
 window.addEventListener('load', function() {
-    showElements(history.state && history.state.showJobLeft !== true);
+    showElements1(history.state && history.state.showJobLeft !== true);
 });
 
 
@@ -198,8 +198,8 @@ window.addEventListener('load', function() {
 
         };
 
-        console.log(showElements(false));
-        showElements(false);
+        console.log(showElements1(false));
+        showElements1(false);
 
 
 }
