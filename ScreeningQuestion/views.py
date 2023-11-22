@@ -87,6 +87,7 @@ def add_JobScreeningQuestion(request):
             job_settings = JobSettings()
             job_settings.job_id = job
             job_settings.jobSettings  = request.POST.get("job_settings")
+            job_settings.email =""
             job_settings.save()
 
             for form in job_question_formset:
