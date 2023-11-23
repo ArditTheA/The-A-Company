@@ -590,6 +590,7 @@ def make_application_ajax(request):
 
     try:
         send_mail(subject, email_content, 'Worki hello@worki.global', [email], fail_silently=False)
+        time.sleep(10)
         if status == "Qualified":
             sentQualifiedEmail(request, Jobs.objects.get(id=job_id), CustomUser.objects.get(id=user_id))
         else:
