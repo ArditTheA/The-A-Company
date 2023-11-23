@@ -7,7 +7,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <style>
+        .done-successful-applying {
+            background-color: #1877F2 !important;
+            color: white;
+            padding: 8px 30px;
+            border-radius: 40px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+    </style>
     <div id="reserve-form" class="successfully-applied-form reserve-form" method="POST" style="text-align: center;">
     <div class="contact-information-form under-successfully-applied-form">
        <div class="successfully-applied-content-div">
@@ -23,5 +32,90 @@
         </div>
     </div>
 </div>
+
+<form id="jobApplicationForm" style="display: none;">
+    <label for="user_id">User ID:</label>
+    <input type="text" id="user_id" name="user_id" value="{{userId}}">
+
+    <label for="job_id">Job ID:</label>
+    <input type="text" id="job_id" name="job_id" value="{{pk}}">
+
+    <label for="apply_date">Apply Date:</label>
+    <input type="text" id="apply_date" name="apply_date" value="{{ dataa|date:'Y/m/d' }}" required>
+
+    <label for="status">Status:</label>
+    <input type="text" id="status" name="status" value="{{Status}}">
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" value="{{userEmail}}" required>
+    <label  for="SQ">User Answer</label>
+    {% if listQ.0 %}
+        <input type="text" name="listQ_0" id="listQ_0" value="{{ listQ.0 }}">
+        {% endif %}
+
+        {% if listQ.1 %}
+        <input type="text" name="listQ_1" id="listQ_1"  value="{{ listQ.1 }}">
+        {% endif %}
+
+        {% if listQ.2 %}
+        <input type="text" name="listQ_2" id="listQ_2" value="{{ listQ.2 }}">
+        {% endif %}
+    <button type="submit">Submit Application</button>
+</form>
+
+<script>
+    $(document).ready(function () {
+        // Hide the form on document ready
+        $('#jobApplicationForm').hide();
+
+        // Set initial state for the "Done" button
+        $('.done-successful-applying').prop('disabled', true).attr('title', 'Your data is on the way');
+
+        // Trigger form submission after hiding it
+        $('#jobApplicationForm').submit(function (e) {
+            e.preventDefault();
+
+            // Check if all required inputs are filled
+            if ($('#user_id').val() && $('#job_id').val() && $('#apply_date').val() && $('#status').val() && $('#email').val()) {
+                $.ajax({
+                    type: 'POST',
+                    url: '/make_application_ajax/',  // Update with your actual URL
+                    data: {
+                        user_id: $('#user_id').val(),
+                        job_id: $('#job_id').val(),
+                        apply_date: $('#apply_date').val(),
+                        status: $('#status').val(),
+                        email: $('#email').val(),
+                        listQ_0: $('#listQ_0').val(),
+                        listQ_1: $('#listQ_1').val(),
+                        listQ_2: $('#listQ_2').val(),
+                        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                    },
+                    success: function (response) {
+                        // Handle success, e.g., show a success message to the user
+                        console.log(response.message);
+
+                        // Enable the "Done" button and update the title
+                        $('.done-successful-applying').prop('disabled', false).attr('title', '');
+                    },
+                    error: function (response) {
+                        // Handle errors, e.g., show an error message to the user
+                        console.log(response.responseJSON.error);
+
+                        // Update the title to inform the user
+                        $('.done-successful-applying').attr('title', 'Your data is on the way');
+                    }
+                });
+            } else {
+                // If not all required inputs are filled, inform the user
+                alert('Please fill in all required fields.');
+            }
+        });
+
+        // Automatically submit the form after hiding it
+        $('#jobApplicationForm').submit();
+    });
+</script>
+
 
 {% endblock content %}

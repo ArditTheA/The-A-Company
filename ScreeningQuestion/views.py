@@ -511,6 +511,100 @@ def editJobs(request, pk):
     else:
         return render(request, "Jobs/404.html")
 
+
+
+
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
+from django.template.loader import render_to_string
+from django.core.mail import send_mail, BadHeaderError
+from django.http import HttpResponse
+from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_exempt
+from .models import Jobs, Application
+
+@csrf_exempt
+@require_POST
+def make_application_ajax(request):
+    user_id = request.POST.get('user_id')
+    job_id = request.POST.get('job_id')
+    dataa = request.POST.get('apply_date')
+    status = request.POST.get('status')
+    print(status)
+    email = request.POST.get('email')
+    print("dataa"+dataa)
+    input_format = "%Y/%m/%d"
+
+    # Convert the string to a datetime object
+
+    dataa = datetime.strptime(dataa, input_format)
+
+    post = get_object_or_404(Jobs, id=Jobs.objects.get(id=job_id).id)
+    app = Application()
+    app.user_id = CustomUser.objects.get(id=user_id)
+    app.job_id = Jobs.objects.get(id=job_id)
+    app.apply_date = dataa
+    app.status = "Pending"
+    app.ApplicantStat = status
+    app.save()
+    post.applicant.add(user_id)
+
+    subject = "You applied for " + Jobs.objects.get(id=job_id).job_title + " at " +  Jobs.objects.get(id=job_id).company
+    email_template_applicant = "main/jobs/Jobapplication.txt"
+    context = {
+        "email": email,
+        'domain': 'worki.global',
+        'site_name': 'Worki',
+        'user': user_id,
+        "job": post,
+        "date": dataa,
+    }
+    email_content = render_to_string(email_template_applicant, context)
+
+
+    # Handle user answer
+    listQ = []
+
+        # Retrieve values from the form and add to listQ if they are not null
+    listQ_0 = request.POST.get('listQ_0')
+    if listQ_0 is not None:
+        listQ.append(listQ_0)
+
+    listQ_1 = request.POST.get('listQ_1')
+    if listQ_1 is not None:
+        listQ.append(listQ_1)
+
+    listQ_2 = request.POST.get('listQ_2')
+    if listQ_2 is not None:
+        listQ.append(listQ_2)
+    print("------------------------")
+    print("------------------------")
+    print("------------------------")
+    print(listQ)
+    print("------------------------")
+    print("------------------------")
+    print("------------------------")
+
+    GSheets(str(dataa), CustomUser.objects.get(id=user_id), Jobs.objects.get(id=job_id), listQ)
+
+
+    try:
+        send_mail(subject, email_content, 'Worki hello@worki.global', [email], fail_silently=False)
+        if status == "Qualified":
+            sentQualifiedEmail(request, Jobs.objects.get(id=job_id), CustomUser.objects.get(id=user_id))
+        else:
+            sentNQualifiedEmail(request, Jobs.objects.get(id=job_id), CustomUser.objects.get(id=user_id))
+        return JsonResponse({'message': 'Application submitted successfully'})
+    except BadHeaderError:
+        return JsonResponse({'error': 'Invalid header found.'}, status=400)
+
+
+
+
+
+
+
+
 def makeApplication(userId,pk,job,dataa,Status,emailU):
     post = get_object_or_404(Jobs, id=pk)
     app = Application()
@@ -520,6 +614,7 @@ def makeApplication(userId,pk,job,dataa,Status,emailU):
     app.status = "Pennding"
     if Status != "":
         app.ApplicantStat = Status
+
     app.save()
     post.applicant.add(userId)
     subject = "You applied for" + " " + job.job_title+" at "+job.company
@@ -537,6 +632,11 @@ def makeApplication(userId,pk,job,dataa,Status,emailU):
 
     try:
         send_mail(subject, email, 'Worki hello@worki.global',[emailU], fail_silently=False)
+        if Status == "Qualified":
+            sentQualifiedEmail(request, Jobs.objects.get(id=job), CustomUser.objects.get(id=userId))
+        else:
+            app.ApplicantStat = Status
+            sentNQualifiedEmail(request, Jobs.objects.get(id=job), CustomUser.objects.get(id=userId))
     except BadHeaderError:
         return HttpResponse('Invalid header found.')
 
@@ -618,66 +718,52 @@ def applyForJobSQ(request, pk):
             return False
     if exeJobSetting == True:
         job_settings = JobSettings.objects.get(job_id=job)
-
         if not Application.objects.filter(job_id=pk).filter(user_id=request.user).exists():
-
-
             if request.method == "POST" and form.is_valid():
-
-
                 qualify = []
                 #Store Answer
                 for i in question:
                     if not ApplicantAnswer.objects.filter(question_id = i).filter(applicant_id = request.user).exists():
-
                         ApAns = ApplicantAnswer()
                         ApAns.question_id = i
                         ApAns.applicant_id= request.user
                         ApAns.user_answer = request.POST.get(str(i.id))
-
                         if i.qualify == True:
                             if i.ideal_answer == request.POST.get(str(i.id)) or (i.question_type == "Numeric" and request.POST.get(str(i.id)) >= i.ideal_answer):
-
                                 qualify.append(True)
                             else:
 
                                 qualify.append(False)
                         ApAns.save()
                 us = request.user
-
                 # Filtered Applicant Settings && make applicant qualify or notQualify
                 if job_settings.jobSettings == "F":
+                    Status =""
                     # make applicant qualify
-
                     if ckeckList(qualify):
-                        makeApplication(userId,pk,job,dataa,"Qualified",request.user.email)
+                        Status = "Qualified"
                         form.save()
-                        sentQualifiedEmail(request,job,us)
-                        GSheets(str(dataa),request.user,job,listQ)
-
-                        return redirect('appSuc')
-
-                    # make applicant not qualified
+                        # GSheets(str(dataa),request.user,job,listQ)
                     else:
-
-                        makeApplication(userId,pk,job,dataa,"Not qualified",request.user.email)
-                        print("doesnt meet qualification")
+                        # GSheets(str(dataa), request.user, job, listQ)
+                        Status = "Not qualified"
                         form.save()
-                        GSheets(str(dataa),request.user,job,listQ)
-                        sentNQualifiedEmail(request,job,us)
-
-                        return redirect('appSuc')
+                        
+                    return render(request, "MainJobs/apply.html",dict(userId=request.user.id,pk=pk,dataa=dataa,Status=Status,userEmail = request.user.email,listQ=listQ))
+                    
                 else:
+                    GSheets(str(dataa), request.user, job, listQ)
                     makeApplication(userId,pk,job,dataa,"Not qualified",request.user.email)
-                    GSheets(str(dataa),request.user,job,listQ)
+
                     return redirect('appSuc')
 
             return render(request, "ApplySQ/reserve.html", dict(form=form, country=country,question=question))
 
     else:
         if request.method == "POST" and form.is_valid():
-            makeApplication(userId,pk,job,dataa,"",request.user.email)
             GSheets(str(dataa),request.user,job,listQ)
+
+            makeApplication(userId,pk,job,dataa,"",request.user.email)
             return redirect('appSuc')
         return render(request, "ApplySQ/reserve.html", dict(form=form, country=country,question=question))
     appdate = ""
