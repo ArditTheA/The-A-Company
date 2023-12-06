@@ -262,7 +262,7 @@ class LogoutView(auth_views.LogoutView):
 
 class RegisterView(generic.CreateView):
     form_class = RegisterForm
-    template_name = 'accounts/register.html'
+    template_name = 'accounts/Newregister.html'
 
 
 
@@ -351,13 +351,14 @@ def registration(request):
                 return HttpResponse('Invalid header found.')
 
             login(request, user)
+            
             next_url = request.GET.get('next')
             if next_url:
                 return redirect(next_url)  # Redirect to the URL specified in 'next'
             return redirect('home')
     else:
         form = RegisterForm()
-    return render(request, "accounts/register.html", {"form": form})
+    return render(request, "accounts/Newregister.html", {"form": form})
 
 
 ############################### Profile ##################################################
@@ -1835,11 +1836,6 @@ class MainJobsId(View):
 def ApplySuc(request):
     user= request.user
     app = Application.objects.filter(user_id=user)
-    print("-----------------------------------------------------------")
-    print("-----------------------------------------------------------")
-    print(app)
-    print("-----------------------------------------------------------")
-    print("-----------------------------------------------------------")
     return render(request,"MainJobs/apply.html")
 
 

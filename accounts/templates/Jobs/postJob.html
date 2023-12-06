@@ -7,21 +7,31 @@
     content="Post your job on Worki and hire temporary employees abroad."
   />
 </head>
-        <link rel="stylesheet" href="{% static 'css/header.css' %}">
-    <link rel="stylesheet" href="{% static 'css/body.css' %}">
-    <link rel="icon" href="{% static 'img/123.png' %}">
+<style>
+   form{
+      margin-bottom: 0px;
+   };
+  
+
+</style>
+<link href='https://fonts.googleapis.com/css?family=Spline Sans' rel='stylesheet'>
+
+<link rel="icon" href="{% static 'img/123.png' %}">
+<link rel="stylesheet" href="{% static 'GigsCSS/reserve-post-a-job.css' %}">
+
+   <link rel="stylesheet" href="{% static 'GigsCSS/base/header.css' %}">
+   <link rel="stylesheet" href="{% static 'GigsCSS/body.css'%}">
 
 
-    <link rel="stylesheet" href="{% static 'css/sq-backup.css'%}">
-        <link rel="stylesheet" href="{% static 'css/reserve-post-a-job.css' %}">
+   <link rel="stylesheet" href="{% static 'css/sq-backup.css'%}">
+
+
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        {% include 'header.html' %}
-
-
+   {{ job_form.non_field_errors }}
+   {{ job_form.errors }}
 
 <form class="register-form"  id="form-id" method="post" enctype="multipart/form-data" action="{% url 'addJob'%}" >
    {% csrf_token %}
@@ -36,6 +46,7 @@
                   <div class="job-details-div first-job-details pd-ci-cursor font-size-18px-16px">Job Details</div>
                </div>
                <div class="post-a-job-under-div">
+
                   <div class="inputs-div second-inputs-div">
                      <div style="display:none;">
                         {{job_form.status}}
@@ -48,13 +59,16 @@
                      <input type="text" name="job_title" id="id_job_title" placeholder="Job title" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom" required></input>
                      <input type="text" name="company" id="id_company" placeholder="Company" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input"></input>
                      <div class="inputs-div contact-information-margin-bottom first-and-last-name" style="display: flex;">
-                        <input placeholder="Country" name="country_j" id="id_country_j" class="apply-first-name inputs-job-details apply-name-surname all-inputs mutual-input country-margin-bottom"></input>
+                        <select name="country_j" id="id_country_j" class="apply-first-name inputs-job-details apply-name-surname all-inputs mutual-input country-margin-bottom">
+                           <option value=""  selected>Select a Country</option>
+            
+                        </select>
                         <!-- <input placeholder="City" class="apply-last-name inputs-job-details apply-name-surname all-inputs mutual-input"></input> -->
                         <input placeholder="City" name="city_j" id="id_city_j" class="apply-last-name inputs-job-details apply-name-surname all-inputs mutual-input"></input>
                      </div>
                      <input type="number" name="salary_per_hour"id="id_salary_per_hour" placeholder="Salary per hour" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input" oninput="displaySalary()" onkeydown="handlePlaceholder(event)">
                      <select class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input" name="tips" id="id_tips">
-                        <option disabled selected style="display: none;" value="">Tips</option>
+                        <option  selected style="display: none;" value="">Tips</option>
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
                      </select>
@@ -66,11 +80,11 @@
                      <input type="number" name="hour_per_work" id="id_hour_per_work" placeholder="Hours per week" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input"></input>
                      <div class="inputs-div contact-information-margin-bottom first-and-last-name">
                         <input id="id_start_date" class="start-date-input date-of-birth-input inputs-job-details start-end-date all-inputs mutual-input"
-                           name="start_date" onchange="checkForm();checkStartDate();" value="" type="tel" maxlength="10"
-                           placeholder="Start Date (mm/dd/yyyy)" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
+                           name="start_date" onchange="checkForm();checkStartDate();" value="" type="text" maxlength="10"
+                           placeholder="Start Date (dd/mm/yyyy)" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
                         <input id="id_end_date" class="end-date-input date-of-birth-input inputs-job-details start-end-date all-inputs mutual-input"
-                           name="end_date" onchange="checkForm();checkStartDate();" value="" type="tel" maxlength="10"
-                           placeholder="End Date (mm/dd/yyyy)" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
+                           name="end_date" onchange="checkForm();checkStartDate();" value="" type="text" maxlength="10"
+                           placeholder="End Date (dd/mm/yyyy)" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
                      </div>
                      <!-- <input type="text" placeholder="Housing" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input"></input> -->
                      <select name="housing" id="id_housing" style="" class="custom-select contact-information-margin-bottom contact-information-mutual-stats mutual-input inputs-job-details">
@@ -94,7 +108,7 @@
                            <div class="input-form">
                               <div style="cursor: pointer; display: flex; align-items: center;" class="upload-file-div logo-input-main-div">
                                  <div class="logo-input-div">Logo</div>
-                                 <img class="icon-post" src="{% static 'img/gallery-upload.png'%}" alt="">
+                                 <img class="icon" src="{% static 'img/gallery-upload.svg'%}" alt="">
                               </div>
                            </div>
                         </label>
@@ -103,8 +117,8 @@
                      <!-- <input placeholder="Student Status" class="all-inputs contact-information-mutual-stats mutual-input" style="border: 1px solid #D4D5D6; width: 434px; padding: 10px 0px 10px 10px; border-radius: 40px;"></input> -->
                   </div>
                   <div class="back-and-next-buttons" style="width: 100%; display: flex; justify-content: space-between;">
-                     <a class="btn back-button next-none contact-information-back-button">Back</a>
-                     <a id="first-next-button-job-details" class="first-next-button btn submit-button next-none">Next</a>
+                     <a class=" back-button next-none contact-information-back-button">Back</a>
+                     <a id="first-next-button-job-details" class="first-next-button  submit-button next-none">Next</a>
                   </div>
                </div>
                <div class="first-job-description-post-a-job" style="padding-top: 20px; padding-bottom: 20px; border-bottom: 40px; margin-left: 30px; color: #D4D5D6;">
@@ -126,10 +140,10 @@
                </div>
                <div class="program-duration-under-div job-description-under-div">
                   <div class="contact-information-title job-description-title font-size-18px-16px">Job Description</div>
-                  <textarea name="description" id="descriptionArea" class="scroll inner-text editable" oninput="updateNextButton()" style="background-color: white; border-radius: 40px;resize: none;"></textarea>
+                  <textarea name="description" id="descriptionArea" class="scroll-post-job inner-text editable" oninput="updateNextButton()" style="background-color: white; border-radius: 40px;resize: none;"></textarea>
                   <div class="back-and-next-buttons" style="width: 100%; display: flex; justify-content: space-between;">
-                     <a class="btn back-button next-none job-description-back-button">Back</a>
-                     <a id="next-button-job-description" class="next-button-job-description btn submit-button next-none" onclick="validateTextarea()">Next</a>
+                     <a class=" back-button next-none job-description-back-button">Back</a>
+                     <a id="next-button-job-description" class="next-button-job-description  submit-button next-none" onclick="validateTextarea()">Next</a>
                   </div>
                </div>
                <div class="second-screening-question-div" style="padding-top: 20px; padding-bottom: 20px; border-bottom: 40px; margin-left: 30px; color: #D4D5D6;">
@@ -139,7 +153,7 @@
          </div>
       </div>
    </div>
-   <div class="additional-feature-form reserve-form" style="display: none;">
+   <div class="additional-feature-form reserve-form" style="display: block;">
       <div class="program-duration-form additional-feature-form-main-div">
          <div class="program-duration-main-div third-job-details-div">
             <div class="program-duration-div third-job-details pd-ci-cursor font-size-18px-16px third-page-job-details-description">Job Details</div>
@@ -153,21 +167,20 @@
             <!-- <input type="text" placeholder="Deadline Date" class="all-inputs contact-information-mutual-stats input-deadline-date positions-deadline-date-inputs"></input> -->
             <input id="id_deadline_date" class="positions-deadline-date-inputs date-of-birth-input start-end-date all-inputs mutual-input"
                name="deadline" onchange="checkForm();checkStartDate();" value="" type="tel" maxlength="10"
-               placeholder="Deadline Date (mm/dd/yyyy)" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
+               placeholder="Deadline Date (dd/mm/yyyy)" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
 
             <div class="form-group form-group-add-question">
                {{ job_question_formset.non_form_errors }}
-               <textarea type="text" name="job_question-0-promp" maxlength="500" id="id_job_question-0-promp" class="textarea-question textarea-color form-control"></textarea>
+               <textarea type="text" name="job_question-0-promp" placeholder="Question 1"maxlength="500" id="id_job_question-0-promp" class="textarea-question textarea-color form-control"></textarea>
 
                <div class="row">
                   <div class="answer-type-select">
                      <!-- <label class="mutual-color">Answer type: </label> -->
+                    
                      <select onchange="changeAnsType(0)" class="form-control select-width" name="job_question-0-question_type" id="id_job_question-0-question_type">
-                       <option value="" ></option>
-                       <option value="Yes/No" selected>Yes/No</option>                
+                       <option value="" selected>Answer type:</option>
+                       <option value="Yes/No" >Yes/No</option>                
                        <option value="Numeric">Numeric</option>
-
-                       
 
                      </select>
 
@@ -196,11 +209,10 @@
 
 
                         <select onchange="changeAnsType(1)" class="form-control select-width select-arrow" id="id_job_question-1-question_type" name="job_question-1-question_type">
-                           <option style="display: none;" ></option>
-
-                        <option value="Yes/No" selected>Yes / No</option>
-                        <option value="Numeric" >Numeric</option>
-                    </select>
+                        <option style="display: none;"value="" >Answer type:</option>
+                           <option value="Yes/No" >Yes / No</option>
+                           <option value="Numeric" >Numeric</option>
+                        </select>
                       </div>
                       <div class="ideal-answer-div">
                         <div class="idealAns2" id="idealAns1">
@@ -232,8 +244,8 @@
                       <div class="answer-type-select">
 
                         <select onchange="changeAnsType(2)" class="form-control select-width select-arrow" id="id_job_question-2-question_type" name="job_question-2-question_type">
-                        <option style="display: none;" ></option>
-                        <option value="Yes/No" selected>Yes / No</option>
+                        <option style=""  value="">Answer type:</option>
+                        <option value="Yes/No" >Yes / No</option>
                         <option value="Numeric" >Numeric</option>
                     </select>
                       </div>
@@ -251,53 +263,67 @@
 
             <div title="You can add up to three questions for students" type="text" class=" add-question-button" onclick="showNextFormGroup()"><span style="padding-right: 10px;">+</span>Add Question</div>
             <div class="form-group form-group-add-question">
-               <select name="job_settings" id="job_settings" class="form-control select-width">
+               <select name="job_settings" id="job_settings" class="form-control select-width" style="display: none;">
                   <option  ></option>
                   <option value="F" selected>Filter out & send rejection letters to applicants who dont meet qualifications</option>
-                  <option value="NF">Don’t filter out applicants. I will manually review each application sent to me</option>
+                  <option value="NF">Don't filter out applicants. I will manually review each application sent to me</option>
                </select>
             </div>
             <div class="back-and-next-buttons" style="width: 100%; display: flex; justify-content: space-between;">
-               <a class="btn back-button next-none additional-feature-back-button">Back</a>
-               <input type="submit" value="Submit" id="additional-feature-submit-button" class="next-button btn submit-button next-none" ></input>
+               <a class=" back-button next-none additional-feature-back-button">Back</a>
+               <a type="submit" value="Submit" id="additional-feature-submit-button" class="next-button  submit-button next-none" >Submit</a>
             </div>
          </div>
          </div>
       </div>
    </div>
 </form>
-<script>
-function Post(){
 
-         document.getElementById('form-id').submit();
-      }
-</script>
 <script>
+   function handleClick() {
+        // Call the Post() function
+        PostJob();
 
-    function replaceNewlinesWithLineBreaks(text) {
-      return text.replace(/\n/g, "<br />");
+        // Disable the button to ensure it's only clicked once
+        document.getElementById('additional-feature-submit-button').removeEventListener('click', handleClick);
+        document.getElementById('additional-feature-submit-button').classList.add('disabled');
     }
-         document.getElementById("form-id").addEventListener("submit", function(event) {
-          event.preventDefault();
 
-          var textarea = document.getElementById("descriptionArea");
-          var text = textarea.value;
-          var replacedText = replaceNewlinesWithLineBreaks(text);
-            console.log("replace text");
-            console.log(replacedText);
-            textarea.value= replacedText;
-              console.log("replace text");
-            document.getElementById('form-id').submit();
+   function PostJob(){
 
-    });
+   document.getElementById('form-id').submit();
+   }
+   document.getElementById('additional-feature-submit-button').addEventListener('click', handleClick);
 
-function clickAndDisable(link) {
-     link.onclick = function(event) {
-        event.preventDefault();
-     }
+   function replaceNewlinesWithLineBreaks(text) {
+       return text.replace(/\n/g, "<br />");
    }
 
-    </script>
+   document.getElementById("form-id").addEventListener("submit", function (event) {
+       event.preventDefault();
+
+       var textarea = document.getElementById("descriptionArea");
+       var text = textarea.value;
+       var replacedText = replaceNewlinesWithLineBreaks(text);
+
+       console.log("Replaced text:");
+       console.log(replacedText);
+
+       textarea.value = replacedText;
+
+       // Now, you can submit the form
+       this.submit();
+   });
+
+   // If you want to disable a link after clicking, you can use the following function
+   function clickAndDisable(link) {
+       link.onclick = function (event) {
+           event.preventDefault();
+           this.onclick = null; // Disable the click event
+       }
+   }
+</script>
+
 <script>
 
     function changeAnsType(id){
@@ -438,6 +464,228 @@ function showNextFormGroup() {
         reader.readAsDataURL(file);
       });
     </script>
+
+
+
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+        const countries = ["Kosovo","Albania","Afghanistan",
+  "Algeria",
+  "Andorra",
+  "Angola",
+  "Antigua and Barbuda",
+  "Argentina",
+  "Armenia",
+  "Australia",
+  "Austria",
+  "Azerbaijan",
+  "The Bahamas",
+  "Bahrain",
+  "Bangladesh",
+  "Barbados",
+  "Belarus",
+  "Belgium",
+  "Belize",
+  "Benin",
+  "Bhutan",
+  "Bolivia",
+  "Bosnia and Herzegovina",
+  "Botswana",
+  "Brazil",
+  "Brunei",
+  "Bulgaria",
+  "Burkina Faso",
+  "Burundi",
+  "Cambodia",
+  "Cameroon",
+  "Canada",
+  "Cape Verde",
+  "Central African Republic",
+  "Chad",
+  "Chile",
+  "China",
+  "Colombia",
+  "Comoros",
+  "Republic of the Congo",
+  "Democratic Republic of the Congo",
+  "Costa Rica",
+  "Croatia",
+  "Cuba",
+  "Cyprus",
+  "Czech Republic",
+  "Denmark",
+  "Djibouti",
+  "Dominica",
+  "Dominican Republic",
+  "East Timor",
+  "Ecuador",
+  "Egypt",
+  "El Salvador",
+  "Equatorial Guinea",
+  "Eritrea",
+  "Estonia",
+  "Eswatini",
+  "Ethiopia",
+  "Fiji",
+  "Finland",
+  "France",
+  "Gabon",
+  "The Gambia",
+  "Georgia",
+  "Germany",
+  "Ghana",
+  "Greece",
+  "Grenada",
+  "Guatemala",
+  "Guinea",
+  "Guinea-Bissau",
+  "Guyana",
+  "Haiti",
+  "Holy See (Vatican City)",
+  "Honduras",
+  "Hungary",
+  "Iceland",
+  "India",
+  "Indonesia",
+  "Iran",
+  "Iraq",
+  "Ireland",
+  "Israel",
+  "Italy",
+  "Ivory Coast",
+  "Jamaica",
+  "Japan",
+  "Jordan",
+  "Kazakhstan",
+  "Kenya",
+  "Kiribati",
+  "North Korea",
+  "South Korea",
+  "Kosovo",
+  "Kuwait",
+  "Kyrgyzstan",
+  "Laos",
+  "Latvia",
+  "Lebanon",
+  "Lesotho",
+  "Liberia",
+  "Libya",
+  "Liechtenstein",
+  "Lithuania",
+  "Luxembourg",
+  "Madagascar",
+  "Malawi",
+  "Malaysia",
+  "Maldives",
+  "Mali",
+  "Malta",
+  "Marshall Islands",
+  "Mauritania",
+  "Mauritius",
+  "Mexico",
+  "Micronesia",
+  "Moldova",
+  "Monaco",
+  "Mongolia",
+  "Montenegro",
+  "Morocco",
+  "Mozambique",
+  "Myanmar (Burma)",
+  "Namibia",
+  "Nauru",
+  "Nepal",
+  "Netherlands",
+  "New Zealand",
+  "Nicaragua",
+  "Niger",
+  "Nigeria",
+  "North Macedonia",
+  "Norway",
+  "Oman",
+  "Pakistan",
+  "Palau",
+  "Palestine",
+  "Panama",
+  "Papua New Guinea",
+  "Paraguay",
+  "Peru",
+  "Philippines",
+  "Poland",
+  "Portugal",
+  "Qatar",
+  "Romania",
+  "Russia",
+  "Rwanda",
+  "Saint Kitts and Nevis",
+  "Saint Lucia",
+  "Saint Vincent and the Grenadines",
+  "Samoa",
+  "San Marino",
+  "São Tomé and Príncipe",
+  "Saudi Arabia",
+  "Senegal",
+  "Serbia",
+  "Seychelles",
+  "Sierra Leone",
+  "Singapore",
+  "Slovakia",
+  "Slovenia",
+  "Solomon Islands",
+  "Somalia",
+  "South Africa",
+  "South Sudan",
+  "Spain",
+  "Sri Lanka",
+  "Sudan",
+  "Suriname",
+  "Sweden",
+  "Switzerland",
+  "Syria",
+  "Tajikistan",
+  "Tanzania",
+  "Thailand",
+  "Togo",
+  "Tonga",
+  "Trinidad and Tobago",
+  "Tunisia",
+  "Turkey",
+  "Turkmenistan",
+  "Tuvalu",
+  "Uganda",
+  "Ukraine",
+  "United Arab Emirates",
+  "United Kingdom",
+  "United States",
+  "Uruguay",
+  "Uzbekistan",
+  "Vanuatu",
+  "Venezuela",
+  "Vietnam",
+  "Yemen",
+  "Zambia",
+  "Zimbabwe"
+];
+
+var select = document.getElementById("id_country_j");
+
+// Function to populate the select element with countries
+function populateCountries() {
+    for (var i = 0; i < countries.length; i++) {
+        var option = document.createElement("option");
+        option.text = countries[i];
+        select.appendChild(option);
+    }
+
+}
+
+// Call the function to populate the select element when the page loads
+window.addEventListener("load", populateCountries);
+    </script>
+
+
+
+
 
       <script src="{% static 'js/post-a-job/post-a-job-first-next-button-enable.js'%}"></script>
       <script src="{% static 'js/post-a-job/post-a-job-textarea.js'%}"></script>

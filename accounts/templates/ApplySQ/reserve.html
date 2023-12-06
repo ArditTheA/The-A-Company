@@ -80,36 +80,39 @@
             <div class="program-duration-main-div">
             </div>
             <div class="contact-information-div-third-page">
-                <div class="contact-information-third-page pd-ci-cursor font-size-18px-16px">Contact Information</div>
+                <div class="contact-information-third-page pd-ci-cursor font-size-18px-16px ">Contact Information</div>
             </div>
 
         <div class="screening-question-only-form" style="">
-            <div class="screening-question-third-page font-size-18px-16px">Screening Questions</div>
+            <div class="screening-question-third-page font-size-18px-16px sq-meet-with-us">Screening Questions</div>
 
-
+            <div class="screening-question-only-under-form">
+                <div class="selects-div">
             {% for i in question %}
+                
                 {% if i.question_type == "Numeric" %}
                                     <div class="third-form-question">{{i.promp}}</div>
                             <input type="number" placeholder="0" value="" id="screening-question-select-options" class="custom-select" required>
 
                 {%else %}
-                                                <div class="third-form-question">{{i.promp}}</div>
-
+                <div class="third-form-question">{{i.promp}}</div>
+                    
                     <select title="{{i.promp}}"name="{{i.id}}" id="screening-question-select-options" style="" class="custom-select" >
-                        <!-- <option disabled selected style="display: none;" value="">Are you an active student?</option> -->
                         <option disabled selected style="display: none;" value="">Select option</option>
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
                   </select>
                 {% endif %}
-
+            
             {% endfor %}
+        </div>
 
 
           <div class="under-select-university-student-status" style="margin-top: 5px; color: #1877F2; display: none; position: absolute;">You must be an active university student</div>
-        <div class="back-and-next-buttons" style="width: 100%; display: flex; justify-content: space-between;">
-            <a class="btn back-button next-none screening-question-back" style="">Back</a>
-            <a id="next-button" type="submit" onclick="document.getElementById('answerForm').submit(); return false;" class="next-button third-next-button btn submit-button next-none" style="">Submit</a>
+            <div class="back-and-next-buttons" style="width: 100%; display: flex; justify-content: space-between;">
+                <a class="btn back-button next-none screening-question-back" style="">Back</a>
+                <a id="next-button" type="submit" onclick="document.getElementById('answerForm').submit(); return false;" class="next-button third-next-button btn submit-button next-none" style="">Submit</a>
+            </div>
         </div>
     </div>
 
@@ -296,6 +299,7 @@ if (!fullPhoneNumber.startsWith('+')) {
   "Kiribati",
   "North Korea",
   "South Korea",
+  "Kosovo",
   "Kuwait",
   "Kyrgyzstan",
   "Laos",

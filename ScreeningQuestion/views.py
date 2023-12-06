@@ -60,78 +60,82 @@ def GSheets(dataa,user,job,AnsList):
 
 
 
-@login_required()
 def add_JobScreeningQuestion(request):
     country_j = Country.objects.all()
     city_j = City.objects.all()
     uid = request.user
+
     if request.method == 'POST':
-        getCountry = request.POST.get("country_j")
-        getCity = request.POST.get("city_j")
+        try:
+            getCountry = request.POST.get("country_j")
+            getCity = request.POST.get("city_j")
 
-        jobTitle = request.POST.get("job_title")
-        job_form = JobForm(request.POST,request.FILES)
-        job_question_formset = JobQuestionFormSet(request.POST, prefix='job_question')
-        job_form.initial["user_id"] = uid
+            jobTitle = request.POST.get("job_title")
+            job_form = JobForm(request.POST, request.FILES)
+            job_question_formset = JobQuestionFormSet(request.POST, prefix='job_question')
+            job_form.initial["user_id"] = uid
 
+            if job_form.is_valid() and job_question_formset.is_valid():
+                job = job_form.save(commit=False)
+                job.user_id = request.user
+                job.save()
 
+                job_settings = JobSettings()
+                job_settings.job_id = job
+                job_settings.jobSettings = request.POST.get("job_settings")
+                job_settings.email = ""
+                job_settings.save()
 
-        if job_form.is_valid() and job_question_formset.is_valid():
-            job = job_form.save(commit=False)
-            job.user_id = request.user
-            job.save()
-            # for form in job_settings_formset:
-            #     job_settings = form.save(commit=False)
-            #     job_settings.job_id = job
-            #     job_settings.save()
-            job_settings = JobSettings()
-            job_settings.job_id = job
-            job_settings.jobSettings  = request.POST.get("job_settings")
-            job_settings.email =""
-            job_settings.save()
-
-            for form in job_question_formset:
-                if form.cleaned_data.get('promp') is not None:
+                for form in job_question_formset:
+                    if form.cleaned_data.get('promp') is not None:
                         job_question = form.save(commit=False)
                         job_question.job_id = job
                         job_question.save()
 
-            CountryJob(getCountry)
+                CountryJob(getCountry)
+                CityJob(getCity, getCountry)
+                subject = "Your job posting for " + jobTitle + " is under review"
+                email_template_applicant = "main/jobs/postJob.txt"
 
-            CityJob(getCity, getCountry)
-            subject = "Your job posting for " + jobTitle + " is under review"
-            email_template_applicant = "main/jobs/postJob.txt"
+                c = {
+                    "email": request.user.email,
+                    'domain': 'worki.global',
+                    'site_name': 'Worki',
+                    'user': request.user,
+                    'jobTitle': jobTitle,
+                }
+                email = render_to_string(email_template_applicant, c)
 
+                try:
+                    send_mail(subject, email, 'Worki hello@worki.global', [request.user.email], fail_silently=False)
+                except BadHeaderError:
+                    return HttpResponse('Invalid header found.')
 
+                return redirect('postedJob')
+            else:
+                print("--------------------------")
+                print("--------------------------")
+                print("--------------------------")
+                print("--------------------------")
+                print(job_form.errors)
+                print("--------------------------")
+                print("--------------------------")
+                print(job_question_formset.errors)
+                print("--------------------------")
+                print("--------------------------")
+        except ValidationError as e:
+            # Print validation error for debugging purposes
+            print(f"Validation Error: {e}")
 
-
-            c = {
-                "email": request.user.email,
-                'domain': 'worki.global',
-                'site_name': 'Worki',
-                'user': request.user,
-                'jobTitle': jobTitle,
-
-            }
-            email = render_to_string(email_template_applicant, c)
-
-            try:
-                send_mail(subject, email, 'Worki hello@worki.global',
-                          [request.user.email], fail_silently=False)
-            except BadHeaderError:
-                return HttpResponse('Invalid header found.')
-
-            return redirect('postedJob')
-
-
-
+        except Exception as e:
+            # Print other exceptions for debugging purposes
+            print(f"An unexpected error occurred: {e}")
 
     else:
         job_form = JobForm()
         job_question_formset = JobQuestionFormSet(prefix='job_question')
 
-    return render(request,"Jobs/postJob.html", {'job_form': job_form, 'job_question_formset': job_question_formset})
-
+    return render(request, "Jobs/postJob.html", {'job_form': job_form, 'job_question_formset': job_question_formset})
 def getQuestion(request,pk):
     question = JobQuestion.objects.filter(job_id=pk).order_by("-id")
     userId=request.user
@@ -522,28 +526,27 @@ from django.http import HttpResponse
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 from .models import Jobs, Application
-
+from datetime import datetime
 @csrf_exempt
 @require_POST
 def make_application_ajax(request):
     user_id = request.POST.get('user_id')
     job_id = request.POST.get('job_id')
-    dataa = request.POST.get('apply_date')
+    dataa = datetime.now()
     status = request.POST.get('status')
     print(status)
     email = request.POST.get('email')
-    print("dataa"+dataa)
+    print("dataa"+str(dataa))
     input_format = "%Y/%m/%d"
 
-    # Convert the string to a datetime object
+    
 
-    dataa = datetime.strptime(dataa, input_format)
-
+   
     post = get_object_or_404(Jobs, id=Jobs.objects.get(id=job_id).id)
     app = Application()
     app.user_id = CustomUser.objects.get(id=user_id)
     app.job_id = Jobs.objects.get(id=job_id)
-    app.apply_date = dataa
+    app.apply_date = datetime.now()
     app.status = "Pending"
     app.ApplicantStat = status
     app.save()
@@ -577,13 +580,7 @@ def make_application_ajax(request):
     listQ_2 = request.POST.get('listQ_2')
     if listQ_2 is not None:
         listQ.append(listQ_2)
-    print("------------------------")
-    print("------------------------")
-    print("------------------------")
-    print(listQ)
-    print("------------------------")
-    print("------------------------")
-    print("------------------------")
+
 
     GSheets(str(dataa), CustomUser.objects.get(id=user_id), Jobs.objects.get(id=job_id), listQ)
 

@@ -59,6 +59,71 @@ def GetJobApplicant(request):
     ApplicantANS = ApplicantAnswer.objects.all()
     allApp=False
     return render(request, "Administrator/Applicants/index.html",dict(app=Applicant,co=co,ci=ci,appNo=appCount,Ustat=StudentStat,allApp=allApp,ApplicantANS=ApplicantANS))
+
+
+
+from datetime import datetime
+
+from django.shortcuts import render
+from django.utils.datetime_safe import datetime
+
+# def GetJobApplicant1(request):
+#     start_date = datetime(2023, 10, 1)
+    
+#     # Fetch related fields in a single query
+#     Applicant = Application.objects.filter(apply_date__gte=start_date).order_by("-id").select_related('user_id', 'job_id').values('id', 'user_id__first_name', 'user_id__last_name', 'user_id__email', 'user_id__phone_number', 'job_id__program', 'user_id__country', 'job_id__job_title', 'job_id__country_j', 'job_id__city_j', 'apply_date')
+    
+#     # Fetch related objects separately
+#     applicant_ids = [app['id'] for app in Applicant]
+#     ApplicantANS = ApplicantAnswer.objects.filter(applicant_id__in=applicant_ids, question_id__job_id__in=applicant_ids)
+#     print(ApplicantANS)
+#     StudentStat = ActiveStudent.objects.all()
+#     co = Country.objects.all()
+#     ci = City.objects.all()
+#     appCount = len(Applicant)
+#     allApp = False
+    
+#     return render(
+#         request,
+#         "Administrator/Applicants/index.html",
+#         dict(app=Applicant, co=co, ci=ci, appNo=appCount, Ustat=StudentStat, allApp=allApp, ApplicantANS=ApplicantANS)
+#     )
+
+def GetJobApplicant1(request):
+    start_date = datetime(2023, 10, 1)
+    
+    applicants = Application.objects.filter(apply_date__gte=start_date).order_by("-id")
+    student_stats = ActiveStudent.objects.all()
+    countries = Country.objects.all()
+    cities = City.objects.all()
+    app_count = applicants.count()
+    applicant_answers = ApplicantAnswer.objects.all()
+
+    # Pre-process the data to associate answers with each applicant
+    processed_applicants = []
+    for applicant in applicants:
+        answers = []
+        for answer in applicant_answers:
+            if applicant.id == answer.applicant_id.id and applicant.job_id == answer.question_id.job_id:
+                answers.append(answer.user_answer)
+        processed_applicants.append({'applicant': applicant, 'answers': answers})
+
+    all_app = False
+    
+    return render(
+        request,
+        "Administrator/Applicants/index.html",
+        {
+            'applicants': processed_applicants,
+            'countries': countries,
+            'cities': cities,
+            'app_count': app_count,
+            'student_stats': student_stats,
+            'all_app': all_app,
+        }
+    )
+
+
 @login_required()
 def GetUserProfile(request,pk):
     us = CustomUser.objects.get(id=pk)
@@ -87,6 +152,9 @@ def GetAllApplication(request):
     allApp = True
     ApplicantANS = ApplicantAnswer.objects.all()
     return render(request, "Administrator/Applicants/index.html",dict(app=Applicant,appNo=appCount,Ustat=StudentStat,allApp=allApp,ApplicantANS=ApplicantANS))
+
+from allauth.socialaccount.models import SocialAccount
+
 @login_required()
 def GetStats(request):
     allUser = CustomUser.objects.all().count()
@@ -97,20 +165,57 @@ def GetStats(request):
     weekApp = Application.objects.filter(apply_date__week=datetime.now().isocalendar()[1]).filter(apply_date__year=datetime.now().year).count()
 
     user =  CustomUser.objects.all()
-    count =0
-    for i in user:
-        if i.socialaccount_set.exists():
-            count+=1
-
-
+    count = SocialAccount.objects.all().count()
 
     return render(request,"Administrator/Applicants/stat.html",dict(count=count,allUser=allUser,allJobs=allJobs,allApp=allApp,moApp=moApp,dayApp=dayApp,weekApp=weekApp))
+
+from django.db.models import Count
+
 #  Matcch
+
 class GetJobIdApplicant(View):
     def get(self,request,pk):
         CurrentUser = request.user
         usID = request.POST.get("user_id")
+        NoApplicant=Application.objects.filter(job_id=pk).count()
+        NoApplicantQualified = Application.objects.filter(job_id=pk,ApplicantStat="Qualified").count()
+        NoApplicantNQualified = Application.objects.filter(job_id=pk,ApplicantStat="Not qualified").count()
 
+        
+        
+        applications = Application.objects.filter(job_id=pk)
+
+        # Step 2: Extract unique user_ids from the applications
+        user_ids = applications.values_list('user_id', flat=True).distinct()
+
+        userWorkPermit = 0
+        ready_users_count = 0
+        usersOnDocForWorkPermit = 0
+        for user_id in user_ids:
+            user_documents_count = documents_users.objects.filter(
+                id_document__in=documents_list.objects.all(),
+                user_id=user_id
+            ).count()
+
+            all_documents_count = documents_list.objects.count()
+
+            if user_documents_count == all_documents_count:
+                ready_users_count += 1
+            elif user_documents_count > 0 and user_documents_count < 7:
+                usersOnDocForWorkPermit +=1
+            elif user_documents_count > 0 and user_documents_count <9:
+                userWorkPermit +=1
+
+        # Now, ready_users_count contains the number of users who have uploaded all documents for the specified job.
+        print("______________________________________")
+        print("______________________________________")
+        print(f"The number of users with all documents uploaded: {ready_users_count}")
+        print(f"The number of users with  documents uponprocessssloaded: {usersOnDocForWorkPermit}")
+        print(f"The number of users with  workPermit: {userWorkPermit}")
+
+        print("______________________________________")
+        print("______________________________________")
+        
 
         jpk = pk
         JobOwner = Jobs.objects.get(id=jpk)
@@ -233,11 +338,11 @@ class GetJobIdApplicant(View):
 
                 app=True
                 q="All"
-                return render(request, "Applicant-Doc/index.html", dict(users=users,q=q,app=app,phase=phase,subphase=subphase,us=detailUser,uExp=ExpUser,uEdu=EduUser,uLang = LangUser,jpk=jpk,uid=uid,OnBoardPhase=OnBoardPhase))
+                return render(request, "Applicant-Doc/index.html", dict(users=users,q=q,app=app,phase=phase,subphase=subphase,us=detailUser,uExp=ExpUser,uEdu=EduUser,uLang = LangUser,jpk=jpk,uid=uid,OnBoardPhase=OnBoardPhase,NoApplicant=NoApplicant,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified,ready_users_count=ready_users_count,userWorkPermit=userWorkPermit,usersOnDocForWorkPermit=usersOnDocForWorkPermit))
             else:
                 q = "All"
                 app=False
-                return render(request,"Applicant-Doc/index.html",dict(q=q,app=app,jpk=jpk))
+                return render(request,"Applicant-Doc/index.html",dict(q=q,app=app,jpk=jpk,NoApplicant=NoApplicant,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified,ready_users_count=ready_users_count,userWorkPermit=userWorkPermit,usersOnDocForWorkPermit=usersOnDocForWorkPermit))
         elif request.user.is_staff:
             if Application.objects.filter(job_id=jpk).exists():
                 users = Application.objects.filter(job_id=jpk)
@@ -358,19 +463,22 @@ class GetJobIdApplicant(View):
                 app = True
                 q = "All"
                 return render(request, "Applicant-Doc/index.html",
-                              dict(users=users, q=q, app=app, phase=phase, subphase=subphase, us=detailUser,
-                                   uExp=ExpUser, uEdu=EduUser, uLang=LangUser, jpk=jpk, uid=uid,OnBoardPhase=OnBoardPhase))
+                              dict(users=users, q=q, app=app, phase=phase, subphase=subphase, us=detailUser,ready_users_count=ready_users_count,userWorkPermit=userWorkPermit,usersOnDocForWorkPermit=usersOnDocForWorkPermit,
+                                   uExp=ExpUser, uEdu=EduUser, uLang=LangUser, jpk=jpk, uid=uid,OnBoardPhase=OnBoardPhase,NoApplicant=NoApplicant,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified,))
             else:
                 q = "All"
                 app = False
-                return render(request, "Applicant-Doc/index.html", dict(q=q, app=app, jpk=jpk,OnBoardPhase=OnBoardPhase))
+                return render(request, "Applicant-Doc/index.html", dict(q=q, app=app,ready_users_count=ready_users_count,usersOnDocForWorkPermit=usersOnDocForWorkPermit, userWorkPermit=userWorkPermit,jpk=jpk,OnBoardPhase=OnBoardPhase,NoApplicant=NoApplicant,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified,))
         else:
             pass
-        return render(request,"Applicant-Doc/index.html")
+        return render(request,"Applicant-Doc/index.html",dict(NoApplicant=NoApplicant,ready_users_count=ready_users_count,usersOnDocForWorkPermit=usersOnDocForWorkPermit,userWorkPermit=userWorkPermit,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified,))
 class GetJobIdApplicantQualified(View):
     def get(self,request,pk):
         CurrentUser = request.user
         usID = request.POST.get("user_id")
+        NoApplicant=Application.objects.filter(job_id=pk).count()
+        NoApplicantQualified = Application.objects.filter(job_id=pk,ApplicantStat="Qualified").count()
+        NoApplicantNQualified = Application.objects.filter(job_id=pk,ApplicantStat="Not qualified").count()
         jpk = pk
         JobOwner = Jobs.objects.get(id=jpk)
         phase = Phase.objects.filter(user_id=request.user).filter(job_id=jpk)
@@ -492,18 +600,21 @@ class GetJobIdApplicantQualified(View):
 
                 app=True
                 q="Q"
-                return render(request, "Applicant-Doc/index.html", dict(users=users,q=q,app=app,phase=phase,subphase=subphase,us=detailUser,uExp=ExpUser,uEdu=EduUser,uLang = LangUser,jpk=jpk,uid=uid))
+                return render(request, "Applicant-Doc/index.html", dict(users=users,q=q,NoApplicant=NoApplicant,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified,app=app,phase=phase,subphase=subphase,us=detailUser,uExp=ExpUser,uEdu=EduUser,uLang = LangUser,jpk=jpk,uid=uid))
             else:
                 q = "Q"
                 app = False
-                return render(request,"Applicant-Doc/index.html",dict(q=q,app=app,jpk=jpk,phase=phase,subphase=subphase))
+                return render(request,"Applicant-Doc/index.html",dict(q=q,app=app,jpk=jpk,NoApplicant=NoApplicant,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified,phase=phase,subphase=subphase))
         else:
             pass
-        return render(request,"Applicant-Doc/index.html",{"jpk":jpk})
+        return render(request,"Applicant-Doc/index.html",dict(jpk=jpk,NoApplicant=NoApplicant,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified))
 class GetJobIdApplicantNQualified(View):
     def get(self,request,pk):
         CurrentUser = request.user
         usID = request.POST.get("user_id")
+        NoApplicant=Application.objects.filter(job_id=pk).count()
+        NoApplicantQualified = Application.objects.filter(job_id=pk,ApplicantStat="Qualified").count()
+        NoApplicantNQualified = Application.objects.filter(job_id=pk,ApplicantStat="Not qualified").count()
         jpk = pk
         JobOwner = Jobs.objects.get(id=jpk)
         phase = Phase.objects.filter(user_id=request.user).filter(job_id=jpk)
@@ -626,14 +737,14 @@ class GetJobIdApplicantNQualified(View):
                 app=True
                 q="notQ"
 
-                return render(request, "Applicant-Doc/index.html", dict(users=users,q=q,app=app,phase=phase,subphase=subphase,us=detailUser,uExp=ExpUser,uEdu=EduUser,uLang = LangUser,jpk=jpk,uid=uid))
+                return render(request, "Applicant-Doc/index.html", dict(users=users,q=q,NoApplicant=NoApplicant,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified,app=app,phase=phase,subphase=subphase,us=detailUser,uExp=ExpUser,uEdu=EduUser,uLang = LangUser,jpk=jpk,uid=uid))
             else:
                 q="notQ"
                 app=False
-                return render(request,"Applicant-Doc/index.html",dict(q=q,app=app,jpk=jpk,phase=phase,subphase=subphase))
+                return render(request,"Applicant-Doc/index.html",dict(q=q,app=app,jpk=jpk,NoApplicant=NoApplicant,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified,phase=phase,subphase=subphase))
         else:
-            return render(request,"Applicant-Doc/index.html")
-        return render(request,"Applicant-Doc/index.html",{"jpk":jpk})
+            return render(request,"Applicant-Doc/index.html",dict(NoApplicant=NoApplicant,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified))
+        return render(request,"Applicant-Doc/index.html",dict(jpk=jpk,NoApplicant=NoApplicant,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified))
 
 
 

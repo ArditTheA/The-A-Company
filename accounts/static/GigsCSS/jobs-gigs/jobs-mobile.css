@@ -1,4 +1,7 @@
 @media screen and (max-width: 480px) {
+    .NoResult{
+        margin:20px 0px 0px 10px;
+    }
     .job-logo {
         margin-right: 20px;
     }
@@ -33,7 +36,7 @@
         height: calc(100% - 204.61px) !important;
     }
     .job-right-exit {
-        padding: 5px;
+        padding: 5px; 
         margin: -5px -5px 15px -5px !important;
     }
     .right-jobs {
@@ -175,11 +178,11 @@
 
     .edit-job-button {
         width: 20px;
-        height: 20px;
+        height: auto;
         margin-right: 20px;
     }
     .recruter-job-dropdown {
-        top: 40px;
+        top:46px;
         right: 20px;
     }
     .job-right-apply-button {

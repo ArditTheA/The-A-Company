@@ -1,4 +1,13 @@
-  
+.filters-icon{
+    /* Remove default arrow icon */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    /* Remove background image */
+    background-image: none;
+}
+
 textarea {
     height:auto;
     resize: none;
@@ -12,35 +21,39 @@ textarea {
     padding: 5px;
     box-sizing: border-box;
 }
+select {
+    /* Remove default arrow icon */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('../img/dropdown-icon.svg');
+    /* Add a custom background and padding to show a custom icon or style */
+    background-repeat: no-repeat;
+    background-position: calc(100% - 15px) center;
+}
 .scroll::-webkit-scrollbar { width: 0 !important }
 .scroll { overflow: -moz-scrollbars-none; }
 .scroll { -ms-overflow-style: none; }
-
 .jobs-buttons {
     display: flex;
     align-items: center;
     margin: 20px 0px 0px 40px !important;
 }
-
 .mutual-padding-of-div {
     padding-right: 20px;
 }
 .form-select {
     font-size: 16px !important;
 }
-
 /* .move {
-    margin-top: 20px;
+    margin-top: 20px;     
 }                                                                         */
-
 .jobs-rows-img {
     cursor: pointer;
 }
-
 select {
     font-size: 16px !important;
 }
-
 .applied-button-jobs, .applied-button-posted-jobs {
     border: solid 1px;
     color: white;
@@ -54,13 +67,10 @@ select {
 }
 .apply-button-description-div {
     padding-bottom: 7px;    /* jo padding-bottom: 8px, sepse border eshte 1px (keshtu qe padding-bottom: 7px + border: 1px = 8px), dhe keshtu buttoni Apply eshte i larguar 30px per pjesen e poshte te main divit. */
-
 }
-
 .applied-button-posted-jobs, .posted-button-posted-jobs {
     height: 36px !important;
 }
-
 .applied-button-jobs, .posted-button-posted-jobs {
     color: white;
     background-color: #1877F2;
@@ -71,8 +81,6 @@ select {
 .apply-button-description {
     margin-top: 10px;
 }
-
-
 /* .posted-button-jobs, .applied-button-posted-jobs {
     color: #65676B;
     background-color: white;
@@ -81,7 +89,6 @@ select {
     color: white;
     background-color: #1877F2;
 }
-
 .plus-jobs-posted {
     padding-left: 0px;
     padding-right: 0px;
@@ -111,47 +118,40 @@ select {
     padding: 8px 30px 8px 30px;
     border: none;
 }
-
 /* .jobs-left, .right-jobs {
     margin-bottom: 20px;
     overflow-y: scroll;
     height: 85.9vh;
-    /* height: calc(86vh - 65px);  kur ishte "wishes ribbon"*/
+    /* height: calc(86vh - 65px);  kur ishte "wishes ribbon"*/ 
 /* } */
 /* .right-jobs {
     flex-direction: column;
 } */
-
 .plus-icon-jobs {
     width: 18px;
-    height: 18px;
-    vertical-align: middle;
-    border-radius: 50%;
-    padding: 8px;
+    height: 18px; 
+    vertical-align: middle; 
+    border-radius: 50%; 
+    padding: 8px; 
     background-color: white;
 }
-
 .first-row-and-edit-img {
     display: flex;
 }
 /* .exit-job-description {
     margin-bottom: 50px;
     display: none;
-    width: 8px;
+    width: 8px; 
     height: 8px;
 } */
-
-
 .second-row-jobs {
     font-size: 16px;
     color: #1877F2;
 }
-
 .second-row-second-div, .second-div-second-paragraph {
     color: #858585;
     line-height: 35px;
 }
-
 .jobs-rows-img {
     padding: 30px;
     background-color: white;
@@ -165,23 +165,18 @@ select {
     background-color: white;
     width: 100%;
     box-sizing: border-box;
-    -webkit-appearance: none;
 }
-
-
 .move {
     margin-top: 20px;
 }
-
 .right-jobs-rows-img {
     font-size: 20px;
     padding: 30px;
 }
-
 .right-jobs-rows-img-second {
-    padding: 30px;
-    margin-left: 10px;
-    background-color: white;
+    padding: 30px; 
+    margin-left: 10px; 
+    background-color: white; 
     margin-top: 20px;
 }
 .text-decoration-none {
@@ -194,10 +189,9 @@ select {
     background-color: #E7F1FE;
 } */
 .jobs-third-row {
-    font-size: 16px;
+    font-size: 16px; 
     color: #858585;
 }
-
 .jobs-third-row-second-div {
     font-size: 20px;
 }
@@ -231,29 +225,21 @@ select {
 body {
     -webkit-tap-highlight-color: transparent;
 }
-
 .last-selectOptions {
 }
 #mySelectOptions {
-
+    
 }
 .last-selectOptions::-webkit-scrollbar {
 }
-
         .jobs-buttons {
             /* position: relative; */
         }
-
         .form-group {}
-
         .multiselect {}
-
         .container-fluid {}
-
         .selectBox {}
-
         .selectBox select {}
-
         .overSelect {
             position: absolute;
             left: 0;
@@ -261,34 +247,33 @@ body {
             top: 0;
             bottom: 0;
         }
-
-
-
         #mySelectOptions label {
             display: block;
             font-weight: normal;
             white-space: nowrap;
             min-height: 1.2em;
             background-color: #ffffff00;
-            padding: 0px 20px;
+            padding: 0px 20px;                                       
             /* padding: .375rem 2.25rem .375rem .75rem; */
         }
-
-        #mySelectOptions label:hover {
-            color: black;
+        #all-applicants-dropdown label {
+            display: block;
+            font-weight: normal;
+            white-space: nowrap;
+            min-height: 1.2em;
+            background-color: #ffffff00;
         }
-
+        #all-applicants-dropdown label:last-child {
+            display: none;
+        }
         .search-input::placeholder {
             color: #b1b2b8;
             font-size: 16px;
         }
-
         .container-fluid {
             border: none;
         }
-
         .buttons-form {}
-
         .search-input, .search-input-without-width {
             padding-top: 8px;
             padding-bottom: 8px;
@@ -301,21 +286,19 @@ body {
             outline: none;
             /* width: 198px; */
             /* width: 176px; */
-            padding-right: 15px;
+            padding-right: 5px;
         }
         .all-aplicants-search {
             padding-right: 5px !important;
         }
-
         .search-input {
             transition: all 0.5s ease-in-out;
             display: none;
         }
         .plus-icon-jobs:hover {
             filter: brightness(0.9);
-        }
-
-        #mySelectOptions {
+        }    
+        #mySelectOptions, #all-applicants-dropdown {
             border-radius: 16px;
             border: none;
             box-sizing: border-box;
@@ -326,19 +309,21 @@ body {
             position: absolute;
             display: none;
             background-color: #ffffff;
-            max-height: 145px;
             overflow-y: scroll;
             margin-top: 10px;
             overflow-x: hidden;
             z-index: 2;
             padding-right: 5px;
         }
+        #mySelectOptions {
+            max-height: 130px;
+        }
 
+        
         /* #mySelectOptions::-webkit-scrollbar-track {
             background: orange;
           }
-
-
+          
         #mySelectOptions::-webkit-scrollbar {
             border-radius: 16px;
             border: 2px solid orange;
@@ -348,76 +333,72 @@ body {
           * {
             scrollbar-width: thin;
           }
-
+          
           /* Works on Chrome, Edge, and Safari */
           *::-webkit-scrollbar {
             width: 7px !important;
           }
-
-
+          
           *::-webkit-scrollbar-thumb {
             width: 7px !important;
           }
-
+          
           *::-webkit-scrollbar-track {
             width: 7px !important;
           }
-
+          .all-applicants-select {
+            height: auto !important;
+          }
+          
           *::-webkit-scrollbar-thumb {
             /* background-color: #e7e7e7; */
             background-color: #f1f1f1;
             border-radius: 16px;
             position: absolute;
           }
-
+        
           .search-icon-jobs:hover {
             filter: brightness(0.975);
           }
-
         .labels-stats {
             font-size: 16px;
             color: #65676B;
-            margin-top: 20px;
-            margin-bottom: 20px;
+            margin-top: 15px;
             padding-left: 0px;
             margin-right: -10px;
             cursor: pointer;
             display: inline-block;
         }
-
+        .labels-stats:first-child {
+            margin-top: 20px;
+        }
+        #mySelectOptions {
+            padding-bottom: 20px;
+        }
         .first-label-margin {
         }
-
         input[type=checkbox] {
-            accent-color: white;
             border: none;
             margin-right: 10px;
         }
-
         .input-form {}
-
         .scrolling-wrapper {
             overflow-x: auto;
         }
-
         .scrolling-wrapper::-webkit-scrollbar {
             display: none;
         }
-
         .card {
             display: inline-block;
             flex: 0 0 auto;
         }
-
         .scrolling-wrapper-flexbox {
             display: flex;
             flex-wrap: nowrap;
         }
-
         .main-buttons-div {
             /* position: relative; */
         }
-
         .container-fluid:last-child {
             margin-right: 40px;
         }
@@ -428,15 +409,15 @@ body {
             outline: none;
             align-items: center;
         }
-
+        
         .inputs-right-margin, .last-input-form {
         }
-
+        
         .main-buttons-div {
         }
         select {
         }
-
+        
         .icon-filter, .white-icon, .input-exit-button {
             position: absolute;
             right: 10px;
@@ -456,7 +437,6 @@ body {
         .second-input-form {
             margin-right: -20px;
         }
-
         @media screen and (max-width: 1024px) and (min-width: 768px) {
             .container-fluid:last-child {
                 margin-right: 30px;
@@ -465,30 +445,28 @@ body {
         @media screen and (max-width: 767px) and (min-width: 481px) {
             .container-fluid:last-child {
                 margin-right: -20px;
-            }
-
+            }    
+        
         }
         @media screen and (max-width: 480px) {
             .container-fluid:last-child {
                 margin-right: 0px;
-            }
+            }    
         }
-
-
         @media screen and (max-width: 480px) {
-
-            .input-form {
-                margin-right: 10px;
+            select {
+                background-position: calc(100% - 10px) center;
             }
             .main-buttons-div {
                 margin-bottom: -10px;
                 margin-left: -30px;
             }
-
+        
             .inputs-right-margin {
                 margin-right: 10px;
             }
 
+                
             .search-input::placeholder {
                 font-size: 16px !important;
             }
@@ -513,7 +491,7 @@ body {
             .labels-stats {
                 font-size: 16px;
             }
-
+            
             .edit-job-button {
                 width: 20px;
                 height: 20px;
@@ -521,7 +499,7 @@ body {
             }
             .form-select {
                 font-size: 16px !important;
-            }
+            }            
             /* .applied-button-jobs, .applied-button-posted-jobs, .posted-button-posted-jobs {
                 height: 33px !important;
                 padding-left: 25px;

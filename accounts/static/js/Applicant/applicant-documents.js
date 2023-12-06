@@ -1,11 +1,6 @@
-
 $(document).ready(function() {
-    
-
-// Function to check if all files have been downloaded
-$(".open-popup").on("click", function() {
+    $('.open-popup').click(function() {
     var number = $(this).data('number');
-    
     $('#document_id').val(number);
     $('.bg-add-and-edit, .popup').css("display", "flex");
     var titleValue = $(this).attr('title');
@@ -16,60 +11,49 @@ $(".open-popup").on("click", function() {
 
     $('.name-document').text(titleValue);
     console.log(number);
-    $('.save-submit-input').click(function() {
-    if (selectedPopup) {
-        if ($("#id_document")[0].files.length > 0) {
-            // Remove "blue-text" class from all .mutual-titles-color divs
-            // Find the specific div associated with the selected "open-popup" and add the "blue-text" class
-            var titleText = $(selectedPopup).attr('title');
-            var modifiedTitleText = titleText.replace("Upload", "Download");
-            selectedPopup.closest('.main-div-docs').find('.mutual-titles-color').addClass("blue-text");
 
-            // Change the src attribute of the associated img element
-            selectedPopup.attr('src', '/static/img/documents-second-icon.svg');
-            selectedPopup.attr('title', modifiedTitleText);
+    $('.save-submit-input').off('click').on('click', function() {
+        if (selectedPopup) {
+            if ($("#id_document")[0].files.length > 0) {
+                $('.bg-add-and-edit, .popup').css("display", "none");
+                var titleText = $(selectedPopup).attr('title');
+                var modifiedTitleText = titleText.replace("Upload", "Download");
 
-            // Create a download link and set the href to the uploaded file
-            // Reset the selectedPopup variable
-        $(selectedPopup).click(function() {
-            $('.bg-add-and-edit, .popup').css("display", "none");
+                // Set a data attribute on the selectedPopup to store the uploaded file
+                selectedPopup.data('uploadedFile', $("#id_document")[0].files[0]);
 
-        var uploadedFile = $("#id_document")[0].files[0];
-            var downloadLink = document.createElement('a');
-            downloadLink.href = URL.createObjectURL(uploadedFile);
-            downloadLink.download = uploadedFile.name;
-            downloadLink.style.display = 'none';
+                selectedPopup.closest('.main-div-docs').find('.mutual-titles-color').addClass("blue-text");
+                selectedPopup.attr('src', '../img/documents-second-icon.svg');
+                selectedPopup.attr('title', modifiedTitleText);
 
-            // Append the link to the document and trigger a click event
-            document.body.appendChild(downloadLink);
-            downloadLink.click();
+                // Create the download link if it doesn't exist
+                // Set the download link properties
+                $(selectedPopup).on('click', function() {
+                    $('.bg-add-and-edit, .popup').css("display", "none");
+                    var uploadedFile = selectedPopup.data('uploadedFile');
+                    if (uploadedFile) {
+                        var downloadLink = document.createElement('a');
+                        downloadLink.href = URL.createObjectURL(uploadedFile);
+                        downloadLink.download = uploadedFile.name;
+                        downloadLink.style.display = 'none';
+            
+                        document.body.appendChild(downloadLink);
+                        downloadLink.click();
+                        document.body.removeChild(downloadLink);
+                    }
+                });
+            }
+        }
+    });
 
-            // Remove the link from the document
-            document.body.removeChild(downloadLink);
-
-        });
-    }
-
-    }
-
-    if ($("#id_document")[0].files.length > 0) {
-        $('.bg-add-and-edit, .popup').css("display", "none");
-    }
+    // Unbind previous click event handlers and add a new one
 });
 
-});
-
-
-  $('#close-popup').click(function() {
-    $('.bg-add-and-edit, .popup').css("display", "none");
-    $('#upload-form-recruiter')[0].reset(); // Reset the form
-    fileList.innerHTML="or drag and drop it here";
-
-  });
+//   });
   $(document).ready(function() {
     $(".bg-add-and-edit").click(function() {
         $(this).hide();
-    $('#upload-form-recruiter')[0].reset(); // Reset the form
+    $('#upload-form')[0].reset(); // Reset the form
     fileList.innerHTML="or drag and drop it here";
     });
 });
@@ -95,8 +79,8 @@ $(".open-popup").on("click", function() {
     }
   });
 
-  
 });
+
         
                 const dropArea = document.getElementById('drop-area');
                 const fileInput = document.getElementById('id_document');
@@ -168,7 +152,6 @@ $(".open-popup").on("click", function() {
 
                     };
             
-            //    $(this).contents().wrap('<a href="http://www.worki.global"></a>');
 
             if (overMobileMediaQuery.matches) {
                         $(".job-left-row").removeClass("different-background-jobs");
@@ -181,17 +164,12 @@ $(".open-popup").on("click", function() {
                         $('.documents-for-work-permit-form-content').data('sourceDiv', $(this));
             $('#applicantID').val(Applicantnumber); // Set the value of the input field in your popup
     
-    // Open the .open-this-div element with the corresponding index
-  
-    $('.work-permit-title').text('Your Work Permit is Here' ).show();
-            
-            // count_number++;
-            
-            $('.documents-for-work-permit-form-content').show();
+
+          
+
             $('.your-work-permit-is-here-form-content').hide();
             
             console.log(Applicantnumber);
-            // console.log($('.documents-for-work-permit-form-content'));
                     })
 
                     $('.myjob-right-exit').click(function() {

@@ -151,6 +151,9 @@ window.addEventListener('load', function() {
         var hourPerWork = document.getElementById('hourPerWork')
         hourPerWork.innerHTML = " "+data['hourPerWork']+" hours/week"
 
+        var Company = document.getElementById("company");
+        Company.innerHTML=data["company"];
+
 
 
         var housing = document.getElementById("housing")
@@ -180,14 +183,9 @@ window.addEventListener('load', function() {
         var hasApply = data["hasApply"];
         if(!rB){
             if(button){
-                if (!hasApply){
-                        var url= "apply/"+id
-                        button.innerHTML = '<a href="'+url+'" class="right-jobs-directions-accept-job accept-job-offer-button accept-confetti" onclick="CallCanvas(event);startConfetti();" title="Accept job">Apply</a>';
-
-
-                }else{
+                
                     button.innerHTML="Applied on "+data["applyDate"]
-                }
+                
             }
         }
         const mediaQuery = window.matchMedia('(max-width: 767px)');

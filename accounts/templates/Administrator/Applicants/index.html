@@ -57,29 +57,31 @@
     </tr>
   </thead>
   <tbody>
-  {% for i in app %}
-    <tr>
-      <td>{{i.id}}</td>
-      <td>{{i.user_id.first_name}}</td>
-      <td>{{i.user_id.last_name}}</td>
-      <td>{{i.user_id.email}}</td>
-      <td>{{i.user_id.phone_number}}</td>
-      <td>{{i.job_id.program}} {{i.job_id.country_j}}</td>
-      <td>{{i.user_id.country}}</td>
-      <td>{{i.job_id.job_title}}</td>
-      <td>{{i.job_id.country_j}}</td>
-      <td>{{i.job_id.city_j}}</td>
-      <td>
-          {% for j in ApplicantANS %}
-                {% if i.job_id == j.question_id.job_id and i.user_id == j.applicant_id%}
-                    {{j.user_answer}}
-                {%endif%}
-          {%endfor%}
-      </td>
-      <td>{{i.apply_date}}</td>
-      <td><a class="btn btn-primary" href="{% url 'visitJob' i.job_id.id %}">View Job</a></td>
-      <td><a class="btn btn-primary" href="{% url 'visitProfile' i.user_id.id %}">View Profile</a></td>
-    </tr>
+    {% for applicant_data in applicants %}
+        <tr>
+            <td>{{ applicant_data.applicant.id }}</td>
+            <td>{{ applicant_data.applicant.user_id.first_name }}</td>
+            <td>{{ applicant_data.applicant.user_id.last_name }}</td>
+            <td>{{ applicant_data.applicant.user_id.email }}</td>
+            <td>{{ applicant_data.applicant.user_id.phone_number }}</td>
+            <td>{{ applicant_data.applicant.job_id.program }} {{ applicant_data.applicant.job_id.country_j }}</td>
+            <td>{{ applicant_data.applicant.user_id.country }}</td>
+            <td>{{ applicant_data.applicant.job_id.job_title }}</td>
+            <td>{{ applicant_data.applicant.job_id.country_j }}</td>
+            <td>{{ applicant_data.applicant.job_id.city_j }}</td>
+            <td>
+                {% for answer in applicant_data.answers %}
+                    {{ answer }}
+                {% endfor %}
+            </td>
+            <td>{{ applicant_data.applicant.apply_date }}</td>
+            <td>
+                <a class="btn btn-primary" href="{% url 'visitJob' applicant_data.applicant.job_id.id %}">View Job</a>
+            </td>
+            <td>
+                <a class="btn btn-primary" href="{% url 'visitProfile' applicant_data.applicant.user_id.id %}">View Profile</a>
+            </td>
+        </tr>
     {% endfor %}
 
   </tbody>

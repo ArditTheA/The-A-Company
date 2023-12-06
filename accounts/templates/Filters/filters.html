@@ -7,20 +7,28 @@
 </script>
 <div class="main-buttons-div" style="position: relative;">
   <div class="jobs-buttons second-jobs-buttons scrolling-wrapper">
-    <form class="card" action="{% url 'home'%}">
-        <img style="cursor: pointer;" title="Search by job or location"
-            class="plus-icon-jobs search-icon-jobs inputs-right-margin" src="{% static 'img/search (1).png'%}"
-            alt="">
-            <div class="mutual-padding-of-div input-search-div" style="border-radius: 20px;">
-                <div class="second-input-form" style="">
-                <input style="" name="q" placeholder="Search by job or location"
-                    class="search-input inputs-right-margin" id="input-removed"
-                    style="padding-top: 8px; padding-bottom: 8px; padding-left: 20px; background-color: white; " autocomplete="off" onchange="SearchFunction()">
-                </input>
-                <img style="display: none;" class="input-exit-button" title="Exit" src="{% static 'img/Vector 81 (1).png'%}" style="width: 8px; height: 8px; background-color: red;" alt="">
-            </div>
+
+
+   
+
+  <form class="card"  action="{% url 'home'%}">
+    <img style="cursor: pointer;" title="Search by job or location"
+        class="search-icon-jobs inputs-right-margin plus-icon-jobs" src="{% static 'img/search (1).png'%}"
+        alt="">
+        <div class="mutual-padding-of-div input-search-div" style="border-radius: 20px;">
+            <div class="second-input-form" style="">
+
+          <input style="" name="q" placeholder="Search by job or location"
+                class="search-input inputs-right-margin" id="input-removed"
+                style="padding-left: 20px; background-color: white;">
+            </input>
+            <img style="display: none;" class="input-exit-button" title="Exit" src="{% static 'img/Vector 81 (1).png'%}" alt="">
         </div>
-    </form>
+    </div>
+</form>
+
+
+    
     <form style="display: flex;" class="buttons-form card" id="myForm" action="{% url 'filter' %}">
         <!-- Program -->
 <div class="container-fluid " style="cursor: pointer;">
@@ -31,23 +39,23 @@
 
       <select id="selProg" style="color: #f1f1f1; background-color: #1877f2;border: none; font-size: 18px; padding-top: 0; padding-bottom: 0;
           padding: 8px 30px; padding-left: 20px;" name="All Jobs" onchange="this.form.submit()"
-        class="form-select" id="second_form_select">
+        class="form-select filters-icon " id="second_form_select">
         <option value="{{filterProgram}}" class="first-input-option">{{filterProgram}}</option>
       </select>
       <div class="" style="display: flex; align-items: center;">
-        <img class="icon-filter" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
+        <img class="icon-filter" src="{% static 'img/dropdown-icon.svg' %}" style="display: none;" alt="">
         <img style="cursor: pointer; display: block;" class="white-icon"
-          src="{% static 'img/white-dropdown-icon.png' %}" alt="">
+          src="{% static 'img/white-dropdown-icon.svg' %}" alt="">
       </div>
 
       {% else %}
       <select style="color: #65676B; border: none; font-size: 18px; padding-top: 0; padding-bottom: 0;
-        padding: 8px 30px; padding-left: 20px;" class="form-select" name="All Jobs" id="second_form_select">
+        padding: 8px 30px; padding-left: 20px;" class="form-select filters-icon" name="All Jobs" id="second_form_select">
         <option class="first-input-option">All Jobs</option>
       </select>
       <div class="" style="display: flex; align-items: center;">
-        <img class="icon-filter" src="{% static 'img/dropdown-icon.png'%}" alt="">
-        <img style="cursor: pointer; display: none;" class="white-icon" src="{% static 'img/white-dropdown-icon.png' %}" alt="">
+        <img class="icon-filter" src="{% static 'img/dropdown-icon.svg'%}" alt="">
+        <img style="cursor: pointer; display: none;" class="white-icon" src="{% static 'img/white-dropdown-icon.svg' %}" alt="">
       </div>
 
       {% endif %}
@@ -96,21 +104,21 @@
     <div class="input-form margin inputs-right-margin" style="">
       {% if filterTitle != '' %}
       <select id="selTitle" style="color: #f1f1f1; background-color: #1877f2;border: none; font-size: 18px; padding-top: 0; padding-bottom: 0;
-      padding: 8px 30px; padding-left: 20px;" name="Job Position" class="form-select" id="second_form_select">
+      padding: 8px 30px; padding-left: 20px;" name="Job Position" class="form-select filters-icon" id="second_form_select">
         <option value="{{filterTitle}}" id="" class="first-input-option">{{filterTitle}}</option>
       </select>
       <div class="" style="display: flex; align-items: center;">
-        <img class="icon-filter" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
-        <img style="cursor: pointer; display: block;" class="white-icon" src="{% static 'img/white-dropdown-icon.png' %}" alt="">
+        <img class="icon-filter" src="{% static 'img/dropdown-icon.svg' %}" style="display: none;" alt="">
+        <img style="cursor: pointer; display: block;" class="white-icon" src="{% static 'img/white-dropdown-icon.svg' %}" alt="">
       </div>
       {% else %}
       <select style="color: #65676B; border: none; font-size: 18px; padding-top: 0; padding-bottom: 0;
-      padding: 8px 30px; padding-left: 20px;" class="form-select" name="Job Position" id="second_form_select">
+      padding: 8px 30px; padding-left: 20px;" class="form-select filters-icon" name="Job Position" id="second_form_select">
         <option class="first-input-option">Job Position</option>
       </select>
       <div class="" style="display: flex; align-items: center;">
-        <img class="icon-filter" src="{% static 'img/dropdown-icon.png'%}" alt="">
-        <img style="cursor: pointer; display: none;" class="white-icon" src="{% static 'img/white-dropdown-icon.png' %}" alt="">
+        <img class="icon-filter" src="{% static 'img/dropdown-icon.svg'%}" alt="">
+        <img style="cursor: pointer; display: none;" class="white-icon" src="{% static 'img/white-dropdown-icon.svg' %}" alt="">
       </div>
 
       {% endif %}
@@ -145,24 +153,24 @@
           <div class="input-form margin inputs-right-margin" style="">
             {% if filterSalary != "" %}
             <select id="selSalary" style="color: #f1f1f1; background-color: #1877f2;border: none; font-size: 18px; padding-top: 0; padding-bottom: 0;
-            padding: 8px 30px; padding-left: 20px;" name="Salary" class="form-select" id="second_form_select">
+            padding: 8px 30px; padding-left: 20px;" name="Salary" class="form-select filters-icon" id="second_form_select">
               <option value="{{filterSalary}}" id="" class="first-input-option"> {{filterSalary}}</option>
             </select>
             <div class="" style="display: flex; align-items: center;">
-              <img class="icon-filter" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
+              <img class="icon-filter" src="{% static 'img/dropdown-icon.svg' %}" style="display: none;" alt="">
               <img style="cursor: pointer; display: block;" class="white-icon"
-                src="{% static 'img/white-dropdown-icon.png' %}" alt="">
+                src="{% static 'img/white-dropdown-icon.svg' %}" alt="">
             </div>
             {% else %}
             <select style="color: #65676B; border: none; font-size: 18px; padding-top: 0; padding-bottom: 0;
-                padding: 8px 30px; padding-left: 20px; " class="form-select" name="Salary"
+                padding: 8px 30px; padding-left: 20px; " class="form-select filters-icon" name="Salary"
               onchange="this.form.submit()" id="second_form_select">
               <option class="first-input-option">Salary</option>
             </select>
             <div class="" style="display: flex; align-items: center;">
-              <img class="icon-filter" src="{% static 'img/dropdown-icon.png' %}" alt="">
+              <img class="icon-filter" src="{% static 'img/dropdown-icon.svg' %}" alt="">
               <img style="cursor: pointer; display: none;" class="white-icon"
-                src="{% static 'img/white-dropdown-icon.png' %}" alt="">
+                src="{% static 'img/white-dropdown-icon.svg' %}" alt="">
             </div>
 
             {% endif %}
@@ -196,21 +204,21 @@
     <div class="input-form margin inputs-right-margin" style="">
       {% if filterCompany != '' %}
       <select id="selCompany" style="color: #f1f1f1; background-color: #1877f2;border: none; font-size: 18px; padding-top: 0; padding-bottom: 0;
-      padding: 8px 30px; padding-left: 20px;" name="Company" class="form-select" id="second_form_select">
+      padding: 8px 30px; padding-left: 20px;" name="Company" class="form-select filters-icon" id="second_form_select">
         <option value="{{filterCompany}}" id="" class="first-input-option">{{filterCompany}}</option>
       </select>
       <div class="" style="display: flex; align-items: center;">
-        <img class="icon-filter" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
-        <img style="cursor: pointer; display: block;" class="white-icon"  src="{% static 'img/white-dropdown-icon.png' %}" alt="">
+        <img class="icon-filter" src="{% static 'img/dropdown-icon.svg' %}" style="display: none;" alt="">
+        <img style="cursor: pointer; display: block;" class="white-icon"  src="{% static 'img/white-dropdown-icon.svg' %}" alt="">
       </div>
       {% else %}
       <select style="color: #65676B; border: none; font-size: 18px; padding-top: 0; padding-bottom: 0;
-      padding: 8px 30px; padding-left: 20px;" class="form-select" name="Company" id="second_form_select">
+      padding: 8px 30px; padding-left: 20px;" class="form-select filters-icon" name="Company" id="second_form_select">
         <option class="first-input-option">Company</option>
       </select>
       <div class="" style="display: flex; align-items: center;">
-        <img class="icon-filter" src="{% static 'img/dropdown-icon.png'%}" alt="">
-        <img style="cursor: pointer; display: none;" class="white-icon" src="{% static 'img/white-dropdown-icon.png' %}" alt="">
+        <img class="icon-filter" src="{% static 'img/dropdown-icon.svg'%}" alt="">
+        <img style="cursor: pointer; display: none;" class="white-icon" src="{% static 'img/white-dropdown-icon.svg' %}" alt="">
       </div>
 
       {% endif %}
@@ -239,24 +247,24 @@
     <div class="input-form margin inputs-right-margin" style="">
       {% if filterLocation != '' %}
       <select id="selLocation" style="color: #f1f1f1; background-color: #1877f2;border: none; font-size: 18px; padding-top: 0; padding-bottom: 0;
-      padding: 8px 30px; padding-left: 20px;" name="Location" class="form-select" id="second_form_select">
+      padding: 8px 30px; padding-left: 20px;" name="Location" class="form-select filters-icon" id="second_form_select">
         <option value="{{filterLocation}}" class="first-input-option">{{filterLocation}}</option>
       </select>
       <div class="" style="display: flex; align-items: center;">
-        <img class="icon-filter" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
+        <img class="icon-filter" src="{% static 'img/dropdown-icon.svg' %}" style="display: none;" alt="">
         <img style="cursor: pointer; display: block;" class="white-icon"
-          src="{% static 'img/white-dropdown-icon.png' %}" alt="">
+          src="{% static 'img/white-dropdown-icon.svg' %}" alt="">
       </div>
       {% else %}
       <select style="color: #65676B; border: none; font-size: 18px; padding-top: 0; padding-bottom: 0;
-          padding: 8px 30px; padding-left: 20px; " class="form-select" name="Location"
+          padding: 8px 30px; padding-left: 20px; " class="form-select filters-icon" name="Location"
         onchange="this.form.submit()" id="second_form_select">
         <option class="first-input-option" >Country</option>
       </select>
       <div class="" style="display: flex; align-items: center;">
-        <img class="icon-filter" src="{% static 'img/dropdown-icon.png' %}" alt="">
+        <img class="icon-filter" src="{% static 'img/dropdown-icon.svg' %}" alt="">
         <img style="cursor: pointer; display: none;" class="white-icon"
-          src="{% static 'img/white-dropdown-icon.png' %}" alt="">
+          src="{% static 'img/white-dropdown-icon.svg' %}" alt="">
       </div>
 
       {% endif %}
@@ -286,24 +294,24 @@
     <div class="input-form last-input-form margin inputs-right-margin" style="">
       {% if filterDate != '' %}
       <select id="selDate" style="color: #f1f1f1; background-color: #1877f2;border: none; font-size: 18px; padding-top: 0; padding-bottom: 0;
-      padding: 8px 30px; padding-left: 20px;" name="dataPosted" class="form-select" id="second_form_select">
+      padding: 8px 30px; padding-left: 20px;" name="dataPosted" class="form-select filters-icon" id="second_form_select">
         <option value="{{filterDate}}" id="" class="first-input-option">{{filterDate}}</option>
       </select>
       <div class="" style="display: flex; align-items: center;">
-        <img class="icon-filter" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
+        <img class="icon-filter" src="{% static 'img/dropdown-icon.svg' %}" style="display: none;" alt="">
         <img style="cursor: pointer; display: block;" class="white-icon"
-          src="{% static 'img/white-dropdown-icon.png' %}" alt="">
+          src="{% static 'img/white-dropdown-icon.svg' %}" alt="">
       </div>
       {% else %}
       <select style="color: #65676B; border: none; font-size: 18px; padding-top: 0; padding-bottom: 0;
-          padding: 8px 30px; padding-left: 20px; " class="form-select" name="dataPosted"
+          padding: 8px 30px; padding-left: 20px; " class="form-select filters-icon" name="dataPosted"
         onchange="this.form.submit()" id="second_form_select">
         <option class="first-input-option">Date Posted</option>
       </select>
       <div class="" style="display: flex; align-items: center;">
-        <img class="icon-filter" src="{% static 'img/dropdown-icon.png' %}" alt="">
+        <img class="icon-filter" src="{% static 'img/dropdown-icon.svg' %}" alt="">
         <img style="cursor: pointer; display: none;" class="white-icon"
-          src="{% static 'img/white-dropdown-icon.png' %}" alt="">
+          src="{% static 'img/white-dropdown-icon.svg' %}" alt="">
       </div>
 
       {% endif %}

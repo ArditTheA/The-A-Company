@@ -10,13 +10,47 @@
     
     
 </style>
-
-
+<input type="hidden" value="{{jpk}}" id="job-id-hidden">
 <div class="main-buttons-div">
+    <div class="jobs-buttons applied-posted-buttons-mobile all-aplicants-main-div scrolling-wrapper">
+<div style="display: flex;" class="buttons-form card">
+    <div class="container-fluid " style="cursor: pointer;">
+        <div id="mySelectLabel" class="selectBox" style="">
+            <div class="input-form margin inputs-right-margin" style="">
+                <select style="color: #65676B; border: none;
+      padding: 8px 30px; padding-left: 20px;" class="form-select" id="second_form_select">
+                    <option value="All Jobs" id="program" class="first-input-option all-applicants-button nr_of_applicants">All Applicants ({{NoApplicant}})</option>
+                </select>
+                <div class="" style="display: flex; align-items: center;">
+                    <img style="cursor: pointer; display: none;" class="white-icon"
+                        src="/static/img/white-dropdown-icon.svg" alt="">
+                        
+                </div>
+                    <div style="" class="overSelect"></div>
+            </div>
+            <div id="all-applicants-dropdown" class="selectOptions dropdown-elements all-applicants-dropdown" style="z-index: 99;">
+       <label for="mutual1" id="qualify" class="profileDropDown-content profileDropDown-text all-applicants-dropdown-content"><input id="mutual1" style="display: none;" type="checkbox" class="input_type"
+            onchange="checkboxStatusChange()" value="Qualified" name="Qualified" />Qualified ({{NoApplicantQualified}})</label>
+        <label style="" class="profileDropDown-content all-applicants-dropdown-content profileDropDown-text all-applicants-dropdown-content"><input style="display: none;" type="checkbox" class="input_type"
+        value="Not Qualified" name="Not Qualified" />Not Qualified ({{NoApplicantNQualified}})</label>
+        <label for="mutual2" id="qualify2" class="profileDropDown-content all-applicants-dropdown-content profileDropDown-text documents-for-work-permit-label-dropdown">Documents for Work Permit ({{userWorkPermit}})</label>
+        <label style="" class="profileDropDown-content all-applicants-dropdown-content profileDropDown-text your-work-permit-is-here-label-dropdown">Your Work Permit is Here ({{ready_users_count}})</label>         
+        
+         <label title="Select an option to click here" class="move-phase-button">Select to move</label>
+
+      </div>
+      
+    </div>
+    </div>
+</div>
+    </div>
+    </div>
+
+<!-- <div class="main-buttons-div">
     <div class="jobs-buttons applied-posted-buttons-mobile all-aplicants-main-div scrolling-wrapper">
          <div class="main-input-form">
             <div class="input-form inputs-right-margin all-applicants-button-form" style="">
-             <button title="All Applicants" class="applied-button-jobs outline-none all-applicants-button">{% if q == "All" %}All Applicants{% elif q == "Q" %}Qualified {% else %} Not Qualified {% endif %}</button>
+             <button title="All Applicants" class="applied-button-jobs outline-none all-applicants-button">{% if q == "All" %}All Applicants ({{NoApplicant}}){% elif q == "Q" %}Qualified ({{NoApplicantQualified}}){% else %} Not Qualified ({{NoApplicantNQualified}}){% endif %}</button>
              <div class="div-white-icon" style="">
                 <img class="icon-filter" src="/static/img/dropdown-icon.png" alt="">
 
@@ -26,47 +60,42 @@
              <div class="all-applicants-dropdown profileDropDown mutual-dropdown">
                  {% if q == "Q" %}
                  <label style="" class="profileDropDown-content profileDropDown-text"><input style="display: none;" type="checkbox" class="input_type"
-                value="Not Qualified" name="Not Qualified" onclick="AllApplicant()"  />All Applicants</label>
+                value="Not Qualified" name="Not Qualified" onclick="AllApplicant()"  />All Applicants ({{NoApplicant}})</label>
                  <label style="" class="profileDropDown-content  profileDropDown-text"><input style="display: none;" type="checkbox" class="input_type"
-                value="Not Qualified" name="Not Qualified" onclick="NoQualified()"  />Not Qualified</label>
+                value="Not Qualified" name="Not Qualified" onclick="NoQualified()"  />Not Qualified ({{NoApplicantNQualified}})</label>
                  {% elif q == "notQ" %}
                  <label style="" class="profileDropDown-content profileDropDown-text"><input style="display: none;" type="checkbox" class="input_type"
-                value="Not Qualified" name="Not Qualified" onclick="AllApplicant()"  />All Applicants</label>
+                value="Not Qualified" name="Not Qualified" onclick="AllApplicant()"  />All Applicants ({{NoApplicant}})</label>
                 <label for="mutual1" id="qualify" class="profileDropDown-content  profileDropDown-text"><input id="mutual1" style="display: none;" type="checkbox" class="input_type"
-                    onchange="checkboxStatusChange()" onclick="Qualified()" value="Qualified" name="Qualified" />Qualified</label>
+                    onchange="checkboxStatusChange()" onclick="Qualified()" value="Qualified" name="Qualified" />Qualified ({{NoApplicantQualified}})</label>
                  {% else %}
                  <label for="mutual1" id="qualify" class="profileDropDown-content profileDropDown-text"><input id="mutual1" style="display: none;" type="checkbox" class="input_type"
-                    onchange="checkboxStatusChange()" onclick="Qualified()" value="Qualified" name="Qualified" />Qualified</label>
+                    onchange="checkboxStatusChange()" onclick="Qualified()" value="Qualified" name="Qualified" />Qualified ({{NoApplicantQualified}})</label>
 
                 <label style="" class="profileDropDown-content  profileDropDown-text"><input style="display: none;" type="checkbox" class="input_type"
-                value="Not Qualified" name="Not Qualified" onclick="NoQualified()"  />Not Qualified</label>
+                value="Not Qualified" name="Not Qualified" onclick="NoQualified()"  />Not Qualified ({{NoApplicantNQualified}})</label>
                  {% endif %}
 
+                 <label for="mutual1" id="qualify" class="profileDropDown-content profileDropDown-text"><input id="mutual1" style="display: none;" type="checkbox" class="input_type"
+                    onchange="checkboxStatusChange()" onclick="Qualified()" value="Qualified" name="Qualified" />Documents for Work Permit ({{usersOnDocForWorkPermit}})</label>
 
-                
-                 <button title="Select an option to click here" class="move-phase-button">Select to move</button>
+                    <label for="mutual1" id="qualify" class="profileDropDown-content profileDropDown-text"><input id="mutual1" style="display: none;" type="checkbox" class="input_type"
+                        onchange="checkboxStatusChange()" onclick="Qualified()" value="Qualified" name="Qualified" />Work Permit is here ({{userWorkPermit}})</label>
+                        <label for="mutual1" id="qualify" class="profileDropDown-content profileDropDown-text"><input id="mutual1" style="display: none;" type="checkbox" class="input_type"
+                            onchange="checkboxStatusChange()" onclick="Qualified()" value="Qualified" name="Qualified" />Start Work ({{ready_users_count}})</label>
+            
+                    <label class="profileDropDown-content profileDropDown-text"></label>
         
               </div>
               
             </div>
 
-            <div class="main-input-form meet-with-us-main-input-form">
-                <div class="input-form inputs-right-margin all-applicants-button-form" style="">
-                 <button class="applied-button-jobs outline-none all-applicants-button">On-boarding</button>
-                 <div class="div-white-icon" style="">
-                    <img class="icon-filter" src="/static/img/dropdown-icon.png" alt="">
-                    </div>
-            </div>
-            <div class="all-applicants-dropdown profileDropDown mutual-dropdown" style="">
-                <label for="mutual2" id="qualify2" class="profileDropDown-content profileDropDown-text documents-for-work-permit-label-dropdown">Documents for Work Permit</label>
-                 <label style="" class="profileDropDown-content all-applicants-dropdown-content profileDropDown-text your-work-permit-is-here-label-dropdown">Your Work Permit is Here</label>         
-            </div>
+            
         </div>
     </div>
-</div>
+</div> -->
 
     <div class="jobs-main-div">
-
         {% include 'Applicant-Doc/left-applicant.html'%}
         {% include 'Applicant-Doc/right-applicant.html'%}
         
@@ -95,6 +124,8 @@
         </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
 <script>
         function Qualified(){
         window.location="{% url 'qualified-applicant' jpk %}";
@@ -136,20 +167,20 @@ function ChangeDiv() {
 </script>
 
         <script>
-                $(".job-left-row input").click(function (e) {
-        // Do something
-        e.stopPropagation();
-    });
+            $(".job-left-row input").click(function (e) {
+                // Do something
+                e.stopPropagation();
+            });
         </script>
 <script>
     function openPopUp(element) {
-     $('.bg-add-and-edit, .popup').css("display", "flex");
-     var titleValue = $(element).attr('title');
-     var dataNumberValue = $(element).attr('data-number');
-     $('#document_id').val(dataNumberValue);
-     $('.name-document').text(titleValue);
- }
- </script>
+        $('.bg-add-and-edit, .popup').css("display", "flex");
+        var titleValue = $(element).attr('title');
+        var dataNumberValue = $(element).attr('data-number');
+        $('#document_id').val(dataNumberValue);
+        $('.name-document').text(titleValue);
+    }
+</script>
 <script>
     $(document).ready(function() {
        
@@ -210,7 +241,7 @@ function ChangeDiv() {
 
 
     });
-    </script>
+</script>
     
 
 

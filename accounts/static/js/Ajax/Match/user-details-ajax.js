@@ -112,8 +112,7 @@
         '</div>';
 
         }
-        var currentDomain = window.location.origin;
-        url = "/Administrator/Users/CV/"+id
+        url = "/download-cv/"+id
         
         var newDiv6 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
             '<div class="main-divs-color mutual-titles-color blue-text">Resume</div>' +

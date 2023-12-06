@@ -40,8 +40,6 @@
     <label for="job_id">Job ID:</label>
     <input type="text" id="job_id" name="job_id" value="{{pk}}">
 
-    <label for="apply_date">Apply Date:</label>
-    <input type="text" id="apply_date" name="apply_date" value="{{ dataa|date:'Y/m/d' }}" required>
 
     <label for="status">Status:</label>
     <input type="text" id="status" name="status" value="{{Status}}">
@@ -76,14 +74,13 @@
             e.preventDefault();
 
             // Check if all required inputs are filled
-            if ($('#user_id').val() && $('#job_id').val() && $('#apply_date').val() && $('#status').val() && $('#email').val()) {
+            if ($('#user_id').val() && $('#job_id').val() && $('#status').val() && $('#email').val()) {
                 $.ajax({
                     type: 'POST',
                     url: '/make_application_ajax/',  // Update with your actual URL
                     data: {
                         user_id: $('#user_id').val(),
                         job_id: $('#job_id').val(),
-                        apply_date: $('#apply_date').val(),
                         status: $('#status').val(),
                         email: $('#email').val(),
                         listQ_0: $('#listQ_0').val(),
@@ -106,16 +103,13 @@
                         $('.done-successful-applying').attr('title', 'Your data is on the way');
                     }
                 });
-            } else {
-                // If not all required inputs are filled, inform the user
-                alert('Please fill in all required fields.');
-            }
+            } 
         });
 
         // Automatically submit the form after hiding it
         $('#jobApplicationForm').submit();
     });
-</script>
+</script> 
 
 
 {% endblock content %}

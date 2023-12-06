@@ -13,19 +13,19 @@
     <link rel="stylesheet" href="{% static 'GigsCSS/sign_in.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-    <link rel="stylesheet" href="{% static 'GigsCSS/create_account.css'%}">
 
+    <link rel="stylesheet" href="{% static 'GigsCSS/create_account.css'%}">
 
 
     <title>Sign In</title>
 </head>
 
-    {{form}}
+
     <body>
     <div class="container">
         <div class="under-container">
             <div id="title">Sign in</div>
-            <form method="POST" action="" class="sign-in-form" style="margin-bottom: 0px;">
+            <form method="POST" action="{% url 'login' %}" class="sign-in-form" style="margin-bottom: 0px;">
                 {% csrf_token %}
                 <div class="input-form">
                     <a class="sign-in-google input-text" href="{% provider_login_url 'google' %}">
@@ -41,7 +41,10 @@
                     <input name="password" type="password" id="password" class="input-text password-input font-fam" placeholder="Password"></input>
                     <i title="Show Password" class="bi bi-eye-slash" id="togglePassword"></i>
                 </div>
-                <div class="incorrect-div" style="">This user exists please login using password</div>
+             
+                <div class="incorrect-div" style="">Apologies, but you've already created an account.<br> Please log in using your password.</div>
+
+                
 
                 <p class="first-paragraph same-color-of-paragraphs"><a class="password-link" href="{% url 'password_reset'%}">Forgot
                         password?</a></p>

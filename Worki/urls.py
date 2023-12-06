@@ -37,7 +37,7 @@ from accounts.views import *
 urlpatterns = [
 
     path('accounts/', include('allauth.urls')),
-    # path('accounts/', include('allauth.socialaccount.urls')),
+    path('accounts/', include('allauth.socialaccount.urls')),
     # path('accounts/', include(default_urlpatterns)),
 
     path('admin/', admin.site.urls),

@@ -1,5 +1,12 @@
 
 {% load static %}
+
+
+<script src="{% static 'js/snow-effects.js' %}"
+
+
+<script src="{% static 'js/Applicant/all-applicants-meet-with-us-documents-work-permit.js' %}"></script>
+
 <script>
 function OpenJobs() {
   window.location.href = "{% url 'postedJobOpen' %}";
@@ -31,7 +38,6 @@ function MainJobs(){
 <script src="{% static 'js/Ajax/right-jobs-ajax.js'%}"></script>
 <script src="{% static 'js/Ajax/myjobs-right-ajax.js'%}"></script>
 <script src="{% static 'js/Applicant/applicant-documents.js'%}"></script>
-<script src="{% static 'js/Applicant/all-applicants-meet-with-us-documents-work-permit.js' %}"></script>
 
 
 <script src="{% static 'js/jobs-img.js'%}"></script>
@@ -166,7 +172,7 @@ function MainJobs(){
         </script>
 
 <!--Match-->
-<!--<script src="{% static 'js/Match/main.js' %}"></script>-->
+<script src="{% static 'js/Match/main.js' %}"></script>
 <script src="{% static 'js/Match/all-applicants-dropdown.js'%}"></script>
 <!--<script src="{% static 'js/select-all-button.js'%}"></script>-->
 
@@ -269,6 +275,7 @@ function MainJobs(){
 "Kiribati",
 "North Korea",
 "South Korea",
+"Kosovo",
 "Kuwait",
 "Kyrgyzstan",
 "Laos",

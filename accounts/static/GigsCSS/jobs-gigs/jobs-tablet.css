@@ -13,6 +13,9 @@
         display: none;
         width: 100%;
     }
+    .title_documents {
+        padding-top: 0px;
+    }
     .right-jobs {
         overflow-y: scroll;
         height: calc(100% - 40px) !important;

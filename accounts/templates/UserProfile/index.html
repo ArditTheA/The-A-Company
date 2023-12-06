@@ -8,7 +8,7 @@
     <div class="profile-header">
         <div id="example1">
         <img class="pro-img" src="{{user.cover.url}}" alt="">
-        <img class="edit-button-cover" title="Edit Cover Picture"  src="{% static 'img/pen.png' %}" alt="">
+        <img class="edit-button-cover" title="Edit Cover Picture"  src="{% static 'img/Three-dots.svg' %}" alt="">
         </div>
         <div class="second-part-profile-header">
             <div class="profile-image-and-edit">
@@ -19,7 +19,7 @@
                     <img src="{% static 'img/Asset 3.png' %}" title="Add Profile"  id="plus-icon" alt="">
                 </div>
 
-                <img class="edit-button" title="Edit Profile"   src="{% static 'img/Ikona_edit-01 56.png' %}" alt="">
+                <img class="edit-button" title="Edit Profile"   src="{% static 'img/Three-dots.svg' %}" alt="">
             </div>
             <div class="profile-name"><span class="profile-firstname">{{user.first_name}}</span> <span class="profile-surname">{{user.last_name}}</span></div>
             {% if user.city != None and user.country != None %}

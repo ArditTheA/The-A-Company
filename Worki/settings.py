@@ -14,7 +14,7 @@ SECRET_KEY = '0x-zrhf@)(t)%-630q&s&9g_c^lvh_9cehy@7vx==@bxgn_s_='
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = True
+DEBUG = False
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
@@ -148,7 +148,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-GB'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Berlin'
 
 USE_I18N = True
 
@@ -235,4 +235,6 @@ SCHEDULER_API_ENABLED = True
 
 
 
-ACCOUNT_LOGIN_TEMPLATE = 'accounts/registration/login.html'
+ACCOUNT_LOGIN_TEMPLATE = 'accounts/Glogin.html'
+SOCIALACCOUNT_ADAPTER = 'accounts.adapters.CustomSocialAccountAdapter'
+

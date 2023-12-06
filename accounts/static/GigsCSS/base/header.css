@@ -6,6 +6,10 @@
     left: 50%;
     top: 50%;
 }
+
+select {
+    
+}
 .header-icon-profile {
     width: 35px !important;
     border-radius: 50% !important;
@@ -36,7 +40,6 @@
     box-shadow: 0 0 5px #e7e7e7;
     border: none;
     display: none;
-    text-align: center !important;
     font-size: 16px;
     background-color: white;   /*display: none = nuk mund te perdoret transition: ... */
     border-radius: 16px;
@@ -46,13 +49,12 @@
     padding-top: 5px;
 }
 
-.margin-bottom {
-    margin-bottom: 10px !important;
+
+.all-applicants-dropdown {
+    padding-right: 0px !important;
+    overflow-y: hidden !important;
 }
 
-.profileDropDown {
-    text-align: left;
-}
 
 .edit_dropdown {
     margin-top: 10px;
@@ -70,22 +72,15 @@
 .profileDropDown {
     right: 10px;
 }
-.recruter-job-dropdown {
-    right: 30px;
-    top: 60px;
-}
 .profileDropDown-content {
-    padding:15px 20px 0px 20px;
+    padding: 15px 20px 0px 20px;
     text-decoration: none !important;
     color: #65676B;
 }
-.profileDropDown-text{
+.profileDropDown-text {
     text-decoration: none !important;
     color: #65676B;
     cursor: pointer;
-}
-.profileDropDown-text:hover {
-    color: black;
 }
 .header-icon{
     cursor: pointer;
@@ -93,7 +88,6 @@
     width: fit-content;
     object-fit: cover;
     vertical-align: middle;
-    width: auto;
 }
 .all-applicants-dropdown {
     right: auto;
@@ -133,7 +127,7 @@
 @media screen and (max-width: 767px) and (min-width: 481px) {
     .header-icon-logo {
     }
-    .header-icon-job{
+    .header-icon-job {
         margin-right: 20px;
     }
     .header-icon-profile {
@@ -142,16 +136,21 @@
 }
 
 @media screen and (max-width: 480px) {
-    .header-icon-logo{
-    }
     .header-icon-job {
         margin-right: 15px;
     }
-    .header-icon-profile{
+    .header-icon-profile {
         margin-right: 10px;
     }
     .profileDropDown {
         font-size: 16px;
         margin-top: -10px;
     }
+    .all-applicants-dropdown {
+        margin-top: 10px !important;
+        overflow-y: inherit;
+
+    }
+
+    
 }
