@@ -3,6 +3,8 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    height: auto !important;
+    font-family: 'Spline Sans', sans-serif;
 
     /* Remove background image */
     background-image: none;
