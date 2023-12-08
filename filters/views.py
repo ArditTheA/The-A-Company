@@ -214,23 +214,36 @@ class OneSelFilter(View):
             city_j = Jobs.objects.filter(id=post_id).values_list("city_j").first()
             country= Jobs.objects.filter(id=post_id).values_list("country_j").first()
             applicant = Jobs.objects.filter(approved=True).filter(id=post_id).first()
+            SDate = start_date
+            EDate = end_date
             salary=format(salary,'.2f')
             start_date = format(start_date, "%d/%m/%Y")
             end_date = format(end_date, "%d/%m/%Y")
             appNo = 0
             appNo = Jobs.objects.get(id=post_id).applicant.count()
+            
             if Application.objects.filter(job_id=post_id).filter(user_id=request.user.id).exists():
                 hasApply=True
                 hasApplyDate=Application.objects.filter(job_id=post_id).filter(user_id=request.user.id).values_list("apply_date",flat=True).first()
-                hasApplyDate=format(hasApplyDate, "%d/%m/%Y")    
+              
+                
 
-            return JsonResponse(
-                dict(description=description, title=title, appNo=appNo, city_j=city_j, country=country,
-                     start_date=start_date,
+                
+            data =dict(description=description, title=title, appNo=appNo, city_j=city_j, country=country,
+                     start_date=start_date,SDate=SDate,EDate=EDate,
                      salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
                      typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
                      program=program, programCost=programCost,
-                     posted=posted, post_id=post_id,hasApply=hasApply,auth=auth),safe=True)
+                     posted=posted, post_id=post_id,hasApply=hasApply,auth=auth)
+            auth1 = request.user.is_authenticated
+
+            if auth1:
+                applied = Application.objects.filter(job_id=post_id).filter(
+                        user_id=request.user).values_list("apply_date", flat=True).first()
+                applyDate = format(applied, "%d/%m/%Y")
+                data["applyDate"]=applyDate
+              
+            return JsonResponse(data,safe=True)
         if request.GET.get("Salary") != None:
             if request.GET.get("Salary") != "Salary":
                 filterSalary =request.GET.get("Salary")
