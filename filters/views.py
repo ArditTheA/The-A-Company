@@ -215,10 +215,14 @@ class OneSelFilter(View):
             country= Jobs.objects.filter(id=post_id).values_list("country_j").first()
             applicant = Jobs.objects.filter(approved=True).filter(id=post_id).first()
             salary=format(salary,'.2f')
+            SDate=start_date
+            EDate= end_date
             start_date = format(start_date, "%d/%m/%Y")
             end_date = format(end_date, "%d/%m/%Y")
             appNo = 0
             appNo = Jobs.objects.get(id=post_id).applicant.count()
+            applied = Application.objects.filter(job_id=post_id).filter(user_id=request.user).values_list("apply_date", flat=True).first()
+            applyDate = format(applied, "%d/%m/%Y")
             if Application.objects.filter(job_id=post_id).filter(user_id=request.user.id).exists():
                 hasApply=True
                 hasApplyDate=Application.objects.filter(job_id=post_id).filter(user_id=request.user.id).values_list("apply_date",flat=True).first()
@@ -226,7 +230,7 @@ class OneSelFilter(View):
 
             return JsonResponse(
                 dict(description=description, title=title, appNo=appNo, city_j=city_j, country=country,
-                     start_date=start_date,
+                     start_date=start_date,applyDate=applyDate,SDate=SDate,EDate=EDate,
                      salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
                      typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
                      program=program, programCost=programCost,
