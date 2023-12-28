@@ -89,7 +89,6 @@ function AddUserExperience() {
 
 
 function AddUserEducation() {
-    e.preventDefault();
     console.log("testtt");
     if ($('#id_university').val() && $('#id_degree').val() && $('#id_country_e').val() && $('#id_city_e').val() && $("#id_field_of_study").val() && $("#id_start_year").val() && $("#id_total_examples_passed").val() && $("#id_GPA").val()) {
         $.ajax({
