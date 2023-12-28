@@ -1,31 +1,39 @@
 {% load static %}
-<div class="languages-main-div experience-education-languages">
-    <div class="education-div">
+
+<div class="languages-main-div experience-education-languages experience-main-div experience-education-languages different_exp">
+    <div class="experience-div second-experience-div">
         <div class="experience-paragraph-img-rows">
             <div class="aaa">
             <p class="experience-paragraph">Education</p>
             {% for i in usEdu%}
-            <div class="experience-rows-img">
+            <div class="experience-rows-img first-education-rows-img" style="">
                 <img class="experience-education-img" src="{% static 'img/worki_icons-19.jpg' %}" alt="">
                 <div class="experience-rows">
-                <div class="experience-first-row">{{i.university}}</div>
+                <div style="display: flex; width: 100%;">
+                    <div class="experience-first-row">{{i.university}}</div>
+                    <div class="two-imgs-experience education-images">
+                        <img onclick="deleteUserEducationPopUp('{{i.id}}')" class="buttons-vertical-align-middle edit-experience-pop-up-button mobile-margin-right-and-bottom add-edit-buttons-hover buttons-right-padding" title="Delete Education" src="{% static 'img/delete.svg' %}" alt="">
+                        <img onclick="getEduDetails('{{i.id}}')"            class="edit-experience edit-experience-pop-up-button add-edit-buttons-hover" title="Edit Education" src="{% static 'img/Vector 350.svg' %}" alt="">
+                    </div>
+                    </div>
                 <div class="experience-second-row">{{i.field_of_study}}</div>
-                <div class="experience-third-row">{{i.city_e}}, {{i.country_e}}</div>
-
+                <div class="experience-third-row">{{i.city_e}}, {{i.country_e}}
+                </div>
                 <div class="experience-fourth-row">{{i.start_year|date:'d/m/Y'}} -
                     {% if i.end_year == null%}
                     Present
                     {% else %}
                     {{i.end_year |date:'d/m/Y'}}
-                    {% endif%}</div>
+                    {% endif%}
+                </div>
                 </div>
             </div>
             {% endfor %}
         </div>
         </div>
         <div class="add-and-edit-experience">
-            <img class="add-experience-button add-edit-buttons-hover add-education-button" title="Add Education"   src="{% static 'img/Vector 80.png' %}" alt="">
-            <a href="{% url 'editEdu' %}"><img class="edit-experience add-edit-buttons-hover" title="Edit Education" src="{% static 'img/Three-dots.svg' %}" alt=""></a>
-        </div>
-    </div>
+            <img class="buttons-right-padding mutual-add-style add-edit-buttons-hover add-education-button" title="Add Education" src="{% static 'img/Vector 80.svg' %}"alt="">
+            <img class="three-dots-img  click-education-three-dots add-edit-buttons-hover" title="Show 'Edit' and 'Delete' buttons" src="{% static 'img/Three-dots.svg' %}" alt="">        </div>
+      </div>
 </div>
+

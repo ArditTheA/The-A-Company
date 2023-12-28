@@ -20,6 +20,7 @@ from PIL import Image
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.core.exceptions import ValidationError
 
+
 class Country(models.Model):
     country = models.CharField(max_length=255)
 
@@ -67,7 +68,10 @@ class CustomUser(AbstractUser):
     birthday = models.DateField(null = True,blank=True)
     picture = models.TextField(null=True, blank=True)
 
+    changes_made = models.BooleanField(default=False)  # New field for tracking changes
 
+
+    fields_to_check = ['email', 'first_name', 'last_name', 'country', 'city', 'phone_number']
     def __str__(self):
         return self.email+" "+ self.first_name+" "+ self.last_name
 
@@ -75,8 +79,15 @@ class CustomUser(AbstractUser):
         return reverse("profile", kwargs={"pk": self.pk})
 
     def save(self, *args, **kwargs):
+        original_instance = CustomUser.objects.filter(id=self.id).first()
+
+        # Check if any tracked field has changed
+        if original_instance and any(getattr(self, field) != getattr(original_instance, field) for field in self.fields_to_check):
+            self.changes_made = True
         if self.profile:
+            # Open the image using PIL
             img = Image.open(self.profile)
+
             # Rotate the image based on its Exif Orientation data
             if hasattr(img, '_getexif'):
                 exif = img._getexif()
@@ -90,16 +101,20 @@ class CustomUser(AbstractUser):
                         img = img.transpose(Image.ROTATE_90)
 
             img.thumbnail((1280, 980))
-
+            
             # Compress the image
             output = BytesIO()
-            img.save(output, format='JPEG', optimize=True, quality=60)
+            img.save(output, format=img.format, optimize=True, quality=60)
             output.seek(0)
 
             # Set the content type and filename of the compressed image
-            self.profile.file = InMemoryUploadedFile(output, 'ImageField', "%s.jpg" % self.profile.name.split('.')[0], 'image/jpeg', output.getbuffer().nbytes, None)
+            self.profile.file = InMemoryUploadedFile(
+                output, 'ImageField', f"{self.profile.name.split('.')[0]}.{img.format.lower()}",
+                f'image/{img.format.lower()}', output.getbuffer().nbytes, None)
         if self.cover:
+            # Open the image using PIL
             img = Image.open(self.cover)
+
             # Rotate the image based on its Exif Orientation data
             if hasattr(img, '_getexif'):
                 exif = img._getexif()
@@ -113,15 +128,18 @@ class CustomUser(AbstractUser):
                         img = img.transpose(Image.ROTATE_90)
 
             img.thumbnail((1280, 980))
+            
             # Compress the image
             output = BytesIO()
-            img.save(output, format='JPEG', optimize=True, quality=60)
+            img.save(output, format=img.format, optimize=True, quality=60)
             output.seek(0)
-            # Set the content type and filename of the compressed image
-            self.cover.file = InMemoryUploadedFile(output, 'ImageField', "%s.jpg" % self.cover.name.split('.')[0],
-                                                     'image/jpeg', output.getbuffer().nbytes, None)
-        super(CustomUser, self).save(*args, **kwargs)
 
+            # Set the content type and filename of the compressed image
+            self.cover.file = InMemoryUploadedFile(
+                output, 'ImageField', f"{self.cover.name.split('.')[0]}.{img.format.lower()}",
+                f'image/{img.format.lower()}', output.getbuffer().nbytes, None)
+        super(CustomUser, self).save(*args, **kwargs)
+    
 
 class Languages(models.Model):
     language = models.CharField(max_length=255)
@@ -178,7 +196,7 @@ class UserLanguages(models.Model):
 
     }
     user_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    language = models.ForeignKey(Languages, on_delete=models.CASCADE)
+    language = models.CharField(max_length=255)
     level = models.CharField(max_length=255, choices=Level_Choice)
 
     def __str__(self):

@@ -84,7 +84,7 @@ window.addEventListener('load', function() {
 
         );
         let data = await response.json();
-
+        
         console.log(JSON.stringify(data, null, 2));
         var mainJobs = false;
 
@@ -120,7 +120,15 @@ window.addEventListener('load', function() {
         var SalaryPerHour = document.getElementById("salary");
         SalaryPerHour.innerHTML="€"+tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" total income"
 
-
+        console.log("-------------------------");
+        console.log("-------------------------");
+        console.log(data["salary"])
+        console.log(data["hourPerWork"]);
+        console.log(c);
+        console.log(data["SDate"])
+        console.log(data["EDate"])
+        console.log("-------------------------");
+        console.log("-------------------------");
         if(data["country"]== "USA"){
             var salary = document.getElementById("salary")
             salary.innerHTML ="$"+ data ["salary"]+"/hour"
@@ -190,6 +198,7 @@ window.addEventListener('load', function() {
         var button = document.getElementById("button")
         var rB = document.getElementById("recruiterR")
         var hasApply = data["hasApply"];
+        
         if(!rB){
             if(button){
                 if (!hasApply){

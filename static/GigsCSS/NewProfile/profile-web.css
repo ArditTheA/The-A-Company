@@ -236,7 +236,6 @@ font-size: 16px;
     appearance: none;
     -webkit-appearance: none; /* For some older versions of Safari and Chrome */
     -moz-appearance: none; /* For Firefox */
-    background-image: none; /* Remove any default background image */
     background-color: transparent; /* Make the background transparent */
     border: 1px solid #D4D5D6;
     margin-bottom: 20px;

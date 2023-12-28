@@ -1,4 +1,4 @@
-{% load static %}
+<!-- {% load static %}
 <div class="experience-main-div experience-education-languages">
     <div class="experience-div">
         <div class="experience-paragraph-img-rows">
@@ -19,7 +19,7 @@
         </div>
         </div>
         <div class="add-and-edit-experience">
-            <img class="add-experience-button" title="Add Experience" onclick="disableScroll()" src="{% static 'img/Vector 80.png' %}" alt="">
+            <img class="add-experience-button" title="Add Experience" onclick="disableScroll()" src="{% static 'img/Vector 80.svg' %}" alt="">
             <a href="{% url 'editExprience' %}"><img class="edit-experience" title="Edit Experience" src="{% static 'img/Three-dots.svg' %}" alt=""></a>
         </div>
     </div>
@@ -30,5 +30,92 @@
 
 
 
+
+ -->
+
+ {% load static %}
+<!-- <div class="experience-main-div experience-education-languages different_exp">
+    <div class="experience-div second-experience-div">
+        <div class="experience-paragraph-img-rows">
+            <div class="aaa">
+                <p class="experience-paragraph">Experience</p>
+                {% for i in usExp%}
+                <div class="experience-rows-img" style="">
+                    <img class="experience-education-img" src="{% static 'img/worki_icons-18.jpg' %}" alt="">
+                    <div class="experience-rows">
+                        <div style="display: flex; width: 100%;">
+                            <div class="experience-first-row">{{i.title}}</div>
+                            <div class="two-imgs-experience">
+
+                                <a onclick="deleteUserExperiencePopUp('{{i.id}}')">
+                                    <img class="edit-experience edit-experience-pop-up-button" title="Edit Experience"
+                                         src="{% static 'img/delete.svg' %}" alt="">
+                                </a>
+                                
+                                    <a onclick="getExpDetails('{{i.id}}')">
+                                        <img class="edit-experience edit-experience-pop-up-button" title="Edit Experience"
+                                            src="{% static 'img/Vector 350.svg' %}" alt="">
+                                        </a>
+                            </div>
+                        </div>
+                        <div class="experience-second-row">{{i.company}}</div>
+                        <div class="experience-third-row">{{i.city_usExp}}, {{i.Country}}</div>
+                        <div class="experience-fourth-row">
+                            {{i.start_date|date:'d/m/Y'}} -
+                            {% if i.end_date == null%}
+                            Present
+                            {% else %}
+                            {{i.end_date |date:'d/m/Y'}}
+                            {% endif%}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="add-and-edit-experience">
+              <img class="add-experience-button" title="Add Experience" onclick="disableScroll()" src="{% static 'img/Vector 80.svg' %}" alt="">
+              <img class="second-add-experience-button plus-button-exp add-edit-buttons-hover" title="Add Experience" src="{% static 'img/Three-dots.svg' %}" id="addExperienceButton" alt="">
+            </div>
+
+    </div>
+</div> -->
+
+
+<div class="experience-main-div experience-education-languages different_exp">
+    <div class="experience-div second-experience-div">
+        <div class="experience-paragraph-img-rows">
+        <div class="aaa">
+            <p class="experience-paragraph">Experience</p>
+            {% for i in usExp%}
+            <div class="experience-rows-img first-experience-rows-img" style="">
+                <img class="experience-education-img" src="{% static 'img/worki_icons-18.jpg' %}" alt="">
+                <div class="experience-rows">
+                <div style="display: flex; width: 100%;">
+                    <div class="experience-first-row">{{i.title}}</div>
+                    <div class="two-imgs-experience experience-images">
+                        <img onclick="deleteUserExperiencePopUp('{{i.id}}')" class="buttons-vertical-align-middle edit-experience-pop-up-button mobile-margin-right-and-bottom add-edit-buttons-hover buttons-right-padding" title="Delete Experience" src="{% static 'img/delete.svg' %}" alt="">
+                        <img onclick="getExpDetails('{{i.id}}')"        class="edit-experience edit-experience-pop-up-button add-edit-buttons-hover" title="Edit Experience" src="{% static 'img/Vector 350.svg' %}" alt="">
+                    </div>
+                </div>
+                <div class="experience-second-row">{{i.company}}</div>
+                <div class="experience-third-row">{{i.city_usExp}}, {{i.Country}}</div>
+                <div class="experience-fourth-row"> {{i.start_date|date:'d/m/Y'}} -
+                            {% if i.end_date == null%}
+                            Present
+                            {% else %}
+                            {{i.end_date |date:'d/m/Y'}}
+                            {% endif%}</div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        </div>
+        <div class="add-and-edit-experience">
+          <img class="add-experience-button mutual-add-style buttons-right-padding add-edit-buttons-hover" title="Add Experience" onclick="disableScroll()" src="{% static 'img/Vector 80.svg' %}"alt="">
+          <img class="three-dots-img click-experience-three-dots " title="Show 'Edit' and 'Delete' buttons" src="{% static 'img/Three-dots.svg' %}" alt="">
+        </div>
+    </div>
+</div>
 
 

@@ -6,7 +6,9 @@
 {% block content %}
 {% if check %}
 {% include "MyJobs/myjobs-filter.html" %}
+<input type="hidden" id="user_id">
 <input style="display:none;" id="PostID" value="{{post_id}}">
+<input type="hidden" id="current-job-id">
 <input type="hidden" id="MainJobs" name="variable" value="{{checkMainJobs}}">
 
 <div class="jobs-main-div jobs-gigs-main-div" style="display: flex; justify-content: space-between;">
@@ -16,11 +18,121 @@
   </div>
     {% include "MyJobs/right-jobs.html" %}
 </div>
-{% else %}
-<div class="job-first-row NoResult" style="">No results were found</div>
-{% endif %}
-<script>
+<div class="bg-add-and-edit" style="display: none;">
+  <div class="popup add-experience under-container-mutual-mutual-stats" >
+      <div class="edit-profile-title mutual-titles-pop-ups-stats"><span class="name-document">Document</span></div>
+      <form id="test-form-myjobs-form" enctype="multipart/form-data" class="sign-up-form forms-inputs-placeholder" >
+        {% csrf_token %}
+      
+          <input type="hidden" name="mydocument_id" id="mydocument_id" value="" >
+          <div class="drop-area" id="drop-area" onclick="document.getElementById('id_myjob_document').click();">
+              <img src="{% static 'img/upload docs.svg' %}" alt="">
+              <div class="file-upload">Select a file to upload</div>
+              <div class="under-upload-file" id="second-line">or drag and drop it here</div>
+              <input type="file"  name="myjob_document" id="id_myjob_document"  accept=".pdf, .jpg, .jpeg, .png, .svg"  style="display: none;">
 
+          </div>
+          <div class="save-button save-button-edit-profile-photo">
+              <input id="close-popup" type="button" name="back" title="Back to Profile" class="back-input font-fam back-save-buttons" value="Back">
+              <input id="save-button" title="Save Profile Data" name="save" type="submit" class="save-submit-input font-fam back-save-buttons" value="Save">
+          </div>
+      </form>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static 'js/Applicant/all-applicants-meet-with-us-documents-work-permit.js' %}"></script>
+
+<script>
+  function ChangeDiv() {
+      console.log("test");
+      // Hide the first div and show the second div
+      $(".documents-for-work-permit-form-content").hide();
+      $(".your-work-permit-is-here-form-content").show();
+  }
+  
+  </script>
+
+<script>
+ 
+     
+
+   
+
+  $('#test-form-myjobs-form').submit(function(e) {
+    e.preventDefault();
+
+    var formData = new FormData(this);
+    formData.append('csrfmiddlewaretoken', $('input[name=csrfmiddlewaretoken]').val());
+    console.log("Detailed FormData content:");
+    
+    $.ajax({
+      type: 'POST',
+      url: '/upload_documents_myjobs/',
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function(response) {
+        // Assuming your response is a JSON object with a 'message' key
+        if (response.message) {
+          console.log(response.message);
+          $('.bg-add-and-edit, .popup').css("display", "none");
+          getMyJobs($("#current-job-id").val());
+          // Rest of your success handling code
+        } else {
+          console.error('Unexpected response format:', response);
+        }
+      },
+      error: function(xhr, textStatus, errorThrown) {
+        console.log("Error:", textStatus, errorThrown);
+        // Handle the error
+      }
+    });
+  });
+
+</script>
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var dropArea = document.getElementById('drop-area');
+    var fileInput = document.getElementById('id_myjob_document');
+
+    dropArea.addEventListener('dragover', function (e) {
+      e.preventDefault();
+      dropArea.classList.add('drag-over');
+    });
+
+    dropArea.addEventListener('dragleave', function () {
+      dropArea.classList.remove('drag-over');
+    });
+
+    dropArea.addEventListener('drop', function (e) {
+      e.preventDefault();
+      dropArea.classList.remove('drag-over');
+
+      var files = e.dataTransfer.files;
+      if (files.length > 0) {
+        fileInput.files = files;
+        updateFileName(files[0].name);
+      }
+    });
+
+    fileInput.addEventListener('change', function () {
+      if (fileInput.files.length > 0) {
+        updateFileName(fileInput.files[0].name);
+      }
+    });
+
+    function updateFileName(fileName) {
+      var fileUploadText = document.querySelector('.file-upload');
+      fileUploadText.textContent = fileName;
+    }
+  });
+</script>
+
+<script>
 $(document).ready(function() {
         if (window.innerWidth >= 768){
             $('.job-left-row').eq(0).click();
@@ -28,5 +140,40 @@ $(document).ready(function() {
     });
 </script>
 
+<script>
+  function getDocument(element) {
+        const dataNumber = element.getAttribute('data-number');
+        console.log("data:"+dataNumber);
+        const dataDocumentId = element.getAttribute('data-document-id');
+        var userId = document.getElementById("user_id").value;
+        const downloadUrl = `/download_document/${dataNumber}/${userId}`;
+    
+        // Create an invisible anchor element to trigger the download.
+        const downloadLink = document.createElement('a');
+        downloadLink.href = downloadUrl;
+        downloadLink.target = '_blank';
+        downloadLink.style.display = 'none';
+
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+      }
+</script>
+
+<script>
+  function openPopUp(element) {
+      $('.bg-add-and-edit, .popup').css("display", "flex");
+      var titleValue = $(element).attr('title');
+      var dataNumberValue = $(element).attr('data-number');
+      console.log("daataa: "+dataNumberValue);
+      console.log("data:"+dataNumberValue);
+      $('#mydocument_id').val(dataNumberValue);
+      $('.name-document').text(titleValue);
+  }
+</script>
+
+  {% else %}
+<div class="job-first-row NoResult" style="">No results were found</div>
+{% endif %}
 
 {% endblock content %}

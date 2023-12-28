@@ -15,7 +15,8 @@ urlpatterns = [
     path('upload/document/<int:doc>/<int:userId>', UploadDocument, name='upload_document'),
 
     path("test/recruiter/<str:doc>/<int:jpk>/<int:userid>",UploadDocumentRecruiter),
-    path("test/user/<str:doc>/<int:jpk>/<int:userid>",UploadUserRecruiterDoc)
+    path("test/user/<str:doc>/<int:jpk>/<int:userid>",UploadUserRecruiterDoc),
+    path("test/user/lang/test",changeLangNoToText),
 
 ]
 

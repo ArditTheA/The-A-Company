@@ -368,49 +368,11 @@ def update_profile(request):
     usExp = UserExperiece.objects.filter(user_id=user_id)
     usEdu = UserEducation.objects.filter(user_id=user_id)
     usLang = UserLanguages.objects.filter(user_id=user_id)
-    Cu = CustomUser.objects.get(id=user_id)
-    form = EditProf(request.POST or None, request.FILES or None, instance=Cu)
-    for_usExp = add_user_Exp(request.POST or None)
-    form_usLang = add_user_language(request.POST or None)
-    form_usEdu = add_user_edu(request.POST or None)
-    countrys = Country.objects.all()
-    cityes = City.objects.all()
-    uniList = University.objects.all()
     lang = Languages.objects.all()
-
-    if for_usExp.is_valid() or form.is_valid() or form_usLang.is_valid() or form_usEdu.is_valid():
-
-        if form.is_valid():
-            print(form)
-            form.save()
-
-        if for_usExp.is_valid():
-            for_usExp.save()
-        if form_usLang.is_valid():
-            form_usLang.save()
-        if form_usEdu.is_valid():
-            UniUser(request.POST.get("university"), request.user)
-            form_usEdu.save()
-        return redirect("profile")
-
-    if (user_id != ''):
-        for_usExp.initial['user_id'] = Cu.id
-        form_usLang.initial['user_id'] = Cu.id
-        form_usEdu.initial['user_id'] = Cu.id
-    coun = []
-    for i in countrys:
-        coun.append(i.country)
     return render(request, 'UserProfile/index.html',
                   {"usExp": usExp,
                    "usEdu": usEdu,
-                   "form": form,
-                   "for_usExp": for_usExp,
                    "usLang": usLang,
-                   "form_usLang": form_usLang,
-                   "form_usEdu": form_usEdu,
-                   "countrys": coun,
-                   "cityes": cityes,
-                   "uniList": uniList,
                    "lang": lang,
                    })
 
@@ -999,6 +961,7 @@ class AppliedJobs(View):
                     "postDate", flat=True).first()
                 applied = Application.objects.filter(job_id=post_id).filter(
                     user_id=request.user).values_list("apply_date", flat=True).first()
+                StatusApp = Application.objects.filter(job_id=post_id,user_id=request.user).values_list("ApplicantStat",flat=True).first()
 
                 city_j = Jobs.objects.filter(
                     id=post_id).values_list("city_j").first()
@@ -1028,16 +991,34 @@ class AppliedJobs(View):
                 print(checkMainJobs)
                 print("test")
 
+                passaportExists = documents_users.objects.filter(user_id=request.user, id_document__name__icontains="Passport").exists()
+                studentStatusExists = documents_users.objects.filter(user_id=request.user, id_document__name__icontains="Student Status").exists()
+                certificateOfEnrolmentExists = documents_users.objects.filter(user_id=request.user, id_document__name__icontains="Certificate of Enrolment").exists()
+                studentIdExists = documents_users.objects.filter(user_id=request.user, id_document__name__icontains="Student ID").exists()
+                photoExists = documents_users.objects.filter(user_id=request.user, id_document__name__icontains="Photo").exists()
+                serviceContractExists  = documents_users.objects.filter(user_id=request.user, id_document__name__icontains="Service contract").exists()
+                jobOfferExists  = documents_users.objects.filter(user_id=request.user, id_document__name__icontains="Job Offer").exists()
+                workPermitExists  = documents_users.objects.filter(user_id=request.user, id_document__name__icontains="Work Permit").exists()
 
-
-                
+                print(passaportExists)
+                print(studentStatusExists)
+                print(certificateOfEnrolmentExists)
+                print(studentIdExists)
+                print(photoExists)
+                print(serviceContractExists)
+                print(jobOfferExists)
+                print(workPermitExists)
 
                 return JsonResponse(
                     dict(description=description,hasApply=hasApply, title=title, city_j=city_j, country=country, start_date=start_date,
                          salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,checkMainJobs=checkMainJobs,
                          typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
-                         program=program, programCost=programCost,SDate=SDate,EDate=EDate,
-                         posted=posted, post_id=post_id, applied=applied, appNo=appNo,meetingLink=meetingLink,meetingTime=meetingTime
+                         program=program, programCost=programCost,SDate=SDate,EDate=EDate,StatusApp=StatusApp,
+                         posted=posted, post_id=post_id, applied=applied, appNo=appNo,meetingLink=meetingLink,meetingTime=meetingTime,
+
+                         passaportExists=passaportExists,studentStatusExists=studentStatusExists,certificateOfEnrolmentExists=certificateOfEnrolmentExists,
+                         studentIdExists=studentIdExists,photoExists=photoExists,serviceContractExists=serviceContractExists,jobOfferExists=jobOfferExists,
+                         workPermitExists=workPermitExists,userid=request.user.id
                          
                          
                          ))
@@ -1078,6 +1059,7 @@ class AppliedJobs(View):
                     user_id=request.user).values_list("meetWithUs", flat=True).first()
                 meetingLink = Application.objects.filter(job_id=post_id).filter(
                     user_id=request.user).values_list("meetWithUsLink", flat=True).first()
+                StatusApp = Application.objects.filter(job_id=post_id,user_id=request.user).values_list("ApplicantStat",flat=True).first()
 
                 print("---------------")
                 print(f"meetingTime: {meetingTime}")
@@ -1098,12 +1080,33 @@ class AppliedJobs(View):
                 applyDate = format(applied, "%d/%m/%Y")
                 checkMainJobs="False"
                 print(checkMainJobs)
+                passaportExists = documents_users.objects.filter(user_id=request.user, id_document__name__icontains="Passport").exists()
+                studentStatusExists = documents_users.objects.filter(user_id=request.user, id_document__name__icontains="Student Status").exists()
+                certificateOfEnrolmentExists = documents_users.objects.filter(user_id=request.user, id_document__name__icontains="Certificate of Enrolment").exists()
+                studentIdExists = documents_users.objects.filter(user_id=request.user, id_document__name__icontains="Student ID").exists()
+                photoExists = documents_users.objects.filter(user_id=request.user, id_document__name__icontains="Photo").exists()
+                serviceContractExists  = documents_users.objects.filter(user_id=request.user, id_document__name__icontains="Service contract").exists()
+                jobOfferExists  = documents_users.objects.filter(user_id=request.user, id_document__name__icontains="Job Offer").exists()
+                workPermitExists  = documents_users.objects.filter(user_id=request.user, id_document__name__icontains="Work Permit").exists()
+                
+                print(passaportExists)
+                print(studentStatusExists)
+                print(certificateOfEnrolmentExists)
+                print(studentIdExists)
+                print(photoExists)
+                print(serviceContractExists)
+                print(jobOfferExists)
+                print(workPermitExists)
                 return JsonResponse(
                     dict(description=description,hasApply=hasApply,applyDate=applyDate, title=title, city_j=city_j, country=country, start_date=start_date,
-                         salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,
+                         salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,StatusApp=StatusApp,
                          typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
                          program=program, programCost=programCost,SDate=SDate,EDate=EDate,checkMainJobs=checkMainJobs,
-                         posted=posted, post_id=post_id, applied=applied, appNo=appNo,meetingTime=meetingTime,meetingLink=meetingLink), safe=True)
+                         posted=posted, post_id=post_id, applied=applied, appNo=appNo,meetingTime=meetingTime,meetingLink=meetingLink,
+                         passaportExists=passaportExists,studentStatusExists=studentStatusExists,certificateOfEnrolmentExists=certificateOfEnrolmentExists,
+                         studentIdExists=studentIdExists,photoExists=photoExists,serviceContractExists=serviceContractExists,jobOfferExists=jobOfferExists,
+                         workPermitExists=workPermitExists,userid=request.user.id
+                         ), safe=True)
         check = True
         filterSel = request.GET.get("filterApply")
         passaportExists = documents_users.objects.filter(user_id=request.user, id_document__name__icontains="Passport").exists()

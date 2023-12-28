@@ -1,8 +1,9 @@
 
 {% load static %}
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<script src="{% static 'js/Applicant/all-applicants-meet-with-us-documents-work-permit.js' %}"></script>
+
 
 <script>
 function OpenJobs() {
@@ -17,16 +18,32 @@ function MainJobs(){
 }
 </script>
 
+<script>
+    function disableButton(button) {
+        // Disable the button to prevent multiple clicks
+        button.disabled = true;
+        // Hide the button text
+        button.value = 'Saving...';
+        button.style.backgroundColor = "#D4D5D6"
+        button.style.borderColor = '#D4D5D6';
+        // Submit the form after a short delay to allow the button state to update
+        
+        // Adjust the delay as needed (3 seconds in this example)
+    }
+</script>
 
 <!--header script -->
 <script src="{% static 'js/DropDown/profileDropDown.js' %}" ></script>
+<script src="{% static 'js/Profile/profile-three-dots.js' %}" ></script>
+<script src="{% static 'js/New-Ajax-Js/languages.js' %}" ></script>
+<script src="{% static 'js/New-Ajax-Js/add-edit-get-edu-exp-lang.js' %}" ></script>
 <!-- <script src="{% static 'gigsJS/backExpEduLangPage.js' %}" ></script> -->
 <!--end of header script-->
 
 <!--Online Script-->
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
+<script src="{% static 'js/Applicant/all-applicants-meet-with-us-documents-work-permit.js' %}"></script>
 <!--End of Online -->
 <script src="{% static 'js/Ajax/Match/user-details-ajax.js'%}"></script>
 
@@ -111,7 +128,7 @@ function MainJobs(){
     <script src="{% static 'js/plus-experience.js'%}"></script>
 
 
-    <script src="{% static 'js/add-experience-education-language.js'%}"></script>
+    <!-- <script src="{% static 'js/add-experience-education-language.js'%}"></script> -->
 <script src="{% static 'js/exit-button.js'%}"></script>
 
 

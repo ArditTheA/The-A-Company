@@ -1,6 +1,11 @@
 input[type="checkbox"]::before {
     outline: none;
 }
+.main-divs-color {
+    color: #858585;
+    width: 100%;
+    margin-right: 5px;
+}
 .drop-area {
     border: 2px dashed #ccc;
     border-radius: 30px;
@@ -14,6 +19,25 @@ input[type="checkbox"]::before {
     align-items: center;
     justify-content: center;
 }
+
+.imgs-three-dots-zip-img {
+    vertical-align: middle;
+    height: 24px;
+    width: 18px;
+    cursor: pointer;
+}
+
+.div-title-documents-zip-icon {
+    display: flex;
+    justify-content: space-between;
+}
+.parent-img-zip {
+    margin-top: 30px;
+}
+.img-zip-download {
+    margin-left: 10px;
+}
+
 .under-upload-file {
     color: #858585;
     font-size: 16px;
@@ -28,6 +52,10 @@ input[type="checkbox"]::before {
 }
 .light-gray-text {
     color: #858585;
+}
+
+.img-done {
+    margin-right: 5px;
 }
 
 .profile-header {
@@ -439,6 +467,9 @@ input[type="checkbox"]::before {
     .all-applicants-over-main {
         margin-right: 0px !important;
     }
+    .parent-img-zip {
+        margin-top: 0px;
+    }    
     .main-input-form-second {
         margin-right: 10px !important;
         margin-left: -10px;

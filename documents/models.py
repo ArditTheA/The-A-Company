@@ -46,7 +46,7 @@ class documents_users(models.Model):
     ]
     id_document = models.ForeignKey(documents_list,on_delete=models.CASCADE,null=True,blank=True)
     user = models.ForeignKey(CustomUser,on_delete=models.CASCADE,null=True,blank=True)
-    document = models.FileField(upload_to=user_directory_path)
+    document = models.FileField(upload_to=user_directory_path, null=True, blank=True)
     status = models.CharField(choices=doc_status,max_length=100,default="P")
     def __str__(self):
         status_display = [status[1] for status in self.doc_status if status[0] == self.status]

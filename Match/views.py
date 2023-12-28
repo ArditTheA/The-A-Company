@@ -206,15 +206,7 @@ class GetJobIdApplicant(View):
             elif user_documents_count > 0 and user_documents_count <9:
                 userWorkPermit +=1
 
-        # Now, ready_users_count contains the number of users who have uploaded all documents for the specified job.
-        print("______________________________________")
-        print("______________________________________")
-        print(f"The number of users with all documents uploaded: {ready_users_count}")
-        print(f"The number of users with  documents uponprocessssloaded: {usersOnDocForWorkPermit}")
-        print(f"The number of users with  workPermit: {userWorkPermit}")
-
-        print("______________________________________")
-        print("______________________________________")
+        
         
 
         jpk = pk
@@ -325,6 +317,9 @@ class GetJobIdApplicant(View):
                     serviceContractExists  = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Service contract").exists()
                     jobOfferExists  = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Job Offer").exists()
                     workPermitExists  = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Work Permit").exists()
+                    if(passaportExists):
+                        passaportStatus = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Passport").values_list('status', flat=True).first()
+                        newDic["passaportStatus"] = passaportStatus
 
                     newDic["passaportExists"]=passaportExists
                     newDic["studentStatusExists"] = studentStatusExists
@@ -450,6 +445,55 @@ class GetJobIdApplicant(View):
                     jobOfferExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Job Offer").exists()
                     workPermitExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Work Permit").exists()
 
+                    if(passaportExists):
+                        passaportStatus = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Passport").values_list('status', flat=True).first()
+                        newDic["passaportStatus"] = passaportStatus
+                    if(studentStatusExists):
+                        studentStatus = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Student Status").values_list('status', flat=True).first()
+                        newDic["studentStatus"] = studentStatus
+                    if(certificateOfEnrolmentExists):
+                        certificateStatus = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Certificate of Enrolment").values_list('status', flat=True).first()
+                        newDic["certificateStatus"] = certificateStatus
+                    if(studentIdExists):
+                        studentIdStatus = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Student ID").values_list('status', flat=True).first()
+                        newDic["studentIdStatus"] = studentIdStatus
+                    if(photoExists):
+                        photoStatus = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Photo").values_list("status",flat=True).first()
+                        newDic["photoStatus"]=photoStatus
+                    if (serviceContractExists):
+                        serviceContractStatus = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Service contract").values_list("status",flat=True).first()
+                        newDic["serviceContractStatus"]=serviceContractStatus
+
+                    resume_exists = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Resume").exists()
+
+                    # If no resume document exists, create a new one
+                    print("----------------------")
+                    print("----------------------")
+                    print(Application.objects.filter(job_id=jpk, user_id=userid, ApplicantStat="Qualified").exists())
+                    print("----------------------")
+                    print("----------------------")
+                    if Application.objects.filter(job_id=jpk, user_id=userid, ApplicantStat="Qualified").exists():
+                        if not resume_exists:
+                            resume_document = documents_list.objects.get(name="Resume")
+
+                            # Create a new documents_users instance with the 'Resume' document
+                            doc_with_resume = documents_users()
+                            doc_with_resume.user = CustomUser.objects.get(id=userid)
+                            doc_with_resume.id_document = resume_document  # Associate with the 'Resume' document
+                            doc_with_resume.save()
+                        if user.changes_made:
+                            doc = documents_users.objects.get(user_id=userid,id_document__name__icontains="Resume")
+                            doc.status = "P"
+                            doc.save()
+                            us=CustomUser.objects.get(id=userid)
+                            us.changes_made = False
+                            us.save()
+                            
+                            
+                        ResumeStatus = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Resume").values_list("status",flat=True).first()
+                        newDic["ResumeStatus"]=ResumeStatus
+                    else:
+                        pass
                     newDic["passaportExists"] = passaportExists
                     newDic["studentStatusExists"] = studentStatusExists
                     newDic["certificateOfEnrolmentExists"] = certificateOfEnrolmentExists

@@ -218,8 +218,11 @@ class editjob(ModelForm):
         model = Jobs
         fields = "__all__"
         widgets = {
-            "job_title": forms.TextInput(attrs={'class': 'name-input mutual-stats font-fam next-none'}),
-            "company": forms.TextInput(attrs={'class': 'name-input mutual-stats font-fam next-none'}),
+            "job_title": forms.TextInput(attrs={'class': 'all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom'}),
+            "company": forms.TextInput(attrs={'class': 'all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input'}),
+            
+            "city_j":forms.TextInput(attrs={'class':"apply-last-name inputs-job-details apply-name-surname all-inputs mutual-input"}),
+            "salary_per_hour": forms.NumberInput(attrs={'class': 'all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input'}),
             "start_date": forms.DateInput(
                 attrs={"class": "start-date-input mutual-stats font-fam next-none", "type": "date"}),
             "end_date": forms.DateInput(

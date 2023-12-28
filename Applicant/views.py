@@ -13,7 +13,43 @@ from documents.models import  *
 OnBoardPhase = ["Payment","Meet With Us","Documents for work permit","Your work permit is here"]
 onboardPhaseName = ["Payment","Meet-With-Us","Documents-for-work-permit","Your-work-permit-is-here"]
 
+def changeLangNoToText(request):
+    lang_instances = UserLanguages.objects.all()
 
+    for instance in lang_instances:
+        if instance.language == "1":  # Check if language field is the ID (as a string)
+            instance.language = "Turkish"
+            instance.save()
+        elif instance.language =="2":
+            instance.language = "Albanian"
+            instance.save()
+        elif instance.language =="3":
+            instance.language = "English"
+            instance.save()
+        elif instance.language == "4":
+            instance.language = "German"
+            instance.save()
+        elif instance.language == "6":
+            instance.language ="Serbian"
+            instance.save()
+        elif instance.language == "7":
+            instance.language = "Bulgarian"
+            instance.save()
+        elif instance.language == "8":
+            instance.language = "Macedonian"
+            instance.save()
+
+
+    # Optional: Print information for verification
+    print("--------------------------")
+    print("Updated UserLanguages instances:")
+    for instance in lang_instances:
+        print(f"{instance.user_id} | {instance.language} | {instance.level}")
+    print("--------------------------")
+
+    # You can return a response or perform other actions as needed
+    
+    return redirect("home")
 def moveApplicantToPhase(request,jpk,appSub,userList):
     job_id = Jobs.objects.get(id=jpk)
     appPhase = appSub

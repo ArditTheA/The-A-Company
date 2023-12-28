@@ -20,6 +20,23 @@
     .iti--allow-dropdown input {
         padding-left: 49px !important;
     }
+    .loading-spinner {
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        border-left: 4px solid #3498db;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        animation: spin 1s linear infinite;
+        margin-left: 10px;
+        display: inline-block;
+        float:right;
+        margin-right:10px;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
 </style>
 
 
@@ -29,33 +46,34 @@
         <div class="container-edit-profile under-container-mutual-mutual-stats">
 
             <div class="edit-profile-title mutual-titles-pop-ups-stats">Edit Profile</div>
-            <form method="post" autocomplete="off" enctype="multipart/form-data" class="sign-up-form edit-profile-form forms-inputs-placeholder">
+            <form method="post" id="edit-user-details" autocomplete="off" enctype="multipart/form-data" class="sign-up-form edit-profile-form forms-inputs-placeholder">
                 {% csrf_token %}
 
                  <div class="first-and-last-name-div" style="">
                         <div class="edit-profile-first-name edit-profile-first-last">
-                        {{form.first_name}}
+                            <input type="text"  name="first_name" class="name-input profile-all-inputs-option" placeholder="First Name" maxlength="150" id="id_first_name">
                         </div>
 
                         <div class="edit-profile-first-last">
-                        {{form.last_name}}
+                            <input type="text" name="last_name" class="surname-input  profile-all-inputs-option" placeholder="Last Name" maxlength="150" id="id_last_name">
                         </div>
                  </div>
 
 
                 <div>
                             <div class="autocomplete" style="width:100%;">
-                                {{form.country}}
+                                <select name="country" id="id_country" class="profile-all-inputs-option" maxlength="255"></select>
                             </div>
                         </div>
                         <div>
-                        {{ form.city }}
+                            <input type="text" name="city" class=" profile-all-inputs-option" placeholder="City" maxlength="255" id="id_city" value="{{user.city}}">
                         </div>
-                        {{form.phone_number}}                        
+
+                        <input type="text"  name="phone_number" class="profile-all-inputs-option" oninput="addPlusPrefix(this);" maxlength="255" id="id_phone_number" data-intl-tel-input-id="0" placeholder="+383">                       
 
                 <div class="save-button save-button-edit-profile-photo">
                             <input name="back" title="Back to Profile" type="button" class="back-input font-fam back-save-buttons" value="Back">
-                            <input title="Save Profile Data" name="save" type="submit" class="save-submit-input font-fam back-save-buttons" value="Save">
+                            <input title="Save Profile Data" name="save"  class="save-submit-input font-fam back-save-buttons" value="Save" onclick="UpdateUserDetails();disableButton(this);">
                         </div>
 
 
@@ -68,23 +86,16 @@
     <div class="cover-edit">
         <div class="edit-profile-title mutual-titles-pop-ups-stats edit-profile-cover-photo-title">Edit Cover Photo</div>
 
-        <form method="post" enctype="multipart/form-data">
+        <form id="edit-user-cover" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="div-of-changed-cover">
-                <div style="display: none;">
-                    
-                    <input type="hidden" name="first_name" id="id_first_name" class="profile-all-inputs-option" value="{{form.first_name.value}}"/>
-                    <input type="hidden" name="last_name" id="id_last_name" class="profile-all-inputs-option" value="{{form.last_name.value}}"/>
-                    <input type="hidden" name="country" id="id_country" class="profile-all-inputs-option" value="{{form.country.value}}"/>
-                    <input type="hidden" name="city" id="id_city" class="profile-all-inputs-option" value="{{form.city.value}}"/>
-                    <input type="hidden" name="phone_number" id="id_phone_number" class="profile-all-inputs-option" value="{{form.phone_number.value}}"/>
-
-                </div>
+                
 
                 <label for="id_cover">
                     <img class="changed-cover" id="coverPic" height="250"  src="{{user.cover.url}}" title="Profile Cover" alt="" accept="image/*" size="20971520">
                 </label>
-                {{form.cover}}
+                <input type="file" name="cover" class="upload_profile_pic" id="id_cover" onchange="document.getElementById('coverPic').src = window.URL.createObjectURL(this.files[0])" accept="image/*">
+           
             </div>
                 <div class="save-button save-button-edit-profile-photo">
                     <input name="back" title="Back to Profile" type="button" class="back-input font-fam back-save-buttons" value="Back">
@@ -103,27 +114,20 @@
         <div class="change-profile-picture">
 
             <div class="edit-profile-title mutual-titles-pop-ups-stats edit-profile-cover-photo-title">Edit Profile Photo</div>
-            <form method="post" enctype="multipart/form-data">
+            <form id="edit-user-profile "method="post" enctype="multipart/form-data" class="forms-inputs-placeholder">
                 {% csrf_token %}
                 <div class="div-of-changed-cover">
-                    <div style="display: none;">
-                        <input type="hidden" name="first_name" id="id_first_name" class="profile-all-inputs-option" value="{{form.first_name.value}}"/>
-                    <input type="hidden" name="last_name" id="id_last_name" class="profile-all-inputs-option" value="{{form.last_name.value}}"/>
-                    <input type="hidden" name="country" id="id_country" class="profile-all-inputs-option" value="{{form.country.value}}"/>
-                    <input type="hidden" name="city" id="id_city" class="profile-all-inputs-option" value="{{form.city.value}}"/>
-                    <input type="hidden" name="phone_number" id="id_phone_number" class="profile-all-inputs-option" value="{{form.phone_number.value}}"/>
-
-                    </div>
+                    
 
                     <label for="id_profile">
                         <img class="changed-profile changed-picture proImg" id="profilePic"  src="{{user.profile.url}}" title="Profile Cover" alt="">
 
                     </label>
-                    {{form.profile}}
+                    <input type="file" name="profile" id="id_profile" onchange="document.getElementById('profilePic').src = window.URL.createObjectURL(this.files[0])" accept="image/*">
                 </div>
                 <div class="save-button save-button-edit-profile-photo">
                     <input name="back" title="Back to Profile" type="button" class="back-input font-fam back-save-buttons" value="Back">
-                    <input title="Save Profile Data" name="save" type="submit" class="save-submit-input font-fam back-save-buttons" value="Save">
+                    <input title="Save Profile Data" name="save" type="submit" class="save-submit-input font-fam back-save-buttons" value="Save" onclick="editUserProfile();disableButton(this)">
                 </div>
             </form>
 
@@ -139,16 +143,13 @@
     <!-- Add Experience -->
     <div class="add-experience under-container-mutual-mutual-stats">
             <div class="mutual-titles-pop-ups-stats">Add Experience</div>
-            <form method="post" class="sign-up-form" enctype="multipart/form-data" style="margin-bottom:0;">
+            <form method="post" class="sign-up-form add-user-experience forms-inputs-placeholder" enctype="multipart/form-data" style="margin-bottom:0;" id="add-user-experience">
                 {% csrf_token %}
-                <div style="display: none;">
-                    {{form}}
-                    {{for_usExp.user_id}}
-                </div>
-                    {{for_usExp.title}}
-                    {{for_usExp.company}}
-                    {{for_usExp.Country}}
-                    {{for_usExp.city_usExp}}
+                <input type="hidden" id="id-experience">
+                <input type="text" name="title" class="name-input profile-all-inputs-option" placeholder="Job title" maxlength="500" required="" id="id_title">
+<input type="text" name="company" class="name-input profile-all-inputs-option" placeholder="Company" maxlength="255" required="" id="id_company">
+<select name="Country" class="profile-all-inputs-option" maxlength="255" id="id_Country"></select>
+<input type="text" name="city_usExp" class="name-input profile-all-inputs-option" placeholder="City" maxlength="255" id="id_city_usExp">
                     <div class="start-and-end-date-main-div">
                         <input id="id_start_date" class="start-date-input date-of-birth-input inputs-job-details start-end-date all-inputs profile-all-inputs-option"
                         name="start_date" onchange="checkForm();checkStartDate();" value="" type="text" maxlength="10"
@@ -163,7 +164,9 @@
                     </div>
                     <div class="save-button save-button-edit-profile-photo">
                     <input name="back" title="Back to Profile" type="button"   class="back-input font-fam back-save-buttons" value="Back">
-                    <input title="Save Profile Data" name="save" type="submit" class="save-submit-input font-fam back-save-buttons" value="Save">
+
+                    <input title="Save Profile Data" name="save"  id="addUserExp" type="submit" class="save-submit-input font-fam back-save-buttons" value="Save" onclick="AddUserExperience();disableButton(this);">
+                    <input title="Save Profile Data" name="save" id="editUserExp" type="submit" class="save-submit-input font-fam back-save-buttons" value="Save" onclick="editUserExperience();disableButton(this);">
                 </div>
             </form>
     </div>
@@ -171,31 +174,23 @@
     <!-- add Education -->
     <div class="add-education edit-education-parent-scroll under-container-mutual-mutual-stats edit-education-scroll">
         <div class="add-education-title mutual-titles-pop-ups-stats">Add Education</div>
-        <form method="POST" action="" class="sign-up-form forms-inputs-placeholder">
+        <form id="add-user-education" class="sign-up-form forms-inputs-placeholder add-user-education" >
             {% csrf_token %}
-            <div style="display: none;">
-                <input type="hidden" name="first_name" id="id_first_name" class="profile-all-inputs-option" value="{{form.first_name.value}}"/>
-                    <input type="hidden" name="last_name" id="id_last_name" class="profile-all-inputs-option" value="{{form.last_name.value}}"/>
-                    <input type="hidden" name="country" id="id_country" class="profile-all-inputs-option" value="{{form.country.value}}"/>
-                    <input type="hidden" name="city" id="id_city" class="profile-all-inputs-option" value="{{form.city.value}}"/>
-                    <input type="hidden" name="phone_number" id="id_phone_number" class="profile-all-inputs-option" value="{{form.phone_number.value}}"/>
-                    {{form.cover}}
-                    {{form.profile}}
-                {{form_usEdu.user_id}}
-            </div>
-            {{form_usEdu.university}}
-            {{form_usEdu.field_of_study}}
+            <input type="hidden" id="id_edu">
+            <input type="text" name="university" class="name-input profile-all-inputs-option" placeholder="University" maxlength="255" required="" id="id_university">
+            <input type="text" name="field_of_study" class="name-input profile-all-inputs-option" placeholder="Field of Study" maxlength="255" required="" id="id_field_of_study">
+            
             
             <select name="degree" required="" id="id_degree" class="profile-all-inputs-option">
-                <option style="display: none;" selected>Degree</option>
-                <option value="Bachelor" >Bachelor’s Degree</option>
+                <option style="display: none;" selected="">Degree</option>
+                <option value="Bachelor">Bachelor’s Degree</option>
 
-                <option value="Master" >Master’s Degree</option>
+                <option value="Master">Master’s Degree</option>
             </select>
             
-            {{form_usEdu.country_e}}
+            <select name="country_e" class="name-input profile-all-inputs-option" list="EduCountryList" placeholder="Country" maxlength="255" id="id_country_e"></select>
             
-            {{form_usEdu.city_e}}
+            <input type="text" name="city_e" class="name-input profile-all-inputs-option" list="EduCityList" placeholder="City" maxlength="255" id="id_city_e">
             
             <input type="number" name="total_examples_passed" value="" class="name-input profile-all-inputs-option" placeholder="Total Exams Passed" required="" id="id_total_examples_passed">
             
@@ -212,65 +207,73 @@
                 
             </div>
             <div style="float: right; border:0;width:auto;font-size: 16px;color: #858585;padding:0;" class="profile-all-inputs-option">
-                <label class="" style=""><input class="" style="" onchange="presentEnd()"type="checkbox" > Present</label>
+                <label class="" style=""><input class="" id="educationCheck" style="" onchange="presentEnd()"type="checkbox" > Present</label>
             </div>
             <div class="save-button save-button-edit-profile-photo save-button-add-education">
                 <input name="back" title="Back to Profile" type="button" class="back-input font-fam back-save-buttons" value="Back">
-                <input title="Save Profile Data" name="save" type="submit" class="save-submit-input font-fam back-save-buttons" value="Save">
+                <input title="Save Profile Data" name="save" id="addUserEdu" type="submit" class="save-submit-input font-fam back-save-buttons" value="Save" onclick="AddUserEducation();disableButton(this);">
+                <input title="Save Profile Data" name="save" id="editUserEdu" type="submit" class="save-submit-input font-fam back-save-buttons" value="Save" onclick="EditUserEducation();disableButton(this);">
             </div>
 
         </form>
     </div>
 
+    <!-- add language -->
+    <div class="add-languages under-container-mutual-mutual-stats">
+    
+        <div class="add-language-title mutual-titles-pop-ups-stats">Add Language</div>
+        <form id="add-user-language" class="sign-up-form add-language-form add-user-language forms-inputs-placeholder">
+            {% csrf_token %}
+            <input id="id_lang" type="hidden">
+            <div class="div-of-job-experience">
+                <select name="language" required="" id="id_language" class="profile-all-inputs-option">
+                    <option style="display: none;" selected>Language</option>
+                    
+                </select>
+            </div>
+            
+            <div>
+            <select id="id_level" name="level" type="text" required class="surname-input mutual-stats font-fam">
+                <option style="display: none;" selected>Level</option>   
+                <option value="N/A">N/A</option>
+                    <option value="Basic">Basic</option>
+                    <option value="Low-Intermediate">Low-Intermediate</option>
 
 
+                    <option value="High-Intermediate">High-Intermediate</option>
 
-<div class="add-languages under-container-mutual-mutual-stats">
- 
-    <div class="add-language-title mutual-titles-pop-ups-stats">Add Language</div>
-    <form method="POST" action="" class="sign-up-form add-language-form">
-        {% csrf_token %}
-        <div style="display: none;">
-            <input type="hidden" name="first_name" id="id_first_name" class="profile-all-inputs-option" value="{{form.first_name.value}}"/>
-                    <input type="hidden" name="last_name" id="id_last_name" class="profile-all-inputs-option" value="{{form.last_name.value}}"/>
-                    <input type="hidden" name="country" id="id_country" class="profile-all-inputs-option" value="{{form.country.value}}"/>
-                    <input type="hidden" name="city" id="id_city" class="profile-all-inputs-option" value="{{form.city.value}}"/>
-                    <input type="hidden" name="phone_number" id="id_phone_number" class="profile-all-inputs-option" value="{{form.phone_number.value}}"/>
-                    {{form.cover}}
-                    {{form.profile}}
-            {{form_usLang.user_id}}
-        </div>
-        <div class="div-of-job-experience">
-            <select name="language" required="" id="id_language" class="profile-all-inputs-option">
-                <option style="display: none;" selected>Language</option>
-                {% for i in lang %}
-                    <option value="{{i.id}}">{{i}}</option>
-                {% endfor %}
+                    <option value="Advanced">Advanced</option>
             </select>
-        </div>
-        
-        <div>
-        <select id="id_level" name="level" type="text" required class="surname-input mutual-stats font-fam">
-            <option style="display: none;" selected>Level</option>   
-            <option value="N/A">N/A</option>
-                <option value="Basic">Basic</option>
-                <option value="Low-Intermediate">Low-Intermediate</option>
+            </div> 
+            <div class="save-button save-button-edit-profile">
+                <input title="Back to Profile" name="back" type="button" class="back-input font-fam back-save-buttons" value="Back">
+                <div class="loading-spinner" id="loading-spinner-languages" style="display: none;"></div>
+                <input title="Save Profile Data" name="save" id="AddUserLang" class="save-submit-input font-fam back-save-buttons" value="Save" onclick="AddUserLanguages()" >
+                <input title="Save Profile Data" name="save" id="EditUserLang" class="save-submit-input font-fam back-save-buttons" value="Save" onclick="EditUserLanguages()" >
+            </div>
+        </form>
+    </div>
 
-
-                <option value="High-Intermediate">High-Intermediate</option>
-
-                <option value="Advanced">Advanced</option>
-        </select>
-        </div>
-        <div class="save-button save-button-edit-profile">
-            <input title="Back to Profile" name="back" type="button" class="back-input font-fam back-save-buttons" value="Back">
-            <input title="Save Profile Data" name="save" type="submit" class="save-submit-input font-fam back-save-buttons" value="Save">
-        </div>
-    </form>
+    <div class="delete-languages under-container-mutual-mutual-stats">
+        <div class="add-language-title mutual-titles-pop-ups-stats" ><span id="delete-title"></span></div>
+        <form method="POST" action="" class="sign-up-form add-language-form">
+            {% csrf_token %}
+            <input type="hidden" id="delete_id">
+            <div class="save-button save-button-edit-profile">
+                <input title="Back to Profile" name="back" type="button" class="back-input font-fam back-save-buttons" value="No">
+                <input title="Delete Expe" name="save" type="submit" id="experience-delete-button" onclick="deleteUserExperience()" style="display: none;" class="save-submit-input font-fam back-save-buttons" value="Yes">
+                <input title="Delete Education" name="save" type="submit" id="education-delete-button" onclick="deleteUserEducation()" style="display: none;" class="save-submit-input font-fam back-save-buttons" value="Yes">
+                <input title="Delete Language" name="save" type="submit" id="language-delete-button" onclick="deleteUserLanguage()" style="display: none;"class="save-submit-input font-fam back-save-buttons" value="Yes">
+            </div>
+        </form>
 </div>
 
 
 </div>
+
+<script>
+    
+</script>
 
 
 <script>
@@ -286,10 +289,10 @@
         }
     }
 </script>
-{% if form.phone_number.value %}
+{% if user.phone_number %}
 <script>
 
-    let fullPhoneNumber = "{{ form.phone_number.value }}";
+    let fullPhoneNumber = "{{ user.phone_number}}";
 
 if (!fullPhoneNumber.startsWith('+')) {
     fullPhoneNumber = '+' + fullPhoneNumber;

@@ -136,6 +136,88 @@ def add_JobScreeningQuestion(request):
         job_question_formset = JobQuestionFormSet(prefix='job_question')
 
     return render(request, "Jobs/postJob.html", {'job_form': job_form, 'job_question_formset': job_question_formset})
+
+
+
+
+def edit_JobScreeningQuestion(request, job_id):
+    country_j = Country.objects.all()
+    city_j = City.objects.all()
+    uid = request.user
+
+    # Retrieve the job object to edit
+    job = get_object_or_404(Job, id=job_id)
+
+    if request.method == 'POST':
+        try:
+            getCountry = request.POST.get("country_j")
+            getCity = request.POST.get("city_j")
+
+            jobTitle = request.POST.get("job_title")
+            job_form = JobForm(request.POST, request.FILES, instance=job)
+            job_question_formset = JobQuestionFormSet(request.POST, prefix='job_question')
+
+            if job_form.is_valid() and job_question_formset.is_valid():
+                job = job_form.save(commit=False)
+                job.user_id = request.user
+                job.save()
+
+                # Delete existing job questions to replace with new ones
+                JobQuestion.objects.filter(job_id=job).delete()
+
+                for form in job_question_formset:
+                    if form.cleaned_data.get('promp') is not None:
+                        job_question = form.save(commit=False)
+                        job_question.job_id = job
+                        job_question.save()
+
+                # Update country and city if needed
+                CountryJob(getCountry)
+                CityJob(getCity, getCountry)
+
+                subject = "Your job posting for " + jobTitle + " has been updated"
+                email_template_applicant = "main/jobs/postJob.txt"
+
+                c = {
+                    "email": request.user.email,
+                    'domain': 'worki.global',
+                    'site_name': 'Worki',
+                    'user': request.user,
+                    'jobTitle': jobTitle,
+                }
+                email = render_to_string(email_template_applicant, c)
+
+                try:
+                    send_mail(subject, email, 'Worki hello@worki.global', [request.user.email], fail_silently=False)
+                except BadHeaderError:
+                    return HttpResponse('Invalid header found.')
+
+                return redirect('postedJob')
+            else:
+                # Handle form errors
+                print("--------------------------")
+                print(job_form.errors)
+                print("--------------------------")
+                print(job_question_formset.errors)
+                print("--------------------------")
+        except ValidationError as e:
+            # Print validation error for debugging purposes
+            print(f"Validation Error: {e}")
+        except Exception as e:
+            # Print other exceptions for debugging purposes
+            print(f"An unexpected error occurred: {e}")
+
+    else:
+        # Populate the forms with existing data
+        job_form = JobForm(instance=job)
+        job_question_formset = JobQuestionFormSet(prefix='job_question', queryset=JobQuestion.objects.filter(job_id=job))
+
+    return render(request, "Jobs/editJob.html", {'job_form': job_form, 'job_question_formset': job_question_formset})
+
+
+
+
+
 def getQuestion(request,pk):
     question = JobQuestion.objects.filter(job_id=pk).order_by("-id")
     userId=request.user

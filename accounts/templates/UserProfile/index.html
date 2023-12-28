@@ -7,19 +7,23 @@
 
     <div class="profile-header">
         <div id="example1">
+            {% if user.cover %}
         <img class="pro-img" src="{{user.cover.url}}" alt="">
-        <img class="edit-button-cover" title="Edit Cover Picture"  src="{% static 'img/Three-dots.svg' %}" alt="">
+            {% else %}
+            <img class="pro-img" src="{% static 'img/Vector 350.svg' %}">
+            {% endif %}
+        <img class="edit-button-cover" title="Edit Cover Picture"  src="{% static 'img/Vector 350.svg' %}" alt="">
         </div>
         <div class="second-part-profile-header">
             <div class="profile-image-and-edit">
                 <div class="profile-image-and-add-button">
-
+                    
                     <a href="" title="Profile Picture" ><img class="profile-image" src="{{user.profile.url}}" alt=""></a>
 
-                    <img src="{% static 'img/Asset 3.png' %}" title="Add Profile"  id="plus-icon" alt="">
+                    <img src="{% static 'img/Vector 609.svg' %}" title="Add Profile"  id="plus-icon" alt="">
                 </div>
 
-                <img class="edit-button" title="Edit Profile"   src="{% static 'img/Three-dots.svg' %}" alt="">
+                <img class="edit-button" title="Edit Profile"   src="{% static 'img/Vector 350.svg' %}" alt="">
             </div>
             <div class="profile-name"><span class="profile-firstname">{{user.first_name}}</span> <span class="profile-surname">{{user.last_name}}</span></div>
             {% if user.city != None and user.country != None %}
@@ -36,5 +40,6 @@
     {% include "UserProfile/language.html" %}
     {% include "UserProfile/add-exp-edu-lang.html" %}
 
+    
 {% endblock content %}
 

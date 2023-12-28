@@ -22,6 +22,55 @@ from django.http import HttpResponse
 from django.conf import settings
 from django.views import View
 
+
+
+def approve_document_user(request):
+    try:
+        document_id = request.POST.get("document_id")
+        user_id = request.POST.get("user_id")
+        doc = documents_users.objects.get(
+            id_document=document_id,
+            user_id=user_id
+        )
+        doc.status = "A"
+        print(doc.status)
+        doc.save()
+        return JsonResponse({'message': 'Education information updated successfully'})
+    except documents_users.DoesNotExist:
+        return JsonResponse({'status': 'error', 'message': 'Education not found.'})
+    except ValueError:
+        return JsonResponse({'status': 'error', 'message': 'Invalid year format.'})
+    except Exception as e:
+        return JsonResponse({'status': 'error', 'message': str(e)})
+
+
+def refused_document_user(request):
+    try:
+        document_id = request.POST.get("document_id")
+        user_id = request.POST.get("user_id")
+        doc = documents_users.objects.get(
+            id_document=document_id,
+            user_id=user_id
+        )
+        doc.status = "R"
+        print(doc.status)
+        doc.save()
+        return JsonResponse({'message': 'Education information updated successfully'})
+    except documents_users.DoesNotExist:
+        return JsonResponse({'status': 'error', 'message': 'Education not found.'})
+    except ValueError:
+        return JsonResponse({'status': 'error', 'message': 'Invalid year format.'})
+    except Exception as e:
+        return JsonResponse({'status': 'error', 'message': str(e)})
+
+
+
+
+
+
+
+
+
 class UserFolderZipView(View):
     def get(self, request, userid):
         # Define the path to the user's folder based on their email.
@@ -190,6 +239,7 @@ def upload_documents_recruiter(request):
                 document.document = form.cleaned_data['document']
                 document.id_document= documents_list.objects.get(id=document_id)
                 # Add other fields as needed
+                document.status = "P"
                 document.save()
                 print(document)
                 return JsonResponse({'message': 'Document updated successfully'})
@@ -218,3 +268,61 @@ def upload_documents_recruiter(request):
         form = DocumentForm()
 
     return render(request, 'upload_document_user.html', {'form': form})
+
+
+
+
+from django.shortcuts import render
+from django.http import JsonResponse
+
+@login_required
+def upload_documents_myjobs(request):
+    if request.method == 'POST' and request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
+        try:
+            document_id = request.POST.get("mydocument_id")
+            print("--------------")
+            print("--------------")
+            print("--------------")
+            print(document_id)
+            print("--------------")
+            print("--------------")
+            user_id = request.user
+            id_myjob_document = request.FILES.get("myjob_document")
+
+            # Additional file validation can be added here
+
+            # Check if the document already exists for the user
+            document = documents_users.objects.get(id_document=document_id, user=user_id)
+            document.document = id_myjob_document
+            document.save()
+
+            return JsonResponse({'message': 'Document updated old successfully'})
+        except documents_users.DoesNotExist:
+            # Document does not exist, create a new one
+            document_id = request.POST.get("mydocument_id")
+            print("--------------")
+            print("--------------")
+            print("--------------")
+            print(document_id)
+            print("--------------")
+            print("--------------")
+
+            user_id = request.user
+            id_myjob_document = request.FILES.get("myjob_document")
+
+            # Additional file validation can be added here
+
+            doc = documents_users()
+            doc.user = user_id
+            doc.id_document = documents_list.objects.get(id=document_id)
+            doc.document = id_myjob_document
+            doc.save()
+
+            return JsonResponse({'message': 'Document uploaded new successfully'})
+        except Exception as e:
+            # Handle other exceptions (e.g., file validation errors)
+            return JsonResponse({'error': str(e)}, status=400)
+    else:
+        return JsonResponse({'error': 'Invalid request'}, status=400)
+
+    return render(request, 'upload_document_user.html')

@@ -1,20 +1,30 @@
 {% load static %}
 
-<div class="experience-education-languages languages-main-div">
-    <div class="languages-div">
+
+
+
+
+<div class="experience-education-languages languages-main-div different_exp">
+    <div class="languages-div" style="">
         <div class="languages-paragraphs-div">
             <div class="experience-paragraph language-paragraph">Languages</div>
-            {% for i in usLang %}
+            {% for i in usLang%}
             <div style="" class="experience-rows-img-languages">
+                <div class="language-edit-button-parent" style="display: flex; width: 100%;">
                 <div class="education-second-paragraph">{{i.language}}</div>
+                <div class="two-imgs-experience languages-images">
+                    <img onclick="deleteUserLanguagesPopUp('{{i.id}}')" class="buttons-vertical-align-middle edit-experience-pop-up-button mobile-margin-right-and-bottom add-edit-buttons-hover buttons-right-padding" title="Delete Language"  src="{% static 'img/delete.svg' %}" alt="">
+                    <img onclick="getLangDetails('{{i.id}}')"           class="edit-experience edit-experience-pop-up-button add-edit-buttons-hover" title="Edit Language" src="{% static 'img/Vector 350.svg' %}" alt="">
+                </div>
+            </div>
                 <div class="language-rate">{{i.level}}</div>
             </div>
             {% endfor %}
+            
         </div>
         <div class="add-and-edit-experience">
-            <img class="add-experience-button add-languages-button" id="" title="Add Language"  onclick="disableScroll()" src="{% static 'img/Vector 80.png' %}" alt="">
-            <a href="{% url 'editLanguage'%}">
-            <img class="edit-experience" title="Edit Languages" src="{% static 'img/Three-dots.svg' %}" alt=""></a>
+            <img class="buttons-right-padding add-edit-buttons-hover mutual-add-style add-languages-button" title="Add Language"  onclick="disableScroll()" src="{% static 'img/Vector 80.svg' %}" alt="">
+            <img class="three-dots-img  click-languages-three-dots add-edit-buttons-hover" title="Show 'Edit' and 'Delete' buttons" src="{% static 'img/Three-dots.svg' %}" alt="">
         </div>
     </div>
 </div>

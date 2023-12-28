@@ -46,54 +46,7 @@
     </div>
     </div>
 
-<!-- <div class="main-buttons-div">
-    <div class="jobs-buttons applied-posted-buttons-mobile all-aplicants-main-div scrolling-wrapper">
-         <div class="main-input-form">
-            <div class="input-form inputs-right-margin all-applicants-button-form" style="">
-             <button title="All Applicants" class="applied-button-jobs outline-none all-applicants-button">{% if q == "All" %}All Applicants ({{NoApplicant}}){% elif q == "Q" %}Qualified ({{NoApplicantQualified}}){% else %} Not Qualified ({{NoApplicantNQualified}}){% endif %}</button>
-             <div class="div-white-icon" style="">
-                <img class="icon-filter" src="/static/img/dropdown-icon.png" alt="">
 
-            </div>
-            </div>
-
-             <div class="all-applicants-dropdown profileDropDown mutual-dropdown">
-                 {% if q == "Q" %}
-                 <label style="" class="profileDropDown-content profileDropDown-text"><input style="display: none;" type="checkbox" class="input_type"
-                value="Not Qualified" name="Not Qualified" onclick="AllApplicant()"  />All Applicants ({{NoApplicant}})</label>
-                 <label style="" class="profileDropDown-content  profileDropDown-text"><input style="display: none;" type="checkbox" class="input_type"
-                value="Not Qualified" name="Not Qualified" onclick="NoQualified()"  />Not Qualified ({{NoApplicantNQualified}})</label>
-                 {% elif q == "notQ" %}
-                 <label style="" class="profileDropDown-content profileDropDown-text"><input style="display: none;" type="checkbox" class="input_type"
-                value="Not Qualified" name="Not Qualified" onclick="AllApplicant()"  />All Applicants ({{NoApplicant}})</label>
-                <label for="mutual1" id="qualify" class="profileDropDown-content  profileDropDown-text"><input id="mutual1" style="display: none;" type="checkbox" class="input_type"
-                    onchange="checkboxStatusChange()" onclick="Qualified()" value="Qualified" name="Qualified" />Qualified ({{NoApplicantQualified}})</label>
-                 {% else %}
-                 <label for="mutual1" id="qualify" class="profileDropDown-content profileDropDown-text"><input id="mutual1" style="display: none;" type="checkbox" class="input_type"
-                    onchange="checkboxStatusChange()" onclick="Qualified()" value="Qualified" name="Qualified" />Qualified ({{NoApplicantQualified}})</label>
-
-                <label style="" class="profileDropDown-content  profileDropDown-text"><input style="display: none;" type="checkbox" class="input_type"
-                value="Not Qualified" name="Not Qualified" onclick="NoQualified()"  />Not Qualified ({{NoApplicantNQualified}})</label>
-                 {% endif %}
-
-                 <label for="mutual1" id="qualify" class="profileDropDown-content profileDropDown-text"><input id="mutual1" style="display: none;" type="checkbox" class="input_type"
-                    onchange="checkboxStatusChange()" onclick="Qualified()" value="Qualified" name="Qualified" />Documents for Work Permit ({{usersOnDocForWorkPermit}})</label>
-
-                    <label for="mutual1" id="qualify" class="profileDropDown-content profileDropDown-text"><input id="mutual1" style="display: none;" type="checkbox" class="input_type"
-                        onchange="checkboxStatusChange()" onclick="Qualified()" value="Qualified" name="Qualified" />Work Permit is here ({{userWorkPermit}})</label>
-                        <label for="mutual1" id="qualify" class="profileDropDown-content profileDropDown-text"><input id="mutual1" style="display: none;" type="checkbox" class="input_type"
-                            onchange="checkboxStatusChange()" onclick="Qualified()" value="Qualified" name="Qualified" />Start Work ({{ready_users_count}})</label>
-            
-                    <label class="profileDropDown-content profileDropDown-text"></label>
-        
-              </div>
-              
-            </div>
-
-            
-        </div>
-    </div>
-</div> -->
 
     <div class="jobs-main-div">
         {% include 'Applicant-Doc/left-applicant.html'%}
@@ -148,6 +101,54 @@ function ChangeDiv() {
 </script>
 
 <script>
+    function ApproveFunction(id){
+        console.log("approved: "+$("#user_id").val());
+        var user_id = $("#user_id").val();
+        var document_id = id;
+        $.ajax({
+            type: "POST",
+            url: '/approve_document_user/',
+            data: {
+                document_id : document_id,
+                user_id:user_id,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+
+            },
+            success: function(response) {
+                   
+                    getUser(user_id);
+                    // Rest of your success handling code
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    console.log("Error:", textStatus, errorThrown);
+                    // Handle the error
+                }
+                });
+    };
+    function RefuseFunction(id){
+        console.log("approved: "+$("#user_id").val());
+        var user_id = $("#user_id").val();
+        var document_id = id;
+        $.ajax({
+            type: "POST",
+            url: '/refused_document_user/',
+            data: {
+                document_id : document_id,
+                user_id:user_id,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+
+            },
+            success: function(response) {
+                   
+                    getUser(user_id);
+                    // Rest of your success handling code
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    console.log("Error:", textStatus, errorThrown);
+                    // Handle the error
+                }
+                });
+    };
     function getDocument(element) {
         const dataNumber = element.getAttribute('data-number');
         const dataDocumentId = element.getAttribute('data-document-id');
@@ -162,6 +163,7 @@ function ChangeDiv() {
 
         document.body.appendChild(downloadLink);
         downloadLink.click();
+        
         document.body.removeChild(downloadLink);
         }
 </script>
@@ -209,33 +211,33 @@ function ChangeDiv() {
       });
 
       $(document).ready(function() {
-  $('#upload-form-recruiter').submit(function(e) {
-    e.preventDefault();
+            $('#upload-form-recruiter').submit(function(e) {
+                e.preventDefault();
 
-    var formData = new FormData(this);
+                var formData = new FormData(this);
 
-    // Get the current domain (including protocol, domain, and port)
-    var currentDomain = window.location.origin;
+                // Get the current domain (including protocol, domain, and port)
+                var currentDomain = window.location.origin;
 
-    // Construct the URL by appending the path
-    var uploadURL = currentDomain + '/upload_documents_recruiter/';
-    var userid = formData.get('user_id');
-    $.ajax({
-      type: 'POST',
-      url: uploadURL,
-      data: formData,
-      processData: false,
-      contentType: false,
-      success: function(response) {
-        $('.bg-add-and-edit, .popup').css("display", "none");
-        getUser(userid);
-        // Rest of your success handling code
-      },
-      error: function(xhr, textStatus, errorThrown) {
-        console.log("Error:", textStatus, errorThrown);
-        // Handle the error
-      }
-    });
+                // Construct the URL by appending the path
+                var uploadURL = currentDomain + '/upload_documents_recruiter/';
+                var userid = formData.get('user_id');
+                $.ajax({
+                type: 'POST',
+                url: uploadURL,
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    $('.bg-add-and-edit, .popup').css("display", "none");
+                    getUser(userid);
+                    // Rest of your success handling code
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    console.log("Error:", textStatus, errorThrown);
+                    // Handle the error
+                }
+                });
   });
 });
 
