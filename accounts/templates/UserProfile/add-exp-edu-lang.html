@@ -73,7 +73,7 @@
 
                 <div class="save-button save-button-edit-profile-photo">
                             <input name="back" title="Back to Profile" type="button" class="back-input font-fam back-save-buttons" value="Back">
-                            <input title="Save Profile Data" name="save"  class="save-submit-input font-fam back-save-buttons" value="Save" onclick="UpdateUserDetails();disableButton(this);">
+                            <input title="Save Profile Data" name="save" type="submit" class="save-submit-input font-fam back-save-buttons" value="Save" onclick="UpdateUserDetails();disableButton(this);">
                         </div>
 
 
@@ -153,10 +153,10 @@
                     <div class="start-and-end-date-main-div">
                         <input id="id_start_date" class="start-date-input date-of-birth-input inputs-job-details start-end-date all-inputs profile-all-inputs-option"
                         name="start_date" onchange="checkForm();checkStartDate();" value="" type="text" maxlength="10"
-                        placeholder="Start Date (dd/mm/yyyy)" oninput="this.value = MMDDYYYY(this.value, event)" />
+                        placeholder="Start Date (mm/dd/yyyy)" oninput="this.value = MMDDYYYY(this.value, event)" />
                         <input id="id_end_date" class="end-date-input date-of-birth-input inputs-job-details start-end-date all-inputs profile-all-inputs-option"
                         name="end_date" onchange="checkForm();checkStartDate();" value="" type="text" maxlength="10"
-                        placeholder="End Date (dd/mm/yyyy)" oninput="this.value = MMDDYYYY(this.value, event)" />
+                        placeholder="End Date (mm/dd/yyyy)" oninput="this.value = MMDDYYYY(this.value, event)" />
                         
                     </div>
                     <div style="float: right; border:0;width:auto;font-size: 16px;color: #858585;padding:0;" class="profile-all-inputs-option">
@@ -200,10 +200,10 @@
             <div class="start-and-end-date-main-div">
                 <input id="id_start_year" class="start-date-input date-of-birth-input inputs-job-details start-end-date all-inputs mutual-input" 
                 name="start_year" onchange="checkForm();checkStartDate();" value="" type="text" maxlength="10" 
-                placeholder="Start Year (dd/mm/yyyy)" oninput="this.value = MMDDYYYY(this.value, event)" />
+                placeholder="Start Year (mm/dd/yyyy)" oninput="this.value = MMDDYYYY(this.value, event)" />
                 <input id="id_end_year" class="end-date-input date-of-birth-input inputs-job-details start-end-date all-inputs mutual-input" 
                 name="end_year" onchange="checkForm();checkStartDate();" value="" type="text" maxlength="10" 
-                placeholder="End Year (dd/mm/yyyy)" oninput="this.value = MMDDYYYY(this.value, event)" />
+                placeholder="End Year (mm/dd/yyyy)" oninput="this.value = MMDDYYYY(this.value, event)" />
                 
             </div>
             <div style="float: right; border:0;width:auto;font-size: 16px;color: #858585;padding:0;" class="profile-all-inputs-option">
@@ -255,7 +255,7 @@
     </div>
 
     <div class="delete-languages under-container-mutual-mutual-stats">
-        <div class="add-language-title mutual-titles-pop-ups-stats" ><span id="delete-title"></span></div>
+        <div class="add-language-title mutual-titles-pop-ups-stats" id="delete-title" ></div>
         <form method="POST" action="" class="sign-up-form add-language-form">
             {% csrf_token %}
             <input type="hidden" id="delete_id">

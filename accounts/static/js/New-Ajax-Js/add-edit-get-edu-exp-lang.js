@@ -475,7 +475,7 @@ function deleteUserEducation(){
 
 
 function deleteUserLanguagesPopUp(language_id) {
-    $("#delete-title").text("Are you sure you want to delete the language?");
+    $("#delete-title").text("Are you sure you want to delete this language?");
     $(mainDiv).css("display", "flex");
     $(delete_popup).css("display", "flex");
     $(delete_popup).siblings().css("display", "none");
@@ -483,11 +483,12 @@ function deleteUserLanguagesPopUp(language_id) {
     $("#education-delete-button").css("display","none");
     $("#language-delete-button").css("display","block");
     $("#delete_id").val(language_id);
+    document.body.style.overflow = "hidden";
     
 }
 
 function deleteUserExperiencePopUp(experience_id) {
-    $("#delete-title").text("Are you sure you want to delete the experience?");
+    $("#delete-title").text("Are you sure you want to delete this experience?");
     $(mainDiv).css("display", "flex");
     $(delete_popup).css("display", "flex");
     $(delete_popup).siblings().css("display", "none");   
@@ -495,12 +496,13 @@ function deleteUserExperiencePopUp(experience_id) {
     $("#education-delete-button").css("display","none");
     $("#language-delete-button").css("display","none");
     $("#delete_id").val(experience_id);
+    document.body.style.overflow = "hidden";
 
 }
 
 
 function deleteUserEducationPopUp(education_id) {
-    $("#delete-title").text("Are you sure you want to delete the education?");
+    $("#delete-title").text("Are you sure you want to delete this education?");
     $(mainDiv).css("display", "flex");
     $(delete_popup).css("display", "flex");
     $(delete_popup).siblings().css("display", "none");   
@@ -508,5 +510,6 @@ function deleteUserEducationPopUp(education_id) {
     $("#education-delete-button").css("display","block");
     $("#language-delete-button").css("display","none");
     $("#delete_id").val(education_id);
+    document.body.style.overflow = "hidden";
 
 }

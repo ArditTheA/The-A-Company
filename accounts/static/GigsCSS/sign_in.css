@@ -147,6 +147,10 @@ body {
     text-align: center;
     cursor: pointer;
     border: 0.5px solid #1877F2;
+    font-weight: normal;
+}
+input{
+    font-weight: normal;
 }
 
 .sign-up-submit-input:focus {

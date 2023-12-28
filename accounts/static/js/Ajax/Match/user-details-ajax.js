@@ -358,7 +358,7 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
         if(data["ResumeStatus"] === "A"){
             var newDiv6 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
             '<div class="docs-nike-"fails" style="display: flex;">' +
-                '<div class="main-divs-color mutual-titles-color">Resume</div>' +
+                '<div class="main-divs-color mutual-titles-color blue-text">Resume</div>' +
                 '<img style="display:;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
                 '<img style="display: none;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
                 '</div>' +

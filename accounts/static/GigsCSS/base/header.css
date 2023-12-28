@@ -136,10 +136,9 @@ select {
 }
 
 @media screen and (max-width: 480px) {
-    .header-icon-job {
-        margin-right: 15px;
-    }
+
     .header-icon-profile {
+        margin-left: 15px;
         margin-right: 10px;
     }
     .profileDropDown {
