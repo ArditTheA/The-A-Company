@@ -1,3 +1,4 @@
+
  async function getUser(id) {
         document.getElementById("sectedUser").value = id;
         document.getElementById("user_id").value = id;
@@ -526,7 +527,7 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
         $('.three-dots-document').click(function() {
             if ($(".open-popup").css("display") === "block") {
                 $(".open-popup").css("display", "none");
-                $(".div_replacement").css("display", "block");
+                $(".div_replacement").css("display", "flex");
                 $(".img-zip-download").hide();
             } else {
                 $(".open-popup").css("display", "block");
