@@ -823,9 +823,9 @@ def applyForJobSQ(request, pk):
                     if ckeckList(qualify):
                         Status = "Qualified"
                         form.save()
-                        # GSheets(str(dataa),request.user,job,listQ)
+                        GSheets(str(dataa),request.user,job,listQ)
                     else:
-                        # GSheets(str(dataa), request.user, job, listQ)
+                        GSheets(str(dataa), request.user, job, listQ)
                         Status = "Not qualified"
                         form.save()
                         
