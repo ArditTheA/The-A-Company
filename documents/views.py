@@ -22,7 +22,24 @@ from django.http import HttpResponse
 from django.conf import settings
 from django.views import View
 
-
+def return_pennding_document(request):
+    try:
+        document_id = request.POST.get("document_id")
+        user_id = request.POST.get("user_id")
+        doc = documents_users.objects.get(
+            id_document=document_id,
+            user_id=user_id
+        )
+        doc.status = "P"
+        print(doc.status)
+        doc.save()
+        return JsonResponse({'message': 'Education information updated successfully'})
+    except documents_users.DoesNotExist:
+        return JsonResponse({'status': 'error', 'message': 'Education not found.'})
+    except ValueError:
+        return JsonResponse({'status': 'error', 'message': 'Invalid year format.'})
+    except Exception as e:
+        return JsonResponse({'status': 'error', 'message': str(e)})
 
 def approve_document_user(request):
     try:

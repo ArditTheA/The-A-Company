@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     'documents',
     'stripe',
     'googleOauth',
+    'landingpage',
 
     # 3party login providers
     'allauth',

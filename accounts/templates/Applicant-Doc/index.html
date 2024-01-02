@@ -101,6 +101,30 @@ function ChangeDiv() {
 </script>
 
 <script>
+    function penndingFunction(id){
+        console.log("approved: "+$("#user_id").val());
+        var user_id = $("#user_id").val();
+        var document_id = id;
+        $.ajax({
+            type: "POST",
+            url: '/return_pennding_document/',
+            data: {
+                document_id : document_id,
+                user_id:user_id,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+
+            },
+            success: function(response) {
+                   
+                    getUser(user_id);
+                    // Rest of your success handling code
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    console.log("Error:", textStatus, errorThrown);
+                    // Handle the error
+                }
+                });
+    };
     function ApproveFunction(id){
         console.log("approved: "+$("#user_id").val());
         var user_id = $("#user_id").val();

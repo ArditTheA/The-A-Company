@@ -17,6 +17,7 @@ urlpatterns = [
 
 
     path("approve_document_user/",approve_document_user),
+    path("return_pennding_document/",return_pennding_document),
     path("refused_document_user/",refused_document_user),
 
 ]

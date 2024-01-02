@@ -7,6 +7,11 @@ from datetime import datetime
 from django.core.files.storage import default_storage
 
 
+
+
+
+
+
 @csrf_exempt
 @require_POST
 def user_experience_ajax(request):

@@ -7,8 +7,11 @@ from filters.views import getList
 from .views import *
 from django.urls import path,include
 from .profile_ajax import *
+from .landingPages import  *
+
 
 urlpatterns = [
+
     path("companies",CompanyLandingPage,name="companyLandingPage"),
     path("employees",EmployeesLandingPage,name="employeesLandingPage"),
    

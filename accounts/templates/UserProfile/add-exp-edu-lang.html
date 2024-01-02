@@ -248,8 +248,8 @@
             <div class="save-button save-button-edit-profile">
                 <input title="Back to Profile" name="back" type="button" class="back-input font-fam back-save-buttons" value="Back">
                 <div class="loading-spinner" id="loading-spinner-languages" style="display: none;"></div>
-                <input title="Save Profile Data" name="save" id="AddUserLang" class="save-submit-input font-fam back-save-buttons" value="Save" onclick="AddUserLanguages()" >
-                <input title="Save Profile Data" name="save" id="EditUserLang" class="save-submit-input font-fam back-save-buttons" value="Save" onclick="EditUserLanguages()" >
+                <input title="Save Profile Data" name="save" id="AddUserLang" class="save-submit-input font-fam back-save-buttons" value="Save" onclick="AddUserLanguages();disableButton(this);" >
+                <input title="Save Profile Data" name="save" id="EditUserLang" class="save-submit-input font-fam back-save-buttons" value="Save" onclick="EditUserLanguages();disableButton(this);" >
             </div>
         </form>
     </div>
@@ -261,9 +261,9 @@
             <input type="hidden" id="delete_id">
             <div class="save-button save-button-edit-profile">
                 <input title="Back to Profile" name="back" type="button" class="back-input font-fam back-save-buttons" value="No">
-                <input title="Delete Expe" name="save" type="submit" id="experience-delete-button" onclick="deleteUserExperience()" style="display: none;" class="save-submit-input font-fam back-save-buttons" value="Yes">
-                <input title="Delete Education" name="save" type="submit" id="education-delete-button" onclick="deleteUserEducation()" style="display: none;" class="save-submit-input font-fam back-save-buttons" value="Yes">
-                <input title="Delete Language" name="save" type="submit" id="language-delete-button" onclick="deleteUserLanguage()" style="display: none;"class="save-submit-input font-fam back-save-buttons" value="Yes">
+                <input title="Delete Expe" name="save" type="submit" id="experience-delete-button" onclick="deleteUserExperience();disableButton(this);" style="display: none;" class="save-submit-input font-fam back-save-buttons" value="Yes">
+                <input title="Delete Education" name="save" type="submit" id="education-delete-button" onclick="deleteUserEducation();disableButton(this);" style="display: none;" class="save-submit-input font-fam back-save-buttons" value="Yes">
+                <input title="Delete Language" name="save" type="submit" id="language-delete-button" onclick="deleteUserLanguage();disableButton(this);" style="display: none;"class="save-submit-input font-fam back-save-buttons" value="Yes">
             </div>
         </form>
 </div>

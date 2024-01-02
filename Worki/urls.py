@@ -33,7 +33,6 @@ from accounts.views import *
 
 
 
-
 urlpatterns = [
 
     path('accounts/', include('allauth.urls')),
@@ -50,6 +49,7 @@ urlpatterns = [
 
     #Jobs  / Profile / Posted / Aplied
     path("",include('accounts.urls')),
+    path("",include('landingpage.urls')),
 
 
     # Filters

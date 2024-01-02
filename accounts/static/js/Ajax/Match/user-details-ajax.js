@@ -67,7 +67,7 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
                 newDiv1 += '</div>' +
                 '<img data-number="1" data-document-id="1" title="Download Passport" onclick="getDocument(this)" class="passport-img open-popup downloadImg" src="/static/img/documents-second-icon.svg" alt="">' +
                 '<div class="div_replacement" style="display: none; justify-content: space-between;">';
-                newDiv1 +='<img class="img-done" src="/static/img/nike-img-done.svg" onclick="ApproveFunction(1);">' +
+                newDiv1 +='<img class="img-done" src="/static/img/nike-img-done.svg" onclick="penndingFunction(1);">' +
                 '<img class="img-fail" src="/static/img/img-fail.svg" onclick="RefuseFunction(1);">';
             }else if (data["passaportStatus"] === "R") {
                 newDiv1 += '<div id="passport" class="main-divs-color mutual-titles-color">Passport</div>'+'<img style="display: ;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">';
@@ -75,7 +75,7 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
                 '<img data-number="1" title="Upload Passport" onclick="openPopUp(this)" class="passport-img open-popup" src="/static/img/documents-icon.svg" alt="">' +
                 '<div class="div_replacement" style="display: none; justify-content: space-between;">';
                 newDiv1 +='<img class="img-done" src="/static/img/before-done-img.svg" onclick="ApproveFunction(1);">' +
-                    '<img class="img-fail" src="/static/img/fail-red.svg" onclick="RefuseFunction(1);">';
+                    '<img class="img-fail" src="/static/img/fail-red.svg" onclick="penndingFunction(1);">';
             }else {
                 newDiv1 += '<div id="passport" class="main-divs-color mutual-titles-color blue-text">Passport</div>'+'<img style="display: none;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">';
                 newDiv1 += '</div>' +
@@ -119,7 +119,7 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
                     '<img data-number="2" title="Download Student status" onclick="getDocument(this)" class="open-popup" src="/static/img/documents-second-icon.svg" alt="">' +
                     '<div class="div_replacement" style="display: none; justify-content: space-between; ">' ;
                     newDiv2 +=
-                    '<img class="img-done" src="/static/img/nike-img-done.svg" onclick="ApproveFunction(2);">' +
+                    '<img class="img-done" src="/static/img/nike-img-done.svg" onclick="penndingFunction(2);">' +
                     '<img class="img-fail" src="/static/img/img-fail.svg" onclick="RefuseFunction(2);">';
                     }else if (data["studentStatus"] === "R") {
                        
@@ -130,7 +130,7 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
                     '<div class="div_replacement" style="display: none; justify-content: space-between; ">' ;
                     newDiv2 +=
                     '<img class="img-done" src="/static/img/before-done-img.svg" onclick="ApproveFunction(2);">' +
-                    '<img class="img-fail" src="/static/img/fail-red.svg" onclick="RefuseFunction(2);">';
+                    '<img class="img-fail" src="/static/img/fail-red.svg" onclick="penndingFunction(2);">';
                     }
                     else{
                         newDiv2 +=
@@ -179,7 +179,7 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
                             '<img data-number="3" title="Download Certificate of Enrolment" class="open-popup" onclick="getDocument(this)"  src="/static/img/documents-second-icon.svg" alt="">' +
                             '<div class="div_replacement" style="display: none; justify-content: space-between; ">';
                             newDiv3 +=
-                            '<img class="img-done" src="/static/img/nike-img-done.svg" onclick="ApproveFunction(3);">' +
+                            '<img class="img-done" src="/static/img/nike-img-done.svg" onclick="penndingFunction(3);">' +
                             '<img class="img-fail" src="/static/img/img-fail.svg" onclick="RefuseFunction(3);">' ;
                         }else if(data["certificateStatus"] === "R"){
                             newDiv3 += '<div id="certificateOfenro" class="main-divs-color mutual-titles-color">Certificate of Enrolment</div>'+'<img style="display: ;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">';
@@ -189,7 +189,7 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
                             '<div class="div_replacement" style="display: none; justify-content: space-between; ">';
                             newDiv3 +=
                             '<img class="img-done" src="/static/img/before-done-img.svg" onclick="ApproveFunction(3);">' +
-                            '<img class="img-fail" src="/static/img/fail-red.svg" onclick="RefuseFunction(3);">' ;
+                            '<img class="img-fail" src="/static/img/fail-red.svg" onclick="penndingFunction(3);">' ;
                         }else{
                             newDiv3 +='<div id="certificateOfenro" class="main-divs-color mutual-titles-color blue-text">Certificate of Enrolment</div>'+'<img style="display: none;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">';
                             newDiv3 +=
@@ -242,7 +242,7 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
                             '<img data-number="4" title="Download Student ID" onclick="getDocument(this)" class="open-popup" src="/static/img/documents-second-icon.svg" alt="">' +
                             '<div class="div_replacement" style="display: none; justify-content: space-between; ">';
                             newDiv4 +=
-                                '<img class="img-done" src="/static/img/nike-img-done.svg" onclick="ApproveFunction(4);">' +
+                                '<img class="img-done" src="/static/img/nike-img-done.svg" onclick="penndingFunction(4);">' +
                                 '<img class="img-fail" src="/static/img/img-fail.svg" onclick="RefuseFunction(4);">' ;
                             
                             }else if(data["studentIdStatus"] === "R"){
@@ -252,7 +252,7 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
                             '<div class="div_replacement" style="display: none; justify-content: space-between; ">';
                             newDiv4 +=
                                 '<img class="img-done" src="/static/img/before-done-img.svg" onclick="ApproveFunction(4);">' +
-                                '<img class="img-fail" src="/static/img/fail-red.svg" onclick="RefuseFunction(4);">' ;
+                                '<img class="img-fail" src="/static/img/fail-red.svg" onclick="penndingFunction(4);">' ;
                             }else{
                                 newDiv4 +='<div class="main-divs-color mutual-titles-color blue-text">Student ID</div>'+
                                 '<img style="display: none;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">';
@@ -301,7 +301,7 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
                                 '</div>'+
                                 '<img data-number="5" title="Download Photo" class="open-popup" onclick="getDocument(this)" src="/static/img/documents-second-icon.svg" alt="">' +
                                 '<div class="div_replacement" style="display: none; justify-content: space-between; ">' +
-                                '<img class="img-done" src="/static/img/nike-img-done.svg" onclick="ApproveFunction(5);"> ' +
+                                '<img class="img-done" src="/static/img/nike-img-done.svg" onclick="penndingFunction(5);"> ' +
                                 '<img class="img-fail" src="/static/img/img-fail.svg" onclick="RefuseFunction(5);">'+
                                 '</div>'
                     
@@ -316,7 +316,7 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
                                 '<img data-number="5" title="Upload Photo" class="open-popup" onclick="openPopUp(this)" src="/static/img/documents-icon.svg" alt="">' +
                                 '<div class="div_replacement" style="display: none; justify-content: space-between; ">' +
                                     '<img class="img-done" src="/static/img/before-done-img.svg" onclick="ApproveFunction(5);">' +
-                                    '<img class="img-fail" src="/static/img/fail-red.svg" onclick="RefuseFunction(5);">'
+                                    '<img class="img-fail" src="/static/img/fail-red.svg" onclick="penndingFunction(5);">'
                                     +
                                 '</div>'
                     
@@ -364,7 +364,7 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
                 '</div>' +
                 '<a href="' + url + '"><img data-number="6" title="Download Resume" class="open-popup" src="/static/img/documents-second-icon.svg" alt=""></a>' +
             '<div class="div_replacement" style="display: none; justify-content: space-between; ">' +
-                '<img class="img-done" src="/static/img/nike-img-done.svg" onclick="ApproveFunction(6);">' +
+                '<img class="img-done" src="/static/img/nike-img-done.svg" onclick="penndingFunction(6);">' +
                 '<img class="img-fail" src="/static/img/img-fail.svg" onclick="RefuseFunction(6);">'
                     +
                 '</div>'
@@ -379,7 +379,7 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
                 '<a href="' + url + '"><img data-number="6" title="Download Resume" class="open-popup" src="/static/img/documents-second-icon.svg" alt=""></a>' +
             '<div class="div_replacement" style="display: none; justify-content: space-between; ">' +
                 '<img class="img-done" src="/static/img/before-done-img.svg" onclick="ApproveFunction(6);">' +
-                '<img class="img-fail" src="/static/img/fail-red.svg" onclick="RefuseFunction(6);">'
+                '<img class="img-fail" src="/static/img/fail-red.svg" onclick="penndingFunction(6);">'
                     +
                 '</div>'
             '</div>';
@@ -417,7 +417,7 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
                 '</div>' +  
                 '<img data-number="7" title="Download Service contract" onclick="getDocument(this)" class="open-popup" src="/static/img/documents-second-icon.svg" alt="">' +
                 '<div class="div_replacement" style="display: none; justify-content: space-between; ">' +
-                '<img class="img-done" src="/static/img/nike-img-done.svg" onclick="ApproveFunction(7);">' +
+                '<img class="img-done" src="/static/img/nike-img-done.svg" onclick="penndingFunction(7);">' +
                 '<img class="img-fail" src="/static/img/img-fail.svg" onclick="RefuseFunction(7);">'
                  +
             '</div>'
@@ -434,7 +434,7 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
                 '<img data-number="7" title="Upload Service contract"  class="open-popup" onclick="openPopUp(this)" src="/static/img/documents-icon.svg" alt="">' +
                 '<div class="div_replacement" style="display: none; justify-content: space-between; ">' +
                 '<img class="img-done" src="/static/img/before-done-img.svg" onclick="ApproveFunction(7);">' +
-                '<img class="img-fail" src="/static/img/fail-red.svg" onclick="RefuseFunction(7);">'
+                '<img class="img-fail" src="/static/img/fail-red.svg" onclick="penndingFunction(7);">'
                     +
                 '</div>'
 
