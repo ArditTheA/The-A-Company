@@ -3,11 +3,8 @@
     .profile-header, .experience-div {
         border-radius: 20px;
     }
-    .sign-up-form{
-        width: 100%;
-    }
     .profile-header {
-        margin: 10px;
+        margin: 0px 10px 10px 10px;
     }
     .experience-rows-img {
         margin-top: -10px;
@@ -38,7 +35,7 @@
 
     .second-part-profile-header {
         padding: 0px 0px 20px 0px;
-    }    
+    }
     .profile-image {
         margin-top: -45px;
         width: 90px;
@@ -56,8 +53,8 @@
         height: 14px;
     }
     .edit-button, .edit-experience {
-        width: 20px;
-        height: 20px;
+        width: 18px;
+        height: 18px;
     }
     .edit-button-cover {
         position: absolute;
@@ -67,7 +64,7 @@
         height: 17px;
     }
     .profile-name {
-        font-size: 28px;
+        font-size: 26px;
         margin-top: 10px;
         text-align: center;
     }
@@ -126,7 +123,7 @@
     .job-left-details {
         font-size: 16px !important;
     }
-    .add-experience, .add-education, .add-languages, .edit-education-parent-scroll, .edit-languages-pop-up, .edit-experience-pop-up {
+    .add-experience, .add-education, .add-languages, .edit-education-parent-scroll, .edit-languages-pop-up, .edit-experience-pop-up, .delete-languages {
         width: calc(100% - 20px);
         /* height: calc(100% - 20px); */
         margin-top: 10px;
@@ -147,8 +144,8 @@ input[type=text], input[type=date]  {
 .save-button {
     margin-bottom: 0px;
 }
-
-.save-button-edit-add-education-480 {
+.sign-up-form {
+    width: 100%;
 }
 
 .bg-add-and-edit {
@@ -162,7 +159,7 @@ input[type=text], input[type=date]  {
     max-height: calc(100% - 20px);
 }
 
-#plus-icon, .add-experience-button {
+#plus-icon, .mutual-add-style {
     width: 22px !important;
     height: 22px !important;
 }
@@ -215,26 +212,29 @@ input[type=text], input[type=date]  {
     display: flex;
     flex-direction: column;
 }
-.add-experience-button {
-    margin-right: 10px;
+.mutual-add-style {
+    margin-right: 11px;
 }
 
-.edit-experience-pop-up-button {
-    margin-right: -10px;
-}
 .edit-experience {
-    width: 20px !important;
-    height: 20px !important;
+    width: 18px !important;
+    height: 18px !important;
     vertical-align: middle;
 }
 
 .save-button {
     padding-top: 0px;
 }
-.add-experience-button, .second-add-languages-button, .second-add-experience-button, .second-add-education-button {
+.mutual-add-style, .second-add-languages-button, .second-add-education-button {
     width: 18px !important; 
     height: 18px !important;
 }
+
+.second-add-experience-button {
+    width: 16px !important;
+    height: 16px !important;
+}
+
 .experience-rows-img {
     margin-top: 20px !important;
 }
@@ -306,6 +306,16 @@ input[type=text], input[type=date]  {
         font-size: 13px;
         padding-top: 10px;
         padding-bottom: 10px;
+    }
+    .two-imgs-experience {
+        right: 20px;
+        /* display: flex; */
+        /* flex-direction: column; */
+    }
+
+    .mobile-margin-right-and-bottom {
+        height: 20px;
+        margin-right: 9px;
     }
     .upload-button {
         margin-left: -5px;
@@ -504,7 +514,7 @@ input[type=text], input[type=date]  {
     #title {
         font-size: 28px !important;
     }
-    .add-experience, .add-education {
+    .add-experience, .add-education, .delete-languages {
         padding: 20px 20px 0px 20px !important;
     }
 
@@ -528,6 +538,6 @@ input[type=text], input[type=date]  {
     
 
 
-
+ 
 
 }

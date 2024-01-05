@@ -21,12 +21,12 @@ var myPaymentFunction = function() {
 
 function checkInputs() {
   const emailInput = document.getElementById('id_email');
+  const phoneNumber = document.getElementById("phone-input");
   const emailValue = emailInput.value.trim();
   const isEmailValid = /^[^\s@]+(\.[^\s@]+)*@[^\s@]+\.[^\s@]+$/.test(emailValue);
   const allInputsFilled = inputFields.every(input => input.value.trim() !== '');
-  const hasDomainExtension = emailValue.endsWith('.com') || emailValue.endsWith('.cn') || emailValue.endsWith('.xyz') || emailValue.endsWith('.net') // Modify as needed
-
-  myButton.disabled = !allInputsFilled || !isEmailValid || !hasDomainExtension;
+  myButton.disabled = !allInputsFilled || !isEmailValid || phoneNumber.value.length < 6;
+  
   
   if (myButton.disabled === false) {
     // isValidEmail(email);
