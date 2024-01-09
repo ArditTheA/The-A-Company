@@ -4,10 +4,10 @@
 
 
     <header class="profileHeader" style="">
-        <a class="header-icon header-icon-radius header-icon-logo"  href="{% url 'home' %}" ><img class="header-icon header-icon-radius header-icon-logo" src="{% static 'img/Header/Vector.svg' %}" title="Worki"></a>
-
+        <img class="header-icon header-icon-radius header-icon-logo" src="{% static 'img/Header/Vector.svg' %}" title="Worki" style="cursor: pointer;" onclick="window.location.href='{% url 'home' %}'">
         <div class="jobs-and-profile" style="">
-            <a href="{% url 'jobs'%}"><img class="header-icon header-icon-job" title="Jobs" src="{% static 'img/Header/job.jpg' %}"></a>
+            <img class="header-icon header-icon-job" title="Jobs" src="{% static 'img/Header/job.jpg' %}" style="cursor: pointer;" onclick="window.location.href='{% url 'jobs' %}'">
+
                 <img src="{{user.profile.url}}" class="header-icon header-icon-radius header-icon-profile" title="Profile" alt="">
         </div>
     </header>
@@ -24,10 +24,9 @@
 
     {% else %}
     <header class="profileHeader">
-        <a class="header-icon header-icon-radius header-icon-logo"  href="{% url 'home' %}" ><img class="header-icon header-icon-radius header-icon-logo" src="{% static 'img/Header/Vector.svg' %}" title="Worki"></a>
+        <img class="header-icon header-icon-radius header-icon-logo" src="{% static 'img/Header/Vector.svg' %}" title="Worki" style="cursor: pointer;" onclick="window.location.href='{% url 'home' %}'">
         <div class="jobs-and-profile">
-            <a href="{% url 'jobs'%}"><img class="header-icon header-icon-job" title="Jobs"
-                    src="{% static 'img/Header/job.jpg' %}"></a>
+            <img class="header-icon header-icon-job" title="Jobs" src="{% static 'img/Header/job.jpg' %}" style="cursor: pointer;" onclick="window.location.href='{% url 'jobs' %}'">
             <img src="{% static 'img/Header/profile.jpg' %}" class="header-icon header-icon-radius header-icon-profile"   title="Profile" alt="">
         </div>
     </header>
