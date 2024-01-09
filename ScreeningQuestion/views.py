@@ -449,6 +449,18 @@ def editScreeningQuestion(request,pk):
             job3promp=job3promp,job3questionType=job3questionType,job3ideal=job3ideal,job3qualify=job3qualify))
 
     return render(request, "Screening-question/Add-job/add-question.html")
+def editJob2(request, pk):
+    job = get_object_or_404(Jobs, pk=pk)
+    
+    if request.method == 'POST':
+        form = editjob(request.POST, instance=job)
+        if form.is_valid():
+            form.save()
+            return redirect('job-list')  # Redirect to the job list page after successful edit
+    else:
+        form = editjob(instance=job)
+    
+    return render(request, 'Jobs/edit.html', {'form': form, 'job': job})
 
 def editJob(request,pk):
     job = Jobs.objects.get(id=pk)
@@ -823,9 +835,9 @@ def applyForJobSQ(request, pk):
                     if ckeckList(qualify):
                         Status = "Qualified"
                         form.save()
-                        GSheets(str(dataa),request.user,job,listQ)
+                        # GSheets(str(dataa),request.user,job,listQ)
                     else:
-                        GSheets(str(dataa), request.user, job, listQ)
+                        # GSheets(str(dataa), request.user, job, listQ)
                         Status = "Not qualified"
                         form.save()
                         
