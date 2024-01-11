@@ -1,51 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <!-- Home -->
-    <url>
-        <loc>https://worki.global</loc>
-        <lastmod>2023-10-11</lastmod>  <!-- Date of last modification -->
-    </url>
 
     <!-- Jobs -->
     <url>
-        <loc>https://worki.global/jobs</loc>
-        <lastmod>2023-10-11</lastmod>  <!-- Date of last modification -->
+        <loc>https://app.worki.global/jobs</loc>
+        <lastmod>2024-01-11</lastmod>  <!-- Date of last modification -->
     </url>
 
     <!-- Create Account -->
     <url>
-        <loc>https://worki.global/create-account</loc>
-        <lastmod>2023-10-11</lastmod>  <!-- Date of last modification -->
+        <loc>https://app.worki.global/create-account</loc>
+        <lastmod>2024-01-11</lastmod>  <!-- Date of last modification -->
     </url>
 
     <!-- Sign In -->
     <url>
-        <loc>https://worki.global/sign-in</loc>
-        <lastmod>2023-10-11</lastmod>  <!-- Date of last modification -->
+        <loc>https://app.worki.global/sign-in</loc>
+        <lastmod>2024-01-11</lastmod>  <!-- Date of last modification -->
     </url>
 
     <!-- Profile -->
     <url>
-        <loc>https://worki.global/profile</loc>
-        <lastmod>2023-10-11</lastmod>  <!-- Date of last modification -->
+        <loc>https://app.worki.global/profile</loc>
+        <lastmod>2024-01-11</lastmod>  <!-- Date of last modification -->
     </url>
 
     <!-- My Jobs -->
     <url>
-        <loc>https://worki.global/my-jobs</loc>
-        <lastmod>2023-10-11</lastmod>  <!-- Date of last modification -->
+        <loc>https://app.worki.global/my-jobs</loc>
+        <lastmod>2024-01-11</lastmod>  <!-- Date of last modification -->
     </url>
 
     <!-- Recruiter -->
     <url>
-        <loc>https://worki.global/recruiter</loc>
-        <lastmod>2023-10-11</lastmod>  <!-- Date of last modification -->
+        <loc>https://app.worki.global/recruiter</loc>
+        <lastmod>2024-01-11</lastmod>  <!-- Date of last modification -->
     </url>
 
     <!-- Post a Job -->
     <url>
-        <loc>https://worki.global/post-job</loc>
-        <lastmod>2023-10-11</lastmod>  <!-- Date of last modification -->
+        <loc>https://app.worki.global/post-job</loc>
+        <lastmod>2024-01-11</lastmod>  <!-- Date of last modification -->
     </url>
 </urlset>
