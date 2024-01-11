@@ -22,7 +22,7 @@ SILENCED_SYSTEM_CHECKS = ["auth.W004"]
 
 ALLOWED_HOSTS = ["*"]
 
-CSRF_TRUSTED_ORIGINS = ['https://worki.global']
+CSRF_TRUSTED_ORIGINS = ['https://app.worki.global']
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
