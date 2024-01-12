@@ -28,7 +28,7 @@ def password_reset_request(request):
 					email_template_name = "main/password/password_reset_email.txt"
 					c = {
 					"email":user.email,
-					'domain':'worki.global',
+					'domain':'app.worki.global',
 					'site_name': 'Worki',
 					"uid": urlsafe_base64_encode(force_bytes(user.pk)),
 					"user": user,
@@ -57,8 +57,8 @@ from django.conf import settings
 
 def send_email_with_template(request):
     # Render the template
-    context = {'image_url': 'https://worki.global/static/img/12.jpeg',
-               'link_url': 'https://worki.global',
+    context = {'image_url': 'https://app.worki.global/static/img/12.jpeg',
+               'link_url': 'https://app.worki.global',
 			   "user":request.user}
     template = get_template('QualifiedEmail.html')
     html_content = template.render(context)
