@@ -42,7 +42,6 @@ btn3.addEventListener('click', function() {
     underBg.style.display = "none";
     add.style.display = "none";
     $('.add-education-title').text('Add Education');
-    $("#edit-user-education")[0].reset();
     uBgEducation.style.display = "flex";
     document.body.style.overflow = "hidden";
     $("#editUserEdu").css("display","none")
