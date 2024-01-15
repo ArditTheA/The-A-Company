@@ -19,32 +19,44 @@
 </div>
 
 <script>
-function searchUsers() {
-    var input = document.getElementById("userSearchInput");
-    var filter = input.value.toLowerCase();
-
-    {% for i in users %}
-        var userName = "{{ i.user_id.first_name }}".toLowerCase();
-        var userEmail = "{{ i.user_id.email }}".toLowerCase();
-        var userElement = document.getElementById("select{{i.user_id.id}}");
-
-        if (userName.includes(filter) || userEmail.includes(filter)) {
-            userElement.style.display = "flex";
-            $(".job-left-row").css("marginTop", "20px");
-            if (filter !== "") {
-        $(".job-left-row:visible:first").css("marginTop", "0px");
-        $(".job-left-row:visible:first").eq(0).click();
-        // Trigger a click event on the first matching row
-        }
-        else if (filter === "") {
-            $(".job-left-row:visible:first").css("marginTop", "0px");
-            $(".job-left-row:visible:first").eq(0).click();
-        }
-        } else {
-            userElement.style.display = "none";
-            $(".job-left-row").css("marginTop", "20px");
-            $(".job-left-row:visible:first").css("marginTop", "0px");
-        }
-    {% endfor %}
-} 
-</script>
+    function searchUsers() {
+        var input = document.getElementById("userSearchInput");
+        var filter = input.value.toLowerCase();
+    
+        {% for i in users %}
+            var userName = "{{ i.user_id.first_name }}".toLowerCase();
+            var userEmail = "{{ i.user_id.email }}".toLowerCase();
+            var userElement = document.getElementById("select{{i.user_id.id}}");
+    
+            if (userName.includes(filter) || userEmail.includes(filter)) {
+                userElement.style.display = "flex";
+                $(".job-left-row").css("marginTop", "20px");
+    
+                if (filter !== "") {
+                    $(".job-left-row:visible:first").css("marginTop", "0px");
+    
+                    // Check if the device is mobile
+                    if (!isMobileDevice()) {
+                        $(".job-left-row:visible:first").eq(0).click();
+                    }
+                } else if (filter === "") {
+                    $(".job-left-row:visible:first").css("marginTop", "0px");
+    
+                    // Check if the device is mobile
+                    if (!isMobileDevice()) {
+                        $(".job-left-row:visible:first").eq(0).click();
+                    }
+                }
+            } else {
+                userElement.style.display = "none";
+                $(".job-left-row").css("marginTop", "20px");
+                $(".job-left-row:visible:first").css("marginTop", "0px");
+            }
+        {% endfor %}
+    }
+    
+    // Function to check if the device is mobile
+    function isMobileDevice() {
+        return /Mobi|Android/i.test(navigator.userAgent);
+    }
+    </script>
