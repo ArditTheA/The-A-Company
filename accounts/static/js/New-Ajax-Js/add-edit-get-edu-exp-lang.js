@@ -44,9 +44,10 @@ btn3.addEventListener('click', function() {
     $('.add-education-title').text('Add Education');
     uBgEducation.style.display = "flex";
     document.body.style.overflow = "hidden";
-    $("#editUserEdu").css("display","none")
-    $("#addUserEdu").css("display","block")
+    $("#editUserEdu").css("display","none");
+    $("#addUserEdu").css("display","block");
     $(delete_popup).css("display", "none");
+    $(".education-popup")[0].reset();
 });
 
 window.addEventListener('click', function(event) {
