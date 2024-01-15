@@ -370,7 +370,7 @@ body {
             color: #65676B;
             margin-top: 15px;
             padding-left: 0px;
-            margin-right: -10px;
+            margin-right: -5px;
             cursor: pointer;
             display: inline-block;
         }
@@ -396,6 +396,7 @@ body {
         .card {
             display: inline-block;
             flex: 0 0 auto;
+            margin-bottom: 0;
         }
         .scrolling-wrapper-flexbox {
             display: flex;

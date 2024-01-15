@@ -1,17 +1,14 @@
 <input type="text" id="sectedUser" style="display:none;" value="{{uid}}">
-<div class="job-left">
 
+
+<div class="job-left">
     {% for i in users %}
     <div onclick="getUser({{i.user_id.id}})" id="select{{i.user_id.id}}" class="same-background-jobs job-left-row pixel move" data-number="{{i.user_id.id}}">
         <img class="job-logo" src="{{i.user_id.profile.url}}" alt="" style="border-radius: 40px !important;">
         <div class="job-left-content">
             <div style="width: 200px;" class="job-left-title">{{i.user_id.first_name}} {{i.user_id.last_name}}</div>
-            {% if forloop.first %}
-                <label class="label-all" for="select-all" title="Select all">
-                    <input title="Select all" value="Select" onclick="Check()" name="select-all" type="checkbox" class="select-all-button" id="select-all" style="display: none;"></input>All
-                </label>
-            {% endif %}
-            <input title="Select applicant" class="first-checkbox-jobs checkbox-jobs" name="checkb" id="checkb" type="checkbox"></input>
+            
+            
             <div class="job-left-salary job-left-details"><span>{{i.user_id.email}}</span></div>
             <div class="job-left-company job-left-details">{{i.user_id.phone_number}}</div>
             <div class="job-left-details">{{i.user_id.country}}</div>
@@ -20,3 +17,34 @@
 {% endfor %}
     
 </div>
+
+<script>
+function searchUsers() {
+    var input = document.getElementById("userSearchInput");
+    var filter = input.value.toLowerCase();
+
+    {% for i in users %}
+        var userName = "{{ i.user_id.first_name }}".toLowerCase();
+        var userEmail = "{{ i.user_id.email }}".toLowerCase();
+        var userElement = document.getElementById("select{{i.user_id.id}}");
+
+        if (userName.includes(filter) || userEmail.includes(filter)) {
+            userElement.style.display = "flex";
+            $(".job-left-row").css("marginTop", "20px");
+            if (filter !== "") {
+        $(".job-left-row:visible:first").css("marginTop", "0px");
+        $(".job-left-row:visible:first").eq(0).click();
+        // Trigger a click event on the first matching row
+        }
+        else if (filter === "") {
+            $(".job-left-row:visible:first").css("marginTop", "0px");
+            $(".job-left-row:visible:first").eq(0).click();
+        }
+        } else {
+            userElement.style.display = "none";
+            $(".job-left-row").css("marginTop", "20px");
+            $(".job-left-row:visible:first").css("marginTop", "0px");
+        }
+    {% endfor %}
+} 
+</script>

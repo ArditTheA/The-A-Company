@@ -11,7 +11,4 @@ urlpatterns = [
     path('coming-soon/', framer_view,{'path':'coming-soon'} ),
     path('blog/', framer_view,{'path':'blog'} ),
 
-
-    
-
 ]

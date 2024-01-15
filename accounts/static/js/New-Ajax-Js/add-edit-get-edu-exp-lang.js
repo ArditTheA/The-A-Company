@@ -41,6 +41,8 @@ btn3.addEventListener('click', function() {
     mainDiv.style.display = "flex";
     underBg.style.display = "none";
     add.style.display = "none";
+    $('.add-education-title').text('Add Education');
+    $("#edit-user-education")[0].reset();
     uBgEducation.style.display = "flex";
     document.body.style.overflow = "hidden";
     $("#editUserEdu").css("display","none")
@@ -309,6 +311,7 @@ function UpdateUserDetails(){
                     $("#EditUserLang").css("display","block")
                     $("#AddUserLang").css("display","none")
                     $("#id_lang").val(language_id)
+                    $(delete_popup).css("display", "none");
                     
                     $(".add-user-language").attr("id", "edit-user-language");
 

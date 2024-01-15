@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from django import forms
 from accounts.models import *
 from django.forms import ModelForm
-
+from ScreeningQuestion.models import *
 
 class add_user_Exp(ModelForm):
     class Meta:
@@ -223,14 +223,12 @@ class editjob(ModelForm):
             
             "city_j":forms.TextInput(attrs={'class':"apply-last-name inputs-job-details apply-name-surname all-inputs mutual-input"}),
             "salary_per_hour": forms.NumberInput(attrs={'class': 'all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input'}),
-            "start_date": forms.DateInput(
-                attrs={"class": "start-date-input mutual-stats font-fam next-none", "type": "date"}),
-            "end_date": forms.DateInput(
-                attrs={"class": "end-date-input mutual-stats font-fam next-none", "type": "date"}),
+            
             "housing_cost_per_week": forms.NumberInput(attrs={'class': 'name-input mutual-stats font-fam  next-none'}),
             "programCost": forms.NumberInput(attrs={'class': 'name-input mutual-stats font-fam next-none'}),
             "hour_per_work": forms.NumberInput(attrs={'class': 'name-input mutual-stats font-fam next-none'}),
             "salary_per_hour": forms.NumberInput(attrs={'class': 'name-input mutual-stats font-fam next-none'}),
+            "logo": forms.FileInput(attrs={'style': 'display:none'}),
 
             "approved": forms.CheckboxInput(),
             "city_j": forms.TextInput(attrs={"class": "name-input mutual-stats font-fam next-none","list":"city_jlist"}),
@@ -242,6 +240,10 @@ class editjob(ModelForm):
                 attrs={"class": "scroll inner-text second-next-none","id":"myTextArea", "style": "display: none;"})
 
         }
+class JobQuestionForm(forms.ModelForm):
+    class Meta:
+        model = JobQuestion
+        fields = ['promp', 'question_type', 'ideal_answer', 'qualify']
 
 
 class applyform(ModelForm):

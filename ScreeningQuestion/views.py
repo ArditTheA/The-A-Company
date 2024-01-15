@@ -78,6 +78,12 @@ def add_JobScreeningQuestion(request):
             if job_form.is_valid() and job_question_formset.is_valid():
                 job = job_form.save(commit=False)
                 job.user_id = request.user
+                tipsss= request.POST.get("tips")
+                if tipsss=="Yes":
+                    job.tips = True
+                else:
+                    job.tips = False
+                job.approved = True
                 job.save()
 
                 job_settings = JobSettings()
@@ -449,18 +455,138 @@ def editScreeningQuestion(request,pk):
             job3promp=job3promp,job3questionType=job3questionType,job3ideal=job3ideal,job3qualify=job3qualify))
 
     return render(request, "Screening-question/Add-job/add-question.html")
+
+
+
+from django.forms import modelformset_factory
 def editJob2(request, pk):
     job = get_object_or_404(Jobs, pk=pk)
+    job_questions = JobQuestion.objects.filter(job_id=pk)
+    des = job.description
+    des = des.replace('<br />', '\n')
+    question = JobQuestion.objects.filter(job_id=pk).order_by("id")
     
+    no = 3-len(question)
+    JobQuestionFormSet = modelformset_factory(JobQuestion, form=JobQuestionForm, extra=0)
+    
+    job1promp = question[0].promp
+    job1questionType = question[0].question_type
+    job1ideal = question[0].ideal_answer
+    job1qualify = question[0].qualify
+    job2promp=""
+    job2questionType = ""
+    job2ideal=""
+    job2qualify=""
+    job3promp=""
+    job3questionType=""
+    job3ideal=""
+    job3qualify=""
+    
+    if len(question)==2:
+        print(len(question))
+        job2promp = question[1].promp
+        job2questionType = question[1].question_type
+        job2ideal = question[1].ideal_answer
+        job2qualify = question[1].qualify
+    if len(question) >= 3:
+        job2promp = question[1].promp
+        job2questionType = question[1].question_type
+        job2ideal = question[1].ideal_answer
+        job2qualify = question[1].qualify
+        job3promp = question[2].promp
+        job3questionType = question[2].question_type
+        job3ideal = question[2].ideal_answer
+        job3qualify = question[2].qualify
+
+    
+
     if request.method == 'POST':
-        form = editjob(request.POST, instance=job)
-        if form.is_valid():
-            form.save()
-            return redirect('job-list')  # Redirect to the job list page after successful edit
+        job_form = editjob(request.POST,request.FILES, instance=job)
+        formset = JobQuestionFormSet(request.POST, queryset=job_questions)
+
+        if job_form.is_valid():
+            job = job_form.save(commit=False)
+            tipsss = request.POST.get("tips")
+            if tipsss == "Yes":
+                job.tips = True
+            else:
+                job.tips = False
+            job.save()
+            jobbQ = JobQuestion.objects.filter(job_id=pk).order_by("id")
+            print(jobbQ)
+            count = 0
+            if JobQuestion.objects.filter(job_id=pk).exists():
+                for i in range(3):
+                    getQuestion = "job_question-" + str(count) + "-promp"
+                    getAnstype = "job_question-" + str(count) + "-question_type"
+                    getIdeal = "job_question-" + str(count) + "-ideal_answer"
+                    getQualify = "job_question-" + str(count) + "-qualify"
+
+                    if request.POST.get(getQuestion) is not None and request.POST.get(getQuestion) != "":
+                        existing_job = None
+                        if count == 0:
+                            try:
+                                existing_job = JobQuestion.objects.filter(promp=job1promp).first()
+                            except JobQuestion.DoesNotExist:
+                                existing_job = None
+                        if count == 1:
+                            try:
+                                existing_job = JobQuestion.objects.get(promp=job2promp)
+                            except JobQuestion.DoesNotExist:
+                                existing_job = None
+                        if count == 2   :
+                            try:
+                                existing_job = JobQuestion.objects.get(promp=job3promp)
+                            except JobQuestion.DoesNotExist:
+                                existing_job = None
+                        if existing_job is None:
+                            jobQuestion = JobQuestion()  # Create a new instance if it doesn't exist
+                        else:
+                            jobQuestion = existing_job
+                        print("testttASdasdA:ASDASDASd")
+                        print("testttASdasdA:ASDASDASd")
+                        print(existing_job)
+                        print("testttASdasdA:ASDASDASd")
+                        print("testttASdasdA:ASDASDASd")
+                        jobQuestion.promp = request.POST.get(getQuestion)
+                        jobQuestion.job_id = Jobs.objects.get(id=pk)
+
+                        if request.POST.get(getAnstype) == "Yes/No":
+                            jobQuestion.question_type = "Yes/No"
+                        else:
+                            jobQuestion.question_type = "Numeric"
+
+                        jobQuestion.ideal_answer = request.POST.get(getIdeal)
+
+                        if request.POST.get(getQualify) is None:
+                            jobQuestion.qualify = False
+                        else:
+                            jobQuestion.qualify = True
+
+                        jobQuestion.save()
+
+                    count = count + 1
+
+
+            print("successs")
+            return redirect('postedJob')  # Redirect to the job list page after successful edit
+        else:
+            # Print formset errors
+            print("Formset Errors:")
+            for i, form in enumerate(formset):
+                print(f"Form {i + 1} Errors:")
+                print(form.errors)
     else:
-        form = editjob(instance=job)
-    
-    return render(request, 'Jobs/edit.html', {'form': form, 'job': job})
+        job_form = editjob(instance=job)
+        formset = JobQuestionFormSet(queryset=job_questions)
+
+    return render(request, 'Jobs/edit.html', dict(job_form=job_form,formset=formset,job=job,des=des,
+                                                job1promp=job1promp,job1questionType=job1questionType,job1ideal=job1ideal,job1qualify=job1qualify,
+                                                job2promp=job2promp,job2questionType=job2questionType,job2ideal=job2ideal,job2qualify=job2qualify,
+                                                job3promp=job3promp,job3questionType=job3questionType,job3ideal=job3ideal,job3qualify=job3qualify))
+
+
+
 
 def editJob(request,pk):
     job = Jobs.objects.get(id=pk)

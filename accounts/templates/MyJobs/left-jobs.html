@@ -16,3 +16,25 @@
     </div>
 
     {% endfor %}
+<script>
+    function searchMyJobs() {
+        var input = document.getElementById("searchInput");
+        var filter = input.value.toLowerCase();
+
+        {% for i in job %}
+            var jobTitle = "{{ i.job_id.job_title }}".toLowerCase();
+            var city = "{{ i.job_id.city_j }}".toLowerCase();
+            var country = "{{ i.job_id.country_j }}".toLowerCase();
+            var jobElement = document.getElementById("select{{i.job_id.id}}");
+
+            if (jobTitle.includes(filter) || city.includes(filter) || country.includes(filter)) {
+                jobElement.style.display = "flex";
+                if (jobElement === document.querySelector('.job-left-row:first-child')) {
+                    jobElement.style.marginTop = "0";
+                }
+            } else {
+                jobElement.style.display = "none";
+            }
+        {% endfor %}
+    }
+</script>

@@ -4,48 +4,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 
-
+.job-left-row:first-child {
+        margin-top: 0; /* Remove margin-top for the first user element */
+    }
  
 
     
     
 </style>
 <input type="hidden" value="{{jpk}}" id="job-id-hidden">
-<div class="main-buttons-div">
-    <div class="jobs-buttons applied-posted-buttons-mobile all-aplicants-main-div scrolling-wrapper">
-<div style="display: flex;" class="buttons-form card">
-    <div class="container-fluid " style="cursor: pointer;">
-        <div id="mySelectLabel" class="selectBox" style="">
-            <div class="input-form margin inputs-right-margin" style="">
-                <select style="color: #65676B; border: none;
-      padding: 8px 30px; padding-left: 20px;" class="form-select all-applicants-select" id="second_form_select">
-                    <option value="All Jobs" id="program" class="first-input-option all-applicants-button nr_of_applicants">All Applicants ({{NoApplicant}})</option>
-                </select>
-                <div class="" style="display: flex; align-items: center;">
-                    <img style="cursor: pointer; display: none;" class="white-icon"
-                        src="/static/img/white-dropdown-icon.svg" alt="">
-                        
-                </div>
-                    <div style="" class="overSelect"></div>
-            </div>
-            <div id="all-applicants-dropdown" class="selectOptions dropdown-elements all-applicants-dropdown" style="z-index: 99;">
-       <label for="mutual1" id="qualify" class="profileDropDown-content profileDropDown-text all-applicants-dropdown-content"><input id="mutual1" style="display: none;" type="checkbox" class="input_type"
-            onchange="checkboxStatusChange()" value="Qualified" name="Qualified" />Qualified ({{NoApplicantQualified}})</label>
-        <label style="" class="profileDropDown-content all-applicants-dropdown-content profileDropDown-text all-applicants-dropdown-content"><input style="display: none;" type="checkbox" class="input_type"
-        value="Not Qualified" name="Not Qualified" />Not Qualified ({{NoApplicantNQualified}})</label>
-        <label for="mutual2" id="qualify2" class="profileDropDown-content all-applicants-dropdown-content profileDropDown-text documents-for-work-permit-label-dropdown">Documents for Work Permit ({{userWorkPermit}})</label>
-        <label style="" class="profileDropDown-content all-applicants-dropdown-content profileDropDown-text your-work-permit-is-here-label-dropdown">Your Work Permit is Here ({{ready_users_count}})</label>         
-        
-         <label title="Select an option to click here" class="move-phase-button">Select to move</label>
-
-      </div>
-      
-    </div>
-    </div>
-</div>
-    </div>
-    </div>
-
+{% include 'Match/Filters/filters.html'%}
 
 
     <div class="jobs-main-div">
@@ -65,7 +33,6 @@
                 <div class="drop-area" id="drop-area">
                     <img src="{% static 'img/upload docs.svg' %}" alt="">
                     <div class="file-upload">Select a file to upload</div>
-                    <div class="under-upload-file" id="second-line">or drag and drop it here</div>
                     <input type="file"  name="document" id="id_document"  accept=".pdf, .jpg, .jpeg, .png, .svg"  style="display: none;">
 
                 </div>

@@ -1,101 +1,91 @@
 {% load static %}
-<div class="main-buttons-div">
+
+
+
+
+<div class="main-buttons-div" style="position: relative;">
     <div class="jobs-buttons applied-posted-buttons-mobile all-aplicants-main-div scrolling-wrapper">
-         <div class="main-input-form">
-            <div class="input-form inputs-right-margin all-applicants-button-form" style="">
-             <button title="All Applicants" class="applied-button-jobs outline-none all-applicants-button" >{% if q == "All" %}All Applicants{% elif q == "Q" %}Qualified {% else %} Not Qualified {% endif %}</button>
-             <div class="div-white-icon" style="">
-                <img style="cursor: pointer;top:3;position: absolute;right: 10px;" class=""
-                    src="{% static 'img/white-dropdown-icon.png' %}" alt="">
+      <form class="card">
+        <img style="cursor: pointer;" title="Search by name or email"
+            class="search-icon-jobs inputs-right-margin plus-icon-jobs" src="{% static 'img/search (1).png'%}"
+            alt="">
+            <div class="mutual-padding-of-div input-search-div" style="border-radius: 20px;">
+                <div class="second-input-form" style="">
+              
+              <input id="userSearchInput" oninput="searchUsers()" placeholder="Search by name or email "
+                    class="search-input all-aplicants-search inputs-right-margin" id="input-removed"
+                    style="padding-left: 20px; background-color: white;">
+                </input>
+                <img style="display: none;" class="input-exit-button" title="Exit" src="{% static 'img/Vector 81 (1).png'%}" alt="">
             </div>
-            </div>
-             <div class="all-applicants-dropdown profileDropDown" id="all-applicants-dropdown">
-                 {% if q == "Q" %}
-               <label for="mutual1" onclick="AllApplicant()" id="qualify" class="profileDropDown-content profileDropDown-text"><input id="mutual1" style="display: none;" type="checkbox" class="input_type"
-                    onchange="checkboxStatusChange()" disabled value="Qualified" name="Qualified" />All Applicants</label>
-                <label style="" onclick="NoQualified()" id="nqualify" class="profileDropDown-content all-applicants-dropdown-content profileDropDown-text"><input style="display: none;" type="checkbox" class="input_type"
-                value="NQualified"  name="Not Qualified" />Not Qualified</label>
-                 {% elif q == "notQ" %}
+        </div>
+        
+      </form>
 
-                 <label for="mutual1" onclick="AllApplicant()" id="qualify" class="profileDropDown-content profileDropDown-text"><input id="mutual1" style="display: none;" type="checkbox" class="input_type"
-                    onchange="checkboxStatusChange()" disabled value="All Applicant" name="All Applicant" /> All Applicant</label>
-                <label style="" onclick="NoQualified()" id="nqualify" class="profileDropDown-content all-applicants-dropdown-content profileDropDown-text"><input style="display: none;" type="checkbox" class="input_type"
-                value="Qualified"  name="Qualified" /> Qualified</label>
 
-                 {% else %}
-                <label for="mutual1" onclick="Qualified()" id="qualify" class="profileDropDown-content profileDropDown-text filterDropDown"><input id="mutual1" style="display: none;" type="checkbox" class="input_type"
-                    onchange="checkboxStatusChange()"   value="Qualified" name="Qualified" /> Qualified</label>
-                <label style="" onclick="NoQualified()" id="nqualify" class="profileDropDown-content all-applicants-dropdown-content profileDropDown-text filterDropDown"><input style="display: none;" type="checkbox" class="input_type"
-                value="NQualified"  name="Not Qualified" /> Not Qualified </label>
-                 {% endif %}
+        <!-- Program -->
+<div class="container-fluid " style="cursor: pointer;">
+  <div id="mySelectLabel" class="selectBox" style="z-index: 99; position: static">
+    <div class="input-form margin inputs-right-margin" style="">
+                {% if q  != "All" %}
 
-                 <a title="Select an option to click here" class="move-phase-button phaseButton " id="moveToPhase" style="text-align:center;width: calc(100% - 40px);">Select to move  </a>
-              </div>
-         </div>
-         <div class="main-input-form">
-            <div class="input-form inputs-right-margin all-applicants-button-form" style="">
-                {% if appSub%}
-                <button title="All Applicants" class="applied-button-jobs outline-none phase-on-board-button" >{{appSub}}</button>
-                <div class="div-white-icon" style="">
-                    <img style="cursor: pointer;top:3;position: absolute;right: 10px;" class=""
-                        src="{% static 'img/white-dropdown-icon.png' %}" alt="">
-                </div>
-                {% else %}
-             <button title="All Applicants" class="applied-button-jobs outline-none phase-on-board-button" style="background-color:white;color:black;">On-Boarding</button>
-             
-             <div class="div-white-icon" style="">
-                <img style="cursor: pointer;top:3;position: absolute;right: 10px;" class=""
-                    src="{% static 'img/dropdown-icon.png' %}" alt="">
-            </div>
-             {% endif %}
-             
-            </div>
+                        <select id="selTitle" style="color: #f1f1f1; background-color: #1877f2;border: none; font-size: 18px; padding-top: 0; padding-bottom: 0;padding: 8px 30px; padding-left: 20px;" name="Job Position" class="form-select filters-icon" id="second_form_select">
+                            <option value="" id="" class="first-input-option">{% if q  == "Q" %}  Active ({{NoApplicantQualified}}) {% elif q  == "notQ" %} Inactive ({{NoApplicantNQualified}}){% endif %}</option>
+                        </select>
+                          <div class="" style="display: flex; align-items: center;">
+                            <img class="icon-filter" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
+                            <img style="cursor: pointer; display: block;" class="white-icon" src="{% static 'img/white-dropdown-icon.png' %}" alt="">
+                          </div>
 
-             <div class="phase-on-board-dropdown profileDropDown" id="all-applicants-dropdown">
-                {% for i in OnBoardPhase%}
-                    {% if i != appSub %}
-                    <label for="{{i}}" onclick="GoToPhase('{{i}}')" id="" class="profileDropDown-content profileDropDown-text"> {{i}}</label>
-                    {% endif %}
-                {% endfor %}
-               
-                <!-- <label style="" onclick="" id="" class="profileDropDown-content profileDropDown-text"><input style="display: none;" type="checkbox" class="input_type"
-                value="NQualified"  name="" />Meet with us</label>
-                 <label style="" onclick="" id="" class="profileDropDown-content profileDropDown-text"><input style="display: none;" type="checkbox" class="input_type"
-                value="NQualified"  name="" />Documents for work permit</label>
-                <label style="" onclick="" id="" class="profileDropDown-content all-applicants-dropdown-content profileDropDown-text filterDropDown"><input style="display: none;" type="checkbox" class="input_type"
-                value="NQualified"  name="" />Your work permit is here</label> -->
+              {% else %}
+          <select style="color: #65676B; border: none; font-size: 18px; padding-top: 0; padding-bottom: 0;
+            padding: 8px 30px; padding-left: 20px;" class="form-select filters-icon" name="filterApply" id="second_form_select">
+            <option class="first-input-option">All Applicants ({{NoApplicant}})</option>
+          </select>
+          <div class="" style="display: flex; align-items: center;">
+            <img class="icon-filter" src="{% static 'img/dropdown-icon.png'%}" alt="">
+            <img style="cursor: pointer; display: none;" class="white-icon" src="{% static 'img/white-dropdown-icon.png' %}" alt="">
+          </div>
+            {% endif %}
+        <div class="overSelect" onclick="showDropDown(0)"></div>
 
-              </div>
-            </div>
+
     </div>
+    <div id="mySelectOptions" class="drop0 selectOptions dropdown-elements " style="z-index: 99;">
+        {% if q  == "Q" %}
+        <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type" onclick="AllApplicant()" value="Active Jobs" />Active ({{NoApplicantQualified}})</label>
+        {% elif q  == "notQ" %}
+        <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type" onclick="AllApplicant()" value="Active Jobs" /> Inactive ({{NoApplicantNQualified}})</label>
+        {% else %}
+
+        <label class="labels-stats first-label-margin"><input type="checkbox"  class="input_type" onclick="Qualified()" value="Active" /> Active ({{NoApplicantQualified}})</label>
+        <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type" onclick="NoQualified()" value="Inactive" /> Inactive ({{NoApplicantNQualified}})</label>
+        
+        {% endif %}
+     
+
+    </div>
+  </div>
+</div>
+<!-- End  of programs -->
+
+
+  </div>
 </div>
 
-
 <script>
-    function GoToPhase(phase){
-        console.log(phase);
-        var appSub =phase;
 
-    }
-
-    function Qualified(){
-        window.location="{% url 'qualified-applicant' jpk %}";
-    }
-    function NoQualified(){
-        window.location="{% url 'nonqualified-applicant' jpk %}";
-    }
-    function AllApplicant(){
-        window.location="{% url 'applicant' jpk %}";
-    }
+function Qualified(){
+  window.location="{% url 'qualified-applicant' jpk %}";
+}
+function NoQualified(){
+  window.location="{% url 'nonqualified-applicant' jpk %}";
+}
+function AllApplicant(){
+  window.location="{% url 'applicant' jpk %}";
+}
+</script>
 
 
-    function Close(){
-       var on = document.getElementById("All");
-       $('.drop').css('display','none');
-            if (on.style.display === "none") {
-                on.style.display = "block";
-              } else {
-                on.style.display = "none";
-              }
-       }
-   </script>
+
+

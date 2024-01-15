@@ -25,10 +25,10 @@ def user_experience_ajax(request):
 
     try:
         # Convert date strings to datetime objects in the expected format
-        start_date = datetime.strptime(start_date, "%m/%d/%Y").strftime("%Y-%m-%d")
+        start_date = datetime.strptime(start_date, "%d/%m/%Y").strftime("%Y-%m-%d")
         
         if end_date:
-            end_date = datetime.strptime(end_date, "%m/%d/%Y").strftime("%Y-%m-%d")
+            end_date = datetime.strptime(end_date, "%d/%m/%Y").strftime("%Y-%m-%d")
         else:
             end_date = None  # Set end_date to None if it is not provided
     except ValueError:
@@ -65,10 +65,10 @@ def user_education_ajax(request):
     GPA = request.POST.get("id_GPA")
     try:
         # Convert date strings to datetime objects in the expected format
-        start_year = datetime.strptime(start_year, "%m/%d/%Y").strftime("%Y-%m-%d")
+        start_year = datetime.strptime(start_year, "%d/%m/%Y").strftime("%Y-%m-%d")
         
         if end_year:
-            end_year = datetime.strptime(end_year, "%m/%d/%Y").strftime("%Y-%m-%d")
+            end_year = datetime.strptime(end_year, "%d/%m/%Y").strftime("%Y-%m-%d")
         else:
             end_year = None  # Set end_date to None if it is not provided
         
@@ -86,7 +86,13 @@ def user_education_ajax(request):
         userEdu.start_year = start_year
         userEdu.end_year=end_year
         userEdu.total_examples_passed = total_examples_passed
-        userEdu.GPA = GPA
+        try:
+            # Try to replace comma with dot
+            gpa_str = str(GPA).replace(',', '.')
+            userEdu.GPA =float(gpa_str)
+        except (AttributeError, ValueError):
+            # GPA is already in the correct format or couldn't be converted to float
+            userEdu.GPA = float(GPA)
     
         userEdu.save()
         return JsonResponse({'message': 'Application submitted successfully'})
@@ -244,14 +250,14 @@ def edit_user_experience(request):
         print("City:", experience.city_usExp)
 
         start_date_str = request.POST.get("id_start_date")
-        start_date = datetime.strptime(start_date_str, "%m/%d/%Y").strftime("%Y-%m-%d")
+        start_date = datetime.strptime(start_date_str, "%d/%m/%Y").strftime("%Y-%m-%d")
         experience.start_date = start_date
         print("Start Date:", experience.start_date)
 
         # Parse and format end_date if it exists
         end_date_str = request.POST.get("id_end_date")
         if end_date_str:
-            end_date = datetime.strptime(end_date_str, "%m/%d/%Y").strftime("%Y-%m-%d")
+            end_date = datetime.strptime(end_date_str, "%d/%m/%Y").strftime("%Y-%m-%d")
             experience.end_date = end_date
             print("End Date:", experience.end_date)
         else:
@@ -308,14 +314,14 @@ def edit_user_education(request):
 
         # Parse and format start_year
         start_year_str = request.POST.get("id_start_year")
-        start_year = datetime.strptime(start_year_str, "%m/%d/%Y").strftime("%Y-%m-%d")
+        start_year = datetime.strptime(start_year_str, "%d/%m/%Y").strftime("%Y-%m-%d")
         education.start_year = start_year
         print("Start Date:", education.start_year)
 
         # Parse and format end_date if it exists
         end_year_str = request.POST.get("id_end_year")
         if end_year_str:
-            end_year = datetime.strptime(end_year_str, "%m/%d/%Y").strftime("%Y-%m-%d")
+            end_year = datetime.strptime(end_year_str, "%d/%m/%Y").strftime("%Y-%m-%d")
             education.end_year = end_year
             print("End Date:", education.end_year)
         else:

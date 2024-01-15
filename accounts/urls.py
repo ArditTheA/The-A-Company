@@ -61,7 +61,7 @@ urlpatterns = [
     # JOBS
 
     path("post-job", add_JobScreeningQuestion, name="addJob"),
-    path("edit-job/<int:pk>", editJob, name="editJob"),
+    path("edit-job/<int:pk>", editJob2, name="editJob"),
     path("recruiter", AjaxHandler.as_view(), name="postedJob"),
     path("recruiter/open", RecruiterOpenJobs.as_view(), name="postedJobOpen"),
     path("recruiter/closed", RecruiterClosedJobs.as_view(), name="postedJobClosed"),

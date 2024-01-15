@@ -81,7 +81,7 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
                 newDiv1 += '</div>' +
                 '<img data-number="1" data-document-id="1" title="Download Passport" onclick="getDocument(this)" class="passport-img open-popup downloadImg" src="/static/img/documents-second-icon.svg" alt="">' +
                 '<div class="div_replacement" style="display: none; justify-content: space-between;">';
-                newDiv1 +='<img class="img-done" src="/static/img/nike-img-done.svg" onclick="ApproveFunction(1);">' +
+                newDiv1 +='<img class="img-done" src="/static/img/before-done-img.svg" onclick="ApproveFunction(1);">' +
                 '<img class="img-fail" src="/static/img/img-fail.svg" onclick="RefuseFunction(1);">';
             }
         

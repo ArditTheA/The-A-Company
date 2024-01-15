@@ -1,4 +1,7 @@
 
+
+{% block content %}
+
 {% load static %}
 <head>
   <title>Edit Job</title>
@@ -32,13 +35,12 @@
 
    {{ job_form.non_field_errors }}
    {{ job_form.errors }}
-
-<form class="register-form"  id="form-id" method="post" enctype="multipart/form-data" action="{% url 'addJob'%}" >
+<form class="register-form"  id="form-id" method="post" enctype="multipart/form-data"  >
    {% csrf_token %}
 
-   {{ job_question_formset.management_form }}
+   {{ form_formset.management_form }}
 
-   <div  class=" second-reserve-form reserve-form first-post-a-job-form" style="">
+   <div  class=" second-reserve-form reserve-form first-post-a-job-form" style="display: block;">
       <div class="contact-information-form">
          <div class="under-c-i-f">
             <div class="second-under-c-i-f under-c-i-f">
@@ -48,69 +50,102 @@
                <div class="post-a-job-under-div">
 
                   <div class="inputs-div second-inputs-div">
-                     <div style="display:none;">
-                        {{job_form.status}}
-                        {{job_form.recommended}}
-                        {{job_form.postDate}}
-                        {{job_form.approved}}
-                        {{job_form.user_id}}
-                        {{job_form.applicant}}
-                     </div>
-                     <input type="text" name="job_title" id="id_job_title" value="{{form.job_title.value}}" placeholder="Job title" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom" required></input>
-                     <input type="text" name="company" id="id_company" value="{{form.company.value}}"placeholder="Company" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input"></input>
+                    
+                     {{job_form.job_title}}
+                     {{job_form.company}}
                      <div class="inputs-div contact-information-margin-bottom first-and-last-name" style="display: flex;">
+                        
                         <select name="country_j" id="id_country_j" class="apply-first-name inputs-job-details apply-name-surname all-inputs mutual-input country-margin-bottom">
                            <option value=""  selected>Select a Country</option>
             
                         </select>
                         <!-- <input placeholder="City" class="apply-last-name inputs-job-details apply-name-surname all-inputs mutual-input"></input> -->
-                        <input placeholder="City" value="{{form.city_j.value}}" name="city_j" id="id_city_j" class="apply-last-name inputs-job-details apply-name-surname all-inputs mutual-input"></input>
+                        
+                        <input placeholder="City" value="{{job_form.city_j.value}}" name="city_j" id="id_city_j" class="apply-last-name inputs-job-details apply-name-surname all-inputs mutual-input"></input>
                      </div>
-                     <input type="number" name="salary_per_hour"id="id_salary_per_hour" value="{{form.salary_per_hour.value}}"placeholder="Salary per hour" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input" oninput="displaySalary()" onkeydown="handlePlaceholder(event)">
+                     <input type="number" name="salary_per_hour"id="id_salary_per_hour" value="{{job_form.salary_per_hour.value}}" placeholder="Salary per hour" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input" oninput="displaySalary()" onkeydown="handlePlaceholder(event)">
                      <select class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input" name="tips" id="id_tips">
-                        <option style="display: none;" value="">Tips</option>
-                        {% if form.tips.value %}
-                           <option selected value="Yes">Yes</option>
-                           <option value="No">No</option>
+                        <option  style="display: none;" value="">Tips</option>
+                        {% if job_form.tips.value  %}
+                        <option value="Yes" selected>Yes</option>
+                        <option value="No" >No</option>
                         {% else %}
-                           <option value="Yes">Yes</option>
-                           <option selected value="No">No</option>
+                        <option value="Yes" >Yes</option>
+                        <option value="No" selected>No</option>
                         {% endif %}
-                                                
                      </select>
+                     
                      <select class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input" name="type_of_work" id="id_type_of_work">
                         <option disabled  style="display: none;" value="">Type of Work</option>
-                        
-                        <option value="Full Time" {% if form.type_of_work.value == "Full Time" %}selected{% endif %}>Full Time</option>
-                        <option value="Part Time" {% if form.type_of_work.value == "Part Time" %}selected{% endif %}>Part Time</option>
+                        {% if job_form.type_of_work.value == "Full Time" %}
+                        <option value="Full Time" selected>Full Time</option>
+                        <option value="Part Time">Part Time</option>
+                        {% else %}
+                        <option value="Full Time">Full Time</option>
+                        <option value="Part Time" selected>Part Time</option>
+
+                        {% endif %}
                      </select>
-                     <input type="number" name="hour_per_work" value="{{form.hour_per_work.value}}" id="id_hour_per_work" placeholder="Hours per week" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input"></input>
+                     <input type="number" name="hour_per_work" id="id_hour_per_work" value="{{job_form.hour_per_work.value}}" placeholder="Hours per week" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input"></input>
                      <div class="inputs-div contact-information-margin-bottom first-and-last-name">
-                        <input id="id_start_date" value="{{ form.start_date.value }}" class="start-date-input date-of-birth-input inputs-job-details start-end-date all-inputs mutual-input"
-       name="start_date" onchange="checkForm();checkStartDate();" type="text" maxlength="10"
-       placeholder="Start Date (dd/mm/yyyy)" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
+                        
+                        <input id="id_start_date"  class="start-date-input date-of-birth-input inputs-job-details start-end-date all-inputs mutual-input"
+                           name="start_date" onchange="checkForm();checkStartDate();" value='{{ job_form.start_date.value|date:"d/m/Y" }}' type="text" maxlength="10"
+                           placeholder="Start Date (dd/mm/yyyy)" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
                         <input id="id_end_date" class="end-date-input date-of-birth-input inputs-job-details start-end-date all-inputs mutual-input"
-                           name="end_date" onchange="checkForm();checkStartDate();" value="" type="text" maxlength="10"
-                           placeholder="End Date (dd/mm/yyyy)" value="{{ form.end_date.value }}" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
-                           {{form.end_date}}
+                           name="end_date" onchange="checkForm();checkStartDate();" value='{{ job_form.end_date.value|date:"d/m/Y" }}' type="text" maxlength="10"
+                           placeholder="End Date (dd/mm/yyyy)" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
                      </div>
                      <!-- <input type="text" placeholder="Housing" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input"></input> -->
                      <select name="housing" id="id_housing" style="" class="custom-select contact-information-margin-bottom contact-information-mutual-stats mutual-input inputs-job-details">
-                        <option disabled selected style="display: none;" value="">Housing</option>
-                        <option value="Provided">Yes</option>
+                        <option disabled  style="display: none;" value="">Housing</option>
+                        {% if job_form.housing.value == "Provided" %}
+                        <option value="Provided" selected>Yes</option>
                         <option value="Not provided">No</option>
+                        {% else %}
+                        <option value="Provided">Yes</option>
+                        <option value="Not provided" selected>No</option>
+                        {% endif %}
                      </select>
-                     <input type="number" name="housing_cost_per_week" id="id_housing_cost_per_week" placeholder="Housing cost per week" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input"></input>
+                     <input type="number" value="{{job_form.housing_cost_per_week.value}}" name="housing_cost_per_week" id="id_housing_cost_per_week" placeholder="Housing cost per week" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input"></input>
                      <select name="program" id="id_program" class="custom-select contact-information-margin-bottom contact-information-mutual-stats mutual-input inputs-job-details">
 
-                        <option disabled selected style="display: none;" value="">Program</option>
+                        <option disabled  style="display: none;" value="">Program</option>
+                        {% if job_form.program.value == "Ausbildung" %}
+                        <option value="Ausbildung" selected>Ausbildung</option>
+                        {% else %}
                         <option value="Ausbildung">Ausbildung</option>
+                        {% endif %}
+                        
+                        {% if job_form.program.value == "Internship" %}
+                        <option value="Internship" selected>Internship</option>
+                        
+                        {% else %}
                         <option value="Internship">Internship</option>
+                        {% endif %}
+                        {% if job_form.program.value == "Work and Travel" %}
+                        <option value="Work and Travel" selected>Work and Travel</option>
+                        
+                        {% else %}
                         <option value="Work and Travel">Work and Travel</option>
+                        {% endif %}
+                        
+                        {% if job_form.program.value == "Trainee" %}
+
+                        <option value="Trainee" selected>Trainee</option>
+                        {% else %}
                         <option value="Trainee">Trainee</option>
+                        {% endif %}
+                        
+                        {% if job_form.program.value == "Temporary Employment" %}
+
+                        <option value="Temporary Employment" selected>Temporary Employment</option>
+                        {% else %}
                         <option value="Temporary Employment">Temporary Employment</option>
+                        {% endif %}
+                        
                      </select>
-                     <input type="number" name="programCost" id="id_programCost" placeholder="Program cost" class="all-inputs inputs-job-details contact-information-margin-bottom contact-information-mutual-stats mutual-input"></input>
+                     <input type="number" name="programCost" value="{{job_form.programCost.value}}" id="id_programCost" placeholder="Program cost" class="all-inputs inputs-job-details contact-information-margin-bottom contact-information-mutual-stats mutual-input"></input>
                      <div class="div-of-changed-picture">
                         <label for="id_logo">
                            <div class="input-form">
@@ -120,7 +155,9 @@
                               </div>
                            </div>
                         </label>
-                        <input style="display: none;" class name="logo" accept="image/*" id="id_logo" type="file"/>
+                        
+                        {{job_form.logo}}
+
                      </div>
                      <!-- <input placeholder="Student Status" class="all-inputs contact-information-mutual-stats mutual-input" style="border: 1px solid #D4D5D6; width: 434px; padding: 10px 0px 10px 10px; border-radius: 40px;"></input> -->
                   </div>
@@ -148,7 +185,7 @@
                </div>
                <div class="program-duration-under-div job-description-under-div">
                   <div class="contact-information-title job-description-title font-size-18px-16px">Job Description</div>
-                  <textarea name="description" id="descriptionArea" class="scroll-post-job inner-text editable" oninput="updateNextButton()" style="background-color: white; border-radius: 40px;resize: none;"></textarea>
+                  <textarea name="description" id="descriptionArea" class="scroll-post-job inner-text editable" oninput="updateNextButton()" style="background-color: white; border-radius: 40px;resize: none;">{{des}}</textarea>
                   <div class="back-and-next-buttons" style="width: 100%; display: flex; justify-content: space-between;">
                      <a class=" back-button next-none job-description-back-button">Back</a>
                      <a id="next-button-job-description" class="next-button-job-description  submit-button next-none" onclick="validateTextarea()">Next</a>
@@ -171,104 +208,207 @@
          </div>
          <div class="third-additional-feature-main-div">
             <div class="third-additional-feature font-size-18px-16px">Additional Feature</div>
-            <input type="number" id="id_positionLeft" name="positionLeft" placeholder="Number of Positions" class="all-inputs contact-information-mutual-stats contact-information-margin-bottom positions-deadline-date-inputs"></input>
+            <input type="number" id="id_positionLeft" value="{{job_form.positionLeft.value}}" name="positionLeft" placeholder="Number of Positions" class="all-inputs contact-information-mutual-stats contact-information-margin-bottom positions-deadline-date-inputs"></input>
             <!-- <input type="text" placeholder="Deadline Date" class="all-inputs contact-information-mutual-stats input-deadline-date positions-deadline-date-inputs"></input> -->
-            <input id="id_deadline_date" class="positions-deadline-date-inputs date-of-birth-input start-end-date all-inputs mutual-input"
-               name="deadline" onchange="checkForm();checkStartDate();" value="" type="tel" maxlength="10"
+            {{ formset.management_form }}
+            <input id="id_deadline" class="positions-deadline-date-inputs date-of-birth-input start-end-date all-inputs mutual-input"
+               name="deadline" onchange="checkForm();checkStartDate();" value='{{ job_form.deadline.value|date:"d/m/Y" }}' type="text" maxlength="10"
                placeholder="Deadline Date (dd/mm/yyyy)" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
+               
+               <div class="form-group form-group-add-question">
 
-            <div class="form-group form-group-add-question">
-               {{ job_question_formset.non_form_errors }}
-               <textarea type="text" name="job_question-0-promp" placeholder="Question 1"maxlength="500" id="id_job_question-0-promp" class="textarea-question textarea-color form-control"></textarea>
+                     <textarea type="text" name="job_question-0-promp" placeholder="Question 1"maxlength="500" id="id_job_question-0-promp" class="textarea-question textarea-color form-control">{{job1promp}}</textarea>
 
-               <div class="row">
-                  <div class="answer-type-select">
-                     <!-- <label class="mutual-color">Answer type: </label> -->
-                    
-                     <select onchange="changeAnsType(0)" class="form-control select-width" name="job_question-0-question_type" id="id_job_question-0-question_type">
-                       <option value="" selected>Answer type:</option>
-                       <option value="Yes/No" >Yes/No</option>                
-                       <option value="Numeric">Numeric</option>
+                     <div class="row">
+                        <div class="answer-type-select">
+                           <!-- <label class="mutual-color">Answer type: </label> -->
+                          
+                           <select onchange="changeAnsType(0)" class="form-control select-width" name="job_question-0-question_type" id="id_job_question-0-question_type">
+                              <option value="" selected>Answer type:</option>
+                              {% if job1questionType == "Yes/No" %}
+                              <option value="Yes/No" selected >Yes/No</option> 
+                              <option value="Numeric">Numeric</option>
+                              {% elif job1questionType == "Numeric" %}
+                              <option value="Yes/No"  >Yes/No</option> 
 
-                     </select>
+                              <option value="Numeric"selected>Numeric</option>
+                              {% else %}            
+                              <option value="Yes/No"  >Yes/No</option> 
 
+                             <option value="Numeric">Numeric</option>
+                              {% endif %}
+                           </select>
+      
+      
+                        </div>
+                        <div class="ideal-answer-div">
+                           <!-- <label for="ideal" class="width-labels mutual-color">Ideal answer:</label> -->
+                           <div class="idealAns0" id="idealAns0">
+                              {% if job1questionType == "Yes/No" %}
+                              <select class="disable-inputs job_question-0-ideal_answer" id="id_job_question-0-ideal_answer" name="job_question-0-ideal_answer">
+                                 {% if job1ideal == "Yes" %}
+                                 <option selected>Yes</option>
+                                 <option>No</option>
 
-                  </div>
-                  <div class="ideal-answer-div">
-                     <!-- <label for="ideal" class="width-labels mutual-color">Ideal answer:</label> -->
-                     <div class="idealAns0" id="idealAns0">
-                        <input value="Ideal Answer" class="disable-inputs" name="secondAnswer0" disabled>
+                                 {% else %}
+                                 <option>Yes</option>
+                                 <option selected>No</option>
+                                 {% endif %}
+                              </select>
+                              {% elif job1questionType == "Numeric" %}
+                              <input type="number" name="job_question-0-ideal_answer" value="{{job1ideal}}" class="disable-inputs job_question-0-ideal_answer" id="id_job_question-0-ideal_answer">
+                              {% else %}
+                              <input value="Ideal Answer" class="disable-inputs" name="secondAnswer0" disabled>
+                              {% endif %}
+                           </div>
+                        </div>
+                     </div>
+                     <div class="must-have-qualification-div" style="">
+                        {% if job1qualify %}
+                        <label class="must-have-qualification-label screening-questions-mutual-color mutual-color" for="id_job_question-0-qualify">
+                           <input class="must-have-qualification-input" checked name="job_question-0-qualify" id="id_job_question-0-qualify" type="checkbox">Must-have qualification</label>
+                        {% else %}
+                        <label class="must-have-qualification-label screening-questions-mutual-color mutual-color" for="id_job_question-0-qualify">
+                           <input class="must-have-qualification-input" name="job_question-0-qualify" id="id_job_question-0-qualify" type="checkbox">Must-have qualification</label>
+                        {% endif %}
+                        <!-- <label ><input type="checkbox" id="qualify1" name="qualify1"> Requried to be same as ideal answer</label> -->
+                        
                      </div>
                   </div>
-               </div>
-               <div class="must-have-qualification-div" style="">
-                  <!-- <label ><input type="checkbox" id="qualify1" name="qualify1"> Requried to be same as ideal answer</label> -->
-                  <label class="must-have-qualification-label screening-questions-mutual-color mutual-color" for="id_job_question-0-qualify">
-                  <input class="must-have-qualification-input" name="job_question-0-qualify" id="id_job_question-0-qualify" type="checkbox">Must-have qualification</label>
-               </div>
-            </div>
+      
+                  <!--                Question 2-->
+                        {% if job2promp != "" %}
+                        <div class="form-group form-group-add-question margin-between-question-and-answer" style="display: block;">
+                           
+                        {% else %}
+                        {{job2promp}}
+                        <div class="form-group form-group-add-question margin-between-question-and-answer" style="display: none;">
 
-            <!--                Question 2-->
-                  <div class="form-group form-group-add-question margin-between-question-and-answer" style="display: none;">
-                    <textarea id="id_job_question-1-promp" name="job_question-1-promp"  class="textarea-question textarea-color form-control" placeholder="Question 2" cols="30" rows="4"></textarea>
+                        {% endif %}
+                          <textarea id="id_job_question-1-promp" name="job_question-1-promp"  class="textarea-question textarea-color form-control" placeholder="Question 2" cols="30" rows="4">{{job2promp}}</textarea>
+      
+                          <div class="row">
+                            <div class="answer-type-select">
+      
+      
+                              <select onchange="changeAnsType(1)" class="form-control select-width select-arrow" id="id_job_question-1-question_type" name="job_question-1-question_type">
+                              <option style="display: none;"value="" >Answer type:</option>
+                                 {% if job2questionType == "Yes/No" %}
+                                 <option value="Yes/No"selected >Yes / No</option>
+                                 <option value="Numeric" >Numeric</option>
+                                 {% elif job2questionType == "Numeric" %}
+                                 <option value="Yes/No" >Yes / No</option>
+                                 <option value="Numeric" selected>Numeric</option>
+                                 {% elif job2questionType == "Numeric" %}
+                                 <option value="Yes/No" >Yes / No</option>
+                                 <option value="Numeric" >Numeric</option>
+                                 {% endif %}
+                              </select>
+                            </div>
+                            <div class="ideal-answer-div">
+                              <div class="idealAns2" id="idealAns1">
+                                 {% if job2questionType == "Yes/No" %}
+                              <select class="disable-inputs job_question-1-ideal_answer" id="id_job_question-1-ideal_answer" name="job_question-1-ideal_answer">
+                                    {% if job2ideal == "Yes" %}
+                                    <option selected>Yes</option>
+                                    <option>No</option>
+                                    {% else %}
+                                    <option>Yes</option>
+                                    <option selected>No</option>
+                                    {% endif %}
+                                 </select>
+                                 {% elif job2questionType == "Numeric" %}
+                                 <input type="number" value="{{job2ideal}}" name="job_question-1-ideal_answer" class="disable-inputs job_question-1-ideal_answer" id="id_job_question-1-ideal_answer">
+                                 {% else %}
+                                <input value="Ideal Answer" class="disable-inputs" id="id_job_question-1-ideal_answer" name="job_question-1-ideal_answer" disabled>
+                                {% endif %}
+                              </div>
+      
+                            </div>
+      
+                          </div>
+                          <div class="must-have-qualification-div">
+                           {% if job2qualify %}
 
-                    <div class="row">
-                      <div class="answer-type-select">
-
-
-                        <select onchange="changeAnsType(1)" class="form-control select-width select-arrow" id="id_job_question-1-question_type" name="job_question-1-question_type">
-                        <option style="display: none;"value="" >Answer type:</option>
-                           <option value="Yes/No" >Yes / No</option>
-                           <option value="Numeric" >Numeric</option>
-                        </select>
-                      </div>
-                      <div class="ideal-answer-div">
-                        <div class="idealAns2" id="idealAns1">
-                          <input value="Ideal Answer" class="disable-inputs" id="id_job_question-1-ideal_answer" name="job_question-1-ideal_answer" disabled>
-
+                           <label class="must-have-qualification-label screening-questions-mutual-color mutual-color" for="id_job_question-1-qualify">
+                              <input class="must-have-qualification-input" checked name="job_question-1-qualify" id="id_job_question-1-qualify" type="checkbox">Must-have qualification</label>
+                      {% else %}
+                              <label class="must-have-qualification-label screening-questions-mutual-color mutual-color" for="id_job_question-1-qualify">
+                                  <input class="must-have-qualification-input" name="job_question-1-qualify" id="id_job_question-1-qualify" type="checkbox">Must-have qualification</label>
+                           {% endif %}
+      
+                            </div>
+      
                         </div>
+                      <!--    End of question 2-->
+      
+      
+      
+                          <!--    Question 3-->
+                        {% if job3promp != "" %}
+                        <div class="form-group form-group-add-question margin-between-question-and-answer" style="display: block;">
+                           {% else %}
+                           <div class="form-group form-group-add-question margin-between-question-and-answer" style="display: none;">
+                              {% endif %}
+                          <textarea id="id_job_question-2-promp" name="job_question-2-promp" class="textarea-question textarea-color form-control" placeholder="Question 3"cols="30" rows="4">{{job3promp}}</textarea>
+      
+      
+                          <div class="row">
+                            <div class="answer-type-select">
+      
+                              <select onchange="changeAnsType(2)" class="form-control select-width select-arrow" id="id_job_question-2-question_type" name="job_question-2-question_type">
+                              <option style=""  value="">Answer type:</option>
+                              {% if job3questionType == "Yes/No" %}
+                              <option value="Yes/No" selected>Yes / No</option>
+                              <option value="Numeric" >Numeric</option>
+                              {% elif job3questionType == "Numeric" %}
+                              <option value="Yes/No" >Yes / No</option>
+                              <option value="Numeric" selected>Numeric</option>
+                              {% else %}
+                              <option value="Yes/No" >Yes / No</option>
+                              <option value="Numeric" >Numeric</option>
+                              {% endif %}
 
-                      </div>
-
-                    </div>
-                    <div class="must-have-qualification-div">
-                        <label class="must-have-qualification-label screening-questions-mutual-color mutual-color" for="id_job_question-1-qualify">
-                            <input class="must-have-qualification-input" name="job_question-1-qualify" id="id_job_question-1-qualify" type="checkbox">Must-have qualification</label>
-
-
-                      </div>
-
-                  </div>
-                <!--    End of question 2-->
-
-
-
-                    <!--    Question 3-->
-                  <div class="form-group form-group-add-question margin-between-question-and-answer" style="display: none;">
-                    <textarea id="id_job_question-2-promp" name="job_question-2-promp" class="textarea-question textarea-color form-control" placeholder="Question 3"cols="30" rows="4"></textarea>
-
-
-                    <div class="row">
-                      <div class="answer-type-select">
-
-                        <select onchange="changeAnsType(2)" class="form-control select-width select-arrow" id="id_job_question-2-question_type" name="job_question-2-question_type">
-                        <option style=""  value="">Answer type:</option>
-                        <option value="Yes/No" >Yes / No</option>
-                        <option value="Numeric" >Numeric</option>
-                    </select>
-                      </div>
-                      <div class="ideal-answer-div">
-                        <div class="idealAns3" id="idealAns2">
-                          <input value="Ideal Answer" class="disable-inputs" id="id_job_question-2-ideal_answer" name="job_question-2-ideal_answer" name="secondAnswer3" disabled>
-
+                          </select>
+                            </div>
+                            <div class="ideal-answer-div">
+                              <div class="idealAns3" id="idealAns2">
+                                 {% if job3questionType == "Yes/No" %}
+                                 <select class="disable-inputs job_question-2-ideal_answer" id="id_job_question-2-ideal_answer" name="job_question-2-ideal_answer">
+                                    {% if job3ideal == "Yes" %}
+                                    <option  >Yes</option>
+                                    <option>No</option>
+                                    {% elif job3ideal == "No" %}
+                                    <option>Yes</option>
+                                    <option selected>No</option>
+                                    {% else %}
+                                    <option>Yes</option>
+                                    <option>No</option>
+                                    {% endif %}
+                                 </select>
+                                 {% elif job3questionType == "Numeric" %}
+                                 <input type="number" value="{{job3ideal}}" name="job_question-2-ideal_answer" class="disable-inputs job_question-2-ideal_answer" id="id_job_question-2-ideal_answer">
+                                 {% else %}
+                                <input value="Ideal Answer" class="disable-inputs" id="id_job_question-2-ideal_answer" name="job_question-2-ideal_answer" name="secondAnswer3" disabled>
+                                {% endif %}
+                              </div>
+      
+                            </div>
+      
+                          </div>
+                          <div class="must-have-qualification-div">
+                           {% if job3qualify %}
+                           <label class="must-have-qualification-label screening-questions-mutual-color mutual-color" for="id_job_question-1-qualify">
+                              <input class="must-have-qualification-input" checked   name="job_question-2-qualify" id="id_job_question-2-qualify" type="checkbox">Must-have qualification</label>
+                              {% else %}
+                           <label class="must-have-qualification-label screening-questions-mutual-color mutual-color" for="id_job_question-1-qualify">
+                           <input class="must-have-qualification-input" name="job_question-2-qualify" id="id_job_question-2-qualify" type="checkbox">Must-have qualification</label>
+                           {% endif %}
+                          </div>
                         </div>
-
-                      </div>
-
-                    </div>
-                  </div>
                   
 
+                  
             <div title="You can add up to three questions for students" type="text" class=" add-question-button" onclick="showNextFormGroup()"><span style="padding-right: 10px;">+</span>Add Question</div>
             <div class="form-group form-group-add-question">
                <select name="job_settings" id="job_settings" class="form-control select-width" style="display: none;">
@@ -286,6 +426,12 @@
       </div>
    </div>
 </form>
+<script>
+   window.onload = function() {
+    updateNextButton();
+    checkInputs();
+};
+</script>
 
 <script>
    function handleClick() {
@@ -334,7 +480,7 @@
 
 <script>
 
-    function changeAnsType(id){
+function changeAnsType(id){
          var question_id = id;
          var choice = "id_job_question-"+question_id+"-question_type";
 
@@ -477,225 +623,248 @@ function showNextFormGroup() {
 
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<script>
-        const countries = ["Kosovo","Albania","Afghanistan",
-  "Algeria",
-  "Andorra",
-  "Angola",
-  "Antigua and Barbuda",
-  "Argentina",
-  "Armenia",
-  "Australia",
-  "Austria",
-  "Azerbaijan",
-  "The Bahamas",
-  "Bahrain",
-  "Bangladesh",
-  "Barbados",
-  "Belarus",
-  "Belgium",
-  "Belize",
-  "Benin",
-  "Bhutan",
-  "Bolivia",
-  "Bosnia and Herzegovina",
-  "Botswana",
-  "Brazil",
-  "Brunei",
-  "Bulgaria",
-  "Burkina Faso",
-  "Burundi",
-  "Cambodia",
-  "Cameroon",
-  "Canada",
-  "Cape Verde",
-  "Central African Republic",
-  "Chad",
-  "Chile",
-  "China",
-  "Colombia",
-  "Comoros",
-  "Republic of the Congo",
-  "Democratic Republic of the Congo",
-  "Costa Rica",
-  "Croatia",
-  "Cuba",
-  "Cyprus",
-  "Czech Republic",
-  "Denmark",
-  "Djibouti",
-  "Dominica",
-  "Dominican Republic",
-  "East Timor",
-  "Ecuador",
-  "Egypt",
-  "El Salvador",
-  "Equatorial Guinea",
-  "Eritrea",
-  "Estonia",
-  "Eswatini",
-  "Ethiopia",
-  "Fiji",
-  "Finland",
-  "France",
-  "Gabon",
-  "The Gambia",
-  "Georgia",
-  "Germany",
-  "Ghana",
-  "Greece",
-  "Grenada",
-  "Guatemala",
-  "Guinea",
-  "Guinea-Bissau",
-  "Guyana",
-  "Haiti",
-  "Holy See (Vatican City)",
-  "Honduras",
-  "Hungary",
-  "Iceland",
-  "India",
-  "Indonesia",
-  "Iran",
-  "Iraq",
-  "Ireland",
-  "Israel",
-  "Italy",
-  "Ivory Coast",
-  "Jamaica",
-  "Japan",
-  "Jordan",
-  "Kazakhstan",
-  "Kenya",
-  "Kiribati",
-  "North Korea",
-  "South Korea",
-  "Kosovo",
-  "Kuwait",
-  "Kyrgyzstan",
-  "Laos",
-  "Latvia",
-  "Lebanon",
-  "Lesotho",
-  "Liberia",
-  "Libya",
-  "Liechtenstein",
-  "Lithuania",
-  "Luxembourg",
-  "Madagascar",
-  "Malawi",
-  "Malaysia",
-  "Maldives",
-  "Mali",
-  "Malta",
-  "Marshall Islands",
-  "Mauritania",
-  "Mauritius",
-  "Mexico",
-  "Micronesia",
-  "Moldova",
-  "Monaco",
-  "Mongolia",
-  "Montenegro",
-  "Morocco",
-  "Mozambique",
-  "Myanmar (Burma)",
-  "Namibia",
-  "Nauru",
-  "Nepal",
-  "Netherlands",
-  "New Zealand",
-  "Nicaragua",
-  "Niger",
-  "Nigeria",
-  "North Macedonia",
-  "Norway",
-  "Oman",
-  "Pakistan",
-  "Palau",
-  "Palestine",
-  "Panama",
-  "Papua New Guinea",
-  "Paraguay",
-  "Peru",
-  "Philippines",
-  "Poland",
-  "Portugal",
-  "Qatar",
-  "Romania",
-  "Russia",
-  "Rwanda",
-  "Saint Kitts and Nevis",
-  "Saint Lucia",
-  "Saint Vincent and the Grenadines",
-  "Samoa",
-  "San Marino",
-  "São Tomé and Príncipe",
-  "Saudi Arabia",
-  "Senegal",
-  "Serbia",
-  "Seychelles",
-  "Sierra Leone",
-  "Singapore",
-  "Slovakia",
-  "Slovenia",
-  "Solomon Islands",
-  "Somalia",
-  "South Africa",
-  "South Sudan",
-  "Spain",
-  "Sri Lanka",
-  "Sudan",
-  "Suriname",
-  "Sweden",
-  "Switzerland",
-  "Syria",
-  "Tajikistan",
-  "Tanzania",
-  "Thailand",
-  "Togo",
-  "Tonga",
-  "Trinidad and Tobago",
-  "Tunisia",
-  "Turkey",
-  "Turkmenistan",
-  "Tuvalu",
-  "Uganda",
-  "Ukraine",
-  "United Arab Emirates",
-  "United Kingdom",
-  "United States",
-  "Uruguay",
-  "Uzbekistan",
-  "Vanuatu",
-  "Venezuela",
-  "Vietnam",
-  "Yemen",
-  "Zambia",
-  "Zimbabwe"
+   <script>
+    const countries = ["Kosovo","Albania","Afghanistan",
+"Algeria",
+"Andorra",
+"Angola",
+"Antigua and Barbuda",
+"Argentina",
+"Armenia",
+"Australia",
+"Austria",
+"Azerbaijan",
+"The Bahamas",
+"Bahrain",
+"Bangladesh",
+"Barbados",
+"Belarus",
+"Belgium",
+"Belize",
+"Benin",
+"Bhutan",
+"Bolivia",
+"Bosnia and Herzegovina",
+"Botswana",
+"Brazil",
+"Brunei",
+"Bulgaria",
+"Burkina Faso",
+"Burundi",
+"Cambodia",
+"Cameroon",
+"Canada",
+"Cape Verde",
+"Central African Republic",
+"Chad",
+"Chile",
+"China",
+"Colombia",
+"Comoros",
+"Republic of the Congo",
+"Democratic Republic of the Congo",
+"Costa Rica",
+"Croatia",
+"Cuba",
+"Cyprus",
+"Czech Republic",
+"Denmark",
+"Djibouti",
+"Dominica",
+"Dominican Republic",
+"East Timor",
+"Ecuador",
+"Egypt",
+"El Salvador",
+"Equatorial Guinea",
+"Eritrea",
+"Estonia",
+"Eswatini",
+"Ethiopia",
+"Fiji",
+"Finland",
+"France",
+"Gabon",
+"The Gambia",
+"Georgia",
+"Germany",
+"Ghana",
+"Greece",
+"Grenada",
+"Guatemala",
+"Guinea",
+"Guinea-Bissau",
+"Guyana",
+"Haiti",
+"Holy See (Vatican City)",
+"Honduras",
+"Hungary",
+"Iceland",
+"India",
+"Indonesia",
+"Iran",
+"Iraq",
+"Ireland",
+"Israel",
+"Italy",
+"Ivory Coast",
+"Jamaica",
+"Japan",
+"Jordan",
+"Kazakhstan",
+"Kenya",
+"Kiribati",
+"North Korea",
+"South Korea",
+"Kosovo",
+"Kuwait",
+"Kyrgyzstan",
+"Laos",
+"Latvia",
+"Lebanon",
+"Lesotho",
+"Liberia",
+"Libya",
+"Liechtenstein",
+"Lithuania",
+"Luxembourg",
+"Madagascar",
+"Malawi",
+"Malaysia",
+"Maldives",
+"Mali",
+"Malta",
+"Marshall Islands",
+"Mauritania",
+"Mauritius",
+"Mexico",
+"Micronesia",
+"Moldova",
+"Monaco",
+"Mongolia",
+"Montenegro",
+"Morocco",
+"Mozambique",
+"Myanmar (Burma)",
+"Namibia",
+"Nauru",
+"Nepal",
+"Netherlands",
+"New Zealand",
+"Nicaragua",
+"Niger",
+"Nigeria",
+"North Macedonia",
+"Norway",
+"Oman",
+"Pakistan",
+"Palau",
+"Palestine",
+"Panama",
+"Papua New Guinea",
+"Paraguay",
+"Peru",
+"Philippines",
+"Poland",
+"Portugal",
+"Qatar",
+"Romania",
+"Russia",
+"Rwanda",
+"Saint Kitts and Nevis",
+"Saint Lucia",
+"Saint Vincent and the Grenadines",
+"Samoa",
+"San Marino",
+"São Tomé and Príncipe",
+"Saudi Arabia",
+"Senegal",
+"Serbia",
+"Seychelles",
+"Sierra Leone",
+"Singapore",
+"Slovakia",
+"Slovenia",
+"Solomon Islands",
+"Somalia",
+"South Africa",
+"South Sudan",
+"Spain",
+"Sri Lanka",
+"Sudan",
+"Suriname",
+"Sweden",
+"Switzerland",
+"Syria",
+"Tajikistan",
+"Tanzania",
+"Thailand",
+"Togo",
+"Tonga",
+"Trinidad and Tobago",
+"Tunisia",
+"Turkey",
+"Turkmenistan",
+"Tuvalu",
+"Uganda",
+"Ukraine",
+"United Arab Emirates",
+"United Kingdom",
+"USA",
+"Uruguay",
+"Uzbekistan",
+"Vanuatu",
+"Venezuela",
+"Vietnam",
+"Yemen",
+"Zambia",
+"Zimbabwe"
 ];
 
+    var selectedCountry = "{{job_form.country_j.value}}";
 var select = document.getElementById("id_country_j");
+console.log("----------------------");
+console.log("----------------------");
+console.log("----------------------");
+console.log("----------------------");
 
 // Function to populate the select element with countries
 function populateCountries() {
-    for (var i = 0; i < countries.length; i++) {
-        var option = document.createElement("option");
-        option.text = countries[i];
-        select.appendChild(option);
-    }
+for (var i = 0; i < countries.length; i++) {
+    var option = document.createElement("option");
+    option.text = countries[i];
+    select.appendChild(option);
+}
 
+// Check if selectedCountry is not null
+if (selectedCountry !== null) {
+    // Loop through the <select> options
+    for (var i = 0; i < select.options.length; i++) {
+        // Check if the option's text matches the selectedCountry
+        if (select.options[i].text === selectedCountry) {
+            // Set the selected option
+            select.selectedIndex = i;
+            checkInputs();
+            break; // Exit the loop
+        }
+    }
+}
 }
 
 // Call the function to populate the select element when the page loads
 window.addEventListener("load", populateCountries);
+
     </script>
 
 
 
 
 
-      <script src="{% static 'js/post-a-job/post-a-job-first-next-button-enable.js'%}"></script>
+      <script src="{% static 'js/post-a-job/edit-a-job-first-next-button-enable.js'%}"></script>
+      <script>
+         window.addEventListener("load",checkInputs);
+         window.addEventListener("load",updateNextButton);
+      </script>
       <script src="{% static 'js/post-a-job/post-a-job-textarea.js'%}"></script>
       <script src="{% static 'js/post-a-job/post-a-job-salary-per-hour.js'%}"></script>
     <script src="{% static 'js/Ajax/Match/user-details-ajax.js'%}"></script>
@@ -712,9 +881,11 @@ window.addEventListener("load", populateCountries);
     <script src="{% static 'js/post-a-job/post-a-job-details-description-top.js'%}"></script>
     <script src="{% static 'js/reserve/reserve-post-a-job-back-button.js'%}"></script>
     <script src="{% static 'js/post-a-job/post-a-job-add-question.js'%}"></script>
-    <script src="{% static 'js/post-a-job/post-a-job-additional-feature-submit-button-enable.js'%}"></script>
+    <script src="{% static 'js/post-a-job/edit-a-job-additional-feature-submit-button-enable.js'%}"></script>
     <script src="{% static 'js/post-a-job/post-a-job-start-end-date.js'%}"></script>
         {% include 'scripts.html' %}
 
     </html>
 
+
+{% endblock %}

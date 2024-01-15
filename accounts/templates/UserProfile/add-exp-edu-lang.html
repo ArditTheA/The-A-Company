@@ -45,7 +45,7 @@
 <div class="edit-profile-bg">
         <div class="container-edit-profile under-container-mutual-mutual-stats">
 
-            <div class="edit-profile-title mutual-titles-pop-ups-stats">Edit Profile</div>
+            <div class="edit-profile-title user-mutual-titles-pop-ups-stats">Edit Profile</div>
             <form method="post" id="edit-user-details" autocomplete="off" enctype="multipart/form-data" class="sign-up-form edit-profile-form forms-inputs-placeholder">
                 {% csrf_token %}
 
@@ -84,7 +84,7 @@
 <!-- edit cover -->
 <div class="bg-cover-edit">
     <div class="cover-edit">
-        <div class="edit-profile-title mutual-titles-pop-ups-stats edit-profile-cover-photo-title">Edit Cover Photo</div>
+        <div class="edit-profile-title user-mutual-titles-pop-ups-stats edit-profile-cover-photo-title">Edit Cover Photo</div>
 
         <form id="edit-user-cover" enctype="multipart/form-data">
             {% csrf_token %}
@@ -113,7 +113,7 @@
 <div class="bg-change-profile-picture">
         <div class="change-profile-picture">
 
-            <div class="edit-profile-title mutual-titles-pop-ups-stats edit-profile-cover-photo-title">Edit Profile Photo</div>
+            <div class="edit-profile-title user-mutual-titles-pop-ups-stats edit-profile-cover-photo-title">Edit Profile Photo</div>
             <form id="edit-user-profile "method="post" enctype="multipart/form-data" class="forms-inputs-placeholder">
                 {% csrf_token %}
                 <div class="div-of-changed-cover">
@@ -153,10 +153,10 @@
                     <div class="start-and-end-date-main-div">
                         <input id="id_start_date" class="start-date-input date-of-birth-input inputs-job-details start-end-date all-inputs profile-all-inputs-option"
                         name="start_date" onchange="checkForm();checkStartDate();" value="" type="text" maxlength="10"
-                        placeholder="Start Date (mm/dd/yyyy)" oninput="this.value = MMDDYYYY(this.value, event)" />
+                        placeholder="Start Date (dd/mm/yyyy)" oninput="this.value = MMDDYYYY(this.value, event)" />
                         <input id="id_end_date" class="end-date-input date-of-birth-input inputs-job-details start-end-date all-inputs profile-all-inputs-option"
                         name="end_date" onchange="checkForm();checkStartDate();" value="" type="text" maxlength="10"
-                        placeholder="End Date (mm/dd/yyyy)" oninput="this.value = MMDDYYYY(this.value, event)" />
+                        placeholder="End Date (dd/mm/yyyy)" oninput="this.value = MMDDYYYY(this.value, event)" />
                         
                     </div>
                     <div style="float: right; border:0;width:auto;font-size: 16px;color: #858585;padding:0;" class="profile-all-inputs-option">
@@ -200,10 +200,10 @@
             <div class="start-and-end-date-main-div">
                 <input id="id_start_year" class="start-date-input date-of-birth-input inputs-job-details start-end-date all-inputs mutual-input" 
                 name="start_year" onchange="checkForm();checkStartDate();" value="" type="text" maxlength="10" 
-                placeholder="Start Year (mm/dd/yyyy)" oninput="this.value = MMDDYYYY(this.value, event)" />
+                placeholder="Start Year (dd/mm/yyyy)" oninput="this.value = MMDDYYYY(this.value, event)" />
                 <input id="id_end_year" class="end-date-input date-of-birth-input inputs-job-details start-end-date all-inputs mutual-input" 
                 name="end_year" onchange="checkForm();checkStartDate();" value="" type="text" maxlength="10" 
-                placeholder="End Year (mm/dd/yyyy)" oninput="this.value = MMDDYYYY(this.value, event)" />
+                placeholder="End Year (dd/mm/yyyy)" oninput="this.value = MMDDYYYY(this.value, event)" />
                 
             </div>
             <div style="float: right; border:0;width:auto;font-size: 16px;color: #858585;padding:0;" class="profile-all-inputs-option">
@@ -248,8 +248,8 @@
             <div class="save-button save-button-edit-profile">
                 <input title="Back to Profile" name="back" type="button" class="back-input font-fam back-save-buttons" value="Back">
                 <div class="loading-spinner" id="loading-spinner-languages" style="display: none;"></div>
-                <input title="Save Profile Data" name="save" id="AddUserLang" class="save-submit-input font-fam back-save-buttons" value="Save" onclick="AddUserLanguages();disableButton(this);" >
-                <input title="Save Profile Data" name="save" id="EditUserLang" class="save-submit-input font-fam back-save-buttons" value="Save" onclick="EditUserLanguages();disableButton(this);" >
+                <input title="Save Profile Data" name="save" type="submit" id="AddUserLang" class="save-submit-input font-fam back-save-buttons" value="Save" onclick="AddUserLanguages();disableButton(this);" >
+                <input title="Save Profile Data" name="save" type="submit" id="EditUserLang" class="save-submit-input font-fam back-save-buttons" value="Save" onclick="EditUserLanguages();disableButton(this);" >
             </div>
         </form>
     </div>

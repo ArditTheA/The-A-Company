@@ -309,6 +309,7 @@ function UpdateUserDetails(){
                     $("#EditUserLang").css("display","block")
                     $("#AddUserLang").css("display","none")
                     $("#id_lang").val(language_id)
+                    $(delete_popup).css("display", "none");
                     
                     $(".add-user-language").attr("id", "edit-user-language");
 
