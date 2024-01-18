@@ -129,7 +129,7 @@ window.addEventListener('load', function() {
         console.log(data["EDate"])
         console.log("-------------------------");
         console.log("-------------------------");
-        if(data["country"]== "USA"){
+        if(data["country"]== "USA" || data["country"] === "United States"){
             var salary = document.getElementById("salary")
             salary.innerHTML ="$"+ data ["salary"]+"/hour"
             if(data["tips"]){
@@ -176,7 +176,7 @@ window.addEventListener('load', function() {
         var housing = document.getElementById("housing")
         housing.innerHTML = "Housing "+data['housing']
 
-        if(data["country"]=="USA"){
+        if(data["country"]=="USA" || data["country"] === "United States"){
             var housingCost = document.getElementById("housingCost")
             housingCost.innerHTML = "$"+data["housingCost"]+"/week"
         }else{
