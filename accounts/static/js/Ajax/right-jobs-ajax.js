@@ -85,7 +85,6 @@ window.addEventListener('load', function() {
         );
         let data = await response.json();
         
-        console.log(JSON.stringify(data, null, 2));
         var mainJobs = false;
 
 
@@ -120,16 +119,8 @@ window.addEventListener('load', function() {
         var SalaryPerHour = document.getElementById("salary");
         SalaryPerHour.innerHTML="€"+tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" total income"
 
-        console.log("-------------------------");
-        console.log("-------------------------");
-        console.log(data["salary"])
-        console.log(data["hourPerWork"]);
-        console.log(c);
-        console.log(data["SDate"])
-        console.log(data["EDate"])
-        console.log("-------------------------");
-        console.log("-------------------------");
-        if(data["country"]== "USA" || data["country"] === "United States"){
+        
+        if(data["country"]== "USA" || data["country"][0] === "United States"){
             var salary = document.getElementById("salary")
             salary.innerHTML ="$"+ data ["salary"]+"/hour"
             if(data["tips"]){
@@ -175,8 +166,8 @@ window.addEventListener('load', function() {
 
         var housing = document.getElementById("housing")
         housing.innerHTML = "Housing "+data['housing']
-
-        if(data["country"]=="USA" || data["country"] === "United States"){
+        
+        if(data["country"]=="USA" || data["country"][0] === "United States"){
             var housingCost = document.getElementById("housingCost")
             housingCost.innerHTML = "$"+data["housingCost"]+"/week"
         }else{
@@ -220,7 +211,6 @@ window.addEventListener('load', function() {
         };
 
         updateHistoryURL(id);
-        console.log(showElements(false));
         showElements(false);
 
 
