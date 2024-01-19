@@ -143,7 +143,7 @@
                   <textarea name="description" id="descriptionArea" class="scroll-post-job inner-text editable" oninput="updateNextButton()" style="background-color: white; border-radius: 40px;resize: none;"></textarea>
                   <div class="back-and-next-buttons" style="width: 100%; display: flex; justify-content: space-between;">
                      <a class=" back-button next-none job-description-back-button">Back</a>
-                     <a id="next-button-job-description" class="next-button-job-description  submit-button next-none" onclick="validateTextarea()">Next</a>
+                     <a id="next-button-job-description" class="next-button-job-description  submit-button next-none" onclick="validateTextarea();replaceBR()">Next</a>
                   </div>
                </div>
                <div class="second-screening-question-div" style="padding-top: 20px; padding-bottom: 20px; border-bottom: 40px; margin-left: 30px; color: #D4D5D6;">
@@ -298,9 +298,8 @@
    function replaceNewlinesWithLineBreaks(text) {
        return text.replace(/\n/g, "<br />");
    }
-
-   document.getElementById("form-id").addEventListener("submit", function (event) {
-       event.preventDefault();
+   function replaceBR(){
+   
 
        var textarea = document.getElementById("descriptionArea");
        var text = textarea.value;
@@ -313,7 +312,7 @@
 
        // Now, you can submit the form
        this.submit();
-   });
+   }
 
    // If you want to disable a link after clicking, you can use the following function
    function clickAndDisable(link) {
