@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
+
 {% load static %}
+<title>{% block title %}Worki - Applicants{% endblock %}</title>
 {% block content %}
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 
 .job-left-row:first-child {
         margin-top: 0; /* Remove margin-top for the first user element */
     }
- 
-
-    
-    
+  
 </style>
 <input type="hidden" value="{{jpk}}" id="job-id-hidden">
 {% include 'Match/Filters/filters.html'%}
