@@ -467,3 +467,66 @@ window.addEventListener("load", populateCountries);
 
     });
 </script>
+
+
+
+
+
+<script>
+    function searchUsers() {
+    var input = document.getElementById("userSearchInput");
+    var filter = input.value.toLowerCase();
+
+    $(".job-left-row").each(function () {
+        var userName = $(this).find(".job-left-title").text().toLowerCase();
+        var userEmail = $(this).find(".job-left-salary").text().toLowerCase();
+        var userdetails = $(this).find(".job-left-details").text().toLowerCase();
+        if (!isMobileDevice()) {
+        if (userName.includes(filter) || userEmail.includes(filter) || userdetails.includes(filter)) {
+            $(this).css("display", "flex");
+            $(".job-left-row").css("marginTop", "20px");
+            // $(".job-left-row:visible:first").eq(0).click();
+            if (filter !== "") {
+                $(".job-left-row:visible:first").css("marginTop", "0px");
+
+                // Check if screen width is greater than 480px
+            }
+            else if (filter === "") {
+                $(".job-left-row:visible:first").css("marginTop", "0px");
+            }
+        }
+        else {
+            $(this).css("display", "none");
+            $(".job-left-row:visible:first").css("marginTop", "0px");
+        }
+        }
+        else if (userName.includes(filter) || userEmail.includes(filter) || userdetails.includes(filter)) {
+            $(this).css("display", "flex");
+            $(".job-left").css("marginTop", "20px");
+
+            if (filter !== "") {
+                $(".job-left-row:visible:first").css("marginTop", "10px");
+                $(".job-left").css("marginTop", "10px");
+                // Check if screen width is greater than 480px
+            }
+            else if (filter === "") {
+                $(".job-left-row:visible:first").css("marginTop", "0px");
+                $(".job-left").css("marginTop", "20px");
+            }
+        }
+        else {
+            $(this).css("display", "none");
+            $(".job-left-row:visible:first").css("marginTop", "10px");
+            $(".job-left").css("marginTop", "10px");
+        }
+
+    });
+}
+
+// Function to check if the device is a mobile device
+function isMobileDevice() {
+    // Use window.matchMedia to check screen width
+    return window.matchMedia("(max-width: 480px)").matches;
+    
+}
+        </script>

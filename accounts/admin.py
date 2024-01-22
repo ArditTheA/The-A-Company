@@ -26,9 +26,6 @@ class CustomUser(admin.ModelAdmin):
 
 
 
-@admin.register(Languages)
-class Language(admin.ModelAdmin):
-    search_fields = ("language",)
 
 @admin.register(University)
 class University(admin.ModelAdmin):

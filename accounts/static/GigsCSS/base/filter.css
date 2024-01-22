@@ -3,14 +3,14 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    
+    font-family: 'Spline Sans' sans-serif;
 
     /* Remove background image */
     background-image: none;
 }
-.filters-icon,.all-applicants-select{
+
+.filters-icon, .all-applicants-select {
     height: auto !important;
-    font-family: 'Spline Sans', sans-serif;
 }
 
 textarea {
@@ -171,9 +171,6 @@ select {
     width: 100%;
     box-sizing: border-box;
 }
-.move {
-    margin-top: 20px;
-}
 .right-jobs-rows-img {
     font-size: 20px;
     padding: 30px;
@@ -289,7 +286,7 @@ body {
             margin-right: 10px;
             color: #65676B;
             outline: none;
-            width: 230px;
+            /* width: 198px; */
             /* width: 176px; */
             padding-right: 5px;
         }
@@ -314,7 +311,6 @@ body {
             position: absolute;
             display: none;
             background-color: #ffffff;
-            overflow-y: scroll;
             margin-top: 10px;
             overflow-x: hidden;
             z-index: 2;
@@ -350,9 +346,6 @@ body {
           
           *::-webkit-scrollbar-track {
             width: 7px !important;
-          }
-          .all-applicants-select {
-            height: auto !important;
           }
           
           *::-webkit-scrollbar-thumb {
@@ -396,7 +389,7 @@ body {
         .card {
             display: inline-block;
             flex: 0 0 auto;
-            margin-bottom: 0;
+            margin-bottom: 0px;
         }
         .scrolling-wrapper-flexbox {
             display: flex;
@@ -460,10 +453,6 @@ body {
             }    
         }
         @media screen and (max-width: 480px) {
-            .filters-icon,.all-applicants-select{
-                height: auto !important;
-                font-family: 'Spline Sans', sans-serif;
-            }
             select {
                 background-position: calc(100% - 10px) center;
             }

@@ -368,12 +368,10 @@ def update_profile(request):
     usExp = UserExperiece.objects.filter(user_id=user_id)
     usEdu = UserEducation.objects.filter(user_id=user_id)
     usLang = UserLanguages.objects.filter(user_id=user_id)
-    lang = Languages.objects.all()
     return render(request, 'UserProfile/index.html',
                   {"usExp": usExp,
                    "usEdu": usEdu,
                    "usLang": usLang,
-                   "lang": lang,
                    })
 
 

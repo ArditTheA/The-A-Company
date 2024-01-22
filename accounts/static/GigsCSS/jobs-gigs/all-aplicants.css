@@ -1,10 +1,8 @@
 input[type="checkbox"]::before {
     outline: none;
 }
-.main-divs-color {
-    color: #858585;
-    width: 100%;
-    margin-right: 5px;
+.applicantDropDown {
+    max-height: none !important; /* or max-height: unset; or max-height: initial; */
 }
 .drop-area {
     border: 2px dashed #ccc;
@@ -19,7 +17,11 @@ input[type="checkbox"]::before {
     align-items: center;
     justify-content: center;
 }
-.three-dots-document{
+
+.mutual-padding-applied {
+    padding-bottom: 20px;
+}
+.three-dots-document {
     width: 18px;
     height: 24px;
 }
@@ -48,6 +50,12 @@ input[type="checkbox"]::before {
     font-size: 18px;
     padding-top: 15px;
 }
+.main-divs-color {
+    color: #858585;
+    width: 100%;
+    margin-right: 5px;
+    white-space: nowrap;
+}
 .blue-text {
     color: #1877F2 !important;
 }
@@ -59,11 +67,16 @@ input[type="checkbox"]::before {
     margin-right: 5px;
 }
 
-.profile-header {
-    margin: 0px 40px 20px 10px;
+.three-dots-document {
+
 }
+
 .img-done, .img-fail {
     cursor: pointer;
+}
+
+.profile-header {
+    margin: 0px 40px 20px 10px;
 }
 
 .pro-img {
@@ -103,9 +116,9 @@ input[type="checkbox"]::before {
     align-items: center;
 }
 .label-all {
-    position: absolute; 
+    position: absolute;
     right: 31.6px; 
-    top: 15px; 
+    top: 15px;
     background-color: #E7F1FE; 
     cursor: pointer;
 }
@@ -533,6 +546,9 @@ input[type="checkbox"]::before {
         align-items: center;
         margin-left: -10px;
      }
+    .all-aplicants-search {
+        margin-right: 10px;
+     }
     .all-applicants-button {
     }
     .move-phase-button {
@@ -554,3 +570,6 @@ input[type="checkbox"]::before {
     }
     
 }
+
+
+

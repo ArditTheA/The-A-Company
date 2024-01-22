@@ -8,10 +8,14 @@
         for(var i = 0; i < elements.length; i++){
             elements[i].style.backgroundColor = "white";
         }
-       
+        $(".application-update-form-content").css("display","block");
+        $(".documents-for-work-permit-form-content").css("display","none");
+        $(".your-work-permit-is-here-form-content").css("display","none");
+        
+        
+        var jpk = $("#job-id-hidden").val()
 
-
-        let response = await fetch('',{
+        let response = await fetch('/match/getUserData',{
 
             method: "get",
 
@@ -19,28 +23,35 @@
                 "X-Requested-With": "XMLHttpRequest",
                 "Content-Type": 'application/json',
                 userid: id,
+                jpk : jpk,
             }
 
         });
 
-        let data =  await response.json();
-        console.log(JSON.stringify(data, null, 2));     
+        let data =  await response.json();  
          var list = document.getElementsByClassName("JSAdded");
          for(var i = list.length - 1; 0 <= i; i--){
          if(list[i] && list[i].parentElement)
          list[i].parentElement.removeChild(list[i]);
          }
         document.getElementById("Stat").innerHTML = data["Status"];
-        if(data["Status"]== "Qualified"){
-            $("#doc-app").css("display","block")
-        }else{
-            $("#doc-app").css("display","none")
-        }
+        
         document.getElementById("fname").innerHTML= data["fname"]+" "+data["lname"];
         document.getElementById("email").innerHTML= data["email"];
         document.getElementById("phone").innerHTML= data["phone"];
         document.getElementById("location").innerHTML= data["city"];
-        document.getElementById("appdate").innerHTML= data["applyDate"];
+        document.getElementById("applyDate").innerHTML= data["applyDate"];
+        document.getElementById("applyDateTime").innerHTML= data["applyDateTime"];
+        if(data[ApplicantStatDate]){
+            document.getElementById("ApplicantStatDate").innerHTML= data["ApplicantStatDate"];
+            
+            document.getElementById("ApplicantStatDateTime").innerHTML= data["ApplicantStatDateTime"];
+        }else{
+            document.getElementById("ApplicantStatDate").innerHTML= data["applyDate"];
+           
+            document.getElementById("ApplicantStatDateTime").innerHTML= data["applyDateTime"];
+            
+        }
         
         beforeNewDiv1 = '<img class="imgs-three-dots-zip-img three-dots-document" style="" src="/static/img/Three-dots.svg">';
         var downloadUrl = '/download_user_folder/' + id;
@@ -55,7 +66,6 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
         var newDiv5 = "";
         var newDiv6 = "";
         var newDiv7 = "";
-        console.log("Passaport: - "+data["passaportStatus"]);
         // Documents
         var newDiv = '<input type="hidden" id="applicantID">';
         if (data["passaportExists"] === true) {
@@ -107,8 +117,7 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
 
 
 
-        console.log("student status exists: - "+data["studentStatusExists"])
-        console.log("student status: - "+data["studentStatus"])
+        
         if (data["studentStatusExists"] === true){
             newDiv2 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
                     '<div class="docs-nike-fails" style="display: flex;">' ;
@@ -165,8 +174,7 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
         
         
         
-        console.log("student status exists: - "+data["studentStatusExists"])
-        console.log("certificateStatus: - "+data["certificateStatus"])
+        
 
                 if (data["certificateOfEnrolmentExists"] === true) {
                     newDiv3 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
@@ -409,7 +417,7 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
 
         if(data["serviceContractExists"] === true){
             if(data["serviceContractStatus"] === "A"){
-                var newDiv7 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; ">' +
+                var newDiv7 = '<div class="main-div-docs" style="display: flex; justify-content: space-between;  ">' +
                 '<div class="docs-nike-fails" style="display: flex;">' +
                 '<div class="main-divs-color mutual-titles-color blue-text">Service contract</div>' +
                 '<img style="display: ;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
@@ -480,30 +488,139 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
 
         var newDiv8 = ""
         var newDiv9 = ""
+        
         if(data["jobOfferExists"] === true){
-            var newDiv8 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
+            if(data["jobOfferStatus"] === "A"){
+                var newDiv8 = '<div class="main-div-docs" style="display: flex; justify-content: space-between;padding-bottom: 20px; ">' +
+                '<div class="docs-nike-fails" style="display: flex;">' +
                 '<div class="main-divs-color mutual-titles-color blue-text">Job Offer</div>' +
-                '<img data-number="8" title="Download Job Offer"  class="open-popup" onclick="getDocument(this)"  src="/static/img/documents-second-icon.svg" alt="">' +
+                '<img style="display: ;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
+                '<img style="display: none;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
+                '</div>' +  
+                '<img data-number="8" title="Download Job Offer" onclick="getDocument(this)" class="open-popup" src="/static/img/documents-second-icon.svg" alt="">' +
+                '<div class="div_replacement" style="display: none; justify-content: space-between; ">' +
+                '<img class="img-done" src="/static/img/nike-img-done.svg" onclick="penndingFunction(8);">' +
+                '<img class="img-fail" src="/static/img/img-fail.svg" onclick="RefuseFunction(8);">'
+                 +
+            '</div>'
+
             '</div>';
+            }else if (data["jobOfferStatus"] === "R"){
+                var newDiv8 = '<div class="main-div-docs" style="display: flex; justify-content: space-between;padding-bottom: 20px; ">' +
+                '<div class="docs-nike-fails" style="display: flex;">' +
+                '<div class="main-divs-color mutual-titles-color ">Job Offer</div>' +
+                '<img style="display: none;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
+                '<img style="display: ;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
+                '</div>' +  
+                '<img data-number="8" title="Upload Job Offer"  class="open-popup" onclick="openPopUp(this)" src="/static/img/documents-icon.svg" alt="">' +
+                '<div class="div_replacement" style="display: none; justify-content: space-between; ">' +
+                '<img class="img-done" src="/static/img/before-done-img.svg" onclick="ApproveFunction(8);">' +
+                '<img class="img-fail" src="/static/img/fail-red.svg" onclick="penndingFunction(8);">'
+                    +
+                '</div>'
+
+                '</div>';
+            }else{
+                var newDiv8 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom:20px; ">' +
+                '<div class="docs-nike-fails" style="display: flex;">' +
+                '<div class="main-divs-color mutual-titles-color blue-text">Job Offer</div>' +
+                '<img style="display: none;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
+                '<img style="display: none;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
+                '</div>' +  
+                '<img data-number="8" title="Download Job Offer" onclick="getDocument(this)" class="open-popup" src="/static/img/documents-second-icon.svg" alt="">' +
+                '<div class="div_replacement" style="display: none; justify-content: space-between; ">' +
+                '<img class="img-done" src="/static/img/before-done-img.svg" onclick="ApproveFunction(8);">' +
+                '<img class="img-fail" src="/static/img/img-fail.svg" onclick="RefuseFunction(8);">'
+                 +
+            '</div>'
+
+            '</div>';
+            }
         }else{
-            var newDiv8 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
-                '<div class="main-divs-color mutual-titles-color">Job Offer</div>' +
-                '<img data-number="8" title="Download Upload Job Offer"  class="open-popup" onclick="openPopUp(this)"  src="/static/img/Applicant/documents-icon.svg" alt="">' +
-            '</div>';
+            var newDiv8 = '<div class="main-div-docs" style="display: flex; justify-content: space-between;  padding-bottom:20px; ">' +
+                '<div class="docs-nike-fails" style="display: flex;">' +
+                '<div class="main-divs-color mutual-titles-color">Job Offer </div>' +
+                '<img style="display: none;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
+                '<img style="display: none;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
+                '</div>' +   
+                '<img data-number="8" title="Upload Job Offer"  class="open-popup" onclick="openPopUp(this)" src="/static/img/documents-icon.svg" alt="">' +
+                '<div class="div_replacement" style="display: none; justify-content: space-between; ">' +
+                '<img class="img-done" src="/static/img/before-done-img.svg">' +
+                '<img class="img-fail" src="/static/img/img-fail.svg">'
+                 +
+            '</div>'
+            '</div>'
         }
         if(data["workPermitExists"] === true){
-            var newDiv9 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; ">' +
+            if(data["workPermitStatus"] === "A"){
+                var newDiv9 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; ">' +
+                '<div class="docs-nike-fails" style="display: flex;">' +
                 '<div class="main-divs-color mutual-titles-color blue-text">Work Permit</div>' +
-                '<img data-number="9" title="Download Work Permit"  class="open-popup" onclick="getDocument(this)"  src="/static/img/documents-second-icon.svg" alt="">' +
+                '<img style="display: ;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
+                '<img style="display: none;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
+                '</div>' +  
+                '<img data-number="9" title="Download Work Permit" onclick="getDocument(this)" class="open-popup" src="/static/img/documents-second-icon.svg" alt="">' +
+                '<div class="div_replacement" style="display: none; justify-content: space-between; ">' +
+                '<img class="img-done" src="/static/img/nike-img-done.svg" onclick="penndingFunction(9);">' +
+                '<img class="img-fail" src="/static/img/img-fail.svg" onclick="RefuseFunction(9);">'
+                 +
+            '</div>'
+
             '</div>';
-        }else{
-            var newDiv9 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; ">' +
-                '<div class="main-divs-color mutual-titles-color">Work Permit</div>' +
-                '<img data-number="9" title="Upload Work Permit"  class="open-popup" onclick="openPopUp(this)"  src="/static/img/Applicant/documents-icon.svg" alt="">' +
+            }
+            else if(data["workPermitStatus"] === "R"){
+                var newDiv9 = '<div class="main-div-docs" style="display: flex; justify-content: space-between;padding-bottom: 20px; ">' +
+                '<div class="docs-nike-fails" style="display: flex;">' +
+                '<div class="main-divs-color mutual-titles-color ">Work Permit</div>' +
+                '<img style="display: none;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
+                '<img style="display: ;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
+                '</div>' +  
+                '<img data-number="9" title="Upload Work Permit"  class="open-popup" onclick="openPopUp(this)" src="/static/img/documents-icon.svg" alt="">' +
+                '<div class="div_replacement" style="display: none; justify-content: space-between; ">' +
+                '<img class="img-done" src="/static/img/before-done-img.svg" onclick="ApproveFunction(9);">' +
+                '<img class="img-fail" src="/static/img/fail-red.svg" onclick="penndingFunction(9);">'
+                    +
+                '</div>'
+
+                '</div>';
+            }else{
+                var newDiv9 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom:20px; ">' +
+                '<div class="docs-nike-fails" style="display: flex;">' +
+                '<div class="main-divs-color mutual-titles-color blue-text">Work Permit</div>' +
+                '<img style="display: none;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
+                '<img style="display: none;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
+                '</div>' +  
+                '<img data-number="9" title="Download Work Permit" onclick="getDocument(this)" class="open-popup" src="/static/img/documents-second-icon.svg" alt="">' +
+                '<div class="div_replacement" style="display: none; justify-content: space-between; ">' +
+                '<img class="img-done" src="/static/img/before-done-img.svg" onclick="ApproveFunction(9);">' +
+                '<img class="img-fail" src="/static/img/img-fail.svg" onclick="RefuseFunction(9);">'
+                 +
+            '</div>'
+
             '</div>';
+            }
+
         }
+        else{
+            var newDiv9 = '<div class="main-div-docs" style="display: flex; justify-content: space-between;  padding-bottom:20px; ">' +
+                '<div class="docs-nike-fails" style="display: flex;">' +
+                '<div class="main-divs-color mutual-titles-color">Work Permit </div>' +
+                '<img style="display: none;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
+                '<img style="display: none;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
+                '</div>' +   
+                '<img data-number="9" title="Upload Work Permit"  class="open-popup" onclick="openPopUp(this)" src="/static/img/documents-icon.svg" alt="">' +
+                '<div class="div_replacement" style="display: none; justify-content: space-between; ">' +
+                '<img class="img-done" src="/static/img/before-done-img.svg">' +
+                '<img class="img-fail" src="/static/img/img-fail.svg">'
+                 +
+            '</div>'
+            '</div>'
+        }
+        beforeNewDiv2 = '<img class="imgs-three-dots-zip-img three-dots-document" style="" src="/static/img/Three-dots.svg">';
 
         $('#recdocumentList').empty();
+        $("#parent-img-zip2").empty();
+        $("#parent-img-zip2").append(beforeNewDiv2)
         $('#recdocumentList').append(newDiv8,newDiv9);
 
 

@@ -1,12 +1,16 @@
 
 from .views import *
 from django.urls import path,include
-
+from .Users_Views import *
 urlpatterns = [
-    path("match/jobId/<int:pk>", GetJobIdApplicant.as_view(), name="applicant"),
-    path("match/qualified/jobID/<int:pk>", GetJobIdApplicantQualified.as_view(),
+    path("match/jobId/<int:pk>", getApplicant, name="applicant"),
+    path("match/getUserData",UsersReq.as_view()),
+    path("match/jobId/DocumentsForWorkPermit/<int:pk>", getDocumentForWorkPermitUser,name="documentForWorkPermit"),
+    path("match/jobId/Documents/WorkPermit/<int:pk>", getDocumentYourWorkPermitIsHere,name="workPermitHere"),
+
+    path("match/qualified/jobID/<int:pk>", getApplicantQualified,
          name="qualified-applicant"),
-    path("match/not-qualified/jobID/<int:pk>", GetJobIdApplicantNQualified.as_view(),
+    path("match/not-qualified/jobID/<int:pk>", getApplicantNoQualified,
          name="nonqualified-applicant"),
 
 

@@ -141,11 +141,6 @@ class CustomUser(AbstractUser):
         super(CustomUser, self).save(*args, **kwargs)
     
 
-class Languages(models.Model):
-    language = models.CharField(max_length=255)
-
-    def __str__(self):
-        return self.language
 
 
 # Create your models here.
@@ -293,11 +288,20 @@ class Application(models.Model):
     }
     job_id= models.ForeignKey(Jobs,on_delete=models.CASCADE)
     user_id = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
-    apply_date = models.DateField(default=today)
+    apply_date = models.DateTimeField(default=datetime.now)
     status = models.CharField(max_length=50,choices=Stat_type,default="Pennding")
     ApplicantStat = models.CharField(max_length=50,choices=Applicant_stat,null=True,blank=True)
+    ApplicantStatDate = models.DateTimeField(null=True,blank=True)
     meetWithUs = models.CharField(max_length=1000,blank=True,null=True)
     meetWithUsLink = models.CharField(max_length=1000,blank=True,null=True)
 
     def __str__(self):
-        return str(self.job_id)+" | "+str(self.user_id)+" | "+str(self.apply_date)
+        return f"{self.job_id} | {self.user_id} | {self.apply_date}"
+
+    def save(self, *args, **kwargs):
+        # Check if ApplicantStat has changed to "Qualified" or "Not qualified"
+        if self.ApplicantStat in ["Qualified", "Not qualified"] and self.ApplicantStat != self._state.adding:
+            # Update ApplicantStatDate to current datetime only if it's currently None
+            self.ApplicantStatDate = self.ApplicantStatDate or datetime.now()
+
+        super().save(*args, **kwargs)

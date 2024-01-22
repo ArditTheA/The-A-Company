@@ -25,12 +25,12 @@
 
         <!-- Program -->
 <div class="container-fluid " style="cursor: pointer;">
-  <div id="mySelectLabel" class="selectBox" style="z-index: 99; position: static">
+  <div id="mySelectLabel" class="selectBox " style="z-index: 99; position: static">
     <div class="input-form margin inputs-right-margin" style="">
                 {% if q  != "All" %}
 
                         <select id="selTitle" style="color: #f1f1f1; background-color: #1877f2;border: none; font-size: 18px; padding-top: 0; padding-bottom: 0;padding: 8px 30px; padding-left: 20px;" name="Job Position" class="form-select filters-icon" id="second_form_select">
-                            <option value="" id="" class="first-input-option">{% if q  == "Q" %}  Active ({{NoApplicantQualified}}) {% elif q  == "notQ" %} Inactive ({{NoApplicantNQualified}}){% endif %}</option>
+                            <option value="" id="" class="first-input-option">{% if q  == "Q" %}Qualified ({{NoApplicantQualified}}) {% elif q  == "notQ" %}Not Qualified ({{NoApplicantNQualified}}){% elif q == "DocForWorkPermit" %}Document for Work Permit ({{usersOnDocForWorkPermit}}){% elif q == "YourWorkPermitIsHere" %} Your Work Permit is Here ({{userWorkPermit}}){% endif %}</option>
                         </select>
                           <div class="" style="display: flex; align-items: center;">
                             <img class="icon-filter" src="{% static 'img/dropdown-icon.png' %}" style="display: none;" alt="">
@@ -51,15 +51,22 @@
 
 
     </div>
-    <div id="mySelectOptions" class="drop0 selectOptions dropdown-elements " style="z-index: 99;">
+    <div id="mySelectOptions" class="drop0 applicantDropDown selectOptions dropdown-elements " style="z-index: 99;">
         {% if q  == "Q" %}
-        <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type" onclick="AllApplicant()" value="Active Jobs" />Active ({{NoApplicantQualified}})</label>
+        <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type" onclick="AllApplicant()" value="Active Jobs" />Qualified ({{NoApplicantQualified}})</label>
         {% elif q  == "notQ" %}
-        <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type" onclick="AllApplicant()" value="Active Jobs" /> Inactive ({{NoApplicantNQualified}})</label>
-        {% else %}
+        <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type" onclick="AllApplicant()" value="Active Jobs" />Not Qualified ({{NoApplicantNQualified}})</label>
+        {% elif q == "DocForWorkPermit" %}
+        <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type" onclick="AllApplicant()" value="Active" /> Document for Work Permit ({{usersOnDocForWorkPermit}})</label>
+        {% elif q == "YourWorkPermitIsHere" %}
+        <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type" onclick="AllApplicant()" value="Active" /> Your Work Permit is Here ({{userWorkPermit}})</label>
 
-        <label class="labels-stats first-label-margin"><input type="checkbox"  class="input_type" onclick="Qualified()" value="Active" /> Active ({{NoApplicantQualified}})</label>
-        <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type" onclick="NoQualified()" value="Inactive" /> Inactive ({{NoApplicantNQualified}})</label>
+        {% else %}
+        <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type" onclick="NoQualified()" value="Inactive" /> Not Qualified ({{NoApplicantNQualified}})</label>
+        <label class="labels-stats first-label-margin"><input type="checkbox"  class="input_type" onclick="Qualified()" value="Active" /> Qualified ({{NoApplicantQualified}})</label>
+        
+        <label class="labels-stats first-label-margin"><input type="checkbox"  class="input_type" onclick="DocumentForWorkPermit()" value="Active" /> Document for Work Permit ({{usersOnDocForWorkPermit}})</label>
+        <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type" onclick="WorkPermitHere()" value="Inactive" /> Your Work Permit is Here ({{userWorkPermit}})</label>
         
         {% endif %}
      
@@ -83,6 +90,14 @@ function NoQualified(){
 }
 function AllApplicant(){
   window.location="{% url 'applicant' jpk %}";
+}
+
+function DocumentForWorkPermit(){
+  window.location="{% url 'documentForWorkPermit' jpk %}";
+}
+function WorkPermitHere(){
+  window.location="{% url 'workPermitHere' jpk %}";
+
 }
 </script>
 

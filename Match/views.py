@@ -13,6 +13,261 @@ from accounts.views import *
 from allauth import *
 from ScreeningQuestion.models import ApplicantAnswer
 from Applicant.views import OnBoardPhase
+
+class UsersReq(View):
+    def get(self,request):
+        newDic = {}
+        jpk = request.headers.get("jpk")
+        userid = request.headers.get("userid")
+        user = CustomUser.objects.get(id=userid)
+        newDic["fname"] = user.first_name
+        newDic["lname"] = user.last_name
+        newDic["email"] = user.email
+        newDic["phone"] = user.phone_number
+        Status = Application.objects.filter(job_id=jpk).filter(user_id=userid).values_list("ApplicantStat",flat=True).first()
+        newDic["Status"] = str(Status)
+
+        meetingTime = Application.objects.filter(job_id=jpk).filter(
+                        user_id=request.user).values_list("meetWithUs", flat=True).first()
+        meetingLink = Application.objects.filter(job_id=jpk).filter(
+                        user_id=request.user).values_list("meetWithUsLink", flat=True).first()
+        newDic["meetingTime"] = meetingTime
+        newDic["meetingLink"] = meetingLink
+
+        if user.city == None:
+            newDic["city"] = user.country
+        else:
+            newDic["city"] = user.city + ", " + user.country
+        appdate = Application.objects.filter(user_id=userid).filter(job_id=jpk).values_list("apply_date",
+                                                                                                        flat=True).first()
+        newDic["applyDate"] =format(appdate, "%d/%m/%Y")
+        newDic["applyDateTime"]= format(appdate,"%H:%M")
+        ApplicantStatDate = Application.objects.filter(user_id=userid).filter(job_id=jpk).values_list("ApplicantStatDate",flat=True).first()
+        if ApplicantStatDate:
+            newDic["ApplicantStatDate"] =format(ApplicantStatDate, "%d/%m/%Y")
+            newDic["ApplicantStatDateTime"]= format(ApplicantStatDate,"%H:%M")
+                    ########### User Experience ##########
+        count = 0
+        uExp = UserExperiece.objects.filter(user_id=userid)
+        uExpCount = UserExperiece.objects.filter(user_id=userid).count()
+        newDic["userExpCount"] = uExpCount
+        for i in uExp:
+            title = "title" + str(count)
+            newDic[title] = i.title
+            company = "company" + str(count)
+            newDic[company] = i.company
+            country = "country" + str(count)
+            newDic[country] = i.Country
+            city = "cityexp" + str(count)
+            newDic[city] = i.city_usExp
+            date = "date" + str(count)
+            dateQuery = ""
+            if i.end_date is None:
+                dateQuery = format(i.start_date, "%d/%m/%Y") + " - Present"
+            else:
+                dateQuery = format(i.start_date, "%d/%m/%Y") + " - " + format(i.end_date, "%d/%m/%Y")
+            newDic[date] = dateQuery
+            count += 1
+
+                    ############# User Education ########
+        userEdu = UserEducation.objects.filter(user_id=userid)
+        userEduCount = UserEducation.objects.filter(user_id=userid).count()
+        newDic["userEduCount"] = userEduCount
+        countEdu = 0
+        for i in userEdu:
+            university = "university" + str(countEdu)
+            newDic[university] = i.university
+            field = "field" + str(countEdu)
+            newDic[field] = i.field_of_study
+            location = "uniloc" + str(countEdu)
+
+            if i.city_e is None:
+                newDic[location] = i.country_e
+            else:
+                newDic[location] = i.city_e + " - " + i.country_e
+
+            date = "unidate" + str(countEdu)
+            if i.end_year is None:
+                newDic[date] = format(i.start_year, "%d/%m/%Y") + " - Present"
+            else:
+                newDic[date] = format(i.start_year, "%d/%m/%Y") + " - " + format(i.end_year, "%d/%m/%Y")
+            countEdu += 1
+
+                    # ########## User Languages ##########
+                    #
+        userLang = UserLanguages.objects.filter(user_id=userid)
+        userLangCount = UserLanguages.objects.filter(user_id=userid).count()
+        newDic["countLang"] = userLangCount
+        countLang = 0
+        for i in userLang:
+            lang = "language" + str(countLang)
+            newDic[lang] = str(i.language)
+            langlev = "languageLevel" + str(countLang)
+            newDic[langlev] = str(i.level)
+            countLang += 1
+        passaportExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Passport").exists()
+        studentStatusExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Student Status").exists()
+        certificateOfEnrolmentExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Certificate of Enrolment").exists()
+        studentIdExists = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Student ID").exists()
+        photoExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Photo").exists()
+        serviceContractExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Service contract").exists()
+        jobOfferExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Job Offer").exists()
+        workPermitExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Work Permit").exists()
+
+        if(passaportExists):
+            passaportStatus = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Passport").values_list('status', flat=True).first()
+            newDic["passaportStatus"] = passaportStatus
+        if(studentStatusExists):
+            studentStatus = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Student Status").values_list('status', flat=True).first()
+            newDic["studentStatus"] = studentStatus
+        if(certificateOfEnrolmentExists):
+            certificateStatus = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Certificate of Enrolment").values_list('status', flat=True).first()
+            newDic["certificateStatus"] = certificateStatus
+        if(studentIdExists):
+            studentIdStatus = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Student ID").values_list('status', flat=True).first()
+            newDic["studentIdStatus"] = studentIdStatus
+        if(photoExists):
+            photoStatus = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Photo").values_list("status",flat=True).first()
+            newDic["photoStatus"]=photoStatus
+        if (serviceContractExists):
+            serviceContractStatus = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Service contract").values_list("status",flat=True).first()
+            newDic["serviceContractStatus"]=serviceContractStatus
+        if(jobOfferExists):
+            jobOfferStatus = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Job Offer").values_list("status",flat=True).first()
+            newDic["jobOfferStatus"]=jobOfferStatus
+        if(workPermitExists):
+            workPermitStatus = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Work Permit").values_list("status",flat=True).first()
+            newDic["workPermitStatus"]=workPermitStatus
+                        
+        resume_exists = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Resume").exists()
+
+                    # If no resume document exists, create a new one
+                    
+        if Application.objects.filter(job_id=jpk, user_id=userid, ApplicantStat="Qualified").exists():
+            if not resume_exists:
+                resume_document = documents_list.objects.get(name="Resume")
+
+                            # Create a new documents_users instance with the 'Resume' document
+                doc_with_resume = documents_users()
+                doc_with_resume.user = CustomUser.objects.get(id=userid)
+                doc_with_resume.id_document = resume_document  # Associate with the 'Resume' document
+                doc_with_resume.save()
+            if user.changes_made:
+                doc = documents_users.objects.get(user_id=userid,id_document__name__icontains="Resume")
+                doc.status = "P"
+                doc.save()
+                us=CustomUser.objects.get(id=userid)
+                us.changes_made = False
+                us.save()
+                            
+                            
+            ResumeStatus = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Resume").values_list("status",flat=True).first()
+            newDic["ResumeStatus"]=ResumeStatus
+        else:
+            pass
+        newDic["passaportExists"] = passaportExists
+        newDic["studentStatusExists"] = studentStatusExists
+        newDic["certificateOfEnrolmentExists"] = certificateOfEnrolmentExists
+        newDic["studentIdExists"] = studentIdExists
+        newDic["photoExists"] = photoExists
+        newDic["serviceContractExists"] = serviceContractExists
+        newDic["jobOfferExists"] = jobOfferExists
+        newDic["workPermitExists"] = workPermitExists
+        return HttpResponse(json.dumps(newDic), content_type='application/json; charset=utf8')
+
+
+
+def getApplicant(request,pk):
+    jpk=pk
+    CurrentUser = request.user
+    JobOwner = Jobs.objects.get(id=jpk)
+    NoApplicant=Application.objects.filter(job_id=pk).count()
+    NoApplicantQualified = Application.objects.filter(job_id=pk,ApplicantStat="Qualified").count()
+    NoApplicantNQualified = Application.objects.filter(job_id=pk,ApplicantStat="Not qualified").count()
+    applications = Application.objects.filter(job_id=pk)
+    user_ids = applications.values_list('user_id', flat=True).distinct()
+    userWorkPermit = 0
+    ready_users_count = 0
+    usersOnDocForWorkPermit = 0
+    if CurrentUser==JobOwner.user_id or request.user.is_staff:
+        users = Application.objects.filter(job_id=jpk)
+        for user_id in user_ids:
+            user_documents_count = documents_users.objects.filter(
+                    id_document__in=documents_list.objects.all(),
+                    user_id=user_id,status="A"
+                ).count()
+            if user_documents_count > 1 and user_documents_count < 7:
+                usersOnDocForWorkPermit +=1
+            elif user_documents_count >= 7 and user_documents_count <= 9:
+                userWorkPermit += 1 
+        q = "All"
+        app = False
+        return render(request,"Applicant-Doc/index.html",dict(users=users,q=q,app=app,jpk=jpk,NoApplicant=NoApplicant,ready_users_count=ready_users_count,usersOnDocForWorkPermit=usersOnDocForWorkPermit,userWorkPermit=userWorkPermit,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified,))
+    
+    return render(request,"Applicant-Doc/index.html",dict(NoApplicant=NoApplicant,ready_users_count=ready_users_count,usersOnDocForWorkPermit=usersOnDocForWorkPermit,userWorkPermit=userWorkPermit,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified,))
+
+
+def getApplicantQualified(request,pk):
+    jpk=pk
+    CurrentUser = request.user
+    JobOwner = Jobs.objects.get(id=jpk)
+    NoApplicant=Application.objects.filter(job_id=pk).count()
+    NoApplicantQualified = Application.objects.filter(job_id=pk,ApplicantStat="Qualified").count()
+    NoApplicantNQualified = Application.objects.filter(job_id=pk,ApplicantStat="Not qualified").count()
+    applications = Application.objects.filter(job_id=pk)
+    user_ids = applications.values_list('user_id', flat=True).distinct()
+    userWorkPermit = 0
+    ready_users_count = 0
+    usersOnDocForWorkPermit = 0
+    if CurrentUser==JobOwner.user_id or request.user.is_staff:
+        users = Application.objects.filter(job_id=jpk).filter(ApplicantStat="Qualified")
+        for user_id in user_ids:
+            user_documents_count = documents_users.objects.filter(
+                    id_document__in=documents_list.objects.all(),
+                    user_id=user_id,status="A"
+                ).count()
+            if user_documents_count > 1 and user_documents_count < 7:
+                usersOnDocForWorkPermit +=1
+            elif user_documents_count >= 7 and user_documents_count <= 9:
+                userWorkPermit += 1 
+        q = "Q"
+        app = False
+        return render(request,"Applicant-Doc/index.html",dict(users=users,q=q,app=app,jpk=jpk,NoApplicant=NoApplicant,ready_users_count=ready_users_count,usersOnDocForWorkPermit=usersOnDocForWorkPermit,userWorkPermit=userWorkPermit,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified,))
+    
+    return render(request,"Applicant-Doc/index.html",dict(NoApplicant=NoApplicant,ready_users_count=ready_users_count,usersOnDocForWorkPermit=usersOnDocForWorkPermit,userWorkPermit=userWorkPermit,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified,))
+
+def getApplicantNoQualified(request,pk):
+    jpk=pk
+    CurrentUser = request.user
+    JobOwner = Jobs.objects.get(id=jpk)
+    NoApplicant=Application.objects.filter(job_id=pk).count()
+    NoApplicantQualified = Application.objects.filter(job_id=pk,ApplicantStat="Qualified").count()
+    NoApplicantNQualified = Application.objects.filter(job_id=pk,ApplicantStat="Not qualified").count()
+    applications = Application.objects.filter(job_id=pk)
+    user_ids = applications.values_list('user_id', flat=True).distinct()
+    userWorkPermit = 0
+    ready_users_count = 0
+    usersOnDocForWorkPermit = 0
+    if CurrentUser==JobOwner.user_id or request.user.is_staff:
+        users = Application.objects.filter(job_id=jpk).filter(ApplicantStat="Not qualified")
+        for user_id in user_ids:
+            user_documents_count = documents_users.objects.filter(
+                    id_document__in=documents_list.objects.all(),
+                    user_id=user_id,status="A"
+                ).count()
+            if user_documents_count > 1 and user_documents_count < 7:
+                usersOnDocForWorkPermit +=1
+            elif user_documents_count >= 7 and user_documents_count <= 9:
+                userWorkPermit += 1 
+        q = "notQ"
+        app = False
+        return render(request,"Applicant-Doc/index.html",dict(users=users,q=q,app=app,jpk=jpk,NoApplicant=NoApplicant,ready_users_count=ready_users_count,usersOnDocForWorkPermit=usersOnDocForWorkPermit,userWorkPermit=userWorkPermit,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified,))
+    
+    return render(request,"Applicant-Doc/index.html",dict(NoApplicant=NoApplicant,ready_users_count=ready_users_count,usersOnDocForWorkPermit=usersOnDocForWorkPermit,userWorkPermit=userWorkPermit,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified,))
+
+
+
+
 def CoseJob(request,pk):
     us = request.user
     job = Jobs.objects.get(id=pk)
@@ -60,34 +315,10 @@ def GetJobApplicant(request):
     allApp=False
     return render(request, "Administrator/Applicants/index.html",dict(app=Applicant,co=co,ci=ci,appNo=appCount,Ustat=StudentStat,allApp=allApp,ApplicantANS=ApplicantANS))
 
-
-
 from datetime import datetime
 
 from django.shortcuts import render
 from django.utils.datetime_safe import datetime
-
-# def GetJobApplicant1(request):
-#     start_date = datetime(2023, 10, 1)
-    
-#     # Fetch related fields in a single query
-#     Applicant = Application.objects.filter(apply_date__gte=start_date).order_by("-id").select_related('user_id', 'job_id').values('id', 'user_id__first_name', 'user_id__last_name', 'user_id__email', 'user_id__phone_number', 'job_id__program', 'user_id__country', 'job_id__job_title', 'job_id__country_j', 'job_id__city_j', 'apply_date')
-    
-#     # Fetch related objects separately
-#     applicant_ids = [app['id'] for app in Applicant]
-#     ApplicantANS = ApplicantAnswer.objects.filter(applicant_id__in=applicant_ids, question_id__job_id__in=applicant_ids)
-#     print(ApplicantANS)
-#     StudentStat = ActiveStudent.objects.all()
-#     co = Country.objects.all()
-#     ci = City.objects.all()
-#     appCount = len(Applicant)
-#     allApp = False
-    
-#     return render(
-#         request,
-#         "Administrator/Applicants/index.html",
-#         dict(app=Applicant, co=co, ci=ci, appNo=appCount, Ustat=StudentStat, allApp=allApp, ApplicantANS=ApplicantANS)
-#     )
 
 def GetJobApplicant1(request):
     start_date = datetime(2023, 10, 1)
@@ -173,624 +404,6 @@ from django.db.models import Count
 
 #  Matcch
 
-class GetJobIdApplicant(View):
-    def get(self,request,pk):
-        CurrentUser = request.user
-        usID = request.POST.get("user_id")
-        NoApplicant=Application.objects.filter(job_id=pk).count()
-        NoApplicantQualified = Application.objects.filter(job_id=pk,ApplicantStat="Qualified").count()
-        NoApplicantNQualified = Application.objects.filter(job_id=pk,ApplicantStat="Not qualified").count()
-
-        
-        
-        applications = Application.objects.filter(job_id=pk)
-
-        # Step 2: Extract unique user_ids from the applications
-        user_ids = applications.values_list('user_id', flat=True).distinct()
-
-        userWorkPermit = 0
-        ready_users_count = 0
-        usersOnDocForWorkPermit = 0
-        for user_id in user_ids:
-            user_documents_count = documents_users.objects.filter(
-                id_document__in=documents_list.objects.all(),
-                user_id=user_id
-            ).count()
-
-            all_documents_count = documents_list.objects.count()
-
-            if user_documents_count == all_documents_count:
-                ready_users_count += 1
-            elif user_documents_count > 0 and user_documents_count < 7:
-                usersOnDocForWorkPermit +=1
-            elif user_documents_count > 0 and user_documents_count <9:
-                userWorkPermit +=1
-
-        
-        
-
-        jpk = pk
-        JobOwner = Jobs.objects.get(id=jpk)
-        phase = Phase.objects.filter(user_id=request.user).filter(job_id=jpk)
-        subphase = subPhase.objects.all()
-        if CurrentUser==JobOwner.user_id:
-            if Application.objects.filter(job_id=jpk).exists():
-                users = Application.objects.filter(job_id=jpk)
-
-                uid =Application.objects.filter(job_id=jpk).values_list("user_id", flat=True).first()
-                detailUser = CustomUser.objects.get(id=uid)
-                ExpUser = UserExperiece.objects.filter(user_id=uid)
-                EduUser = UserEducation.objects.filter(user_id=uid)
-                LangUser = UserLanguages.objects.filter(user_id=uid)
-                usLocation =""
-                if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-                    userid = request.headers.get("userid")
-                    newDic = {}
-
-                    user = CustomUser.objects.get(id = userid)
-                    newDic["fname"] = user.first_name
-                    newDic["lname"] = user.last_name
-                    newDic["email"]= user.email
-                    newDic["phone"] = user.phone_number
-                    meetingTime = Application.objects.filter(job_id=jpk).filter(
-                        user_id=request.user).values_list("meetWithUs", flat=True).first()
-                    meetingLink = Application.objects.filter(job_id=jpk).filter(
-                        user_id=request.user).values_list("meetWithUsLink", flat=True).first()
-                    newDic["meetingTime"]=meetingTime
-                    newDic["meetingLink"]=meetingLink
-
-                    Status = Application.objects.filter(job_id=jpk).filter(user_id=userid).values_list("ApplicantStat",flat=True).first()
-                    newDic["Status"]=str(Status)
-                    if user.city == None:
-                        newDic["city"] = user.country
-                    else:
-                        newDic["city"] = user.city+", "+user.country
-                    appdate = Application.objects.filter(user_id=userid).filter(job_id=jpk).values_list("apply_date",flat=True).first()
-                    newDic["applyDate"]=format(appdate,"%d/%m/%Y")
-
-                    ########### User Experience ##########
-                    count =0
-                    uExp = UserExperiece.objects.filter(user_id=userid)
-                    uExpCount = UserExperiece.objects.filter(user_id=userid).count()
-                    newDic["userExpCount"]=uExpCount
-                    for i in uExp:
-                        title = "title"+str(count)
-                        newDic[title]=i.title
-                        company = "company"+str(count)
-                        newDic[company]=i.company
-                        country = "country"+str(count)
-                        newDic[country]=i.Country
-                        city = "cityexp"+str(count)
-                        newDic[city]=i.city_usExp
-                        date = "date"+str(count)
-                        dateQuery = ""
-                        if i.end_date is None:
-                            dateQuery=format(i.start_date,"%d/%m/%Y")+" - Present"
-                        else:
-                            dateQuery=format(i.start_date,"%d/%m/%Y")+" - "+format(i.end_date,"%d/%m/%Y")
-                        newDic[date]=dateQuery
-                        count+=1
-                    
-
-                    ############# User Education ########
-                    userEdu = UserEducation.objects.filter(user_id=userid)
-                    userEduCount = UserEducation.objects.filter(user_id=userid).count()
-                    newDic["userEduCount"]=userEduCount
-                    countEdu=0
-                    for i in userEdu:
-                        university = "university"+str(countEdu)
-                        newDic[university]=i.university
-                        field = "field"+str(countEdu)
-                        newDic[field]=i.field_of_study
-                        location = "uniloc"+str(countEdu)
-
-                        if i.city_e is None:
-                            newDic[location]=i.country_e
-                        else:
-                            newDic[location]=i.city_e+" - "+i.country_e
-
-                        date = "unidate"+str(countEdu)
-                        if i.end_year is None:
-                            newDic[date]=format(i.start_year,"%d/%m/%Y")+" - Present"
-                        else:
-                            newDic[date]=format(i.start_year,"%d/%m/%Y")+" - "+format(i.end_year,"%d/%m/%Y")
-                        countEdu+=1
-
-                    # ########## User Languages ##########
-                    #
-                    userLang = UserLanguages.objects.filter(user_id=userid)
-                    userLangCount = UserLanguages.objects.filter(user_id=userid).count()
-                    newDic["countLang"]=userLangCount
-                    countLang =0
-                    for i in userLang:
-                        lang = "language"+str(countLang)
-                        newDic[lang]=str(i.language)
-                        langlev = "languageLevel"+str(countLang)
-                        newDic[langlev]=str(i.level)
-                        countLang+=1
-                    
-                    passaportExists = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Passport").exists()
-                    studentStatusExists = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Student Status").exists()
-                    certificateOfEnrolmentExists = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Certificate of Enrolment").exists()
-                    studentIdExists = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Student ID").exists()
-                    photoExists = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Photo").exists()
-                    serviceContractExists  = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Service contract").exists()
-                    jobOfferExists  = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Job Offer").exists()
-                    workPermitExists  = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Work Permit").exists()
-                    if(passaportExists):
-                        passaportStatus = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Passport").values_list('status', flat=True).first()
-                        newDic["passaportStatus"] = passaportStatus
-
-                    newDic["passaportExists"]=passaportExists
-                    newDic["studentStatusExists"] = studentStatusExists
-                    newDic["certificateOfEnrolmentExists"]=certificateOfEnrolmentExists
-                    newDic["studentIdExists"]=studentIdExists
-                    newDic["photoExists"]=photoExists
-                    newDic["serviceContractExists"]=serviceContractExists
-                    newDic["jobOfferExists"]=jobOfferExists
-                    newDic["workPermitExists"]=workPermitExists
-                    return HttpResponse(json.dumps(newDic),content_type='application/json; charset=utf8')
-
-                app=True
-                q="All"
-                return render(request, "Applicant-Doc/index.html", dict(users=users,q=q,app=app,phase=phase,subphase=subphase,us=detailUser,uExp=ExpUser,uEdu=EduUser,uLang = LangUser,jpk=jpk,uid=uid,OnBoardPhase=OnBoardPhase,NoApplicant=NoApplicant,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified,ready_users_count=ready_users_count,userWorkPermit=userWorkPermit,usersOnDocForWorkPermit=usersOnDocForWorkPermit))
-            else:
-                q = "All"
-                app=False
-                return render(request,"Applicant-Doc/index.html",dict(q=q,app=app,jpk=jpk,NoApplicant=NoApplicant,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified,ready_users_count=ready_users_count,userWorkPermit=userWorkPermit,usersOnDocForWorkPermit=usersOnDocForWorkPermit))
-        elif request.user.is_staff:
-            if Application.objects.filter(job_id=jpk).exists():
-                users = Application.objects.filter(job_id=jpk)
-
-                uid = Application.objects.filter(job_id=jpk).values_list("user_id", flat=True).first()
-                detailUser = CustomUser.objects.get(id=uid)
-                ExpUser = UserExperiece.objects.filter(user_id=uid)
-                EduUser = UserEducation.objects.filter(user_id=uid)
-                LangUser = UserLanguages.objects.filter(user_id=uid)
-                usLocation = ""
-                if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-                    userid = request.headers.get("userid")
-                    newDic = {}
-
-                    user = CustomUser.objects.get(id=userid)
-                    newDic["fname"] = user.first_name
-                    newDic["lname"] = user.last_name
-                    newDic["email"] = user.email
-                    newDic["phone"] = user.phone_number
-
-                    Status = Application.objects.filter(job_id=jpk).filter(user_id=userid).values_list("ApplicantStat",
-                                                                                                       flat=True).first()
-                    newDic["Status"] = str(Status)
-
-                    meetingTime = Application.objects.filter(job_id=jpk).filter(
-                        user_id=request.user).values_list("meetWithUs", flat=True).first()
-                    meetingLink = Application.objects.filter(job_id=jpk).filter(
-                        user_id=request.user).values_list("meetWithUsLink", flat=True).first()
-                    newDic["meetingTime"] = meetingTime
-                    newDic["meetingLink"] = meetingLink
-
-                    if user.city == None:
-                        newDic["city"] = user.country
-                    else:
-                        newDic["city"] = user.city + ", " + user.country
-                    appdate = Application.objects.filter(user_id=userid).filter(job_id=jpk).values_list("apply_date",
-                                                                                                        flat=True).first()
-                    newDic["applyDate"] = format(appdate, "%d/%m/%Y")
-
-                    ########### User Experience ##########
-                    count = 0
-                    uExp = UserExperiece.objects.filter(user_id=userid)
-                    uExpCount = UserExperiece.objects.filter(user_id=userid).count()
-                    newDic["userExpCount"] = uExpCount
-                    for i in uExp:
-                        title = "title" + str(count)
-                        newDic[title] = i.title
-                        company = "company" + str(count)
-                        newDic[company] = i.company
-                        country = "country" + str(count)
-                        newDic[country] = i.Country
-                        city = "cityexp" + str(count)
-                        newDic[city] = i.city_usExp
-                        date = "date" + str(count)
-                        dateQuery = ""
-                        if i.end_date is None:
-                            dateQuery = format(i.start_date, "%d/%m/%Y") + " - Present"
-                        else:
-                            dateQuery = format(i.start_date, "%d/%m/%Y") + " - " + format(i.end_date, "%d/%m/%Y")
-                        newDic[date] = dateQuery
-                        count += 1
-
-                    ############# User Education ########
-                    userEdu = UserEducation.objects.filter(user_id=userid)
-                    userEduCount = UserEducation.objects.filter(user_id=userid).count()
-                    newDic["userEduCount"] = userEduCount
-                    countEdu = 0
-                    for i in userEdu:
-                        university = "university" + str(countEdu)
-                        newDic[university] = i.university
-                        field = "field" + str(countEdu)
-                        newDic[field] = i.field_of_study
-                        location = "uniloc" + str(countEdu)
-
-                        if i.city_e is None:
-                            newDic[location] = i.country_e
-                        else:
-                            newDic[location] = i.city_e + " - " + i.country_e
-
-                        date = "unidate" + str(countEdu)
-                        if i.end_year is None:
-                            newDic[date] = format(i.start_year, "%d/%m/%Y") + " - Present"
-                        else:
-                            newDic[date] = format(i.start_year, "%d/%m/%Y") + " - " + format(i.end_year, "%d/%m/%Y")
-                        countEdu += 1
-
-                    # ########## User Languages ##########
-                    #
-                    userLang = UserLanguages.objects.filter(user_id=userid)
-                    userLangCount = UserLanguages.objects.filter(user_id=userid).count()
-                    newDic["countLang"] = userLangCount
-                    countLang = 0
-                    for i in userLang:
-                        lang = "language" + str(countLang)
-                        newDic[lang] = str(i.language)
-                        langlev = "languageLevel" + str(countLang)
-                        newDic[langlev] = str(i.level)
-                        countLang += 1
-                    passaportExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Passport").exists()
-                    studentStatusExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Student Status").exists()
-                    certificateOfEnrolmentExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Certificate of Enrolment").exists()
-                    studentIdExists = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Student ID").exists()
-                    photoExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Photo").exists()
-                    serviceContractExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Service contract").exists()
-                    jobOfferExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Job Offer").exists()
-                    workPermitExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Work Permit").exists()
-
-                    if(passaportExists):
-                        passaportStatus = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Passport").values_list('status', flat=True).first()
-                        newDic["passaportStatus"] = passaportStatus
-                    if(studentStatusExists):
-                        studentStatus = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Student Status").values_list('status', flat=True).first()
-                        newDic["studentStatus"] = studentStatus
-                    if(certificateOfEnrolmentExists):
-                        certificateStatus = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Certificate of Enrolment").values_list('status', flat=True).first()
-                        newDic["certificateStatus"] = certificateStatus
-                    if(studentIdExists):
-                        studentIdStatus = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Student ID").values_list('status', flat=True).first()
-                        newDic["studentIdStatus"] = studentIdStatus
-                    if(photoExists):
-                        photoStatus = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Photo").values_list("status",flat=True).first()
-                        newDic["photoStatus"]=photoStatus
-                    if (serviceContractExists):
-                        serviceContractStatus = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Service contract").values_list("status",flat=True).first()
-                        newDic["serviceContractStatus"]=serviceContractStatus
-
-                    resume_exists = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Resume").exists()
-
-                    # If no resume document exists, create a new one
-                    print("----------------------")
-                    print("----------------------")
-                    print(Application.objects.filter(job_id=jpk, user_id=userid, ApplicantStat="Qualified").exists())
-                    print("----------------------")
-                    print("----------------------")
-                    if Application.objects.filter(job_id=jpk, user_id=userid, ApplicantStat="Qualified").exists():
-                        if not resume_exists:
-                            resume_document = documents_list.objects.get(name="Resume")
-
-                            # Create a new documents_users instance with the 'Resume' document
-                            doc_with_resume = documents_users()
-                            doc_with_resume.user = CustomUser.objects.get(id=userid)
-                            doc_with_resume.id_document = resume_document  # Associate with the 'Resume' document
-                            doc_with_resume.save()
-                        if user.changes_made:
-                            doc = documents_users.objects.get(user_id=userid,id_document__name__icontains="Resume")
-                            doc.status = "P"
-                            doc.save()
-                            us=CustomUser.objects.get(id=userid)
-                            us.changes_made = False
-                            us.save()
-                            
-                            
-                        ResumeStatus = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Resume").values_list("status",flat=True).first()
-                        newDic["ResumeStatus"]=ResumeStatus
-                    else:
-                        pass
-                    newDic["passaportExists"] = passaportExists
-                    newDic["studentStatusExists"] = studentStatusExists
-                    newDic["certificateOfEnrolmentExists"] = certificateOfEnrolmentExists
-                    newDic["studentIdExists"] = studentIdExists
-                    newDic["photoExists"] = photoExists
-                    newDic["serviceContractExists"] = serviceContractExists
-                    newDic["jobOfferExists"] = jobOfferExists
-                    newDic["workPermitExists"] = workPermitExists
-                    return HttpResponse(json.dumps(newDic), content_type='application/json; charset=utf8')
-
-                app = True
-                q = "All"
-                return render(request, "Applicant-Doc/index.html",
-                              dict(users=users, q=q, app=app, phase=phase, subphase=subphase, us=detailUser,ready_users_count=ready_users_count,userWorkPermit=userWorkPermit,usersOnDocForWorkPermit=usersOnDocForWorkPermit,
-                                   uExp=ExpUser, uEdu=EduUser, uLang=LangUser, jpk=jpk, uid=uid,OnBoardPhase=OnBoardPhase,NoApplicant=NoApplicant,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified,))
-            else:
-                q = "All"
-                app = False
-                return render(request, "Applicant-Doc/index.html", dict(q=q, app=app,ready_users_count=ready_users_count,usersOnDocForWorkPermit=usersOnDocForWorkPermit, userWorkPermit=userWorkPermit,jpk=jpk,OnBoardPhase=OnBoardPhase,NoApplicant=NoApplicant,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified,))
-        else:
-            pass
-        return render(request,"Applicant-Doc/index.html",dict(NoApplicant=NoApplicant,ready_users_count=ready_users_count,usersOnDocForWorkPermit=usersOnDocForWorkPermit,userWorkPermit=userWorkPermit,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified,))
-class GetJobIdApplicantQualified(View):
-    def get(self,request,pk):
-        CurrentUser = request.user
-        usID = request.POST.get("user_id")
-        NoApplicant=Application.objects.filter(job_id=pk).count()
-        NoApplicantQualified = Application.objects.filter(job_id=pk,ApplicantStat="Qualified").count()
-        NoApplicantNQualified = Application.objects.filter(job_id=pk,ApplicantStat="Not qualified").count()
-        jpk = pk
-        JobOwner = Jobs.objects.get(id=jpk)
-        phase = Phase.objects.filter(user_id=request.user).filter(job_id=jpk)
-        subphase = subPhase.objects.all()
-        if CurrentUser==JobOwner.user_id or CurrentUser.is_staff:
-            if Application.objects.filter(job_id=jpk).filter(ApplicantStat="Qualified").exists():
-                users = Application.objects.filter(job_id=jpk).filter(ApplicantStat="Qualified")
-
-                uid =Application.objects.filter(job_id=jpk).filter(ApplicantStat="Qualified").values_list("user_id", flat=True).first()
-                
-                detailUser = CustomUser.objects.get(id=uid)
-                ExpUser = UserExperiece.objects.filter(user_id=uid)
-                EduUser = UserEducation.objects.filter(user_id=uid)
-                LangUser = UserLanguages.objects.filter(user_id=uid)
-                usLocation =""
-                if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-                    userid = request.headers.get("userid")
-                    newDic = {}
-
-                    user = CustomUser.objects.get(id = userid)
-                    newDic["fname"] = user.first_name
-                    newDic["lname"] = user.last_name
-                    newDic["email"]= user.email
-                    newDic["phone"] = user.phone_number
-
-                    Status = Application.objects.filter(job_id=jpk).filter(user_id=userid).values_list("ApplicantStat", flat=True).first()
-                    newDic["Status"] = str(Status)
-
-                    if user.city == None:
-                        newDic["city"] = user.country
-                    else:
-                        newDic["city"] = user.city+", "+user.country
-                    appdate = Application.objects.filter(user_id=userid).filter(job_id=jpk).values_list("apply_date",flat=True).first()
-                    newDic["applyDate"]=format(appdate,"%d/%m/%Y")
-
-                    ########### User Experience ##########
-                    count =0
-                    uExp = UserExperiece.objects.filter(user_id=userid)
-                    uExpCount = UserExperiece.objects.filter(user_id=userid).count()
-                    newDic["userExpCount"]=uExpCount
-                    
-                    for i in uExp:
-                        title = "title"+str(count)
-                        newDic[title]=i.title
-                        company = "company"+str(count)
-                        newDic[company]=i.company
-                        country = "country"+str(count)
-                        newDic[country]=i.Country
-                        city = "cityexp"+str(count)
-                        newDic[city]=i.city_usExp
-                        date = "date"+str(count)
-                        dateQuery = ""
-                        if i.end_date is None:
-                            dateQuery=format(i.start_date,"%d/%m/%Y")+" - Present"
-                        else:
-                            dateQuery=format(i.start_date,"%d/%m/%Y")+" - "+format(i.end_date,"%d/%m/%Y")
-                        newDic[date]=dateQuery
-                        count+=1
-                   
-
-                    ############# User Education ########
-                    userEdu = UserEducation.objects.filter(user_id=userid)
-                    userEduCount = UserEducation.objects.filter(user_id=userid).count()
-                    newDic["userEduCount"]=userEduCount
-                    countEdu=0
-                    for i in userEdu:
-                        university = "university"+str(countEdu)
-                        newDic[university]=i.university
-                        field = "field"+str(countEdu)
-                        newDic[field]=i.field_of_study
-                        location = "uniloc"+str(countEdu)
-
-                        if i.city_e is None:
-                            newDic[location]=i.country_e
-                        else:
-                            newDic[location]=i.city_e+" - "+i.country_e
-
-                        date = "unidate"+str(countEdu)
-                        if i.end_year is None:
-                            newDic[date]=format(i.start_year,"%d/%m/%Y")+" - Present"
-                        else:
-                            newDic[date]=format(i.start_year,"%d/%m/%Y")+" - "+format(i.end_year,"%d/%m/%Y")
-                        countEdu+=1
-
-                    # ########## User Languages ##########
-                    #
-                    userLang = UserLanguages.objects.filter(user_id=userid)
-                    
-                    userLangCount = UserLanguages.objects.filter(user_id=userid).count()
-                    newDic["countLang"]=userLangCount
-                    countLang =0
-                    for i in userLang:
-                        
-                        lang = "language"+str(countLang)
-                        newDic[lang]=str(i.language)
-                        langlev = "languageLevel"+str(countLang)
-                        newDic[langlev]=str(i.level)
-                        countLang+=1
-
-                    passaportExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Passport").exists()
-                    studentStatusExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Student Status").exists()
-                    certificateOfEnrolmentExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Certificate of Enrolment").exists()
-                    studentIdExists = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Student ID").exists()
-                    photoExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Photo").exists()
-                    serviceContractExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Service contract").exists()
-                    jobOfferExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Job Offer").exists()
-                    workPermitExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Work Permit").exists()
-
-                    newDic["passaportExists"] = passaportExists
-                    newDic["studentStatusExists"] = studentStatusExists
-                    newDic["certificateOfEnrolmentExists"] = certificateOfEnrolmentExists
-                    newDic["studentIdExists"] = studentIdExists
-                    newDic["photoExists"] = photoExists
-                    newDic["serviceContractExists"] = serviceContractExists
-                    newDic["jobOfferExists"] = jobOfferExists
-                    newDic["workPermitExists"] = workPermitExists
-
-                    return HttpResponse(json.dumps(newDic),content_type='application/json; charset=utf8')
-
-                app=True
-                q="Q"
-                return render(request, "Applicant-Doc/index.html", dict(users=users,q=q,NoApplicant=NoApplicant,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified,app=app,phase=phase,subphase=subphase,us=detailUser,uExp=ExpUser,uEdu=EduUser,uLang = LangUser,jpk=jpk,uid=uid))
-            else:
-                q = "Q"
-                app = False
-                return render(request,"Applicant-Doc/index.html",dict(q=q,app=app,jpk=jpk,NoApplicant=NoApplicant,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified,phase=phase,subphase=subphase))
-        else:
-            pass
-        return render(request,"Applicant-Doc/index.html",dict(jpk=jpk,NoApplicant=NoApplicant,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified))
-class GetJobIdApplicantNQualified(View):
-    def get(self,request,pk):
-        CurrentUser = request.user
-        usID = request.POST.get("user_id")
-        NoApplicant=Application.objects.filter(job_id=pk).count()
-        NoApplicantQualified = Application.objects.filter(job_id=pk,ApplicantStat="Qualified").count()
-        NoApplicantNQualified = Application.objects.filter(job_id=pk,ApplicantStat="Not qualified").count()
-        jpk = pk
-        JobOwner = Jobs.objects.get(id=jpk)
-        phase = Phase.objects.filter(user_id=request.user).filter(job_id=jpk)
-        subphase = subPhase.objects.all()
-        if CurrentUser==JobOwner.user_id or CurrentUser.is_staff:
-            if Application.objects.filter(job_id=jpk).filter(ApplicantStat="Not qualified").exists():
-                users = Application.objects.filter(job_id=jpk).filter(ApplicantStat="Not qualified")
-
-                uid =Application.objects.filter(job_id=jpk).filter(ApplicantStat="Not qualified").values_list("user_id", flat=True).first()
-                
-                detailUser = CustomUser.objects.get(id=uid)
-                ExpUser = UserExperiece.objects.filter(user_id=uid)
-                EduUser = UserEducation.objects.filter(user_id=uid)
-                LangUser = UserLanguages.objects.filter(user_id=uid)
-                usLocation =""
-                if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-                    userid = request.headers.get("userid")
-                    newDic = {}
-
-                    user = CustomUser.objects.get(id = userid)
-                    newDic["fname"] = user.first_name
-                    newDic["lname"] = user.last_name
-                    newDic["email"]= user.email
-                    newDic["phone"] = user.phone_number
-
-                    Status = Application.objects.filter(job_id=jpk).filter(user_id=userid).values_list("ApplicantStat", flat=True).first()
-                    newDic["Status"] = str(Status)
-
-                    if user.city == None:
-                        newDic["city"] = user.country
-                    else:
-                        newDic["city"] = user.city+", "+user.country
-                    appdate = Application.objects.filter(user_id=userid).filter(job_id=jpk).values_list("apply_date",flat=True).first()
-                    newDic["applyDate"]=format(appdate,"%d/%m/%Y")
-
-                    ########### User Experience ##########
-                    count =0
-                    uExp = UserExperiece.objects.filter(user_id=userid)
-                    uExpCount = UserExperiece.objects.filter(user_id=userid).count()
-                    newDic["userExpCount"]=uExpCount
-                    
-                    for i in uExp:
-                        title = "title"+str(count)
-                        newDic[title]=i.title
-                        company = "company"+str(count)
-                        newDic[company]=i.company
-                        country = "country"+str(count)
-                        newDic[country]=i.Country
-                        city = "cityexp"+str(count)
-                        newDic[city]=i.city_usExp
-                        date = "date"+str(count)
-                        dateQuery = ""
-                        if i.end_date is None:
-                            dateQuery=format(i.start_date,"%d/%m/%Y")+" - Present"
-                        else:
-                            dateQuery=format(i.start_date,"%d/%m/%Y")+" - "+format(i.end_date,"%d/%m/%Y")
-                        newDic[date]=dateQuery
-                        count+=1
-                    
-
-                    ############# User Education ########
-                    userEdu = UserEducation.objects.filter(user_id=userid)
-                    userEduCount = UserEducation.objects.filter(user_id=userid).count()
-                    newDic["userEduCount"]=userEduCount
-                    countEdu=0
-                    for i in userEdu:
-                        university = "university"+str(countEdu)
-                        newDic[university]=i.university
-                        field = "field"+str(countEdu)
-                        newDic[field]=i.field_of_study
-                        location = "uniloc"+str(countEdu)
-
-                        if i.city_e is None:
-                            newDic[location]=i.country_e
-                        else:
-                            newDic[location]=i.city_e+" - "+i.country_e
-
-                        date = "unidate"+str(countEdu)
-                        if i.end_year is None:
-                            newDic[date]=format(i.start_year,"%d/%m/%Y")+" - Present"
-                        else:
-                            newDic[date]=format(i.start_year,"%d/%m/%Y")+" - "+format(i.end_year,"%d/%m/%Y")
-                        countEdu+=1
-
-                    # ########## User Languages ##########
-                    #
-                    userLang = UserLanguages.objects.filter(user_id=userid)
-                 
-                    userLangCount = UserLanguages.objects.filter(user_id=userid).count()
-                    newDic["countLang"]=userLangCount
-                    countLang =0
-                    for i in userLang:
-                       
-                        lang = "language"+str(countLang)
-                        newDic[lang]=str(i.language)
-                        langlev = "languageLevel"+str(countLang)
-                        newDic[langlev]=str(i.level)
-                        countLang+=1
-
-                    passaportExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Passport").exists()
-                    studentStatusExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Student Status").exists()
-                    certificateOfEnrolmentExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Certificate of Enrolment").exists()
-                    studentIdExists = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Student ID").exists()
-                    photoExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Photo").exists()
-                    serviceContractExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Service contract").exists()
-                    jobOfferExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Job Offer").exists()
-                    workPermitExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Work Permit").exists()
-
-                    newDic["passaportExists"] = passaportExists
-                    newDic["studentStatusExists"] = studentStatusExists
-                    newDic["certificateOfEnrolmentExists"] = certificateOfEnrolmentExists
-                    newDic["studentIdExists"] = studentIdExists
-                    newDic["photoExists"] = photoExists
-                    newDic["serviceContractExists"] = serviceContractExists
-                    newDic["jobOfferExists"] = jobOfferExists
-                    newDic["workPermitExists"] = workPermitExists
-
-                    return HttpResponse(json.dumps(newDic),content_type='application/json; charset=utf8')
-
-                app=True
-                q="notQ"
-
-                return render(request, "Applicant-Doc/index.html", dict(users=users,q=q,NoApplicant=NoApplicant,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified,app=app,phase=phase,subphase=subphase,us=detailUser,uExp=ExpUser,uEdu=EduUser,uLang = LangUser,jpk=jpk,uid=uid))
-            else:
-                q="notQ"
-                app=False
-                return render(request,"Applicant-Doc/index.html",dict(q=q,app=app,jpk=jpk,NoApplicant=NoApplicant,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified,phase=phase,subphase=subphase))
-        else:
-            return render(request,"Applicant-Doc/index.html",dict(NoApplicant=NoApplicant,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified))
-        return render(request,"Applicant-Doc/index.html",dict(jpk=jpk,NoApplicant=NoApplicant,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified))
-
-
 
 def getApplicantPhase(request,phaseid):
     getSub = subPhase.objects.filter(name__contains=phaseid)
@@ -846,8 +459,12 @@ class getAppPhase(View):
                             newDic["city"] = user.city+", "+user.country
                         appdate = Application.objects.filter(user_id=userid).filter(job_id=jpk).values_list("apply_date",flat=True).first()
 
-                        newDic["applyDate"]=format(appdate,"%d/%m/%Y")
-
+                        newDic["applyDate"] =format(appdate, "%d/%m/%Y")
+                        newDic["applyDateTime"]= format(appdate,"%H:%M")
+                        ApplicantStatDate = Application.objects.filter(user_id=userid).filter(job_id=jpk).values_list("ApplicantStatDate",flat=True).first()
+                        if ApplicantStatDate:
+                            newDic["ApplicantStatDate"] =format(ApplicantStatDate, "%d/%m/%Y")
+                            newDic["ApplicantStatDateTime"]= format(ApplicantStatDate,"%H:%M")
                         ########### User Experience ##########
                         count =0
                         uExp = UserExperiece.objects.filter(user_id=userid)
@@ -968,19 +585,6 @@ def moveToPhase(request,pk,phaseid,userId):
         return redirect("applicant",pk=pk)
 
 
-
-# def moveToPhase(request,jpk,subp,user):
-#     job_id = Jobs.objects.get(id=jpk)
-#     subphase = subPhase.objects.get(name=subp)
-#     app_list = []
-#     for i in app_list:
-#         aps = ApplicantSubPhase()
-#         aps.subPhase=subPhase
-#         aps.job_id=job_id
-#         aps.applicant=CustomUser.objects.get(id=i)
-#         aps.save()
-#     retrun redirect(GetJobApplicant)
-    
 
 
 

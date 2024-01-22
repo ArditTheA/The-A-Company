@@ -32,9 +32,8 @@ btn2.addEventListener('click', function() {
     $(".add-user-language").attr("id", "add-user-language");
     $(".add-language-title").text("Add Language")
     $("#add-user-language")[0].reset();
-    $("#EditUserLang").css("display","none")
-    $("#AddUserLang").css("display","block")
-    $(delete_popup).css("display", "none");
+    $("#EditUserLang").css("display","none");
+    $("#AddUserLang").css("display","block");
 });
 
 btn3.addEventListener('click', function() {
