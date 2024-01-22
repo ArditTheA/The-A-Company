@@ -8,20 +8,20 @@ from .views import *
 from django.urls import path,include
 from .profile_ajax import *
 from .landingPages import  *
-
+from .Jobs_Details import *
 
 urlpatterns = [
 
     path("companies",CompanyLandingPage,name="companyLandingPage"),
     path("employees",EmployeesLandingPage,name="employeesLandingPage"),
    
+    path("jobs/details",getJobDetails.as_view()),
+    # path('jobs/', MainJobs.as_view(),name="jobs"),
+    path("jobs/",getJobs,name="jobs"),
+    path('jobs/<int:pk>',getJobsId,name="visitJob"),
 
-    path('jobs/', MainJobs.as_view(),name="jobs"),
-    path('jobs/<int:pk>', MainJobsId.as_view(),name="visitJob"),
+    # path('jobs/<int:pk>', MainJobsId.as_view(),name="visitJob"),
     path("TermsAndCondition/", Terms, name="terms"),
-
-
-
 
     # profile
     path("profile/", update_profile, name="profile"),
@@ -72,6 +72,7 @@ urlpatterns = [
     path("jobs/apply/<int:pk>", applyForJobSQ),
     path("profile/setup/1/<int:pk>", applyForJob2, name="setupPart2"),
     path("profile/setup/2/<int:pk>", applyForJob3, name="setupPart3"),
+
 
     path("Job/close/<int:pk>",CoseJob,name="closeJob"),
     path("Job/open/<int:pk>",OpenJob,name="openJob"),

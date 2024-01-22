@@ -11,14 +11,14 @@
 
    
 
-  <form class="card" >
+  <form class="card" onsubmit="return false;">
     <img style="cursor: pointer;" title="Search by job or location"
         class="search-icon-jobs inputs-right-margin plus-icon-jobs" src="{% static 'img/search (1).png'%}"
         alt="">
         <div class="mutual-padding-of-div input-search-div" style="border-radius: 20px;">
             <div class="second-input-form" style="">
 
-          <input style="" name="q" oninput="searchUsers()"  id="userSearchInput" placeholder="Search by job or location"
+          <input oninput="searchUsers()"  id="userSearchInput" placeholder="Search by job or location"
                 class="search-input inputs-right-margin" id="input-removed"
                 style="padding-left: 20px; background-color: white;">
             </input>

@@ -70,7 +70,7 @@ window.addEventListener('load', function() {
         post_id=id;
 
 
-        let response = await fetch('',{
+        let response = await fetch('/jobs/details',{
 
             method: "get",
 
