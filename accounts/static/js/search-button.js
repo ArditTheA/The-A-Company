@@ -37,5 +37,7 @@ search_button.addEventListener('click', function () {
 exit_input.addEventListener('click', function () {
     search_div.style.display = "none";
     exit_input.style.display = "none";
+    $("#userSearchInput").val("");
+    searchUsers();
     search_button.style.display = "block";
 })

@@ -3,6 +3,8 @@ from datetime import datetime
 
 from django.db import models
 from accounts.models import CustomUser ,Jobs
+from django.dispatch import receiver
+from django.db.models.signals import pre_save
 # Create your models here.
 
 def user_directory_path(instance, filename):
@@ -14,9 +16,14 @@ def user_directory_path(instance, filename):
     else:
         document =  str(instance.id_document)
     filename, ext = os.path.splitext(filename)
-    new_filename = f"{current_date}-{document}{ext}"
+    new_filename = f"{instance.user.first_name}_{instance.user.last_name}_{document}{ext}"
     # create the directory path based on the user's email
-    return os.path.join( email,"documents",document, new_filename)
+    docPath = instance.user.first_name+"_"+instance.user.last_name+"_Documents_For_Work_Permit"
+    workPath = instance.user.first_name+"_"+instance.user.last_name+"_Your_Work_Permit_is_Here"
+    if (document =="Passaport" or document == "Student status" or document=="Certificate of Enrolment" or document=="Student ID" or document == "Photo" or document=="Resume" or document == "Service contract"):
+        return os.path.join(email,docPath,new_filename)
+    else:
+        return os.path.join( email,workPath, new_filename)
 
 def recruiter_directory_path(instance, filename):
     # get the user's email address
@@ -52,6 +59,14 @@ class documents_users(models.Model):
         status_display = [status[1] for status in self.doc_status if status[0] == self.status]
         return str(self.id_document)+" - "+str(self.user.email)+" "+str(status_display[0])
 
+@receiver(pre_save, sender=documents_users)
+def replace_existing_document(sender, instance, **kwargs):
+    # Check if the document field is being updated
+    if instance.pk is not None:
+        old_instance = documents_users.objects.get(pk=instance.pk)
+        if old_instance.document and instance.document != old_instance.document:
+            # Delete the old document before saving the new one
+            old_instance.document.delete(save=False)
 
 class RecruiterDocument(models.Model):
     recruiter_doc_list = [

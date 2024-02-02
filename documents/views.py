@@ -311,6 +311,7 @@ def upload_documents_myjobs(request):
             # Check if the document already exists for the user
             document = documents_users.objects.get(id_document=document_id, user=user_id)
             document.document = id_myjob_document
+            document.status = "P"
             document.save()
 
             return JsonResponse({'message': 'Document updated old successfully'})

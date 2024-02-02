@@ -104,9 +104,6 @@
     .languages-paragraphs-div {
         padding: 20px 0px 20px 20px !important;
     }
-    .languages-div {
-        margin-top: 10px;
-    }
     .education-second-paragraph {
         font-size: 16px !important;
     }
@@ -204,7 +201,6 @@ input[type=text], input[type=date]  {
     padding-top: 20px !important;
     padding-right: 20px !important;
 }
-
 .start-and-end-date-main-div {
     display: flex;
     flex-direction: column;
@@ -223,7 +219,7 @@ input[type=text], input[type=date]  {
     padding-top: 0px;
 }
 .mutual-add-style, .second-add-languages-button, .second-add-education-button {
-    width: 18px !important; 
+    width: 18px !important;
     height: 18px !important;
 }
 
@@ -445,7 +441,7 @@ input[type=text], input[type=date]  {
     .experience-rows-img-languages {
         margin-top: 20px !important;
     }
-    .mutual-titles-pop-ups-stats,.user-mutual-titles-pop-ups-stats {
+    .mutual-titles-pop-ups-stats, .user-mutual-titles-pop-ups-stats {
         margin-bottom: 20px !important;
         font-size: 16px !important;
     }

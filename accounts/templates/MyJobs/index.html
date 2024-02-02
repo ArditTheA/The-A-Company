@@ -4,8 +4,8 @@
 {% block description %}View and manage your temporary job applications on Worki.{% endblock %}
 
 {% block content %}
-{% if check %}
 {% include "MyJobs/myjobs-filter.html" %}
+{% if job %}
 <input type="hidden" id="user_id">
 <input style="display:none;" id="PostID" value="{{post_id}}">
 <input type="hidden" id="current-job-id">
@@ -17,7 +17,9 @@
     {% include "MyJobs/left-jobs.html" %}
   </div>
     {% include "MyJobs/right-jobs.html" %}
+
 </div>
+
 <div class="bg-add-and-edit" style="display: none;">
   <div class="popup add-experience under-container-mutual-mutual-stats" >
       <div class="edit-profile-title mutual-titles-pop-ups-stats"><span class="name-document">Document</span></div>
@@ -28,12 +30,11 @@
           <div class="drop-area" id="drop-area" onclick="document.getElementById('id_myjob_document').click();">
               <img src="{% static 'img/upload docs.svg' %}" alt="">
               <div class="file-upload">Select a file to upload</div>
-              <div class="under-upload-file" id="second-line">or drag and drop it here</div>
               <input type="file"  name="myjob_document" id="id_myjob_document"  accept=".pdf, .jpg, .jpeg, .png, .svg"  style="display: none;">
 
           </div>
           <div class="save-button save-button-edit-profile-photo">
-              <input id="close-popup" type="button" name="back" title="Back to Profile" class="back-input font-fam back-save-buttons" value="Back">
+              <input id="close-popup" type="button" name="back" onclick="returnText()" title="Back to Profile" class="back-input font-fam back-save-buttons" value="Back">
               <input id="save-button" title="Save Profile Data" name="save" type="submit" class="save-submit-input font-fam back-save-buttons" value="Save">
           </div>
       </form>
@@ -42,6 +43,32 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="{% static 'js/Applicant/all-applicants-meet-with-us-documents-work-permit.js' %}"></script>
+
+
+<script>
+  function returnText(){
+    $('.file-upload').text('Select a file to upload');
+  }
+  function downloadDocForWorkPermitFolder(email) {
+            var url = "/download/doc-for-work-permit-folder/" + email + "/";
+            
+            // Create a hidden iframe to trigger the download
+            var iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = url;
+            document.body.appendChild(iframe);
+        }
+  function downloadWorkPermitFolder(email) {
+            var url = "/download/work-permit-folder/" + email + "/";
+            
+            // Create a hidden iframe to trigger the download
+            var iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = url;
+            document.body.appendChild(iframe);
+        }
+</script>
+
 
 <script>
   function ChangeDiv() {
@@ -64,7 +91,7 @@
 
     var formData = new FormData(this);
     formData.append('csrfmiddlewaretoken', $('input[name=csrfmiddlewaretoken]').val());
-    console.log("Detailed FormData content:");
+    console.log("Detailed FormData content:"+formData);
     
     $.ajax({
       type: 'POST',
@@ -77,7 +104,19 @@
         if (response.message) {
           console.log(response.message);
           $('.bg-add-and-edit, .popup').css("display", "none");
-          getMyJobs($("#current-job-id").val());
+          // Get the value of mydocument_id
+          var mydocumentIdValue = $('#mydocument_id').val();
+
+          // Conditionally set the second argument of getMyJobs
+          var secondArgumentValue = 1;
+          if (mydocumentIdValue == 8 || mydocumentIdValue == 9) {
+              // If mydocument_id is 4 or 5, set the second argument to 2
+              secondArgumentValue = 2;
+          }
+          $('.file-upload').text('Select a file to upload');
+
+          // Call getMyJobs with the updated second argument
+          getMyJobs($("#current-job-id").val(), secondArgumentValue);
           // Rest of your success handling code
         } else {
           console.error('Unexpected response format:', response);

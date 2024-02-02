@@ -145,13 +145,14 @@
                         {% endif %}
                         
                      </select>
-                     <input type="number" name="programCost" value="{{job_form.programCost.value}}" id="id_programCost" placeholder="Program cost" class="all-inputs inputs-job-details contact-information-margin-bottom contact-information-mutual-stats mutual-input"></input>
+                     <input type="hidden" name="programCost" id="id_programCost" value="{{job_form.programCost.value}}">
+                     <input type="text"  value='{{ formatted_value}}' id="programCost" oninput="changeProgramValue()" placeholder="Program cost" class="all-inputs inputs-job-details contact-information-margin-bottom contact-information-mutual-stats mutual-input"></input>
                      <div class="div-of-changed-picture">
                         <label for="id_logo">
                            <div class="input-form">
                               <div style="cursor: pointer; display: flex; align-items: center;" class="upload-file-div logo-input-main-div">
                                  <div class="logo-input-div">Logo</div>
-                                 <img class="icon" src="{% static 'img/gallery-upload.svg'%}" alt="">
+                                 <img class="icon" src="{% static 'img/UploadLogoWhite.svg'%}" alt="">
                               </div>
                            </div>
                         </label>
@@ -162,7 +163,7 @@
                      <!-- <input placeholder="Student Status" class="all-inputs contact-information-mutual-stats mutual-input" style="border: 1px solid #D4D5D6; width: 434px; padding: 10px 0px 10px 10px; border-radius: 40px;"></input> -->
                   </div>
                   <div class="back-and-next-buttons" style="width: 100%; display: flex; justify-content: space-between;">
-                     <a class=" back-button next-none contact-information-back-button">Back</a>
+                     <a href="{% url 'postedJob' %}" class="back-button next-none contact-information-back-button">Back</a>
                      <a id="first-next-button-job-details" class="first-next-button  submit-button next-none">Next</a>
                   </div>
                </div>
@@ -171,7 +172,7 @@
                </div>
             </div>
             <div class="second-payment-div" style="padding-top: 20px; padding-bottom: 20px; border-bottom: 40px; margin-left: 30px; color: #D4D5D6;">
-               <div class="second-payment mutual-font-size-18px first-additional-feature font-size-18px-16px">Additional Feature</div>
+               <div class="second-payment mutual-font-size-18px first-additional-feature font-size-18px-16px">Additional Features</div>
             </div>
          </div>
       </div>
@@ -188,11 +189,11 @@
                   <textarea name="description" id="descriptionArea" class="scroll-post-job inner-text editable" oninput="updateNextButton()" style="background-color: white; border-radius: 40px;resize: none;">{{des}}</textarea>
                   <div class="back-and-next-buttons" style="width: 100%; display: flex; justify-content: space-between;">
                      <a class=" back-button next-none job-description-back-button">Back</a>
-                     <a id="next-button-job-description" class="next-button-job-description  submit-button next-none" onclick="validateTextarea();replaceBR();">Next</a>
+                     <a id="next-button-job-description" class="next-button-job-description  submit-button next-none" onclick="validateTextarea();">Next</a>
                   </div>
                </div>
                <div class="second-screening-question-div" style="padding-top: 20px; padding-bottom: 20px; border-bottom: 40px; margin-left: 30px; color: #D4D5D6;">
-                  <div class="second-screening-question mutual-font-size-18px font-size-18px-16px second-additional-feature">Additional Feature</div>
+                  <div class="second-screening-question mutual-font-size-18px font-size-18px-16px second-additional-feature">Additional Features</div>
                </div>
             </div>
          </div>
@@ -207,7 +208,7 @@
             <div class="job-description-third-page pd-ci-cursor font-size-18px-16px">Job Description</div>
          </div>
          <div class="third-additional-feature-main-div">
-            <div class="third-additional-feature font-size-18px-16px">Additional Feature</div>
+            <div class="third-additional-feature font-size-18px-16px">Additional Features</div>
             <input type="number" id="id_positionLeft" value="{{job_form.positionLeft.value}}" name="positionLeft" placeholder="Number of Positions" class="all-inputs contact-information-mutual-stats contact-information-margin-bottom positions-deadline-date-inputs"></input>
             <!-- <input type="text" placeholder="Deadline Date" class="all-inputs contact-information-mutual-stats input-deadline-date positions-deadline-date-inputs"></input> -->
             {{ formset.management_form }}
@@ -215,9 +216,10 @@
                name="deadline" onchange="checkForm();checkStartDate();" value='{{ job_form.deadline.value|date:"d/m/Y" }}' type="text" maxlength="10"
                placeholder="Deadline Date (dd/mm/yyyy)" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
                
-               <div class="form-group form-group-add-question">
+               <div class="form-group form-group-add-question" id="0">
+                  <input type="hidden" value="{{job1id}}" id="question1id" name="question1id">
 
-                     <textarea type="text" name="job_question-0-promp" placeholder="Question 1"maxlength="500" id="id_job_question-0-promp" class="textarea-question textarea-color form-control">{{job1promp}}</textarea>
+                     <textarea type="text" name="job_question-0-promp" placeholder="Screening Question 1"maxlength="500" id="id_job_question-0-promp" class="textarea-question textarea-color form-control">{{job1promp}}</textarea>
 
                      <div class="row">
                         <div class="answer-type-select">
@@ -243,7 +245,7 @@
                         </div>
                         <div class="ideal-answer-div">
                            <!-- <label for="ideal" class="width-labels mutual-color">Ideal answer:</label> -->
-                           <div class="idealAns0" id="idealAns0">
+                           <div class="idealAns0 idealAnsDiv" id="idealAns0">
                               {% if job1questionType == "Yes/No" %}
                               <select class="disable-inputs job_question-0-ideal_answer" id="id_job_question-0-ideal_answer" name="job_question-0-ideal_answer">
                                  {% if job1ideal == "Yes" %}
@@ -278,14 +280,22 @@
       
                   <!--                Question 2-->
                         {% if job2promp != "" %}
-                        <div class="form-group form-group-add-question margin-between-question-and-answer" style="display: block;">
+                        <div class="form-group form-group-add-question margin-between-question-and-answer" id="1" style="display: block;">
+                           <input type="hidden" value="{{job2id}}" id="question2id" name="question2id">
+                           
                            
                         {% else %}
                         {{job2promp}}
-                        <div class="form-group form-group-add-question margin-between-question-and-answer" style="display: none;">
+                        <div class="form-group form-group-add-question margin-between-question-and-answer" id="1" style="display: none;">
 
                         {% endif %}
-                          <textarea id="id_job_question-1-promp" name="job_question-1-promp"  class="textarea-question textarea-color form-control" placeholder="Question 2" cols="30" rows="4">{{job2promp}}</textarea>
+                        {% if job3promp == "" %}
+                        <img style="display: block;" class="job-screnning-question exit-button" src="{% static 'img/Applicant/close(2).png' %}" alt="Exit" onclick="removeFormGroup(this)">
+
+                        {% else %}
+                        <img style="display: none;" class="job-screnning-question exit-button" id="screenig-question-2" src="{% static 'img/Applicant/close(2).png' %}" alt="Exit" onclick="removeFormGroup(this)">
+                        {% endif %}  
+                        <textarea id="id_job_question-1-promp" name="job_question-1-promp"  class="textarea-question textarea-color form-control" placeholder="Screening Quesstion 2" cols="30" rows="4">{{job2promp}}</textarea>
       
                           <div class="row">
                             <div class="answer-type-select">
@@ -306,7 +316,7 @@
                               </select>
                             </div>
                             <div class="ideal-answer-div">
-                              <div class="idealAns2" id="idealAns1">
+                              <div class="idealAns2 idealAnsDiv" id="idealAns1">
                                  {% if job2questionType == "Yes/No" %}
                               <select class="disable-inputs job_question-1-ideal_answer" id="id_job_question-1-ideal_answer" name="job_question-1-ideal_answer">
                                     {% if job2ideal == "Yes" %}
@@ -346,11 +356,17 @@
       
                           <!--    Question 3-->
                         {% if job3promp != "" %}
-                        <div class="form-group form-group-add-question margin-between-question-and-answer" style="display: block;">
+                        <div class="form-group form-group-add-question margin-between-question-and-answer" id="2" style="display: block;">
+                           <img style="display: block;" class="job-screnning-question exit-button" src="{% static 'img/Applicant/close(2).png' %}" alt="Exit" onclick="ShowXtoSecondScreenigQuestion();removeFormGroup(this);">
+                           <input type="hidden" value="{{job3id}}" id="question3id" name="question3id">
+
                            {% else %}
-                           <div class="form-group form-group-add-question margin-between-question-and-answer" style="display: none;">
+                           <div class="form-group form-group-add-question margin-between-question-and-answer" id="2" style="display: none;">
+                              <img style="display: none;" class="job-screnning-question exit-button" src="{% static 'img/Applicant/close(2).png' %}" alt="Exit" onclick="removeFormGroup(this)">
+
                               {% endif %}
-                          <textarea id="id_job_question-2-promp" name="job_question-2-promp" class="textarea-question textarea-color form-control" placeholder="Question 3"cols="30" rows="4">{{job3promp}}</textarea>
+                              
+                          <textarea id="id_job_question-2-promp" name="job_question-2-promp" class="textarea-question textarea-color form-control" placeholder="Screening Question 3"cols="30" rows="4">{{job3promp}}</textarea>
       
       
                           <div class="row">
@@ -372,7 +388,7 @@
                           </select>
                             </div>
                             <div class="ideal-answer-div">
-                              <div class="idealAns3" id="idealAns2">
+                              <div class="idealAns3 idealAnsDiv" id="idealAns2">
                                  {% if job3questionType == "Yes/No" %}
                                  <select class="disable-inputs job_question-2-ideal_answer" id="id_job_question-2-ideal_answer" name="job_question-2-ideal_answer">
                                     {% if job3ideal == "Yes" %}
@@ -387,7 +403,7 @@
                                     {% endif %}
                                  </select>
                                  {% elif job3questionType == "Numeric" %}
-                                 <input type="number" value="{{job3ideal}}" name="job_question-2-ideal_answer" class="disable-inputs job_question-2-ideal_answer" id="id_job_question-2-ideal_answer">
+                                 <input type="number" value="{{job3ideal}}" placeholder="Write a number" name="job_question-2-ideal_answer" class="disable-inputs job_question-2-ideal_answer" id="id_job_question-2-ideal_answer">
                                  {% else %}
                                 <input value="Ideal Answer" class="disable-inputs" id="id_job_question-2-ideal_answer" name="job_question-2-ideal_answer" name="secondAnswer3" disabled>
                                 {% endif %}
@@ -398,10 +414,10 @@
                           </div>
                           <div class="must-have-qualification-div">
                            {% if job3qualify %}
-                           <label class="must-have-qualification-label screening-questions-mutual-color mutual-color" for="id_job_question-1-qualify">
+                           <label class="must-have-qualification-label screening-questions-mutual-color mutual-color" for="id_job_question-2-qualify">
                               <input class="must-have-qualification-input" checked   name="job_question-2-qualify" id="id_job_question-2-qualify" type="checkbox">Must-have qualification</label>
                               {% else %}
-                           <label class="must-have-qualification-label screening-questions-mutual-color mutual-color" for="id_job_question-1-qualify">
+                           <label class="must-have-qualification-label screening-questions-mutual-color mutual-color" for="id_job_question-2-qualify">
                            <input class="must-have-qualification-input" name="job_question-2-qualify" id="id_job_question-2-qualify" type="checkbox">Must-have qualification</label>
                            {% endif %}
                           </div>
@@ -419,20 +435,148 @@
             </div>
             <div class="back-and-next-buttons" style="width: 100%; display: flex; justify-content: space-between;">
                <a class=" back-button next-none additional-feature-back-button">Back</a>
-               <a type="submit" value="Submit" id="additional-feature-submit-button" class="next-button  submit-button next-none" >Submit</a>
+               <a type="submit" value="Submit" id="additional-feature-submit-button" class="next-button  submit-button next-none" onclick="replaceBR();" >Submit</a>
             </div>
          </div>
          </div>
       </div>
    </div>
 </form>
+
+
+<script>
+   function ShowXtoSecondScreenigQuestion(){
+      $("#screenig-question-2").css("display","block");
+   }
+   {% with formGroupIndex=lenQuestions %}
+
+   let formGroupIndex = {{ formGroupIndex }};
+
+   {% endwith %}
+
+   console.log("-------------")
+   console.log("-------------")
+   console.log(formGroupIndex);
+   console.log("-------------")
+   console.log("-------------")
+
+   const formGroups = document.querySelectorAll('.form-group-add-question');
+   const addQuestionButton = document.querySelector(".add-question-button");
+ 
+   function showNextFormGroup() {
+     // Hide exit button from all form groups
+     formGroups.forEach(formGroup => {
+       const exitButton = formGroup.querySelector('.exit-button');
+       if (exitButton) {
+         exitButton.style.display = 'none';
+       }
+     });
+ 
+     // Show the next form group
+     if (formGroupIndex < formGroups.length-1) {
+       formGroups[formGroupIndex].style.display = 'block';
+ 
+       // Show the exit button for the new form group
+       const exitButton = formGroups[formGroupIndex].querySelector('.exit-button');
+       if (exitButton) {
+         exitButton.style.display = 'inline-block';
+       }
+ 
+       formGroupIndex++;
+     }
+ 
+     // Update the "Add Question" button visibility
+     if (formGroupIndex === formGroups.length-1) {
+       addQuestionButton.style.display = "none";
+     } else {
+       addQuestionButton.style.display = "block";
+     }
+   }
+ 
+   function removeFormGroup(exitButton) {
+     const formGroup = exitButton.parentElement;
+ 
+     // Clear the content of the form group
+     clearFormGroupContent(formGroup);
+ 
+     formGroup.style.display = 'none';
+     formGroupIndex--;
+ 
+     // Show the exit button for the new last form group
+     const newLastFormGroupIndex = formGroupIndex - 1;
+     if (newLastFormGroupIndex >= 0) {
+       const newLastFormGroup = formGroups[newLastFormGroupIndex];
+       const newLastExitButton = newLastFormGroup.querySelector('.exit-button');
+       if (newLastExitButton) {
+         newLastExitButton.style.display = 'inline-block';
+       }
+     }
+ 
+     // Show the "Add Question" button when a form group is removed
+     addQuestionButton.style.display = "block";
+   }
+ 
+   function clearFormGroupContent(formGroup) {
+   // Clear the content of the form group
+   var c = formGroup.id
+   var a = c-1
+   currentTextAreaaId = "id_job_question-"+c+"-promp";
+   currentTextAreaaIdtest = "id_job_question-"+a+"-promp";
+   const currentTextAreaa = document.getElementById(currentTextAreaaId);
+   const currentTextAreaatest = document.getElementById(currentTextAreaaIdtest);
+
+   currentTextAreaa.value = "";
+   
+   const IdealAns = formGroup.querySelectorAll(".idealAnsDiv");
+   IdealAns.forEach(function(element) {
+     element.innerHTML = "";
+     // Insert the specified HTML code
+     secondAnswer = "secondAnswer"+formGroup.id;
+     element.innerHTML = '<input value="Ideal Answer" class="disable-inputs" name="'+secondAnswer+'" disabled>'
+ });
+   const selects = formGroup.querySelectorAll('select');
+   selects.forEach(select => {
+     select.value = "";
+     console.log(select);
+     // Store the initial selectedIndex
+   });
+
+ 
+ }
+ 
+ // Set initial index and value for each select and input
+ 
+ </script>
 <script>
    window.onload = function() {
     updateNextButton();
     checkInputs();
 };
 </script>
+<script>
+   function changeProgramValue() {
+    // Get the input elements
+    var programCostInput = document.getElementById('programCost');
+    var hiddenInput = document.getElementById('id_programCost');
 
+    // Remove commas and convert to integer
+    var inputValue = parseInt(programCostInput.value.replace(/,/g, ''), 10);
+
+    // Check if it's a valid number
+    if (!isNaN(inputValue)) {
+        // Format the number with commas
+        var formattedValue = inputValue.toLocaleString();
+        
+        // Update the input values
+        programCostInput.value = formattedValue;
+        hiddenInput.value = inputValue;
+    } else {
+        // Handle invalid input (non-numeric characters)
+        // You can add your own logic here, such as showing an error message
+        console.log("Invalid input");
+    }
+}
+</script>
 <script>
    function handleClick() {
         // Call the Post() function
@@ -509,7 +653,7 @@ function changeAnsType(id){
 
          }else if(selected == "Numeric") {
 
-          var y = $('<input type="number" name="'+setName+'" class="disable-inputs '+setName+'" id="'+setId+'">');
+          var y = $('<input type="number" placeholder="Write a number" name="'+setName+'" class="disable-inputs '+setName+'" id="'+setId+'">');
           $(getName).append(y);
 
 
@@ -519,26 +663,7 @@ function changeAnsType(id){
     
   </script>
 
-  <script>
-      let formGroupIndex = 0;
-      const formGroups = document.querySelectorAll('.form-group-add-question');
-      const add_question_button = document.querySelector(".add-question-button");
 
-function showNextFormGroup() {
-
-  if (formGroupIndex < formGroups.length) {
-    formGroups[formGroupIndex].style.display = 'block';
-    formGroupIndex++;
-  }
-  if (formGroupIndex === formGroups.length) {
-            add_question_button.style.display = "none";
-        }
-    else {
-        add_question_button.style.display = "block";
-    }
-}
-
-</script>
   
   <script>
     const question = [];
@@ -809,7 +934,6 @@ function showNextFormGroup() {
 "Ukraine",
 "United Arab Emirates",
 "United Kingdom",
-"United States",
 "USA",
 "Uruguay",
 "Uzbekistan",

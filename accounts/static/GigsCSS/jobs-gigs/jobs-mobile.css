@@ -177,9 +177,9 @@
     .job-left-row:last-child {
         margin-bottom: -10px;
     }
-    /* .last-child-job {
-        margin-bottom: -10px !important;
-    } */
+    .job-right-applied-button {
+        margin-top: 20px !important;
+    }
 
     .all-applicants-button {
         padding-top: 7.6px !important;

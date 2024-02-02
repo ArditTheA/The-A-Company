@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
 from django.views import View
-from datetime import date
+from datetime import date, timedelta
 from accounts.models import *
 from Applicant.models import *
 import json
@@ -161,10 +161,12 @@ class UsersReq(View):
                 us.save()
                             
                             
-            ResumeStatus = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Resume").values_list("status",flat=True).first()
-            newDic["ResumeStatus"]=ResumeStatus
+            
         else:
             pass
+    
+        ResumeStatus = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Resume").values_list("status",flat=True).first()
+        newDic["ResumeStatus"]=ResumeStatus
         newDic["passaportExists"] = passaportExists
         newDic["studentStatusExists"] = studentStatusExists
         newDic["certificateOfEnrolmentExists"] = certificateOfEnrolmentExists
@@ -194,12 +196,18 @@ def getApplicant(request,pk):
         for user_id in user_ids:
             user_documents_count = documents_users.objects.filter(
                     id_document__in=documents_list.objects.all(),
-                    user_id=user_id,status="A"
+                    user_id=user_id
                 ).count()
-            if user_documents_count > 1 and user_documents_count < 7:
-                usersOnDocForWorkPermit +=1
-            elif user_documents_count >= 7 and user_documents_count <= 9:
-                userWorkPermit += 1 
+            user_document = documents_users.objects.filter(
+                    id_document__in=documents_list.objects.all(),
+                    user_id=user_id,status = "A"
+                ).count()
+            if user_documents_count > 1 and user_documents_count <= 9:
+                if user_document >= 7 and user_document <= 9:
+                    userWorkPermit += 1
+                else:
+                    usersOnDocForWorkPermit +=1
+            
         q = "All"
         app = False
         return render(request,"Applicant-Doc/index.html",dict(users=users,q=q,app=app,jpk=jpk,NoApplicant=NoApplicant,ready_users_count=ready_users_count,usersOnDocForWorkPermit=usersOnDocForWorkPermit,userWorkPermit=userWorkPermit,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified,))
@@ -264,6 +272,26 @@ def getApplicantNoQualified(request,pk):
         return render(request,"Applicant-Doc/index.html",dict(users=users,q=q,app=app,jpk=jpk,NoApplicant=NoApplicant,ready_users_count=ready_users_count,usersOnDocForWorkPermit=usersOnDocForWorkPermit,userWorkPermit=userWorkPermit,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified,))
     
     return render(request,"Applicant-Doc/index.html",dict(NoApplicant=NoApplicant,ready_users_count=ready_users_count,usersOnDocForWorkPermit=usersOnDocForWorkPermit,userWorkPermit=userWorkPermit,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified,))
+    
+
+
+
+
+def redirectApplicant(request,pk):
+    users = Application.objects.filter(job_id=pk).filter(ApplicantStat="Qualified")
+    if users:
+        return redirect("qualified-applicant",pk=pk)
+    else:
+        return redirect("applicant",pk=pk)
+
+
+
+
+
+
+
+
+
 
 
 
@@ -385,22 +413,52 @@ def GetAllApplication(request):
     return render(request, "Administrator/Applicants/index.html",dict(app=Applicant,appNo=appCount,Ustat=StudentStat,allApp=allApp,ApplicantANS=ApplicantANS))
 
 from allauth.socialaccount.models import SocialAccount
-
+from datetime import datetime, timezone
 @login_required()
 def GetStats(request):
     allUser = CustomUser.objects.all().count()
     allJobs = Jobs.objects.all().count()
     allApp = Application.objects.all().count()
-    moApp = Application.objects.filter(apply_date__month=datetime.now().month).filter(apply_date__year=datetime.now().year).count()
-    dayApp = Application.objects.filter(apply_date__day=datetime.now().day).filter(apply_date__year=datetime.now().year).filter(apply_date__month=datetime.now().month).count()
-    weekApp = Application.objects.filter(apply_date__week=datetime.now().isocalendar()[1]).filter(apply_date__year=datetime.now().year).count()
+    # Query the database using the current year and month
+    current_year = datetime.now().year
+    current_month = datetime.now().month
+    current_day = datetime.now().day
+    current_weekday = datetime.now().weekday()  # 0 is Monday, 6 is Sunday
+    start_of_month = datetime(current_year, current_month, 1, tzinfo=timezone.utc)
+    end_of_month = datetime(current_year, current_month + 1, 1, tzinfo=timezone.utc) - timedelta(days=1)
+    # Calculate the start and end of the current day
+    start_of_day = datetime(current_year, current_month, current_day, 0, 0, 0, tzinfo=timezone.utc)
+    end_of_day = start_of_day + timedelta(days=1) - timedelta(microseconds=1)
+
+    weekApp = Application.objects.filter(ApplicantStatDate__week=datetime.now().isocalendar()[1]).filter(apply_date__year=datetime.now().year).count()
+
+
+
+
+
+    # Calculate the start and end of the current month
+
+
+    # Query the database for Application objects with apply_date in the current month
+    moApp = Application.objects.filter(apply_date__gte=start_of_month, apply_date__lte=end_of_month).count()
+
+
+    # Query the database for Application objects with apply_date in the current day
+    print(start_of_day,end_of_day)
+    dayApp = Application.objects.filter(apply_date__gte=start_of_day, apply_date__lte=end_of_day).count()
+    start_of_week = datetime(current_year, current_month, current_day, 0, 0, 0, tzinfo=timezone.utc) - timedelta(
+        days=current_weekday)
+    end_of_week = start_of_week + timedelta(days=7) - timedelta(microseconds=1)
+
+    # Query the database for Application objects with apply_date in the current week
+    weekApp = Application.objects.filter(apply_date__gte=start_of_week,apply_date__lte=end_of_week).count()
 
     user =  CustomUser.objects.all()
     count = SocialAccount.objects.all().count()
 
     return render(request,"Administrator/Applicants/stat.html",dict(count=count,allUser=allUser,allJobs=allJobs,allApp=allApp,moApp=moApp,dayApp=dayApp,weekApp=weekApp))
 
-from django.db.models import Count
+
 
 #  Matcch
 

@@ -154,16 +154,17 @@ from django.contrib.auth import get_user_model
 class NewRegisterForm(UserCreationForm):
     password1 = forms.CharField(
         label="Password",
-        widget=forms.PasswordInput(attrs={"class": "input-text custom-password-class", "placeholder": "Password"})
+        widget=forms.PasswordInput(attrs={"class": "input-text password-input font-fam", "placeholder": "Password"})
     )
 
     class Meta:
         model = get_user_model()
         fields = ('email', 'first_name', 'last_name')
         widgets = {
-            "first_name": forms.TextInput(attrs={"class": "input-text name-surname-width name-input", "placeholder": "First Name"}),
-            "last_name": forms.TextInput(attrs={"class": "input-text name-surname-width surname-input", "placeholder": "Last Name"}),
-            "email": forms.TextInput(attrs={"class": "input-text email-input", "placeholder": "Email"}),
+            "first_name": forms.TextInput(attrs={"class": "input-text name-surname-width name-input font-fam", "placeholder": "First Name"}),
+            "last_name": forms.TextInput(attrs={"class": "input-text name-surname-width surname-input font-fam", "placeholder": "Last Name"}),
+            "email": forms.TextInput(attrs={"class": "input-text email-input font-fam", "placeholder ": "Email"}),
+            
         }
     def __init__(self, *args, **kwargs):
         super(NewRegisterForm, self).__init__(*args, **kwargs)
@@ -218,8 +219,8 @@ class editjob(ModelForm):
         model = Jobs
         fields = "__all__"
         widgets = {
-            "job_title": forms.TextInput(attrs={'class': 'all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom'}),
-            "company": forms.TextInput(attrs={'class': 'all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input'}),
+            "job_title": forms.TextInput(attrs={'class': 'all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom',"placeholder":"Job Title"}),
+            "company": forms.TextInput(attrs={'class': 'all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input',"placeholder":"Company"}),
             
             "city_j":forms.TextInput(attrs={'class':"apply-last-name inputs-job-details apply-name-surname all-inputs mutual-input"}),
             "salary_per_hour": forms.NumberInput(attrs={'class': 'all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input'}),

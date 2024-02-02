@@ -4,7 +4,7 @@
 {% include 'header-links.html'%}
 <title>{% block title %}Worki - Applied Successfully{% endblock %}</title>
 
-    <link rel="icon" href="{% static 'img/123.png' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'img/WorkiLogoNew.jpeg' %}">
     <link rel="stylesheet" href="{% static 'css/reserve-post-a-job.css'%}">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,11 +23,14 @@
     <div class="contact-information-form under-successfully-applied-form">
        <div class="successfully-applied-content-div">
         <img class="applying-img" width="55" src="{% static 'img/checkbox2.svg' %}" alt="">
+        
+        {% if appDate %}
+        <div class="successfully-applied-div">You have previously applied for this job</div>
+        <div class="check-email-div">You applied on {{ appDate|date:"d/m/Y" }} at {{ appDate|time:"g:i A"|lower  }}</div>
+        {% else %}
         <div class="successfully-applied-div">You have successfully applied</div>
         <div class="check-email-div">Please check your email for updates on your application</div>
-           {% if appDate %}
-        <div class="successfully-applied-div">You have applied on: {{appDate}}</div>
-           {% endif %}
+        {% endif %}
         <div class="done-button-div" style="">
            <a href="{% url 'home' %}" id="" class="done-successful-applying" style="">Done</a>
         </div>

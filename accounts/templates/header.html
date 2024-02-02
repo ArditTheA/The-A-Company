@@ -4,7 +4,6 @@
 
 
     <header class="profileHeader" style="">
-        <img class="header-icon header-icon-radius header-icon-logo" src="{% static 'img/Header/Vector.svg' %}" title="Worki" style="cursor: pointer;" onclick="window.location.href='{% url 'home' %}'">
         <div class="jobs-and-profile" style="">
             <img class="header-icon header-icon-job" title="Jobs" src="{% static 'img/Header/job.jpg' %}" style="cursor: pointer;" onclick="window.location.href='{% url 'jobs' %}'">
 
@@ -24,7 +23,6 @@
 
     {% else %}
     <header class="profileHeader">
-        <img class="header-icon header-icon-radius header-icon-logo" src="{% static 'img/Header/Vector.svg' %}" title="Worki" style="cursor: pointer;" onclick="window.location.href='{% url 'home' %}'">
         <div class="jobs-and-profile">
             <img class="header-icon header-icon-job" title="Jobs" src="{% static 'img/Header/job.jpg' %}" style="cursor: pointer;" onclick="window.location.href='{% url 'jobs' %}'">
             <img src="{% static 'img/Header/profile.jpg' %}" class="header-icon header-icon-radius header-icon-profile"   title="Profile" alt="">

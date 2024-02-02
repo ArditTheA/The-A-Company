@@ -3,6 +3,9 @@ from .views import *
 from django.urls import path,include
 
 urlpatterns = [
+    path("Close/all/unapproved/jobs/",CloseUnapprovedJobs),
+    
+
     path("apply/Succesful", ApplySuc, name="appSuc"),
     path('make_application_ajax/', make_application_ajax, name='make_application_ajax'),
 

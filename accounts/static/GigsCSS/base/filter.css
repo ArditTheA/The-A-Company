@@ -286,9 +286,8 @@ body {
             margin-right: 10px;
             color: #65676B;
             outline: none;
-            /* width: 198px; */
-            /* width: 176px; */
-            padding-right: 5px;
+            width: 107px;
+            padding-right: 35px;
         }
         .all-aplicants-search {
             padding-right: 5px !important;
@@ -331,9 +330,7 @@ body {
             width: 10px;
             scrollbar-color: blue orange;
           } */
-          * {
-            scrollbar-width: thin;
-          }
+          
           
           /* Works on Chrome, Edge, and Safari */
           *::-webkit-scrollbar {

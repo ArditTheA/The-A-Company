@@ -1,5 +1,5 @@
 
- async function getUser(id) {
+ async function getUser(id,show=0) {
         document.getElementById("sectedUser").value = id;
         document.getElementById("user_id").value = id;
         
@@ -28,7 +28,22 @@
 
         });
 
-        let data =  await response.json();  
+        let data =  await response.json();
+       
+        if (show === 1) {
+            $(".application-update-form-content").css("display","none");
+            $(".documents-for-work-permit-form-content").css("display","block");
+            $(".your-work-permit-is-here-form-content").css("display", "none");
+        }else if (show === 2){
+            $(".application-update-form-content").css("display","none");
+            $(".documents-for-work-permit-form-content").css("display","none");
+            $(".your-work-permit-is-here-form-content").css("display", "block");
+        }
+        else{
+        $(".application-update-form-content").css("display","block");
+        $(".documents-for-work-permit-form-content").css("display","none");
+        $(".your-work-permit-is-here-form-content").css("display", "none");
+        }
          var list = document.getElementsByClassName("JSAdded");
          for(var i = list.length - 1; 0 <= i; i--){
          if(list[i] && list[i].parentElement)
@@ -54,8 +69,7 @@
         }
         
         beforeNewDiv1 = '<img class="imgs-three-dots-zip-img three-dots-document" style="" src="/static/img/Three-dots.svg">';
-        var downloadUrl = '/download_user_folder/' + id;
-var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style="" src="/static/img/zipDown2.svg" onclick="window.location.href=\'' + downloadUrl + '\'">';
+        var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style="" src="/static/img/zipDown2.svg" onclick="downloadDocForWorkPermitFolder('+data["email"]+')">';
         
         $('.parent-img-zip').empty();
         $('.parent-img-zip').append(beforeNewDiv1,beforeNewDiv2);
@@ -122,20 +136,20 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
             newDiv2 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
                     '<div class="docs-nike-fails" style="display: flex;">' ;
                     if (data["studentStatus"] === "A") {
-                        newDiv2 +='<div id="studentStatus" class="main-divs-color mutual-titles-color blue-text">Student status</div>'+'<img style="display: ;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">';
+                        newDiv2 +='<div id="studentStatus" class="main-divs-color mutual-titles-color blue-text">Student Status</div>'+'<img style="display: ;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">';
                         newDiv2 +=
                     '</div>' +
-                    '<img data-number="2" title="Download Student status" onclick="getDocument(this)" class="open-popup" src="/static/img/documents-second-icon.svg" alt="">' +
+                    '<img data-number="2" title="Download Student Status" onclick="getDocument(this)" class="open-popup" src="/static/img/documents-second-icon.svg" alt="">' +
                     '<div class="div_replacement" style="display: none; justify-content: space-between; ">' ;
                     newDiv2 +=
                     '<img class="img-done" src="/static/img/nike-img-done.svg" onclick="penndingFunction(2);">' +
                     '<img class="img-fail" src="/static/img/img-fail.svg" onclick="RefuseFunction(2);">';
                     }else if (data["studentStatus"] === "R") {
                        
-                        newDiv2 +='<div id="studentStatus" class="main-divs-color mutual-titles-color ">Student status</div>'+'<img style="display: ;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">';
+                        newDiv2 +='<div id="studentStatus" class="main-divs-color mutual-titles-color ">Student Status</div>'+'<img style="display: ;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">';
                         newDiv2 +=
                     '</div>' +
-                    '<img data-number="2" title="Upload Student status" class="open-popup" onclick="openPopUp(this)" src="/static/img/documents-icon.svg" alt="">' +
+                    '<img data-number="2" title="Upload Student Status" class="open-popup" onclick="openPopUp(this)" src="/static/img/documents-icon.svg" alt="">' +
                     '<div class="div_replacement" style="display: none; justify-content: space-between; ">' ;
                     newDiv2 +=
                     '<img class="img-done" src="/static/img/before-done-img.svg" onclick="ApproveFunction(2);">' +
@@ -143,10 +157,10 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
                     }
                     else{
                         newDiv2 +=
-                        '<div id="studentStatus" class="main-divs-color mutual-titles-color blue-text">Student status</div>';
+                        '<div id="studentStatus" class="main-divs-color mutual-titles-color blue-text">Student Status</div>';
                         newDiv2 +=
                         '</div>' +
-                        '<img data-number="2" title="Download Student status" onclick="getDocument(this)" class="open-popup" src="/static/img/documents-second-icon.svg" alt="">' +
+                        '<img data-number="2" title="Download Student Status" onclick="getDocument(this)" class="open-popup" src="/static/img/documents-second-icon.svg" alt="">' +
                         '<div class="div_replacement" style="display: none; justify-content: space-between; ">' ;
                         newDiv2 +=
                     '<img class="img-done" src="/static/img/before-done-img.svg" onclick="ApproveFunction(2);">' +
@@ -160,11 +174,11 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
         }else{
             newDiv2 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
                     '<div class="docs-nike-fails" style="display: flex;">' +
-                    '<div id="passport" class="main-divs-color mutual-titles-color">Student status</div>' +
+                    '<div id="passport" class="main-divs-color mutual-titles-color">Student Status</div>' +
                     '<img style="display: none;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
                     '<img style="display: none;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
                     '</div>' +
-                    '<img data-number="2" title="Upload Student status" class="open-popup" onclick="openPopUp(this)" src="/static/img/documents-icon.svg" alt="">' +
+                    '<img data-number="2" title="Upload Student Status" class="open-popup" onclick="openPopUp(this)" src="/static/img/documents-icon.svg" alt="">' +
                     '<div class="div_replacement" style="display: none; justify-content: space-between; ">' +
                     '<img class="img-done" src="/static/img/before-done-img.svg">' +
                     '<img class="img-fail" src="/static/img/img-fail.svg">' +
@@ -419,11 +433,11 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
             if(data["serviceContractStatus"] === "A"){
                 var newDiv7 = '<div class="main-div-docs" style="display: flex; justify-content: space-between;  ">' +
                 '<div class="docs-nike-fails" style="display: flex;">' +
-                '<div class="main-divs-color mutual-titles-color blue-text">Service contract</div>' +
+                '<div class="main-divs-color mutual-titles-color blue-text">Service Contract</div>' +
                 '<img style="display: ;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
                 '<img style="display: none;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
                 '</div>' +  
-                '<img data-number="7" title="Download Service contract" onclick="getDocument(this)" class="open-popup" src="/static/img/documents-second-icon.svg" alt="">' +
+                '<img data-number="7" title="Download Service Contract" onclick="getDocument(this)" class="open-popup" src="/static/img/documents-second-icon.svg" alt="">' +
                 '<div class="div_replacement" style="display: none; justify-content: space-between; ">' +
                 '<img class="img-done" src="/static/img/nike-img-done.svg" onclick="penndingFunction(7);">' +
                 '<img class="img-fail" src="/static/img/img-fail.svg" onclick="RefuseFunction(7);">'
@@ -435,11 +449,11 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
             
                 var newDiv7 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; ">' +
                 '<div class="docs-nike-fails" style="display: flex;">' +
-                '<div class="main-divs-color mutual-titles-color ">Service contract</div>' +
+                '<div class="main-divs-color mutual-titles-color ">Service Contract</div>' +
                 '<img style="display: none;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
                 '<img style="display: ;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
                 '</div>' +  
-                '<img data-number="7" title="Upload Service contract"  class="open-popup" onclick="openPopUp(this)" src="/static/img/documents-icon.svg" alt="">' +
+                '<img data-number="7" title="Upload Service Contract"  class="open-popup" onclick="openPopUp(this)" src="/static/img/documents-icon.svg" alt="">' +
                 '<div class="div_replacement" style="display: none; justify-content: space-between; ">' +
                 '<img class="img-done" src="/static/img/before-done-img.svg" onclick="ApproveFunction(7);">' +
                 '<img class="img-fail" src="/static/img/fail-red.svg" onclick="penndingFunction(7);">'
@@ -450,11 +464,11 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
             }else{
                 var newDiv7 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; ">' +
                 '<div class="docs-nike-fails" style="display: flex;">' +
-                '<div class="main-divs-color mutual-titles-color blue-text">Service contract</div>' +
+                '<div class="main-divs-color mutual-titles-color blue-text">Service Contract</div>' +
                 '<img style="display: none;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
                 '<img style="display: none;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
                 '</div>' +  
-                '<img data-number="7" title="Download Service contract" onclick="getDocument(this)" class="open-popup" src="/static/img/documents-second-icon.svg" alt="">' +
+                '<img data-number="7" title="Download Service Contract" onclick="getDocument(this)" class="open-popup" src="/static/img/documents-second-icon.svg" alt="">' +
                 '<div class="div_replacement" style="display: none; justify-content: space-between; ">' +
                 '<img class="img-done" src="/static/img/before-done-img.svg" onclick="ApproveFunction(7);">' +
                 '<img class="img-fail" src="/static/img/img-fail.svg" onclick="RefuseFunction(7);">'
@@ -468,11 +482,11 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
             else {
                 var newDiv7 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; ">' +
                 '<div class="docs-nike-fails" style="display: flex;">' +
-                '<div class="main-divs-color mutual-titles-color">Service contract</div>' +
+                '<div class="main-divs-color mutual-titles-color">Service Contract</div>' +
                 '<img style="display: none;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
                 '<img style="display: none;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
                 '</div>' +   
-                '<img data-number="7" title="Upload Service contract"  class="open-popup" onclick="openPopUp(this)" src="/static/img/documents-icon.svg" alt="">' +
+                '<img data-number="7" title="Upload Service Contract"  class="open-popup" onclick="openPopUp(this)" src="/static/img/documents-icon.svg" alt="">' +
                 '<div class="div_replacement" style="display: none; justify-content: space-between; ">' +
                 '<img class="img-done" src="/static/img/before-done-img.svg">' +
                 '<img class="img-fail" src="/static/img/img-fail.svg">'
@@ -616,11 +630,13 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
             '</div>'
             '</div>'
         }
-        beforeNewDiv2 = '<img class="imgs-three-dots-zip-img three-dots-document" style="" src="/static/img/Three-dots.svg">';
-
+        var beforeNewDiv3 = '<img class="imgs-three-dots-zip-img three-dots-document" style="" src="/static/img/Three-dots.svg">';
+        var downloadUrl = '/download_user_folder/' + id;
+        var beforeNewDiv4 = '<img class="imgs-three-dots-zip-img img-zip-download" style="" src="/static/img/zipDown2.svg" onclick="downloadWorkPermitFolder('+"'"+data["email"]+"'"+')">';
+        
         $('#recdocumentList').empty();
         $("#parent-img-zip2").empty();
-        $("#parent-img-zip2").append(beforeNewDiv2)
+        $("#parent-img-zip2").append(beforeNewDiv3,beforeNewDiv4)
         $('#recdocumentList').append(newDiv8,newDiv9);
 
 

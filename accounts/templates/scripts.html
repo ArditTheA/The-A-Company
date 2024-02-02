@@ -7,30 +7,18 @@
 
 <script>
 function OpenJobs() {
-  window.location.href = "{% url 'postedJobOpen' %}";
+  window.location.href = "{% url 'recruiter-open-jobs' %}";
 }
 function ClosedJobs() {
-  window.location.href = "{% url 'postedJobClosed' %}";
+  window.location.href = "{% url 'recruiter-close-jobs' %}";
 }
 function MainJobs(){
-  window.location.href = "{% url 'postedJob' %}";
+  window.location.href = "{% url 'recuiter-all-jobs' %}";
 
 }
 </script>
 
-<script>
-    function disableButton(button) {
-        // Disable the button to prevent multiple clicks
-        button.disabled = true;
-        // Hide the button text
-        button.value = 'Saving...';
-        button.style.backgroundColor = "#D4D5D6"
-        button.style.borderColor = '#D4D5D6';
-        // Submit the form after a short delay to allow the button state to update
-        
-        // Adjust the delay as needed (3 seconds in this example)
-    }
-</script>
+
 
 <!--header script -->
 <script src="{% static 'js/DropDown/profileDropDown.js' %}" ></script>
@@ -51,6 +39,7 @@ function MainJobs(){
 
 <script src="{% static 'js/Ajax/right-jobs-ajax.js'%}"></script>
 <script src="{% static 'js/Ajax/myjobs-right-ajax.js'%}"></script>
+<script src="{% static 'js/Ajax/recuiter-right-ajax.js'%}"></script>
 <script src="{% static 'js/Applicant/applicant-documents.js'%}"></script>
 
 
@@ -101,11 +90,14 @@ function MainJobs(){
 </script>
 
 <script>
-    $(".job-left-row a").click(function (e) {
-        // Do something
-        e.stopPropagation();
-    });
+    const threeDotsMediaQuery = window.matchMedia('(max-width: 480px)');
 
+if (threeDotsMediaQuery.matches) {
+$(".job-left-row a").click(function (e) {
+    // Do something
+    e.stopPropagation();
+});
+}
 </script>
 
 
@@ -116,7 +108,7 @@ function MainJobs(){
  <script src="{% static 'js/edit-button.js'%}"></script>
 
     <script src="{% static 'js/change-profile.js'%}"></script>
- <script src="{% static 'js/edit-button.js'%}"></script>
+ <!-- <script src="{% static 'js/edit-button.js'%}"></script> -->
 
     <script src="{% static 'js/add-button.js'%}"></script>
 
@@ -383,7 +375,6 @@ function MainJobs(){
 "Ukraine",
 "United Arab Emirates",
 "United Kingdom",
-"United States",
 "USA",
 "Uruguay",
 "Uzbekistan",
@@ -473,7 +464,8 @@ window.addEventListener("load", populateCountries);
 
 
 <script>
-    function searchUsers() {
+
+function searchUsers() {
     var input = document.getElementById("userSearchInput");
     var filter = input.value.toLowerCase();
 
@@ -485,7 +477,6 @@ window.addEventListener("load", populateCountries);
         if (userName.includes(filter) || userEmail.includes(filter) || userdetails.includes(filter)) {
             $(this).css("display", "flex");
             $(".job-left-row").css("marginTop", "20px");
-            // $(".job-left-row:visible:first").eq(0).click();
             if (filter !== "") {
                 $(".job-left-row:visible:first").css("marginTop", "0px");
 
@@ -505,13 +496,14 @@ window.addEventListener("load", populateCountries);
             $(".job-left").css("marginTop", "20px");
 
             if (filter !== "") {
-                $(".job-left-row:visible:first").css("marginTop", "10px");
-                $(".job-left").css("marginTop", "10px");
+                $(".job-left-row:visible:first").css("marginTop", "0px");
+                $(".job-left-row:last-child").css("marginBottom", "-10px");
+                
                 // Check if screen width is greater than 480px
             }
             else if (filter === "") {
                 $(".job-left-row:visible:first").css("marginTop", "0px");
-                $(".job-left").css("marginTop", "20px");
+                $(".job-left-row:last-child").css("marginBottom", "-10px");
             }
         }
         else {
@@ -529,4 +521,24 @@ function isMobileDevice() {
     return window.matchMedia("(max-width: 480px)").matches;
     
 }
-        </script>
+\</script>
+
+
+
+
+<script>
+    function MyJobsQualified(){
+    window.location="{% url 'my-jobs-qualified'  %}";
+  }
+  function MyJobsNoQualified(){
+    window.location="{% url 'my-jobs-not-qualified'  %}";
+  }
+  function MyJobsAll(){
+    window.location="{% url 'my-jobs-all'  %}";
+  }
+  </script>
+
+
+
+
+

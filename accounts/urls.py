@@ -62,10 +62,18 @@ urlpatterns = [
 
     path("post-job", add_JobScreeningQuestion, name="addJob"),
     path("edit-job/<int:pk>", editJob2, name="editJob"),
-    path("recruiter", AjaxHandler.as_view(), name="postedJob"),
-    path("recruiter/open", RecruiterOpenJobs.as_view(), name="postedJobOpen"),
-    path("recruiter/closed", RecruiterClosedJobs.as_view(), name="postedJobClosed"),
-    path("my-jobs", AppliedJobs.as_view(), name="appliedJob"),
+    path("recruiter/redirect", RecruiterJobsRedirect, name="postedJob"),
+    path("recruiter/",recruiterAllJobs,name="recuiter-all-jobs"),
+    path("recruiter/open", recruiterOpenJobs, name="recruiter-open-jobs"),
+    path("recruiter/closed", recruiterCloseJobs, name="recruiter-close-jobs"),
+    path("recruiter/job-details",recruiterJobDetails.as_view()),
+
+    path("myjobs/",MyJobsRedirect,name="appliedJob"),
+    # My jobs
+    path("my-jobs/get-job-details/",getMyJobsDetails.as_view()),
+    path("my-jobs", myJobsAll, name="my-jobs-all"),
+    path("my-jobs/qualified", myJobsQualified, name="my-jobs-qualified"),
+    path("my-jobs/not-qualified", myJobsNotQualified, name="my-jobs-not-qualified"),
 
     # MainJobs
     path("apply/<int:pk>", applyForJobSQ, name="apply"),

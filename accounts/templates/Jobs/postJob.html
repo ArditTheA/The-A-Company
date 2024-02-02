@@ -102,13 +102,14 @@
                         <option value="Trainee">Trainee</option>
                         <option value="Temporary Employment">Temporary Employment</option>
                      </select>
-                     <input type="number" name="programCost" id="id_programCost" placeholder="Program cost" class="all-inputs inputs-job-details contact-information-margin-bottom contact-information-mutual-stats mutual-input"></input>
-                     <div class="div-of-changed-picture">
+                     <input type="hidden" name="programCost" id="id_programCost" >
+                     <input type="text"   id="programCost" oninput="changeProgramValue()" placeholder="Program cost" class="all-inputs inputs-job-details contact-information-margin-bottom contact-information-mutual-stats mutual-input"></input>
+                                          <div class="div-of-changed-picture">
                         <label for="id_logo">
                            <div class="input-form">
                               <div style="cursor: pointer; display: flex; align-items: center;" class="upload-file-div logo-input-main-div">
                                  <div class="logo-input-div">Logo</div>
-                                 <img class="icon" src="{% static 'img/gallery-upload.svg'%}" alt="">
+                                 <img class="icon" src="{% static 'img/UploadLogoWhite.svg'%}" alt="">
                               </div>
                            </div>
                         </label>
@@ -117,7 +118,7 @@
                      <!-- <input placeholder="Student Status" class="all-inputs contact-information-mutual-stats mutual-input" style="border: 1px solid #D4D5D6; width: 434px; padding: 10px 0px 10px 10px; border-radius: 40px;"></input> -->
                   </div>
                   <div class="back-and-next-buttons" style="width: 100%; display: flex; justify-content: space-between;">
-                     <a class=" back-button next-none contact-information-back-button">Back</a>
+                     <a  href="{% url 'postedJob' %}" class=" back-button next-none contact-information-back-button">Back</a>
                      <a id="first-next-button-job-details" class="first-next-button  submit-button next-none">Next</a>
                   </div>
                </div>
@@ -153,7 +154,7 @@
          </div>
       </div>
    </div>
-   <div class="additional-feature-form reserve-form" style="display: none;">
+   <div class="additional-feature-form reserve-form" style="display: block;">
       <div class="program-duration-form additional-feature-form-main-div">
          <div class="program-duration-main-div third-job-details-div">
             <div class="program-duration-div third-job-details pd-ci-cursor font-size-18px-16px third-page-job-details-description">Job Details</div>
@@ -169,9 +170,9 @@
                name="deadline" onchange="checkForm();checkStartDate();" value="" type="tel" maxlength="10"
                placeholder="Deadline Date (dd/mm/yyyy)" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
 
-            <div class="form-group form-group-add-question">
+            <div class="form-group form-group-add-question" id="0">
                {{ job_question_formset.non_form_errors }}
-               <textarea type="text" name="job_question-0-promp" placeholder="Question 1"maxlength="500" id="id_job_question-0-promp" class="textarea-question textarea-color form-control"></textarea>
+               <textarea type="text" name="job_question-0-promp" placeholder="Screnning Question 1"maxlength="500" id="id_job_question-0-promp" class="textarea-question textarea-color form-control"></textarea>
 
                <div class="row">
                   <div class="answer-type-select">
@@ -188,7 +189,7 @@
                   </div>
                   <div class="ideal-answer-div">
                      <!-- <label for="ideal" class="width-labels mutual-color">Ideal answer:</label> -->
-                     <div class="idealAns0" id="idealAns0">
+                     <div class="idealAns0 idealAnsDiv" id="idealAns0">
                         <input value="Ideal Answer" class="disable-inputs" name="secondAnswer0" disabled>
                      </div>
                   </div>
@@ -201,8 +202,10 @@
             </div>
 
             <!--                Question 2-->
-                  <div class="form-group form-group-add-question margin-between-question-and-answer" style="display: none;">
-                    <textarea id="id_job_question-1-promp" name="job_question-1-promp"  class="textarea-question textarea-color form-control" placeholder="Question 2" cols="30" rows="4"></textarea>
+                  <div class="form-group form-group-add-question margin-between-question-and-answer" style="display: none;" id="1">
+                     <img style="display: none;" class="job-screnning-question exit-button" src="{% static 'img/Applicant/close(2).png' %}" alt="Exit" onclick="removeFormGroup(this)">
+
+                    <textarea id="id_job_question-1-promp" name="job_question-1-promp"  class="textarea-question textarea-color form-control" placeholder="Screnning Question 2" cols="30" rows="4"></textarea>
 
                     <div class="row">
                       <div class="answer-type-select">
@@ -215,7 +218,7 @@
                         </select>
                       </div>
                       <div class="ideal-answer-div">
-                        <div class="idealAns2" id="idealAns1">
+                        <div class="idealAns2 idealAnsDiv" id="idealAns1">
                           <input value="Ideal Answer" class="disable-inputs" id="id_job_question-1-ideal_answer" name="job_question-1-ideal_answer" disabled>
 
                         </div>
@@ -236,8 +239,10 @@
 
 
                     <!--    Question 3-->
-                  <div class="form-group form-group-add-question margin-between-question-and-answer" style="display: none;">
-                    <textarea id="id_job_question-2-promp" name="job_question-2-promp" class="textarea-question textarea-color form-control" placeholder="Question 3"cols="30" rows="4"></textarea>
+                  <div class="form-group form-group-add-question margin-between-question-and-answer" style="display: none;" id="2">
+                     <img style="display: none;" class="job-screnning-question exit-button" src="{% static 'img/Applicant/close(2).png' %}" alt="Exit" onclick="removeFormGroup(this)">
+
+                    <textarea id="id_job_question-2-promp" name="job_question-2-promp" class="textarea-question textarea-color form-control" placeholder="Screnning Question 3"cols="30" rows="4"></textarea>
 
 
                     <div class="row">
@@ -250,7 +255,7 @@
                     </select>
                       </div>
                       <div class="ideal-answer-div">
-                        <div class="idealAns3" id="idealAns2">
+                        <div class="idealAns3 idealAnsDiv" id="idealAns2">
                           <input value="Ideal Answer" class="disable-inputs" id="id_job_question-2-ideal_answer" name="job_question-2-ideal_answer" name="secondAnswer3" disabled>
 
                         </div>
@@ -278,7 +283,30 @@
       </div>
    </div>
 </form>
+<script>
+   function changeProgramValue() {
+    // Get the input elements
+    var programCostInput = document.getElementById('programCost');
+    var hiddenInput = document.getElementById('id_programCost');
 
+    // Remove commas and convert to integer
+    var inputValue = parseInt(programCostInput.value.replace(/,/g, ''), 10);
+
+    // Check if it's a valid number
+    if (!isNaN(inputValue)) {
+        // Format the number with commas
+        var formattedValue = inputValue.toLocaleString();
+        
+        // Update the input values
+        programCostInput.value = formattedValue;
+        hiddenInput.value = inputValue;
+    } else {
+        // Handle invalid input (non-numeric characters)
+        // You can add your own logic here, such as showing an error message
+        console.log("Invalid input");
+    }
+}
+</script>
 <script>
    function handleClick() {
         // Call the Post() function
@@ -355,7 +383,7 @@
 
          }else if(selected == "Numeric") {
 
-          var y = $('<input type="number" name="'+setName+'" class="disable-inputs '+setName+'" id="'+setId+'">');
+          var y = $('<input type="number" placeholder="Write a Number" name="'+setName+'" class="disable-inputs '+setName+'" id="'+setId+'">');
           $(getName).append(y);
 
 
@@ -365,26 +393,89 @@
     
   </script>
 
-  <script>
-      let formGroupIndex = 0;
-      const formGroups = document.querySelectorAll('.form-group-add-question');
-      const add_question_button = document.querySelector(".add-question-button");
-
-function showNextFormGroup() {
-
-  if (formGroupIndex < formGroups.length) {
-    formGroups[formGroupIndex].style.display = 'block';
-    formGroupIndex++;
-  }
-  if (formGroupIndex === formGroups.length) {
-            add_question_button.style.display = "none";
-        }
-    else {
-        add_question_button.style.display = "block";
-    }
-}
-
-</script>
+<script>
+   let formGroupIndex = 1;
+   const formGroups = document.querySelectorAll('.form-group-add-question');
+   const addQuestionButton = document.querySelector(".add-question-button");
+ 
+   function showNextFormGroup() {
+     // Hide exit button from all form groups
+     formGroups.forEach(formGroup => {
+       const exitButton = formGroup.querySelector('.exit-button');
+       if (exitButton) {
+         exitButton.style.display = 'none';
+       }
+     });
+ 
+     // Show the next form group
+     if (formGroupIndex < formGroups.length) {
+       formGroups[formGroupIndex].style.display = 'block';
+ 
+       // Show the exit button for the new form group
+       const exitButton = formGroups[formGroupIndex].querySelector('.exit-button');
+       if (exitButton) {
+         exitButton.style.display = 'inline-block';
+       }
+ 
+       formGroupIndex++;
+     }
+ 
+     // Update the "Add Question" button visibility
+     if (formGroupIndex === formGroups.length-1) {
+       addQuestionButton.style.display = "none";
+     } else {
+       addQuestionButton.style.display = "block";
+     }
+   }
+ 
+   function removeFormGroup(exitButton) {
+     const formGroup = exitButton.parentElement;
+ 
+     // Clear the content of the form group
+     clearFormGroupContent(formGroup);
+ 
+     formGroup.style.display = 'none';
+     formGroupIndex--;
+ 
+     // Show the exit button for the new last form group
+     const newLastFormGroupIndex = formGroupIndex - 1;
+     if (newLastFormGroupIndex >= 0) {
+       const newLastFormGroup = formGroups[newLastFormGroupIndex];
+       const newLastExitButton = newLastFormGroup.querySelector('.exit-button');
+       if (newLastExitButton) {
+         newLastExitButton.style.display = 'inline-block';
+       }
+     }
+ 
+     // Show the "Add Question" button when a form group is removed
+     addQuestionButton.style.display = "block";
+   }
+ 
+   function clearFormGroupContent(formGroup) {
+   // Clear the content of the form group
+   const textareas = formGroup.querySelectorAll('textarea');
+   textareas.forEach(textarea => {
+     textarea.value = null;
+   });
+   const IdealAns = formGroup.querySelectorAll(".idealAnsDiv");
+   IdealAns.forEach(function(element) {
+     element.innerHTML = "";
+     // Insert the specified HTML code
+     secondAnswer = "secondAnswer"+formGroup.id;
+     element.innerHTML = '<input value="Ideal Answer" class="disable-inputs" name="'+secondAnswer+'" disabled>'
+ });
+   const selects = formGroup.querySelectorAll('select');
+   selects.forEach(select => {
+     select.value = "";
+     console.log(select);
+     // Store the initial selectedIndex
+   });
+ 
+ }
+ 
+ // Set initial index and value for each select and input
+ 
+ </script>
   
   <script>
     const question = [];
@@ -655,7 +746,7 @@ function showNextFormGroup() {
   "Ukraine",
   "United Arab Emirates",
   "United Kingdom",
-  "United States",
+  "USA",
   "Uruguay",
   "Uzbekistan",
   "Vanuatu",

@@ -14,25 +14,27 @@
 </style>
 <input type="hidden" value="{{jpk}}" id="job-id-hidden">
 {% include 'Match/Filters/filters.html'%}
-
+    {% if users %}
     <div class="jobs-main-div">
         {% include 'Applicant-Doc/left-applicant.html'%}
         {% include 'Applicant-Doc/right-applicant.html'%}
         
     </div>
-       
+    {% else %}
+
+    {% endif %}
         <div class="bg-add-and-edit" style="display: none;">
         <div class="popup add-experience under-container-mutual-mutual-stats">
             <div class="edit-profile-title mutual-titles-pop-ups-stats"><span class="name-document">Document</span></div>
             <form id="upload-form-recruiter" enctype="multipart/form-data" class="sign-up-form forms-inputs-placeholder">
                 {% csrf_token %}
             
-                <input type="hidden" name="document_id" id="document_id" value="">
-                <input type="hidden" name="user_id" id="user_id">
+                <input type="text" name="document_id" id="document_id" value="">
+                <input type="text" name="user_id" id="user_id">
                 <div class="drop-area" id="drop-area">
                     <img src="{% static 'img/upload docs.svg' %}" alt="">
                     <div class="file-upload">Select a file to upload</div>
-                    <input type="file"  name="document" id="id_document"  accept=".pdf, .jpg, .jpeg, .png, .svg"  style="display: none;">
+                    <input type="file"  name="document" id="id_document"  accept=".pdf, .jpg, .jpeg, .png, .svg"  style="display: block;">
 
                 </div>
                 <div class="save-button save-button-edit-profile-photo">
@@ -55,7 +57,31 @@
     function AllApplicant(){
         window.location="{% url 'applicant' jpk %}";
     }
+    
 </script>
+<script>
+    function returnText(){
+      $('.file-upload').text('Select a file to upload');
+    }
+    function downloadDocForWorkPermitFolder(email) {
+              var url = "/download/doc-for-work-permit-folder/" + email + "/";
+              
+              // Create a hidden iframe to trigger the download
+              var iframe = document.createElement('iframe');
+              iframe.style.display = 'none';
+              iframe.src = url;
+              document.body.appendChild(iframe);
+          }
+    function downloadWorkPermitFolder(email) {
+              var url = "/download/work-permit-folder/" + email + "/";
+              
+              // Create a hidden iframe to trigger the download
+              var iframe = document.createElement('iframe');
+              iframe.style.display = 'none';
+              iframe.src = url;
+              document.body.appendChild(iframe);
+          }
+  </script>
 <script>
 function ChangeDiv() {
     console.log("test");
@@ -82,7 +108,12 @@ function ChangeDiv() {
             },
             success: function(response) {
                    
-                    getUser(user_id);
+                var secondArgumentValue = 1;
+                if ($('#document_id').val() == 8 || $('#document_id').val() == 9) {
+                    // If mydocument_id is 4 or 5, set the second argument to 2
+                    secondArgumentValue = 2;
+                }
+                    getUser(user_id,secondArgumentValue);
                     // Rest of your success handling code
                 },
                 error: function(xhr, textStatus, errorThrown) {
@@ -105,8 +136,12 @@ function ChangeDiv() {
 
             },
             success: function(response) {
-                   
-                    getUser(user_id);
+                var secondArgumentValue = 1;
+                if (document_id == 8 || document_id == 9) {
+                    // If mydocument_id is 4 or 5, set the second argument to 2
+                    secondArgumentValue = 2;
+                }
+                    getUser(user_id,secondArgumentValue);
                     // Rest of your success handling code
                 },
                 error: function(xhr, textStatus, errorThrown) {
@@ -129,8 +164,12 @@ function ChangeDiv() {
 
             },
             success: function(response) {
-                   
-                    getUser(user_id);
+                var secondArgumentValue = 1;
+                if ($('#document_id').val() == 8 || $('#document_id').val() == 9) {
+                    // If mydocument_id is 4 or 5, set the second argument to 2
+                    secondArgumentValue = 2;
+                }
+                getUser(user_id,secondArgumentValue);
                     // Rest of your success handling code
                 },
                 error: function(xhr, textStatus, errorThrown) {
@@ -218,9 +257,18 @@ function ChangeDiv() {
                 data: formData,
                 processData: false,
                 contentType: false,
+                
                 success: function(response) {
                     $('.bg-add-and-edit, .popup').css("display", "none");
-                    getUser(userid);
+                    var mydocumentIdValue = $('#document_id').val();
+
+                    // Conditionally set the second argument of getMyJobs
+                    var secondArgumentValue = 1;
+                    if (mydocumentIdValue == 8 || mydocumentIdValue == 9) {
+                        // If mydocument_id is 4 or 5, set the second argument to 2
+                        secondArgumentValue = 2;
+                    }
+                    getUser(userid,secondArgumentValue);
                     // Rest of your success handling code
                 },
                 error: function(xhr, textStatus, errorThrown) {

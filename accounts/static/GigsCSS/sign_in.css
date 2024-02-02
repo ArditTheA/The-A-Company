@@ -54,7 +54,8 @@ body {
 
 .input-text {
     border-radius: 30px;
-    padding: 10px 0px 10px 10px;
+    height: 40px;
+    padding-left: 10px;
     font-size: 16px;
     border: 0.5px solid #D4D5D6;
     background-color: white;
@@ -132,13 +133,15 @@ body {
 }
 
 .sign-in-google {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: #9E9E9E;
     text-decoration: none;
 }
 
 .sign-in-submit-input {
-    padding: 10px 0px;
+    height: 40px;
     border-radius: 20px;
     background-color: #1877F2;
     color: white;
@@ -149,8 +152,8 @@ body {
     border: 0.5px solid #1877F2;
     font-weight: normal;
 }
-input{
-    font-weight: normal;
+input {
+    font-weight: normal !important;
 }
 
 .sign-up-submit-input:focus {
@@ -316,7 +319,7 @@ input{
     }
     .name-input, .surname-input, .email-input, .password-input, .sign-in-submit-input, .sign-in-google {
         /* font-size: 16px; */
-        padding: 8px 0px 8px 8px;
+        height: 36px;
     }
 
     .name-input {

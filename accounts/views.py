@@ -624,7 +624,7 @@ class AjaxHandler(View):
         checkMainJobs = False
         return render(request, "Recruiter/index.html", dict(job=job, check=check,jpk=1,checkMainJobs=checkMainJobs))
 
-class RecruiterOpenJobs(View):
+class RecruiterOpenJobs2(View):
     def get(self,request):
         hasApply = False
         if request.user.is_staff:

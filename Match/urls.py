@@ -3,6 +3,7 @@ from .views import *
 from django.urls import path,include
 from .Users_Views import *
 urlpatterns = [
+    path("match/redirect/jobId/<int:pk>", redirectApplicant, name="redirectApp"),
     path("match/jobId/<int:pk>", getApplicant, name="applicant"),
     path("match/getUserData",UsersReq.as_view()),
     path("match/jobId/DocumentsForWorkPermit/<int:pk>", getDocumentForWorkPermitUser,name="documentForWorkPermit"),

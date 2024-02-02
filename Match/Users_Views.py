@@ -14,17 +14,22 @@ def getDocumentForWorkPermitUser(request,pk):
     for user_id in user_ids:
         user_documents_count = documents_users.objects.filter(
                 id_document__in=documents_list.objects.all(),
-                user_id=user_id,status="A"
+                user_id=user_id
             ).count()
 
         all_documents_count = documents_list.objects.count()
-            
-        if user_documents_count > 1 and user_documents_count < 7:
-            usersOnDocForWorkPermit +=1
-            userList.append(user_id)
+        user_document = documents_users.objects.filter(
+                    id_document__in=documents_list.objects.all(),
+                    user_id=user_id,status = "A"
+                ).count()
+        if user_documents_count > 1 and user_documents_count <= 9:
+            if user_document >= 7 and user_document <= 9:
+                userWorkPermit +=1
+            else:
+                usersOnDocForWorkPermit +=1
+                userList.append(user_id)
                 
-        elif user_documents_count > 7 and user_documents_count <=9:
-            userWorkPermit +=1
+            
         
     users = Application.objects.filter(user_id__in=userList,job_id=pk)
     uid =Application.objects.filter(job_id=jpk).values_list("user_id", flat=True).first()

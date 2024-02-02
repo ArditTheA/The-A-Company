@@ -14,6 +14,18 @@ import time
 
 
 
+
+def CloseUnapprovedJobs(request):
+    unapproved_jobs = Jobs.objects.filter(approved=False)
+
+    # Update the status of all unapproved jobs to 'close'
+    unapproved_jobs.update(status='close')
+
+    # Optionally, you can return a response indicating success
+    return HttpResponse("All unapproved jobs have been closed.")
+
+
+
 def GSheets(dataa,user,job,AnsList):
     import gspread
     from oauth2client.service_account import ServiceAccountCredentials
@@ -463,7 +475,8 @@ def editJob2(request, pk):
     job = get_object_or_404(Jobs, pk=pk)
     job_questions = JobQuestion.objects.filter(job_id=pk)
     des = job.description
-    des = des.replace('<br />', '\n')
+    des = des.replace('<br>', '\n').replace('<br/>', '\n').replace('< br>', '\n').replace('< br/>', '\n').replace("<br />",'\n')
+    print(des)
     question = JobQuestion.objects.filter(job_id=pk).order_by("id")
     
     no = 3-len(question)
@@ -473,14 +486,18 @@ def editJob2(request, pk):
     job1questionType = question[0].question_type
     job1ideal = question[0].ideal_answer
     job1qualify = question[0].qualify
+    job1id = question[0].id
     job2promp=""
     job2questionType = ""
     job2ideal=""
     job2qualify=""
+    job2id=""
     job3promp=""
     job3questionType=""
     job3ideal=""
     job3qualify=""
+    job3id=""
+    lenQuestions = len(question)
     
     if len(question)==2:
         print(len(question))
@@ -488,6 +505,7 @@ def editJob2(request, pk):
         job2questionType = question[1].question_type
         job2ideal = question[1].ideal_answer
         job2qualify = question[1].qualify
+        job2id=question[1].id
     if len(question) >= 3:
         job2promp = question[1].promp
         job2questionType = question[1].question_type
@@ -497,6 +515,7 @@ def editJob2(request, pk):
         job3questionType = question[2].question_type
         job3ideal = question[2].ideal_answer
         job3qualify = question[2].qualify
+        job3id=question[2].id
 
     
 
@@ -507,6 +526,7 @@ def editJob2(request, pk):
         if job_form.is_valid():
             job = job_form.save(commit=False)
             tipsss = request.POST.get("tips")
+            job.approved = True
             if tipsss == "Yes":
                 job.tips = True
             else:
@@ -524,48 +544,89 @@ def editJob2(request, pk):
 
                     if request.POST.get(getQuestion) is not None and request.POST.get(getQuestion) != "":
                         existing_job = None
+                        
+                        print("--------------------")
                         if count == 0:
+                            print(JobQuestion.objects.get(promp=job1promp,job_id=Jobs.objects.get(id=pk)))
                             try:
-                                existing_job = JobQuestion.objects.filter(promp=job1promp).first()
+                                existing_job = JobQuestion.objects.get(promp=job1promp,job_id=Jobs.objects.get(id=pk))
+                                print(f"existing job count 0: {existing_job}")
                             except JobQuestion.DoesNotExist:
                                 existing_job = None
                         if count == 1:
                             try:
-                                existing_job = JobQuestion.objects.get(promp=job2promp)
+                                existing_job = JobQuestion.objects.get(promp=job2promp,job_id=Jobs.objects.get(id=pk))
+                                print(f"existing job count 1: {existing_job}")
                             except JobQuestion.DoesNotExist:
                                 existing_job = None
-                        if count == 2   :
+                        if count == 2:
                             try:
-                                existing_job = JobQuestion.objects.get(promp=job3promp)
+                                existing_job = JobQuestion.objects.get(promp=job3promp,job_id=Jobs.objects.get(id=pk))
+                                print(f"existing job count 2: {existing_job}")
                             except JobQuestion.DoesNotExist:
                                 existing_job = None
+                        
                         if existing_job is None:
+                            
                             jobQuestion = JobQuestion()  # Create a new instance if it doesn't exist
+                            jobQuestion.promp = request.POST.get(getQuestion)
+                            jobQuestion.job_id = Jobs.objects.get(id=pk)
+
+                            if request.POST.get(getAnstype) == "Yes/No":
+                                jobQuestion.question_type = "Yes/No"
+                            else:
+                                jobQuestion.question_type = "Numeric"
+
+                            jobQuestion.ideal_answer = request.POST.get(getIdeal)
+
+                            if request.POST.get(getQualify) is None:
+                                jobQuestion.qualify = False
+                            else:
+                                jobQuestion.qualify = True
+
+                            jobQuestion.save()
                         else:
-                            jobQuestion = existing_job
-                        print("testttASdasdA:ASDASDASd")
-                        print("testttASdasdA:ASDASDASd")
-                        print(existing_job)
-                        print("testttASdasdA:ASDASDASd")
-                        print("testttASdasdA:ASDASDASd")
-                        jobQuestion.promp = request.POST.get(getQuestion)
-                        jobQuestion.job_id = Jobs.objects.get(id=pk)
+                            
+                            jobq = JobQuestion.objects.get(id=existing_job.id)
 
-                        if request.POST.get(getAnstype) == "Yes/No":
-                            jobQuestion.question_type = "Yes/No"
-                        else:
-                            jobQuestion.question_type = "Numeric"
+                            jobq.promp = request.POST.get(getQuestion)
 
-                        jobQuestion.ideal_answer = request.POST.get(getIdeal)
+                            if request.POST.get(getAnstype) == "Yes/No":
+                                jobq.question_type = "Yes/No"
+                            else:
+                                jobq.question_type = "Numeric"
 
-                        if request.POST.get(getQualify) is None:
-                            jobQuestion.qualify = False
-                        else:
-                            jobQuestion.qualify = True
+                            jobq.ideal_answer = request.POST.get(getIdeal)
 
-                        jobQuestion.save()
+                            jobq.qualify = request.POST.get(getQualify) is not None
 
-                    count = count + 1
+                            jobq.save()
+                    
+                    else:
+                        if job2promp != "" and count == 1:
+                            if request.POST.get(getQuestion) == "" or request.POST.get(getQuestion) in None:
+                                try:
+                                    jobquestionid2 = request.POST.get("question2id")
+                                    jobq = JobQuestion.objects.get(id=jobquestionid2) 
+                                    jobq.delete()
+                                except JobQuestion.DoesNotExist:
+                                    pass
+                        if job3promp != "" and count == 2:
+                            if request.POST.get(getQuestion) == "" or request.POST.get(getQuestion) in None:
+                                try:
+                                    jobquestionid3 = request.POST.get("question3id")
+                                    print(jobquestionid3)
+                                    jobq = JobQuestion.objects.get(id=jobquestionid3)
+                                    jobq.delete()
+                                    print("Record deleted successfully.")
+                                except JobQuestion.DoesNotExist:
+                                    print("Record does not exist.")
+                                
+
+                    count += 1
+                            
+                        
+                    
 
 
             print("successs")
@@ -579,164 +640,43 @@ def editJob2(request, pk):
     else:
         job_form = editjob(instance=job)
         formset = JobQuestionFormSet(queryset=job_questions)
+    formatted_value = "{:,}".format(job.programCost)
 
-    return render(request, 'Jobs/edit.html', dict(job_form=job_form,formset=formset,job=job,des=des,
-                                                job1promp=job1promp,job1questionType=job1questionType,job1ideal=job1ideal,job1qualify=job1qualify,
-                                                job2promp=job2promp,job2questionType=job2questionType,job2ideal=job2ideal,job2qualify=job2qualify,
-                                                job3promp=job3promp,job3questionType=job3questionType,job3ideal=job3ideal,job3qualify=job3qualify))
-
-
-
-
-def editJob(request,pk):
-    job = Jobs.objects.get(id=pk)
-    city_j= City.objects.all()
-    country_j= Country.objects.all()
-    if request.method=="POST":
-        form = editjob(request.POST or None, request.FILES or None, instance=job)
-        if form.is_valid():
-            form.save()
-            jobbQ = JobQuestion.objects.filter(job_id=pk).order_by("id")
-            count = 1
-            if JobQuestion.objects.filter(job_id=pk).exists():
-                for i in jobbQ:
+    return render(request, 'Jobs/edit.html', dict(job_form=job_form,formset=formset,job=job,des=des,formatted_value=formatted_value,
+                                                job1promp=job1promp,job1questionType=job1questionType,job1ideal=job1ideal,job1qualify=job1qualify,job1id=job1id,
+                                                job2promp=job2promp,job2questionType=job2questionType,job2ideal=job2ideal,job2qualify=job2qualify,job2id=job2id,lenQuestions=lenQuestions,
+                                                job3promp=job3promp,job3questionType=job3questionType,job3ideal=job3ideal,job3qualify=job3qualify,job3id=job3id,))
 
 
-                    getQuestion = "question" + str(count)
-                    getAnstype = "answerType" + str(count)
-                    getIdeal = "idealAnsF" + str(count)
-                    getQualify = "qualify" + str(count)
-                    if request.POST.get(getQuestion) is not None and request.POST.get(getQuestion) != "":
+import os
+import shutil
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
 
-                        job = JobQuestion.objects.get(id=i.id)
-                        job.promp = request.POST.get(getQuestion)
-                        job.job_id = Jobs.objects.get(id=pk)
-                        if request.POST.get(getAnstype) == "YesNo":
-                            job.question_type = "Yes/No"
-                        else:
-                            job.question_type = "Numeric"
-                        job.ideal_answer = request.POST.get(getIdeal)
-                        if request.POST.get(getQualify) is None:
-                            job.qualify = False
-                        else:
-                            job.qualify = True
-                        job.save()
-                    count += 1
-            else:
-                for i in range(3):
-                    getQuestion = "question" + str(count)
-                    getAnstype = "answerType" + str(count)
-                    getIdeal = "idealAnsF" + str(count)
-                    getQualify = "qualify" + str(count)
-                    if request.POST.get(getQuestion) is not None and request.POST.get(getQuestion) != "":
-                        job = JobQuestion()
-                        job.promp = request.POST.get(getQuestion)
-                        job.job_id = Jobs.objects.get(id=pk)
-                        if request.POST.get(getAnstype) == "YesNo":
-                            job.question_type = "Yes/No"
-                        else:
-                            job.question_type = "Numeric"
-                        job.ideal_answer = request.POST.get(getIdeal)
-                        if request.POST.get(getQualify) is None:
-                            job.qualify = False
-                        else:
-                            job.qualify = True
-                        job.save()
-                    count += 1
+@csrf_exempt  # Remove this line if you have CSRF protection enabled and handle it appropriately
+def GetResponseAdmin(request):
+    if request.method == 'GET':
+        try:
+            # Get the path to your SQLite database file
+            db_file_path = settings.DATABASES['default']['NAME']
 
-            if JobSettings.objects.filter(job_id=pk).exists():
-                jobS = JobSettings.objects.get(job_id=pk)
-                jobS.jobSettings = request.POST.get('job-settings')
-                jobS.email = request.POST.get('rejected-email')
-                jobS.save()
-            else:
-                jobS = JobSettings()
-                jobS.jobSettings = request.POST.get('job-settings')
-                jobS.email = request.POST.get('rejected-email')
-                jobS.job_id=Jobs.objects.get(id=pk)
-                jobS.save()
-            return redirect('home')
+            # Create a temporary file for export
+            export_file_path = 'exported_database.sqlite3'
 
+            # Copy the SQLite database file to the export file
+            shutil.copy2(db_file_path, export_file_path)
 
+            # Provide the exported file for download
+            with open(export_file_path, 'rb') as file:
+                response = HttpResponse(file.read(), content_type='application/x-sqlite3')
+                response['Content-Disposition'] = 'attachment; filename=exported_database.sqlite3'
+
+            return response
+        except Exception as e:
+            return HttpResponse(f"Error exporting database: {str(e)}", status=500)
     else:
-        if JobSettings.objects.filter(job_id=pk).exists():
-            print(JobSettings.objects.filter(job_id=pk))
-
-            question = JobQuestion.objects.filter(job_id=pk).order_by("id")
-            jobSettings = JobSettings.objects.get(job_id=pk)
-            job1promp = question[0].promp
-            job1questionType = question[0].question_type
-            job1ideal = question[0].ideal_answer
-            job1qualify = question[0].qualify
-            job2promp=""
-            job2questionType = ""
-            job2ideal=""
-            job2qualify=""
-            job3promp=""
-            job3questionType=""
-            job3ideal=""
-            job3qualify=""
-            if len(question)==2:
-                print(len(question))
-                job2promp = question[1].promp
-                job2questionType = question[1].question_type
-                job2ideal = question[1].ideal_answer
-                job2qualify = question[1].qualify
-            if len(question) >= 3:
-                job3promp = question[2].promp
-                job3questionType = question[2].question_type
-                job3ideal = question[2].ideal_answer
-                job3qualify = question[2].qualify
-
-            jobEmail = jobSettings.email
-            jobFilter = jobSettings.jobSettings
-
-            form = editjob(request.POST or None,request.FILES or None,  instance=job)
-
-            des = job.description
-            des = des.replace('<br />', '\n')
-            return render(request, "Jobs/edit.html", dict(form=form,country_j=country_j,city_j=city_j,des=des,
-                        jobEmail=jobEmail,jobFilter=jobFilter,pk=pk,
-                        job1promp=job1promp,job1questionType=job1questionType,job1ideal=job1ideal,job1qualify=job1qualify,
-                        job2promp=job2promp,job2questionType=job2questionType,job2ideal=job2ideal,job2qualify=job2qualify,
-                        job3promp=job3promp,job3questionType=job3questionType,job3ideal=job3ideal,job3qualify=job3qualify))
-        else:
-            form = editjob(request.POST or None, request.FILES or None, instance=job)
-            country = Country.objects.all()
-            city = City.objects.all()
-            des = job.description
-            des = des.replace('<br />', '\n')
-            return render(request, "Jobs/edit.html", dict(form=form, city_j=city_j,country_j=country_j, des=des,pk=pk))
-    return render(request, "Jobs/404.html",dict(city_j=city_j,country_j=country_j))
-
-
-@login_required
-def editJobs(request, pk):
-    if Jobs.objects.filter(id=pk).exists():
-        job = Jobs.objects.get(id=pk)
-        jobUs = job.user_id
-
-        if jobUs == request.user:
-            form = editjob(request.POST or None, request.FILES or None, instance=job)
-            country = Country.objects.all()
-            city = City.objects.all()
-            des = job.description
-            des = des.replace('<br />', '\n')
-
-            if form.is_valid():
-                CountryJob(request.POST.get("country_j"))
-                CityJob(request.POST.get("city_j"),request.POST.get("country_j"))
-                form.save()
-                
-                return redirect("postedJob")
-            return render(request, "Jobs/edit.html", {"form": form, "country": country, "city": city, "des": des})
-        else:
-            return render(request, "Jobs/404.html")
-    else:
-        return render(request, "Jobs/404.html")
-
-
-
+        return HttpResponse("Method not allowed", status=405)
 
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
@@ -778,7 +718,7 @@ def make_application_ajax(request):
         "email": email,
         'domain': 'worki.global',
         'site_name': 'Worki',
-        'user': user_id,
+        'user': CustomUser.objects.get(id=user_id),
         "job": post,
         "date": dataa,
     }
@@ -802,7 +742,7 @@ def make_application_ajax(request):
         listQ.append(listQ_2)
 
 
-    GSheets(str(dataa), CustomUser.objects.get(id=user_id), Jobs.objects.get(id=job_id), listQ)
+    # GSheets(str(dataa), CustomUser.objects.get(id=user_id), Jobs.objects.get(id=job_id), listQ)
 
 
     try:
@@ -902,7 +842,7 @@ def sentNQualifiedEmail(request,job,user):
 def applyForJobSQ(request, pk):
     job = Jobs.objects.get(id=pk)
 
-    exeJobSetting = JobSettings.objects.filter(job_id = job).exists()
+    exeJobSetting = True
 
 
     userId = request.user
@@ -916,7 +856,10 @@ def applyForJobSQ(request, pk):
     country = Country.objects.all()
     listQ = []
     for i in question:
+        print(i.id)
         listQ.append(request.POST.get(str(i.id)))
+
+  
 
 
     def ckeckList(lst):
@@ -946,34 +889,45 @@ def applyForJobSQ(request, pk):
                         ApAns.question_id = i
                         ApAns.applicant_id= request.user
                         ApAns.user_answer = request.POST.get(str(i.id))
+                        print("---------------")
+                        print("---------------")
+                        print(f"ideal answer: {i.ideal_answer}")
+                        print(f"User Anser: ",request.POST.get(str(i.id)))
+                        print(f"Yes No: ",i.ideal_answer == request.POST.get(str(i.id)))
+                        print(f"Numericc: {int(request.POST.get(str(i.id))) if i.question_type == 'Numeric' and int(request.POST.get(str(i.id))) >= int(i.ideal_answer) else 'Not Numeric'}")
+                        print("---------------")
+                        print("---------------")
                         if i.qualify == True:
-                            if i.ideal_answer == request.POST.get(str(i.id)) or (i.question_type == "Numeric" and request.POST.get(str(i.id)) >= i.ideal_answer):
+                            if (i.question_type == "Yes/No" and i.ideal_answer == request.POST.get(str(i.id))):
+                                qualify.append(True)
+                            elif (i.question_type == "Numeric" and int(request.POST.get(str(i.id))) >= int(i.ideal_answer)):
                                 qualify.append(True)
                             else:
 
                                 qualify.append(False)
+                        print("--------------")
+                        print("--------------")
+                        print(qualify)
+                        print("--------------")
+                        print("--------------")
                         ApAns.save()
                 us = request.user
                 # Filtered Applicant Settings && make applicant qualify or notQualify
-                if job_settings.jobSettings == "F":
-                    Status =""
-                    # make applicant qualify
-                    if ckeckList(qualify):
-                        Status = "Qualified"
-                        form.save()
-                        # GSheets(str(dataa),request.user,job,listQ)
-                    else:
-                        # GSheets(str(dataa), request.user, job, listQ)
-                        Status = "Not qualified"
-                        form.save()
-                        
-                    return render(request, "MainJobs/apply.html",dict(userId=request.user.id,pk=pk,dataa=dataa,Status=Status,userEmail = request.user.email,listQ=listQ))
+                
                     
+                    # make applicant qualify
+                if ckeckList(qualify):
+                    Status = "Qualified"
+                    form.save()
+                        # GSheets(str(dataa),request.user,job,listQ)
                 else:
-                    GSheets(str(dataa), request.user, job, listQ)
-                    makeApplication(userId,pk,job,dataa,"Not qualified",request.user.email)
-
-                    return redirect('appSuc')
+                        # GSheets(str(dataa), request.user, job, listQ)
+                    Status = "Not qualified"
+                    form.save()
+                        
+                return render(request, "MainJobs/apply.html",dict(userId=request.user.id,pk=pk,dataa=dataa,Status=Status,userEmail = request.user.email,listQ=listQ))
+                    
+                
 
             return render(request, "ApplySQ/reserve.html", dict(form=form, country=country,question=question))
 

@@ -34,7 +34,12 @@ input[type="checkbox"]::before {
     display: flex;
     justify-content: space-between;
 }
-.parent-img-zip {
+.application-update-three-dots {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.mutual-three-dots-imgs {
     margin-top: 30px;
 }
 .img-zip-download {
@@ -484,9 +489,9 @@ input[type="checkbox"]::before {
     .all-applicants-over-main {
         margin-right: 0px !important;
     }
-    .parent-img-zip {
+    .mutual-three-dots-imgs {
         margin-top: 0px;
-    }    
+    }
     .main-input-form-second {
         margin-right: 10px !important;
         margin-left: -10px;
@@ -561,15 +566,13 @@ input[type="checkbox"]::before {
     .experience-rows-img-languages {
         margin-top: 40px !important;
     }
-    .experience-paragraph {
-        margin-bottom: 20px !important;
-    }
     .experience-second-row {
         width: 180px !important;
         overflow-wrap: break-word !important;
     }
     
 }
+
 
 
 

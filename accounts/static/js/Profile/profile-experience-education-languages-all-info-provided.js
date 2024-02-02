@@ -1,47 +1,4 @@
-{% extends 'base.html' %}
-{% load static %}
-<title>{% block title %}Worki - Profile{% endblock %}</title>
-{% block description %}One profile. Unlimited opportunities{% endblock %}
-
-{% block content %}
-
-    <div class="profile-header">
-        <div id="example1">
-            {% if user.cover %}
-        <img class="pro-img" src="{{user.cover.url}}" alt="">
-            {% else %}
-            <img class="pro-img" src="{% static 'img/Vector 350.svg' %}">
-            {% endif %}
-        <img class="edit-button-cover" title="Edit Cover Picture"  src="{% static 'img/Vector 350.svg' %}" alt="">
-        </div>
-        <div class="second-part-profile-header">
-        <div class="profile-image-and-edit">
-                <div class="profile-image-and-add-button">
-                    
-                    <a  title="Profile Picture" ><img class="profile-image" src="{{user.profile.url}}" alt=""></a>
-
-                    <img src="{% static 'img/Vector 609.svg' %}" title="Add Profile"  id="plus-icon" alt="">
-                </div>
-
-                <img class="edit-button" title="Edit Profile"   src="{% static 'img/Vector 350.svg' %}" alt="">
-            </div>
-            <div class="profile-name"><span class="profile-firstname">{{user.first_name}}</span> <span class="profile-surname">{{user.last_name}}</span></div>
-            {% if user.city != None and user.country != None %}
-            <div class="profile-birthplace"><span class="profile-city">{{user.city}}</span><span>,</span> <span class="profile-country">{{user.country}} </span>
-                {% else %}
-                        <div class="profile-birthplace"><span class="profile-city"></span><span></span> <span class="profile-country"> </span>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-    </div>
-    {% include "UserProfile/experience.html" %}
-    {% include "UserProfile/education.html" %}
-    {% include "UserProfile/language.html" %}
-    {% include "UserProfile/add-exp-edu-lang.html" %}
-
-<script>
-    const ExperienceinputFields = Array.from(document.querySelectorAll('.experience-mutual-input'));
+const ExperienceinputFields = Array.from(document.querySelectorAll('.experience-mutual-input'));
 const EducationinputFields = Array.from(document.querySelectorAll('.education-mutual-input'));
 const EditProfileinputFields = Array.from(document.querySelectorAll('.edit-profile-mutual-input'));
 const ExperienceSelects = Array.from(document.querySelectorAll(".experience-selects"));
@@ -176,6 +133,3 @@ EditProfileinputFields.forEach(input => input.addEventListener('input', EditProf
 EditPorfileSelects.forEach(select => select.addEventListener('change', EditProfileCheckInputs));
 
   
-</script>
-{% endblock content %}
-

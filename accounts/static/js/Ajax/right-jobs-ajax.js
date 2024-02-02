@@ -193,12 +193,26 @@ window.addEventListener('load', function() {
         if(!rB){
             if(button){
                 if (!hasApply){
+                    button.classList.remove("job-right-applied-button");
                         var url= "apply/"+id
                         button.innerHTML = '<a href="'+url+'" class="right-jobs-directions-accept-job accept-job-offer-button accept-confetti" onclick="CallCanvas(event);startConfetti();" title="Accept job">Apply</a>';
 
 
                 }else{
-                    button.innerHTML="Applied on "+data["applyDate"]
+                    button.classList.add("job-right-applied-button");
+                    button.innerHTML=`
+                        <div class="" style="display: flex;">
+                        Applied on &nbsp;  
+                            <div class="applied-qualified-margin-right" style="display: flex;">
+                             <img src="/static/img/interview-date-icon.svg" alt="">
+                                <div class="main-divs-color interview-distance-between-div-img">`+data["applyDate"]+`</div>
+                            </div>
+                            <div style="display: flex;">
+                                <img src="/static/img/interview-time-icon.svg" alt="">
+                                <div class="main-divs-color interview-distance-between-div-img">`+data["applyDateTime"]+`</div>
+                            </div>
+                        </div>
+                    `
                 }
             }
         }

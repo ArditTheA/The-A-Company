@@ -244,6 +244,13 @@ function UpdateUserDetails(){
                     $("#addUserExp").css("display", "none");
                     $("#editUserExp").css("display", "block");
                     $(delete_popup).css("display", "none");
+                    var checkbox = $("#experienceCheck");
+                    if (data.experience.end_date === null) {
+                        checkbox.prop("checked", true);
+                        present();
+                    } else {
+                        checkbox.prop("checked", false);
+                    }
                     
                 },
                 error: function (error) {

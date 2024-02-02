@@ -35,4 +35,4 @@ class ApplicantAnswer(models.Model):
 
 
     def __str__(self):
-        return str(self.question_id.id)+" - "+str(self.applicant_id.email) + " - "+ self.user_answer
+        return str(self.question_id.id)+" - "+str(self.applicant_id.email) + " - "+ str(self.user_answer)

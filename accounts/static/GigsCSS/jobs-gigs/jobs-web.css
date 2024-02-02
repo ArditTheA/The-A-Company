@@ -179,6 +179,10 @@ input{
     color: #858585;
 }
 
+.job-right-applied-button {
+    margin-top: 25px !important;
+}
+
 .edit-job-button {
     width: 20px;
     height: 24px;

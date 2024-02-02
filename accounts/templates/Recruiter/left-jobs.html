@@ -1,7 +1,7 @@
 {% load static %}
 
     {% for i in job %}
-    <div onclick="getMyJobs('{{i.id}}');showRightJobsMainDiv();" class="job-left-row pixel move"  id="select{{i.id}}">
+    <div onclick="recruiterJobs('{{i.id}}');showRightJobsMainDiv();" class="job-left-row pixel move"  id="select{{i.id}}">
         <img class="job-logo" src="{{i.logo.url}}" alt="">
         <div class="job-left-content">
             <div class="first-row-and-edit-img ">
@@ -15,7 +15,7 @@
                         {% else %}
                         <div class="profileDropDown-content"><a href="{% url 'openJob' i.id%}" class="profileDropDown-text">Open Job</a></div>
                         {% endif %}
-                        <div style="" class="profileDropDown-content"><a href="{% url 'applicant' i.id %}" class="profileDropDown-text">View Applicants </a></div>
+                        <div style="" class="profileDropDown-content"><a href="{% url 'redirectApp' i.id %}" class="profileDropDown-text">View Applicants </a></div>
                     </div>
                 </div>
             </div>

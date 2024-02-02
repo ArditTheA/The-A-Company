@@ -14,11 +14,18 @@ SECRET_KEY = '0x-zrhf@)(t)%-630q&s&9g_c^lvh_9cehy@7vx==@bxgn_s_='
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = False
+DEBUG = True
 
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+    }
+}
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
-ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
+if not DEBUG:
+    ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https'
 
 SILENCED_SYSTEM_CHECKS = ["auth.W004"]
 
