@@ -51,7 +51,7 @@ window.addEventListener('load', function() {
 });
 
 
-    async function getMyJobs(id,show=0) {
+    async function recruiterJobs(id) {
 
         var elements = document.getElementsByClassName('pixel'); // get all elements
 
@@ -63,7 +63,7 @@ window.addEventListener('load', function() {
         $("#current-job-id").val(id)
 
 
-        let response = await fetch('/my-jobs/get-job-details/',{
+        let response = await fetch('/recruiter/job-details',{
 
             method: "get",
 
@@ -77,20 +77,7 @@ window.addEventListener('load', function() {
 
         );
         let data = await response.json();
-        if (show === 1) {
-            $(".application-update-form-content").css("display","none");
-            $(".documents-for-work-permit-form-content").css("display","block");
-            $(".your-work-permit-is-here-form-content").css("display", "none");
-        }else if (show == 2){
-            $(".application-update-form-content").css("display","none");
-            $(".documents-for-work-permit-form-content").css("display","none");
-            $(".your-work-permit-is-here-form-content").css("display", "block");
-        }
-        else{
-        $(".application-update-form-content").css("display","block");
-        $(".documents-for-work-permit-form-content").css("display","none");
-        $(".your-work-permit-is-here-form-content").css("display", "none");
-        }
+        
         if(data["StatusApp"]){
             if(data["StatusApp"] != "Qualified"){
                 
@@ -110,6 +97,7 @@ window.addEventListener('load', function() {
         var newDiv5 = "";
         var newDiv6 = "";
         var newDiv7 = "";
+        var downloadUrl = '/download_user_folder/' + id;
 var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style="" src="/static/img/zipDown2.svg" onclick="downloadDocForWorkPermitFolder('+data["useremail"]+')">';
         
         $('.parent-img-zip').empty();
@@ -576,19 +564,7 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
 
         var mainJobs = false;
 
-        document.getElementById("Stat").innerHTML = data["StatusApp"];
-        document.getElementById("applyDate").innerHTML= data["applyDate"];
-        document.getElementById("applyDateTime").innerHTML= data["applyDateTime"];
-        if(data["ApplicantStatDate"]){
-            document.getElementById("ApplicantStatDate").innerHTML= data["ApplicantStatDate"];
-            
-            document.getElementById("ApplicantStatDateTime").innerHTML= data["ApplicantStatDateTime"];
-        }else{
-            document.getElementById("ApplicantStatDate").innerHTML= data["applyDate"];
-           
-            document.getElementById("ApplicantStatDateTime").innerHTML= data["applyDateTime"];
-            
-        }
+        
         var auth = data["auth"];
 
         var element = document.getElementById("job_title");

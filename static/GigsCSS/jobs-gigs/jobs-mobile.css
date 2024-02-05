@@ -1,33 +1,42 @@
 @media screen and (max-width: 480px) {
-    .NoResult{
-        margin:20px 0px 0px 10px;
-    }
     .job-logo {
         margin-right: 20px;
     }
     .under-header-wishes {
         margin-bottom: 10px;
     }
-    .move{
-        margin-top:10px !important;
-    }
-    .move:first-child {
-        margin-top: 0px !important;
-    }
     .jobs-main-div{
         margin-top: 0px;
     }
     .job-left-row{
         margin-right:10px;
-        margin-top:0px;
+        margin-top:10px;
         margin-left:10px;
         padding: 20px;
         border-radius: 20px;
     }
+   .only-application-update-style {
+        padding-left: 20px; 
+        padding-right: 20px;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        border-radius: 20px;
+    }
+    .application-update-title {
+        padding-top: 0px;
+        font-size: 16px;
+    }
+    .only-under-application-update-style {
+        width: 100%;
+        margin-left: -21px;
+        border-radius: 20px;
+        padding: 20px;
+    }
+
 
 
     .job-left {
-        margin-top:20px !important;
+        margin-top:20px;
         width: 100% !important;
         position: absolute;
         height: calc(100% - 143.21px);
@@ -96,12 +105,29 @@
         height: 240px !important;
     }
 
+    .applied-qualified-margin-right {
+        margin-right: 15px;
+    }
+
     .sign-up-form {
         width: 100% !important;
     }
 
+    .docs-work-permit-page-border {
+        margin-left: -20.5px;
+    }
+
     .title_documents, .work-permit-title {
         padding-top: 0px;
+    }
+    .mutual-pages-stats {
+        border-top-right-radius: 20px;
+        border-top-left-radius: 20px;
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+
+        padding-left: 20px;
+        padding-right: 20px;
     }
     .job-right-details{
         margin-right:10px;
@@ -151,9 +177,9 @@
     .job-left-row:last-child {
         margin-bottom: -10px;
     }
-    /* .last-child-job {
-        margin-bottom: -10px !important;
-    } */
+    .job-right-applied-button {
+        margin-top: 20px !important;
+    }
 
     .all-applicants-button {
         padding-top: 7.6px !important;
@@ -182,10 +208,11 @@
         margin-right: 20px;
     }
     .recruter-job-dropdown {
-        top:46px;
+        top: 46px;
         right: 20px;
     }
     .job-right-apply-button {
         margin-top: calc(20px + 8px);
+        
     }
 }

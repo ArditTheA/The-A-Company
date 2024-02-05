@@ -31,7 +31,11 @@ function checkAllSelectsAndInputs() {
 
   if (allSelectsAndInputsFilled) {
     third_next_button.classList.add("third-next-button-2");
-
+    third_next_button.addEventListener("click", function() {
+        document.getElementById('answerForm').submit();
+        return false;
+    });
+  
     third_next_button.addEventListener("click", function() {
       third_reserve_form_screening_question.style.display = "none";
       meet_with_us_form.style.display = "block";

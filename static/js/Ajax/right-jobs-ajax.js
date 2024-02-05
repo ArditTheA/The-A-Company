@@ -70,7 +70,7 @@ window.addEventListener('load', function() {
         post_id=id;
 
 
-        let response = await fetch('',{
+        let response = await fetch('/jobs/details',{
 
             method: "get",
 
@@ -85,7 +85,6 @@ window.addEventListener('load', function() {
         );
         let data = await response.json();
         
-        console.log(JSON.stringify(data, null, 2));
         var mainJobs = false;
 
 
@@ -120,16 +119,8 @@ window.addEventListener('load', function() {
         var SalaryPerHour = document.getElementById("salary");
         SalaryPerHour.innerHTML="€"+tt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+" total income"
 
-        console.log("-------------------------");
-        console.log("-------------------------");
-        console.log(data["salary"])
-        console.log(data["hourPerWork"]);
-        console.log(c);
-        console.log(data["SDate"])
-        console.log(data["EDate"])
-        console.log("-------------------------");
-        console.log("-------------------------");
-        if(data["country"]== "USA"){
+        
+        if(data["country"]== "USA" || data["country"][0] === "United States"){
             var salary = document.getElementById("salary")
             salary.innerHTML ="$"+ data ["salary"]+"/hour"
             if(data["tips"]){
@@ -175,8 +166,8 @@ window.addEventListener('load', function() {
 
         var housing = document.getElementById("housing")
         housing.innerHTML = "Housing "+data['housing']
-
-        if(data["country"]=="USA"){
+        
+        if(data["country"]=="USA" || data["country"][0] === "United States"){
             var housingCost = document.getElementById("housingCost")
             housingCost.innerHTML = "$"+data["housingCost"]+"/week"
         }else{
@@ -202,12 +193,26 @@ window.addEventListener('load', function() {
         if(!rB){
             if(button){
                 if (!hasApply){
+                    button.classList.remove("job-right-applied-button");
                         var url= "apply/"+id
                         button.innerHTML = '<a href="'+url+'" class="right-jobs-directions-accept-job accept-job-offer-button accept-confetti" onclick="CallCanvas(event);startConfetti();" title="Accept job">Apply</a>';
 
 
                 }else{
-                    button.innerHTML="Applied on "+data["applyDate"]
+                    button.classList.add("job-right-applied-button");
+                    button.innerHTML=`
+                        <div class="" style="display: flex;">
+                        Applied on &nbsp;  
+                            <div class="applied-qualified-margin-right" style="display: flex;">
+                             <img src="/static/img/interview-date-icon.svg" alt="">
+                                <div class="main-divs-color interview-distance-between-div-img">`+data["applyDate"]+`</div>
+                            </div>
+                            <div style="display: flex;">
+                                <img src="/static/img/interview-time-icon.svg" alt="">
+                                <div class="main-divs-color interview-distance-between-div-img">`+data["applyDateTime"]+`</div>
+                            </div>
+                        </div>
+                    `
                 }
             }
         }
@@ -220,7 +225,6 @@ window.addEventListener('load', function() {
         };
 
         updateHistoryURL(id);
-        console.log(showElements(false));
         showElements(false);
 
 

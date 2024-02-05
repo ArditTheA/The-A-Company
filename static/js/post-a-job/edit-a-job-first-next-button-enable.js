@@ -59,7 +59,7 @@ function checkInputs() {
 
   // post_a_job_firstNextButton.disabled = !allJobDetailsInputsFilled;
   
-  post_a_job_firstNextButton.disabled = !allJobDetailsInputsFilled || !isStartDateValid || !isEndDateValid || !isFileUploaded;
+  post_a_job_firstNextButton.disabled = !allJobDetailsInputsFilled || !isStartDateValid || !isEndDateValid  ;
 
 //   post_a_job_firstNextButton.disabled = !allJobDetailsInputsFilled || fileInput.files.length === 0;
 

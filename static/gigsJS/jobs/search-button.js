@@ -18,24 +18,11 @@ search_button.addEventListener('click', function () {
     search_button.style.display = "none";
 });
 
-// document.addEventListener('click', function (e) {
-//     if (!search_div.contains(e.target) && !search_button.contains(e.target)) {
-//         search_div.style.display = "none";
-//         search_button.style.display = "block";
-//         exit_input.style.display = "none";
-//     }
-// });
 
-
-// window.addEventListener('click', function(event) {
-//     if (event.target == search_div) {
-//         search_div.style.display = "none";
-//         search_button.style.display = "block";
-//         }
-// });
 
 exit_input.addEventListener('click', function () {
     search_div.style.display = "none";
     exit_input.style.display = "none";
+    $("#userSearchInput").val("");
     search_button.style.display = "block";
 })
