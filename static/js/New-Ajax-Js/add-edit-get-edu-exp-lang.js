@@ -187,7 +187,6 @@ function editUserProfile(){
         }
 
 function UpdateUserDetails(){
-    if($("#id_first_name").val() && $("#id_last_name").val() && $("#id_country").val() && $("#id_city").val() && $("#id_phone_number").val()){
             $.ajax({
                 type: "POST",
                 url: '/edit_user_details/',  // Replace with your server endpoint
@@ -208,7 +207,7 @@ function UpdateUserDetails(){
                 }
             });
     }
-}
+
 
 
 // GET's

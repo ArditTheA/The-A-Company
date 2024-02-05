@@ -48,9 +48,11 @@ const ExperienceSelects = Array.from(document.querySelectorAll(".experience-sele
 const EducationSelects = Array.from(document.querySelectorAll(".education-selects"));
 const LanguagesSelects = Array.from(document.querySelectorAll(".languages-selects"));
 const EditPorfileSelects = Array.from(document.querySelectorAll(".edit-profile-selects"));
-const ExperienceSaveSubmitInput = document.getElementById('addUserExp') && document.getElementById('editUserExp');
-const EducationSaveSubmitInput = document.getElementById('addUserEdu') && document.getElementById('editUserEdu');
-const LanguagesSaveSubmitInput = document.getElementById('AddUserLang') && document.getElementById('EditUserLang');
+const ExperienceSaveSubmitInput = document.getElementById('addUserExp') 
+const ExperienceSaveSubmitInputEdit = document.getElementById('editUserExp');
+const EducationSaveSubmitInput = document.getElementById('addUserEdu') ;
+const EducationSaveSubmitInputEdit =  document.getElementById('editUserEdu');
+const LanguagesSaveSubmitInput = document.getElementById('AddUserLang') || document.getElementById('EditUserLang');
 const EditProfileSaveSubmitInput = document.getElementById('editProfileSave');
 
 
@@ -76,16 +78,24 @@ function ExperienceCheckInputs() {
   if (isCheckboxChecked) {
     // If checkbox is checked, disable end date validation
     ExperienceSaveSubmitInput.disabled = !allInputsFilled || !allSelectsFilled || !isExperienceStartDateValid;
+    ExperienceSaveSubmitInputEdit.disabled = !allInputsFilled || !allSelectsFilled || !isExperienceStartDateValid;
+    
   } else {
     // If checkbox is not checked, include end date validation
     ExperienceSaveSubmitInput.disabled = !allInputsFilled || !allSelectsFilled || !isExperienceStartDateValid || !isExperienceEndDateValid;
+    ExperienceSaveSubmitInputEdit.disabled = !allInputsFilled || !allSelectsFilled || !isExperienceStartDateValid || !isExperienceEndDateValid;
+    
 
     // Check if end date is fully filled, enable and add class
     if (isExperienceEndDateValid) {
       ExperienceSaveSubmitInput.disabled = false;
+      ExperienceSaveSubmitInputEdit.disabled = false;
+
       ExperienceSaveSubmitInput.classList.add("save-button-enabled");
+      ExperienceSaveSubmitInputEdit.classList.add("save-button-enabled");
     } else {
       ExperienceSaveSubmitInput.classList.remove("save-button-enabled");
+      ExperienceSaveSubmitInputEdit.classList.remove("save-button-enabled");
     }
   }
 
@@ -93,6 +103,11 @@ function ExperienceCheckInputs() {
     ExperienceSaveSubmitInput.classList.add("save-button-enabled");
   } else {
     ExperienceSaveSubmitInput.classList.remove("save-button-enabled");
+  }
+  if (ExperienceSaveSubmitInputEdit.disabled === false) {
+    ExperienceSaveSubmitInputEdit.classList.add("save-button-enabled");
+  } else {
+    ExperienceSaveSubmitInputEdit.classList.remove("save-button-enabled");
   }
 }
 
@@ -117,16 +132,21 @@ function EducationCheckInputs() {
   if (isCheckboxChecked) {
     // If checkbox is checked, disable end date validation
     EducationSaveSubmitInput.disabled = !allInputsFilled || !allSelectsFilled || !isEducationStartDateValid;
+    EducationSaveSubmitInputEdit.disabled = !allInputsFilled || !allSelectsFilled || !isEducationStartDateValid;
   } else {
     // If checkbox is not checked, include end date validation
     EducationSaveSubmitInput.disabled = !allInputsFilled || !allSelectsFilled || !isEducationStartDateValid || !isEducationEndDateValid;
+    EducationSaveSubmitInputEdit.disabled = !allInputsFilled || !allSelectsFilled || !isEducationStartDateValid || !isEducationEndDateValid;
 
     // Check if end date is fully filled, enable and add class
     if (isEducationEndDateValid) {
       EducationSaveSubmitInput.disabled = false;
+      EducationSaveSubmitInputEdit.disabled = false;
       EducationSaveSubmitInput.classList.add("save-button-enabled");
+      EducationSaveSubmitInputEdit.classList.add("save-button-enabled");
     } else {
       EducationSaveSubmitInput.classList.remove("save-button-enabled");
+      EducationSaveSubmitInputEdit.classList.remove("save-button-enabled");
     }
   }
 
@@ -134,6 +154,11 @@ function EducationCheckInputs() {
     EducationSaveSubmitInput.classList.add("save-button-enabled");
   } else {
     EducationSaveSubmitInput.classList.remove("save-button-enabled");
+  }
+  if (EducationSaveSubmitInputEdit.disabled === false) {
+    EducationSaveSubmitInputEdit.classList.add("save-button-enabled");
+  } else {
+    EducationSaveSubmitInputEdit.classList.remove("save-button-enabled");
   }
 }
 
