@@ -145,7 +145,7 @@ $(document).ready(function() {
                         if (mobileMediaQuery.matches) {
                         $('.job-left').hide();
                         $('.right-jobs-main-div').show();
-                        $('.documents-for-work-permit-form-content').show();
+                        
                         $('.your-work-permit-is-here-form-content').hide();
                         $('.profileHeader').hide();
                         $('.main-buttons-div').hide();
@@ -169,7 +169,6 @@ $(document).ready(function() {
 
             $('.your-work-permit-is-here-form-content').hide();
             
-            console.log(Applicantnumber);
                     })
 
                     $('.myjob-right-exit').click(function() {

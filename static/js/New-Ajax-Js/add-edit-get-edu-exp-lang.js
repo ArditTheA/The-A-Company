@@ -32,19 +32,22 @@ btn2.addEventListener('click', function() {
     $(".add-user-language").attr("id", "add-user-language");
     $(".add-language-title").text("Add Language")
     $("#add-user-language")[0].reset();
-    $("#EditUserLang").css("display","none");
-    $("#AddUserLang").css("display","block");
+    $("#EditUserLang").css("display","none")
+    $("#AddUserLang").css("display","block")
+    $(delete_popup).css("display", "none");
 });
 
 btn3.addEventListener('click', function() {
     mainDiv.style.display = "flex";
     underBg.style.display = "none";
     add.style.display = "none";
+    $('.add-education-title').text('Add Education');
     uBgEducation.style.display = "flex";
     document.body.style.overflow = "hidden";
-    $("#editUserEdu").css("display","none")
-    $("#addUserEdu").css("display","block")
+    $("#editUserEdu").css("display","none");
+    $("#addUserEdu").css("display","block");
     $(delete_popup).css("display", "none");
+    $(".education-popup")[0].reset();
 });
 
 window.addEventListener('click', function(event) {
@@ -187,6 +190,7 @@ function editUserProfile(){
         }
 
 function UpdateUserDetails(){
+    if($("#id_first_name").val() && $("#id_last_name").val() && $("#id_country").val() && $("#id_city").val() && $("#id_phone_number").val()){
             $.ajax({
                 type: "POST",
                 url: '/edit_user_details/',  // Replace with your server endpoint
@@ -207,7 +211,7 @@ function UpdateUserDetails(){
                 }
             });
     }
-
+}
 
 
 // GET's
@@ -240,6 +244,13 @@ function UpdateUserDetails(){
                     $("#addUserExp").css("display", "none");
                     $("#editUserExp").css("display", "block");
                     $(delete_popup).css("display", "none");
+                    var checkbox = $("#experienceCheck");
+                    if (data.experience.end_date === null) {
+                        checkbox.prop("checked", true);
+                        present();
+                    } else {
+                        checkbox.prop("checked", false);
+                    }
                     
                 },
                 error: function (error) {

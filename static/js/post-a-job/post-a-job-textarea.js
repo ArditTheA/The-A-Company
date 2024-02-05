@@ -41,6 +41,7 @@ function validateTextarea() {
   function updateNextButton() {
     var textarea = document.getElementById("descriptionArea");
     var textareaValue = textarea.value.trim();
+    console.log(textareaValue.length);
     
     if (textareaValue.length >= 32) {
         post_a_job_secondNextButton.classList.add("second-next-button");
@@ -50,6 +51,8 @@ function validateTextarea() {
         second_additional_feature.style.pointerEvents = "auto";
         first_additional_feature.style.cursor = "pointer";
         second_additional_feature.style.cursor = "pointer";
+        console.log(textareaValue);
+        console.log(textareaValue.value);
     } else {
         post_a_job_secondNextButton.classList.remove("second-next-button");
         first_additional_feature.removeEventListener("click", firstAdditionalFeatureClick);

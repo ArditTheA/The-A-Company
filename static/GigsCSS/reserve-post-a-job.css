@@ -1,3 +1,10 @@
+.job-screnning-question {
+    width: 15px;
+    height: 15px;
+    float: right;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
 .duration-buttons {
     border: 1px solid #D4D5D6;
     width: 120px; 
@@ -41,7 +48,7 @@ select {
 }
 
 .interview-distance-between-div-img {
-    margin-left: 10px;
+    margin-left: 5px;
 }
 
 .addedItemsContainer {
@@ -713,7 +720,7 @@ input {
     resize: none;
     border: 1px solid #f0f0f0;
     font-size: 16px;
-    color: #757575;
+    color: #858585;
     padding-left: 10px;
     margin: auto;
     outline: none;
@@ -965,9 +972,7 @@ input {
     .under-successfully-applied-form {
         width: calc(100% - 20px) !important;
     }
-    .profileHeader {
-        display: none;
-    }    
+    
     .post-a-job-under-div {
         border-bottom-left-radius: 20px;
         border-bottom-right-radius: 20px;
