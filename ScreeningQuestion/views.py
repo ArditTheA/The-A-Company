@@ -13,6 +13,14 @@ from .forms import *
 import time
 
 
+def UnitedStatesToUSA(request):
+    unapproved_jobs = Jobs.objects.filter(country_j="United States")
+
+    # Update the status of all unapproved jobs to 'close'
+    unapproved_jobs.update(country_j='USA')
+
+    # Optionally, you can return a response indicating success
+    return HttpResponse("All jobs from United States to USA.")
 
 
 def CloseUnapprovedJobs(request):

@@ -5,7 +5,8 @@ const ExperienceSelects = Array.from(document.querySelectorAll(".experience-sele
 const EducationSelects = Array.from(document.querySelectorAll(".education-selects"));
 const LanguagesSelects = Array.from(document.querySelectorAll(".languages-selects"));
 const EditPorfileSelects = Array.from(document.querySelectorAll(".edit-profile-selects"));
-const ExperienceSaveSubmitInput = document.getElementById('addUserExp') || document.getElementById('editUserExp');
+const ExperienceSaveSubmitInput = document.getElementById('addUserExp') && document.getElementById('editUserExp');
+
 const EducationSaveSubmitInput = document.getElementById('addUserEdu') || document.getElementById('editUserEdu');
 const LanguagesSaveSubmitInput = document.getElementById('addUserLang') || document.getElementById('editUserLang');
 const EditProfileSaveSubmitInput = document.getElementById('editProfileSave');

@@ -41,17 +41,26 @@
     {% include "UserProfile/add-exp-edu-lang.html" %}
 
 <script>
-    const ExperienceinputFields = Array.from(document.querySelectorAll('.experience-mutual-input'));
+ const ExperienceinputFields = Array.from(document.querySelectorAll('.experience-mutual-input'));
 const EducationinputFields = Array.from(document.querySelectorAll('.education-mutual-input'));
 const EditProfileinputFields = Array.from(document.querySelectorAll('.edit-profile-mutual-input'));
 const ExperienceSelects = Array.from(document.querySelectorAll(".experience-selects"));
 const EducationSelects = Array.from(document.querySelectorAll(".education-selects"));
 const LanguagesSelects = Array.from(document.querySelectorAll(".languages-selects"));
 const EditPorfileSelects = Array.from(document.querySelectorAll(".edit-profile-selects"));
-const ExperienceSaveSubmitInput = document.getElementById('addUserExp') || document.getElementById('editUserExp');
-const EducationSaveSubmitInput = document.getElementById('addUserEdu') || document.getElementById('editUserEdu');
-const LanguagesSaveSubmitInput = document.getElementById('addUserLang') || document.getElementById('editUserLang');
+const ExperienceSaveSubmitInput = document.getElementById('addUserExp') && document.getElementById('editUserExp');
+const EducationSaveSubmitInput = document.getElementById('addUserEdu') && document.getElementById('editUserEdu');
+const LanguagesSaveSubmitInput = document.getElementById('AddUserLang') && document.getElementById('EditUserLang');
 const EditProfileSaveSubmitInput = document.getElementById('editProfileSave');
+
+
+
+document.getElementById('editUserExp').disabled = false;
+document.getElementById("editUserExp").classList.add("save-button-enabled");
+document.getElementById('editUserEdu').disabled = false;
+document.getElementById('editUserEdu').classList.add("save-button-enabled");
+document.getElementById('EditUserLang').disabled = false;
+document.getElementById('EditUserLang').classList.add("save-button-enabled");
 
 function ExperienceCheckInputs() {
   const allInputsFilled = ExperienceinputFields.every(input => input.value.trim() !== '');
@@ -123,7 +132,6 @@ function EducationCheckInputs() {
 
   if (EducationSaveSubmitInput.disabled === false) {
     EducationSaveSubmitInput.classList.add("save-button-enabled");
-    console.log("Ardit");
   } else {
     EducationSaveSubmitInput.classList.remove("save-button-enabled");
   }
@@ -150,9 +158,6 @@ document.getElementById('id_end_year').addEventListener('input', EducationCheckI
 
 window.onload = LanguagesCheckInputs;
 
-// Initially, the class is not added
-// LanguagesSaveSubmitInput.classList.remove("save-button-enabled");
-
 LanguagesSelects.forEach(select => select.addEventListener('change', LanguagesCheckInputs));
 
 function EditProfileCheckInputs() {
@@ -174,7 +179,6 @@ function EditProfileCheckInputs() {
 // LanguagesSaveSubmitInput.classList.remove("save-button-enabled");
 EditProfileinputFields.forEach(input => input.addEventListener('input', EditProfileCheckInputs));
 EditPorfileSelects.forEach(select => select.addEventListener('change', EditProfileCheckInputs));
-
   
 </script>
 {% endblock content %}

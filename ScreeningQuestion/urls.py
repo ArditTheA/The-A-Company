@@ -4,6 +4,7 @@ from django.urls import path,include
 
 urlpatterns = [
     path("Close/all/unapproved/jobs/",CloseUnapprovedJobs),
+    path("replace/all/jobs/to/usa",UnitedStatesToUSA),
     
 
     path("apply/Succesful", ApplySuc, name="appSuc"),
