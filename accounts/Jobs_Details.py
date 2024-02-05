@@ -169,7 +169,7 @@ def getJobs(request):
                            checkMainJobs=checkMainJobs))
 
 def getJobsId(request,pk):
-    FJob = Jobs.objects.filter(id=pk,status="Open")
+    FJob = Jobs.objects.get(id=pk,status="Open")
     job = Jobs.objects.filter(approved=True, status="Open").exclude(id=pk).order_by("-postDate", "-id")
     sortProgram = []
     sortTitle = []
