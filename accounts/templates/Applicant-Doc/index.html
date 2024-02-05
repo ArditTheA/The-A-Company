@@ -29,12 +29,12 @@
             <form id="upload-form-recruiter" enctype="multipart/form-data" class="sign-up-form forms-inputs-placeholder">
                 {% csrf_token %}
             
-                <input type="text" name="document_id" id="document_id" value="">
-                <input type="text" name="user_id" id="user_id">
+                <input type="hidden" name="document_id" id="document_id" value="">
+                <input type="hidden" name="user_id" id="user_id">
                 <div class="drop-area" id="drop-area">
                     <img src="{% static 'img/upload docs.svg' %}" alt="">
                     <div class="file-upload">Select a file to upload</div>
-                    <input type="file"  name="document" id="id_document"  accept=".pdf, .jpg, .jpeg, .png, .svg"  style="display: block;">
+                    <input type="file"  name="document" id="id_document"  accept=".pdf, .jpg, .jpeg, .png, .svg"  style="display: none;">
 
                 </div>
                 <div class="save-button save-button-edit-profile-photo">
