@@ -46,7 +46,7 @@
         <div class="container-edit-profile under-container-mutual-mutual-stats">
 
             <div class="edit-profile-title user-mutual-titles-pop-ups-stats">Edit Profile</div>
-            <form method="post" id="edit-user-details" autocomplete="off" enctype="multipart/form-data" class="sign-up-form edit-profile-form forms-inputs-placeholder">
+            <form class="sign-up-form edit-profile-form forms-inputs-placeholder">
                 {% csrf_token %}
 
                  <div class="first-and-last-name-div" style="">
@@ -86,7 +86,7 @@
     <div class="cover-edit">
         <div class="edit-profile-title user-mutual-titles-pop-ups-stats edit-profile-cover-photo-title">Edit Cover Photo</div>
 
-        <form id="edit-user-cover" enctype="multipart/form-data">
+        <form >
             {% csrf_token %}
             <div class="div-of-changed-cover">
                 
@@ -114,7 +114,7 @@
         <div class="change-profile-picture">
 
             <div class="edit-profile-title user-mutual-titles-pop-ups-stats edit-profile-cover-photo-title">Edit Profile Photo</div>
-            <form id="edit-user-profile "method="post" enctype="multipart/form-data" class="forms-inputs-placeholder">
+            <form  class="forms-inputs-placeholder">
                 {% csrf_token %}
                 <div class="div-of-changed-cover">
                     
@@ -143,7 +143,7 @@
     <!-- Add Experience -->
     <div class="add-experience under-container-mutual-mutual-stats">
             <div class="mutual-titles-pop-ups-stats">Add Experience</div>
-            <form method="post" class="sign-up-form add-user-experience forms-inputs-placeholder" enctype="multipart/form-data" style="margin-bottom:0;" id="add-user-experience">
+            <form class="sign-up-form add-user-experience forms-inputs-placeholder" style="margin-bottom:0;" >
                 {% csrf_token %}
                 <input type="hidden" id="id-experience">
                 <input type="text" name="title" class="name-input profile-all-inputs-option" placeholder="Job title" maxlength="500" required="" id="id_title">

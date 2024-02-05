@@ -156,20 +156,17 @@ def edit_user_profile_ajax(request):
         return JsonResponse({'status': 'error', 'message': str(e)})
 
 def edit_user_details_ajax(request):
-    user_id = request.user.id
-    first_name = request.POST.get("id_first_name")
-    last_name = request.POST.get("id_last_name")
-    Country = request.POST.get("id_country")
-    City = request.POST.get("id_city")
-    phone_number = request.POST.get("id_phone_number")
+    
     try:
-        user = CustomUser.objects.get(id=user_id)
-        user.first_name = first_name
-        user.last_name = last_name
-        user.country = Country
-        user.city = City
-        user.phone_number = phone_number
+        
+        user = CustomUser.objects.get(id=request.user.id)
+        user.first_name = request.POST.get("id_first_name")
+        user.last_name = request.POST.get("id_last_name")
+        user.country = request.POST.get("id_country")
+        user.city = request.POST.get("id_city")
+        user.phone_number = request.POST.get("id_phone_number")
         user.save()
+        
         return JsonResponse({'message': 'Application submitted successfully'})
     except ValueError:
         return JsonResponse({'status': 'error', 'message': 'Invalid date format.'})

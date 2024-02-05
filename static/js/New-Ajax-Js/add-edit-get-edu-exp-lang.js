@@ -63,7 +63,6 @@ window.addEventListener('click', function(event) {
 
 
 function AddUserExperience() {
-    if ($('#id_title').val() && $('#id_company').val() && $('#id_Country').val() && $('#id_city_usExp').val() && $("#id_start_date").val()) {
         $.ajax({
             type: 'POST',
             url: '/add_user_experience/',  // Update with your actual URL
@@ -85,14 +84,13 @@ function AddUserExperience() {
             }
         });
     }
-}
+
 
 
 
 
 function AddUserEducation() {
     console.log("testtt");
-    if ($('#id_university').val() && $('#id_degree').val() && $('#id_country_e').val() && $('#id_city_e').val() && $("#id_field_of_study").val() && $("#id_start_year").val() && $("#id_total_examples_passed").val() && $("#id_GPA").val()) {
         $.ajax({
             type: 'POST',
             url: '/add_user_education/',  // Update with your actual URL
@@ -117,7 +115,7 @@ function AddUserEducation() {
             }
         });
     }
-}
+
 
 function AddUserLanguages(){
         if($("#id_language").val() && $("#id_level").val()){
@@ -190,7 +188,6 @@ function editUserProfile(){
         }
 
 function UpdateUserDetails(){
-    if($("#id_first_name").val() && $("#id_last_name").val() && $("#id_country").val() && $("#id_city").val() && $("#id_phone_number").val()){
             $.ajax({
                 type: "POST",
                 url: '/edit_user_details/',  // Replace with your server endpoint
@@ -203,15 +200,14 @@ function UpdateUserDetails(){
                         csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
                 },
                 success: function (response){
-                    console.log(response.message);
-                    window.location = "/profile/"
+                    window.location = "/profile/";
                 },
                 error: function (response){
                     console.log(response.responseJSON.error)
                 }
             });
     }
-}
+
 
 
 // GET's
@@ -334,7 +330,6 @@ function UpdateUserDetails(){
 
 
 function editUserExperience() {
-    if ($('#id_title').val() && $('#id_company').val() && $('#id_Country').val() && $('#id_city_usExp').val() && $("#id_start_date").val()) {
         console.log("testtttttttttttttttttt");
         $.ajax({
             type: 'POST',
@@ -351,21 +346,18 @@ function editUserExperience() {
                 csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
             },
             success: function (response){
-                console.log(response.message);
-                window.location = "/profile/"
+                window.location = "/profile/";
             },
             error: function (response){
                 console.log(response.responseJSON.error)
             }
         });
     }
-};
+
 
 function EditUserEducation() {
 
 
-    if ($('#id_university').val() && $("#id_field_of_study").val() && $("#id_degree") && $("#id_country_e").val() && $("#id_city_e").val() && $("#id_total_examples_passed").val() && $("#id_GPA").val()) {
-        console.log("test123 in");
         $.ajax({
             type: 'POST',
             url: '/edit_user_education/',  // Update with your actual URL
@@ -384,18 +376,16 @@ function EditUserEducation() {
                 csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
             },
             success: function (response) {
-                console.log(response.message);
-                window.location = "/profile/"
+                window.location = "/profile/";
             },
             error: function (response) {
                 console.log(response.responseJSON.error)
             }
         });
     }
-}
+
 
 function EditUserLanguages(){
-    if($("#id_language").val() && $("#id_level").val()){
         console.log("testttt");
         $.ajax({
             type: "POST",
@@ -408,15 +398,14 @@ function EditUserLanguages(){
 
             },
             success: function (response){
-                console.log(response.message);
-                window.location = "/profile/"
+                window.location = "/profile/";
             },
             error: function (response){
                 console.log(response.responseJSON.error)
             }
         })
     }
-}
+
 
 function deleteUserLanguage(){
 
@@ -430,8 +419,7 @@ function deleteUserLanguage(){
 
         },
         success: function (response){
-            console.log(response.message);
-            window.location = "/profile/"
+            window.location = "/profile/";
         },
         error: function (response){
             console.log(response.responseJSON.error)
@@ -451,8 +439,8 @@ function deleteUserExperience(){
 
         },
         success: function (response){
-            console.log(response.message);
-            window.location = "/profile/"
+            window.location = "/profile/";
+            
         },
         error: function (response){
             console.log(response.responseJSON.error)
@@ -472,8 +460,7 @@ function deleteUserEducation(){
 
         },
         success: function (response){
-            console.log(response.message);
-            window.location = "/profile/"
+            window.location = "/profile/";
         },
         error: function (response){
             console.log(response.responseJSON.error)
