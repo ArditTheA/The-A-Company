@@ -62,7 +62,8 @@ window.addEventListener('click', function(event) {
 // Add's Functions
 
 
-function AddUserExperience() {
+function AddUserExperience(event) {
+    event.preventDefault();
         $.ajax({
             type: 'POST',
             url: '/add_user_experience/',  // Update with your actual URL
@@ -89,8 +90,8 @@ function AddUserExperience() {
 
 
 
-function AddUserEducation() {
-    console.log("testtt");
+function AddUserEducation(event) {
+    event.preventDefault();
         $.ajax({
             type: 'POST',
             url: '/add_user_education/',  // Update with your actual URL
@@ -117,8 +118,8 @@ function AddUserEducation() {
     }
 
 
-function AddUserLanguages(){
-
+function AddUserLanguages(event){
+    event.preventDefault();
             $.ajax({
                 type: "POST",
                 url: '/add_user_languages/',
@@ -154,7 +155,6 @@ $(document).ready(function () {
                 processData: false,
                 contentType: false,
                 success: function (response) {
-                    console.log(response.message);
                     window.location = "/profile/";
                 },
                 error: function (response) {
@@ -164,8 +164,8 @@ $(document).ready(function () {
         });
     });
 
-function editUserProfile(){
-
+function editUserProfile(event){
+            event.preventDefault();
             var formData = new FormData();
             formData.append('id_profile', $('#id_profile')[0].files[0]);
             formData.append('csrfmiddlewaretoken', $('input[name=csrfmiddlewaretoken]').val());
@@ -177,8 +177,7 @@ function editUserProfile(){
                 processData: false,
                 contentType: false,
                 success: function (response) {
-                    console.log(response.message);
-                    window.location = "/profile/"
+                    window.location = "/profile/";
                 },
                 error: function (response) {
                     console.log(response.responseJSON.error);
@@ -186,7 +185,9 @@ function editUserProfile(){
             });
         }
 
-function UpdateUserDetails(){
+function UpdateUserDetails(event){
+    event.preventDefault(); // Prevent default form submission
+
             $.ajax({
                 type: "POST",
                 url: '/edit_user_details/',  // Replace with your server endpoint
@@ -199,8 +200,7 @@ function UpdateUserDetails(){
                         csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
                 },
                 success: function (response){
-                    console.log(response.message);
-                    window.location = "/profile/"
+                    window.location = "/profile/";
                 },
                 error: function (response){
                     console.log(response.responseJSON.error)
