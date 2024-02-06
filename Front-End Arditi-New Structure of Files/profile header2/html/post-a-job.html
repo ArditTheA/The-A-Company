@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/sq-backup.css">
+    <title>Worki - Post a Job</title>
+    <meta name="description" content="">
+    <link rel="stylesheet" href="../css/base/header.css">
+    <link rel="stylesheet" href="../css/body.css">
+    <link rel="stylesheet" href="../css/reserve-post-a-job.css">
+    <link rel="stylesheet" href="../css/jobs/jobs-web.css">
+    <link rel="stylesheet" href="../css/jobs/jobs-tablet.css">
+    <link rel="stylesheet" href="../css/jobs/jobs-mobile.css">
+    <link href='https://fonts.googleapis.com/css?family=Spline Sans' rel='stylesheet'>
+    <!-- <link rel="stylesheet" href="../css/profile-header.css"> -->
+  
+</head>
+
+<style>
+  form {
+    margin-bottom: 0px;
+  }
+</style>
+<body>
+    <!-- <header class="profileHeader">
+        <img class="header-icon header-icon-radius header-icon-logo" src="../img/blue-Worki-icon.png" title="Worki">
+        <div class="jobs-and-profile">
+        <a href="jobs.html"><img class="header-icon header-icon-job" title="Jobs" src="../img/jobs iconnew.jpg"></a>
+            <img src="../img/Group 1255new.jpg" class="header-icon header-icon-radius header-icon-profile" title="Profile" alt="">
+        </div>
+    </header> -->
+    <form class="postAJobForm" method="POST">
+    <div id="reserve-form" class=" second-reserve-form reserve-form first-post-a-job-form" style="display: none;">
+        <div class="contact-information-form">
+            <div class="under-c-i-f">
+            <div class="second-under-c-i-f under-c-i-f">
+                <div class="program-duration-main-div">
+                <div class="job-details-div first-job-details pd-ci-cursor font-size-18px-16px">Job Details</div>
+                </div>
+                <div class="post-a-job-under-div">
+  
+            <div class="inputs-div second-inputs-div">
+                <input type="text" name="job_title" id="id_job_title" placeholder="Job title" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom" required></input>
+                <input type="text" name="company" id="id_company" placeholder="Company" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input"></input>
+                <div class="inputs-div contact-information-margin-bottom first-and-last-name" style="display: flex;">
+                    <select name="country_j" id="id_country_j" class="apply-first-name inputs-job-details apply-name-surname all-inputs mutual-input country-margin-bottom">
+                      <option value="" disabled selected>Select a Country</option>
+                   </select>
+                    <input placeholder="City" name="city_j" id="id_city_j" class="apply-last-name inputs-job-details apply-name-surname all-inputs mutual-input"></input>
+                </div>
+                <input name="tips" type="number" id="id_tips" placeholder="Salary per hour" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input" oninput="displaySalary()" onkeydown="handlePlaceholder(event)">
+                <select class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input" name="tips" id="id_tips">
+                  <option disabled selected style="display: none;" value="">Tips</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+              </select>
+                <select name="type_of_work" id="id_type_of_work" style="" class="custom-select contact-information-margin-bottom contact-information-mutual-stats mutual-input inputs-job-details" name="data[areYouActiveStudent]">
+                  <option disabled selected style="display: none;" value="">Type of Work</option>
+                  <option value="Full Time">Full Time</option>
+                  <option value="Part Time">Part Time</option>
+                </select>
+                <input type="number" name="hour_per_week" id="id_hour_per_week" placeholder="Hours per week" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input"></input>
+                <div class="inputs-div contact-information-margin-bottom first-and-last-name">
+                  <input id="id_start_date" class="start-date-input date-of-birth-input inputs-job-details start-end-date all-inputs mutual-input"
+                  name="start_date" onchange="checkForm();checkStartDate();" value="" type="text" maxlength="10"
+                  placeholder="Start Date (dd/mm/yyyy)" required="" oninput="this.value = MMDDYYYY(this.value, event)" />                    
+                  <input id="id_end_date" class="end-date-input date-of-birth-input inputs-job-details start-end-date all-inputs mutual-input"
+                  name="end_date" onchange="checkForm();checkStartDate();" value="" type="text" maxlength="10"
+                  placeholder="End Date (dd/mm/yyyy)" required="" oninput="this.value = MMDDYYYY(this.value, event)" />        
+                </div>
+                        <select name="housing" id="id_housing" style="" class="custom-select contact-information-margin-bottom contact-information-mutual-stats mutual-input inputs-job-details" name="data[areYouActiveStudent]">
+                          <option disabled selected style="display: none;" value="">Housing</option>
+                          <option value="Provided">Yes</option>
+                          <option value="Not provided">No</option>
+                        </select>
+                <input type="number" name="housing_cost_per_week" id="id_housing_cost_per_week" placeholder="Housing cost per week" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input"></input>
+                <select name="program" id="id_program" class="custom-select contact-information-margin-bottom contact-information-mutual-stats mutual-input inputs-job-details" name="data[areYouActiveStudent]"> -->
+                  <option disabled selected style="display: none;" value="">Program</option>
+                  <option value="Ausbildung">Ausbildung</option>
+                  <option value="Intership">Intership</option>
+                  <option value="Work and Travel">Work and Travel</option>
+                  <option value="Trainee">Trainee</option>
+                </select>
+                <input type="number" name="programCost" id="id_programCost" placeholder="Program cost" class="all-inputs inputs-job-details contact-information-margin-bottom contact-information-mutual-stats mutual-input"></input>
+                <div class="div-of-changed-picture">
+                  <label for="id_logo">
+                      <div class="input-form">
+                        <div style="cursor: pointer; display: flex; align-items: center;" class="upload-file-div logo-input-main-div">
+                          <div class="logo-input-div">Logo</div>
+                      <img class="icon" src="../img/gallery-upload.svg" alt="">
+                    </div>
+                    </div>
+                  </label>
+                  <input style="display: none;" class id="id_logo" type="file"/>
+              </div>
+      
+            </div>
+
+            <div class="back-and-next-buttons" style="width: 100%; display: flex; justify-content: space-between;">
+                <a class="btn back-button next-none contact-information-back-button">Back</a>
+                <a id="first-next-button-job-details" class="first-next-button btn submit-button next-none">Next</a>
+            </div>
+        </div>
+        <div class="first-job-description-post-a-job" style="padding-top: 20px; padding-bottom: 20px; border-bottom: 40px; margin-left: 30px; color: #D4D5D6;">
+            <div class="second-screening-question mutual-font-size-18px font-size-18px-16px">Job Description</div>
+        </div>
+    </div>
+    <div class="second-payment-div" style="padding-top: 20px; padding-bottom: 20px; border-bottom: 40px; margin-left: 30px; color: #D4D5D6;">
+        <div class="second-payment mutual-font-size-18px first-additional-feature font-size-18px-16px">Additional Feature</div>
+    </div>
+    
+    </div>
+    </div>
+    </div>
+    <div id="reserve-form" class=" second-reserve-form reserve-form second-post-a-job-form" method="POST" style="display: none;">
+        <div class="contact-information-form job-description-form">
+          
+            <div class="under-c-i-f job-description-under-form">
+            <div class="second-under-c-i-f under-c-i-f">
+                <div class="program-duration-main-div second-job-details-div">
+                <div class="program-duration-div second-job-details-title pd-ci-cursor font-size-18px-16px">Job Details</div>
+                </div>
+                <div class="program-duration-under-div job-description-under-div">
+    
+            <div class="contact-information-title job-description-title font-size-18px-16px">Job Description</div>
+            <textarea id="job_description_textarea" class="scroll-post-job inner-text editable" oninput="updateNextButton()" style="background-color: white; border-radius: 40px;resize: none;"></textarea>
+            <input type="submit" value="Submit" style="display: none;">
+                                                                                                                                                
+            <div class="back-and-next-buttons" style="width: 100%; display: flex; justify-content: space-between;">
+                <a class="btn back-button next-none job-description-back-button">Back</a>
+                <a id="next-button-job-description" class="next-button-job-description  submit-button next-none" onclick="validateTextarea();replaceBR();">Next</a></div>
+        </div>
+        <div class="second-screening-question-div" style="padding-top: 20px; padding-bottom: 20px; border-bottom: 40px; margin-left: 30px; color: #D4D5D6;">
+            <div class="second-screening-question mutual-font-size-18px font-size-18px-16px second-additional-feature">Additional Feature</div>
+        </div>
+    </div>
+    </div>
+    
+    </div>
+    </div>
+    <div class="additional-feature-form reserve-form" style="">
+        <div class="program-duration-form additional-feature-form-main-div">
+                <div class="program-duration-main-div third-job-details-div">
+                <div class="program-duration-div third-job-details pd-ci-cursor font-size-18px-16px third-page-job-details-description">Job Details</div>
+                </div>
+                <div class="job-description-third-page-div">
+                    <div class="job-description-third-page pd-ci-cursor font-size-18px-16px">Job Description</div>
+                </div>
+    
+            <div class="third-additional-feature-main-div">
+                <div class="third-additional-feature font-size-18px-16px">Additional Feature</div>
+                
+                <input type="number" placeholder="Number of Positions" class="all-inputs contact-information-mutual-stats contact-information-margin-bottom positions-deadline-date-inputs"></input>
+                <input id="id_deadline_date" class="positions-deadline-date-inputs date-of-birth-input start-end-date all-inputs mutual-input"
+                name="start_date" onchange="checkForm();checkStartDate();" value="" type="tel" maxlength="10" 
+                placeholder="Deadline Date (dd/mm/yyyy)" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
+                <div class="form-group form-group-add-question" id="1" style="display: block; position: relative;">
+                  <textarea name="question1" id="question1" class="textarea-question textarea-color form-control" placeholder="" name="" id="" cols="30" rows="4"></textarea>
+                
+                    <div class="row">
+                      <div class="answer-type-select">
+                                                            
+                    <select onchange="changeAnsType(1)" class="form-control select-width select-arrow select-focus" id="ans_type1" name="answerType1">
+                        <option value="">Answer type</option>
+                        <option value="YesNo">Yes / No</option>
+                        <option value="Numeric" >Numeric</option>
+                    </select>
+                      </div>
+                      <div class="ideal-answer-div">
+                
+                        <div class="idealAns1 idealAnsDiv" id="idealAns1">
+                          <input value="Ideal Answer" class="disable-inputs" name="secondAnswer1" disabled>
+                        </div>
+                
+                      </div>
+                    </div>
+                    <div class="must-have-qualification-div" style="">
+                            <label class="must-have-qualification-label screening-questions-mutual-color mutual-color" for="must-have-qualification">
+                            <input class="must-have-qualification-input" id="must-have-qualification" type="checkbox">Must-have qualification</label>
+                    </div>
+                
+                  </div>
+                  <div class="form-group form-group-add-question margin-between-question-and-answer" id="2" style="display: none;">
+                    <img style="display: none;" class="job-screnning-question exit-button" src="../img/close(2).png" alt="Exit" onclick="removeFormGroup(this)">
+                    <textarea id="question2" name="question2" class="textarea-question textarea-color form-control" placeholder="Question 2" name="" id="" cols="30" rows="4"></textarea>
+                    
+                    <div class="row">
+                      <div class="answer-type-select">
+                
+                
+                        <select onchange="changeAnsType(2)" class="form-control select-width select-arrow" id="ans_type2" name="answerType2">
+                        <option value="">Answer type</option>
+                        <option value="YesNo">Yes / No</option>
+                        <option value="Numeric" >Numeric</option>
+                    </select>
+                      </div>
+                      <div class="ideal-answer-div">
+                        <div class="idealAns2 idealAnsDiv" id="idealAns2">
+                          <input value="Ideal Answer" class="disable-inputs" name="secondAnswer2" disabled>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="must-have-qualification-div">
+                        <label class="must-have-qualification-label screening-questions-mutual-color mutual-color" for="must-have-qualification-2">
+                            <input class="must-have-qualification-input" id="must-have-qualification-2" type="checkbox">Must-have qualification</label>
+                
+              
+                    </div>
+
+                  </div>
+                <!--    End of question 2-->
+                    <!--    Question 3-->
+                  <div class="form-group form-group-add-question margin-between-question-and-answer" id="3" style="display: none;">
+                    <img style="display: none;" class="job-screnning-question exit-button" src="../img/close(2).png" alt="Exit" onclick="removeFormGroup(this)">
+                    <textarea id="question3" name="question3" class="textarea-question textarea-color form-control" placeholder="" name="" id="" cols="30" rows="4"></textarea>
+                
+                    
+                    <div class="row">
+                      <div class="answer-type-select">
+                                
+                        <select onchange="changeAnsType(3)" class="form-control select-width select-arrow" id="ans_type3" name="answerType3">
+                        <option value="">Answer type</option>
+                        <option value="YesNo">Yes / No</option>
+                        <option value="Numeric" >Numeric</option>
+                    </select>
+                      </div>
+                      <div class="ideal-answer-div">
+                        <div class="idealAns3 idealAnsDiv" id="idealAns3">
+                          <input value="Ideal Answer" class="disable-inputs" name="secondAnswer3" disabled>
+                        </div>
+                
+                      </div>
+                        
+                    </div>
+                    <div class="must-have-qualification-div">
+                        <label class="must-have-qualification-label screening-questions-mutual-color mutual-color" for="must-have-qualification-3">
+                            <input class="must-have-qualification-input" id="must-have-qualification-3" type="checkbox">Must-have qualification</label>
+                
+                    </div>
+                  </div>                            
+                <div title="You can add up to three questions for students" type="text" class=" add-question-button" onclick="showNextFormGroup()"><span style="padding-right: 10px;">+</span>Add Question</div>
+            <div class="back-and-next-buttons" style="width: 100%; display: flex; justify-content: space-between;">
+                <a class="btn back-button next-none additional-feature-back-button">Back</a>
+                <a id="additional-feature-submit-button" class="next-button btn submit-button next-none">Submit</a>
+            </div>
+        </div>
+    </div>
+    </div>
+    </form>
+</body>
+
+<script>
+
+    function changeAnsType(id){
+         var question_id = id;
+         var choice = "ans_type"+question_id
+         var selected = document.getElementById(choice).value
+         var getName = "#idealAns"+question_id;
+         var setName = "idealAnsF"+question_id;
+         var inputText = "secondAnswer"+question_id;
+        //  var NumericN = "numericNumber"+question_id;
+  
+  
+         if(selected == "YesNo") {
+            console.log(getName)
+  
+            var x = $('<select class="form-control '+setName+'" id='+setName+' name='+setName+'><option>Yes</option><option>No</option></select>')
+            var y = $('<input placeholder="Write a number" type="number" name="'+setName+'" class="form-control '+setName+'" id="'+setName+'">');
+  
+            $(getName).append(x);
+            $('input[name='+setName+'').css("display", "none");
+            $('input[name='+inputText+'').css("display", "none");
+  
+            // $(getName).css("display", "none");
+  
+          //   $('<input type="number" name="'+setName+'" class="form-control '+setName+'" id="'+setName+'">').css("display", "none");
+  
+         }else if(selected == "Numeric") {
+  
+          var x = $('<select class="form-control '+setName+'" id='+setName+' name='+setName+'><option>Yes</option><option>No</option></select>')
+          var y = $('<input placeholder="Write a number" type="number" name="'+setName+'" class="form-control '+setName+'" id="'+setName+'">');
+  
+          $(getName).append(y);
+          $('select[name='+setName+'').css("display", "none");
+          $('input[name='+inputText+'').css("display", "none");
+          
+            // $(getName).append($('<input type="number" name="'+setName+'" class="form-control '+setName+'" id="'+setName+'">'));
+  
+  
+            // $('select[name="idealAnsF"]').css("display", "none");
+            // $(".yesNoClass").css("display", "none");
+  
+         }
+        }
+  //        var yesNoClass = document.querySelectorAll(".yesNoClass");
+  //        var NumericInput = document.querySelectorAll(".numericN");
+  
+    
+  </script>
+
+<script>
+  let formGroupIndex = 0;
+  const formGroups = document.querySelectorAll('.form-group-add-question');
+  const addQuestionButton = document.querySelector(".add-question-button");
+  const textarea_sq = document.querySelectorAll(".textarea-question");
+
+  function showNextFormGroup() {
+    // Hide exit button from all form groups
+    formGroups.forEach(formGroup => {
+      const exitButton = formGroup.querySelector('.exit-button');
+      if (exitButton) {
+        exitButton.style.display = 'none';
+      }
+    });
+
+    // Show the next form group
+    if (formGroupIndex < formGroups.length) {
+      formGroups[formGroupIndex].style.display = 'block';
+
+      // Show the exit button for the new form group
+      const exitButton = formGroups[formGroupIndex].querySelector('.exit-button');
+      if (exitButton) {
+        exitButton.style.display = 'inline-block';
+      }
+
+      formGroupIndex++;
+    }
+
+    // Update the "Add Question" button visibility
+    if (formGroupIndex === formGroups.length) {
+      addQuestionButton.style.display = "none";
+    } else {
+      addQuestionButton.style.display = "block";
+    }
+  }
+
+  textarea_sq.forEach((textarea, index) => {
+  textarea.placeholder = "Screening Question " + (index + 1);
+});
+
+
+  function removeFormGroup(exitButton) {
+    const formGroup = exitButton.parentElement;
+
+    // Clear the content of the form group
+    clearFormGroupContent(formGroup);
+
+    formGroup.style.display = 'none';
+    formGroupIndex--;
+
+    // Show the exit button for the new last form group
+    const newLastFormGroupIndex = formGroupIndex - 1;
+    if (newLastFormGroupIndex >= 0) {
+      const newLastFormGroup = formGroups[newLastFormGroupIndex];
+      const newLastExitButton = newLastFormGroup.querySelector('.exit-button');
+      if (newLastExitButton) {
+        newLastExitButton.style.display = 'inline-block';
+      }
+    }
+
+    // Show the "Add Question" button when a form group is removed
+    addQuestionButton.style.display = "block";
+  }
+
+  function clearFormGroupContent(formGroup) {
+  // Clear the content of the form group
+  const textareas = formGroup.querySelectorAll('textarea');
+  textareas.forEach(textarea => {
+    textarea.value = null;
+  });
+  const IdealAns = formGroup.querySelectorAll(".idealAnsDiv");
+  IdealAns.forEach(function(element) {
+    element.innerHTML = "";
+    // Insert the specified HTML code
+    secondAnswer = "secondAnswer"+formGroup.id;
+    element.innerHTML = '<input value="Ideal Answer" class="disable-inputs" name="'+secondAnswer+'" disabled>'
+});
+  const selects = formGroup.querySelectorAll('select');
+  selects.forEach(select => {
+    select.value = "";
+    console.log(select);
+    // Store the initial selectedIndex
+  });
+
+}
+
+// Set initial index and value for each select and input
+
+</script>
+  
+  <script>
+    const question = [];
+    const ansType = [];
+    const ideal = [];
+    const req = [];
+    function SaveQuestion(){
+        question.push(document.getElementById("question1").value);
+        question.push(document.getElementById("question2").value);
+        question.push(document.getElementById("question3").value);
+  
+        ansType.push(document.getElementById("ans_type1").value);
+        ansType.push(document.getElementById("ans_type2").value);
+        ansType.push(document.getElementById("ans_type3").value);
+  
+        ideal.push(document.getElementById("idealAnsF1").value);
+        ideal.push(document.getElementById("idealAnsF2").value);
+        ideal.push(document.getElementById("idealAnsF3").value);
+  
+  
+        req.push($('#qualify1').is(':checked'));
+        req.push($('#qualify2').is(':checked'));
+        req.push($('#qualify3').is(':checked'));
+        
+  
+  
+        console.log(question.toStrisng())
+        console.log(ansType.toString())
+        console.log(ideal.toString())
+        console.log(req.toString())
+  
+  
+        window.location.href ="/SQ/Add/push/"+question.toString()+"/"+ansType.toString()+"/"+ideal.toString()+"/"+req.toString()
+  
+  
+  
+    }
+  
+  </script>
+
+<script>
+    var selectElement = document.querySelectorAll(".select-width");
+      for (let i = 0; i < selectElement.length; i++) {
+      selectElement[i].addEventListener("focus", function() {
+        this.options[0].style.display = "none";
+      });
+    }
+
+</script>
+
+<script>
+
+</script>
+
+      <script>
+      var fileInput = document.getElementById('id_profile');
+      var imageElement = document.getElementById('profilePic');
+      var main_profile_picture = document.getElementById('profile-image');
+      
+      // Add an event listener to the file input element
+      fileInput.addEventListener('change', function() {
+        // Get the selected file
+        var file = fileInput.files[0];
+      
+        // Create a FileReader object to read the file
+        var reader = new FileReader();
+      
+        // Set the callback function when the file is loaded
+        reader.onload = function(e) {
+          // Update the image source with the data URL of the selected file
+          imageElement.src = e.target.result;
+          main_profile_picture.src = e.target.result;
+        };
+      
+        // Read the selected file as a data URL
+        reader.readAsDataURL(file);
+      });
+    </script>
+
+<script>
+  const countries = ["Kosovo","Albania","Afghanistan",
+"Algeria",
+"Andorra",
+"Angola",
+"Antigua and Barbuda",
+"Argentina",
+"Armenia",
+"Australia",
+"Austria",
+"Azerbaijan",
+"The Bahamas",
+"Bahrain",
+"Bangladesh",
+"Barbados",
+"Belarus",
+"Belgium",
+"Belize",
+"Benin",
+"Bhutan",
+"Bolivia",
+"Bosnia and Herzegovina",
+"Botswana",
+"Brazil",
+"Brunei",
+"Bulgaria",
+"Burkina Faso",
+"Burundi",
+"Cambodia",
+"Cameroon",
+"Canada",
+"Cape Verde",
+"Central African Republic",
+"Chad",
+"Chile",
+"China",
+"Colombia",
+"Comoros",
+"Republic of the Congo",
+"Democratic Republic of the Congo",
+"Costa Rica",
+"Croatia",
+"Cuba",
+"Cyprus",
+"Czech Republic",
+"Denmark",
+"Djibouti",
+"Dominica",
+"Dominican Republic",
+"East Timor",
+"Ecuador",
+"Egypt",
+"El Salvador",
+"Equatorial Guinea",
+"Eritrea",
+"Estonia",
+"Eswatini",
+"Ethiopia",
+"Fiji",
+"Finland",
+"France",
+"Gabon",
+"The Gambia",
+"Georgia",
+"Germany",
+"Ghana",
+"Greece",
+"Grenada",
+"Guatemala",
+"Guinea",
+"Guinea-Bissau",
+"Guyana",
+"Haiti",
+"Holy See (Vatican City)",
+"Honduras",
+"Hungary",
+"Iceland",
+"India",
+"Indonesia",
+"Iran",
+"Iraq",
+"Ireland",
+"Israel",
+"Italy",
+"Ivory Coast",
+"Jamaica",
+"Japan",
+"Jordan",
+"Kazakhstan",
+"Kenya",
+"Kiribati",
+"North Korea",
+"South Korea",
+"Kosovo",
+"Kuwait",
+"Kyrgyzstan",
+"Laos",
+"Latvia",
+"Lebanon",
+"Lesotho",
+"Liberia",
+"Libya",
+"Liechtenstein",
+"Lithuania",
+"Luxembourg",
+"Madagascar",
+"Malawi",
+"Malaysia",
+"Maldives",
+"Mali",
+"Malta",
+"Marshall Islands",
+"Mauritania",
+"Mauritius",
+"Mexico",
+"Micronesia",
+"Moldova",
+"Monaco",
+"Mongolia",
+"Montenegro",
+"Morocco",
+"Mozambique",
+"Myanmar (Burma)",
+"Namibia",
+"Nauru",
+"Nepal",
+"Netherlands",
+"New Zealand",
+"Nicaragua",
+"Niger",
+"Nigeria",
+"North Macedonia",
+"Norway",
+"Oman",
+"Pakistan",
+"Palau",
+"Palestine",
+"Panama",
+"Papua New Guinea",
+"Paraguay",
+"Peru",
+"Philippines",
+"Poland",
+"Portugal",
+"Qatar",
+"Romania",
+"Russia",
+"Rwanda",
+"Saint Kitts and Nevis",
+"Saint Lucia",
+"Saint Vincent and the Grenadines",
+"Samoa",
+"San Marino",
+"São Tomé and Príncipe",
+"Saudi Arabia",
+"Senegal",
+"Serbia",
+"Seychelles",
+"Sierra Leone",
+"Singapore",
+"Slovakia",
+"Slovenia",
+"Solomon Islands",
+"Somalia",
+"South Africa",
+"South Sudan",
+"Spain",
+"Sri Lanka",
+"Sudan",
+"Suriname",
+"Sweden",
+"Switzerland",
+"Syria",
+"Tajikistan",
+"Tanzania",
+"Thailand",
+"Togo",
+"Tonga",
+"Trinidad and Tobago",
+"Tunisia",
+"Turkey",
+"Turkmenistan",
+"Tuvalu",
+"Uganda",
+"Ukraine",
+"United Arab Emirates",
+"United Kingdom",
+"United States",
+"Uruguay",
+"Uzbekistan",
+"Vanuatu",
+"Venezuela",
+"Vietnam",
+"Yemen",
+"Zambia",
+"Zimbabwe"
+];
+
+var select = document.getElementById("id_country_j");
+
+// Function to populate the select element with countries
+function populateCountries() {
+for (var i = 0; i < countries.length; i++) {
+  var option = document.createElement("option");
+  option.text = countries[i];
+  select.appendChild(option);
+}
+
+}
+
+// Call the function to populate the select element when the page loads
+window.addEventListener("load", populateCountries);
+</script>
+      <script src="../js/post-a-job/post-a-job-first-next-button-enable.js"></script>
+      <script src="../js/post-a-job/post-a-job-textarea.js"></script>
+      <script src="../js/post-a-job/post-a-job-salary-per-hour.js"></script>
+    <script src="{% static 'js/Ajax/Match/user-details-ajax.js'%}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.2/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../js/reserve/reserve-date-of-birth.js"></script>
+    <script src="../js/post-a-job/post-a-job-details-description-top.js"></script>
+    <script src="../js/reserve/reserve-post-a-job-back-button.js"></script>
+    <script src="../js/post-a-job/post-a-job-add-question.js"></script>
+    <script src="../js/post-a-job/post-a-job-additional-feature-submit-button-enable.js"></script>
+    <script src="../js/post-a-job/post-a-job-start-end-date.js"></script>
+    </html>
+
+

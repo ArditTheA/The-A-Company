@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Applicants</title>
+    <!-- <link rel="stylesheet" href="../css/base.css/authenticated.css"> -->
+    <link rel="stylesheet" href="../css/filter.css">
+    <link rel="stylesheet" href="../css/profile-header.css">
+    <!-- <link rel="stylesheet" href="../css/posted-jobs-media-queries.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/base/all-aplicants.css">
+    <link rel="stylesheet" href="../css/base/header.css">
+    <link rel="stylesheet" href="../css/body.css">
+    <link rel="stylesheet" href="../css/jobs/jobs-web.css">
+    <link href='https://fonts.googleapis.com/css?family=Spline Sans' rel='stylesheet'>
+    <link rel="stylesheet" href="../css/jobs/jobs-mobile.css">
+    <link rel="stylesheet" href="../css/reserve-post-a-job.css">
+
+</head>
+<style>
+    input[type="checkbox"]::before {
+        outline: none;
+    }
+</style>
+<body>
+    <header class="profileHeader" style="">
+        <img style="" class="header-icon header-icon-radius header-icon-logo" src="../img/blue-Worki-icon.png" title="Worki">
+        <div class="jobs-and-profile" style="">
+        <a href="jobs.html"><img class="header-icon header-icon-job" title="Jobs" src="../img/jobs icon-2.png"></a>
+            <img src="../img/profile-2.png" class="header-icon header-icon-radius header-icon-profile" title="Profile" alt="">
+        </div>
+    </header>
+
+    <div class="profileDropDown" id="dropdownA">
+        <div class="profileDropDown-content" ><a class="profileDropDown-text">My profile</a></div>
+        <div class="profileDropDown-content"><a class="profileDropDown-text">My jobs</a></div>
+        <div class="profileDropDown-content"><a href="" class="profileDropDown-text">Recruiter</a></div>
+        <div class="profileDropDown-content"><a href="" class="profileDropDown-text">Sign out</a></div>
+    </div>
+<div class="main-buttons-div">
+    <div class="jobs-buttons applied-posted-buttons-mobile all-aplicants-main-div scrolling-wrapper">
+        <!-- <div class="all-applicants-over-main"> -->
+         <div class="main-input-form">
+            <div class="input-form inputs-right-margin all-applicants-button-form" style="">
+             <button title="All Applicants" class="applied-button-jobs outline-none all-applicants-button">All Applicants</button>
+             <div class="div-white-icon" style="">
+                <img style="cursor: pointer;" class="white-icon"
+                    src="../img/white-dropdown-icon.png" alt="">
+            </div>
+            </div>
+
+             <div class="all-applicants-dropdown profileDropDown" id="all-applicants-dropdown">
+                <!-- <div class="labels-div" style="display: flex; flex-direction: column; align-items: center;"> -->
+               <label for="mutual1" id="qualify" class="profileDropDown-content profileDropDown-text"><input id="mutual1" style="display: none;" type="checkbox" class="input_type"
+                    onchange="checkboxStatusChange()" value="Qualified" name="Qualified" />Qualified</label>
+                  <!--  <label onclick="window.location='http://www.google.com';" for="mutual1" id="qualify" class="dropdown-content dropdown-content-text checked" style="margin-bottom: 15px; margin-top: 0px; cursor: pointer;" class=""><input id="mutual1" style="display: none;" type="checkbox" class="input_type"
+                        onchange="checkboxStatusChange()" value="Qualified" name="Qualified" />Qualified</label>  label i vjeter, para se mi bo n javascript onclick-in.  -->
+    
+                <!-- <div class="dropdown-content"><a href="" class="dropdown-content-text">Qualified</a></div> -->
+                <label style="" class="profileDropDown-content all-applicants-dropdown-content profileDropDown-text"><input style="display: none;" type="checkbox" class="input_type"
+                value="Not Qualified" name="Not Qualified" />Not Qualified</label>
+            <!-- </div> -->
+                
+                <!-- <div style="" class="dropdown-mid-content"><a href="" class="dropdown-content-text">Not qualified</a></div> -->
+                <!-- <div style="cursor: pointer; margin-top: 0px;" class="add-subphase-button dropdown-content-text"><span style="text-align: center;">+</span> Add Subphase</div> -->
+                <!-- <div class="add-subphase-div" style="padding-top: 15px; display: none;">
+                    <img style="padding: 0; width: 16px; height: 16px; cursor: pointer;" title="Add subphase" class="add-subphase-button applied-posted-plus-icon-mobile" src="../img/add_subphase.png" alt="">
+                 </div>         -->
+                 <button title="Select an option to click here" class="move-phase-button">Select to move</button>
+        
+              </div>
+              
+            </div>
+
+            <div class="main-input-form">
+                <div class="input-form inputs-right-margin all-applicants-button-form" style="display: none;">
+                 <button title="All Applicants" class="applied-button-jobs outline-none all-applicants-button">All Applicants</button>
+                 <div class="div-white-icon" style="">
+                    <img style="cursor: pointer;" class="white-icon"
+                        src="../img/white-dropdown-icon.png" alt="">
+                </div>
+                </div>
+    
+                 <div class="all-applicants-dropdown profileDropDown" id="all-applicants-dropdown">
+                    <!-- <div class="labels-div" style="display: flex; flex-direction: column; align-items: center;"> -->
+                   <label for="mutual1" id="qualify" class="profileDropDown-content profileDropDown-text"><input id="mutual1" style="display: none;" type="checkbox" class="input_type"
+                        onchange="checkboxStatusChange()" value="Qualified" name="Qualified" />Qualified</label>
+                      <!--  <label onclick="window.location='http://www.google.com';" for="mutual1" id="qualify" class="dropdown-content dropdown-content-text checked" style="margin-bottom: 15px; margin-top: 0px; cursor: pointer;" class=""><input id="mutual1" style="display: none;" type="checkbox" class="input_type"
+                            onchange="checkboxStatusChange()" value="Qualified" name="Qualified" />Qualified</label>  label i vjeter, para se mi bo n javascript onclick-in.  -->
+        
+                    <!-- <div class="dropdown-content"><a href="" class="dropdown-content-text">Qualified</a></div> -->
+                    <label style="" class="profileDropDown-content all-applicants-dropdown-content profileDropDown-text"><input style="display: none;" type="checkbox" class="input_type"
+                    value="Not Qualified" name="Not Qualified" />Not Qualified</label>
+                <!-- </div> -->
+                    
+                    <!-- <div style="" class="dropdown-mid-content"><a href="" class="dropdown-content-text">Not qualified</a></div> -->
+                    <!-- <div style="cursor: pointer; margin-top: 0px;" class="add-subphase-button dropdown-content-text"><span style="text-align: center;">+</span> Add Subphase</div> -->
+                    <!-- <div class="add-subphase-div" style="padding-top: 15px; display: none;">
+                        <img style="padding: 0; width: 16px; height: 16px; cursor: pointer;" title="Add subphase" class="add-subphase-button applied-posted-plus-icon-mobile" src="../img/add_subphase.png" alt="">
+                     </div>         -->
+                     <button title="Select an option to click here" class="move-phase-button">Select to move</button>
+            
+                  </div>
+                  
+                </div>    
+
+                <!-- <div class="second-input-form" style="">
+
+                    <input style="" name="" placeholder="Search by job or location"
+                        class="search-input inputs-right-margin" id="input-removed"
+                        style="padding-left: 20px; background-color: white;">
+                    
+                    </input>
+                    <img style="display: none;" class="input-exit-button" title="Exit" src="../img/Vector 81 (1).png" alt="">
+                </div> -->
+
+     <!-- <img style="cursor: pointer; margin-left: 20px;" title="Add a Phase" class="plus-icon-jobs phase-plus-icon applied-posted-plus-icon-mobile" src="../img/add.png" alt=""> -->
+        <!-- </div>       -->
+    </div>
+    </div>
+
+
+    <div class="jobs-main-div">
+        <div class="job-left">
+
+            <div class="different-background-jobs job-left-row pixel">
+                <img class="experience-education-img" src="../img/Profile (2).png" alt="" style="border-radius: 40px !important;">
+                <div class="job-left-content">
+
+                    <div style="width: 200px;" class="job-left-title">Festim Bejtullahu</div>
+                <label class="label-all" for="select-all" title="Select all">
+                    <input title="Select all" value="Select" name="select-all" type="checkbox" class="select-all-button" id="select-all" style="display: none;"></input>All</label>    
+                <input title="Select applicant" class="first-checkbox-jobs checkbox-jobs" name="checkb" id="checkb" type="checkbox"></input>
+
+                <div class="job-left-salary job-left-details" style=""><span>festimbejtullahu@gmail.com</span></div>
+                <div class="job-left-company job-left-details">+383 45 572 572</div>
+                <div class="job-left-details">Gjakovë, Kosovo</div>
+
+                </div>
+            </div>
+            <div class="same-background-jobs job-left-row pixel move">
+                <img class="experience-education-img" src="../img/question.png" alt="">
+                <div class="job-left-content">
+                <div class="job-left-title">Liri Efendiu</div>
+                <input name="checkb" title="Select applicant" class="checkbox-jobs" type="checkbox"></input>
+                <div class="job-left-salary job-left-details" ><span>liriefendiu@gmail.com</span></div>
+                <div class="job-left-company job-left-details">+383 45 572 572</div>
+                <div class="job-left-details">Gjakovë, Kosovo</div>
+                </div>
+            </div>
+            <div class="same-background-jobs job-left-row pixel move">
+                <img class="experience-education-img" src="../img/question.png" alt="">
+                <div class="job-left-content">
+                <div class="job-left-title">Rinor Biçku</div>
+                <input name="checkb" title="Select applicant" class="checkbox-jobs" type="checkbox"></input>
+                <div class="job-left-salary job-left-details" ><span>rinorbiçku@gmail.com</span></div>
+                <div class="job-left-company job-left-details">+383 45 572 572</div>
+                <div class="job-left-details">Gjilan, Kosovo</div>
+                </div>
+            </div>
+            <div class="same-background-jobs job-left-row pixel move">
+                <img class="experience-education-img" src="../img/question.png" alt="">
+                <div class="job-left-content">
+                <div class="job-left-title">Genaela Dujaka</div>
+                <input name="checkb" title="Select applicant" class="checkbox-jobs" type="checkbox"></input>
+                <div class="job-left-salary job-left-details" ><span>genaeladujaka@gmail.com</span></div>
+                <div class="job-left-company job-left-details">+383 45 572 572</div>
+                <div class="job-left-details">Gjakovë, Kosovo</div>
+                </div>
+            </div>
+            <div class="same-background-jobs job-left-row pixel move">
+                <img class="experience-education-img" src="../img/question.png" alt="">
+                <div class="job-left-content">
+                <div class="job-left-title">Pashtrik Shehu</div>
+                <input name="checkb" title="Select applicant" class="checkbox-jobs" type="checkbox"></input>
+                <div class="job-left-salary job-left-details" ><span>pashtrikshehu@gmail.com</span></div>
+                <div class="job-left-company job-left-details">+383 45 572 572</div>
+                <div class="job-left-details">Gjakovë, Kosovo</div>
+                </div>
+            </div>
+            <div class="same-background-jobs job-left-row pixel move">
+                <img class="experience-education-img" src="../img/question.png" alt="">
+                <div class="job-left-content">
+                <div class="job-left-title">Ardit Qurdina</div>
+                <input name="checkb" title="Select applicant" class="checkbox-jobs" type="checkbox"></input>
+                <div class="job-left-salary job-left-details" ><span>arditqurdina@gmail.com</span></div>
+                <div class="job-left-company job-left-details">+383 45 572 572</div>
+                <div class="job-left-details">Gjakovë, Kosovo</div>
+                </div>
+            </div>
+        </div>
+        <div class="right-jobs-main-div applied-posted-right-main-div-mobile" style="">
+            <div class="right-jobs" style="">
+                <!-- <div class="right-jobs-rows-img">
+                    <div class="experience-rows">
+                        <img class="exit-job-description" title="Exit" style="float: left; cursor: pointer;"
+                            src="../img/close(2).png" alt="">
+                        <div class="first-row-jobs mobile-title-font-size">Festim Bejtullahu</div>
+                        <div class="second-row-jobs mobile-under-title-font-size">Qualified</div>
+                        <div style="" class="jobs-third-row mobile-rows-font-size">festimbejtullahu@gmail.com</div>
+                        <div style="" class="experience-fourth-row jobs-mutual-margin-rows mobile-rows-font-size">+38345572572
+                        </div>
+                        <div style="" class="experience-fourth-row jobs-mutual-margin-rows mobile-rows-font-size">San Francisco, USA</div>
+                        <div style=""
+                            class="experience-fourth-row jobs-mutual-margin-rows mobile-rows-font-size">Applied on: 10/09/2022</div>
+                    </div>
+                </div>
+                <div class="applicants-cv" style="margin-right: 40px; border-radius: 40px; background-color: white; margin-left: 10px;">
+                <div class="experience-main-div experience-education-languages experience-education-margin-bottom">
+                <div class="experience-div">
+                    <div class="experience-paragraph-img-rows">
+                        <div class="aaa">
+                        <p class="experience-paragraph">Experience</p>
+                        <div class="experience-rows-img">
+                            <img class="experience-education-img" src="../img/worki_icons-18.jpg" alt="" title="Experience">
+                            <div class="experience-rows">
+                            <div class="experience-first-row">Warehouse Associate</div>
+                            <div class="experience-second-row">Amazon</div>
+                            <div class="experience-third-row">Texas, USA</div>
+                            <div class="experience-fourth-row">Work and Travel</div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+        
+                </div>
+                <div class="languages-main-div experience-education-languages experience-education-margin-bottom education-all-applicants" style="">
+                    <div class="education-div">
+                        <div class="experience-paragraph-img-rows">
+                            <div class="aaa">
+                            <p class="experience-paragraph">Education</p>
+                            <div class="experience-rows-img" style="">
+                                <img class="experience-education-img" src="../img/worki_icons-19.jpg" alt="" title="Education">
+                                <div class="experience-rows">
+                                <div class="experience-first-row">University of San Francisco</div>
+                                <div class="experience-second-row">MBA</div>
+                                <div class="experience-third-row">Semptember 2015 - Present</div>
+                                <div class="experience-fourth-row">San Francisco, USA</div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>   
+                </div>
+                <div class="experience-education-languages languages-main-div">
+                    <div class="languages-div">
+                        <div class="languages-paragraphs-div">
+                            <div class="experience-paragraph language-paragraph">Languages</div>
+                            <div style="" class="experience-rows-img-languages">
+                                <div class="education-second-paragraph">English</div>
+                                <div class="language-rate">Advanced</div>
+                            </div>
+                            <div style="" class="experience-rows-img-languages">
+                                <div class="education-second-paragraph">Albanian</div>
+                                <div class="language-rate">High-Intermediate</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>      -->
+            <div class="payment-form-content" style="width: calc(100% - 50px); margin-left: 10px;">
+                    <div class="payment-under-form-content" style="background-color: white; margin: auto; border-radius: 40px;">  
+                        <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; margin: auto; border-radius: 40px; border-top-left-radius: 40px; border-top-right-radius: 40px; border: 1px solid #f0f0f0;">         
+                        <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; padding-bottom: 30px; width: 100%; margin-left: -30px; border-radius: 40px; border-top-left-radius: 40px; border-top-right-radius: 40px; border: 1px solid #f0f0f0;">
+                            <div style="padding-top: 30px; padding-bottom: 30px; font-size: 18px;">Payment</div>
+                            <div style="padding-bottom: 20px;">Work and Travel</div>
+                            <div style="display: flex; justify-content: space-between; padding-bottom: 20px;">
+                                <div class="main-divs-color">Total Price</div>
+                                <div class="second-color-of-divs">€2,000.00</div>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding-bottom: 20px;">
+                                <div class="main-divs-color">Billing Period</div>
+                                <div class="second-color-of-divs">12 month</div>
+                            </div>
+                            <div class="" style="padding-bottom: 20px; padding-top: 10px;">Invoices</div>
+                            <div style="display: flex; justify-content: space-between; padding-bottom: 20px;">
+                                <div class="main-divs-color">27/04/2023 (Free Trial)</div>
+                                <div class="second-color-of-divs">$0.00</div>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding-bottom: 20px;">
+                                <div class="main-divs-color">27/05/2023</div>
+                                <div class="second-color-of-divs">$50.00</div>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding-bottom: 20px;">
+                                <div class="main-divs-color">27/06/2023</div>
+                                <div class="second-color-of-divs">$50.00</div>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding-bottom: 20px;">
+                                <div class="main-divs-color">Your next billing date</div>
+                                <div class="second-color-of-divs">$50.00</div>
+                            </div>                
+                            <div style="padding-top: 20px; padding-bottom: 20px;" class="second-color-of-divs">Edit payment info</div>
+                            <div class="third-payment-form-color">Cancel subscription</div>
+                    </div>
+                    <div class="second-screening-question-div " style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px;">
+                        <div class="screening-questions-title second-screening-question mutual-font-size-18px">Meet with us</div>
+                    </div> 
+                    </div> 
+                    <div class="second-screening-question-div" style="padding-top: 20px; padding-bottom: 20px;">
+                        <div class="screening-questions-title second-screening-question mutual-font-size-18px">Documents for work permit</div>
+                    </div>           
+                </div>
+            </div>
+            </div>
+            <div class="right-jobs" style="display: none;">
+                <div class="right-jobs-rows-img" style="margin-left: 10px; background-color: white; margin-bottom: 20px;">
+                    <div class="experience-rows">
+                        <img class="exit-job-description" title="Exit" style="float: left; cursor: pointer;"
+                            src="../img/close(2).png" alt="">
+                        <div class="first-row-jobs mobile-title-font-size">Liri Efendiu</div>
+                        <div class="second-row-jobs mobile-under-title-font-size">Qualified</div>
+                        <div style="" class="jobs-third-row mobile-rows-font-size">festimbejtullahu@gmail.com</div>
+                        <div style="" class="experience-fourth-row jobs-mutual-margin-rows mobile-rows-font-size">+38345572572
+                        </div>
+                        <div style="" class="experience-fourth-row jobs-mutual-margin-rows mobile-rows-font-size">San Francisco, USA</div>
+                        <div style=""
+                            class="experience-fourth-row jobs-mutual-margin-rows mobile-rows-font-size">Applied on: 10/09/2022</div>
+                    </div>
+                </div>
+        
+                <div class="experience-main-div experience-education-languages experience-education-margin-bottom">
+                <div class="experience-div">
+                    <div class="experience-paragraph-img-rows">
+                        <div class="aaa">
+                        <p class="experience-paragraph">Experience</p>
+                        <div class="experience-rows-img">
+                            <img class="experience-education-img" src="../img/worki_icons-18.jpg" alt="" title="Experience">
+                            <div class="experience-rows">
+                            <div class="experience-first-row">Warehouse Associate</div>
+                            <div class="experience-second-row">Amazon</div>
+                            <div class="experience-third-row">Texas, USA</div>
+                            <div class="experience-fourth-row">Work and Travel</div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- <div class="add-and-edit-experience">
+                        <img class="add-experience-button" title="Add Experience" src="../img/Vector 80.png" alt="">
+                        <a href="experience.html"><img class="edit-experience" title="Edit Experience" src="../img/Ikona_edit-01 56.png" alt=""></a>
+                    </div> -->
+                </div>
+        
+                </div>
+                <div class="languages-main-div experience-education-languages experience-education-margin-bottom education-all-applicants">
+                    <div class="education-div">
+                        <div class="experience-paragraph-img-rows">
+                            <div class="aaa">
+                            <p class="experience-paragraph">Education</p>
+                            <div class="experience-rows-img" style="">
+                                <img class="experience-education-img" src="../img/worki_icons-19.jpg" alt="" title="Education">
+                                <div class="experience-rows">
+                                <div class="experience-first-row">University of San Francisco</div>
+                                <div class="experience-second-row">MBA</div>
+                                <div class="experience-third-row">Semptember 2015 - Present</div>
+                                <div class="experience-fourth-row">San Francisco, USA</div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <!-- <div class="add-and-edit-experience">
+                            <img class="add-experience-button add-education-button" title="Add Education" src="../img/Vector 80.png" alt="">
+                            <a href="education.html"><img class="edit-experience" title="Edit Education" src="../img/Ikona_edit-01 56.png" alt=""></a>
+                        </div> -->
+                    </div>   
+                </div>
+                <div class="experience-education-languages languages-main-div">
+                    <div class="languages-div">
+                        <div class="languages-paragraphs-div">
+                            <div class="experience-paragraph language-paragraph">Languages</div>
+                            <div style="" class="experience-rows-img-languages">
+                                <div class="education-second-paragraph">English</div>
+                                <div class="language-rate">Advanced</div>
+                            </div>
+                            <div style="" class="experience-rows-img-languages">
+                                <div class="education-second-paragraph">Albanian</div>
+                                <div class="language-rate">High-Intermediate</div>
+                            </div>
+                        </div>
+                        <!-- <div class="add-and-edit-experience">
+                            <img class="add-experience-button add-languages-button" id="" title="Add Language" src="../img/Vector 80.png" alt="">
+                            <a href="languages.html">
+                            <img class="edit-experience" title="Edit Languages" src="../img/Ikona_edit-01 56.png" alt=""></a>
+                        </div> -->
+                    </div>
+                </div>        
+            </div>
+        </div>
+        </div>
+        </body>
+
+        <script src="../js/profile_dropdown.js"></script>
+        <script src="../js/all-applicants-dropdown.js"></script>
+        <script src="../js/add-subphase.js"></script>
+        <script src="../js/select-all-button.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="../js/match/main.js"></script>
+        <script src="../js/add-phase.js"></script>
+        <script src="../js/header-border-worki-icon.js"></script>
+        <script src="../js/my-jobs-option.js"></script>
+        <script src="../js/dropdown/profileDropDown.js"></script>
+        <script src="../js/worki-icon-reload-page.js"></script>
+        
+        <script>
+
+            var input_type = document.querySelectorAll(".input_type");
+        $(".job-left-row input .label-all").click(function (e) {
+            // Do something
+            e.stopPropagation();
+        });
+
+        $(".job-left-row .label-all input").click(function (e) {
+            // Do something
+            e.stopPropagation();
+        });
+
+        </script>
+
+        <script>
+
+
+        </script>
+
+        </html>

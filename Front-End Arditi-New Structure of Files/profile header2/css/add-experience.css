@@ -1,0 +1,264 @@
+@import url('https://fonts.googleapis.com/css2?family=Spline+Sans&display=swap');
+
+body {
+    font-family: 'Spline Sans', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.bg-add-and-edit, .bg-edit-experience, .bg-languages, .bg-edit-languages, .bg-edit-education {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    position: fixed;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+.add-experience, .add-education, .edit-experience-pop-up {
+    text-align: center;
+    background-color: white;
+    padding: 30px 40px 40px 40px;
+    border-radius: 40px;
+    box-sizing: border-box;
+    position: absolute;
+    /* Increase/Decrease this value for cross-browser compatibility */
+    overflow-y: scroll;
+}
+
+.add-languages {
+    text-align: center;
+    background-color: white;
+    padding: 30px 40px 40px 40px;
+    border-radius: 40px;
+    box-sizing: border-box;
+    position: absolute;
+}
+
+.edit-languages-pop-up, .add-languages-pop-up {
+    text-align: center;
+    background-color: white;
+    padding: 30px 40px 40px 40px;
+    border-radius: 40px;
+    box-sizing: border-box;
+    position: absolute;
+    /* Increase/Decrease this value for cross-browser compatibility */
+}
+
+.add-experience::-webkit-scrollbar { 
+    display: none;
+}
+.edit-experience-pop-up::-webkit-scrollbar {
+    display: none;
+}
+.add-education::-webkit-scrollbar { 
+    display: none;
+}
+
+
+#title-experience {
+    width: 300px;
+    font-size: 40px;
+    font-weight: 400;
+    color: #1877F2;
+    margin: auto;
+    padding-bottom: 40px;
+    text-align: center;
+}
+.exit-img-edit-experience {
+    margin-bottom: 40px;
+}
+
+.font-fam {
+    font-family: 'Spline Sans', sans-serif;
+}
+
+.under-container {
+    width: 400px;
+    margin-top: 0;
+}
+
+.mutual-stats {
+    border-radius: 30px;
+    padding: 10px 0px 10px 10px;
+    font-size: 18px;
+    border: 0.5px solid #9E9E9E;
+    background-color: white;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.mutual-stats:focus {
+    outline: none;
+}
+
+.mutual-stats::placeholder {
+    color: #9E9E9E;
+}
+
+.div-of-job-experience {
+    margin: 0;
+}
+
+.city-input, .program-input {
+    border-radius: 30px;
+    padding: 10px 0px 10px 10px;
+    font-size: 18px;
+    border: 0.5px solid #9E9E9E;
+    background-color: white;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#password:focus {
+    outline: none;
+}
+
+.password-input::placeholder {
+    color: #9E9E9E;
+}
+
+.surname-input {
+    font-family: 'Spline Sans', sans-serif;
+}
+
+.exit-img {
+    display: flex;
+    justify-content: flex-start;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.exit-button {
+
+}
+
+.exp-experience {
+    margin-top: 40px;
+}
+
+.same-color-of-paragraphs {
+    color: #9E9E9E;
+}
+
+.terms-conditions-link, .sign-in-link {
+    color: #1877F2;
+    text-decoration: none;
+}
+
+.sign-in-link {
+    text-decoration: none;
+}
+
+.paragraphs-stats {
+    font-size: 16px;
+    float: left;
+    margin: 0;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    color: #9E9E9E;
+}
+
+.paragraph-of-surname, .paragraph-of-country, .paragraph-of-city, .paragraph-of-program, .paragraph-of-start-date, .paragraph-of-end-date {
+    margin-top: 10px;
+}
+
+.second-paragraph {
+    text-align: center;
+}
+.first-paragraph, .second-paragraph {
+    margin: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 16px;
+}
+
+.second-paragraph .sign-up-submit-input {
+    text-align: center;
+}
+
+.start-date-input {
+}
+
+.end-date-input {
+    font-family: 'Spline Sans', sans-serif;
+}
+
+.save-button {
+    padding-top: 40px;
+}
+
+.sign-up-google {
+    text-align: center;
+    color: #9E9E9E;
+    text-decoration: none;
+}
+
+.save-submit-input {
+    padding: 10px 30px;
+    border-radius: 30px;
+    background-color: #1877F2;
+    color: white;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+    border: 0.5px solid #1877F2;
+    float: right;
+    outline: none;
+}
+
+.sign-up-submit-input:focus {
+    outline: none;
+}
+
+.third-paragraph {
+    font-size: 16px;
+    padding-left: 10px;
+    margin: 0;
+    padding-top: 20px;
+}
+
+.input-form {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    position: relative;
+}
+.university-start-input {
+    width: 48%;
+}
+.university-end-input {
+    width: 48%;
+}
+
+@media screen and (max-width: 480px) {
+
+    .bg-add-and-edit, .bg-edit-experience, .bg-languages, .bg-edit-languages, .bg-edit-education {
+        background-color: #f1f1f1;
+    }
+
+    .under-container {
+        width: 100%;
+        margin: auto;
+        height: 100%;
+    }
+    .exit-button-edit-profile {
+        margin-bottom: 30px;
+    }
+
+    .exit-img-edit-experience {
+        margin-bottom: 30px;
+    }
+    .save-experience-languages-education {
+    }
+    .university-start-input {
+        width: 47%;
+    }
+    .university-end-input {
+        width: 47%;
+    }
+    .exit-img-add-experience-education-languages {
+        margin-top: 0px;    /* margin-top: 0px, e kthen nga vlera negative (ku ka qene margin-top: 10px) dhe kthehet ne margin-top: 20px */
+    }
+}

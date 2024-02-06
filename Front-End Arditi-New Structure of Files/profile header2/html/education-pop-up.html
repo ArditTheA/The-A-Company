@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Experience</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <!-- <link rel="stylesheet" href="../css/base.css/authenticated.css">
+    <link rel="stylesheet" href="../css/profile-header.css">
+    <link rel="stylesheet" href="../css/add-experience.css">
+    <link rel="stylesheet" href="../css/responsive-experience-education-languages-page.css"> -->
+    <link rel="stylesheet" href="../css/base/header.css">
+    <link rel="stylesheet" href="../css/body.css">
+    <link rel="stylesheet" href="../css/profile/profile-web.css">
+    <link rel="stylesheet" href="../css/profile/profile-tablet.css">
+    <link rel="stylesheet" href="../css/profile/profile-mobile.css">
+    <link href='https://fonts.googleapis.com/css?family=Spline Sans' rel='stylesheet'>
+
+</head>
+<body>
+
+    <div class="experience-main-div experience-education-languages different_exp">
+        <div class="experience-div second-experience-div">
+            <div class="experience-paragraph-img-rows">
+                <div class="aaa">
+                <p class="experience-paragraph">Education</p>
+                <div class="experience-rows-img" style="">
+                    <img class="experience-education-img" src="../img/worki_icons-19.jpg" alt="">
+                    <div class="experience-rows">
+                    <div style="display: flex; width: 100%;">
+                        <div class="experience-first-row">University of San Francisco
+                        </div>
+                        <div class="two-imgs-experience">
+                        <img class="edit-experience edit-experience-pop-up-button" title="Edit Experience" src="../img/../img/Three-dots.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="experience-second-row">MBA</div>
+                    <div class="experience-third-row">Semptember 2015 - Present
+                    </div>
+                    <div class="experience-fourth-row">San Francisco, USA</div>
+                    </div>
+                </div>
+                <div class="experience-rows-img">
+                    <img class="experience-education-img" src="../img/worki_icons-19.jpg" alt="">
+                    <div class="experience-rows">
+                    <div style="display: flex; width: 100%;">
+                        <div class="experience-first-row">University of San Francisco</div>
+                        <div class="two-imgs-experience">
+                        <img class="edit-experience edit-experience-pop-up-button" title="Edit Experience" src="../img/../img/Three-dots.svg" alt="">
+                        </div>
+                    </div>
+                    
+                    <div class="experience-second-row">MBA</div>
+                    <div class="experience-third-row">Semptember 2015 - Present
+                    </div>
+                    <div class="experience-fourth-row">San Francisco, USA</div>
+                  </div>
+                </div>
+            </div>
+            </div>
+            <div class="add-and-edit-experience">
+                <a href="profile.html"><img class="back-icon" title="Go Back" src="../img/backButton.png" alt=""></a>         
+                <img class="second-add-education-button plus-button-exp" title="Add Education" src="../img/Vector 80.png" alt="">
+              </div>
+          </div>
+    </div>
+    <div class="bg-add-and-edit bg-edit-education" style="display: flex;">
+        
+        <div class="add-education edit-education-parent-scroll under-container-mutual-mutual-stats edit-education-scroll">
+            <div class="add-education-title mutual-titles-pop-ups-stats">Edit Education</div>
+            <form method="POST" action="" class="sign-up-form forms-inputs-placeholder">
+                <input placeholder="University" name="university" type="text" id="id_university" class="name-input profile-all-inputs-option"></input>
+                <input placeholder="Field of study" id="id_field_of_study" name="field_of_study" type="text" class="surname-input profile-all-inputs-option"
+                ></input>
+                <input placeholder="Degree" id="id_degree" name="degree" type="text" class="surname-input profile-all-inputs-option"
+                ></input>
+                <select name="country_e" id="id_country_e" class="country-input profile-all-inputs-option">
+                    <option style="display: none;" value="" disabled selected>Select a Country</option>
+                </select>
+                <input placeholder="City" name="city_e" type="text" id="id_city_e" class="city-input font-fam"
+                ></input>
+                <input placeholder="Total Exams Passed" name="total_examples_passed" type="text" id="id_total_examples_passed" class="city-input profile-all-inputs-option"
+                ></input>
+                <input placeholder="GPA" name="GPA" type="text" id="id_GPA" class="city-input profile-all-inputs-option"
+                ></input>
+
+                <div class="start-and-end-date-main-div">
+                    <input id="id_start_year" class="start-date-input date-of-birth-input inputs-job-details start-end-date all-inputs mutual-input" 
+                    name="start_year" onchange="checkForm();checkStartDate();" value="" type="text" maxlength="10" 
+                    placeholder="Start Year (dd/mm/yyyy)" oninput="this.value = MMDDYYYY(this.value, event)" />
+                    <input id="id_end_year" class="end-date-input date-of-birth-input inputs-job-details start-end-date all-inputs mutual-input" 
+                    name="end_year" onchange="checkForm();checkStartDate();" value="" type="text" maxlength="10" 
+                    placeholder="End Year (dd/mm/yyyy)" oninput="this.value = MMDDYYYY(this.value, event)" />
+                </div>
+                <div style="float: right; border:0;width:auto;font-size: 16px;color: #858585;padding:0;" class="profile-all-inputs-option">
+                    <label class="" style=""><input class="" style="" onchange="present()"type="checkbox"> Present</label>
+                </div>
+                <div class="save-button save-button-edit-profile-photo save-button-add-education">
+                    <input onclick="backtoEditEduPage()" name="back" title="Back to Profile" type="button" class="back-input font-fam back-save-buttons" value="Back">
+                    <input title="Save Profile Data" name="save" type="submit" class="save-submit-input font-fam back-save-buttons" value="Save">
+                </div>
+            </form>
+    </div>
+</div>
+</body>
+<script>
+$(document).ready(function() {
+    $(".bg-add-and-edit").click(function() {
+        $(this).hide();
+    });
+});
+
+    $(".under-container-mutual-mutual-stats").click(function(event) {
+        event.stopPropagation();
+    });
+</script>
+
+<script>
+        const countries = ["Kosovo","Albania","Afghanistan",
+"Algeria",
+"Andorra",
+"Angola",
+"Antigua and Barbuda",
+"Argentina",
+"Armenia",
+"Australia",
+"Austria",
+"Azerbaijan",
+"The Bahamas",
+"Bahrain",
+"Bangladesh",
+"Barbados",
+"Belarus",
+"Belgium",
+"Belize",
+"Benin",
+"Bhutan",
+"Bolivia",
+"Bosnia and Herzegovina",
+"Botswana",
+"Brazil",
+"Brunei",
+"Bulgaria",
+"Burkina Faso",
+"Burundi",
+"Cambodia",
+"Cameroon",
+"Canada",
+"Cape Verde",
+"Central African Republic",
+"Chad",
+"Chile",
+"China",
+"Colombia",
+"Comoros",
+"Republic of the Congo",
+"Democratic Republic of the Congo",
+"Costa Rica",
+"Croatia",
+"Cuba",
+"Cyprus",
+"Czech Republic",
+"Denmark",
+"Djibouti",
+"Dominica",
+"Dominican Republic",
+"East Timor",
+"Ecuador",
+"Egypt",
+"El Salvador",
+"Equatorial Guinea",
+"Eritrea",
+"Estonia",
+"Eswatini",
+"Ethiopia",
+"Fiji",
+"Finland",
+"France",
+"Gabon",
+"The Gambia",
+"Georgia",
+"Germany",
+"Ghana",
+"Greece",
+"Grenada",
+"Guatemala",
+"Guinea",
+"Guinea-Bissau",
+"Guyana",
+"Haiti",
+"Holy See (Vatican City)",
+"Honduras",
+"Hungary",
+"Iceland",
+"India",
+"Indonesia",
+"Iran",
+"Iraq",
+"Ireland",
+"Israel",
+"Italy",
+"Ivory Coast",
+"Jamaica",
+"Japan",
+"Jordan",
+"Kazakhstan",
+"Kenya",
+"Kiribati",
+"North Korea",
+"South Korea",
+"Kuwait",
+"Kyrgyzstan",
+"Laos",
+"Latvia",
+"Lebanon",
+"Lesotho",
+"Liberia",
+"Libya",
+"Liechtenstein",
+"Lithuania",
+"Luxembourg",
+"Madagascar",
+"Malawi",
+"Malaysia",
+"Maldives",
+"Mali",
+"Malta",
+"Marshall Islands",
+"Mauritania",
+"Mauritius",
+"Mexico",
+"Micronesia",
+"Moldova",
+"Monaco",
+"Mongolia",
+"Montenegro",
+"Morocco",
+"Mozambique",
+"Myanmar (Burma)",
+"Namibia",
+"Nauru",
+"Nepal",
+"Netherlands",
+"New Zealand",
+"Nicaragua",
+"Niger",
+"Nigeria",
+"North Macedonia",
+"Norway",
+"Oman",
+"Pakistan",
+"Palau",
+"Palestine",
+"Panama",
+"Papua New Guinea",
+"Paraguay",
+"Peru",
+"Philippines",
+"Poland",
+"Portugal",
+"Qatar",
+"Romania",
+"Russia",
+"Rwanda",
+"Saint Kitts and Nevis",
+"Saint Lucia",
+"Saint Vincent and the Grenadines",
+"Samoa",
+"San Marino",
+"São Tomé and Príncipe",
+"Saudi Arabia",
+"Senegal",
+"Serbia",
+"Seychelles",
+"Sierra Leone",
+"Singapore",
+"Slovakia",
+"Slovenia",
+"Solomon Islands",
+"Somalia",
+"South Africa",
+"South Sudan",
+"Spain",
+"Sri Lanka",
+"Sudan",
+"Suriname",
+"Sweden",
+"Switzerland",
+"Syria",
+"Tajikistan",
+"Tanzania",
+"Thailand",
+"Togo",
+"Tonga",
+"Trinidad and Tobago",
+"Tunisia",
+"Turkey",
+"Turkmenistan",
+"Tuvalu",
+"Uganda",
+"Ukraine",
+"United Arab Emirates",
+"United Kingdom",
+"United States",
+"Uruguay",
+"Uzbekistan",
+"Vanuatu",
+"Venezuela",
+"Vietnam",
+"Yemen",
+"Zambia",
+"Zimbabwe"
+];
+
+    var selectedCountry = "{{ form.country }}";
+var select = document.getElementById("id_country");
+
+// Function to populate the select element with countries
+function populateCountries2() {
+  const select = document.getElementById("id_country_e");
+
+  for (const country of countries) {
+    const option = document.createElement("option");
+    option.value = country;
+    option.text = country;
+    select.appendChild(option);
+  }
+}
+
+populateCountries2();
+
+window.addEventListener("load", populateCountries2);
+
+
+</script>
+
+<script src="../js/profile_dropdown.js"></script>
+<script src="../js/edit-experience-button.js"></script>
+<script src="../js/profile_dropdown_2.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="../js/header-border-worki-icon.js"></script>
+<script src="../js/my-jobs-option.js"></script>
+<script src="../js/dropdown/profileDropDown.js"></script>
+<script src="../js/worki-icon-reload-page.js"></script>
+<script src="../js/post-a-job/post-a-job-start-end-date.js"></script>
+<script>
+
+</script>
+</html>
+

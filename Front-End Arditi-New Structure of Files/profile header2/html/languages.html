@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Experience</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <!-- <link rel="stylesheet" href="../css/base.css/authenticated.css"> -->
+    <!-- <link rel="stylesheet" href="../css/profile-header.css">
+    <link rel="stylesheet" href="../css/add-experience.css"> -->
+    <!-- <link rel="stylesheet" href="../css/responsive-experience-education-languages-page.css"> -->
+    <link rel="stylesheet" href="../css/base/header.css">
+    <link rel="stylesheet" href="../css/body.css">
+    <link rel="stylesheet" href="../css/profile/profile-web.css">
+    <link rel="stylesheet" href="../css/profile/profile-tablet.css">
+    <link rel="stylesheet" href="../css/profile/profile-mobile.css">
+    <link href='https://fonts.googleapis.com/css?family=Spline Sans' rel='stylesheet'>
+    
+</head>
+<body>
+    
+    <div class="profileDropDown" id="dropdownA">
+        <div class="profileDropDown-content" ><a class="profileDropdDown-text">My profile</a></div>
+        <div class="profileDropDown-content"><a class="profileDropDown-text">My jobs</a></div>
+        <div class="profileDropDown-content"><a href="" class="profileDropDown-text">Recruiter</a></div>
+        <div class="profileDropDown-content"><a href="" class="profileDropDown-text">Sign out</a></div>
+    </div>
+    <div class="experience-education-languages languages-main-div different_exp">
+            <div class="languages-div" style="">
+                <div class="languages-paragraphs-div">
+                    <div class="experience-paragraph language-paragraph">Languages</div>
+                    <div style="" class="experience-rows-img-languages">
+                        <div class="language-edit-button-parent" style="display: flex; width: 100%;">
+                        <div class="education-second-paragraph">English</div>
+                        <div class="two-imgs-experience">
+                            <a href="languages-pop-up.html">
+                            <img class="edit-experience edit-experience-pop-up-button add-edit-buttons-hover" title="Edit Languages" src="../img/Three-dots.svg" alt=""></a>
+                        </div>
+                        </div>
+                        <div class="language-rate">Advanced</div>
+                    </div>
+                    <div style="" class="experience-rows-img-languages">
+                    <div class="language-edit-button-parent" style="display: flex; width: 100%;">
+                        <div class="education-second-paragraph">Albanian</div>
+                        <div class="two-imgs-experience">
+                            <a href="languages-pop-up.html">
+                            <img class="edit-experience edit-experience-pop-up-button add-edit-buttons-hover" title="Edit Languages" src="../img/Three-dots.svg" alt=""></a>
+                        </div>
+                    </div>
+                        <div class="language-rate">High-Intermediate</div>
+                    </div>
+                </div>
+                <div class="add-and-edit-experience">
+                    <a href="profile.html"><img class="back-icon add-edit-buttons-hover" title="Go Back" src="../img/backButton.png" alt=""></a>         
+                    <img class="second-add-languages-button plus-button-exp add-edit-buttons-hover" title="Add Languages" src="../img/Vector 80.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="bg-add-and-edit bg-add-languages-edit">
+
+            <div class="add-languages under-container-mutual-mutual-stats">
+                <div class="add-language-title mutual-titles-pop-ups-stats">Add Language</div>
+                <form method="POST" action="" class="sign-up-form add-language-form">
+                    <div class="div-of-job-experience">
+                    <select id="id_language" name="language" type="text" required class="mutual-stats font-fam">
+                        <option style="display: none;" selected>Language</option>
+                        <option value="1">Turkish</option>
+                        <option value="2">Albanian</option>
+                        <option value="3">English</option>
+                        <option value="4">German</option>
+                        <option value="6">Serbian</option>
+                        <option value="7">Bulgarian</option>
+                    </select>
+                    </div>
+
+                    
+                    <div>
+                    <select id="id_level" name="level" type="text" required class="surname-input mutual-stats font-fam">
+                        <option style="display: none;" selected>Level</option>
+                        <option value="N/A">N/A</option>
+                        <option value="Basic">Basic</option>
+                        <option value="Low Intermediate">Low Intermediate</option>
+                        <option value="High Intermediate">Hight Intermediate</option>
+                        <option value="Advanced">Advanced</option>
+                    </select>
+                    </div>
+                    <div class="save-button save-button-edit-profile">
+                        <input title="Back to Profile" name="back" type="button" class="back-input font-fam back-save-buttons" value="Back">
+                        <input title="Save Profile Data" name="save" type="submit" class="save-submit-input font-fam back-save-buttons" value="Save">
+                    </div>
+                </form>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Include jQuery library -->
+
+<script>
+    $(document).ready(function() {
+        $(".bg-add-and-edit").click(function() {
+            $(this).hide();
+        });
+    });
+    
+        $(".under-container-mutual-mutual-stats").click(function(event) {
+            event.stopPropagation();
+        });
+</script>
+    
+<!-- <script src="../js/profile_dropdown.js"></script>
+<script src="../js/edit-experience.js"></script>
+<script src="../js/profile_dropdown_2.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
+<script src="../js/plus-languages.js"></script>
+<script src="../js/header-border-worki-icon.js"></script>
+<script src="../js/my-jobs-option.js"></script>
+<script src="../js/dropdown/profileDropDown.js"></script>
+<script src="../js/worki-icon-reload-page.js"></script>
+<script src="../js/exit-button.js"></script>
+<script src="../js/add-and-edit-button.js"></script>
+<script src="../js/post-a-job/post-a-job-start-end-date.js"></script>
+
+</html>

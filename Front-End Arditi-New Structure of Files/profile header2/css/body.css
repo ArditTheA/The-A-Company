@@ -1,0 +1,20 @@
+
+body {
+    background-color: #f1f1f1;
+    margin: 0 !important;
+    box-sizing: border-box;
+    font-family: 'Spline Sans', sans-serif;
+}
+body::-webkit-scrollbar {
+    display: none;
+}
+
+input::placeholder {
+    font-family: "Spline Sans", sans-serif;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"] {
+  -webkit-appearance: none;
+}

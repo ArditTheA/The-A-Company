@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for Job</title>
+    <link rel="stylesheet" href="../css/base.css/authenticated.css">
+	<link rel="stylesheet" href="../css/add-a-job.css">
+	<link rel="stylesheet" href="../css/job-description.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="../css/base/header.css">
+    <link rel="stylesheet" href="../css/body.css">
+    <style type="text/css">
+
+    body {
+		background-color: #f1f1f1;
+		font-family: 'Spline Sans', sans-serif;
+		-webkit-tap-highlight-color: transparent;
+  	}
+	.navbar {
+		padding-top: 40px;
+		padding-bottom: 40px;
+	}a
+    
+    .container-add-a-job {
+		border-radius: 40px;
+		background-color: white;
+		display: flex;
+		justify-content: center;
+		margin: auto;
+		padding-top: 40px;
+		padding-bottom: 40px;
+		align-items: center;
+		font-size: 18px;
+		align-items: center;
+		max-width: none;
+		position: relative;
+		margin: 20px 40px 20px 40px;
+
+    }
+
+	.register-form {
+		width: 450px;
+	}
+
+	input::placeholder {
+		color: black;
+	}
+
+    .male-sex::placeholder {
+        color: white;
+    }
+
+    input, .select-options-input{
+    	border: 0.5px solid #9E9E9E;
+		border-radius: 30px;
+		padding: 10px 10px 10px 10px;
+		font-size: 18px;
+		background-color: white;
+		width: 100%;
+		box-sizing: border-box;
+		outline: none;
+    }
+
+	.select-options-input {
+		color: black;
+	}
+	.margin-left {
+		margin-left: 10px;
+	}
+	.margin-top-bottom {
+		margin-top: 10px;
+		margin-bottom: 5px;
+		font-size: 16px;
+		color: #9E9E9E;
+		margin-left: 10px;
+	}
+	h1 {
+		color: #1877F2;
+		font-size: 40px;
+    	font-weight: 400;
+    	color: #1877F2;
+    	margin: auto;
+    	text-align: center;
+	}
+
+    .sel{
+    	border-radius: 40px;
+    	border: 0.5px solid #9E9E9E;
+    	background-color: white;
+    	/*width: 600px;*/
+    }
+
+    .mid{
+    	text-align: center;
+		margin: 0;
+    }
+	.title-font-size {
+		font-size: 40px;
+	}
+	.under-title-font-size {
+		font-size: 20px;
+		margin-top: 10px;
+	}
+	.form-group {
+		margin: 0;
+	}	
+	.submit-button, .back-button {
+        margin-top: 40px;
+        border-radius: 30px;
+        padding: 10px 35px;
+        background-color: #1877F2;
+        font-size: 18px;
+		cursor: pointer;
+	}
+    .submit-button {
+        background-color: #1877F2;
+        color: white;
+    }
+    .back-button {
+        background-color: white;
+        color: #1877F2;
+		border: 1px solid #1877F2;
+    }
+    .submit-button:hover, .back-button:hover {
+    filter: brightness(0.95);
+}
+    .upload-file-div {
+        border: 0.5px solid #9E9E9E;
+		border-radius: 30px;
+		padding: 10px 10px 10px 10px;
+		font-size: 18px;
+		background-color: #1877F2;
+		width: 100%;
+		box-sizing: border-box;
+		outline: none;
+        color: white;
+        border: none;
+    }
+
+	.navbar-brand {
+		padding: 0;
+	}
+
+	.modal-bg {
+		width: 100%;
+		height: 100%;
+		position: relative;
+		position: fixed;
+		top: 0;
+		background-color: rgba(0, 0, 0, 0.7);
+		justify-content: center;
+		align-items: center;
+		display: none;
+	}
+
+	.content {
+		text-align: center;
+		background-color: white;
+		padding: 30px 40px 40px 40px;
+		border-radius: 40px;
+		box-sizing: border-box;
+		position: absolute;
+		/* Increase/Decrease this value for cross-browser compatibility */
+		overflow-y: scroll;
+	}
+
+	.sign-up-pop-up-paragraph {
+		margin: 0;
+		margin-top: 40px;
+		color: #858585;
+		font-size: 18px;
+	}
+	.sign-up-pop-up-button {
+		margin-top: 40px;
+		background-color: #858585;
+		color: white;
+		display: inline-block;
+		padding: 10px 24px;
+		border-radius: 30px;
+	}
+	.company-name {
+		color: black;
+	}
+    .upload>input[type="file"] {
+}
+    .dropdown {
+        position: absolute;
+    }
+    .dropdown-content-text {
+        text-decoration: none;
+        color: gray;
+    }
+    .logo-label {
+        width: 100%;
+        margin-bottom: 0;
+    }
+	.input-form {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    position: relative;
+	}
+
+	.icon {
+		position: absolute;
+		left: 10px;
+		height: 22px;
+		width: 22px;
+		border-radius: 4px;
+	}
+
+.under-main-modal-bg {
+	display: none;
+	margin: 20px 40px 20px 40px; 
+	padding: 40px; 
+	background-color: white; 
+	border-radius: 40px;
+}
+.submit-button {
+    background-color: #1877F2;
+    color: white;
+    border: none;
+}
+.back-button {
+    background-color: white;
+    color: #1877F2;
+    border: 1px solid #1877F2;
+}
+.submit-button:hover, .back-button:hover {
+    filter: brightness(0.95);
+}
+.imgs-over-textarea {
+	display: flex; 
+	width: calc(100% - 120px);
+	margin: auto;
+}
+.scroll {
+	width: calc(100% - 120px);
+	margin-left: 40px;
+	margin-right: 40px;
+	height: 400px; 
+	background-color: white; 
+	border-radius: 40px;
+	resize: none; 
+	border: 1px solid #9E9E9E; 
+	font-size: 18px; 
+	color: #757575; 
+	padding: 10px;
+	margin: auto;
+	outline: none;  
+	margin-top: 20px;
+}
+.male-sex, .female-sex {
+    width: 48%; 
+    cursor: pointer;
+}
+.male-sex {
+    background-color: black;
+    border: 0.5px solid black; 
+}
+.female-sex {
+    float: right; 
+}
+.textarea-imgs {
+	display: flex;
+	flex-direction: column;
+}
+.margin-top-job-title {
+	padding-top: 10px;
+}
+.back-submit-buttons {
+	width: 450px;
+	display: flex;
+	justify-content: space-between;
+	margin: auto;
+}
+.back-button-description {
+	color: #1877F2;
+}
+.title-job-description {
+	padding-bottom: 40px; 
+	text-align: center; 
+	font-size: 40px;
+}
+
+.custom-select:focus {
+  box-shadow: none !important;
+}
+
+input:focus,
+select:focus
+{
+  outline: none !important;
+}
+
+.next-none::placeholder {
+	color: #9E9E9E;
+}
+.first-name-input {
+	margin-top: 40px;
+}
+
+	@media screen and (max-width: 1024px) and (min-width: 768px) {
+		.container-add-a-job {
+			margin: 30px;
+		}
+		.imgs-over-textarea {
+			width: calc(100% - 90px);
+		}
+		.scroll {
+			width: calc(100% - 90px);
+		}
+		.back-submit-buttons {
+			width: 400px;
+			display: flex;
+			justify-content: space-between;
+			margin: auto;
+		}
+		.title-font-size {
+			font-size: 36px;
+		}
+	}
+
+	@media screen and (max-width: 767px) and (min-width: 481px) {
+		.container-add-a-job {
+			margin: 20px;
+			height: auto;
+		}
+		.imgs-over-textarea {
+			width: 100%;
+		}
+		.scroll {                     
+			width: 100%;
+		}
+		.back-submit-buttons {
+			width: 350px;
+			display: flex;
+			justify-content: space-between;
+			margin: auto;
+		}
+		.title-font-size {
+			font-size: 32px;
+		}
+
+	}
+	@media screen and (max-width: 480px) {
+	
+		body {
+		}
+
+		.parent_container {
+				height: calc(100% - 60px);
+				width: 100%;
+				position: absolute;
+				padding-bottom: 20px !important;
+			}
+
+		.container-add-a-job {
+			margin: 10px;
+			padding: 20px;
+			height: 100%;
+			border-radius: 20px;
+		}
+		.register-form {
+			width: 100%;
+			height: 100%;
+			overflow-y: scroll;
+		}
+		.register-form::-webkit-scrollbar {
+			display: none;
+		}
+		.scroll {
+			width: 100%;
+			height: 300px;
+		}
+		.imgs-over-textarea {
+			width: 100%;
+		}
+		.title-font-size {
+			font-size: 30px;
+		}
+		img {
+			height: 40px;
+		}
+		.first-form-group {
+			 /* margin-top ne llaptop: 10px 
+											+
+								 margin-top ne mobile: 10px
+								 			=
+											20px */								 
+		}
+		input {
+		}
+    .back-submit-buttons {
+		display: flex;
+		justify-content: space-between;
+    }
+	.back-button-description {
+		margin-right: 0;
+	}
+	.submit-button-description {
+		margin-right: 0;
+	}
+	.back-submit-buttons {
+		width: 100%;
+	}
+	.title-job-description {
+		font-size: 30px;
+		margin-top: 0;
+	}
+	input::placeholder, .male-sex, .female-sex {
+		font-size: 16px;
+	}
+	.margin-top-bottom {
+		font-size: 14px;
+	}
+	input, .padding-of-inputs, .back-button, .next-button {
+		padding-top: 8px;
+		padding-bottom: 8px;
+		font-size: 16px;
+	}
+	.back-button, .next-button {
+		padding-right: 30px;
+		padding-left: 30px;
+	}
+
+	.back-and-next-buttons {
+		margin-top: -10px;
+	}
+	.dropdown {
+        font-size: 16px !important;
+    }
+}
+
+    </style>
+</head>
+<body>
+	<header class="profileHeader" style="">
+		<img style="border-radius: 10px;" class="header-icon header-icon-radius header-icon-logo" src="../img/12.jpeg" title="Worki">
+		<div class="jobs-and-profile">
+		<a href="jobs.html"><img class="header-icon header-icon-job" title="Jobs" src="../img/JOBS_Icon.png"></a>
+			<img src="../img/logo-avatar.png" class="header-icon header-icon-radius header-icon-profile" title="Profile" alt="">
+		</div>
+	</header>
+
+	<div class="profileDropDown" id="dropdownA">
+		<div class="profileDropDown-content" ><a class="profileDropdDown-text">My profile</a></div>
+		<div class="profileDropDown-content"><a class="profileDropDown-text">My jobs</a></div>
+		<div class="profileDropDown-content"><a href="" class="profileDropDown-text">Recruiter</a></div>
+		<div class="profileDropDown-content"><a href="" class="profileDropDown-text">Sign out</a></div>
+	</div>
+<div class="parent_container">
+    <div class="container-add-a-job">
+        <form class="register-form">
+		    <div class="inside-the-container" style="">
+            <h1 class="next-none mid title-font-size f-title">Apply fast</h1>
+            <h1 class="next-none mid title-font-size f-title">and easy</h1>
+      		<div class="form-group first-form-group">
+            <label class="disabled margin-top-bottom next-none first-name-input">First name</label>
+            <input class="next-none" type="text" name="data[Emri]">
+      		</div>
+      		<div class="form-group" style="margin: 0;">
+          <label class="margin-top-bottom next-none">Last name</label>
+      		<input class="next-none" type="text" name="data[Mbiemri]">
+      		</div>
+              <!-- <label style="" class="margin-top-bottom next-none">Sex</label>
+            <div class="form-group" style="margin: 0; box-sizing: border-box; width: 100%;">
+                    <input style="color: white;" class="next-none male-sex same-button" type="text" name="data[MaleSex]" placeholder="Male">
+                    <input style="" class="next-none female-sex same-button" type="text" name="data[FemaleSex]" placeholder="Female">
+            </div> -->
+
+                    <div class="form-group">
+      				<label class="margin-top-bottom margin-left next-none">Country of residence</label>
+
+				<div>	
+					<input class="next-none" list="country_list" id="browser_id" name="browser" placeholder="" size="50"/>
+					<datalist id="country_list">
+					  <option>Kosovo</option>
+					  <option>Albania</option>
+					</datalist>
+		  </div>	
+      		  </div>
+			  
+              <div class="form-group" style="margin: 0;">
+                <label class="margin-top-bottom next-none">Email</label>
+                <input class="next-none padding-of-inputs" type="text" name="data[Email]">
+            </div>
+            <div class="form-group" style="margin: 0;">
+                <label class="margin-top-bottom next-none">Phone number</label>
+                <input class="next-none padding-of-inputs" type="text" name="data[PhoneNumber]">
+            </div>
+			<div class="form-group">
+				<label class="margin-top-bottom margin-left next-none">Are you active student?</label>
+		  <div>	
+			  <select style="height: auto; border-color: #9E9E9E;" class="custom-select sel select-options-input next-none padding-of-inputs" name="data[areYouActiveStudent]"id="inputGroupSelect02">
+				  <option style="display: none;" value=""></option>
+				<option value="Yes">Yes</option>
+				  <option value="No">No</option>
+			</select>
+		  </div>	
+		  </div>
+            <div class="back-and-next-buttons" style="width: 100%; display: flex; justify-content: space-between;">
+            <a href="jobs.html" class="btn back-button next-none" style="color: #1877F2;">Back</a>
+            <a href="education-job.html" class="btn submit-button next-button next-none" style="color: white;">Next</a>
+            </div>
+		</div>
+    </form>
+	</div> 	
+</div>
+</body>
+
+<script src="../js/profile_dropdown.js"></script>
+<script src="../js/bold-button.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="../js/back-job-description.js"></script>
+<script src="../js/male-female.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script src="../js/profile_dropdown_2.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="../js/header-border-worki-icon.js"></script>
+<script src="../js/my-jobs-option.js"></script>
+<script src="../js/dropdown/profileDropDown.js"></script>
+<script src="../js/worki-icon-reload-page.js"></script>
+</html>

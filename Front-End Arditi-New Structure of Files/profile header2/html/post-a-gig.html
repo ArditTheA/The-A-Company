@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/sq-backup.css">
+    <link rel="stylesheet" href="../css/base/header.css">
+    <link rel="stylesheet" href="../css/body.css">
+    <link rel="stylesheet" href="../css/reserve-post-a-job.css">
+    <link href='https://fonts.googleapis.com/css?family=Spline Sans' rel='stylesheet'>
+    <!-- <link rel="stylesheet" href="../css/profile-header.css"> -->
+  
+    <title>Post a gig</title>
+</head>
+<body>
+    <header class="profileHeader">
+        <img class="header-icon header-icon-radius header-icon-logo" src="../img/blue-Worki-icon.png" title="Worki">
+        <div class="jobs-and-profile">
+        <a href="jobs.html"><img class="header-icon header-icon-job" title="Jobs" src="../img/jobs iconnew.jpg"></a>
+            <img src="../img/Group 1255new.jpg" class="header-icon header-icon-radius header-icon-profile" title="Profile" alt="">
+        </div>
+    </header>
+    <form class="postAJobForm" method="POST">
+    <div id="reserve-form" class=" second-reserve-form reserve-form first-post-a-job-form" style="">
+        <div>
+        <div class="contact-information-over-form">
+        <div class="contact-information-form">
+            <div class="under-c-i-f">
+            <div class="second-under-c-i-f under-c-i-f">
+                <div class="program-duration-main-div">
+                <div class="job-details-div first-job-details pd-ci-cursor font-size-18px-16px">Details</div>
+                </div>
+                <div class="post-a-job-under-div">
+  
+            <div class="inputs-div second-inputs-div">
+                <input type="text" name="position" id="id_position" placeholder="Position" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom" required></input>
+                <input name="tips" type="number" id="id_salary_per_hour" placeholder="Salary per hour" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input" oninput="displaySalary()" onkeydown="handlePlaceholder(event)" required>
+                <input type="text" name="company" id="id_company" placeholder="Company" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom" required></input>
+                <input type="number" name="number_of_workers" id="id_number_of_workers" placeholder="Number of workers" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input"></input>      
+            </div>
+
+            <div class="back-and-next-buttons" style="width: 100%; display: flex; justify-content: space-between;">
+                <a class="btn back-button next-none contact-information-back-button">Back</a>
+                <a id="first-next-button-job-details" class="first-next-button btn submit-button next-none">Next</a>
+            </div>
+        </div>
+        <div class="first-job-description-post-a-job" style="padding-top: 20px; padding-bottom: 20px; border-bottom: 40px; margin-left: 30px; color: #D4D5D6;">
+            <div class="second-screening-question mutual-font-size-18px font-size-18px-16px">Job Description</div>
+        </div>
+    </div>
+    <div class="second-payment-div" style="padding-top: 20px; padding-bottom: 20px; border-bottom: 40px; margin-left: 30px; color: #D4D5D6;">
+        <div class="second-payment mutual-font-size-18px first-additional-feature font-size-18px-16px">Additional Feature</div>
+    </div>
+    
+    </div>
+    <div class="second-payment-div" style="padding-top: 20px; padding-bottom: 20px; border-bottom: 40px; margin-left: 30px; color: #D4D5D6;">
+        <div class="second-payment mutual-font-size-18px first-additional-feature font-size-18px-16px">Additional Feature</div>
+    </div>
+    
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div id="reserve-form" class=" second-reserve-form reserve-form second-post-a-job-form" method="POST" style="">
+        <div class="contact-information-form job-description-form">
+          
+            <div class="under-c-i-f job-description-under-form">
+            <div class="second-under-c-i-f under-c-i-f">
+                <div class="program-duration-main-div second-job-details-div">
+                <div class="program-duration-div second-job-details-title pd-ci-cursor font-size-18px-16px">Job Details</div>
+                </div>
+                <div class="program-duration-under-div job-description-under-div">
+    
+            <div class="contact-information-title job-description-title font-size-18px-16px">Job Description</div>
+            <form>
+            <textarea id="job_description_textarea" class="scroll inner-text editable" oninput="updateNextButton()" style="background-color: white; border-radius: 40px;resize: none;"></textarea>
+            <input type="submit" value="Submit" style="display: none;">
+            </form>
+                                                                                                                                                
+            <div class="back-and-next-buttons" style="width: 100%; display: flex; justify-content: space-between;">
+                <a class="btn back-button next-none job-description-back-button">Back</a>
+                <a id="next-button-job-description" class="next-button-job-description btn submit-button next-none" onclick="validateTextarea()">Next</a>
+            </div>
+        </div>
+        <div class="second-screening-question-div" style="padding-top: 20px; padding-bottom: 20px; border-bottom: 40px; margin-left: 30px; color: #D4D5D6;">
+            <div class="second-screening-question mutual-font-size-18px font-size-18px-16px second-additional-feature">Additional Feature</div>
+        </div>
+    </div>
+    </div>
+    
+    </div>
+    </div>
+    <div class="additional-feature-form reserve-form" style="display: none;">
+        <div class="program-duration-form additional-feature-form-main-div">
+                <div class="program-duration-main-div third-job-details-div">
+                <div class="program-duration-div third-job-details pd-ci-cursor font-size-18px-16px third-page-job-details-description">Job Details</div>
+                </div>
+                <div class="job-description-third-page-div">
+                    <div class="job-description-third-page pd-ci-cursor font-size-18px-16px">Job Description</div>
+                </div>
+    
+            <div class="third-additional-feature-main-div">
+                <div class="third-additional-feature font-size-18px-16px">Additional Feature</div>
+                
+                <input type="number" placeholder="Number of Positions" class="all-inputs contact-information-mutual-stats contact-information-margin-bottom positions-deadline-date-inputs"></input>
+                <input id="id_deadline_date" class="positions-deadline-date-inputs date-of-birth-input start-end-date all-inputs mutual-input"
+                name="start_date" onchange="checkForm();checkStartDate();" value="" type="tel" maxlength="10" 
+                placeholder="Deadline Date (mm/dd/yyyy)" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
+                <div class="form-group form-group-add-question" style="display: none;">
+                    <textarea name="question1" id="question1" class="textarea-question textarea-color form-control" placeholder="Question 1" name="" id="" cols="30" rows="4"></textarea>
+                
+                    <div class="row">
+                      <div class="answer-type-select">
+                                                            
+                    <select onchange="changeAnsType(1)" class="form-control select-width select-arrow select-focus" id="ans_type1" name="answerType1">
+                        <option>Answer type</option>
+                        <option value="YesNo">Yes / No</option>
+                        <option value="Numeric" >Numeric</option>
+                    </select>
+                      </div>
+                      <div class="ideal-answer-div">
+                
+                        <div class="idealAns1" id="idealAns1">
+                          <input value="Ideal Answer" class="disable-inputs" name="secondAnswer1" disabled>
+                        </div>
+                
+                      </div>
+                    </div>
+                    <div class="must-have-qualification-div" style="">
+                            <label class="must-have-qualification-label screening-questions-mutual-color mutual-color" for="must-have-qualification">
+                            <input class="must-have-qualification-input" id="must-have-qualification" type="checkbox">Must-have qualification</label>
+                    </div>
+                
+                  </div>
+                  <div class="form-group form-group-add-question margin-between-question-and-answer" style="display: none;">
+                    <textarea id="question2" name="question2" class="textarea-question textarea-color form-control" placeholder="Question 2" name="" id="" cols="30" rows="4"></textarea>
+                    
+                    <div class="row">
+                      <div class="answer-type-select">
+                
+                
+                        <select onchange="changeAnsType(2)" class="form-control select-width select-arrow" id="ans_type2" name="answerType2">
+                        <option>Answer type</option>
+                        <option value="YesNo">Yes / No</option>
+                        <option value="Numeric" >Numeric</option>
+                    </select>
+                      </div>
+                      <div class="ideal-answer-div">
+                        <div class="idealAns2" id="idealAns2">
+                          <input value="Ideal Answer" class="disable-inputs" name="secondAnswer2" disabled>
+                        </div>
+                
+                      </div>
+                
+                    </div>
+                    <div class="must-have-qualification-div">
+                        <label class="must-have-qualification-label screening-questions-mutual-color mutual-color" for="must-have-qualification-2">
+                            <input class="must-have-qualification-input" id="must-have-qualification-2" type="checkbox">Must-have qualification</label>
+                
+                
+                      </div>
+
+                  </div>
+                <!--    End of question 2-->
+                    <!--    Question 3-->
+                  <div class="form-group form-group-add-question margin-between-question-and-answer" style="display: none;">
+                    <textarea id="question3" name="question3" class="textarea-question textarea-color form-control" placeholder="Question 3" name="" id="" cols="30" rows="4"></textarea>
+                
+                    
+                    <div class="row">
+                      <div class="answer-type-select">
+                                
+                        <select onchange="changeAnsType(3)" class="form-control select-width select-arrow" id="ans_type3" name="answerType3">
+                        <option>Answer type</option>
+                        <option value="YesNo">Yes / No</option>
+                        <option value="Numeric" >Numeric</option>
+                    </select>
+                      </div>
+                      <div class="ideal-answer-div">
+                        <div class="idealAns3" id="idealAns3">
+                          <input value="Ideal Answer" class="disable-inputs" name="secondAnswer3" disabled>
+                        </div>
+                
+                      </div>
+                        
+                    </div>
+                    <div class="must-have-qualification-div">
+                        <label class="must-have-qualification-label screening-questions-mutual-color mutual-color" for="must-have-qualification-3">
+                            <input class="must-have-qualification-input" id="must-have-qualification-3" type="checkbox">Must-have qualification</label>
+                
+                    </div>
+                  </div>                            
+                <div title="You can add up to three questions for students" type="text" class=" add-question-button" onclick="showNextFormGroup()"><span style="padding-right: 10px;">+</span>Add Question</div>
+            <div class="back-and-next-buttons" style="width: 100%; display: flex; justify-content: space-between;">
+                <a class="btn back-button next-none additional-feature-back-button">Back</a>
+                <a id="additional-feature-submit-button" class="next-button btn submit-button next-none">Submit</a>
+            </div>
+            
+        </div>
+    </div>
+    </div>
+    </form>
+</body>

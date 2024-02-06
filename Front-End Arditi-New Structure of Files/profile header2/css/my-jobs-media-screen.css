@@ -1,0 +1,47 @@
+.jobs-left, .right-jobs {
+    height: calc(85.9vh - 20px);
+    padding-bottom: 20px;
+    margin-bottom: 0px !important;
+    /* margin-bottom: 20px !important; */
+}
+
+
+@media screen and (max-width: 480px) {
+
+    .jobs-left {
+        /* height: 100vh; */
+        height: calc(100% - 114px);
+        position: absolute;
+    }
+}
+
+
+@media screen and (max-width: 767px) and (min-width: 481px) {
+
+    .jobs-left {
+        height: calc(100% - 167px) !important;
+        position: absolute;
+        width: calc(100% - 10px);
+        padding-bottom: 30px !important;
+    }
+    .right-jobs {
+            height: calc(100% - 100px) !important;
+            position: absolute;
+            width: calc(100% - 10px);
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+    .jobs-left {
+        height: calc(100% - 114px) !important;
+        position: absolute;
+    }
+    .right-jobs {
+            height: calc(100% - 70px) !important;
+            position: absolute;
+    }
+
+}
+
+

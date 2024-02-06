@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unique Text Areas</title>
+</head>
+<body>
+
+    <textarea type="text" name="job_question-0-promp" placeholder="Screening Question 1" maxlength="500" id="id_job_question-0-promp" class="textarea-question textarea-color form-control" oninput="checkTextAreas(0)"></textarea>
+
+    <textarea type="text" name="job_question-1-promp" placeholder="Screening Question 2" maxlength="500" id="id_job_question-1-promp" class="textarea-question textarea-color form-control" oninput="checkTextAreas(1)"></textarea>
+
+    <textarea type="text" name="job_question-2-promp" placeholder="Screening Question 3" maxlength="500" id="id_job_question-2-promp" class="textarea-question textarea-color form-control" oninput="checkTextAreas(2)"></textarea>
+
+    <script>
+        function checkTextAreas(index) {
+            var textAreaValues = [];
+
+            // Get values of all text areas
+            for (var i = 0; i < 3; i++) {
+                var textAreaId = "id_job_question-" + i + "-promp";
+                var textArea = document.getElementById(textAreaId);
+                textAreaValues.push(textArea.value);
+            }
+
+            // Check if any two values are the same
+            var isDuplicate = textAreaValues.some(function(value, currentIndex) {
+                return textAreaValues.indexOf(value) !== currentIndex;
+            });
+
+            // If there is a duplicate, show a warning or handle it accordingly
+            if (isDuplicate) {
+                alert("Text in the text areas must be unique.");
+                // You can also prevent further input or take other actions here
+            }
+        }
+    </script>
+
+</body>
+</html>

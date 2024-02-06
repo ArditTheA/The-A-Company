@@ -1,0 +1,26 @@
+.div-white-icon {
+    display: flex; 
+    align-items: center; 
+    position: absolute;
+}
+
+.all-my-jobs-button {
+    padding-left: 20px !important;
+}
+
+.all-my-jobs-dropdown {
+    overflow-y: scroll; 
+    max-height: 140px; 
+    flex-direction: column; 
+    overflow-x: scroll;
+    padding-bottom: 5px;
+}
+
+.all-my-jobs-dropdown::-webkit-scrollbar {
+    display: none;
+}
+
+.in-process-label {
+    margin-top: 0px !important;
+}
+

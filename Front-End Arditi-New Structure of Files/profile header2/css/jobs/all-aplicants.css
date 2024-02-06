@@ -1,0 +1,578 @@
+input[type="checkbox"]::before {
+    outline: none;
+}
+.applicantDropDown {
+    max-height: none !important; /* or max-height: unset; or max-height: initial; */
+}
+.drop-area {
+    border: 2px dashed #ccc;
+    border-radius: 30px;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.2em;
+    cursor: pointer;
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.mutual-padding-applied {
+    padding-bottom: 20px;
+}
+.three-dots-document {
+    width: 18px;
+    height: 24px;
+}
+.imgs-three-dots-zip-img {
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.div-title-documents-zip-icon {
+    display: flex;
+    justify-content: space-between;
+}
+.application-update-three-dots {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.mutual-three-dots-imgs {
+    margin-top: 30px;
+}
+.img-zip-download {
+    margin-left: 10px;
+}
+
+.under-upload-file {
+    color: #858585;
+    font-size: 16px;
+    padding-top: 10px;
+}
+.file-upload {
+    font-size: 18px;
+    padding-top: 15px;
+}
+.main-divs-color {
+    color: #858585;
+    width: 100%;
+    margin-right: 5px;
+    white-space: nowrap;
+}
+.blue-text {
+    color: #1877F2 !important;
+}
+.light-gray-text {
+    color: #858585;
+}
+
+.img-done {
+    margin-right: 5px;
+}
+
+.three-dots-document {
+
+}
+
+.img-done, .img-fail {
+    cursor: pointer;
+}
+
+.profile-header {
+    margin: 0px 40px 20px 10px;
+}
+
+.pro-img {
+    height: 9vw;
+}
+
+.experience-education-languages {
+    margin: 0px 20px 20px 10px;
+}
+/* .right-jobs {
+} */
+
+.experience-education-margin-bottom {
+    margin: 20px 20px 20px 10px; 
+}
+.exit-job-description {
+    display: none;
+}
+.experience-education-languages {
+    margin: 0px 40px 20px 10px;
+}
+.experience-rows-img, .experience-rows-img-languages {
+    margin-top: 30px !important;
+}
+
+.education-all-applicants {
+    margin-bottom: 20px !important;
+}
+
+.profile-image {
+    width: 140px;
+    height: 140px;
+    margin-top: -70px;
+}
+.all-applicants-over-main {
+    display: flex;
+    align-items: center;
+}
+.label-all {
+    position: absolute;
+    right: 31.6px; 
+    top: 15px;
+    background-color: #E7F1FE; 
+    cursor: pointer;
+}
+
+.checkbox-jobs {
+    height: 20px;
+    width: 20px; 
+    position: absolute; 
+    right: 20px; 
+}
+.first-checkbox-jobs {
+    top: 40px;
+}
+/* .all-applicants-button {
+    position: relative;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    /* transition-duration: 0.4s; */
+/* } */
+.checkbox-jobs::after + .changed:after {
+    /* this selector is more specific, so it takes precedence over the other :after */
+        border-top-width: 22px;
+        border-left-width: 22px;
+        border-right-width: 22px;
+}
+
+.all-applicants-button {
+    background-color: white;
+
+}
+
+.all-applicants-button, .white-icon {
+    color: #858585;
+}
+
+.checkbox-jobs .changed:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    transition: 0s;
+}
+
+.div-white-icon {
+    display: flex;
+    align-items: center;
+    position: absolute;
+}
+.jobs-main-div {
+    display: flex; 
+    justify-content: space-between;
+}
+.right-jobs-rows-img {
+    margin-left: 10px; 
+    background-color: white; 
+    margin-bottom: 20px;
+}
+.experience-rows {
+    margin-right: 30px;
+}
+.all-applicants-button {
+    padding-left: 20px;
+}
+.mutual-dropdown {
+    flex-direction: column;
+}
+
+#all-applicants-dropdown label:last-child {
+    display: none;
+    cursor: pointer; 
+    background-color: rgb(221, 221, 221); 
+    color: rgba(145, 143, 143, 0.978); 
+    font-weight: 500; 
+    padding: 10px 20px;
+    font-weight: 100;
+    border: none; 
+    font-size: 16px;
+    text-align: center;
+}
+#all-applicants-dropdown {
+    padding-bottom: 20px;
+}
+
+.all-applicants-dropdown-content:first-child {
+    padding-top: 20px !important;
+}
+
+.first-dropdown-content {
+    margin-bottom: 15px !important;
+    margin-top: 20px !important; 
+    padding-top: 0px !important;
+}
+
+.dropdown-content-text {
+    margin-top: -15px; 
+    padding-top: 0px;
+}
+.dropdown-content {
+    cursor: pointer;
+}
+.main-buttons-div {
+    margin-top: 0px !important;
+}
+
+.profileDropDown-content:first-child {
+    padding-bottom: 0px;
+}
+
+@media screen and (max-width: 970px) and (min-width: 768px) {
+
+    .experience-first-row {
+        width: 100% !important;
+    }
+    
+}
+
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+    .job-left-row {
+        margin-left: 30px !important;
+    }
+    
+    .mutual-form-stats {
+        width: auto;
+        margin-right:30px;
+    }
+    .job-right-details {
+        margin-right: 30px;
+    }
+    .right-jobs-rows-img, .right-jobs-rows-img-second {
+        margin-right: 30px;
+    }
+    .right-jobs-main-div {
+    }
+    .edit-job-button {
+        width: 28px;
+        height: 28px;
+    }
+    .right-jobs-main-div {
+    }
+    .main-buttons-div {
+        margin-left: -10px;
+    }
+
+    .last-input-form {
+        margin-right: 30px;
+    }
+    .jobs-buttons {
+        margin: 20px 0px 0px 40px;
+    }
+
+}
+@media screen and (max-width: 890px) {
+    .myjob-right-exit {
+        display: block !important;
+        cursor: pointer;
+    }
+    .job-left-row {
+        background-color: white !important;
+    }
+
+}
+
+@media screen and (max-width: 890px) and (min-width: 481px) {
+    .myjob-right-exit {
+        width: 16px !important;
+        height: 16px !important;
+    }
+    .documents-under-main-border-div {
+        padding-top: 30px;
+    }
+    .title_documents, .work-permit-title {
+        padding-top: 0px !important;
+    }
+}
+
+
+@media screen and (max-width: 767px) and (min-width: 481px) {
+    .right-jobs {
+        width: 100%;
+        margin-left: 0px !important;
+        
+    }
+    .job-right-details {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+    .experience-education-languages {
+        margin-right: 20px !important;
+    }        
+    .checkbox-jobs {
+        width: 20px;
+        height: 20px;
+    }
+    .jobs-buttons {
+        margin: 20px 0px 0px 20px;
+    }
+    .exit-job-description {
+        margin-bottom: 30px;
+        display: block;
+        width: 18px;
+        height: 18px;
+    }    
+    
+    .last-job-margin-bottom {
+        margin-bottom: -10px;
+    }
+    .right-jobs-rows-img-second {
+        margin-top: 20px;
+    }
+    .last-input-form {
+        margin-right: 20px;
+    }
+    .mutual-padding-of-div {
+    }
+
+    .edit-job-button {
+        width: 26px;
+        height: 26px;
+        margin-right: 30px;
+    }
+
+    .edit-job-button-different-margin {
+        margin-top: 30px;
+    }
+    .job-left-row {
+        margin-left: 20px !important;
+    }
+
+    .main-buttons-div {
+        margin: 0;
+        display: flex;
+        justify-content: flex-start;
+    }
+    .container-fluid {
+    }
+
+    .right-jobs-rows-img, .right-jobs-rows-img-second {
+        margin-right: 20px;
+    };
+}
+
+@media screen and (max-width: 890px) and (min-width: 768px) {
+
+.main-input-form {
+    margin-left: 0px !important;
+}
+
+.right-jobs {
+    width: calc(100% - 20px);
+}
+.experience-education-languages {
+    margin-right: 30px !important;
+}    
+
+
+}
+
+@media screen and (max-width: 890px) {
+
+.different-background-jobs {
+    background-color: white !important;
+}    
+.label-all {
+    background-color: white !important;
+}
+
+
+}
+
+@media screen and (max-width: 767px) and (min-width: 481px) {
+    .job-left {
+        width: calc(100% - 20px) !important;
+        margin-bottom: 0px !important;
+        height: calc(100% - 174.67px) !important;
+        position: absolute;
+    }
+    .mutual-form-stats {
+        width: calc(100% - 40px) !important;
+        margin-left: 20px !important;
+    }    
+
+    .exit-job-description {
+        margin-bottom: 30px;
+        display: block;
+        width: 18px;
+        height: 18px;
+    }
+    .languages-main-div {
+        margin-top: 0px !important;
+        margin-bottom: 20px !important;
+    }
+
+    
+    .right-jobs-main-div {
+        display: none;                     /* e zhvendosim display: none nga css te javascript (per responsive 767px - 481px) */
+        width: 100% !important;
+    }
+    .right-jobs {
+        margin-left: 20px;
+        overflow-y: scroll;
+        position: absolute;
+        height: calc(100% - 40px) !important;    
+    }
+    .job-left {
+        width: calc(100% - 10px);
+    }
+
+}
+
+
+
+@media screen and (max-width: 890px) and (min-width: 768px) {
+    .job-left {
+        width: calc(100% - 30px) !important;
+        margin-bottom: 0px !important;
+        height: calc(100% - 137px) !important;
+    }
+
+    .exit-job-description {
+        margin-bottom: 30px;
+        display: block;
+        width: 18px;
+        height: 18px;
+    }
+    .languages-main-div {
+        margin-top: 0px !important;
+        margin-bottom: 20px !important;
+    }    
+
+    
+    .right-jobs-main-div {
+        display: none;                     /* e zhvendosim display: none nga css te javascript (per responsive 767px - 481px) */
+        width: 100% !important;
+    }
+    .right-jobs {
+        margin-left: 20px;
+        overflow-y: scroll;
+        position: absolute;
+        height: calc(100% - 40px) !important;    
+    }
+    .job-left {
+        width: calc(100% - 10px);
+        position: absolute;
+        overflow-y: scroll;
+    }
+    
+    .last-input-form {
+        
+    }
+}
+
+/* @media screen and (max-width: 1024px) and (min-width: 768px) and (orientation: landscape) {
+    .right-jobs-main-div {
+        display: block !important;
+    }
+} */
+
+
+@media screen and (max-width: 480px) {
+     .checkbox-jobs  {
+        width: 16px;
+        height: 16px;
+        right: 10px;
+     }
+    .all-applicants-over-main {
+        margin-right: 0px !important;
+    }
+    .mutual-three-dots-imgs {
+        margin-top: 0px;
+    }
+    .main-input-form-second {
+        margin-right: 10px !important;
+        margin-left: -10px;
+    }
+    .main-input-form {
+    }
+    .mDiv {
+        margin-right: -10px !important;
+    }
+    .phase-plus-icon {
+    }
+     .job-left {
+        margin-right: -10px !important;
+        margin-bottom: 0px !important;
+        position: absolute;
+        height: calc(100% - 114px);
+    }
+    .job-left::-webkit-scrollbar {
+        display: none !important;
+    }
+    .right-jobs-rows-img {
+        margin-bottom: 10px;
+    }
+    .languages-div {
+
+    }
+    .right-jobs {
+        width: 100% !important;
+        height: calc(100% - 70px);
+        margin-top: 10px;
+    }
+    .experience-education-languages {
+        margin-right: 10px !important;
+        margin-bottom: 10px !important;
+    }
+     .label-all {
+        font-size: 14px;
+        right: 20px;
+        top: 10px;
+     }
+     .first-checkbox-jobs {
+        top: 30px;
+     }
+     .experience-paragraph-img-rows, .languages-paragraphs-div {
+        padding: 20px 0px 20px 20px !important;
+    }
+    .experience-rows-img, .experience-rows-img-languages {
+        margin-top: 20px !important;
+    }
+    
+     .dropdown-content-text, .search-input-without-width {
+        font-size: 16px !important;
+     }
+     .search-input-without-width {
+        width: 118px !important;
+        display: flex;
+        align-items: center;
+        margin-left: -10px;
+     }
+    .all-aplicants-search {
+        margin-right: 10px;
+     }
+    .all-applicants-button {
+    }
+    .move-phase-button {
+        font-size: 16px !important;
+    }
+    .languages-main-div {
+        margin-top: 0px !important;
+        margin-bottom: 10px !important;
+    }
+    .experience-rows-img-languages {
+        margin-top: 40px !important;
+    }
+    .experience-second-row {
+        width: 180px !important;
+        overflow-wrap: break-word !important;
+    }
+    
+}
+
+
+
+

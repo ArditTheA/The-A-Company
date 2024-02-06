@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="document-images">
+        <img title="Passport" class="document-img" src="../img/documents-icon.svg" alt="">
+        <img title="Student status" class="document-img" src="../img/documents-icon.svg" alt="">
+        <!-- Add more image tags for other documents -->
+    </div>
+    
+    <!-- Single pop-up modal -->
+    <div id="document-modal" class="document-modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modal-content-container">
+                <!-- File upload form content will be dynamically updated here -->
+            </div>
+        </div>
+    </div>
+    
+    
+</body>
+<script>
+    // JavaScript to handle the single pop-up modal
+    const documentImages = document.querySelectorAll(".document-img");
+    const documentModal = document.getElementById("document-modal");
+    const modalContentContainer = document.getElementById("modal-content-container");
+    
+    documentImages.forEach((img) => {
+        img.addEventListener("click", () => {
+            const title = img.getAttribute("title");
+            openModal(title);
+        });
+    });
+    
+    function openModal(title) {
+        // Update the modal content based on the clicked image
+        modalContentContainer.innerHTML = `<h2>Upload ${title}</h2>`;
+        // You can add your file upload form fields here or any other content specific to the document
+    
+        documentModal.style.display = "block";
+    }
+    
+    function closeModal() {
+        documentModal.style.display = "none";
+    }
+    </script>
+</html>

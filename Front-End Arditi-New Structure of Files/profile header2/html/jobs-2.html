@@ -1,0 +1,1161 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Jobs</title>
+    <link rel="stylesheet" href="../css/authenticated.css">
+    <link rel="stylesheet" href="../css/jobs.css">
+    <link rel="stylesheet" href="../css/profile-header.css">
+    <link rel="stylesheet" href="../css/posted-jobs-media-queries.css">
+    <link rel="stylesheet" href="../css/jobs-1.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+body{
+  background-color: #f1f1f1;
+}
+div.checkbox_select
+{
+}
+
+.expanded {
+}
+
+.checkbox_select_anchor
+{
+  display: block;
+  background: white;
+  cursor: pointer;
+  padding: 8px 30px 8px 20px;
+  position: relative;
+  border-radius: 20px;
+  color: #65676B;
+  border: none;
+  font-size: 18px;
+}
+
+.checkbox_select_anchor:after
+{
+    width: 0; 
+    height: 0; 
+    content: "";
+    position: absolute;
+    right: 10px;
+    top: 15px;
+    background-color: blue;
+}
+
+.expanded .checkbox_select_anchor:after
+{
+	border-top: 0;
+	border-bottom: 10px solid;
+}
+
+div.checkbox_select .select_input
+{
+    width: 100%;
+    cursor: pointer;
+}
+
+.checkbox_select_dropdown
+{
+    display: none;
+    position: absolute;
+    background: white;
+    z-index: 2;
+    border-radius: 16px;
+    margin-top: 10px;
+    width: 180px;
+    box-sizing: border-box;
+}
+
+.show
+{
+    display: block;
+    z-index: 2;
+    margin-top: 10px;
+    border-radius: 16px;
+    border: 1px solid white;
+    width: 180px;
+    box-shadow: 0 0 5px #e7e7e7;
+}
+
+.checkbox_select_dropdown ul
+{
+    max-height: 150px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 0;
+    margin: 0;
+}
+
+.checkbox_select_dropdown ul::-webkit-scrollbar {
+    display: none;
+}
+ 
+.checkbox_select_dropdown ul li
+{
+    list-style: none;
+    color: #65676B;
+}
+
+.checkbox_select_dropdown ul li label
+{
+    display: block;
+    cursor: pointer;
+    padding-top: 20px;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.checkbox_select_dropdown ul li input
+{
+  position: absolute;
+  z-index: 1;
+  margin-top: 24px;
+  margin-left: 10px;
+}
+
+input[type=checkbox] {
+    accent-color: white;
+    border: none;
+}
+
+.checkbox_select_search
+{
+    -webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+    outline: none;
+    height: 25px;
+    width: 100%;
+}
+
+.checkbox_select_submit
+{
+    background: #1877F2;
+    color: white;
+    border: none;
+    border-bottom-right-radius: 16px;
+    border-bottom-left-radius: 16px;
+    width: 100%;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 20px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+.non-white-icon {
+    right: 10px;
+}
+.click-select {
+}
+
+.hide
+{
+    display: none;
+}
+.search-input::placeholder {
+    color: #b1b2b8;
+    font-size: 18px;
+}
+
+.search-input {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 20px;
+    border: none;
+    padding-left: 20px;
+    font-size: 18px;
+    padding-right: 20px;
+    width: 200px;
+    color: #65676B;
+    outline: none;
+}
+.search-input {
+    transition: all 0.5s ease-in-out;
+}
+.filters-forms {
+    margin-right: 20px;
+}
+
+select {
+    background-image: none;
+}
+
+    </style>
+</head>
+<body style="">
+    <header class="header-border">
+        <img id="worki-image" src="../img/Worki_Logo_Black.png" title="Worki">
+        <div id="jobs-and-profile">
+        <a href="#"><img class="jobs-icon-button" title="Jobs" src="../img/JOBS_Icon.png"></a>
+            <img src="../img/Profile.png" id="profile-image-button" title="Profile" alt="">
+        </div>
+    </header>
+
+    <div class="dropdown">
+        <div class="dropdown-content" ><a href="profile.html" class="dropdown-content-text">My profile</a></div>
+        <div class="dropdown-mid-content"><a href="jobs-applied.html" class="dropdown-content-text">My jobs</a></div>
+        <div class="third-dropdown-content"><a href="" class="dropdown-content-text">Sign out</a></div>
+    </div>
+    <div class="jobs-buttons second-jobs-buttons">
+        <form style="" method="Get">
+            <img style="cursor: pointer; margin-right: 20px;" title="Search by job or location" class="plus-icon-jobs search-icon-jobs" src="../img/search-third-img.png" alt="">
+            <div class="mutual-padding-of-div input-search-div" style="border-radius: 20px;">
+                <input style="display: none;" name="" placeholder="Search by job or location" class="search-input" id="input-removed">
+            </input>
+             </div>
+            </form>    
+                <form class="filters-forms" style="" id="make_checkbox_select">
+            <div class="input-form">
+            <select style="" class="click-select" name="Work and Travel" style="margin-right: 20px; ">
+                <option class="dropdown_options" value="Work and Travel">Work and Travel</option>
+                <option class="dropdown_options" value="Intership">Intership</option>
+                <option class="dropdown_options" value="Aus">Ausbildung</option>
+            </select>
+            <div class="" style="display: flex; align-items: center;">
+                <img class="icon non-white-icon" src="../img/dropdown-icon.png" alt="">
+               <img style="cursor: pointer; display: none;" class="white-icon" src="../img/white-dropdown-icon.png" alt="">
+            </div>    
+            </div>
+          </form>
+          <form class="filters-forms" id="make_checkbox_select2">
+            <div class="input-form">
+            <select style="" class="click-select" name="My jobs">
+                <option class="dropdown_options" value="Rinor">Rinor</option>
+                <option class="dropdown_options" value="Ardit">Ardit</option>
+                <option class="dropdown_options" value="Liri">Liri</option>
+            </select>
+            <div class="" style="display: flex; align-items: center;">
+                <img class="icon non-white-icon" src="../img/dropdown-icon.png" alt="" >
+               <img style="cursor: pointer; display: none;" class="white-icon" src="../img/white-dropdown-icon.png" alt="">
+            </div>    
+            <input type="submit" />
+            </div>
+          </form>
+          <form class="filters-forms" id="make_checkbox_select3">
+            <div class="input-form">
+            <select style="" class="click-select" name="Company">
+                <option class="dropdown_options" value="Rinor">Rinor</option>
+                <option class="dropdown_options" value="Ardit">Ardit</option>
+                <option class="dropdown_options" value="Liri">Liri</option>
+            </select>
+            <div class="" style="display: flex; align-items: center;">
+                <img class="icon non-white-icon" src="../img/dropdown-icon.png" alt="" >
+               <img style="cursor: pointer; display: none;" class="white-icon" src="../img/white-dropdown-icon.png" alt="">
+            </div>    
+            <input type="submit" />
+            </div>
+          </form>
+          <form class="filters-forms" id="make_checkbox_select4">
+            <div class="input-form">
+            <select style="" class="click-select" name="Location">
+                <option class="dropdown_options" value="Rinor">Rinor</option>
+                <option class="dropdown_options" value="Ardit">Ardit</option>
+                <option class="dropdown_options" value="Liri">Liri</option>
+            </select>
+            <div class="" style="display: flex; align-items: center;">
+                <img class="icon non-white-icon" src="../img/dropdown-icon.png" alt="" >
+               <img style="cursor: pointer; display: none;" class="white-icon" src="../img/white-dropdown-icon.png" alt="">
+            </div>    
+            <input type="submit" />
+            </div>
+          </form>
+          <form class="filters-forms" id="make_checkbox_select5">
+            <div class="input-form">
+            <select style="" class="click-select" name="Salary">
+                <option class="dropdown_options" value="Rinor">Rinor</option>
+                <option class="dropdown_options" value="Ardit">Ardit</option>
+                <option class="dropdown_options" value="Liri">Liri</option>
+            </select>
+            <div class="" style="display: flex; align-items: center;">
+                <img class="icon non-white-icon" src="../img/dropdown-icon.png" alt="" >
+               <img style="cursor: pointer; display: none;" class="white-icon" src="../img/white-dropdown-icon.png" alt="">
+            </div>    
+            <input type="submit" />
+            </div>
+          </form>
+          <form class="filters-forms" id="make_checkbox_select6">
+            <div class="input-form">
+            <select style="" class="click-select" name="Date posted">
+                <option class="dropdown_options" value="Rinor">Rinor</option>
+                <option class="dropdown_options" value="Ardit">Ardit</option>
+                <option class="dropdown_options" value="Liri">Liri</option>
+            </select>
+            <div class="" style="display: flex; align-items: center;">
+                <img class="icon non-white-icon" src="../img/dropdown-icon.png" alt="" >
+               <img style="cursor: pointer; display: none;" class="white-icon" src="../img/white-dropdown-icon.png" alt="">
+            </div>    
+            <input type="submit" />
+            </div>
+          </form>
+          <button title="Search" style="color: white; background-color: #1877F2; border: none; font-size: 18px; padding-top: 0; padding-bottom: 0; 
+          padding: 8px 20px; padding-left: 20px; border-radius: 20px; cursor: pointer;" class="form-select" id="second_form_select">Search</button>
+                </div>
+    <div class="jobs-main-div" style="display: flex; justify-content: space-between;">
+        <div class="jobs-left" style="">
+            <div class="jobs-rows-img different-background-jobs">
+                <img class="experience-education-img" src="../img/Logo (8).png" alt="">
+                <div class="experience-rows">
+                <div class="experience-first-row">Warehouse Associate</div>
+                <div class="experience-second-row">Amazon</div>
+                <div class="experience-third-row">Texas, USA</div>
+                <div class="experience-fourth-row">50 applicants · Open</div>
+                </div>
+            </div>
+            <div class="jobs-rows-img second-jobs margin-top-jobs-rows-img same-background-jobs">
+                <img class="experience-education-img" src="../img/Logo (8).png" alt="">
+                <div class="experience-rows">
+                <div class="experience-first-row">Warehouse Associate</div>
+                <div class="experience-second-row">Amazon</div>
+                <div class="experience-third-row">Texas, USA</div>
+                <div class="experience-fourth-row">50 applicants · Open</div>
+                </div>
+            </div>
+            <div class="jobs-rows-img margin-top-jobs-rows-img same-background-jobs">
+                <img class="experience-education-img" src="../img/Logo (8).png" alt="">
+                <div class="experience-rows">
+                <div class="experience-first-row">Warehouse Associate</div>
+                <div class="experience-second-row">Amazon</div>
+                <div class="experience-third-row">Texas, USA</div>
+                <div class="experience-fourth-row">50 applicants · Open</div>
+                </div>
+            </div>
+            <div class="jobs-rows-img margin-top-jobs-rows-img same-background-jobs">
+                <img class="experience-education-img" src="../img/Logo (8).png" alt="">
+                <div class="experience-rows">
+                <div class="experience-first-row">Warehouse Associate</div>
+                <div class="experience-second-row">Amazon</div>
+                <div class="experience-third-row">Texas, USA</div>
+                <div class="experience-fourth-row">50 applicants · Open</div>
+                </div>
+            </div>
+            <div class="jobs-rows-img margin-top-jobs-rows-img same-background-jobs">
+                <img class="experience-education-img" src="../img/Logo (8).png" alt="">
+                <div class="experience-rows">
+                <div class="experience-first-row">Warehouse Associate</div>
+                <div class="experience-second-row">Amazon</div>
+                <div class="experience-third-row">Texas, USA</div>
+                <div class="experience-fourth-row">50 applicants · Open</div>
+                </div>
+            </div>
+            <div class="jobs-rows-img margin-top-jobs-rows-img same-background-jobs">
+                <div style="display: flex;">
+                <img class="experience-education-img" src="../img/Logo (8).png" alt="">
+                </div>
+                <div class="experience-rows">
+                <div class="experience-first-row">Warehouse Associate</div>
+                <div class="experience-second-row">Amazon</div>
+                <div class="experience-third-row">Texas, USA</div>
+                <div class="experience-fourth-row">50 applicants · Open</div>
+                </div>
+            </div>
+            <div class="jobs-rows-img margin-top-jobs-rows-img same-background-jobs">
+                <img class="experience-education-img" src="../img/Logo (8).png" alt="">
+                <div class="experience-rows">
+                <div class="experience-first-row">Warehouse Associate</div>
+                <div class="experience-second-row">Amazon</div>
+                <div class="experience-third-row">Texas, USA</div>
+                <div class="experience-fourth-row">50 applicants · Open</div>
+                </div>
+            </div>
+            <div class="jobs-rows-img margin-top-jobs-rows-img same-background-jobs">
+                <img class="experience-education-img" src="../img/Logo (8).png" alt="">
+                <div class="experience-rows">
+                <div class="experience-first-row">Warehouse Associate</div>
+                <div class="experience-second-row">Amazon</div>
+                <div class="experience-third-row">Texas, USA</div>
+                <div class="experience-fourth-row">50 applicants · Open</div>
+                </div>
+            </div>
+            <div class="jobs-rows-img margin-top-jobs-rows-img same-background-jobs last-job-margin-bottom">
+                <img class="experience-education-img" src="../img/Logo (8).png" alt="">
+                <div class="experience-rows">
+                <div class="experience-first-row">Warehouse Associate</div>
+                <div class="experience-second-row">Amazon</div>
+                <div class="experience-third-row">Texas, USA</div>
+                <div class="experience-fourth-row">50 applicants · Open</div>
+                </div>
+            </div>
+            <div>
+            </div>
+        </div>
+    
+        <div class="right-jobs-main-div">
+            <div class="right-jobs">
+                <div class="right-jobs-rows-img" style="padding: 30px; margin-left: 10px; background-color: white;">
+                    <div class="experience-rows">
+                    <img class="exit-job-description" title="Exit" style="float: left; width: 22px; height: 22px; cursor: pointer;" src="../img/Vector 81 (1).png" alt="">
+                    <div class="first-row-jobs">Warehouse Associate</div>
+                    <div class="second-row-jobs">Amazon&nbsp;&nbsp;<span style="color: #858585;">·&nbsp;&nbsp;Texas, USA&nbsp;·&nbsp;23 applicants</span></div>
+                    <div style="" class="experience-third-row jobs-third-row">$12.00/hour</div>
+                    <div style="" class="experience-fourth-row jobs-mutual-margin-rows">Full time · 40 hours/week</div>
+                    <div style="margin-top: 20px;" class="experience-fourth-row jobs-mutual-margin-rows">01 June, 2022 - 31 August 2022</div>
+                    <div style="margin-top: 5px; margin-top: 20px;" class="experience-fourth-row jobs-mutual-margin-rows">Housing provided · $100.00/week</div>
+                    <div style="margin-top: 5px; margin-top: 20px;" class="experience-fourth-row jobs-mutual-margin-rows">Work and Travel · Program Cost: $600</div>
+                    <div style="margin-top: 5px; margin-top: 20px; height: 100%;" class="experience-fourth-row jobs-mutual-margin-rows">Posted on 01 May, 2022</div>
+                        <a href="apply-for-job.html" style="margin-top: 5px; width: fit-content; padding-top: 8px; padding-bottom: 8px; text-decoration: none;" title="Apply for Job" class="applied-button-jobs outline-none">Apply</a>
+                    </div>
+                </div>
+                <div class="right-jobs-rows-img-second">
+                    <div class="experience-rows">
+                    <div class="first-row-jobs first-row-second-div">Work and Travel</div>
+                    <div class="second-row-second-div">
+                    Work and Travel allows foreign students an opportunity to live and work in
+                    Germany for 90 days during the summer vacation from university to
+                    experience and to be exposed to work, people, and way of life in Germany.
+                    Learn more about the program <a class="here-link" style="" href="#">here</a>.
+                    </div>
+                    <div class="jobs-third-row-second-div">
+                    <div class="first-row-jobs-third-row-second-div first-row-second-div">Job description</div>
+                    <div class="second-div-second-paragraph">
+                        We are hiring driven Warehouse Associates! As a Warehouse Associate you 
+                        will be responsible for properly labeling and packing items to be shipped
+                        while also organizing and tracking warehouse inventory levels at all times.
+                        Join us and become part of a diverse and friendly team in a Logistics
+                        Warehouse in Germany. We provide in-house training so all you have to do is Easy Apply!  
+                        </div>
+                    </div>
+                    <div class="jobs-third-row-second-div">
+                        <div class="first-row-jobs-third-row-second-div first-row-second-div">What we offer:</div>
+                        <div class="second-div-second-paragraph">
+                            <div style="padding-bottom: 10px; margin-left: 10px;"><span style="margin-right: 10px;">·</span>Easy Apply</div> 
+                            <div style="padding-bottom: 10px; margin-left: 10px;"><span style="margin-right: 10px;">·</span>Guaranteed employment</div>
+                            </div>
+                        </div>
+                        <div class="jobs-third-row-second-div">
+                            <div class="first-row-jobs-third-row-second-div first-row-second-div">What you'll be doing:</div>
+                            <div class="second-div-second-paragraph">
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span style="margin-right: 10px;">·</span>Organize and track warehouse inventory</div> 
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span style="margin-right: 10px;">·</span>Process, package, label and ship orders accurately</div>
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span style="margin-right: 10px;">·</span>Maintain strict safety and quality standards</div>
+                                <div style="margin-left: 10px;"><span style="margin-right: 10px;">·</span>Inspect products for defects and damages</div>
+                            </div>
+                        </div>
+                        <div class="jobs-third-row-second-div">
+                            <div class="first-row-jobs-third-row-second-div first-row-second-div">What we're looking for:</div>
+                            <div class="second-div-second-paragraph">
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span style="margin-right: 10px;">·</span>Currently enrolled as a university student</div> 
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span style="margin-right: 10px;">·</span>Basic knowledge of English or German language</div>
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span style="margin-right: 10px;">·</span>No prior work experience is required</div>
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span style="margin-right: 10px;">·</span>Physical endurance (Up to 8 hours standing/walking; Max: 20kg lifting)</div>
+                                <div style="margin-left: 10px;"><span style="margin-right: 10px;">·</span>Able to work independently and within a team</div> 
+                            </div>
+                        </div>    
+                    </div>
+                </div>                    
+            </div>   
+            <div class="right-jobs" style="display: none; flex-direction: column;">
+                <div class="right-jobs-rows-img" style="padding: 30px; margin-left: 10px; background-color: white;">
+                    <div class="experience-rows">
+                    <img class="exit-job-description" title="Exit" style="float: left; width: 22px; height: 22px; cursor: pointer;" src="../img/Vector 81 (1).png" alt="">
+                    <div class="first-row-jobs">Warehouse Associate</div>
+                    <div class="second-row-jobs">Amazon&nbsp;&nbsp;<span style="color: #858585;">·&nbsp;&nbsp;Las Vegas, USA&nbsp;·&nbsp;23 applicants</span></div>
+                    <div style="" class="experience-third-row jobs-third-row">$12.00/hour</div>
+                    <div style="" class="experience-fourth-row jobs-mutual-margin-rows">Full time · 40 hours/week</div>
+                    <div style="margin-top: 20px;" class="experience-fourth-row jobs-mutual-margin-rows">01 June, 2022 - 31 August 2022</div>
+                    <div style="margin-top: 5px; margin-top: 20px;" class="experience-fourth-row jobs-mutual-margin-rows">Housing provided · $100.00/week</div>
+                    <div style="margin-top: 5px; margin-top: 20px;" class="experience-fourth-row jobs-mutual-margin-rows">Work and Travel · Program Cost: $600</div>
+                    <div style="margin-top: 5px; margin-top: 20px; height: 100%;" class="experience-fourth-row jobs-mutual-margin-rows">Posted on 01 May, 2022</div>
+                    <a href="apply-for-job.html" style="margin-top: 5px; width: fit-content; padding-top: 8px; padding-bottom: 8px; text-decoration: none;" title="Apply for Job" class="applied-button-jobs outline-none">Apply</a>
+                    </div>                
+                </div>
+                <div class="right-jobs-rows-img-second">
+                    <div class="experience-rows">
+                    <div class="first-row-jobs first-row-second-div">Work and Travel</div>
+                    <div class="second-row-second-div">
+                    Work and Travel allows foreign students an opportunity to live and work in
+                    Germany for 90 days during the summer vacation from university to
+                    experience and to be exposed to work, people, and way of life in Germany.
+                    Learn more about the program <a class="here-link" style="" href="">here</a>.
+                    </div>
+                    <div class="jobs-third-row-second-div">
+                    <div class="first-row-jobs-third-row-second-div first-row-second-div">Job description</div>
+                    <div class="second-div-second-paragraph">
+                        We are hiring driven Warehouse Associates! As a Warehouse Associate you 
+                        will be responsible for properly labeling and packing items to be shipped
+                        while also organizing and tracking warehouse inventory levels at all times.
+                        Join us and become part of a diverse and friendly team in a Logistics
+                        Warehouse in Germany. We provide in-house training so all you have to do is Easy Apply!  
+                        </div>
+                    </div>
+                    <div class="jobs-third-row-second-div">
+                        <div class="first-row-jobs-third-row-second-div first-row-second-div">What we offer:</div>
+                        <div class="second-div-second-paragraph">
+                            <div style="padding-bottom: 10px; margin-left: 10px;"><span style="margin-right: 10px;">·</span>Easy Apply</div> 
+                            <div style="padding-bottom: 10px; margin-left: 10px;"><span style="margin-right: 10px;">·</span>Guaranteed employment</div>
+                            </div>
+                        </div>
+                        <div class="jobs-third-row-second-div">
+                            <div class="first-row-jobs-third-row-second-div first-row-second-div">What you'll be doing:</div>
+                            <div class="second-div-second-paragraph">
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span style="margin-right: 10px;">·</span>Organize and track warehouse inventory</div> 
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span style="margin-right: 10px;">·</span>Process, package, label and ship orders accurately</div>
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span style="margin-right: 10px;">·</span>Maintain strict safety and quality standards</div>
+                                <div style="margin-left: 10px;"><span style="margin-right: 10px;">·</span>Inspect products for defects and damages</div>
+                            </div>
+                        </div>
+                        <div class="jobs-third-row-second-div">
+                            <div class="first-row-jobs-third-row-second-div first-row-second-div">What we're looking for:</div>
+                            <div class="second-div-second-paragraph">
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span style="margin-right: 10px;">·</span>Currently enrolled as a university student</div> 
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span style="margin-right: 10px;">·</span>Basic knowledge of English or German language</div>
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span style="margin-right: 10px;">·</span>No prior work experience is required</div>
+                                <div style="padding-bottom: 10px; margin-left: 10px;"><span style="margin-right: 10px;">·</span>Physical endurance (Up to 8 hours standing/walking; Max: 20kg lifting)</div>
+                                <div style="margin-left: 10px;"><span style="margin-right: 10px;">·</span>Able to work independently and within a team</div> 
+                            </div>
+                        </div>    
+                    </div>
+             </div>   
+        </div>
+        <div class="right-jobs" style="display: none; flex-direction: column;">
+            <div class="right-jobs-rows-img" style="padding: 30px; margin-left: 10px; background-color: white;">
+                <div class="experience-rows">
+                <img class="exit-job-description" title="Exit" style="float: left; width: 22px; height: 22px; cursor: pointer;" src="../img/Vector 81 (1).png" alt="">
+                <div class="first-row-jobs">Warehouse Associate</div>
+                <div class="second-row-jobs">Amazon&nbsp;&nbsp;<span style="color: #858585;">·&nbsp;&nbsp;New York, USA&nbsp;·&nbsp;23 applicants</span></div>
+                <div style="" class="experience-third-row jobs-third-row">$12.00/hour</div>
+                <div style="" class="experience-fourth-row jobs-mutual-margin-rows">Full time · 40 hours/week</div>
+                <div style="margin-top: 20px;" class="experience-fourth-row jobs-mutual-margin-rows">01 June, 2022 - 31 August 2022</div>
+                <div style="margin-top: 5px; margin-top: 20px;" class="experience-fourth-row jobs-mutual-margin-rows">Housing provided · $100.00/week</div>
+                <div style="margin-top: 5px; margin-top: 20px;" class="experience-fourth-row jobs-mutual-margin-rows">Work and Travel · Program Cost: $600</div>
+                <div style="margin-top: 5px; margin-top: 20px; height: 100%;" class="experience-fourth-row jobs-mutual-margin-rows">Posted on 01 May, 2022</div>
+                <a href="apply-for-job.html" style="margin-top: 5px; width: fit-content; padding-top: 8px; padding-bottom: 8px; text-decoration: none;" title="Apply for Job" class="applied-button-jobs outline-none">Apply</a>
+                </div>                
+            </div>
+            <div class="right-jobs-rows-img-second" style="margin-left: 10px; background-color: white; margin-top: 20px;">
+                <div class="experience-rows">
+                <div class="first-row-jobs first-row-second-div">Work and Travel</div>
+                <div class="second-row-second-div">
+                    Work and Travel allows foreign students an opportunity to live and work in
+                    Germany for 90 days during the summer vacation from university to
+                    experience and to be exposed to work, people, and way of life in Germany.
+                    Learn more about the program <a class="here-link" style="" href="#">here</a>.
+                    </div>    
+                    <div class="jobs-third-row-second-div">
+                <div class="first-row-jobs-third-row-second-div first-row-second-div">Job description</div>
+                <div class="second-div-second-paragraph">
+                    We are hiring driven Warehouse Associates! As a Warehouse Associate you 
+                    will be responsible for properly labeling and packing items to be shipped
+                    while also organizing and tracking warehouse inventory levels at all times.
+                    Join us and become part of a diverse and friendly team in a Logistics
+                    Warehouse in Germany. We provide in-house training so all you have to do is Easy Apply!  
+                    </div>
+                </div>
+                <div class="jobs-third-row-second-div">
+                    <div class="first-row-jobs-third-row-second-div first-row-second-div">What we offer:</div>
+                    <div class="second-div-second-paragraph">
+                        <div style="padding-bottom: 10px; margin-left: 10px;"><span style="margin-right: 10px;">·</span>Easy Apply</div> 
+                        <div style="padding-bottom: 10px; margin-left: 10px;"><span style="margin-right: 10px;">·</span>Guaranteed employment</div>
+                        </div>
+                    </div>
+                    
+                    <div class="jobs-third-row-second-div">
+                        <div class="first-row-jobs-third-row-second-div first-row-second-div">What you'll be doing:</div>
+                        <div class="second-div-second-paragraph">
+                            <div style="padding-bottom: 10px; margin-left: 10px;"><span style="margin-right: 10px;">·</span>Organize and track warehouse inventory</div> 
+                            <div style="padding-bottom: 10px; margin-left: 10px;"><span style="margin-right: 10px;">·</span>Process, package, label and ship orders accurately</div>
+                            <div style="padding-bottom: 10px; margin-left: 10px;"><span style="margin-right: 10px;">·</span>Maintain strict safety and quality standards</div>
+                            <div style="margin-left: 10px;"><span style="margin-right: 10px;">·</span>Inspect products for defects and damages</div>
+                        </div>
+                    </div>
+                    <div class="jobs-third-row-second-div">
+                        <div class="first-row-jobs-third-row-second-div first-row-second-div">What we're looking for:</div>
+                        <div class="second-div-second-paragraph">
+                            <div style="padding-bottom: 10px; margin-left: 10px;"><span style="margin-right: 10px;">·</span>Currently enrolled as a university student</div> 
+                            <div style="padding-bottom: 10px; margin-left: 10px;"><span style="margin-right: 10px;">·</span>Basic knowledge of English or German language</div>
+                            <div style="padding-bottom: 10px; margin-left: 10px;"><span style="margin-right: 10px;">·</span>No prior work experience is required</div>
+                            <div style="padding-bottom: 10px; margin-left: 10px;"><span style="margin-right: 10px;">·</span>Physical endurance (Up to 8 hours standing/walking; Max: 20kg lifting)</div>
+                            <div style="margin-left: 10px;"><span style="margin-right: 10px;">·</span>Able to work independently and within a team</div> 
+                        </div>
+                    </div>    
+                </div>
+            </div>
+        </div>   
+    <div class="right-jobs" style="display: none; flex-direction: column; ">
+        <div class="right-jobs-rows-img" style="padding: 30px; margin-left: 10px; background-color: white;">
+            <div class="experience-rows">
+            <img class="exit-job-description" title="Exit" style="float: left; width: 22px; height: 22px; cursor: pointer;" src="../img/Vector 81 (1).png" alt="">
+            <div class="first-row-jobs">Warehouse Associate</div>
+            <div class="second-row-jobs">Amazon&nbsp;&nbsp;<span style="color: #858585;">·&nbsp;&nbsp;Atlanta, USA&nbsp;·&nbsp;23 applicants</span></div>
+            <div style="" class="experience-third-row jobs-third-row">$12.00/hour</div>
+            <div style="" class="experience-fourth-row jobs-mutual-margin-rows">Full time · 40 hours/week</div>
+            <div style="margin-top: 20px;" class="experience-fourth-row jobs-mutual-margin-rows">01 June, 2022 - 31 August 2022</div>
+            <div style="margin-top: 5px; margin-top: 20px;" class="experience-fourth-row jobs-mutual-margin-rows">Housing provided · $100.00/week</div>
+            <div style="margin-top: 5px; margin-top: 20px;" class="experience-fourth-row jobs-mutual-margin-rows">Work and Travel · Program Cost: $600</div>
+            <div style="margin-top: 5px; margin-top: 20px; height: 100%;" class="experience-fourth-row jobs-mutual-margin-rows">Posted on 01 May, 2022</div>
+            <a href="apply-for-job.html" style="margin-top: 5px; width: fit-content; padding-top: 8px; padding-bottom: 8px; text-decoration: none;" title="Apply for Job" class="applied-button-jobs outline-none">Apply</a>
+            </div>                
+        </div>
+        <div class="right-jobs-rows-img-second" style="margin-left: 10px; background-color: white; margin-top: 20px;">
+            <div class="experience-rows">
+            <div class="first-row-jobs first-row-second-div">Work and Travel</div>
+            <div class="second-row-second-div">
+                Work and Travel allows foreign students an opportunity to live and work in
+                Germany for 90 days during the summer vacation from university to
+                experience and to be exposed to work, people, and way of life in Germany.
+                Learn more about the program <a class="here-link" style="" href="#">here</a>.
+                </div>    
+                <div class="jobs-third-row-second-div">
+            <div class="first-row-jobs-third-row-second-div first-row-second-div">Job description</div>
+            <div class="second-div-second-paragraph">
+                We are hiring driven Warehouse Associates! As a Warehouse Associate you 
+                will be responsible for properly labeling and packing items to be shipped
+                while also organizing and tracking warehouse inventory levels at all times.
+                Join us and become part of a diverse and friendly team in a Logistics
+                Warehouse in Germany. We provide in-house training so all you have to do is Easy Apply!  
+                </div>
+            </div>
+            <div class="jobs-third-row-second-div">
+                <div class="first-row-jobs-third-row-second-div first-row-second-div">What we offer:</div>
+                <div class="second-div-second-paragraph">
+                    <div style="padding-bottom: 10px; margin-left: 10px;"><span style="margin-right: 10px;">·</span>Easy Apply</div> 
+                    <div style="padding-bottom: 10px; margin-left: 10px;"><span style="margin-right: 10px;">·</span>Guaranteed employment</div>
+                    </div>
+                </div>
+                
+                <div class="jobs-third-row-second-div">
+                    <div class="first-row-jobs-third-row-second-div first-row-second-div">What you'll be doing:</div>
+                    <div class="second-div-second-paragraph">
+                        <div style="padding-bottom: 10px; margin-left: 10px;"><span style="margin-right: 10px;">·</span>Organize and track warehouse inventory</div> 
+                        <div style="padding-bottom: 10px; margin-left: 10px;"><span style="margin-right: 10px;">·</span>Process, package, label and ship orders accurately</div>
+                        <div style="padding-bottom: 10px; margin-left: 10px;"><span style="margin-right: 10px;">·</span>Maintain strict safety and quality standards</div>
+                        <div style="margin-left: 10px;"><span style="margin-right: 10px;">·</span>Inspect products for defects and damages</div>
+                    </div>
+                </div>
+                <div class="jobs-third-row-second-div">
+                    <div class="first-row-jobs-third-row-second-div first-row-second-div">What we're looking for:</div>
+                    <div class="second-div-second-paragraph">
+                        <div style="padding-bottom: 10px; margin-left: 10px;"><span style="margin-right: 10px;">·</span>Currently enrolled as a university student</div> 
+                        <div style="padding-bottom: 10px; margin-left: 10px;"><span style="margin-right: 10px;">·</span>Basic knowledge of English or German language</div>
+                        <div style="padding-bottom: 10px; margin-left: 10px;"><span style="margin-right: 10px;">·</span>No prior work experience is required</div>
+                        <div style="padding-bottom: 10px; margin-left: 10px;"><span style="margin-right: 10px;">·</span>Physical endurance (Up to 8 hours standing/walking; Max: 20kg lifting)</div>
+                        <div style="margin-left: 10px;"><span style="margin-right: 10px;">·</span>Able to work independently and within a team</div> 
+                    </div>
+                </div>    
+            </div>
+        </div>
+    </div>   
+</div>
+
+</body>
+
+    <script src="../js/profile_dropdown.js"></script>
+    <script src="../js/jobs-img.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <script src="../js/exit-job-description-button.js"></script>
+    <script src="../js/second-next.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="../js/search-button.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="../js/dropdown-jobs.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script type="text/javascript" src="style.js"></script>
+<script>
+
+	$(function()
+	{
+		var mySelectCheckbox = new checkbox_select(
+		{
+			selector : "#make_checkbox_select",
+            selected_translation : "Work and Travel",
+
+			// Event during initialization
+			onApply : function(e)
+			{
+                alert("Custom Event: " + e.selected);
+			}
+		});
+        
+	});
+  $(function()
+  {
+    var mySelectCheckbox = new checkbox_select(
+    {
+      selector : "#make_checkbox_select2",
+            selected_translation : "My jobs",
+
+      // Event during initialization
+      onApply : function(e)
+      {
+                alert("Custom Event: " + e.selected);
+      }
+    });
+  
+  });
+  $(function()
+  {
+    var mySelectCheckbox = new checkbox_select(
+    {
+      selector : "#make_checkbox_select3",
+            selected_translation : "Company",
+
+      // Event during initialization
+      onApply : function(e)
+      {
+                alert("Custom Event: " + e.selected);
+      }
+    });
+  
+  });
+  $(function()
+  {
+    var mySelectCheckbox = new checkbox_select(
+    {
+      selector : "#make_checkbox_select4",
+            selected_translation : "Location",
+
+      // Event during initialization
+      onApply : function(e)
+      {
+                alert("Custom Event: " + e.selected);
+      }
+    });
+
+  });
+  $(function()
+  {
+    var mySelectCheckbox = new checkbox_select(
+    {
+      selector : "#make_checkbox_select5",
+            selected_translation : "Salary",
+
+      // Event during initialization
+      onApply : function(e)
+      {
+                alert("Custom Event: " + e.selected);
+      }
+    });
+  
+  });
+  $(function()
+  {
+    var mySelectCheckbox = new checkbox_select(
+    {
+      selector : "#make_checkbox_select6",
+            selected_translation : "Date posted",
+
+      // Event during initialization
+      onApply : function(e)
+      {
+                alert("Custom Event: " + e.selected);
+      }
+    });
+  
+  });
+		
+        // variable_names
+// functionNames
+// CONSTANT_VARIABLE_NAMES
+// $_my_jquery_selected_element
+
+if(typeof String.prototype.trim !== 'function') {
+    
+    String.prototype.trim = function()
+    {
+        return this.replace(/^\s+|\s+$/g, '');
+    }
+}
+
+var checkbox_select = function(params)
+{
+    // Error handling first
+    // ----------------------------------------------------------------------------------------------------
+    
+    var error = false;
+
+    // If the selector is not given
+    if(!params.selector) {                                              console.error("selector needs to be defined"); error = true; }
+
+    // If the selector is not a string
+    if(typeof params.selector != "string") {                            console.error("selector needs to be a string"); error = true; }
+
+    // If the element is not a form
+    if(!$(params.selector).is("form")) {                                console.error("Element needs to be a form"); error = true; }
+                    
+    // If the element doesn't contain a select
+    if($(params.selector).find("select").length < 1) {                  console.error("Element needs to have a select in it"); error = true; }
+
+    // If the element doesn't contain option elements
+    if($(params.selector).find("option").length < 1) {                  console.error("Select element needs to have an option in it"); error = true; }
+
+    // If the select element doesn't have a name attribute
+    if($(params.selector).find('select').attr('name') == undefined) {   console.error("Select element needs to have a name attribute"); error = true; }
+
+    // If there was an error at all, dont continue in the code.
+    if(error)
+        return false;
+        
+    // ----------------------------------------------------------------------------------------------------
+
+    var that            = this,
+        $_native_form   = $(params.selector),
+        $_native_select = $_native_form.find('select'),
+        
+        // Variables
+        selector                = params.selector,
+        span_content            = select_name,
+        select_name             = $_native_select.attr('name').charAt(0).toUpperCase() + $_native_select.attr('name').substr(1),
+        selected_translation    = params.selected_translation   ? params.selected_translation   : "selected",
+        all_translation         = params.all_translation        ? params.all_translation        : "All " + select_name + "s",
+        not_found_text          = params.not_found              ? params.not_found              : "No " + select_name + " found.",
+        currently_selected      = [],
+        
+        
+        // Create the elements needed for the checkbox select
+        $_parent_div    = $("<div />")      .addClass("checkbox_select"),
+        $_select_anchor = $("<a />")        .addClass("checkbox_select_anchor")     .text( select_name ),
+        $_search        = $("<input />")    .addClass("checkbox_select_search"),
+        $_submit        = $("<input />")    .addClass("checkbox_select_submit")     .val("Apply") .attr('type','submit') .data("selected", ""),
+        $_dropdown_div  = $("<div />")      .addClass("checkbox_select_dropdown"),
+        $_not_found     = $("<span />")     .addClass("not_found hide")             .text(not_found_text),
+        $_ul            = $("<ul />"),
+
+        
+        updateCurrentlySelected = function()
+        {
+
+            var selected = [];
+
+            $_ul.find("input:checked").each(
+                                                        
+                function()
+                {
+                    selected.push($(this).val());
+                }
+            );
+
+
+            currently_selected = selected;
+
+            if(selected.length == 0)
+            {
+                    $_select_anchor.text( select_name )
+                    $($_select_anchor).css({"background-color": "white", "color": "#65676B"});
+            }
+            else if(selected.length == 1)
+            {
+                $_select_anchor.text( selected[0]);
+                $($_select_anchor).css({"background-color": "#1877F2", "color": "white"});
+
+            }
+            else if (selected.length > 1) {
+        
+                $_select_anchor.text( selected_translation + " (" + selected.length + ")");
+            }
+            else
+            {
+                $_select_anchor.text( selected.length + " " + selected_translation );
+                    
+            }
+        },
+        
+
+        // Template for the li, will be used in a loop.
+        createItem  = function(name, value, count)
+        {
+            var uID             = 'checkbox_select_' + select_name + "_" + name.replace(" ", "_"),
+                $_li            = $("<li />"),
+                $_checkbox      = $("<input />").attr(
+                                        {
+                                            'name'  : name,
+                                            'id'    : uID,
+                                            'type'  : "checkbox",
+                                            'value' : value
+                                        }
+                                    )
+                                    .click(
+
+                                        function()
+                                        {
+                                            updateCurrentlySelected();
+                                        }
+                                    ),
+
+                $_label         = $("<label />").attr('for', uID),
+                $_name_span     = $("<span />").text(name).prependTo($_label),
+                $_count_span    = $("<span />").text(count).appendTo($_label);
+
+                var forms = document.querySelectorAll('.filters-forms');
+
+            return $_li.append( $_checkbox.after( $_label ) );
+        },
+
+		
+		apply = function()
+		{
+            for(let i = 0; i < forms.length; i++){
+                if ($_dropdown_div[i].style.display == "block" ) {
+                    $_dropdown_div[i].style.display = "none"
+                }
+                else {
+                    $_dropdown_div[i].style.display = "block"
+            }
+        }
+
+
+			$_parent_div.toggleClass("expanded");
+				
+			if(!$_parent_div.hasClass("expanded"))
+			{  
+				// Only do the Apply event if its different
+				if(currently_selected != $_submit.data("selected"))
+				{
+					$_submit.data("selected" , currently_selected);
+
+					that.onApply(
+						{ 
+							selected : $_submit.data("selected")
+						}
+					);
+				}		
+			}
+	};
+
+    var forms = document.querySelectorAll('.filters-forms');
+
+    for (let i = 0; i < forms.length; i++) {
+        document.addEventListener('click', function(e) {
+            if (!($_dropdown_div[i]).contains(e.target) && !($_select_anchor[i]).contains(e.target)) {
+                $($_dropdown_div[i]).css('display', 'none');      
+            }
+    });
+}
+
+
+ //$($_dropdown_div).css("padding-bottom", "20px");
+
+
+    
+    // Event of this instance
+    that.onApply = typeof params.onApply == "function" ?
+                
+                    params.onApply :
+                
+                    function(e) 
+                    {
+                        //e.selected is accessible
+                    };
+
+    that.update = function() 
+    {
+        $_ul.empty();
+        $_native_select.find("option").each(
+
+            function(i)
+            {
+                $_ul.append( createItem( $(this).text(), $(this).val(), $(this).data("count") ) );
+            }
+        );
+
+        updateCurrentlySelected();
+    }
+
+
+    that.check = function(checkbox_name, checked) 
+    {
+        //$_ul.find("input[type=checkbox][name=" + trim(checkbox_name) + "]").attr('checked', checked ? checked : false);
+
+		$_ul.find("input[type=checkbox]").each(function()
+		{
+			// If this elements name is equal to the one sent in the function
+			if($(this).attr('name') == checkbox_name)
+			{
+				// Apply the checked state to this checkbox
+				$(this).attr('checked', checked ? checked : false);
+				
+				// Break out of each loop
+				return false;
+			}
+		});
+		
+        updateCurrentlySelected();
+
+    }
+
+    // Build mark up before pushing into page
+    $_dropdown_div  .prepend($_search);
+    $_dropdown_div  .append($_ul);
+    $_dropdown_div  .append($_not_found);
+    $_dropdown_div  .append($_submit);
+    $_dropdown_div  .appendTo($_parent_div);
+    $_select_anchor .prependTo($_parent_div);
+
+    // Iterate through option elements
+    that.update();
+
+
+    // Events 
+
+    // Actual dropdown action
+    $_select_anchor.click( 
+            
+        function()
+        {
+              
+        
+            apply();
+        }
+    );
+             
+    // Filters the checkboxes by search on keyup
+    $_search.keyup(
+
+        function()
+        {
+            var search = $(this).val().toLowerCase().trim();
+
+            if( search.length == 1 )
+            {
+                $_ul.find("label").each(
+
+                    function()
+                    {
+                        if($(this).text().toLowerCase().charAt() == search.charAt())
+                        {
+                            if($(this).parent().hasClass("hide"))
+                                $(this).parent().removeClass("hide");
+                                if ($_not_found.hasClass("hide"))
+                        $_not_found.addClass("hide");
+                        $($_submit).css("margin-top", "20px");
+
+                        }
+                        else
+                        {
+                            if(!$(this).parent().hasClass("hide"))
+                                $(this).parent().addClass("hide");
+                            
+                            if (!$_not_found.hasClass("hide"))
+                            $_not_found.removeClass("hide");
+                            $($_submit).css("margin-top", "0px");
+
+
+                        }
+                        
+                    }
+                );
+            }
+            else
+            {
+
+
+                // If it doesn't contain 
+                if($_ul.text().toLowerCase().indexOf(search) == -1)
+                {
+                    if($_not_found.hasClass("hide"))
+                        $_not_found.removeClass("hide");
+                        $($_submit).css("margin-top", "0px");
+                }
+                else
+                {
+                    if(!$_not_found.hasClass("hide"))
+                        $_not_found.addClass("hide");
+                        $($_submit).css("margin-top", "20px");
+
+                }
+                    
+
+                $_ul.find("label").each(
+
+                    function()
+                    {
+                        if($(this).text().toLowerCase().indexOf(search) > -1)
+                        {
+                            if($(this).parent().hasClass("hide"))
+                                $(this).parent().removeClass("hide");
+                        }
+                        else
+                        {
+                            if(!$(this).parent().hasClass("hide"))
+                                $(this).parent().addClass("hide");
+                        }
+                    }
+                );
+            }
+        }
+    );
+
+    $_submit.click(
+                
+        function(e)
+        {
+            e.preventDefault();
+
+            apply();
+        }
+    );
+
+    // Delete the original form submit
+    $(params.selector).find('input[type=submit]').remove();
+
+    // Put finalized markup into page.
+    $_native_select.after($_parent_div);
+
+    // Hide the original element
+    $_native_select.hide();
+};
+
+    </script>
+
+</html>
+
+
+<!-- <div class="jobs-button-dropdown same-background-jobs button-work-and-travel" style="color: #65676B; cursor: pointer; margin-right: 20px;
+        font-size: 18px; border-radius: 20px;">
+            <div class="input-form">
+                <div class="mutual-padding-of-div" style="padding: 8px 30px; padding-left: 20px;">
+                <div class="button-content" title="">Job Title</div>
+                </div>
+                <div class="" style="display: flex; align-items: center;">
+                    <img class="icon" src="../img/dropdown-icon.png" alt="">
+                   <img style="cursor: pointer; display: none;" class="icon white-icon" src="../img/white-dropdown-icon.png" alt="">
+                </div>
+            </div>
+            <div class="dropdown-work-and-travel" style="">
+                <div class="dropdown-content" ><a href="profile.html" class="dropdown-content-text">My profile</a></div>
+                <div class="dropdown-mid-content"><a href="jobs-applied.html" class="dropdown-content-text">My jobs</a></div>
+                <div class="dropdown-content"><a href="" class="dropdown-content-text">Sign out</a></div>
+            </div>
+
+            <div class="jobs-button-dropdown same-background-jobs button-work-and-travel" style="color: #65676B; cursor: pointer; margin-right: 20px;
+        font-size: 18px; border-radius: 20px;">
+            <div class="input-form" style="">
+                <div class="mutual-padding-of-div" style="padding: 8px 30px; padding-left: 20px;">
+                <div class="button-content" title="">Salary</div>
+                </div>
+                <div class="" style="display: flex; align-items: center;">
+                <img class="icon" src="../img/dropdown-icon.png" alt="">
+               <img style="cursor: pointer; display: none;" class="icon white-icon" src="../img/white-dropdown-icon.png" alt="">
+                </div>
+            </div>
+            <div class="dropdown-work-and-travel" style="">
+                <div class="dropdown-content" ><a href="profile.html" class="dropdown-content-text">My profile</a></div>
+                <div class="dropdown-mid-content"><a href="jobs-applied.html" class="dropdown-content-text">My jobs</a></div>
+                <div class="dropdown-content"><a href="" class="dropdown-content-text">Sign out</a></div>
+            </div>
+        </div>
+        <div class="jobs-button-dropdown same-background-jobs button-work-and-travel" style="color: #65676B; cursor: pointer; margin-right: 20px;
+        font-size: 18px; border-radius: 20px;">
+            <div class="input-form" style="">
+                <div class="mutual-padding-of-div" style="padding: 8px 30px; padding-left: 20px;">
+                <div title="">Date Posted</div>
+                </div>
+                <div class="" style="display: flex; align-items: center;">
+                    <img class="icon" src="../img/dropdown-icon.png" alt="">
+                   <img style="cursor: pointer; display: none;" class="icon white-icon" src="../img/white-dropdown-icon.png" alt="">
+                    </div>
+                </div>
+            <div class="dropdown-work-and-travel" style="">
+                <div class="dropdown-content" ><a href="profile.html" class="dropdown-content-text">My profile</a></div>
+                <div class="dropdown-mid-content"><a href="jobs-applied.html" class="dropdown-content-text">My jobs</a></div>
+                <div class="dropdown-content"><a href="" class="dropdown-content-text">Sign out</a></div>
+            </div>
+        </div>
+    </div>
+</div> --> -->

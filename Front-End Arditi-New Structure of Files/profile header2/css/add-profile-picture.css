@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Spline+Sans&display=swap');
+
+body {
+    font-family: 'Spline Sans', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+    .changed-picture {
+        width: 220px;
+        height: 220px;
+    }
+}    
+
+@media screen and (max-width: 767px) and (min-width: 481px) {
+    .change-profile-picture-title {
+        font-size: 32px;
+    }
+    .changed-picture {
+        width: 200px;
+        height: 200px;
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+    .bg-change-profile-picture {
+        background-color: #f1f1f1;
+        justify-content: center;
+        align-items: flex-start;
+        width: 100%;
+        padding: 0;
+    }
+    .change-profile-picture {
+        width: 100%;
+        height: calc(100% - 20px);
+        padding: 30px 20px 0px 20px;
+        border-radius: 20px;
+        margin: 10px;
+    }
+    .change-profile-picture-title {
+        font-size: 30px;
+    }
+    .exit-img-profile-picture {
+        margin-bottom: 30px;
+    }
+    .changed-picture {
+        width: 100px;
+        height: 100px;
+        margin-top: -10px;  /* shenohet margin-top: -10px, per ta arritur hapesiren (marginen) 30px ndermjet changed picture dhe title
+                              ndersa hapesira ndermjet chenged picture dhe butonit Save veq se eshte 30px. */
+    }                            
+    .div-of-upload-button {
+        margin-top: 30px;
+        width: 140px;
+        font-size: 13px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .upload-button {
+        margin-left: -5px;
+    }
+    .exit-img-profile-picture {
+        margin-top: -10px;   
+        vertical-align: middle;
+    }
+    .exit-button {
+        width: 14px;
+        height: 14px;
+    }
+}

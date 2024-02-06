@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Experience</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <!-- <link rel="stylesheet" href="../css/base.css/authenticated.css"> -->
+    <!-- <link rel="stylesheet" href="../css/profile-header.css">
+    <link rel="stylesheet" href="../css/add-experience.css">
+    <link rel="stylesheet" href="../css/responsive-experience-education-languages-page.css"> -->
+    <link rel="stylesheet" href="../css/base/header.css">
+    <link rel="stylesheet" href="../css/body.css">
+    <link rel="stylesheet" href="../css/profile/profile-web.css">
+    <link rel="stylesheet" href="../css/profile/profile-tablet.css">
+    <link rel="stylesheet" href="../css/profile/profile-mobile.css">
+    <link href='https://fonts.googleapis.com/css?family=Spline Sans' rel='stylesheet'>
+
+</head>
+<style>
+svg:hover path {
+    fill: red !important;
+}
+</style>
+<body>
+
+    <!-- <header class="profileHeader" style="">
+        <img style="border-radius: 10px;" class="header-icon header-icon-radius header-icon-logo" src="../img/12.jpeg" title="Worki">
+        <div class="jobs-and-profile">
+        <a href="jobs.html"><img class="header-icon header-icon-job" title="Jobs" src="../img/JOBS_Icon.png"></a>
+            <img src="../img/logo-avatar.png" class="header-icon header-icon-radius header-icon-profile" title="Profile" alt="">
+        </div>
+    </header>
+
+    <div class="profileDropDown" id="dropdownA">
+        <div class="profileDropDown-content" ><a class="profileDropdDown-text">My profile</a></div>
+        <div class="profileDropDown-content"><a class="profileDropDown-text">My jobs</a></div>
+        <div class="profileDropDown-content"><a href="" class="profileDropDown-text">Recruiter</a></div>
+        <div class="profileDropDown-content"><a href="" class="profileDropDown-text">Sign out</a></div>
+    </div> -->
+    <div class="experience-main-div experience-education-languages different_exp">
+        <div class="experience-div second-experience-div">
+            <div class="experience-paragraph-img-rows">
+                <div class="aaa">
+                <p class="experience-paragraph">Experience</p>
+                <div class="experience-rows-img" style="">
+                    <img class="experience-education-img" src="../img/worki_icons-18.jpg" alt="">
+                    <div class="experience-rows">
+                    <div style="display: flex; width: 100%;">
+                        <div class="experience-first-row">Warehouse Associate</div>
+                        <div class="two-imgs-experience">
+                        <img class="edit-experience edit-experience-pop-up-button" title="Edit Experience" src="../img/Three-dots.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="experience-second-row">Amazon</div>
+                    <div class="experience-third-row">Texas, USA</div>
+                    <div class="experience-fourth-row">Work and Travel</div>
+                    </div>
+                </div>
+                <div class="experience-rows-img">
+                    <img class="experience-education-img" src="../img/worki_icons-18.jpg" alt="">
+                    <div class="experience-rows">
+                    <div style="display: flex; width: 100%;">
+                        <div class="experience-first-row">Warehouse Associate</div>
+                        <div class="two-imgs-experience">
+                        <img class="edit-experience edit-experience-pop-up-button" title="Edit Experience" src="../img/Three-dots.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="experience-second-row">Amazon</div>
+                    <div class="experience-third-row">Texas, USA</div>
+                    <div class="experience-fourth-row">Work and Travel</div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div class="add-and-edit-experience">
+                <a href="profile.html"><img class="back-icon" title="Go Back" src="../img/backButton.png" alt=""></a>         
+                <img class="second-add-experience-button plus-button-exp" title="Add Experience" src="../img/Vector 80.png" alt="">
+              </div>
+          </div>
+    </div>
+    <div class="bg-add-and-edit bg-edit-experience" style="display: flex;">
+        <div class="add-experience under-container-mutual-mutual-stats">
+            <div class="edit-profile-title mutual-titles-pop-ups-stats">Edit Experience</div>
+            <form method="POST" action="" class="sign-up-form forms-inputs-placeholder">
+                <input placeholder="Job title" name="fname" type="text" class="name-input profile-all-inputs-option"></input>
+                
+                <input placeholder="Company" name="lname" type="text" class="surname-input profile-all-inputs-option"
+                ></input>
+                <select name="country" id="id_Country" class="profile-all-inputs-option">
+                    <option value="" disabled selected>Select a Country</option>
+     
+                </select>
+        
+                <input placeholder="City" name="city" type="text" id="password" class="city-input profile-all-inputs-option"
+                ></input>                                    
+                <div class="start-and-end-date-main-div">
+                    <input id="id_start_date" class="start-date-input date-of-birth-input inputs-job-details start-end-date all-inputs profile-all-inputs-option"
+                    name="start_date" onchange="checkForm();checkStartDate();" value="" type="text" maxlength="10"
+                    placeholder="Start Date (dd/mm/yyyy)" oninput="this.value = MMDDYYYY(this.value, event)" />
+                    <input id="id_end_date" class="end-date-input date-of-birth-input inputs-job-details start-end-date all-inputs profile-all-inputs-option"
+                    name="end_date" onchange="checkForm();checkStartDate();" value="" type="text" maxlength="10"
+                    placeholder="End Date (dd/mm/yyyy)" oninput="this.value = MMDDYYYY(this.value, event)" />
+                    
+                </div>
+                <div style="float: right; border:0;width:auto;font-size: 16px;color: #858585;padding:0;" class="profile-all-inputs-option">
+                    <label class="" style=""><input class="" style="" onchange="present()"type="checkbox" > Present</label>
+                </div>
+                <div class="save-button save-button-edit-profile-photo">
+                    <input onclick="backtoEditExpPage()" type="button" name="back" title="Back to Profile" class="back-input font-fam back-save-buttons" value="Back">
+                    <input title="Save Profile Data" name="save" type="submit" class="save-submit-input font-fam back-save-buttons" value="Save">
+                </div>
+            </form>
+    </div>
+</div>
+</body>
+<script>
+    $(document).ready(function() {
+    $(".bg-add-and-edit").click(function() {
+        $(this).hide();s
+    });
+});
+
+    $(".under-container-mutual-mutual-stats").click(function(event) {
+        event.stopPropagation();
+    });
+
+</script>
+<script>
+        const countries = ["Kosovo","Albania","Afghanistan",
+"Algeria",
+"Andorra",
+"Angola",
+"Antigua and Barbuda",
+"Argentina",
+"Armenia",
+"Australia",
+"Austria",
+"Azerbaijan",
+"The Bahamas",
+"Bahrain",
+"Bangladesh",
+"Barbados",
+"Belarus",
+"Belgium",
+"Belize",
+"Benin",
+"Bhutan",
+"Bolivia",
+"Bosnia and Herzegovina",
+"Botswana",
+"Brazil",
+"Brunei",
+"Bulgaria",
+"Burkina Faso",
+"Burundi",
+"Cambodia",
+"Cameroon",
+"Canada",
+"Cape Verde",
+"Central African Republic",
+"Chad",
+"Chile",
+"China",
+"Colombia",
+"Comoros",
+"Republic of the Congo",
+"Democratic Republic of the Congo",
+"Costa Rica",
+"Croatia",
+"Cuba",
+"Cyprus",
+"Czech Republic",
+"Denmark",
+"Djibouti",
+"Dominica",
+"Dominican Republic",
+"East Timor",
+"Ecuador",
+"Egypt",
+"El Salvador",
+"Equatorial Guinea",
+"Eritrea",
+"Estonia",
+"Eswatini",
+"Ethiopia",
+"Fiji",
+"Finland",
+"France",
+"Gabon",
+"The Gambia",
+"Georgia",
+"Germany",
+"Ghana",
+"Greece",
+"Grenada",
+"Guatemala",
+"Guinea",
+"Guinea-Bissau",
+"Guyana",
+"Haiti",
+"Holy See (Vatican City)",
+"Honduras",
+"Hungary",
+"Iceland",
+"India",
+"Indonesia",
+"Iran",
+"Iraq",
+"Ireland",
+"Israel",
+"Italy",
+"Ivory Coast",
+"Jamaica",
+"Japan",
+"Jordan",
+"Kazakhstan",
+"Kenya",
+"Kiribati",
+"North Korea",
+"South Korea",
+"Kuwait",
+"Kyrgyzstan",
+"Laos",
+"Latvia",
+"Lebanon",
+"Lesotho",
+"Liberia",
+"Libya",
+"Liechtenstein",
+"Lithuania",
+"Luxembourg",
+"Madagascar",
+"Malawi",
+"Malaysia",
+"Maldives",
+"Mali",
+"Malta",
+"Marshall Islands",
+"Mauritania",
+"Mauritius",
+"Mexico",
+"Micronesia",
+"Moldova",
+"Monaco",
+"Mongolia",
+"Montenegro",
+"Morocco",
+"Mozambique",
+"Myanmar (Burma)",
+"Namibia",
+"Nauru",
+"Nepal",
+"Netherlands",
+"New Zealand",
+"Nicaragua",
+"Niger",
+"Nigeria",
+"North Macedonia",
+"Norway",
+"Oman",
+"Pakistan",
+"Palau",
+"Palestine",
+"Panama",
+"Papua New Guinea",
+"Paraguay",
+"Peru",
+"Philippines",
+"Poland",
+"Portugal",
+"Qatar",
+"Romania",
+"Russia",
+"Rwanda",
+"Saint Kitts and Nevis",
+"Saint Lucia",
+"Saint Vincent and the Grenadines",
+"Samoa",
+"San Marino",
+"São Tomé and Príncipe",
+"Saudi Arabia",
+"Senegal",
+"Serbia",
+"Seychelles",
+"Sierra Leone",
+"Singapore",
+"Slovakia",
+"Slovenia",
+"Solomon Islands",
+"Somalia",
+"South Africa",
+"South Sudan",
+"Spain",
+"Sri Lanka",
+"Sudan",
+"Suriname",
+"Sweden",
+"Switzerland",
+"Syria",
+"Tajikistan",
+"Tanzania",
+"Thailand",
+"Togo",
+"Tonga",
+"Trinidad and Tobago",
+"Tunisia",
+"Turkey",
+"Turkmenistan",
+"Tuvalu",
+"Uganda",
+"Ukraine",
+"United Arab Emirates",
+"United Kingdom",
+"United States",
+"Uruguay",
+"Uzbekistan",
+"Vanuatu",
+"Venezuela",
+"Vietnam",
+"Yemen",
+"Zambia",
+"Zimbabwe"
+];
+
+// Function to populate the select element with countries
+function populateCountries2() {
+  const select = document.getElementById("id_Country");
+
+  for (const country of countries) {
+    const option = document.createElement("option");
+    option.value = country;
+    option.text = country;
+    select.appendChild(option);
+  }
+}
+
+populateCountries2();
+
+window.addEventListener("load", populateCountries2);
+
+
+</script>
+
+<script src="../js/profile_dropdown.js"></script>
+<script src="../js/edit-experience.js"></script>
+<script src="../js/profile_dropdown_2.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="../js/header-border-worki-icon.js"></script>
+<script src="../js/my-jobs-option.js"></script>
+<script src="../js/dropdown/profileDropDown.js"></script>
+<script src="../js/edit-experience-button.js"></script>
+<script src="../js/worki-icon-reload-page.js"></script>
+<script src="../js/post-a-job/post-a-job-start-end-date.js"></script>
+<script>
+
+</script>
+</html>
+

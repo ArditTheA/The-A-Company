@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screening Questions</title>
+    <link rel="stylesheet" href="../css/base.css/authenticated.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/profile-header.css">
+    <link rel="stylesheet" href="../css/base/header.css">
+    <link rel="stylesheet" href="../css/body.css">
+    <!-- <link rel="stylesheet" href="../css/jobs.css"> -->
+
+    <style>
+        .overSelect {
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+        .input-form, .second-input-form {
+            display: flex;
+            flex-direction: row-reverse;
+            position: relative;
+            outline: none;
+            align-items: center;
+        }
+        
+        .inputs-right-margin, .last-input-form {
+        }
+        
+        .main-buttons-div {
+        }
+        select {
+        }
+        
+        .icon, .white-icon, .input-exit-button {
+            position: absolute;
+            right: 10px;
+        }
+        .input-exit-button {
+            width: 14px !important;
+            height: 14px !important;
+            color: white;
+            cursor: pointer;
+            margin-right: 20px;
+            padding: 5px !important;
+            /* background-color: #1877F2 !important; */
+        }
+        .screening-questions-parent {
+            height: 87.6vh;
+            overflow-y: scroll;
+
+        }
+        .screening-questions-parent::-webkit-scrollbar {
+            display: none;
+        }
+        .screening-questions-under-parent {
+
+        }
+        .search-input::placeholder {
+            color: #b1b2b8;
+            font-size: 18px;
+        }
+
+        .container-fluid {
+            border: none;
+        }
+
+        .buttons-form {}
+
+        .search-input {
+            padding-top: 8px;
+            padding-bottom: 8px;
+            border-radius: 20px;
+            border: none;
+            padding-left: 20px;
+            font-size: 18px;
+            margin-right: 10px;
+            color: #65676B;
+            outline: none;
+            width: 142px;
+            padding-right: 39px;
+            cursor: pointer;
+        }
+
+        .search-input {
+            transition: all 0.5s ease-in-out;
+        }
+.inputs-right-margin {
+            margin-right: 20px;
+        }
+        .inputs-right-margin::placeholder {
+            color: black;
+        }
+        .second-input-form {
+            margin-right: -20px;
+        }
+        .mutual-padding-of-div {
+            float: left;
+            border: 1px solid #9E9E9E;
+            margin-top: 20px;
+        }
+        .filter-out, .dont-filter-out {
+        border: 0.5px solid #9E9E9E;
+		border-radius: 40px;
+		padding: 10px 20px 10px 20px;
+		font-size: 18px;
+		background-color: white;
+		width: fit-content;
+		box-sizing: border-box;
+		outline: none;
+        margin-top: 20px;
+        cursor: pointer;
+    }
+
+
+
+    </style>
+</head>
+<body>
+    
+    <header class="profileHeader" style="">
+        <img style="border-radius: 10px;" class="header-icon header-icon-radius header-icon-logo" src="../img/12.jpeg" title="Worki">
+        <div class="jobs-and-profile">
+        <a href="jobs.html"><img class="header-icon header-icon-job" title="Jobs" src="../img/JOBS_Icon.png"></a>
+            <img src="../img/logo-avatar.png" class="header-icon header-icon-radius header-icon-profile" title="Profile" alt="">
+        </div>
+    </header>
+
+    <div class="profileDropDown" id="dropdownA">
+        <div class="profileDropDown-content" ><a class="profileDropdDown-text">My profile</a></div>
+        <div class="profileDropDown-content"><a class="profileDropDown-text">My jobs</a></div>
+        <div class="profileDropDown-content"><a href="" class="profileDropDown-text">Recruiter</a></div>
+        <div class="profileDropDown-content"><a href="" class="profileDropDown-text">Sign out</a></div>
+    </div>
+
+    <div class="screening-questions-parent" style="margin: 20px 40px 20px 40px; padding-top: 40px; background-color: white; border-radius: 40px; display: flex; flex-direction: column; align-items: center;">
+        <div class="screening-questions-under-parent" style="margin-bottom: 40px;">
+            <div class="screening-questions-title-and-back-icon" style="display: flex; margin-bottom: 40px;">
+            <div class="screening-questions-title" style="font-size: 40px; font-weight: 400; color: #1877F2; margin: auto;">Add screening questions</div>
+            <img class="screening-questions-back-icon" title="Go back" style="position: absolute; right: 80px; background-color: #1877F2; height: 25px; padding: 5px; border-radius: 50%; cursor: pointer;" src="../../profile header2/img/left-arrow.png" alt="">
+                </div>
+            <div>
+            <div class="screening-questions-div-over-textarea" style="display: flex; justify-content: space-between; font-size: 16px; padding-bottom: 10px; margin-top: 40px;">
+                <div class="screening-questions-row-over-textarea screening-questions-mutual-color" style="color: #858585;" >Question 1</div>
+                <div>
+                    <img class="screening-questions-exit-over-textarea" class="exit-job-description" title="Close the question" style="cursor: pointer; width: 16x; height: 16px;"
+                    src="../img/close(2).png" alt="">
+
+                </div>
+        </div>
+            <textarea class="textarea textarea-color" placeholder="" style="resize: none; width: calc(900px - 20px); border-radius: 16px; border: 1px solid #9E9E9E; padding-left: 20px; padding-top: 20px; outline: none; font-size: 16px; color: #757575;" name="" id="" cols="30" rows="8"></textarea>
+            <!-- <div style="padding-top: 10px; color: #858585; display: flex; justify-content: flex-end;">
+                0/200
+            </div> -->
+            <div class="screening-questions-div-under-textarea" style="display: flex; margin-top: 20px; justify-content: space-between;">
+                <div class="screening-questions-under-div-under-textarea" style="display: flex; justify-content: flex-start;">
+			    <div class="form-group" style="margin-right: 20px;">
+				    <label style="color: #858585; margin-bottom: 20px; margin-left: 10px;" class="margin-top-bottom margin-left next-none screening-questions-mutual-color">Type of Answer:</label>
+		            <div>	
+			            <select style="height: auto; border-color: #9E9E9E; width: 170px; outline: none; margin-top: 20px;" class="custom-select sel select-options-input next-none padding-of-inputs" name="data[Sex]"id="inputGroupSelect02">
+				            <option style="display: none;" value="">Yes / No</option>
+				            <option value="YesNo">Yes / No</option>
+				            <option value="Numeric">Numeric</option>
+			            </select>
+		            </div>	
+		        </div>
+                <div class="form-group">
+                    <label style="color: #858585; margin-left: 10px;" class="margin-left next-none screening-questions-mutual-color">Ideal Answer:</label>
+                    <div>	
+                        <select style="height: auto; border-color: #9E9E9E; width: 170px; outline: none; margin-top: 20px;" class="custom-select sel select-options-input next-none padding-of-inputs" name="data[Sex]"id="inputGroupSelect02">
+                            <option style="display: none; font-size: 16p;" value="">No</option>
+                            <option value="Male">Yes</option>
+                            <option value="Female">No</option>
+                        </select>
+                    </div>	
+                </div>
+                </div>
+                <div class="must-have-qualification-div" style="display: flex; justify-content: flex-end; align-items: flex-end; margin-bottom: 10px;">
+                    <label class="must-have-qualification-label screening-questions-mutual-color" style="font-size: 16px; color: #858585;" for="must-have-qualification">
+                    <input class="must-have-qualification-input" id="must-have-qualification" style="margin-right: 8px; border-radius: 30px;" type="checkbox">Must-have qualification</label>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="screening-questions-div-over-textarea" style="display: flex; justify-content: space-between; font-size: 16px; padding-bottom: 10px; margin-top: 40px;">
+                <div class="screening-questions-row-over-textarea screening-questions-mutual-color" style="color: #858585;" >Question 2</div>
+                <div class="">
+                    <img class="screening-questions-exit-over-textarea" class="exit-job-description" title="Close the question" style="cursor: pointer; width: 16x; height: 16px;"
+                    src="../img/close(2).png" alt="">
+                </div>
+            </div>
+            <textarea class="textarea textarea-color" placeholder="" style="resize: none; width: calc(900px - 20px); border-radius: 16px; border: 1px solid #9E9E9E; padding-left: 20px; padding-top: 20px; outline: none; font-size: 16px; color: #757575;" name="" id="" cols="30" rows="8"></textarea>
+            <!-- <div style="padding-top: 10px; color: #858585; display: flex; justify-content: flex-end;">
+                0/200
+            </div> -->
+            <div class="screening-questions-div-under-textarea" style="display: flex; margin-top: 20px; justify-content: space-between;">
+                <div class="screening-questions-under-div-under-textarea" style="display: flex; justify-content: flex-start;">
+			    <div class="form-group" style="margin-right: 20px;">
+				    <label style="color: #858585; margin-bottom: 20px; margin-left: 10px;" class="margin-top-bottom margin-left next-none screening-questions-mutual-color">Type of Answer:</label>
+		            <div>	
+			            <select style="height: auto; border-color: #9E9E9E; width: 170px; outline: none; margin-top: 20px;" class="custom-select sel select-options-input next-none padding-of-inputs" name="data[Sex]"id="inputGroupSelect02">
+				            <option style="display: none;" value="">Numeric</option>
+                            <option value="">Numeric</option>
+				            <option style="" value="">Yes / No</option>
+                            
+			            </select>
+		            </div>	
+		        </div>
+                <div class="form-group">
+                    <label style="color: #858585; margin-left: 10px;" class="margin-left next-none screening-questions-mutual-color">Ideal Answer:</label>
+                    <div>	
+                        <select style="height: auto; border-color: #9E9E9E; width: 170px; outline: none; margin-top: 20px;" class="custom-select sel select-options-input next-none padding-of-inputs" name="data[Sex]"id="inputGroupSelect02">
+                            <option style="display: none; font-size: 16p;" value="">1</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <!-- <option value="Male">Yes</option>
+                            <option value="Female">No</option> -->
+                        </select>
+                    </div>	
+                </div>
+                </div>
+                <div class="must-have-qualification-div" style="display: flex; justify-content: flex-end; align-items: flex-end; margin-bottom: 10px;">
+                    <label class="must-have-qualification-label screening-questions-mutual-color" style="font-size: 16px; color: #858585;" for="must-have-qualification-2">
+                    <input class="must-have-qualification-input" id="must-have-qualification-2" style="margin-right: 8px; border-radius: 30px;" type="checkbox">Must-have qualification</label>
+                </div>
+            </div>
+        </div>
+            <!-- <div style="color: #858585; margin-top: 40px;">Add more questions</div> -->
+            <div style="color: #858585; margin-top: 40px;">Add more questions</div>
+            <div style="display: flex; flex-direction: column;">
+            <div class="mutual-padding-of-div input-search-div" style="border-radius: 20px; width: fit-content;">
+                <div class="second-input-form" style="">
+
+                <input style="" name="" placeholder="Custom Question" title="Add a question"
+                    class="search-input inputs-right-margin" id="input-removed"
+                    style="padding-left: 20px; background-color: white;">
+                                                                            
+                </input>
+                <img style="" class="input-exit-button input-add-question-button" title="Add a question" src="../img/plus-question.png" alt="">
+            </div>
+        </div>
+
+        <div class="screening-questions-third-question-div" style="display: none;">
+                    <div class="screening-questions-div-over-textarea" style="display: flex; justify-content: space-between; font-size: 16px; padding-bottom: 10px; margin-top: 20px;">
+                        <div class="screening-questions-row-over-textarea screening-questions-mutual-color" style="color: #858585;" >Question 3</div>
+                        <div class="exit-third-question">
+                        <img class="screening-questions-exit-over-textarea" class="exit-job-description" title="Close the question" style="cursor: pointer; width: 16x; height: 16px;"
+                        src="../img/close(2).png" alt="">
+                    </div>
+                    </div>
+                    
+                    <textarea class="textarea textarea-color" placeholder="" style="resize: none; width: calc(900px - 20px); border-radius: 16px; border: 1px solid #9E9E9E; padding-left: 20px; padding-top: 20px; outline: none; font-size: 16px; color: #757575;" name="" id="" cols="30" rows="8"></textarea>
+                    <!-- <div style="padding-top: 10px; color: #858585; display: flex; justify-content: flex-end;">
+                        0/200
+                    </div> -->
+                    <div class="screening-questions-div-under-textarea" style="display: flex; margin-top: 20px; justify-content: space-between;">
+                        <div class="screening-questions-under-div-under-textarea" style="display: flex; justify-content: flex-start;">
+                        <div class="form-group" style="margin-right: 20px;">
+                            <label style="color: #858585; margin-bottom: 20px; margin-left: 10px;" class="margin-top-bottom margin-left next-none screening-questions-mutual-color">Type of Answer:</label>
+                            <div>	
+                                <select style="height: auto; border-color: #9E9E9E; width: 170px; outline: none; margin-top: 20px;" class="custom-select sel select-options-input next-none padding-of-inputs" name="data[Sex]"id="inputGroupSelect02">
+                                    <option style="display: none;" value="">Numeric</option>
+                                    <option style="" value="">Numeric</option>
+                                    <option style="" value="">Yes / No</option>
+                                </select>
+                            </div>	
+                        </div>
+                        <div class="form-group">
+                            <label style="color: #858585; margin-left: 10px;" class="margin-left next-none screening-questions-mutual-color">Ideal Answer:</label>
+                            <div>	
+                                <select style="height: auto; border-color: #9E9E9E; width: 170px; outline: none; margin-top: 20px;" class="custom-select sel select-options-input next-none padding-of-inputs" name="data[Sex]"id="inputGroupSelect02">
+                                    <option style="display: none; font-size: 16p;" value="">1</option>
+                                    <!-- <option value="Male">Yes</option>
+                                    <option value="Female">No</option> -->
+                                </select>
+                            </div>	
+                        </div>
+                        </div>
+                        <div class="must-have-qualification-div" style="display: flex; justify-content: flex-end; align-items: flex-end; margin-bottom: 10px;">
+                            <label class="must-have-qualification-label screening-questions-mutual-color" style="font-size: 16px; color: #858585;" for="must-have-qualification-3">
+                            <input class="must-have-qualification-input" id="must-have-qualification-3" style="margin-right: 8px; border-radius: 30px;" type="checkbox">Must-have qualification</label>
+                        </div>
+                    </div>
+                          
+                </div>
+
+                <!-- <img style="cursor: pointer; " title="Search by job or location"
+                class="search-icon-jobs inputs-right-margin plus-icon-jobs" src="../img/search-third-img.png"
+                alt=""> -->
+        </div>
+        <div style="margin-top: 40px; color: #858585;">Application settings</div>
+        <div class="filter-out">Filter out & send rejection letters to applicants who don't meet qualifications</div>
+        <div class="dont-filter-out">Don't filter out applicants. I will manually review each application sent to me</div>
+        
+    </div>
+
+    </div>
+
+    <!-- style="background-color: #1877F2; color: white; border: 0.5px solid #1877F2;" - style of "filter-out" div -->
+
+    </div>
+
+</body>
+
+<script src="../js/profile_dropdown.js"></script>
+<script src="../js/dropdown-jobs.js"></script>
+<script src="../js/add-question.js"></script>
+
+<script>
+   var filter_out = document.querySelector(".filter-out");
+   var dont_filter_out = document.querySelector(".dont-filter-out");
+
+   filter_out.addEventListener("click", function() {
+    filter_out.style.backgroundColor = "#1877F2";
+    filter_out.style.color = "white";
+    filter_out.style.border = "0.5px solid #1877F2";
+    dont_filter_out.style.backgroundColor = "white";
+    dont_filter_out.style.color = "black";
+    dont_filter_out.style.border = "0.5px solid #9E9E9E";
+
+
+   })
+
+   dont_filter_out.addEventListener("click", function() {
+    dont_filter_out.style.backgroundColor = "#1877F2";
+    dont_filter_out.style.color = "white";
+    dont_filter_out.style.border = "0.5px solid #1877F2";
+    filter_out.style.backgroundColor = "white";
+    filter_out.style.color = "black";
+    filter_out.style.border = "0.5px solid #9E9E9E";
+
+   });
+
+
+</script>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <textarea id="myTextarea" rows="4" cols="50"></textarea>
+        <br>
+        <input type="submit" value="Submit" style="display: none;">
+      </form>
+      
+      <a id="next-button" class="next-button btn submit-button next-none" onclick="validateTextarea()">Next</a>
+      </body>
+<script>
+function validateTextarea() {
+  var textarea = document.getElementById("myTextarea");
+  if (textarea.value.length < 32) {
+    alert("Textarea must contain at least 32 characters.");
+    return false; // Prevent default link behavior
+  }
+  // Continue with your desired next action here
+}
+</script>
+</html>
+  

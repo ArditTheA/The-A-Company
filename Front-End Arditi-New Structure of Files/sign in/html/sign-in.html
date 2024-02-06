@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/sign_in.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
+    <title>Worki - Sign In</title>
+</head>
+
+<body>
+    <!-- <header class="header-border">
+        <div class="first-image">
+            <img class="worki-image" src="../../profile header2/img/blue-Worki-icon.png" title="Worki">
+        </div>
+    </header> -->
+
+    <div class="container">
+        <div class="under-container">
+            <div id="title">Sign in</div>
+            <form method="POST" class="sign-in-form">
+                <div class="input-form">
+                    <a class="sign-in-google input-text" href=""><div class="">Sign in with Google</div>
+                    </a>
+                     <img class="icon" src="../img/google-01 8.png">
+                 </div>  
+                 <!-- <div class="input-form secondSignIn-form">
+                    <a class="sign-in-google input-text" href=""><div class="">Sign in with Apple ID</div>
+                    </a>
+                     <img class="icon" src="../../profile header2/img/apple.png">
+                 </div>   -->
+                 <p class="second-paragraph same-color-of-paragraphs">or</p>   
+                <input name="email" type="email" class="email-input input-text font-fam" placeholder="Email"></input>
+                <div class="input-form">
+                    <input name="password" type="password" id="password" class="input-text password-input font-fam" placeholder="Password"></input>
+                    <i title="Show Password" class="bi bi-eye-slash" id="togglePassword"></i>
+                </div>
+                <p class="first-paragraph same-color-of-paragraphs"><a class="password-link" href="">Forgot
+                        password?</a></p>
+                <div class="sign-in-input">
+                    <input name="submit" type="submit" class="sign-in-submit-input font-fam" value="Sign in">
+                </div>
+            </form>
+
+            <p class="third-paragraph same-color-of-paragraphs">Not a user? <a class="sign-up-link"
+                    href="../../create account/html/create-account.html">Create account</a></p>
+        </div>
+    </div>
+
+</body>
+
+<script src="../js/password_icon.js"></script>
+
+</html>

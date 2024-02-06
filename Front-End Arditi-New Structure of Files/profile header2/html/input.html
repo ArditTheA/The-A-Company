@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .input-container {
+            position: relative;
+            margin-bottom: 1em;
+        }
+
+        .placeholder {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            transition: all 0.3s ease-in-out;
+            pointer-events: none;
+            color: #999; /* Placeholder color */
+            font-size: 1em;
+        }
+
+        input {
+            padding-top: 30px;
+            padding-bottom: 30px;
+        }
+
+        input:focus + .placeholder,
+        input:not(:placeholder-shown) + .placeholder {
+            top: 8px;
+            transform: translateY(-50%) scale(0.8);
+            color: #333; /* Text color when input is focused or not empty */
+        }
+    </style>
+</head>
+<body>
+    <div class="input-container">
+        <label for="first-name" class="placeholder">First Name</label>
+        <input type="text" id="first-name" class="apply-first-name apply-name-surname all-inputs mutual-input" />
+    </div>
+      
+    <script>
+        const inputField = document.getElementById('first-name');
+        const placeholder = document.querySelector('.placeholder');
+
+        inputField.addEventListener('input', function() {
+            if (this.value !== '') {
+                placeholder.style.top = '8px';
+                placeholder.style.transform = 'translateY(-50%) scale(0.8)';
+                placeholder.style.color = '#333';
+            } else {
+                placeholder.style.top = '50%';
+                placeholder.style.transform = 'translateY(-50%)';
+                placeholder.style.color = '#999';
+            }
+        });
+    </script>
+</body>
+</html>

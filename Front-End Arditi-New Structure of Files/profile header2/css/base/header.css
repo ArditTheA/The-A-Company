@@ -1,0 +1,150 @@
+.header-icon-logo {
+    width: auto; 
+    height: 35px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+}
+
+select {
+    
+}
+.header-icon-profile {
+    width: 35px !important;
+    border-radius: 50% !important;
+}
+
+.profileHeader{
+    background-color: #f1f1f1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: none;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    position: relative;
+}
+
+/*    Profile DropDown  */
+ .profileDropDown, .edit_dropdown {
+    transition: all 0.5s ease-in-out;
+    -webkit-box-shadow: 0 0 5px #e7e7e7;
+    box-shadow: 0 0 5px #e7e7e7;
+    border: none;
+    display: none;
+    font-size: 16px;
+    background-color: white;   /*display: none = nuk mund te perdoret transition: ... */
+    border-radius: 16px;
+    overflow: hidden;
+    position: absolute;
+    z-index: 99;
+    padding-top: 5px;
+}
+
+
+.all-applicants-dropdown {
+    padding-right: 0px !important;
+    overflow-y: hidden !important;
+}
+
+
+.edit_dropdown {
+    margin-top: 10px;
+}
+
+.profileDropDown {
+    padding-bottom:20px;
+}
+.all-applicants-dropdown {
+    padding-bottom:0px;
+    margin-top: 10px;
+}
+
+
+.profileDropDown {
+    right: 10px;
+}
+.profileDropDown-content {
+    padding: 15px 20px 0px 20px;
+    text-decoration: none !important;
+    color: #65676B;
+}
+.profileDropDown-text {
+    text-decoration: none !important;
+    color: #65676B;
+    cursor: pointer;
+}
+.header-icon{
+    cursor: pointer;
+    height: 35px;
+    width: auto;
+    object-fit: cover;
+    vertical-align: middle;
+}
+.all-applicants-dropdown {
+    right: auto;
+}
+/* .header-icon-radius{
+    border-radius: 10px;
+} */
+.header-icon-job{
+    max-width: 40px;
+    border-radius: 6px;
+}
+
+.header-icon-profile{
+    margin-left: 20px;
+    margin-right: 40px;
+    width: 40px !important;
+    height: 40px !important;
+
+}
+.header-icon-logo{
+}
+
+.jobs-and-profile {
+    float: right;
+    display: flex;
+    align-items: center;
+}
+
+@media screen and (max-width: 1024px) and (min-width: 768px) {
+    .header-icon-logo{
+    }
+    .header-icon-profile{
+        margin-right: 30px;
+    }
+}
+
+@media screen and (max-width: 767px) and (min-width: 481px) {
+    .header-icon-logo {
+    }
+    .header-icon-job {
+        margin-right: 20px;
+    }
+    .header-icon-profile {
+        margin-right: 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .header-icon-profile {
+        margin-right: 10px;
+        margin-left: 15px;
+    }
+    .profileDropDown {
+        font-size: 16px;
+        margin-top: -10px;
+    }
+    .all-applicants-dropdown {
+        margin-top: 10px !important;
+        overflow-y: inherit;
+
+    }
+
+    
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Input with Exit Button</title>
+  <style>
+.search-container {
+  position: relative;
+  display: inline-block;
+}
+
+.search-input {
+  padding: 10px;
+  box-sizing: border-box;
+  width: calc(100% - 75px); /* Adjust this value as needed */
+}
+
+.search-input::placeholder {
+    width: 100% !important; /* Adjust this value as needed */
+}
+
+.exit-button {
+  position: absolute;
+  top: 50%;
+  right: 85px; /* Adjust this value as needed */
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+  </style>
+</head>
+<body>
+
+  <div class="search-container">
+    <input type="text" class="search-input" placeholder="Search...">
+    <div class="exit-button">&#10006;</div>
+  </div>
+
+</body>
+</html>

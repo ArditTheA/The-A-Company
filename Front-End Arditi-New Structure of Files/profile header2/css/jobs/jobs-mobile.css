@@ -1,0 +1,221 @@
+@media screen and (max-width: 480px) {
+    .job-logo {
+        margin-right: 20px;
+    }
+    .under-header-wishes {
+        margin-bottom: 10px;
+    }
+    .jobs-main-div{
+        margin-top: 0px;
+    }
+    .job-left-row{
+        margin-right:10px;
+        margin-top:10px;
+        margin-left:10px;
+        padding: 20px;
+        border-radius: 20px;
+    }
+   .only-application-update-style {
+        padding-left: 20px; 
+        padding-right: 20px;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        border-radius: 20px;
+    }
+    .application-update-title {
+        padding-top: 0px;
+        font-size: 16px;
+    }
+    .only-under-application-update-style {
+        width: 100%;
+        margin-left: -21px;
+        border-radius: 20px;
+        padding: 20px;
+    }
+
+
+
+    .job-left {
+        margin-top:20px;
+        width: 100% !important;
+        position: absolute;
+        height: calc(100% - 143.21px);
+    }
+    .job-left-ribbon {
+        height: calc(100% - 204.61px) !important;
+    }
+    .job-right-exit {
+        padding: 5px; 
+        margin: -5px -5px 15px -5px !important;
+    }
+    .right-jobs {
+        display:none;
+        height: calc(100% - 10px) !important;
+        position:absolute;
+        margin-top: 20px !important;
+        padding-bottom: 0px;
+    }
+    .card{
+        margin-bottom: 0 !important;
+    }
+
+    /*   merge from jobi and filter.css   */
+    /*  from jobi.css  */
+
+
+        /*  from filter.css  */
+
+
+    /*  Right Jobs   */
+    .job-right-description {
+        margin-top:10px;
+    }
+    .right-jobs-main-div{
+        margin-top:0px;
+        display:none;
+        width:100% !important;
+    }
+    .right-jobs {
+        margin-bottom: 10px;
+        width: 100%;
+    }
+    .job-right-exit, .myjob-right-exit{
+        margin-bottom: 15px;
+        display: block;
+        width: 15px;
+        height: 15px;
+        cursor: pointer;
+    }
+
+    .under-container-mutual-mutual-stats {
+        margin-top: 10px !important;
+    }
+    .applicants-details {
+        margin-bottom: 10px !important;
+    }
+
+    .title_documents, .file-upload, .work-permit-title {
+        font-size: 16px !important;
+    }
+    .mutual-form-stats {
+        margin-bottom: 10px;
+    }
+
+    .drop-area {
+        height: 240px !important;
+    }
+
+    .applied-qualified-margin-right {
+        margin-right: 15px;
+    }
+
+    .sign-up-form {
+        width: 100% !important;
+    }
+
+    .docs-work-permit-page-border {
+        margin-left: -20.5px;
+    }
+
+    .title_documents, .work-permit-title {
+        padding-top: 0px;
+    }
+    .mutual-pages-stats {
+        border-top-right-radius: 20px;
+        border-top-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .job-right-details{
+        margin-right:10px;
+        border-radius:20px;
+        padding: 20px;
+    }
+
+    .payment-under-form-content {
+        border-radius: 20px;
+    }
+
+    .documents-border-div {
+        padding-right: 20px;
+        padding-left: 20px;
+        border-radius: 20px;
+    }
+    .documents-under-main-border-div {
+        margin-left: -21px;
+        padding-bottom: 20px;
+        padding-top: 20px;
+    }
+    .mutual-form-stats {
+        width: calc(100% - 20px) !important;
+    }
+
+    .job-right-description{
+        margin-bottom: 10px;
+    }
+    .job-left-details, .job-left-title, .first-row-jobs {
+        font-size: 16px;
+    }
+    .right-applicants {
+        margin-top: 9px !important;
+    }
+    .work-permit-title {
+        padding-bottom: 20px;
+    }
+    .applicants-details-lang {
+        margin-bottom: 10px;
+    }
+    .labels-stats {
+        font-size: 16px;
+    }
+    /* .last-job-margin-bottom {
+        margin-bottom: -10px;
+    } */
+    .job-left-row:last-child {
+        margin-bottom: -10px;
+    }
+    /* .last-child-job {
+        margin-bottom: -10px !important;
+    } */
+
+    .all-applicants-button {
+        padding-top: 7.6px !important;
+        padding-bottom: 7.6px !important;
+    }
+    .job-right-applied-button {
+        margin-top: 20px !important;
+    }
+    
+    .job-right-text-details {
+        margin-top: 20px;
+    }
+    .job-right-company, .jobs-third-row, .first-row-jobs-third-row-second-div {
+        margin-top: 40px;
+    }
+    .experience-rows {
+        font-size: 16px;
+    }
+    .mobile-rows-font-size, .second-row-second-div, .second-div-second-paragraph, .mobile-mutual-font-size {
+        font-size: 16px;
+    }
+    .job-right-apply-button {
+        font-size: 16px;
+    }
+
+    .edit-job-button {
+        width: 20px;
+        height: auto;
+        margin-right: 20px;
+    }
+    .recruter-job-dropdown {
+        top: 46px;
+        right: 20px;
+    }
+    .job-right-apply-button {
+        margin-top: calc(20px + 8px);
+        
+    }
+}

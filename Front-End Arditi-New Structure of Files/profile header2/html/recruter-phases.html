@@ -1,0 +1,720 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phases All Applicants</title>
+    <link rel="stylesheet" href="../css/filter.css">
+    <link rel="stylesheet" href="../css/jobs/all-aplicants.css">
+    <link rel="stylesheet" href="../css/profile-header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/base/header.css">
+    <link rel="stylesheet" href="../css/profile/profile-web.css">
+    <link rel="stylesheet" href="../css/profile/profile-mobile.css">
+    <link rel="stylesheet" href="../css/body.css">
+    <link href='https://fonts.googleapis.com/css?family=Spline Sans' rel='stylesheet'>
+    <link rel="stylesheet" href="../css/jobs/jobs-web.css">
+    <link rel="stylesheet" href="../css/jobs/all-aplicants.css">
+    <!-- <link rel="stylesheet" href="../css/jobs/jobs-tablet.css"> -->
+    <link rel="stylesheet" href="../css/jobs/jobs-mobile.css">
+    <link rel="stylesheet" href="../css/reserve-post-a-job.css">
+    <link rel="stylesheet" href="../css/profile/profile-web.css">
+
+</head>
+<style>
+</style>
+
+<body>
+    <header class="profileHeader" style="display: flex;">
+        <img style="" class="header-icon header-icon-radius header-icon-logo" src="../img/blue-Worki-icon.png" title="Worki">
+        <div class="jobs-and-profile" style="">
+        <a href="jobs.html"><img class="header-icon header-icon-job" title="Jobs" src="../img/jobs icon-2.png"></a>
+            <img src="../img/profile-2.png" class="header-icon header-icon-radius header-icon-profile" title="Profile" alt="">
+        </div>
+    </header>
+
+    <div class="profileDropDown" id="dropdownA">
+        <div class="profileDropDown-content" ><a class="profileDropDown-text">My profile</a></div>
+        <div class="profileDropDown-content"><a class="profileDropDown-text">My jobs</a></div>
+        <div class="profileDropDown-content"><a href="" class="profileDropDown-text">Recruiter</a></div>
+        <div class="profileDropDown-content"><a href="" class="profileDropDown-text">Sign out</a></div>
+    </div>
+<div class="main-buttons-div" style="">
+    <div class="jobs-buttons applied-posted-buttons-mobile all-aplicants-main-div scrolling-wrapper">
+        <form class="card" style="" method="Get" style="">
+            <img style="cursor: pointer;" title="Search by name or city"
+                class="search-icon-jobs inputs-right-margin plus-icon-jobs" src="../img/search (1).png"
+                alt="">
+                <div class="mutual-padding-of-div input-search-div" style="border-radius: 20px;">
+                    <div class="second-input-form" style="">
+
+                  <input style="" name="" placeholder="Search by name or city"
+                        class="search-input all-aplicants-search inputs-right-margin" id="input-removed"
+                        style="padding-left: 20px; background-color: white;">
+                    </input>
+                    <img style="display: none;" class="input-exit-button" title="Exit" src="../img/close.png" alt="">
+                </div>
+            </div>
+        </form>
+        <form style="display: flex;" class="buttons-form card">
+            <div class="container-fluid " style="cursor: pointer;">
+                <div id="mySelectLabel" class="selectBox" style="">
+                    <div class="input-form margin inputs-right-margin" style="">
+                        <select style="color: #65676B; border: none;
+              padding: 8px 30px; padding-left: 20px;" class="form-select all-applicants-select" id="second_form_select">
+                            <option value="All Jobs" id="program" class="first-input-option all-applicants-button nr_of_applicants">All Applicants</option>
+                        </select>
+                        <div class="" style="display: flex; align-items: center;">
+                            <img style="cursor: pointer; display: none;" class="white-icon"
+                                src="../img/white-dropdown-icon.png" alt="">
+                                
+                        </div>
+                            <div style="" class="overSelect"></div>
+                    </div>
+                    <div id="all-applicants-dropdown" class="selectOptions dropdown-elements all-applicants-dropdown" style="z-index: 99;">
+               <label for="mutual1" id="qualify" class="profileDropDown-content profileDropDown-text all-applicants-dropdown-content"><input id="mutual1" style="display: none;" type="checkbox" class="input_type"
+                    onchange="checkboxStatusChange()" value="Qualified" name="Qualified" />Qualified</label>
+                <label style="" class="profileDropDown-content all-applicants-dropdown-content profileDropDown-text all-applicants-dropdown-content"><input style="display: none;" type="checkbox" class="input_type"
+                value="Not Qualified" name="Not Qualified" />Not Qualified</label>
+                <label for="mutual2" id="qualify2" class="profileDropDown-content all-applicants-dropdown-content profileDropDown-text documents-for-work-permit-label-dropdown">Documents for Work Permit</label>
+                <label style="" class="profileDropDown-content all-applicants-dropdown-content profileDropDown-text your-work-permit-is-here-label-dropdown">Your Work Permit is Here</label>         
+                
+                 <label title="Select an option to click here" class="move-phase-button">Select to move</label>
+        
+              </div>
+              
+            </div>
+            </div>
+            </form>
+            <!-- <form style="display: flex;" class="buttons-form card">
+                <div class="container-fluid " style="cursor: pointer;">
+                    <div id="mySelectLabel" class="selectBox" style="">
+                        <div class="input-form margin inputs-right-margin" style="">
+                            <select style="color: #65676B; border: none;
+                  padding: 8px 30px; padding-left: 20px;" class="form-select" id="second_form_select">
+                                <option value="All Jobs" id="program" class="first-input-option all-applicants-button">On-Borading</option>
+                            </select>
+                            <div class="" style="display: flex; align-items: center;">
+                                <img style="cursor: pointer; display: none;" class="white-icon"
+                                    src="../img/white-dropdown-icon.png" alt="">
+                                    
+                            </div>
+                                <div style="" class="overSelect"></div>
+                        </div>
+                        <div id="mySelectOptions" class="selectOptions dropdown-elements all-applicants-dropdown" style="z-index: 99;">
+                    <label for="mutual2" id="qualify2" class="profileDropDown-content profileDropDown-text documents-for-work-permit-label-dropdown">Documents for Work Permit</label>
+                 <label style="" class="profileDropDown-content all-applicants-dropdown-content profileDropDown-text your-work-permit-is-here-label-dropdown">Your Work Permit is Here</label>         
+            </div>
+        </div>
+        </div>
+        </form> -->
+    </div>
+</div>
+
+    <div class="jobs-main-div">
+        <div class="job-left job-left-applicants">
+            <div class="same-background-jobs job-left-row pixel" data-number="1" data-row-id="1">
+                <img class="job-logo" src="../img/Profile (2).png" alt="" style="border-radius: 40px !important;">
+                <div class="job-left-content">
+
+                    <div style="width: 200px;" class="job-left-title">Festim Bejtullahu</div>
+                <label class="label-all" for="select-all" title="Select all">
+                    <input title="Select all" value="Select" name="select-all" type="checkbox" class="select-all-button" id="select-all" style="display: none;"></input>All</label>    
+                <input title="Select applicant" class="first-checkbox-jobs checkbox-jobs" name="checkb" id="checkb" type="checkbox"></input>
+
+                <div class="job-left-salary job-left-details" style=""><span>festimbejtullahu@gmail.com</span></div>
+                <div class="job-left-company job-left-details">+383 45 572 572</div>
+                <div class="job-left-details">Gjakovë, Kosovo</div>
+
+                </div>
+            </div>
+            <div class="same-background-jobs job-left-row pixel move" data-number="2" data-row-id="2">
+                <img class="job-logo" src="../img/question.png" alt="">
+                <div class="job-left-content">
+                <div class="job-left-title">Liri Efendiu</div>
+                <input name="checkb" title="Select applicant" class="checkbox-jobs" type="checkbox"></input>
+                <div class="job-left-salary job-left-details" ><span>liriefendiu@gmail.com</span></div>
+                <div class="job-left-company job-left-details">+383 45 572 572</div>
+                <div class="job-left-details">Gjakovë, Kosovo</div>
+                </div>
+            </div>
+            <div class="same-background-jobs job-left-row pixel move" data-number="3" data-row-id="3">
+                <img class="job-logo" src="../img/question.png" alt="">
+                <div class="job-left-content">
+                <div class="job-left-title">Rinor Biçku</div>
+                <input name="checkb" title="Select applicant" class="checkbox-jobs" type="checkbox"></input>
+                <div class="job-left-salary job-left-details" ><span>rinorbiçku@gmail.com</span></div>
+                <div class="job-left-company job-left-details">+383 45 572 572</div>
+                <div class="job-left-details">Gjilan, Kosovo</div>
+                </div>
+            </div>
+            <div class="same-background-jobs job-left-row pixel move" data-number="4" data-row-id="4">
+                <img class="job-logo" src="../img/question.png" alt="">
+                <div class="job-left-content">
+                <div class="job-left-title">Genaela Dujaka</div>
+                <input name="checkb" title="Select applicant" class="checkbox-jobs" type="checkbox"></input>
+                <div class="job-left-salary job-left-details" ><span>genaeladujaka@gmail.com</span></div>
+                <div class="job-left-company job-left-details">+383 45 572 572</div>
+                <div class="job-left-details">Gjakovë, Kosovo</div>
+                </div>
+            </div>
+            <div class="same-background-jobs job-left-row pixel move" data-number="5" data-row-id="5">
+                <img class="job-logo" src="../img/question.png" alt="">
+                <div class="job-left-content">
+                <div class="job-left-title">Pashtrik Shehu</div>
+                <input name="checkb" title="Select applicant" class="checkbox-jobs" type="checkbox"></input>
+                <div class="job-left-salary job-left-details" ><span>pashtrikshehu@gmail.com</span></div>
+                <div class="job-left-company job-left-details">+383 45 572 572</div>
+                <div class="job-left-details">Gjakovë, Kosovo</div>
+                </div>
+            </div>
+            <div class="same-background-jobs job-left-row pixel move" data-number="6" data-row-id="6">
+                <img class="job-logo" src="../img/question.png" alt="">
+                <div class="job-left-content">
+                <div class="job-left-title">Ardit Qurdina</div>
+                <input name="checkb" title="Select applicant" class="checkbox-jobs" type="checkbox"></input>
+                <div class="job-left-salary job-left-details" ><span>arditqurdina@gmail.com</span></div>
+                <div class="job-left-company job-left-details">+383 45 572 572</div>
+                <div class="job-left-details">Gjakovë, Kosovo</div>
+                </div>
+            </div>
+        </div>
+        <div class="right-jobs-main-div applied-posted-right-main-div-mobile" style="">
+            <div class="right-jobs right-applicants" style="display: block;">
+            <div class="mutual-form-stats meet-us-form-content" style="display: none;">
+                    <div class="payment-under-form-content" style="background-color: white; margin: auto; border-radius: 40px;">
+                        <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; margin: auto; border-radius: 40px; border-top-left-radius: 40px; border-top-right-radius: 40px; border: 1px solid #f0f0f0;">         
+                        <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; padding-bottom: 30px; width: 100%; margin-left: -31px; border-radius: 40px; border-top: none; border: 1px solid #f0f0f0;">
+                            <div style="padding-top: 29px; padding-bottom: 20px; font-size: 18px;">Meet With Us</div>
+                            <div style="padding-bottom: 20px;">Interview</div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <div style="display: flex;">
+                                    <img src="../img/interview-date-icon.svg" alt="">
+                                    <div class="main-divs-color interview-distance-between-div-img">20/06/2023</div>
+                                </div>
+                                <div style="display: flex;">
+                                    <img src="../img/interview-time-icon.svg" alt="">
+                                    <div class="main-divs-color interview-distance-between-div-img">10:30 am</div>
+                                </div>
+                                <div style="display: flex;">
+                                    <img src="../img/interview-link-icon.svg" alt="">
+                                    <div class="second-color-of-divs interview-distance-between-div-img interview-link-div">Interview link</div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="second-screening-question-div documents-div divs-pointer-event-auto" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px;">
+                        <div class="screening-questions-title second-screening-question mutual-font-size-18px">Documents for Work Permit</div>
+                    </div>
+                    </div>
+                    <div class="second-screening-question-div work-permit-div divs-pointer-event-auto" style="padding-top: 20px; padding-bottom: 20px;">
+                        <div class="screening-questions-title second-screening-question mutual-font-size-18px">Your Work Permit is here</div>
+                    </div>
+                </div>
+            </div>
+            <div class="mutual-form-stats documents-for-work-permit-form-content" style="">
+                <div class="payment-under-form-content" style="">
+                    <div class="documents-border-div documents-main-border-div">
+                    <div class="documents-border-div documents-under-main-border-div" style="">
+                        <img class="myjob-right-exit" title="Exit" style=""
+                        src="../img/close(2).png" onclick="closeButton()" alt="">
+                        <div class="title_documents" style=""></div>
+                        <div class="document-images" id="documentList">
+                            <!-- <input type="hidden" id="applicantID">
+                            <div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">
+                                <div class="main-divs-color mutual-titles-color">Passport</div>
+                                <img data-number="1" title="Upload Passport" class="passport-img open-popup" src="../img//documents-icon.svg" alt="">                            </div>
+                            <div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">
+                                <div class="main-divs-color mutual-titles-color">Student status</div>
+                                <img class="open-popup" data-number="2" title="Upload Student status" src="../img/documents-icon.svg" alt="">                            </div>
+                            <div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">
+                                <div class="main-divs-color mutual-titles-color">Certificate of Enrolment</div>
+                                <img class="open-popup" data-number="3" title="Upload Certificate of Enrolment" src="../img/documents-icon.svg" alt="">                            </div>
+                            <div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">
+                                <div class="main-divs-color mutual-titles-color">Student ID</div>
+                                <img class="open-popup" data-number="4" title="Upload Student ID" src="../img/documents-icon.svg" alt="">
+                            </div>
+                            <div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">
+                                <div class="main-divs-color mutual-titles-color">Photo</div>
+                                <img class="open-popup" data-number="5" title="Upload Photo" src="../img/documents-icon.svg" alt=""></div>  
+                            <div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">
+                                <div class="main-divs-color mutual-titles-color">Resume</div>
+                                <img class="open-popup" data-number="6" title="Upload Resume" src="../img/documents-icon.svg" alt=""></div>
+                            <div class="main-div-docs" style="display: flex; justify-content: space-between;">
+                                <div class="main-divs-color mutual-titles-color">Service contract</div>
+                                <img class="open-popup" data-number="7" title="Upload Service contract" src="../img/documents-icon.svg" alt=""></div> -->
+                        </div>
+            </div>
+                <div class="second-screening-question-div work-permit-div divs-pointer-event-auto" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px;">
+                    <div class="screening-questions-title second-screening-question mutual-font-size-18px">Your Work Permit is here</div>
+                </div>
+            </div>
+        </div>
+        </div>
+        
+            <div class="mutual-form-stats your-work-permit-is-here-form-content" style="display: none;">
+                <div class="payment-under-form-content">
+                        <div class="documents-border-div">
+                        <div class="documents-div">
+                            <div class="contact-information-third-page pd-ci-cursor font-size-18px-16px">Documents for Work Permit</div>
+                        </div>
+                        <div class="documents-border-div documents-under-main-border-div">
+                            <img class="myjob-right-exit job-right-exit " title="Exit" style=""
+                            src="../img/close(2).png" alt="">
+                        <div class="work-permit-title">Your Work Permit is Here</div>
+                            <div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">
+                                <div class="main-divs-color mutual-titles-color">Job Offer</div>
+                                <img class="open-popup" title="Upload Job Offer" src="../img/documents-icon.svg" alt="">                            </div>
+                            <div class="main-div-docs" style="display: flex; justify-content: space-between;">
+                                <div class="main-divs-color mutual-titles-color">Work Permit</div>
+                                <img class="open-popup" title="Upload Work Permit" src="../img/documents-icon.svg" alt="">                            </div>
+                </div>
+                </div>
+            </div>
+            </div>
+            <div class="mutual-form-stats document-for-visa-appointment" style="display: none;">
+                <div class="payment-under-form-content" style="">
+                    <div class="documents-border-div documents-main-border-div">
+                    <div class="documents-border-div documents-under-main-border-div" style="">
+                        <img class="myjob-right-exit" title="Exit" style=""
+                        src="../img/close(2).png" onclick="closeButton()" alt="">
+                        <div class="title_documents" style=""></div>
+                        <div class="document-images" id="documentList">
+                            <!-- <input type="hidden" id="applicantID">
+                            <div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">
+                                <div class="main-divs-color mutual-titles-color">Passport</div>
+                                <img data-number="1" title="Upload Passport" class="passport-img open-popup" src="../img//documents-icon.svg" alt="">                            </div>
+                            <div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">
+                                <div class="main-divs-color mutual-titles-color">Student status</div>
+                                <img class="open-popup" data-number="2" title="Upload Student status" src="../img/documents-icon.svg" alt="">                            </div>
+                            <div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">
+                                <div class="main-divs-color mutual-titles-color">Certificate of Enrolment</div>
+                                <img class="open-popup" data-number="3" title="Upload Certificate of Enrolment" src="../img/documents-icon.svg" alt="">                            </div>
+                            <div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">
+                                <div class="main-divs-color mutual-titles-color">Student ID</div>
+                                <img class="open-popup" data-number="4" title="Upload Student ID" src="../img/documents-icon.svg" alt="">
+                            </div>
+                            <div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">
+                                <div class="main-divs-color mutual-titles-color">Photo</div>
+                                <img class="open-popup" data-number="5" title="Upload Photo" src="../img/documents-icon.svg" alt=""></div>  
+                            <div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">
+                                <div class="main-divs-color mutual-titles-color">Resume</div>
+                                <img class="open-popup" data-number="6" title="Upload Resume" src="../img/documents-icon.svg" alt=""></div>
+                            <div class="main-div-docs" style="display: flex; justify-content: space-between;">
+                                <div class="main-divs-color mutual-titles-color">Service contract</div>
+                                <img class="open-popup" data-number="7" title="Upload Service contract" src="../img/documents-icon.svg" alt=""></div> -->
+                        </div>
+            </div>
+                <div class="second-screening-question-div work-permit-div divs-pointer-event-auto" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px;">
+                    <div class="screening-questions-title second-screening-question mutual-font-size-18px">Your Work Permit is here</div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+            <div>
+                <div class="job-right-details">
+                    <div class="job-right-content">
+                        <div class="first-row-jobs mobile-title-font-size" id="fname">Liri Efendiu</div>
+                        <div class="second-row-jobs mobile-under-title-font-size" id="Stat">Qualified</div>
+                        <div style="" class="jobs-third-row mobile-rows-font-size" id="email">festimbejtullahu@gmail.com</div>
+                        <div style="" class="experience-fourth-row jobs-mutual-margin-rows mobile-rows-font-size" id="phone">+38345572572
+                        </div>
+                        <div style="" class="experience-fourth-row jobs-mutual-margin-rows mobile-rows-font-size" id="location">San Francisco, USA</div>
+                        <div style=""
+                            class="experience-fourth-row jobs-mutual-margin-rows mobile-rows-font-size">Applied on: <span id="appdate">10/09/2022</span></div>
+                    </div>
+                </div>
+                <div class="job-right-details job-right-description applicants-details">
+                <div class="">
+                <div class="experience-div">
+                    <div id="UserExp">
+                        <div class="aaa">
+                        <p class="experience-paragraph">Experience</p>
+                        <div class="experience-rows-img">
+                            <img class="experience-education-img" src="../img/worki_icons-18.jpg" alt="" title="Experience">
+                            <div class="experience-rows">
+                            <div class="experience-first-row">Warehouse Associate</div>
+                            <div class="experience-second-row">Amazon</div>
+                            <div class="experience-third-row">Texas, USA</div>
+                            <div class="experience-fourth-row">Work and Travel</div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+                </div>
+                <div class="job-right-details job-right-description applicants-details">
+                <div class="">
+                    <div class="education-div">
+                        <div id="UserEdu">
+                            <div class="aaa">
+                            <p class="experience-paragraph">Education</p>
+                            <div class="experience-rows-img" style="">
+                                <img class="experience-education-img" src="../img/worki_icons-19.jpg" alt="" title="Education">
+                                <div class="experience-rows">
+                                <div class="experience-first-row">University of San Francisco</div>
+                                <div class="experience-second-row">MBA</div>
+                                <div class="experience-third-row">Semptember 2015 - Present</div>
+                                <div class="experience-fourth-row">San Francisco, USA</div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="job-right-details job-right-description applicants-details-lang">
+                <div class="">
+                    <div class="languages-div">
+                        <div id="UserLang">
+                            <div class="experience-paragraph language-paragraph">Languages</div>
+                            <div style="" class="experience-rows-img-languages">
+                                <div class="education-second-paragraph">English</div>
+                                <div class="language-rate">Advanced</div>
+                            </div>
+                            <div style="" class="experience-rows-img-languages">
+                                <div class="education-second-paragraph">Albanian</div>
+                                <div class="language-rate">High-Intermediate</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+        <div class="bg-add-and-edit" style="display: none;">
+        <div class="popup add-experience under-container-mutual-mutual-stats">
+            <div class="edit-profile-title mutual-titles-pop-ups-stats"><span class="name-document">Document</span></div>
+            <form id="upload-form" enctype="multipart/form-data" class="sign-up-form forms-inputs-placeholder">
+                <input type="hidden" name="document_id" id="document_id" value="">
+                <input type="hidden" name="user_id" id="user_id">
+                <div class="drop-area" id="drop-area">
+                    <img src="../img/upload docs.svg" alt="">
+                    <div class="file-upload">Select a file to upload</div>
+                    <div class="under-upload-file" id="second-line">or drag and drop it here</div>
+                    <input class="id_document" type="file"  name="document" id="id_document"  accept=".pdf, .jpg, .jpeg, .png, .svg"  style="display: none;">
+                </div>
+                <div class="save-button save-button-edit-profile-photo">
+                    <input id="close-popup" type="button" name="back" title="Back to Profile" class="back-input font-fam back-save-buttons" value="Back">
+                    <input title="Save Profile Data" name="save" type="submit" class="save-submit-input font-fam back-save-buttons" value="Save">
+                </div>
+            </form>
+        </div>
+</div>
+
+        </body>
+        <script src="../js/add-and-edit-button.js"></script>
+        <script src="../js/search-button.js"></script>
+        <script src="../js/all-applicants-meet-with-us-documents-work-permit.js"></script>
+        <!-- <script src="../js/all-applicants-dropdown.js"></script> -->
+        <script src="../js/add-subphase.js"></script>
+        <script src="../js/select-all-button.js"></script>
+        <!-- <script src="../js/jobs-img.js"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="../js/add-phase.js"></script>
+        <script src="../js/header-border-worki-icon.js"></script>
+        <script src="../js/my-jobs-option.js"></script>
+        <script src="../js/dropdown/profileDropDown.js"></script>
+        <script src="../js/worki-icon-reload-page.js"></script>
+        <script src="../js/all-applicants-documents.js"></script>
+        <script src="../js/exit-button.js"></script>
+        <script src="../js/dropdown-jobs.js"></script>
+        <script src="../js/dropdown-jobs.js"></script>
+        <!-- <script src="../js/upload-form.js"></script> -->
+        <script>
+
+        </script>
+                <script src="../js/match/main.js"></script>
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Include jQuery library -->
+        <script>
+                $(".job-left-row .label-all").click(function (e) {
+        // Do something
+        e.stopPropagation();
+    });
+        </script>
+
+        <script>
+
+
+var doc_nr = 0;
+
+function createDocumentElements() {
+  // Your existing code for creating document elements
+
+const container = document.querySelector('.document-images'); // Replace 'your-container-id' with the actual ID of your container
+const over_container = document.querySelector('.documents-border-div documents-under-main-border-div'); // Replace 'your-container-id' with the actual ID of your container
+const over_over_container = document.querySelector('.documents-border-div documents-main-border-div'); // Replace 'your-container-id' with the actual ID of your container
+const over_over_over_container = document.querySelector('.payment-under-form-content'); // Replace 'your-container-id' with the actual ID of your container
+const main_container = document.querySelector('.mutual-form-stats documents-for-work-permit-form-content'); // Replace 'your-container-id' with the actual ID of your container
+
+// Array of data for each document
+const documents = [
+  { number: 1, title: "Passport", alt: "Upload Passport" },
+  { number: 2, title: "Student status", alt: "Upload Student status" },
+  { number: 3, title: "Certificate of Enrolment", alt: "Upload Certificate of Enrolment" },
+  { number: 4, title: "Student ID", alt: "Upload Student ID" },
+  { number: 5, title: "Photo", alt: "Upload Photo" },
+  { number: 6, title: "Resume", alt: "Upload Resume" },
+  { number: 7, title: "Service contract", alt: "Upload Service contract" },
+];
+
+
+documents.forEach((documentData) => {
+    const mainDiv = document.createElement('div');
+    mainDiv.className = 'main-div-docs';
+    // mainDiv.setAttribute('id', "doc");
+    // doc_nr++;
+    // console.log(doc_nr);
+    // var getAttriBute = mainDiv.getAttribute("id");
+    // console.log(getAttriBute);
+    mainDiv.style.display = 'flex';
+    mainDiv.style.justifyContent = 'space-between';
+    mainDiv.style.paddingBottom = '20px';
+    const mainDivColor = document.createElement('div');
+    mainDivColor.className = 'main-divs-color mutual-titles-color';
+    mainDivColor.textContent = documentData.title;
+
+    const img = document.createElement('img');
+    img.className = 'open-popup';
+    // img.setAttribute('data-number', documentData.number);
+    img.setAttribute('title', documentData.alt);
+    img.src = `../img/documents-icon.svg`;
+    img.alt = documentData.alt;
+
+    mainDiv.appendChild(mainDivColor);
+    mainDiv.appendChild(img);
+
+    container.appendChild(mainDiv);
+
+    openPopUp();
+
+  });
+
+//   over_container.appendChild(container);
+//   over_over_container.appendChild(over_container);
+//   over_over_over_container.appendChild(over_over_container);
+//   main_container.appendChild(over_over_over_container);
+//   document.body.appendChild(main_container);
+}
+
+createDocumentElements();
+
+function removeAllDocumentElements() {
+  // Remove all existing document elements from the DOM
+  const existingDocumentElements = document.querySelectorAll('.main-div-docs');
+  existingDocumentElements.forEach((element) => {
+        element.remove();
+  });
+}
+
+$(document).ready(function () {
+  $('.job-left-row').click(function() {
+    // Remove all existing document elements
+    removeAllDocumentElements();
+
+    createDocumentElements();
+    // Call the createDocumentElements function
+  });
+});
+
+function openPopUp() {
+$('.open-popup').click(function() {
+    var number = $(this).data('number');
+    $('#document_id').val(number);
+    $('.bg-add-and-edit, .popup').css("display", "flex");
+    var titleValue = $(this).attr('title');
+    console.log(titleValue);
+
+    // Store the selected "open-popup" element
+    selectedPopup = $(this);
+
+    // Update the text and attributes of the selectedPopup
+    $('.name-document').text(titleValue);
+    console.log(number);
+
+    $('.save-submit-input').off('click').on('click', function() {
+        if (selectedPopup) {
+            if ($("#id_document")[0].files.length > 0) {
+                $('.bg-add-and-edit, .popup').css("display", "none");
+                var titleText = $(selectedPopup).attr('title');
+                var modifiedTitleText = titleText.replace("Upload", "Download");
+
+                // Set a data attribute on the selectedPopup to store the uploaded file
+                selectedPopup.data('uploadedFile', $("#id_document")[0].files[0]);
+
+                selectedPopup.closest('.main-div-docs').find('.mutual-titles-color').addClass("blue-text");
+                selectedPopup.attr('src', '../img/documents-second-icon.svg');
+                selectedPopup.attr('title', modifiedTitleText);
+
+                // Create the download link if it doesn't exist
+                // Set the download link properties
+                $(selectedPopup).on('click', function() {
+                    $('.bg-add-and-edit, .popup').css("display", "none");
+                    var uploadedFile = selectedPopup.data('uploadedFile');
+                    if (uploadedFile) {
+                        var downloadLink = document.createElement('a');
+                        downloadLink.href = URL.createObjectURL(uploadedFile);
+                        downloadLink.download = uploadedFile.name;
+                        downloadLink.style.display = 'none';
+            
+                        document.body.appendChild(downloadLink);
+                        downloadLink.click();
+                        document.body.removeChild(downloadLink);
+                    }
+                        
+                });
+            }
+        }
+    });
+
+    // Unbind previous click event handlers and add a new one
+});
+}
+
+        </script>
+
+        <script>
+                $(".job-left-row a").click(function (e) {
+        // Do something
+        e.stopPropagation();
+    });
+
+        </script>
+
+<!-- <script>
+    var doc_nr = 0;
+var selectedPopup = null; // Variable to store the selected "open-popup" element
+
+function createDocumentElements(rowId) {
+
+    const container = document.querySelector(`.document-images[data-row-id="${rowId}"]`);
+  if (container && container.classList.contains('created')) {
+    // If yes, simply show the existing document elements
+    container.style.display = 'flex';
+    return;
+  }
+  // Check if a document element has already been created for this job-left-row
+  // If not, create the document elements
+  const documents = [
+    { number: 1, title: "Passport", alt: "Upload Passport" },
+    { number: 2, title: "Student status", alt: "Upload Student status" },
+    { number: 3, title: "Certificate of Enrolment", alt: "Upload Certificate of Enrolment" },
+    { number: 4, title: "Student ID", alt: "Upload Student ID" },
+    { number: 5, title: "Photo", alt: "Upload Photo" },
+    { number: 6, title: "Resume", alt: "Upload Resume" },
+    { number: 7, title: "Service contract", alt: "Upload Service contract" },
+  ];
+
+  const newContainer = document.createElement('div');
+  newContainer.className = 'document-images created'; // Add 'created' class to mark as created
+  newContainer.setAttribute('data-row-id', rowId);
+
+  documents.forEach((documentData) => {
+    const mainDiv = document.createElement('div');
+    mainDiv.className = 'main-div-docs';
+    mainDiv.style.display = 'flex';
+    mainDiv.style.justifyContent = 'space-between';
+    mainDiv.style.paddingBottom = '20px';
+
+    const mainDivColor = document.createElement('div');
+    mainDivColor.className = 'main-divs-color mutual-titles-color';
+    mainDivColor.textContent = documentData.title;
+
+    const img = document.createElement('img');
+    img.className = 'open-popup';
+    img.setAttribute('title', documentData.alt);
+    img.src = `../img/documents-icon.svg`;
+    img.alt = documentData.alt;
+
+    mainDiv.appendChild(mainDivColor);
+    mainDiv.appendChild(img);
+    newContainer.appendChild(mainDiv);
+  });
+
+  // Append the new container to the document
+  document.body.appendChild(newContainer);
+
+  // Open popup for the newly created elements
+  openPopUp();
+}
+
+function removeAllDocumentElements() {
+  // Hide all existing document elements
+  const existingDocumentElements = document.querySelectorAll('.document-images');
+  existingDocumentElements.forEach((element) => {
+    element.style.display = 'none';
+  });
+}
+
+function openPopUp() {
+  $('.open-popup').click(function () {
+    var number = $(this).data('number');
+    $('#document_id').val(number);
+    $('.bg-add-and-edit, .popup').css("display", "flex");
+    var titleValue = $(this).attr('title');
+    console.log(titleValue);
+
+    // Store the selected "open-popup" element
+    selectedPopup = $(this);
+
+    // Update the text and attributes of the selectedPopup
+    $('.name-document').text(titleValue);
+    console.log(number);
+
+    $('.save-submit-input').off('click').on('click', function () {
+      if (selectedPopup) {
+        if ($("#id_document")[0].files.length > 0) {
+          $('.bg-add-and-edit, .popup').css("display", "none");
+          var titleText = $(selectedPopup).attr('title');
+          var modifiedTitleText = titleText.replace("Upload", "Download");
+
+          // Set a data attribute on the selectedPopup to store the uploaded file
+          selectedPopup.data('uploadedFile', $("#id_document")[0].files[0]);
+
+          selectedPopup.closest('.main-div-docs').find('.mutual-titles-color').addClass("blue-text");
+          selectedPopup.attr('src', '../img/documents-second-icon.svg');
+          selectedPopup.attr('title', modifiedTitleText);
+
+          // Create the download link if it doesn't exist
+          // Set the download link properties
+          $(selectedPopup).off('click').on('click', function () {
+            $('.bg-add-and-edit, .popup').css("display", "none");
+            var uploadedFile = selectedPopup.data('uploadedFile');
+            if (uploadedFile) {
+              var downloadLink = document.createElement('a');
+              downloadLink.href = URL.createObjectURL(uploadedFile);
+              downloadLink.download = uploadedFile.name;
+              downloadLink.style.display = 'none';
+
+              document.body.appendChild(downloadLink);
+              downloadLink.click();
+              document.body.removeChild(downloadLink);
+            }
+          });
+        }
+      }
+    });
+  });
+}
+
+$(document).ready(function () {
+  $('.job-left-row').click(function () {
+    const rowId = $(this).data('row-id'); // Add a unique identifier to each job-left-row
+    // Remove all existing document elements
+    removeAllDocumentElements();
+
+    // Call the createDocumentElements function with the rowId
+    createDocumentElements(rowId);
+  });
+});
+
+// Initial call to createDocumentElements
+createDocumentElements(); // You might need to pass a default rowId or update your HTML structure accordingly
+
+</script> -->
+        
+        </html> -->

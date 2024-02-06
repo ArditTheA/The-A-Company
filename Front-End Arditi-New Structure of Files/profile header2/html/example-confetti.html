@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success Confetti</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="success-message" id="successMessage">
+            Successfully Applied!
+        </div>
+        <div class="confetti" id="confetti"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+</body>
+<script>
+    const successMessage = document.getElementById("successMessage");
+const confettiContainer = document.getElementById("confetti");
+
+successMessage.addEventListener("click", () => {
+    confettiContainer.innerHTML = "";
+    for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+        confetti.style.left = `${Math.random() * 100}%`;
+        confetti.style.animationDelay = `${Math.random() * 2}s`;
+        confettiContainer.appendChild(confetti);
+    }
+    setTimeout(() => {
+        confettiContainer.innerHTML = "";
+    }, 2000); // Remove confetti after 2 seconds
+});
+</script>
+</html>
