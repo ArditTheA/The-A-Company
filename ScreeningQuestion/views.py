@@ -670,7 +670,7 @@ def GetResponseAdmin(request):
             db_file_path = settings.DATABASES['default']['NAME']
 
             # Create a temporary file for export
-            export_file_path = 'db.sqlite3'
+            export_file_path = 'exported_database.sqlite3'
 
             # Copy the SQLite database file to the export file
             shutil.copy2(db_file_path, export_file_path)
@@ -682,7 +682,7 @@ def GetResponseAdmin(request):
 
             return response
         except Exception as e:
-            return HttpResponse(f"Error exporting database: {str(e)}", status=500)
+            return HttpResponse(f"Error exporting database {db_file_path}: {str(e)}", status=500)
     else:
         return HttpResponse("Method not allowed", status=405)
 
