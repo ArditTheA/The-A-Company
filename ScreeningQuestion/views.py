@@ -662,15 +662,15 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 
-@csrf_exempt  # Remove this line if you have CSRF protection enabled and handle it appropriately
+@csrf_exempt
 def GetResponseAdmin(request):
     if request.method == 'GET':
         try:
             # Get the path to your SQLite database file
             db_file_path = settings.DATABASES['default']['NAME']
 
-            # Create a temporary file for export
-            export_file_path = 'exported_database.sqlite3'
+            # Specify the export file path
+            export_file_path = os.path.join(settings.BASE_DIR, 'exported_database.sqlite3')
 
             # Copy the SQLite database file to the export file
             shutil.copy2(db_file_path, export_file_path)
