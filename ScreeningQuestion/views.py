@@ -750,7 +750,7 @@ def make_application_ajax(request):
         listQ.append(listQ_2)
 
 
-    # GSheets(str(dataa), CustomUser.objects.get(id=user_id), Jobs.objects.get(id=job_id), listQ)
+    GSheets(str(dataa), CustomUser.objects.get(id=user_id), Jobs.objects.get(id=job_id), listQ)
 
 
     try:
