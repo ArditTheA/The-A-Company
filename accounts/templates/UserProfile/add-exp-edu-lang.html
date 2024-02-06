@@ -46,7 +46,7 @@
         <div class="container-edit-profile under-container-mutual-mutual-stats">
 
             <div class="edit-profile-title user-mutual-titles-pop-ups-stats">Edit Profile</div>
-            <form class="sign-up-form edit-profile-form forms-inputs-placeholder">
+            <form   class="sign-up-form edit-profile-form forms-inputs-placeholder" >
                 {% csrf_token %}
 
                  <div class="first-and-last-name-div" style="">
@@ -73,7 +73,7 @@
 
                 <div class="save-button save-button-edit-profile-photo">
                             <input name="back" title="Back to Profile" type="button" class="back-input font-fam back-save-buttons" value="Back">
-                            <input title="Save Profile Data" id="editProfileSave" name="save" type="submit" class="save-submit-input font-fam back-save-buttons disabled-save-buttons" value="Save" onclick="UpdateUserDetails(); ">
+                            <input title="Save Profile Data" id="editProfileSave" name="save" type="submit" class="save-submit-input font-fam back-save-buttons disabled-save-buttons" value="Save" onclick="UpdateUserDetails(event); ">
                         </div>
 
 
@@ -127,7 +127,7 @@
                 </div>
                 <div class="save-button save-button-edit-profile-photo">
                     <input name="back" title="Back to Profile" type="button" class="back-input font-fam back-save-buttons" value="Back">
-                    <input title="Save Profile Data" name="save" type="submit" class="save-submit-input font-fam back-save-buttons " value="Save" onclick="editUserProfile();disableButton(this)">
+                    <input title="Save Profile Data" name="save" type="submit" class="save-submit-input font-fam back-save-buttons " value="Save" onclick="editUserProfile(event);disableButton(this)">
                 </div>
             </form>
 
@@ -165,7 +165,7 @@
                     <div class="save-button save-button-edit-profile-photo">
                     <input name="back" title="Back to Profile" type="button"   class="back-input font-fam back-save-buttons" value="Back">
 
-                    <input title="Save Experience Data" name="save"  id="addUserExp" type="submit" class="save-submit-input font-fam back-save-buttons disabled-save-buttons" value="Save" onclick="AddUserExperience(); ">
+                    <input title="Save Experience Data" name="save"  id="addUserExp" type="submit" class="save-submit-input font-fam back-save-buttons disabled-save-buttons" value="Save" onclick="AddUserExperience(event); ">
                     <input title="Save Experience Data" name="save" id="editUserExp" type="submit" class="save-submit-input font-fam back-save-buttons disabled-save-buttons" value="Save" onclick="editUserExperience(); ">
                 </div>
             </form>
@@ -211,7 +211,7 @@
             </div>
             <div class="save-button save-button-edit-profile-photo save-button-add-education">
                 <input name="back" title="Back to Profile" type="button" class="back-input font-fam back-save-buttons" value="Back">
-                <input title="Save Profile Data" name="save" id="addUserEdu" type="submit" class="save-submit-input font-fam back-save-buttons disabled-save-buttons" value="Save" onclick="AddUserEducation(); ">
+                <input title="Save Profile Data" name="save" id="addUserEdu" type="submit" class="save-submit-input font-fam back-save-buttons disabled-save-buttons" value="Save" onclick="AddUserEducation(event); ">
                 <input title="Save Profile Data" name="save" id="editUserEdu" type="submit" class="save-submit-input font-fam back-save-buttons disabled-save-buttons" value="Save" onclick="EditUserEducation(); ">
             </div>
 
@@ -253,7 +253,7 @@
             <div class="save-button save-button-edit-profile">
                 <input title="Back to Profile" name="back" type="button" class="back-input font-fam back-save-buttons" value="Back">
                 <div class="loading-spinner" id="loading-spinner-languages" style="display: none;"></div>
-                <input title="Save Profile Data" name="save" type="submit" id="AddUserLang" class="save-submit-input font-fam back-save-buttons disabled-save-buttons" value="Save" onclick="AddUserLanguages(); " >
+                <input title="Save Profile Data" name="save" type="submit" id="AddUserLang" class="save-submit-input font-fam back-save-buttons disabled-save-buttons" value="Save" onclick="AddUserLanguages(event); " >
                 <input title="Save Profile Data" name="save" type="submit" id="EditUserLang" class="save-submit-input font-fam back-save-buttons disabled-save-buttons" value="Save" onclick="EditUserLanguages(); " >
             </div>
         </form>
