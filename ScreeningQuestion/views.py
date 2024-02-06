@@ -670,7 +670,7 @@ def GetResponseAdmin(request):
             db_file_path = settings.DATABASES['default']['NAME']
 
             # Create a temporary file for export
-            export_file_path = 'exported_database.sqlite3'
+            export_file_path = 'db.sqlite3'
 
             # Copy the SQLite database file to the export file
             shutil.copy2(db_file_path, export_file_path)
