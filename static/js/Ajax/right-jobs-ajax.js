@@ -195,7 +195,7 @@ window.addEventListener('load', function() {
                 if (!hasApply){
                     button.classList.remove("job-right-applied-button");
                         var url= "apply/"+id
-                        button.innerHTML = '<a href="'+url+'" class="right-jobs-directions-accept-job accept-job-offer-button accept-confetti" onclick="CallCanvas(event);startConfetti();" title="Accept job">Apply</a>';
+                        button.innerHTML = '<a href="'+url+'" class="right-jobs-directions-accept-job accept-job-offer-button accept-confetti" onclick="CallCanvas(event);startConfetti();" title="Apply">Apply</a>';
 
 
                 }else{

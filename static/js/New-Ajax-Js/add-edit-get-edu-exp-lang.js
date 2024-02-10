@@ -1,4 +1,4 @@
-var mainDiv = document.querySelector(".bg-add-and-edit");
+var MainDivsProfile = document.querySelector(".bg-add-and-edit");
 var add = document.querySelector(".add-experience");
 var btn = document.querySelector(".add-experience-button");
 var btn2 = document.querySelector(".add-languages-button");
@@ -10,7 +10,7 @@ const mediaQueryThree = window.matchMedia('(max-width: 480px)');
 var delete_popup = document.querySelector(".delete-languages");
 // Add's popup open button
 btn.addEventListener('click', function() {
-    mainDiv.style.display = "flex";
+    MainDivsProfile.style.display = "flex";
     underBg.style.display = "none";
     uBgEducation.style.display = "none";
     add.style.display = "flex";
@@ -24,7 +24,7 @@ btn.addEventListener('click', function() {
 });
 
 btn2.addEventListener('click', function() {
-    mainDiv.style.display = "flex";
+    MainDivsProfile.style.display = "flex";
     add.style.display = "none";
     uBgEducation.style.display = "none";
     underBg.style.display = "block";
@@ -38,7 +38,7 @@ btn2.addEventListener('click', function() {
 });
 
 btn3.addEventListener('click', function() {
-    mainDiv.style.display = "flex";
+    MainDivsProfile.style.display = "flex";
     underBg.style.display = "none";
     add.style.display = "none";
     $('.add-education-title').text('Add Education');
@@ -51,8 +51,8 @@ btn3.addEventListener('click', function() {
 });
 
 window.addEventListener('click', function(event) {
-    if (event.target == mainDiv) {
-        mainDiv.style.display = "none";
+    if (event.target == MainDivsProfile) {
+        MainDivsProfile.style.display = "none";
         document.body.style.overflow = "scroll";
     }
 });
@@ -62,7 +62,8 @@ window.addEventListener('click', function(event) {
 // Add's Functions
 
 
-function AddUserExperience() {
+function AddUserExperience(event) {
+    event.preventDefault();
         $.ajax({
             type: 'POST',
             url: '/add_user_experience/',  // Update with your actual URL
@@ -89,8 +90,8 @@ function AddUserExperience() {
 
 
 
-function AddUserEducation() {
-    console.log("testtt");
+function AddUserEducation(event) {
+    event.preventDefault();
         $.ajax({
             type: 'POST',
             url: '/add_user_education/',  // Update with your actual URL
@@ -117,8 +118,8 @@ function AddUserEducation() {
     }
 
 
-function AddUserLanguages(){
-
+function AddUserLanguages(event){
+    event.preventDefault();
             $.ajax({
                 type: "POST",
                 url: '/add_user_languages/',
@@ -154,7 +155,6 @@ $(document).ready(function () {
                 processData: false,
                 contentType: false,
                 success: function (response) {
-                    console.log(response.message);
                     window.location = "/profile/";
                 },
                 error: function (response) {
@@ -164,8 +164,8 @@ $(document).ready(function () {
         });
     });
 
-function editUserProfile(){
-
+function editUserProfile(event){
+            event.preventDefault();
             var formData = new FormData();
             formData.append('id_profile', $('#id_profile')[0].files[0]);
             formData.append('csrfmiddlewaretoken', $('input[name=csrfmiddlewaretoken]').val());
@@ -177,8 +177,7 @@ function editUserProfile(){
                 processData: false,
                 contentType: false,
                 success: function (response) {
-                    console.log(response.message);
-                    window.location = "/profile/"
+                    window.location = "/profile/";
                 },
                 error: function (response) {
                     console.log(response.responseJSON.error);
@@ -186,7 +185,9 @@ function editUserProfile(){
             });
         }
 
-function UpdateUserDetails(){
+function UpdateUserDetails(event){
+    event.preventDefault();// Prevent default form submission
+
             $.ajax({
                 type: "POST",
                 url: '/edit_user_details/',  // Replace with your server endpoint
@@ -199,8 +200,7 @@ function UpdateUserDetails(){
                         csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
                 },
                 success: function (response){
-                    console.log(response.message);
-                    window.location = "/profile/"
+                    window.location = "/profile/";
                 },
                 error: function (response){
                     console.log(response.responseJSON.error)
@@ -224,7 +224,7 @@ function UpdateUserDetails(){
                     console.log('Job Details:', data.experience);
                     $('.mutual-titles-pop-ups-stats').text('Edit Experience');
 
-                    mainDiv.style.display = "flex";
+                    MainDivsProfile.style.display = "flex";
                     underBg.style.display = "none";
                     uBgEducation.style.display = "none";
                     add.style.display = "flex";
@@ -262,7 +262,7 @@ function UpdateUserDetails(){
                 type: 'GET',
                 data: {"education_id":education_id},
                 success: function (data){
-                    mainDiv.style.display = "flex";
+                    MainDivsProfile.style.display = "flex";
                     underBg.style.display = "none";
                     add.style.display = "none";
                     uBgEducation.style.display = "flex";
@@ -302,7 +302,7 @@ function UpdateUserDetails(){
                 type: 'GET',
                 data:{'language_id':language_id},
                 success: function(data){
-                    mainDiv.style.display = "flex";
+                    MainDivsProfile.style.display = "flex";
                     add.style.display = "none";
                     uBgEducation.style.display = "none";
                     underBg.style.display = "block";
@@ -476,7 +476,7 @@ function deleteUserEducation(){
 
 function deleteUserLanguagesPopUp(language_id) {
     $("#delete-title").text("Are you sure you want to delete this language?");
-    $(mainDiv).css("display", "flex");
+    $(MainDivsProfile).css("display", "flex");
     $(delete_popup).css("display", "flex");
     $(delete_popup).siblings().css("display", "none");
     $("#experience-delete-button").css("display","none");
@@ -489,7 +489,7 @@ function deleteUserLanguagesPopUp(language_id) {
 
 function deleteUserExperiencePopUp(experience_id) {
     $("#delete-title").text("Are you sure you want to delete this experience?");
-    $(mainDiv).css("display", "flex");
+    $(MainDivsProfile).css("display", "flex");
     $(delete_popup).css("display", "flex");
     $(delete_popup).siblings().css("display", "none");   
     $("#experience-delete-button").css("display","block");
@@ -503,7 +503,7 @@ function deleteUserExperiencePopUp(experience_id) {
 
 function deleteUserEducationPopUp(education_id) {
     $("#delete-title").text("Are you sure you want to delete this education?");
-    $(mainDiv).css("display", "flex");
+    $(MainDivsProfile).css("display", "flex");
     $(delete_popup).css("display", "flex");
     $(delete_popup).siblings().css("display", "none");   
     $("#experience-delete-button").css("display","none");

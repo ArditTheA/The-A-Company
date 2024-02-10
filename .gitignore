@@ -144,3 +144,5 @@ Worki/db.sqlite3
 # Django Migrations
 **/migrations/*.py
 **/migrations/*.pyc
+
+exported_database.sqlite3
