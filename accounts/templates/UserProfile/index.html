@@ -89,8 +89,8 @@ function ExperienceCheckInputs() {
 
     // Check if end date is fully filled, enable and add class
     if (isExperienceEndDateValid) {
-      ExperienceSaveSubmitInput.disabled = false;
-      ExperienceSaveSubmitInputEdit.disabled = false;
+      ExperienceSaveSubmitInput.disabled = !allInputsFilled || !allSelectsFilled || !isExperienceStartDateValid;
+      ExperienceSaveSubmitInputEdit.disabled = !allInputsFilled || !allSelectsFilled || !isExperienceStartDateValid;
 
       ExperienceSaveSubmitInput.classList.add("save-button-enabled");
       ExperienceSaveSubmitInputEdit.classList.add("save-button-enabled");
@@ -141,8 +141,8 @@ function EducationCheckInputs() {
 
     // Check if end date is fully filled, enable and add class
     if (isEducationEndDateValid) {
-      EducationSaveSubmitInput.disabled = false;
-      EducationSaveSubmitInputEdit.disabled = false;
+      EducationSaveSubmitInput.disabled = !allInputsFilled || !allSelectsFilled || !isEducationStartDateValid;
+    EducationSaveSubmitInputEdit.disabled = !allInputsFilled || !allSelectsFilled || !isEducationStartDateValid;
       EducationSaveSubmitInput.classList.add("save-button-enabled");
       EducationSaveSubmitInputEdit.classList.add("save-button-enabled");
     } else {
