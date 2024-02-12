@@ -496,14 +496,14 @@ function searchUsers() {
             $(".job-left").css("marginTop", "20px");
 
             if (filter !== "") {
-                $(".job-left-row:visible:first").css("marginTop", "0px");
-                $(".job-left-row:last-child").css("marginBottom", "-10px");
+                $(".job-left-row:visible:first").css("marginTop", "10px");
+                $(".job-left").css("marginTop", "10px");
                 
                 // Check if screen width is greater than 480px
             }
             else if (filter === "") {
                 $(".job-left-row:visible:first").css("marginTop", "0px");
-                $(".job-left-row:last-child").css("marginBottom", "-10px");
+                $(".job-left").css("marginTop", "20px");
             }
         }
         else {
