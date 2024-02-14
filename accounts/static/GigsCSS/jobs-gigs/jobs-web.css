@@ -190,7 +190,7 @@ input{
     cursor: pointer;
     position: absolute;
     right: 0;
-    top: 20px;
+    top: 19px;
 }
 .edit-job-button:hover {
     filter: brightness(0.80);
@@ -249,7 +249,7 @@ input{
 .job-right-details{
     margin-left:10px;
     background-color:white;
-    padding:29px;
+    padding:30px;
     margin-right:40px;
     display:flex;
     border-radius:40px;
