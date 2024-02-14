@@ -187,7 +187,7 @@ input{
     cursor: pointer;
     position: absolute;
     right: 0;
-    top: 21px;
+    top: 20px;
 }
 .edit-job-button:hover {
     filter: brightness(0.80);
