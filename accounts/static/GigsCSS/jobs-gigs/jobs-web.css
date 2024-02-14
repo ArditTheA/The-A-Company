@@ -197,7 +197,7 @@ input{
 
 .recruter-job-dropdown {
     right: 30px;
-    top: 46px;
+    top: 44px;
 }
 
 .job-left-details{
@@ -248,7 +248,7 @@ input{
 .job-right-details{
     margin-left:10px;
     background-color:white;
-    padding:29px;
+    padding:30px;
     margin-right:40px;
     display:flex;
     border-radius:40px;
