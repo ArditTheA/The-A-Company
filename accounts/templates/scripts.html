@@ -85,6 +85,15 @@ function MainJobs(){
 
         }
 
+        document.addEventListener('click', function (e) {
+            var isEditButton = e.target.classList.contains("edit-job-button");
+            var isInsideDropdown = el.contains(e.target);
+
+            if (!isEditButton && !isInsideDropdown) {
+                el.style.display = 'none';
+            }
+        });
+
 
     }
 </script>
