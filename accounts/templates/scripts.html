@@ -83,9 +83,7 @@ function MainJobs(){
                 }
             el.style.display = "block";
 
-        }
-
-        document.addEventListener('click', function (e) {
+            document.addEventListener('click', function (e) {
             var isEditButton = e.target.classList.contains("edit-job-button");
             var isInsideDropdown = el.contains(e.target);
 
@@ -94,6 +92,7 @@ function MainJobs(){
             }
         });
 
+        }
 
     }
 </script>
