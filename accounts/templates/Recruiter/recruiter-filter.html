@@ -1,5 +1,43 @@
 {% load static %}
+<style>
 
+  /* Hide the default checkbox */
+  input[type="checkbox"] {
+            display: none;
+        }
+        /* Style for the custom checkbox container */
+        .custom-checkbox {
+            width: 12px;
+            height: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50vh; /* Set border-radius to 50% of the viewport height */
+            background-color: white;    
+            border: 1px solid #858585;
+            margin-right: 10px;
+        }
+
+        /* Style for the checked state */
+
+        /* Updated style for the custom inner circle (initially hidden) */
+        .custom-checkbox .inner-circle {
+            width: 9px;
+            height: 9px;
+            border-radius: 50vh; /* Set border-radius to 50% of the viewport height */
+        }
+
+  /* Style for the animation */
+  /* .custom-checkbox.checked .inner-circle {
+      display: block;
+  } */
+
+  .labels-stats.checked .inner-circle {
+      display: block;
+      background-color: #1877f2;
+  }
+
+</style>
 
 
 
@@ -41,13 +79,29 @@
     </div>
     <div id="mySelectOptions" class="drop0 selectOptions dropdown-elements " style="z-index: 99;">
         {% if filterJobs  == "Open Jobs" %}
-        <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type" onclick="MainJobs()" value="Active Jobs" /> Open Jobs</label>
+        <label class="labels-stats first-label-margin checked">
+          <div class="custom-checkbox">
+            <div class="inner-circle"></div>
+        </div>
+        <input type="checkbox" checked class="input_type" onclick="MainJobs()" value="Active Jobs" /> Open Jobs</label>
         {% elif filterJobs  == "Closed Jobs" %}
-        <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type" onchange="" onclick="MainJobs()" value="Closed Jobs" /> Closed Jobs</label>
+          <label class="labels-stats first-label-margin checked">
+            <div class="custom-checkbox">
+              <div class="inner-circle"></div>
+          </div>
+          <input type="checkbox" checked class="input_type" onchange="" onclick="MainJobs()" value="Closed Jobs" /> Closed Jobs</label>
         {% else %}
 
-        <label class="labels-stats first-label-margin"><input type="checkbox"  class="input_type" onclick="OpenJobs()" value="Open Jobs" /> Open Jobs</label>
-        <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type" onclick="ClosedJobs()" value="Closed Jobs" /> Closed Jobs</label>
+          <label class="labels-stats first-label-margin" onclick="toggleCheckbox(this)">
+            <div class="custom-checkbox">
+              <div class="inner-circle"></div>
+          </div>
+          <input type="checkbox"  class="input_type" onclick="OpenJobs()" value="Open Jobs" /> Open Jobs</label>
+          <label class="labels-stats first-label-margin" onclick="toggleCheckbox(this)">
+            <div class="custom-checkbox">
+              <div class="inner-circle"></div>
+          </div>
+        <input type="checkbox" class="input_type" onclick="ClosedJobs()" value="Closed Jobs" /> Closed Jobs</label>
         {% endif %}
 
 
@@ -60,6 +114,20 @@
   </div>
 </div>
 
+  <script>
+  function toggleCheckbox(clickedLabel) {
+      // Uncheck all checkboxes and remove 'checked' class from all labels
+      const allLabels = document.querySelectorAll('.labels-stats');
+      allLabels.forEach(label => {
+          label.classList.remove('checked');
+      });
+
+      // Toggle the checked state for the clicked label
+      const checkbox = clickedLabel.querySelector('input[type="checkbox"]');
+      clickedLabel.classList.toggle('checked', checkbox.checked);
+  }
+
+</script>
 
 
 

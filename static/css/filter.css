@@ -200,7 +200,7 @@ textarea {
 }
 
 #mySelectOptions label {
-    display: block;
+    display: flex;
     font-weight: normal;
     white-space: nowrap;
     min-height: 1.2em;

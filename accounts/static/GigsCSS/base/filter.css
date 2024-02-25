@@ -250,16 +250,17 @@ body {
             bottom: 0;
         }
         #mySelectOptions label {
-            display: block;
+            display: flex;
+            align-items: center;
+            width: -webkit-fit-content;
             font-weight: normal;
             white-space: nowrap;
-            min-height: 1.2em;
             background-color: #ffffff00;
             padding: 0px 20px;                                       
             /* padding: .375rem 2.25rem .375rem .75rem; */
         }
         #all-applicants-dropdown label {
-            display: block;
+            display: flex;
             font-weight: normal;
             white-space: nowrap;
             min-height: 1.2em;

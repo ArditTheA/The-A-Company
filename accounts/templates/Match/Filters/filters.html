@@ -1,7 +1,43 @@
 {% load static %}
+<style>
 
+  /* Hide the default checkbox */
+  input[type="checkbox"] {
+            display: none;
+        }
+        /* Style for the custom checkbox container */
+        .custom-checkbox {
+            width: 12px;
+            height: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50vh; /* Set border-radius to 50% of the viewport height */
+            background-color: white;    
+            border: 1px solid #858585;
+            margin-right: 10px;
+        }
 
+        /* Style for the checked state */
 
+        /* Updated style for the custom inner circle (initially hidden) */
+        .custom-checkbox .inner-circle {
+            width: 9px;
+            height: 9px;
+            border-radius: 50vh; /* Set border-radius to 50% of the viewport height */
+        }
+
+  /* Style for the animation */
+  /* .custom-checkbox.checked .inner-circle {
+      display: block;
+  } */
+
+  .labels-stats.checked .inner-circle {
+      display: block;
+      background-color: #1877f2;
+  }
+
+</style>
 
 <div class="main-buttons-div" style="position: relative;">
     <div class="jobs-buttons applied-posted-buttons-mobile all-aplicants-main-div scrolling-wrapper">
@@ -53,20 +89,52 @@
     </div>
     <div id="mySelectOptions" class="drop0 applicantDropDown selectOptions dropdown-elements " style="z-index: 99;">
         {% if q  == "Q" %}
-        <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type" onclick="AllApplicant()" value="Active Jobs" />Qualified ({{NoApplicantQualified}})</label>
+        <label class="labels-stats first-label-margin checked">
+          <div class="custom-checkbox">
+            <div class="inner-circle"></div>
+        </div>
+        <input type="checkbox" checked class="input_type" onclick="AllApplicant()" value="Active Jobs" />Qualified ({{NoApplicantQualified}})</label>
         {% elif q  == "notQ" %}
-        <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type" onclick="AllApplicant()" value="Active Jobs" />Not Qualified ({{NoApplicantNQualified}})</label>
+        <label class="labels-stats first-label-margin checked">
+            <div class="custom-checkbox">
+              <div class="inner-circle"></div>
+            </div>
+        <input type="checkbox" checked class="input_type" onclick="AllApplicant()" value="Active Jobs" />Not Qualified ({{NoApplicantNQualified}})</label>
         {% elif q == "DocForWorkPermit" %}
-        <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type" onclick="AllApplicant()" value="Active" /> Document for Work Permit ({{usersOnDocForWorkPermit}})</label>
+          <label class="labels-stats first-label-margin checked">
+            <div class="custom-checkbox">
+              <div class="inner-circle"></div>
+          </div>
+        <input type="checkbox" checked class="input_type" onclick="AllApplicant()" value="Active" /> Document for Work Permit ({{usersOnDocForWorkPermit}})</label>
         {% elif q == "YourWorkPermitIsHere" %}
-        <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type" onclick="AllApplicant()" value="Active" /> Your Work Permit is Here ({{userWorkPermit}})</label>
+          <label class="labels-stats first-label-margin checked">
+            <div class="custom-checkbox">
+              <div class="inner-circle"></div>
+          </div>  
+          <input type="checkbox" checked class="input_type" onclick="AllApplicant()" value="Active" /> Your Work Permit is Here ({{userWorkPermit}})</label>
 
         {% else %}
-        <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type" onclick="NoQualified()" value="Inactive" /> Not Qualified ({{NoApplicantNQualified}})</label>
-        <label class="labels-stats first-label-margin"><input type="checkbox"  class="input_type" onclick="Qualified()" value="Active" /> Qualified ({{NoApplicantQualified}})</label>
+          <label class="labels-stats first-label-margin" onclick="toggleCheckbox(this)">
+            <div class="custom-checkbox">
+              <div class="inner-circle"></div>
+          </div>
+          <input type="checkbox" class="input_type" onclick="NoQualified()" value="Inactive" /> Not Qualified ({{NoApplicantNQualified}})</label>
+          <label class="labels-stats first-label-margin" onclick="toggleCheckbox(this)">
+            <div class="custom-checkbox">
+              <div class="inner-circle"></div>
+          </div>
+          <input type="checkbox"  class="input_type" onclick="Qualified()" value="Active" /> Qualified ({{NoApplicantQualified}})</label>
         
-        <label class="labels-stats first-label-margin"><input type="checkbox"  class="input_type" onclick="DocumentForWorkPermit()" value="Active" /> Document for Work Permit ({{usersOnDocForWorkPermit}})</label>
-        <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type" onclick="WorkPermitHere()" value="Inactive" /> Your Work Permit is Here ({{userWorkPermit}})</label>
+          <label class="labels-stats first-label-margin" onclick="toggleCheckbox(this)">
+            <div class="custom-checkbox">
+              <div class="inner-circle"></div>
+          </div>
+          <input type="checkbox"  class="input_type" onclick="DocumentForWorkPermit()" value="Active" /> Document for Work Permit ({{usersOnDocForWorkPermit}})</label>
+          <label class="labels-stats first-label-margin" onclick="toggleCheckbox(this)">
+            <div class="custom-checkbox">
+              <div class="inner-circle"></div>
+          </div>
+          <input type="checkbox" class="input_type" onclick="WorkPermitHere()" value="Inactive" /> Your Work Permit is Here ({{userWorkPermit}})</label>
         
         {% endif %}
      
@@ -79,6 +147,22 @@
 
   </div>
 </div>
+
+    <script>
+  function toggleCheckbox(clickedLabel) {
+      // Uncheck all checkboxes and remove 'checked' class from all labels
+      const allLabels = document.querySelectorAll('.labels-stats');
+      allLabels.forEach(label => {
+          label.classList.remove('checked');
+      });
+
+      // Toggle the checked state for the clicked label
+      const checkbox = clickedLabel.querySelector('input[type="checkbox"]');
+      clickedLabel.classList.toggle('checked', checkbox.checked);
+  }
+
+</script>
+
 
 <script>
 

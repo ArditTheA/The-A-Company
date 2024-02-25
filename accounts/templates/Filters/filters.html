@@ -1,5 +1,48 @@
 {% load static %}
 
+<style>
+
+  /* Hide the default checkbox */
+  input[type="checkbox"] {
+            display: none;
+        }
+        /* Style for the custom checkbox container */
+        .custom-checkbox {
+            width: 12px;
+            height: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50vh; /* Set border-radius to 50% of the viewport height */
+            background-color: white;    
+            border: 1px solid #858585;
+            margin-right: 10px;
+        }
+
+        /* Style for the checked state */
+
+        /* Updated style for the custom inner circle (initially hidden) */
+        .custom-checkbox .inner-circle {
+            width: 9px;
+            height: 9px;
+            border-radius: 50vh; /* Set border-radius to 50% of the viewport height */
+        }
+
+  /* Style for the animation */
+  /* .custom-checkbox.checked .inner-circle {
+      display: block;
+  } */
+
+  .labels-stats.checked .inner-circle {
+      display: block;
+      background-color: #1877f2;
+  }
+
+
+
+</style>
+
+
 <script>
   function myFunction() {
     document.getElementById("myForm").submit();
@@ -65,18 +108,30 @@
       {% if filterProgram != "" %}
         {%if filterProgram == "Recommended" %}
 
-      <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type"
+        <label class="labels-stats first-label-margin checked" onclick="toggleCheckbox(this)">
+          <div class="custom-checkbox">
+              <div class="inner-circle"></div>
+          </div>
+        <input type="checkbox" checked class="input_type"
           onclick="progFunction();setTimeout(this.form.submit(),50)"/> Recommended</label>
 
         {% else %}
         {% for i in prog %}
 
           {% if i == filterProgram %}
-            <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type"
+          <label class="labels-stats first-label-margin checked" onclick="toggleCheckbox(this)">
+            <div class="custom-checkbox">
+                <div class="inner-circle"></div>
+            </div>
+            <input type="checkbox" checked class="input_type"
               onclick="progFunction();setTimeout(this.form.submit(),50)"/> {{i}}</label>
           {%else%}
 
-          <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
+          <label class="labels-stats first-label-margin" onclick="toggleCheckbox(this)">
+            <div class="custom-checkbox">
+                <div class="inner-circle"></div>
+            </div>
+            <input type="checkbox" class="input_type"
               onchange="" onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="" /> {{i}}</label>
           {% endif %}
           {% endfor %}
@@ -85,10 +140,18 @@
 
       {% else %}
 
-      <label class="labels-stats first-label-margin"><input type="checkbox"  class="input_type"
+      <label class="labels-stats first-label-margin" onclick="toggleCheckbox(this)">
+        <div class="custom-checkbox">
+            <div class="inner-circle"></div>
+        </div>
+        <input type="checkbox"  class="input_type"
           onclick="checkboxStatusChange();setTimeout(this.form.submit(),50)" value="Recommended" /> Recommended</label>
         {% for i in prog %}
-        <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
+          <label class="labels-stats first-label-margin" onclick="toggleCheckbox(this)">
+            <div class="custom-checkbox">
+                <div class="inner-circle"></div>
+            </div>
+          <input type="checkbox" class="input_type"
               onchange="" onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="{{i}}" /> {{i}}</label>
         {% endfor %}
 
@@ -128,11 +191,19 @@
       {% for i in title %}
       {%if i == filterTitle %}
 
-      <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type"
+      <label class="labels-stats first-label-margin checked" onclick="toggleCheckbox(this)">
+        <div class="custom-checkbox">
+            <div class="inner-circle"></div>
+        </div> 
+        <input type="checkbox" checked class="input_type"
           onclick="titleFunction()" onchange="this.form.submit()" /> {{i}}</label>
 
       {%else%}
-      <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
+      <label class="labels-stats first-label-margin" onclick="toggleCheckbox(this)">
+        <div class="custom-checkbox">
+            <div class="inner-circle"></div>
+        </div>    
+        <input type="checkbox" class="input_type"
            onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="{{i}}" /> {{i}}</label>
       {% endif %}
       {% endfor %}
@@ -143,9 +214,6 @@
 
 
 <!-- Salary -->
-
-
-
 
 
       <div class="container-fluid " style="cursor: pointer;">
@@ -179,17 +247,33 @@
           <div id="mySelectOptions" class="selectOptions dropdown-elements" style="z-index: 99;">
               {% if filterSalary != "" %}
                     {% if filterSalary == "Low to High"%}
-                    <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type"
+                    <label class="labels-stats first-label-margin checked" onclick="toggleCheckbox(this)">
+                      <div class="custom-checkbox">
+                          <div class="inner-circle"></div>
+                      </div>                                    
+                      <input type="checkbox" checked class="input_type"
                         onclick="salaryFunction()" onchange="this.form.submit()" value="Low to High" /> Low to High</label>
                     {% elif filterSalary == "High to Low" %}
-                    <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type"
+                    <label class="labels-stats first-label-margin checked" onclick="toggleCheckbox(this)">
+                      <div class="custom-checkbox">
+                          <div class="inner-circle"></div>
+                      </div>                                    
+                      <input type="checkbox" checked class="input_type"
                         onclick="salaryFunction()" onchange="this.form.submit()" value="High to Low" /> High to Low</label>
 
                     {% endif %}
               {% else %}
-            <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
+              <label class="labels-stats first-label-margin" onclick="toggleCheckbox(this)">
+                <div class="custom-checkbox">
+                    <div class="inner-circle"></div>
+                </div>            
+              <input type="checkbox" class="input_type"
                 onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="Low to High" />Low to High</label>
-<label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
+                <label class="labels-stats first-label-margin" onclick="toggleCheckbox(this)">
+                  <div class="custom-checkbox">
+                      <div class="inner-circle"></div>
+                  </div>            
+  <input type="checkbox" class="input_type"
                 onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="High to Low" />High to Low</label>
 
             {% endif %}
@@ -228,11 +312,19 @@
       {% for i in company %}
       {%if i == filterCompany %}
 
-      <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type"
+      <label class="labels-stats first-label-margin checked" onclick="toggleCheckbox(this)">
+        <div class="custom-checkbox">
+            <div class="inner-circle"></div>
+        </div>        
+        <input type="checkbox" checked class="input_type"
           onclick="companyFunction()" onchange="this.form.submit()" /> {{i}}</label>
 
       {%else%}
-      <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
+      <label class="labels-stats first-label-margin" onclick="toggleCheckbox(this)">
+        <div class="custom-checkbox">
+            <div class="inner-circle"></div>
+        </div>     
+        <input type="checkbox" class="input_type"
           onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="{{i}}" /> {{i}}</label>
       {% endif %}
       {% endfor %}
@@ -273,12 +365,20 @@
     <div id="mySelectOptions" class="selectOptions dropdown-elements" style="z-index: 99;">
       {% for i in city %}
       {%if i == filterLocation %}
-      <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type"
+        <label class="labels-stats first-label-margin checked">
+          <div class="custom-checkbox">
+              <div class="inner-circle"></div>
+          </div>
+        <input type="checkbox" checked class="input_type"
           onclick="locationFunction()" onchange="this.form.submit()" value="{{i}}" /> {{i}}</label>
 
 
       {%else%}
-      <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
+        <label class="labels-stats first-label-margin" onclick="toggleCheckbox(this)">
+          <div class="custom-checkbox">
+              <div class="inner-circle"></div>
+          </div>
+        <input type="checkbox" class="input_type"
          onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="{{i}}" /> {{i}}</label>
       {% endif %}
       {% endfor %}
@@ -319,14 +419,26 @@
     </div>
     <div id="mySelectOptions" class="selectOptions dropdown-elements" style="z-index: 99;">
       {% if filterDate != ""%}
-      <label class="labels-stats first-label-margin"><input type="checkbox" checked class="input_type"
+        <label class="labels-stats first-label-margin checked" onclick="toggleCheckbox(this)">
+          <div class="custom-checkbox">
+              <div class="inner-circle"></div>
+          </div>
+        <input type="checkbox" checked class="input_type"
           onclick="dateFunction()" onchange="this.form.submit()" value="{{filterDate}}" />{{filterDate}}</label>
       {%else%}
 
-      <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
-           onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="Newest to Oldest" /> Newest to Oldest</label>
-      <label class="labels-stats first-label-margin"><input type="checkbox" class="input_type"
-         onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="Oldest to Newest" /> Oldest to Newest</label>
+        <label class="labels-stats first-label-margin" onclick="toggleCheckbox(this)">
+          <div class="custom-checkbox">
+              <div class="inner-circle"></div>
+          </div>
+        <input type="checkbox" class="input_type"
+           onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="Newest to Oldest" />Newest to Oldest</label>
+        <label class="labels-stats first-label-margin" onclick="toggleCheckbox(this)">
+          <div class="custom-checkbox">
+              <div class="inner-circle"></div>
+          </div>
+        <input type="checkbox" class="input_type"
+         onclick="checkboxStatusChange();setTimeout(this.form.submit(),50);" value="Oldest to Newest" />Oldest to Newest</label>
 
       {% endif%}
 
@@ -339,6 +451,7 @@
     </form>
   </div>
 </div>
+
 
 <script>
 function SearchFunction() {
@@ -380,6 +493,22 @@ function SearchFunction() {
     x.options[x.selectedIndex].value = "Date Posted";
   };
 </script>
+<script>
+  function toggleCheckbox(clickedLabel) {
+      // Uncheck all checkboxes and remove 'checked' class from all labels
+      const allLabels = document.querySelectorAll('.labels-stats');
+      allLabels.forEach(label => {
+          label.classList.remove('checked');
+      });
+
+      // Toggle the checked state for the clicked label
+      const checkbox = clickedLabel.querySelector('input[type="checkbox"]');
+      clickedLabel.classList.toggle('checked', checkbox.checked);
+  }
+
+
+</script>
+
 <script src="{% static 'js/dropdown-jobs.js'%}"></script>
 <script src="{% static 'js/Profile/dropdown.js'%}"></script>
 <script>
