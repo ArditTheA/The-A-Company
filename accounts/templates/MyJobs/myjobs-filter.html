@@ -87,7 +87,7 @@
     </div>
     <div id="mySelectOptions" class="drop0 selectOptions dropdown-elements " style="z-index: 99;">
         {% if filterSel == "Qualified" %}
-        <label class="labels-stats first-label-margin checked">
+        <label class="labels-stats first-label-margin checked" onclick="toggleCheckbox(this)">
           <div class="custom-checkbox">
             <div class="inner-circle"></div>
         </div>
@@ -96,7 +96,7 @@
 
 
         {% elif filterSel == "Not Qualified" %}
-        <label class="labels-stats first-label-margin checked">
+        <label class="labels-stats first-label-margin checked" onclick="toggleCheckbox(this)">
           <div class="custom-checkbox">
             <div class="inner-circle"></div>
         </div>

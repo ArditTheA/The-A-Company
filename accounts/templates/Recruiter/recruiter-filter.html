@@ -79,13 +79,13 @@
     </div>
     <div id="mySelectOptions" class="drop0 selectOptions dropdown-elements " style="z-index: 99;">
         {% if filterJobs  == "Open Jobs" %}
-        <label class="labels-stats first-label-margin checked">
+        <label class="labels-stats first-label-margin checked" onclick="toggleCheckbox(this)">
           <div class="custom-checkbox">
             <div class="inner-circle"></div>
         </div>
         <input type="checkbox" checked class="input_type" onclick="MainJobs()" value="Active Jobs" /> Open Jobs</label>
         {% elif filterJobs  == "Closed Jobs" %}
-          <label class="labels-stats first-label-margin checked">
+          <label class="labels-stats first-label-margin checked" onclick="toggleCheckbox(this)">
             <div class="custom-checkbox">
               <div class="inner-circle"></div>
           </div>

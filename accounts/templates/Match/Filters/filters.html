@@ -89,25 +89,25 @@
     </div>
     <div id="mySelectOptions" class="drop0 applicantDropDown selectOptions dropdown-elements " style="z-index: 99;">
         {% if q  == "Q" %}
-        <label class="labels-stats first-label-margin checked">
+        <label class="labels-stats first-label-margin checked" onclick="toggleCheckbox(this)">
           <div class="custom-checkbox">
             <div class="inner-circle"></div>
         </div>
         <input type="checkbox" checked class="input_type" onclick="AllApplicant()" value="Active Jobs" />Qualified ({{NoApplicantQualified}})</label>
         {% elif q  == "notQ" %}
-        <label class="labels-stats first-label-margin checked">
+        <label class="labels-stats first-label-margin checked" onclick="toggleCheckbox(this)">
             <div class="custom-checkbox">
               <div class="inner-circle"></div>
             </div>
         <input type="checkbox" checked class="input_type" onclick="AllApplicant()" value="Active Jobs" />Not Qualified ({{NoApplicantNQualified}})</label>
         {% elif q == "DocForWorkPermit" %}
-          <label class="labels-stats first-label-margin checked">
+          <label class="labels-stats first-label-margin checked" onclick="toggleCheckbox(this)">
             <div class="custom-checkbox">
               <div class="inner-circle"></div>
           </div>
         <input type="checkbox" checked class="input_type" onclick="AllApplicant()" value="Active" /> Document for Work Permit ({{usersOnDocForWorkPermit}})</label>
         {% elif q == "YourWorkPermitIsHere" %}
-          <label class="labels-stats first-label-margin checked">
+          <label class="labels-stats first-label-margin checked" onclick="toggleCheckbox(this)">
             <div class="custom-checkbox">
               <div class="inner-circle"></div>
           </div>  
