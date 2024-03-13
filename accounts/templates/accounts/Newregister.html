@@ -119,6 +119,7 @@ function ShowOrHidePassword(){
 const createAccuntInputsField = Array.from(document.querySelectorAll('.create-account'));
 var emailAddressInput = document.getElementById('email_create_account');
 var createAccountPassword = document.getElementById('create_account_password');
+const error_create_account = document.querySelector(".create-account-form-error");
 
 document.getElementById('email_create_account').required = false;
 document.getElementById('create_account_password').required = false;
@@ -169,7 +170,7 @@ var CreateAccountnmyDisableClickFunction = function(event) {
       let errorDiv = document.getElementById(errorDivId);
       input.style.border = "1px solid #1877f2";
       input.style.boxShadow = "0 0 5px rgba(0, 0, 0, 0.1)";
-      errorDiv.textContent = '';
+      error_create_account.style.display = "none";
     });
 
     input.addEventListener('blur', function() {
@@ -187,6 +188,7 @@ var CreateAccountnmyDisableClickFunction = function(event) {
         input.style.border = "0.5px solid red";
         input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
         errorDiv.textContent = 'This field is required';
+        error_create_account.style.display = "none";
     }
       else {
         input.style.border = "0.5px solid red";
@@ -211,10 +213,12 @@ var CreateAccountnmyDisableClickFunction = function(event) {
             input.style.border = "0.5px solid red";
             input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
             errorDiv.textContent = 'This email is invalid';
+            error_create_account.style.display = "none";
           } else {
             input.style.border = "0.5px solid red";
             input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
             errorDiv.textContent = 'This field is required';
+            error_create_account.style.display = "none";
           }
         } else {
           input.style.border = "";
