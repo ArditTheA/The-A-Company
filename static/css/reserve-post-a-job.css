@@ -27,6 +27,9 @@
 .interview-distance-between-div-img {
     margin-left: 10px;
 }
+.mutual-inputs {
+    transition: border 0.8s ease;
+}
 
 .addedItemsContainer {
     width: 100% !important;
@@ -247,9 +250,9 @@ option {
     color: white;
 } */
 .first-next-button, #next-button, .start-trial-button, #additional-feature-submit-button, .next-button-job-description, .submit-button {
-    background-color: #D4D5D6;
+    background-color: #1877f2;
+    /* background-color: #D4D5D6; */
     color: white;
-    cursor: not-allowed;
 }
 .start-trial-button {
     padding: 10px 120px;
@@ -273,7 +276,7 @@ option {
 .next-button-deselected {
     background-color: #D4D5D6 !important;
     color: white !important;
-    cursor: not-allowed !important;
+    /* cursor: not-allowed !important; */
 }
 .next-button-deselected:hover {
     filter: brightness(1) !important;

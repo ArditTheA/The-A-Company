@@ -27,6 +27,9 @@
 .interview-distance-between-div-img {
     margin-left: 10px;
 }
+.mutual-inputs {
+    transition: border 0.8s ease;
+}
 
 .addedItemsContainer {
     width: 100% !important;
@@ -247,7 +250,8 @@ option {
     color: white;
 } */
 .first-next-button, #next-button, .start-trial-button, #additional-feature-submit-button, .next-button-job-description, .submit-button {
-    background-color: #D4D5D6;
+    /* background-color: #D4D5D6; */
+    background-color: #1877f2;
     color: white;
     cursor: not-allowed;
 }
@@ -430,6 +434,11 @@ input {
     border-top: 1px solid #f0f0f0;
 }
 
+.parent-div-first-name {
+    width: 100%; 
+    margin-right: 20px;
+}
+
 .mutual-font-size-18px {
     font-size: 18px;
 }
@@ -466,7 +475,7 @@ input {
 
 
 
-  #screening-question-select-options {
+  .screening-question-select-options {
     height: auto;
     border-color: #9E9E9E;
     width: 446px;
@@ -896,8 +905,15 @@ input {
         margin-left: 20px;
     }
     input, .contact-information-mutual-stats {
-        padding-top: 8px !important;
-        padding-bottom: 8px !important;
+        height: 36px !important;
+    }
+    input[type="checkbox"] {
+        height: auto !important;
+    }
+    select.screening-question-select-options.screening-question-select-options {
+        padding-top: 8.4px !important;
+        padding-bottom: 8.4px !important;
+        height: auto !important;
     }
     .second-inputs-div {
         width: 100%;
@@ -964,7 +980,7 @@ input {
         padding-top: 10px;
         padding-bottom: 10px;
     }
-    #screening-question-select-options {
+    .screening-question-select-options {
         width: 100%;
     }
     .first-second-buttons {
@@ -1052,7 +1068,7 @@ input {
     .third-form-question {
         padding-top: 0px;
     }
-    #screening-question-select-options {
+    .screening-question-select-options {
         padding: 8px;
     }
     .program-duration-third-page, .contact-information-third-page, .sq-meet-with-us {
@@ -1060,6 +1076,9 @@ input {
     }
     .screening-question-third-page {
         padding-bottom: 20px;
+    }
+    .parent-div-first-name {
+        margin-bottom: 20px;
     }
     .program-duration-third-page {
         margin-left: 20px;
@@ -1140,9 +1159,9 @@ input {
     .first-job-details {
         margin-left: 20px !important;
     }
-    .apply-first-name {
+    /* .apply-first-name {
         margin-bottom: 20px;
-    }
+    } */
     .contact-information-div-third-page {
         border-top-left-radius: 20px;
         border-top-right-radius: 20px;

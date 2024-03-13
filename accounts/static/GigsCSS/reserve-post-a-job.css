@@ -29,6 +29,10 @@ select {
     height: 40px !important;
 }
 
+.mutual-inputs {
+    transition: border 0.8s ease;
+}
+
 .main-divs-color {
     color: #858585;
 }
@@ -271,9 +275,18 @@ option {
     color: white;
 } */
 .first-next-button, #next-button, .start-trial-button, #additional-feature-submit-button, .next-button-job-description, .submit-button {
-    background-color: #D4D5D6;
+    /* background-color: #D4D5D6; */
+    background-color: #1877F2;
     color: white;
-    cursor: not-allowed;
+}
+
+#id_email {
+    width: 100%;
+}
+
+.input-container {
+    position: relative;
+    margin-bottom: 20px;
 }
 .start-trial-button {
     padding: 10px 120px;
@@ -297,7 +310,7 @@ option {
 .next-button-deselected {
     background-color: #D4D5D6 !important;
     color: white !important;
-    cursor: not-allowed !important;
+    /* cursor: not-allowed !important; */
 }
 .next-button-deselected:hover {
     filter: brightness(1) !important;
@@ -488,7 +501,7 @@ input {
   }
 
 
-  #screening-question-select-options {
+  .screening-question-select-options {
     height: auto;
     border-color: #9E9E9E;
     width: 446px;
@@ -545,6 +558,10 @@ input {
     box-sizing: border-box;
 }
 .apply-first-name, .start-date-input {
+    margin-right: 20px;
+}
+.parent-div-first-name {
+    width: 100%;
     margin-right: 20px;
 }
 .contact-information-mutual-stats, .add-question-button {
@@ -905,6 +922,9 @@ input {
     .successfully-applied-div {
         font-size: 16px;
     }
+    .parent-div-first-name {
+        margin-bottom: 20px;
+    }
     .icon {
         right: 15px;
         height: 18px;
@@ -958,11 +978,21 @@ input {
         margin-left: 20px;
     }
     input, .contact-information-mutual-stats {
-        padding-top: 8px !important;
-        padding-bottom: 8px !important;
         height: fit-content;
     }
+    input, .contact-information-mutual-stats {
+        height: 36px !important;
+    }
 
+    input[type="checkbox"] {
+        height: auto !important;
+    }
+    select.screening-question-select-options.screening-question-select-options {
+        padding-top: 8.4px !important;
+        padding-bottom: 8.4px !important;
+        height: auto !important;
+    }
+    
     .upload-file-div {
         height: 36px;
     }
@@ -1029,7 +1059,7 @@ input {
         padding-top: 10px;
         padding-bottom: 10px;
     }
-    #screening-question-select-options {
+    .screening-question-select-options {
         width: 100%;
     }
     .first-second-buttons {
@@ -1117,9 +1147,9 @@ input {
     .third-form-question {
         padding-top: 20px;
     }
-    #screening-question-select-options {
+    /* .screening-question-select-options {
         padding: 8px 8px 8px 10px;
-    }
+    } */
     .program-duration-third-page, .contact-information-third-page, .sq-meet-with-us {
         padding-top: 20px;
     }
@@ -1206,9 +1236,9 @@ input {
     .first-job-details {
         margin-left: 20px !important;
     }
-    .apply-first-name {
+    /* .apply-first-name {
         margin-bottom: 20px;
-    }
+    } */
     .contact-information-div-third-page {
         border-top-left-radius: 20px;
         border-top-right-radius: 20px;

@@ -256,7 +256,7 @@ body {
             font-weight: normal;
             white-space: nowrap;
             background-color: #ffffff00;
-            padding: 0px 20px;                                       
+            padding: 0px 20px;
             /* padding: .375rem 2.25rem .375rem .75rem; */
         }
         #all-applicants-dropdown label {
@@ -299,7 +299,7 @@ body {
         }
         .plus-icon-jobs:hover {
             filter: brightness(0.9);
-        }    
+        }
         #mySelectOptions, #all-applicants-dropdown {
             border-radius: 16px;
             border: none;
@@ -320,7 +320,7 @@ body {
             max-height: 130px;
         }
 
-        
+
         /* #mySelectOptions::-webkit-scrollbar-track {
             background: orange;
           }

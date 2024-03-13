@@ -100,7 +100,18 @@ body {
     font-family: 'Spline Sans', sans-serif;
 }
 
-.name-input, .surname-input, .email-input {
+.name-input, .surname-input {
+    margin-bottom: 20px;
+}
+
+.sign-in-email-input-div {
+    margin-bottom: 20px;
+}
+.input-form-google-sign-up-in {
+    margin-bottom: 20px;
+}
+
+.input-main-form-div {
     margin-bottom: 20px;
 }
 
@@ -172,7 +183,6 @@ input {
     flex-direction: row-reverse;
     align-items: center;
     position: relative;
-    margin-bottom: 20px;
 }
 .icon {
     position: absolute;

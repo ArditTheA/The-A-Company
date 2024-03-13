@@ -31,7 +31,7 @@
             <div id="create-account-title">Create an account</div>
             <form method="POST" id="signupForm" action="" class="sign-up-form">
                 {% csrf_token %}
-                <div class="input-form">
+                <div class="input-form input-form-google-sign-up-in">
                     <a href="{% provider_login_url 'google' %}" class="sign-up-google input-text">
                         <div>Create account with Google</div>
                     </a>
@@ -39,22 +39,29 @@
                 </div>
 
                 <p class="second-paragraph same-color-of-paragraphs">or</p>
-                {{form.first_name}}
-                {{form.last_name}}
-               
+                <div class="create-account-inputs-divs create-account-first-name-surname" style="margin-bottom: 20px;">
+                    <div class="first-name-form-div" style="">
+                        {{form.first_name}}
+                    </div>
+                    <div style="width: 100%;">
+                        {{form.last_name}}
+                    </div>
+                </div>
+                <div class="create-account-inputs-divs">
                     {{form.email}}
-                    
+                </div>
                 
+                <div class="input-main-form-div">
                 <div class="input-form">
                     {{form.password1}}
                     
-                    
                     <i class="bi bi-eye-slash" id="togglePassword" onclick="ShowOrHidePassword()"></i>
+                </div>
                 </div>
                 {% if form.email.errors %}
                        
                             {% for error in form.email.errors %}
-                            <div class="incorrect-div" style="">An account with this email already exists.</div>
+                            <div class="incorrect-div create-account-form-error" style="">An account with this email already exists.</div>
                             {% endfor %}
                        
                     {% endif %}
@@ -62,7 +69,7 @@
                 <p class="first-paragraph same-color-of-paragraphs font-fam">By creating account, you agree to <a
                         class="terms-conditions-link" href="https://worki.global/terms-conditions">terms and conditions</a></p>
                 <div class="sign-up-input">
-                <input id="subButton"  class="sign-up-submit-input input-text font-fam" value="Create account">
+                <input id="subButton" type="submit" class="sign-up-submit-input input-text font-fam" value="Create account">
                 </div>
 
             </form>
@@ -80,9 +87,9 @@
 
 </body>
 <script>
-var password = document.getElementById("id_password1");
+var password = document.getElementById("create_account_password");
 var togglePassword = document.getElementById("togglePassword");
- var pass1 = document.getElementsByClassName("bi-eye");
+ var pass1 = document.getElementsByClassName("bi-eye-slash");
 
 
 
@@ -97,28 +104,179 @@ function ShowOrHidePassword(){
         
       }
       
-      this.classList.toggle("bi-eye");
+      togglePassword.classList.toggle("bi-eye");
       togglePassword.title = "Hide Password";
       
       
 }
     </script>
 <script>
-const button = document.getElementById("subButton");
 
-button.addEventListener("click", disableButton);
-
-function disableButton(event) {
-    if (event.type === "click") {  // Check if the event is a click event (web)
-        button.disabled = true;
-        button.style.color = "white";
-        console.log("Button disabled on web");
-        const signupForm = document.getElementById("signupForm");
-        signupForm.submit();
-    }
-}
 </script>
 
+<script>
+
+const createAccuntInputsField = Array.from(document.querySelectorAll('.create-account'));
+var emailAddressInput = document.getElementById('email_create_account');
+var createAccountPassword = document.getElementById('create_account_password');
+
+document.getElementById('email_create_account').required = false;
+document.getElementById('create_account_password').required = false;
+
+var CreateAccountnmyDisableClickFunction = function(event) {
+  createAccuntInputsField.forEach(input => {
+    const errorDivId = input.id + '-error-message';
+    let errorDiv = document.getElementById(errorDivId);
+
+    if (input.value.trim() === '') {
+      if (!errorDiv) {
+        errorDiv = document.createElement('div');
+        errorDiv.id = errorDivId;
+        errorDiv.classList.add('error-message');
+        errorDiv.style.color = "red";
+        errorDiv.style.fontSize = "14px";
+        errorDiv.style.marginTop = "4px";
+        if (input.id !== 'create_account_password') {
+            input.parentNode.insertBefore(errorDiv, input.nextSibling);
+        }
+        else {
+            input.parentNode.parentNode.insertBefore(errorDiv, input.parentNode.nextSibling);
+        }
+      } else {
+        input.style.border = "0.5px solid red";
+        input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+        errorDiv.textContent = 'This field is required'; 
+      }
+    } else {
+      
+      if (input.id === 'email_create_account') {
+        const emailValue_second = input.value.trim();
+        const isEmailValid_second = /^[^\s@]+(\.[^\s@]+)*@[^\s@]+\.[^\s@]+$/.test(emailValue_second);
+
+        if (!isEmailValid_second) {
+          input.style.border = "0.5px solid red";
+          input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+          errorDiv.textContent = 'This email is invalid';
+          errorDiv.style.marginTop = "4px";
+        } else {
+        }
+      }
+      
+    }
+
+    input.addEventListener('focus', function() {
+      const errorDivId = input.id + '-error-message';
+      let errorDiv = document.getElementById(errorDivId);
+      input.style.border = "1px solid #1877f2";
+      input.style.boxShadow = "0 0 5px rgba(0, 0, 0, 0.1)";
+      errorDiv.textContent = '';
+    });
+
+    input.addEventListener('blur', function() {
+      const errorDivId = input.id + '-error-message';
+      let errorDiv = document.getElementById(errorDivId);
+      
+      if (!errorDiv) {
+        errorDiv = document.createElement('div');
+        errorDiv.id = errorDivId;
+        errorDiv.classList.add('error-message');
+        errorDiv.style.color = "red";
+        errorDiv.style.fontSize = "14px";
+        errorDiv.style.marginTop = "4px";
+        input.parentNode.insertBefore(errorDiv, input.nextSibling);
+        input.style.border = "0.5px solid red";
+        input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+        errorDiv.textContent = 'This field is required';
+    }
+      else {
+        input.style.border = "0.5px solid red";
+        input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+        errorDiv.textContent = 'This field is required';
+      }
+
+      if (input.id !== "email_create_account") {
+        if (input.value.trim() === "") {
+
+        }
+        else {
+          input.style.border = "";
+          input.style.boxShadow = "";
+          errorDiv.textContent = '';
+        }
+      } else {
+        const emailValue = input.value.trim();
+        const isEmailValid = /^[^\s@]+(\.[^\s@]+)*@[^\s@]+\.[^\s@]+$/.test(emailValue);
+        if (!isEmailValid) {
+          if (input.value.trim() !== "") {
+            input.style.border = "0.5px solid red";
+            input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+            errorDiv.textContent = 'This email is invalid';
+          } else {
+            input.style.border = "0.5px solid red";
+            input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+            errorDiv.textContent = 'This field is required';
+          }
+        } else {
+          input.style.border = "";
+          input.style.boxShadow = "";
+          errorDiv.textContent = '';
+        }
+      }
+    });
+
+
+
+    input.addEventListener('input', function() {
+        if (input !== emailAddressInput && input !== createAccountPassword) {
+    // Update the value with the first letter uppercase
+            input.value = input.value.charAt(0).toUpperCase() + input.value.slice(1);
+        }
+    });
+  });
+};
+
+CreateAccountnmyDisableClickFunction();
+
+function checkInputs() {
+  const emailInput = document.getElementById('email_create_account');
+  const emailValue = emailInput.value.trim();
+  const isEmailValid = /^[^\s@]+(\.[^\s@]+)*@[^\s@]+\.[^\s@]+$/.test(emailValue);
+  const allInputsFilled = createAccuntInputsField.every(input => input.value.trim() !== '');
+  CreateAccountButton.disabled = !allInputsFilled || !isEmailValid;
+
+  if (CreateAccountButton.disabled === false) {
+    var CreateAccountButton = document.getElementById('subButton');
+    // isValidEmail(email);
+    CreateAccountButton.removeEventListener("click", CreateAccountnmyDisableClickFunction);
+    CreateAccountButton.classList.add("second-next-button");
+    CreateAccountButton.style.cursor = "pointer";
+    CreateAccountButton.style.pointerEvents = "auto";
+
+  }
+  else {
+    var CreateAccountButton = document.getElementById('subButton');
+        CreateAccountButton.addEventListener("click", CreateAccountnmyDisableClickFunction);
+
+  }
+}
+window.onload = checkInputs;
+createAccuntInputsField.forEach(input => input.addEventListener('input', checkInputs));
+
+document.getElementById('signupForm').addEventListener('submit', function(e) {
+    console.log("Ardit");
+const emailInput = document.getElementById('email_create_account');
+const emailValue = emailInput.value.trim();
+const isEmailValid = /^[^\s@]+(\.[^\s@]+)*@[^\s@]+\.[^\s@]+$/.test(emailValue);
+const allInputsFilled = createAccuntInputsField.every(input => input.value.trim() !== '');
+
+if (!allInputsFilled || !isEmailValid) {
+e.preventDefault(); // Prevent form submission
+CreateAccountnmyDisableClickFunction(); // Call the function here
+// Add any additional error display logic here
+}
+// else, the form will submit normally
+});
+</script>
 
 
 

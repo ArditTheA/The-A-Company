@@ -154,16 +154,16 @@ from django.contrib.auth import get_user_model
 class NewRegisterForm(UserCreationForm):
     password1 = forms.CharField(
         label="Password",
-        widget=forms.PasswordInput(attrs={"class": "input-text password-input font-fam", "placeholder": "Password"})
+        widget=forms.PasswordInput(attrs={"class": "input-text password-input font-fam create-account", "placeholder": "Password", "id": "create_account_password"})
     )
 
     class Meta:
         model = get_user_model()
         fields = ('email', 'first_name', 'last_name')
         widgets = {
-            "first_name": forms.TextInput(attrs={"class": "input-text name-surname-width name-input font-fam", "placeholder": "First Name"}),
-            "last_name": forms.TextInput(attrs={"class": "input-text name-surname-width surname-input font-fam", "placeholder": "Last Name"}),
-            "email": forms.TextInput(attrs={"class": "input-text email-input font-fam", "placeholder ": "Email"}),
+            "first_name": forms.TextInput(attrs={"class": "input-text name-surname-width name-input font-fam create-account", "placeholder": "First Name"}),
+            "last_name": forms.TextInput(attrs={"class": "input-text name-surname-width surname-input font-fam create-account", "placeholder": "Last Name"}),
+            "email": forms.TextInput(attrs={"class": "input-text email-input font-fam create-account", "placeholder ": "Email", "id": "email_create_account"}),
             
         }
     def __init__(self, *args, **kwargs):

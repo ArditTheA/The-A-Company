@@ -24,9 +24,9 @@
     <div class="container">
         <div class="under-container">
             <div id="title">Sign in</div>
-            <form method="POST" action="" class="sign-in-form" style="margin-bottom: 0px;">
+            <form id="signInForm" method="POST" action="" class="sign-in-form" style="margin-bottom: 0px;">
                 {% csrf_token %}
-                <div class="input-form">
+                <div class="input-form input-form-google-sign-up-in">
                     <a class="sign-in-google input-text" href="{% provider_login_url 'google' %}">
                         <div class="">Sign in with Google</div>
                     </a>
@@ -35,20 +35,24 @@
                  </div>
 
                  <p class="second-paragraph same-color-of-paragraphs">or</p>
-                <input name="username" type="email" class="email-input input-text font-fam" placeholder="Email"></input>
+                <div class="sign-in-email-input-div" style="margin-bottom: 20px;">
+                    <input id="email-sign-in" name="username" type="" class="email-input input-text font-fam sign-in-mutual-input" placeholder="Email"></input>
+                </div>
+                <div class="input-main-form-div">
                 <div class="input-form">
-                    <input name="password" type="password" id="password" class="input-text password-input font-fam" placeholder="Password"></input>
+                    <input name="password" type="password" id="password" class="input-text password-input font-fam sign-in-mutual-input" placeholder="Password"></input>
                     <i title="Show Password" class="bi bi-eye-slash" id="togglePassword"></i>
                 </div>
+              </div>
                 {% if form.errors %}
-                    <p class="first-paragraph " style="margin:0;padding-bottom:10px;color:red">Your email or password is incorrect</p>
+                    <p class="first-paragraph sign-in-form-error" style="margin:0; margin-top: -10px; font-size: 14px; padding-bottom:10px;color:red">Your email or password is incorrect</p>
                 {% endif %}
                
 
                 <p class="first-paragraph same-color-of-paragraphs"><a class="password-link" href="{% url 'password_reset'%}">Forgot
                         password?</a></p>
                 <div class="sign-in-input">
-                    <input name="submit" type="submit" class="sign-in-submit-input font-fam" value="Sign in">
+                    <input id="enable-disable-sign-in-input" name="submit" type="submit" class="sign-in-submit-input font-fam" value="Sign in">
                 </div>
             </form>
 
@@ -67,3 +71,182 @@
 
 <script src="{% static 'js/password_icon.js'%}"></script>
 
+
+<script>
+const inputFieldsSignIn = Array.from(document.querySelectorAll('.sign-in-mutual-input'));
+const ButtonSignIn = document.getElementById('enable-disable-sign-in-input');
+var emailAddressInput = document.getElementById('email-sign-in');
+var SignPassword = document.getElementById('password');
+const sign_in_form_error = document.querySelector(".sign-in-form-error");
+
+var SignInmyDisableClickFunction = function() {
+  inputFieldsSignIn.forEach(input => {
+    const errorDivId = input.id + '-error-message';
+    let errorDiv = document.getElementById(errorDivId);
+
+    if (input.value.trim() === '') {
+      if (!errorDiv) {
+        errorDiv = document.createElement('div');
+        errorDiv.id = errorDivId;
+        errorDiv.classList.add('error-message');
+        errorDiv.style.color = "red";
+        errorDiv.style.fontSize = "14px";
+        errorDiv.style.marginTop = "4px";
+        if (input.id !== 'password') {
+        input.parentNode.insertBefore(errorDiv, input.nextSibling);
+        }
+        else {
+          input.parentNode.parentNode.insertBefore(errorDiv, input.parentNode.nextSibling)
+        }
+      } else {
+        input.style.border = "0.5px solid red";
+        input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+        errorDiv.textContent = 'This field is required';
+
+      }
+    } else {
+      
+      if (input.id === 'email-sign-in') {
+        const emailValue_second = input.value.trim();
+        const isEmailValid_second = /^[^\s@]+(\.[^\s@]+)*@[^\s@]+\.[^\s@]+$/.test(emailValue_second);
+
+        if (!isEmailValid_second) {
+          input.style.border = "0.5px solid red";
+          input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+          errorDiv.textContent = 'This email is invalid';
+        } else {
+          errorDiv.style.marginTop = "0px";
+        }
+      }
+      
+    }
+
+    input.addEventListener('focus', function() {
+      const errorDivId = input.id + '-error-message';
+      let errorDiv = document.getElementById(errorDivId);
+      input.style.border = "1px solid #1877f2";
+      input.style.boxShadow = "0 0 5px rgba(0, 0, 0, 0.1)";
+      errorDiv.textContent = '';
+      sign_in_form_error.style.display = "none";
+    });
+
+    input.addEventListener('blur', function() {
+      const errorDivId = input.id + '-error-message';
+      let errorDiv = document.getElementById(errorDivId);
+      
+      if (!errorDiv) {
+        errorDiv = document.createElement('div');
+        errorDiv.id = errorDivId;
+        errorDiv.classList.add('error-message');
+        errorDiv.style.color = "red";
+        errorDiv.style.fontSize = "14px";
+        errorDiv.style.marginTop = "4px";
+        input.parentNode.insertBefore(errorDiv, input.nextSibling);
+        input.style.border = "0.5px solid red";
+        input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+        errorDiv.textContent = 'This field is required';
+        sign_in_form_error.style.display = "none";
+    }
+      else {
+        input.style.border = "0.5px solid red";
+        input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+        errorDiv.textContent = 'This field is required';
+      }
+
+      if (input.id !== "email-sign-in") {
+        if (input.value.trim() === "") {
+
+        }
+        else {
+          if (input.id !== "phone-input") {
+          input.style.border = "";
+          input.style.boxShadow = "";
+          errorDiv.textContent = '';
+          errorDiv.style.marginTop = "0px";
+          }
+          else {
+              if (input.value.length < 12) {
+                input.style.border = "0.5px solid red";
+                input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+                errorDiv.textContent = 'This field is incorrect';
+              }
+              else {
+                input.style.border = "";
+                input.style.boxShadow = "";
+                errorDiv.textContent = '';
+                errorDiv.style.marginTop = "0px";
+              }
+          }
+        }
+      } else {
+        const emailValue = input.value.trim();
+        const isEmailValid = /^[^\s@]+(\.[^\s@]+)*@[^\s@]+\.[^\s@]+$/.test(emailValue);
+        if (!isEmailValid) {
+          if (input.value.trim() !== "") {
+            input.style.border = "0.5px solid red";
+            input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+            errorDiv.textContent = 'This email is invalid';
+            sign_in_form_error.style.display = "none";
+          } else {
+            input.style.border = "0.5px solid red";
+            input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+            errorDiv.textContent = 'This field is required';
+            sign_in_form_error.style.display = "none";
+          }
+        } else {
+          input.style.border = "";
+          input.style.boxShadow = "";
+          errorDiv.textContent = '';
+        }
+      }
+    });
+
+
+
+    input.addEventListener('input', function() {
+    });
+  });
+};
+
+SignInmyDisableClickFunction();
+
+function checkInputs() {
+  const emailInput = document.getElementById('sign-in-email');
+  const emailValue = emailInput.value.trim();
+  const isEmailValid = /^[^\s@]+(\.[^\s@]+)*@[^\s@]+\.[^\s@]+$/.test(emailValue);
+  const allInputsFilled = inputFieldsSignIn.every(input => input.value.trim() !== '');
+  ButtonSignIn.disabled = !allInputsFilled || !isEmailValid;
+  
+  
+  if (ButtonSignIn.disabled === false) {
+    // isValidEmail(email);
+    ButtonSignIn.classList.add("second-next-button");
+    ButtonSignIn.style.cursor = "pointer";
+    ButtonSignIn.style.pointerEvents = "auto";
+
+  }
+  else {
+    ButtonSignIn.addEventListener("click", SignInmyDisableClickFunction);
+    ButtonSignIn.classList.remove("second-next-button");
+
+  }
+}
+window.onload = checkInputs;
+inputFieldsSignIn.forEach(input => input.addEventListener('input', checkInputs));
+
+document.getElementById('signInForm').addEventListener('submit', function(event) {
+  const emailInput = document.getElementById('email-sign-in');
+  const passwordInput = document.getElementById('password');
+  const emailValue = emailInput.value.trim();
+  const passwordValue = passwordInput.value.trim();
+  const isEmailValid = /^[^\s@]+(\.[^\s@]+)*@[^\s@]+\.[^\s@]+$/.test(emailValue);
+
+  if (!isEmailValid || passwordValue === '') {
+    event.preventDefault(); // Prevent form submission
+    SignInmyDisableClickFunction();
+    sign_in_form_error.style.display = "none";
+    // Add any additional error display logic here
+  }
+  // else, the form will submit normally
+});
+</script>

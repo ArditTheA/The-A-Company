@@ -102,7 +102,11 @@ body {
     font-family: 'Spline Sans', sans-serif;
 }
 
-.name-input, .surname-input, .email-input {
+.name-input, .surname-input {
+    margin-bottom: 20px;
+}
+
+.sign-in-email-input-div {
     margin-bottom: 20px;
 }
 

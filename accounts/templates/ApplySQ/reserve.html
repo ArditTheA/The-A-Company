@@ -37,14 +37,17 @@
 
         <div class="contact-information-title">Contact Information</div>
         <div class="inputs-div contact-information-margin-bottom first-and-last-name" style="display: flex;">
+            <div class="parent-div-first-last-name parent-div-first-name" style="">
             <input style="" name="first_name" placeholder="First Name" {% if user.first_name %}value="{{user.first_name}}"{% endif%} id="id_first_name" class="apply-first-name apply-name-surname all-inputs mutual-input"></input>
-
-
+            </div>
+            <div class="parent-div-first-last-name parent-div-last-name" style="width: 100%;">
             <input placeholder="Last Name" name="last_name" id="id_last_name" class="apply-last-name apply-name-surname all-inputs mutual-input" {% if user.last_name %}value="{{ user.last_name }}"{% endif %}>
-
+            </div>
         </div>
         <div class="inputs-div second-inputs-div">
-            <input type="email" name="email" id="id_email" placeholder="Email" value="{{user.email}}" class="all-inputs mutual-input contact-information-mutual-stats contact-information-margin-bottom" required>
+            <div class="input-container">
+            <input type="email" name="email" id="id_email" placeholder="Email" value="{{user.email}}" class="all-inputs mutual-input contact-information-mutual-stats" required>
+            </div>
             <!-- <input placeholder="Date of Birth" class="all-inputs contact-information-mutual-stats contact-information-margin-bottom mutual-input date-of-birth-input" style=""></input> -->
 <!--            <input type="tel" placeholder="Phone Number" name="phone_number" {% if user.phone_number %} value="{{user.phone_number}}" {% endif %} pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="all-inputs2 contact-information-mutual-stats contact-information-margin-bottom mutual-input" required>-->
 
@@ -88,24 +91,24 @@
 
             <div class="screening-question-only-under-form">
                 <div class="selects-div">
-            {% for i in question %}
+                    {% for i in question %}
                 
-                {% if i.question_type == "Numeric" %}
-                                    <div class="third-form-question">{{i.promp}}</div>
-                            <input type="number" placeholder="Write a Number" name="{{i.id}}" value="" id="screening-question-select-options" class="custom-select" required>
-
-                {%else %}
-                <div class="third-form-question">{{i.promp}}</div>
-                    
-                    <select title="{{i.promp}}" name="{{i.id}}" id="screening-question-select-options" style="" class="custom-select" >
-                        <option disabled selected style="display: none;" value="">Select option</option>
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
-                  </select>
-                {% endif %}
-            
-            {% endfor %}
-        </div>
+                    {% if i.question_type == "Numeric" %}
+                        <div class="third-form-question">{{ i.promp }}</div>
+                        <input type="number" placeholder="Write a Number" name="{{ i.id }}" value="" class="custom-select screening-question-select-options inputs-selects-mutual" required>
+                
+                    {% else %}
+                        <div class="third-form-question">{{ i.promp }}</div>
+                                    
+                        <select title="{{ i.promp }}" name="{{ i.id }}" id="select-{{ i.id }}" class="custom-select screening-question-select-options inputs-selects-mutual">
+                            <option disabled selected style="display: none;" value="">Select option</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    {% endif %}
+                            
+                {% endfor %}
+                        </div>
 
 
           <div class="under-select-university-student-status" style="margin-top: 5px; color: #1877F2; display: none; position: absolute;">You must be an active university student</div>

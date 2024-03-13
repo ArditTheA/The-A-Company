@@ -66,6 +66,11 @@ body {
     color: #9E9E9E;
 }
 
+.first-name-form-div {
+    margin-right: 20px;
+    width: 100%;
+}
+
 #password:focus {
     outline: none;
 }
@@ -74,16 +79,28 @@ body {
     color: #9E9E9E;
 }
 
-.name-surname-width {
+/* .name-surname-width {
     width: 48%;
-}
+} */
 
 .surname-input {
-    float: right;
     font-family: 'Spline Sans', sans-serif;
 }
 
-.name-input, .surname-input, .email-input {
+/* .name-input, .surname-input, .email-input {
+    margin-bottom: 20px;
+} */
+
+.name-input {
+    margin-right: 20px;
+}
+
+.create-account-first-name-surname {
+    display: flex; 
+    width: 100%; 
+}
+
+.create-account-inputs-divs {
     margin-bottom: 20px;
 }
 
@@ -140,6 +157,13 @@ body {
     flex-direction: row-reverse;
     align-items: center;
     position: relative;
+}
+
+.input-main-form-div {
+    margin-bottom: 20px;
+}
+
+.input-form-google-sign-up-in {
     margin-bottom: 20px;
 }
 
@@ -160,6 +184,7 @@ body {
     color: #FF0000;
 
 }
+
 
 @media screen and (max-width: 1024px) and (min-width: 481px) {
 
@@ -250,6 +275,9 @@ body {
         padding: 10px;
     }
 
+    .create-account-first-name-surname {
+        display: block;
+    }
     .create-account-container {
         margin-top: 0px;
     }
@@ -260,6 +288,10 @@ body {
     #togglePassword {
         position: absolute;
         right: 15px;
+    }
+
+    .first-name-form-div {
+        margin-bottom: 20px;
     }
 
     .create-account-container {
