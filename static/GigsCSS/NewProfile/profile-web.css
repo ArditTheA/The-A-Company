@@ -13,7 +13,7 @@
     width: 100%;
     box-sizing: border-box;
     color: #858585;
-    margin-bottom:20px;
+    /* margin-bottom:20px; */
 }
 select {
     /* Remove default arrow icon */
@@ -261,7 +261,7 @@ font-size: 16px;
 #id_language, #id_level {
     background-color: transparent; /* Make the background transparent */
     border: 1px solid #D4D5D6;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
 }
   
 .add-education-scroll::-webkit-scrollbar {
@@ -673,9 +673,9 @@ body {
     color: #858585;
 }
 
-.forms-inputs-placeholder input[type="text"] {
+/* .forms-inputs-placeholder input[type="text"] {
     margin-bottom: 20px;
-}
+} */
 
 .forms-inputs-placeholder input[type="date"] {
     margin-bottom: 20px;
@@ -766,6 +766,7 @@ cursor: pointer;
 .start-and-end-date-main-div {
     display: flex; 
     justify-content: space-between;
+    margin-bottom: 20px;
 }
 .edit-profile-form {
     width: 100%;
@@ -799,7 +800,7 @@ input::placeholder {
 }
 
 .save-button {
-    padding-top: 10px; /* 10px + 20px (margin-bottom of city input) = 30px */
+    padding-top: 20px; /* 10px + 20px (margin-bottom of city input) = 30px */
 }
 .edit-profile-cover-photo-title {
     text-align: left;
@@ -861,12 +862,6 @@ input::placeholder {
 
 .save-submit-input:hover {
     filter: brightness(0.95);
-}
-
-.disabled-save-buttons {
-    background-color: #D4D5D6;
-    border: none;
-    cursor: not-allowed;
 }
 
 .disabled-save-buttons:hover {

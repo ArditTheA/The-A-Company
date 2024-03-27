@@ -49,68 +49,439 @@ const ExperienceSelects = Array.from(document.querySelectorAll(".experience-sele
 const EducationSelects = Array.from(document.querySelectorAll(".education-selects"));
 const LanguagesSelects = Array.from(document.querySelectorAll(".languages-selects"));
 const EditPorfileSelects = Array.from(document.querySelectorAll(".edit-profile-selects"));
-const ExperienceSaveSubmitInput = document.getElementById('addUserExp') 
+const ExperienceSaveSubmitInput = document.getElementById('addUserExp');
+const exp_id_end_date = document.getElementById('id_end_dates');
+const EditProfilephoneNumber = document.getElementById("id_phone_number");
 const ExperienceSaveSubmitInputEdit = document.getElementById('editUserExp');
 const EducationSaveSubmitInput = document.getElementById('addUserEdu') ;
 const EducationSaveSubmitInputEdit =  document.getElementById('editUserEdu');
 const LanguagesSaveSubmitInput = document.getElementById('AddUserLang') || document.getElementById('EditUserLang');
 const EditProfileSaveSubmitInput = document.getElementById('editProfileSave');
-
-
-
+const endDate = document.getElementById('id_end_date');
+const check = document.getElementById('experienceCheck').checked;
+const label_e = document.querySelectorAll('.label-e');
+const allFieldsAndSelects = [
+    ...ExperienceinputFields, 
+    ...EducationinputFields, 
+    ...EditProfileinputFields, 
+    ...ExperienceSelects, 
+    ...EducationSelects,
+    ...LanguagesSelects, 
+    ...EditPorfileSelects
+];
 document.getElementById('editUserExp').disabled = false;
 document.getElementById("editUserExp").classList.add("save-button-enabled");
 document.getElementById('editUserEdu').disabled = false;
 document.getElementById('editUserEdu').classList.add("save-button-enabled");
 document.getElementById('EditUserLang').disabled = false;
 document.getElementById('EditUserLang').classList.add("save-button-enabled");
+var myDisableClickFunction = function() {
+  console.log("MyDisableClickFunction");
+  allFieldsAndSelects.forEach(input => {
+      const errorDivId = input.id + '-error-message';
+      let errorDiv = document.getElementById(errorDivId);
+      if (input.value.trim() === '' ) {
+        if (!errorDiv) {
+          errorDiv = document.createElement('div');
+          errorDiv.id = errorDivId;
+          errorDiv.classList.add('error-message');
+          errorDiv.style.color = "red";
+          errorDiv.style.fontSize = "14px";
+          errorDiv.style.marginTop = "0px";
+          input.parentNode.insertBefore(errorDiv, input.nextSibling);
+        } else {
+          input.style.border = "0.5px solid red";
+          input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+          errorDiv.textContent = 'This field is required';
+          errorDiv.style.marginTop = "4px";
+  
+        }
+      }
+      
+      else {
+
+        if (input.id === 'id_email') {
+          const emailValue_second = input.value.trim();
+          const isEmailValid_second = /^[^\s@]+(\.[^\s@]+)*@[^\s@]+\.[^\s@]+$/.test(emailValue_second);
+  
+          if (!isEmailValid_second) {
+            input.style.border = "0.5px solid red";
+            input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+            errorDiv.textContent = 'This email is invalid';
+          } else {
+          }
+        }
+        if (input.id === "id_phone_number") {
+        if (input.value.length < 12) {
+          input.style.border = "0.5px solid red";
+          input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+          errorDiv.textContent = 'This field is incorrect';
+          errorDiv.style.marginTop = "4px";
+        }
+    }
+        
+      }
+
+      if (document.getElementById('experienceCheck').checked) {
+        if (input.id === "id_end_date") {
+          input.style.border = "";
+          input.style.boxShadow = "";
+          errorDiv.textContent = '';
+          errorDiv.style.marginTop = "0px";
+        }
+      }
+      if (document.getElementById('educationCheck').checked) {
+        if (input.id === "id_end_year") {
+          input.style.border = "";
+          input.style.boxShadow = "";
+          errorDiv.textContent = '';
+          errorDiv.style.marginTop = "0px";
+        }
+      }
+
+  
+  
+      input.addEventListener('focus', function() {
+        const errorDivId = input.id + '-error-message';
+        let errorDiv = document.getElementById(errorDivId);
+        input.style.border = "1px solid #1877f2";
+        input.style.boxShadow = "0 0 5px rgba(0, 0, 0, 0.1)";
+        errorDiv.textContent = '';
+        errorDiv.style.marginTop = "0px";
+      });
+
+      if (input.id === "id_logo") {
+        input.addEventListener('input', function() {
+          const errorDivId = input.id + '-error-message';
+          let errorDiv = document.getElementById(errorDivId);
+          input.style.border = "1px solid #1877f2";
+          input.style.boxShadow = "0 0 5px rgba(0, 0, 0, 0.1)";
+          errorDiv.textContent = '';
+          errorDiv.style.marginTop = "0px";
+      })
+    }
+    let checkboxFocused = false;
+
+// Event listener for mousedown on the checkbox
+label_e.forEach(function(label) {
+  label.addEventListener('mousedown', function() {
+    checkboxFocused = true;
+});
+});
+// Event listener for mouseup on the checkbox
+label_e.forEach(function(label) {
+  label.addEventListener('mouseup', function() {
+    checkboxFocused = false;
+});
+});
+  
+      input.addEventListener('blur', function() {
+        if (!checkboxFocused) {
+        const errorDivId = input.id + '-error-message';
+        let errorDiv = document.getElementById(errorDivId);
+        
+        if (!errorDiv) {
+          errorDiv = document.createElement('div');
+          errorDiv.id = errorDivId;
+          errorDiv.classList.add('error-message');
+          errorDiv.style.color = "red";
+          errorDiv.style.fontSize = "14px";
+          input.parentNode.insertBefore(errorDiv, input.nextSibling);
+          input.style.border = "0.5px solid red";
+          input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+          errorDiv.textContent = 'This field is required';
+          errorDiv.style.marginTop = "0px";
+      }
+        else {
+          input.style.border = "0.5px solid red";
+          input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+          errorDiv.textContent = 'This field is required';
+        }
+  
+        if (input.id !== "id_start_date" && input.id !== "id_end_date" && input.id !== "id_start_year" && input.id !== "id_end_year") {
+          if (input.value.trim() === "") {
+              errorDiv.style.marginTop = "4px";
+  
+          }
+          else {
+            if (input.id !== "id_phone_number") {
+          input.style.border = "";
+          input.style.boxShadow = "";
+          errorDiv.textContent = '';
+          errorDiv.style.marginTop = "0px";
+          }
+          else {
+              if (input.value.length < 12) {
+                input.style.border = "0.5px solid red";
+                input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+                errorDiv.textContent = 'This field is incorrect';
+                errorDiv.style.marginTop = "4px";
+              }
+              else {
+                input.style.border = "";
+                input.style.boxShadow = "";
+                errorDiv.textContent = '';
+              }
+          }
+        }
+       }
+        else {
+          const startDateValue = document.getElementById('id_start_date').value.trim();
+          const endDateValue = document.getElementById('id_end_date').value.trim();
+          const YearValue = document.getElementById('id_start_year').value.trim();
+          const YearEndValue = document.getElementById('id_end_year').value.trim();
+          const isStartDateValid = /^\d{2}\/\d{2}\/\d{4}$/.test(startDateValue);
+          const isEndDateValid = /^\d{2}\/\d{2}\/\d{4}$/.test(endDateValue);
+          const YearValid = /^\d{2}\/\d{2}\/\d{4}$/.test(YearValue);
+          const YearEndValid = /^\d{2}\/\d{2}\/\d{4}$/.test(YearEndValue);
+          if (input.id === "id_start_date") {
+            if (!isStartDateValid) {
+              errorDiv.style.marginTop = "4px";
+            if (input.value.trim() !== "") {
+              input.style.border = "0.5px solid red";
+              input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+              errorDiv.textContent = 'This field is incorrect';
+            } else {
+              input.style.border = "0.5px solid red";
+              input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+              errorDiv.textContent = 'This field is required';
+            }
+          }
+          else {
+            input.style.border = "";
+            input.style.boxShadow = "";
+            errorDiv.textContent = '';
+          }
+
+          }
+
+          else if (input.id === "id_end_date") {
+            if (!isEndDateValid) {
+              errorDiv.style.marginTop = "4px";
+            if (input.value.trim() !== "") {
+              input.style.border = "0.5px solid red";
+              input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+              errorDiv.textContent = 'This field is incorrect';
+            } else {
+              input.style.border = "0.5px solid red";
+              input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+              errorDiv.textContent = 'This field is required';
+            }
+          }
+          else {
+            input.style.border = "";
+            input.style.boxShadow = "";
+            errorDiv.textContent = '';
+          }
+
+          }
+
+          else if (input.id === "id_start_year") {
+            if (!YearValid) {
+              errorDiv.style.marginTop = "4px";
+
+            if (input.value.trim() !== "") {
+              input.style.border = "0.5px solid red";
+              input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+              errorDiv.textContent = 'This field is incorrect';
+            } else {
+              input.style.border = "0.5px solid red";
+              input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+              errorDiv.textContent = 'This field is required';
+            }
+          }
+          else {
+            input.style.border = "";
+            input.style.boxShadow = "";
+            errorDiv.textContent = '';
+          }
+
+          }
+          else if (input.id === "id_end_year") {
+            if (!YearEndValid) {
+              errorDiv.style.marginTop = "4px";
+            if (input.value.trim() !== "") {
+              input.style.border = "0.5px solid red";
+              input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+              errorDiv.textContent = 'This field is incorrect';
+            } else {
+              input.style.border = "0.5px solid red";
+              input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+              errorDiv.textContent = 'This field is required';
+            }
+          }
+          else {
+            input.style.border = "";
+            input.style.boxShadow = "";
+            errorDiv.textContent = '';
+          }
+
+          }
+          
+        }
+      }
+      });
+  
+      input.addEventListener('input', function() {
+        if (input.id !== "id_language") {
+        // Update the value with the first letter uppercase
+        input.value = input.value.charAt(0).toUpperCase() + input.value.slice(1);
+        }
+    });
+    
+      document.getElementById('experienceCheck').addEventListener('change', function(event) {
+      
+    // Get the end date input and its associated error div
+    const endDateInput = document.getElementById('id_end_date');
+    const errorDivId = endDateInput.id + '-error-message';
+    const errorDiv = document.getElementById(errorDivId);
+
+    // Check if the checkbox is checked
+    if (this.checked) {
+        // Apply the desired styles and clear any error message
+        endDateInput.style.border = "";
+        endDateInput.style.boxShadow = "";
+        if (errorDiv) {
+            errorDiv.textContent = '';
+        }
+    } else {
+        if (endDateInput.value.trim() === '') {
+        }
+        else {
+        }
+        // Optional: Reset to default styles when checkbox is unchecked
+        // endDateInput.style.border = "original style here";
+        // endDateInput.style.boxShadow = "original style here";
+        // Logic to set error message if needed
+    }
+});
+
+document.getElementById('educationCheck').addEventListener('change', function(event) {
+      
+      // Get the end date input and its associated error div
+      const endYearInput = document.getElementById('id_end_year');
+      const errorDivId = endYearInput.id + '-error-message';
+      const errorDiv = document.getElementById(errorDivId); 
+  
+      // Check if the checkbox is checked
+      if (this.checked) {
+          // Apply the desired styles and clear any error message
+          endYearInput.style.border = "";
+          endYearInput.style.boxShadow = "";
+          if (errorDiv) {
+              errorDiv.textContent = '';
+          }
+      } else {
+          if (endYearInput.value.trim() === '') {
+          }
+          else {
+          }
+          // Optional: Reset to default styles when checkbox is unchecked
+          // endDateInput.style.border = "original style here";
+          // endDateInput.style.boxShadow = "original style here";
+          // Logic to set error message if needed
+      }
+  });  
+
+    });
+  };
+  
+myDisableClickFunction();
 
 function ExperienceCheckInputs() {
-  const allInputsFilled = ExperienceinputFields.every(input => input.value.trim() !== '');
-  const allSelectsFilled = ExperienceSelects.every(select => select.value.trim() !== '');
+    const allInputsFilled = ExperienceinputFields.every(input => {
+        // Skip checking the end date if the checkbox is checked
+        if (input.id === 'id_end_date' && document.getElementById('experienceCheck').checked) {
+            return true;
+        } else {
+            return input.value.trim() !== '';
+        }
+    });
+    const allSelectsFilled = ExperienceSelects.every(select => select.value.trim() !== '');
 
-  const startExperienceDateValue = document.getElementById('id_start_date').value.trim();
-  const endExperienceDateValue = document.getElementById('id_end_date').value.trim();
-  const isCheckboxChecked = document.getElementById('experienceCheck').checked;
+    const startExperienceDateValue = document.getElementById('id_start_date').value.trim();
+    const isExperienceStartDateValid = /^\d{2}\/\d{2}\/\d{4}$/.test(startExperienceDateValue);
 
-  const isExperienceStartDateValid = /^\d{2}\/\d{2}\/\d{4}$/.test(startExperienceDateValue);
-  const isExperienceEndDateValid = /^\d{2}\/\d{2}\/\d{4}$/.test(endExperienceDateValue);
+    const isCheckboxChecked = document.getElementById('experienceCheck').checked;
 
-  if (isCheckboxChecked) {
-    // If checkbox is checked, disable end date validation
-    ExperienceSaveSubmitInput.disabled = !allInputsFilled || !allSelectsFilled || !isExperienceStartDateValid;
-    ExperienceSaveSubmitInputEdit.disabled = !allInputsFilled || !allSelectsFilled || !isExperienceStartDateValid;
-    
-  } else {
-    // If checkbox is not checked, include end date validation
-    ExperienceSaveSubmitInput.disabled = !allInputsFilled || !allSelectsFilled || !isExperienceStartDateValid || !isExperienceEndDateValid;
-    ExperienceSaveSubmitInputEdit.disabled = !allInputsFilled || !allSelectsFilled || !isExperienceStartDateValid || !isExperienceEndDateValid;
-    
-
-    // Check if end date is fully filled, enable and add class
-    if (isExperienceEndDateValid) {
-      ExperienceSaveSubmitInput.disabled = !allInputsFilled || !allSelectsFilled || !isExperienceStartDateValid;
-      ExperienceSaveSubmitInputEdit.disabled = !allInputsFilled || !allSelectsFilled || !isExperienceStartDateValid;
-
-      ExperienceSaveSubmitInput.classList.add("save-button-enabled");
-      ExperienceSaveSubmitInputEdit.classList.add("save-button-enabled");
+    // Enable save buttons based on whether all fields are filled and whether the checkbox is checked
+    if (isCheckboxChecked) {
+        // Check all fields except the end date
+        ExperienceSaveSubmitInput.disabled = !allInputsFilled || !allSelectsFilled || !isExperienceStartDateValid;
+        ExperienceSaveSubmitInputEdit.disabled = !allInputsFilled || !allSelectsFilled || !isExperienceStartDateValid;
     } else {
-      ExperienceSaveSubmitInput.classList.remove("save-button-enabled");
-      ExperienceSaveSubmitInputEdit.classList.remove("save-button-enabled");
+        // Check all fields including the end date
+        const endExperienceDateValue = document.getElementById('id_end_date').value.trim();
+        const isExperienceEndDateValid = /^\d{2}\/\d{2}\/\d{4}$/.test(endExperienceDateValue);
+        ExperienceSaveSubmitInput.disabled = !allInputsFilled || !allSelectsFilled || !isExperienceStartDateValid || !isExperienceEndDateValid;
+        ExperienceSaveSubmitInputEdit.disabled = !allInputsFilled || !allSelectsFilled || !isExperienceStartDateValid || !isExperienceEndDateValid;
+    }
+}
+
+function AddUserExperience(event) {
+    ExperienceCheckInputs();// Check the form's current state
+    myDisableClickFunction();
+    if (ExperienceSaveSubmitInput.disabled) {
+      
+        // Prevent default if the button is disabled
+
+        // Optionally, provide user feedback here
+    } else {
+        // Proceed with AJAX call if the button is not disabled
+        $.ajax({
+            type: 'POST',
+            url: '/add_user_experience/', // Update with your actual URL
+            data: {
+                id_title: $('#id_title').val(),
+                id_company: $('#id_company').val(),
+                id_Country: $('#id_Country').val(),
+                id_city_usExp: $('#id_city_usExp').val(),
+                id_start_date: $('#id_start_date').val(),
+                id_end_date: $('#id_end_date').val(),
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+            },
+            success: function(response) {
+                console.log(response.message);
+                window.location = "/profile/"
+            },
+            error: function(response) {
+                console.log(response.responseJSON.error);
+            }
+        });
+    }
+}
+
+function editUserExperience() {
+  ExperienceCheckInputs();// Check the form's current state
+    myDisableClickFunction();
+    if (ExperienceSaveSubmitInputEdit.disabled) {
+    }
+      else {
+        $.ajax({
+            type: 'POST',
+            url: '/edit_user_experience/',  // Update with your actual URL
+            data: {
+                id_exp: $("#id-experience").val(),
+                id_title: $('#id_title').val(),
+                id_company: $('#id_company').val(),
+                id_Country: $('#id_Country').val(),
+                id_city_usExp: $('#id_city_usExp').val(),
+                id_start_date: $('#id_start_date').val(),
+                id_end_date: $('#id_end_date').val(),
+                
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+            },
+            success: function (response){
+                console.log(response.message);
+                window.location = "/profile/"
+            },
+            error: function (response){
+                console.log(response.responseJSON.error)
+            }
+        });
     }
   }
 
-  if (ExperienceSaveSubmitInput.disabled === false) {
-    ExperienceSaveSubmitInput.classList.add("save-button-enabled");
-  } else {
-    ExperienceSaveSubmitInput.classList.remove("save-button-enabled");
-  }
-  if (ExperienceSaveSubmitInputEdit.disabled === false) {
-    ExperienceSaveSubmitInputEdit.classList.add("save-button-enabled");
-  } else {
-    ExperienceSaveSubmitInputEdit.classList.remove("save-button-enabled");
-  }
-}
 
 window.onload = ExperienceCheckInputs;
 ExperienceinputFields.forEach(input => input.addEventListener('input', ExperienceCheckInputs));
@@ -120,7 +491,13 @@ document.getElementById('id_end_date').addEventListener('input', ExperienceCheck
 
 
 function EducationCheckInputs() {
-  const allInputsFilled = EducationinputFields.every(input => input.value.trim() !== '');
+  const allInputsFilled = EducationinputFields.every(input => {
+    if (input.id === "id_end_year" && document.getElementById('educationCheck').checked) {
+      return true;
+    } else {
+      return input.value.trim() !== '';
+    }
+  });
   const allSelectsFilled = EducationSelects.every(select => select.value.trim() !== '');
 
   const startEducationDateValue = document.getElementById('id_start_year').value.trim();
@@ -138,30 +515,84 @@ function EducationCheckInputs() {
     // If checkbox is not checked, include end date validation
     EducationSaveSubmitInput.disabled = !allInputsFilled || !allSelectsFilled || !isEducationStartDateValid || !isEducationEndDateValid;
     EducationSaveSubmitInputEdit.disabled = !allInputsFilled || !allSelectsFilled || !isEducationStartDateValid || !isEducationEndDateValid;
-
     // Check if end date is fully filled, enable and add class
-    if (isEducationEndDateValid) {
-      EducationSaveSubmitInput.disabled = !allInputsFilled || !allSelectsFilled || !isEducationStartDateValid;
-    EducationSaveSubmitInputEdit.disabled = !allInputsFilled || !allSelectsFilled || !isEducationStartDateValid;
-      EducationSaveSubmitInput.classList.add("save-button-enabled");
-      EducationSaveSubmitInputEdit.classList.add("save-button-enabled");
-    } else {
-      EducationSaveSubmitInput.classList.remove("save-button-enabled");
-      EducationSaveSubmitInputEdit.classList.remove("save-button-enabled");
-    }
   }
 
-  if (EducationSaveSubmitInput.disabled === false) {
-    EducationSaveSubmitInput.classList.add("save-button-enabled");
-  } else {
-    EducationSaveSubmitInput.classList.remove("save-button-enabled");
-  }
-  if (EducationSaveSubmitInputEdit.disabled === false) {
-    EducationSaveSubmitInputEdit.classList.add("save-button-enabled");
-  } else {
-    EducationSaveSubmitInputEdit.classList.remove("save-button-enabled");
-  }
 }
+
+function AddUserEducation(event) {
+    EducationCheckInputs();
+    myDisableClickFunction();
+
+    if (EducationSaveSubmitInput.disabled) {
+      
+    }
+    else {
+  
+    event.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '/add_user_education/',  // Update with your actual URL
+            data: {
+                id_university: $('#id_university').val(),
+                id_degree: $('#id_degree').val(),
+                id_country_e: $('#id_country_e').val(),
+                id_city_e: $('#id_city_e').val(),
+                id_field_of_study: $('#id_field_of_study').val(),
+                id_start_year: $('#id_start_year').val(),
+                id_end_year: $('#id_end_year').val(),
+                id_total_examples_passed: $('#id_total_examples_passed').val(),
+                id_GPA: $('#id_GPA').val(),
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+            },
+            success: function (response) {
+                console.log(response.message);
+                window.location = "/profile/"
+            },
+            error: function (response) {
+                console.log(response.responseJSON.error)
+            }
+        });
+      }
+    }
+
+    function EditUserEducation() {
+      EducationCheckInputs();
+      myDisableClickFunction();
+console.log("test123 in");
+if (EducationSaveSubmitInputEdit.disabled) {
+  
+}
+else {
+$.ajax({
+    type: 'POST',
+    url: '/edit_user_education/',  // Update with your actual URL
+    data: {
+        id_edu:$("#id_edu").val(),
+        id_university: $('#id_university').val(),
+        id_degree: $('#id_degree').val(),
+        id_country_e: $('#id_country_e').val(),
+        id_city_e: $('#id_city_e').val(),
+        id_field_of_study: $('#id_field_of_study').val(),
+        id_start_year: $('#id_start_year').val(),
+        id_end_year: $('#id_end_year').val(),
+        id_total_examples_passed: $('#id_total_examples_passed').val(),
+        id_GPA: $('#id_GPA').val(),
+        
+        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+    },
+    success: function (response) {
+        console.log(response.message);
+        window.location = "/profile/"
+    },
+    error: function (response) {
+        console.log(response.responseJSON.error)
+    }
+});
+}
+}
+
+
 
 window.onload = EducationCheckInputs;
 EducationinputFields.forEach(input => input.addEventListener('input', EducationCheckInputs));
@@ -174,13 +605,35 @@ document.getElementById('id_end_year').addEventListener('input', EducationCheckI
 
     LanguagesSaveSubmitInput.disabled = !allSelectsFilled;
 
-    if (LanguagesSaveSubmitInput.disabled === false) {
-        // isValidEmail(email);
-        LanguagesSaveSubmitInput.classList.add("save-button-enabled");
-    } else {
-        LanguagesSaveSubmitInput.classList.remove("save-button-enabled");
-    }
 }
+
+function AddUserLanguages(event){
+  LanguagesCheckInputs();
+  myDisableClickFunction();
+  if (LanguagesSaveSubmitInput.disabled) {
+
+  }
+  else {
+    event.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: '/add_user_languages/',
+                data: {
+                    id_language: $("#id_language").val(),
+                    id_level: $("#id_level").val(),
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+
+                },
+                success: function (response){
+                    console.log(response.message);
+                    window.location = "/profile/"
+                },
+                error: function (response){
+                    console.log(response.responseJSON.error)
+                }
+            })
+          }
+        }
 
 window.onload = LanguagesCheckInputs;
 
@@ -190,14 +643,42 @@ function EditProfileCheckInputs() {
     const allInputsFilled = EditProfileinputFields.every(input => input.value.trim() !== '');
     const allSelectsFilled = EditPorfileSelects.every(select => select.value.trim() !== '');
     
-    EditProfileSaveSubmitInput.disabled = !allInputsFilled || !allSelectsFilled;
-  
-    if (EditProfileSaveSubmitInput.disabled === false) {
-      EditProfileSaveSubmitInput.classList.add("save-button-enabled");
-    } else {
-      EditProfileSaveSubmitInput.classList.remove("save-button-enabled");
-    }
+    EditProfileSaveSubmitInput.disabled = !allInputsFilled || !allSelectsFilled || EditProfilephoneNumber.value.length < 12;
+
   }
+
+  function UpdateUserDetails(event){
+    EditProfileCheckInputs();
+    myDisableClickFunction();
+
+    if (EditProfileSaveSubmitInput.disabled) {
+
+    }
+    else {
+    event.preventDefault();// Prevent default form submission
+
+            $.ajax({
+                type: "POST",
+                url: '/edit_user_details/',  // Replace with your server endpoint
+                data: {
+                        id_first_name: $("#id_first_name").val(),
+                        id_last_name: $("#id_last_name").val(),
+                        id_country: $("#id_country").val(),
+                        id_city: $("#id_city").val(),
+                        id_phone_number: $("#id_phone_number").val(),
+                        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                },
+                success: function (response){
+                    window.location = "/profile/";
+                },
+                error: function (response){
+                    console.log(response.responseJSON.error)
+                }
+            });
+        }
+    }
+
+
 
   window.onload = EditProfileCheckInputs;
 
