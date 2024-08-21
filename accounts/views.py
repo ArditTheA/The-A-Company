@@ -144,6 +144,7 @@ def CalendlyAPI():
 
 
     else:
+        ardit
         print("Error occurred while fetching events.")
         print(response.text)
 
