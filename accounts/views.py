@@ -144,6 +144,7 @@ def CalendlyAPI():
 
 
     else:
+        ardit
         print("Error occurred while fetching events.")
         print(response.text)
 
@@ -1693,6 +1694,7 @@ def userJobPayment(request):
         # Try to fetch the existing UserJobPayment entry
         try:
             user_job_payment = UserJobPayment.objects.get(job_id=jobb_id, user_id=userr_id)
+            user_job_payment = UserJobPayment.objects.get(job_id=jobb_id, user_id=userr_id)
             # Update the existing entry
             user_job_payment.paymentAmount = paymentAmount
             user_job_payment.paymentLink = paymentLink
@@ -1703,6 +1705,7 @@ def userJobPayment(request):
             new_user_job_payment = UserJobPayment(job_id=jobb_id, user_id=userr_id, paymentAmount=paymentAmount, paymentLink=paymentLink)
             new_user_job_payment.save()
             return JsonResponse({'status': 'created'}, status=201)
+
 
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
