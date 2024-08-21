@@ -1794,6 +1794,9 @@ def CreateCheckoutSession(request):
         user_id = body_data['user_id']
         job_id = body_data['job_id']
         amount = "40000"
+        amount
+
+        
         allPaymentsDone = False
         firstPaymentDoneandSecondFalse = False
         application = Application.objects.get(job_id_id=job_id, user_id_id=user_id)
