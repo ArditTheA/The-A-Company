@@ -1693,6 +1693,7 @@ def userJobPayment(request):
         # Try to fetch the existing UserJobPayment entry
         try:
             user_job_payment = UserJobPayment.objects.get(job_id=jobb_id, user_id=userr_id)
+            user_job_payment = UserJobPayment.objects.get(job_id=jobb_id, user_id=userr_id)
             # Update the existing entry
             user_job_payment.paymentAmount = paymentAmount
             user_job_payment.paymentLink = paymentLink
