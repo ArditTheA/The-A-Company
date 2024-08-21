@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="{% static 'GigsCSS/create_account.css'%}">
     <link href='https://fonts.googleapis.com/css?family=Spline Sans' rel='stylesheet'>
 
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 
@@ -137,7 +136,6 @@ var CreateAccountnmyDisableClickFunction = function(event) {
         errorDiv.style.color = "red";
         errorDiv.style.fontSize = "14px";
         errorDiv.style.marginTop = "4px";
-        error_create_account.style.display = "none";
         if (input.id !== 'create_account_password') {
             input.parentNode.insertBefore(errorDiv, input.nextSibling);
         }
@@ -147,7 +145,7 @@ var CreateAccountnmyDisableClickFunction = function(event) {
       } else {
         input.style.border = "0.5px solid red";
         input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
-        errorDiv.textContent = 'This field is required'; 
+        errorDiv.textContent = 'This field is required';
       }
     } else {
       
@@ -159,6 +157,18 @@ var CreateAccountnmyDisableClickFunction = function(event) {
           input.style.border = "0.5px solid red";
           input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
           errorDiv.textContent = 'This email is invalid';
+          errorDiv.style.marginTop = "4px";
+        } else {
+        }
+      }
+      if (input.id === 'create_account_password') {
+        const passwordValue = createAccountPassword.value.trim();
+        const isPasswordValid = passwordValue.length >= 8;
+
+        if (!isPasswordValid) {
+          input.style.border = "0.5px solid red";
+          input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+          errorDiv.textContent = 'Please enter a password with at least 8 characters ';
           errorDiv.style.marginTop = "4px";
         } else {
         }
@@ -190,16 +200,37 @@ var CreateAccountnmyDisableClickFunction = function(event) {
         input.style.border = "0.5px solid red";
         input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
         errorDiv.textContent = 'This field is required';
+        error_create_account.style.display = "none";
     }
       else {
         input.style.border = "0.5px solid red";
         input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
         errorDiv.textContent = 'This field is required';
       }
-
+      if (input.id === 'create_account_password') {
+        const passwordValue = createAccountPassword.value.trim();
+        const isPasswordValid = passwordValue.length >= 8;
+      if (!isPasswordValid) {
+          if (input.value.trim() !== "") {
+            input.style.border = "0.5px solid red";
+            input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+            errorDiv.textContent = 'Please enter a password with at least 8 characters ';
+            error_create_account.style.display = "none";
+          } else {
+            input.style.border = "0.5px solid red";
+            input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+            errorDiv.textContent = 'This field is required';
+            error_create_account.style.display = "none";
+          }
+        } else {
+          input.style.border = "";
+          input.style.boxShadow = "";
+          errorDiv.textContent = '';
+        }
+      }
       if (input.id !== "email_create_account") {
         if (input.value.trim() === "") {
-
+          
         }
         else {
           input.style.border = "";
@@ -209,6 +240,8 @@ var CreateAccountnmyDisableClickFunction = function(event) {
       } else {
         const emailValue = input.value.trim();
         const isEmailValid = /^[^\s@]+(\.[^\s@]+)*@[^\s@]+\.[^\s@]+$/.test(emailValue);
+        const passwordValue = createAccountPassword.value.trim();
+        const isPasswordValid = passwordValue.length >= 8;
         if (!isEmailValid) {
           if (input.value.trim() !== "") {
             input.style.border = "0.5px solid red";
@@ -219,6 +252,7 @@ var CreateAccountnmyDisableClickFunction = function(event) {
             input.style.border = "0.5px solid red";
             input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
             errorDiv.textContent = 'This field is required';
+            error_create_account.style.display = "none";
           }
         } else {
           input.style.border = "";
@@ -246,7 +280,9 @@ function checkInputs() {
   const emailValue = emailInput.value.trim();
   const isEmailValid = /^[^\s@]+(\.[^\s@]+)*@[^\s@]+\.[^\s@]+$/.test(emailValue);
   const allInputsFilled = createAccuntInputsField.every(input => input.value.trim() !== '');
-  CreateAccountButton.disabled = !allInputsFilled || !isEmailValid;
+  const passwordValue = createAccountPassword.value.trim();
+  const isPasswordValid = passwordValue.length >= 8;
+  CreateAccountButton.disabled = !allInputsFilled || !isEmailValid || !isPasswordValid;
 
   if (CreateAccountButton.disabled === false) {
     var CreateAccountButton = document.getElementById('subButton');
@@ -272,10 +308,13 @@ const emailInput = document.getElementById('email_create_account');
 const emailValue = emailInput.value.trim();
 const isEmailValid = /^[^\s@]+(\.[^\s@]+)*@[^\s@]+\.[^\s@]+$/.test(emailValue);
 const allInputsFilled = createAccuntInputsField.every(input => input.value.trim() !== '');
+const passwordValue = createAccountPassword.value.trim();
+const isPasswordValid = passwordValue.length >= 8;
 
-if (!allInputsFilled || !isEmailValid) {
+if (!allInputsFilled || !isEmailValid || !isPasswordValid) {
 e.preventDefault(); // Prevent form submission
 CreateAccountnmyDisableClickFunction(); // Call the function here
+error_create_account.style.display = "none";
 // Add any additional error display logic here
 }
 // else, the form will submit normally

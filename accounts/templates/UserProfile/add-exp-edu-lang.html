@@ -12,7 +12,6 @@
     }
     .iti{
         width:100% !important;
-        margin-bottom: 20px;
     }
     .iti__selected-flag {
         padding: 0 5px 0 10px ;
@@ -43,42 +42,44 @@
 
 <!-- Edit profile -->
 <div class="edit-profile-bg">
-        <div class="container-edit-profile under-container-mutual-mutual-stats">
+    <div class="container-edit-profile under-container-mutual-mutual-stats">
 
-            <div class="edit-profile-title user-mutual-titles-pop-ups-stats">Edit Profile</div>
-            <form   class="sign-up-form edit-profile-form forms-inputs-placeholder" >
-                {% csrf_token %}
+        <div class="edit-profile-title user-mutual-titles-pop-ups-stats">Edit Profile</div>
+        <form   class="sign-up-form edit-profile-form forms-inputs-placeholder" >
+            {% csrf_token %}
 
-                 <div class="first-and-last-name-div" style="">
-                        <div class="edit-profile-first-name edit-profile-first-last">
-                            <input type="text"  name="first_name" class="name-input profile-all-inputs-option edit-profile-mutual-input " placeholder="First Name" maxlength="150" id="id_first_name">
-                        </div>
+             <div class="first-and-last-name-div profile-inputs-main-div-style" style="">
+                    <div class="edit-profile-first-name edit-profile-first-last">
+                        <input type="text"  name="first_name" class="name-input profile-all-inputs-option edit-profile-mutual-input " placeholder="First Name" maxlength="150" id="id_first_name">
+                    </div>
+                
+                    <div class="edit-profile-first-last">
+                        <input type="text" name="last_name" class="surname-input  profile-all-inputs-option edit-profile-mutual-input" placeholder="Last Name" maxlength="150" id="id_last_name">
+                    </div>
+             </div>
 
-                        <div class="edit-profile-first-last">
-                            <input type="text" name="last_name" class="surname-input  profile-all-inputs-option edit-profile-mutual-input" placeholder="Last Name" maxlength="150" id="id_last_name">
-                        </div>
-                 </div>
 
-
-                <div>
-                            <div class="autocomplete" style="width:100%;">
-                                <select name="country" id="id_country" class="profile-all-inputs-option edit-profile-selects" maxlength="255"></select>
+            <div>
+                        <div class="autocomplete" style="width:100%;">
+                            <div class="profile-inputs-main-div-style">
+                            <select name="country" id="id_country" class="profile-all-inputs-option edit-profile-selects" maxlength="255"></select>
                             </div>
                         </div>
-                        <div>
-                            <input type="text" name="city" class=" profile-all-inputs-option edit-profile-mutual-input" placeholder="City" maxlength="255" id="id_city" value="{% if user.city is not None %}{{ user.city }}{% endif %}">
-                        </div>
+                    </div>
+                    <div class="profile-inputs-main-div-style">
+                        <input type="text" name="city" class=" profile-all-inputs-option edit-profile-mutual-input" placeholder="City" maxlength="255" id="id_city" value="{% if user.city is not None %}{{ user.city }}{% endif %}">
+                    </div>
+                    <div style="">
+                    <input type="text"  name="phone_number" class="profile-all-inputs-option edit-profile-mutual-input" oninput="addPlusPrefix(this);" maxlength="255" id="id_phone_number" data-intl-tel-input-id="0" placeholder="+383">  
+                    </div>
+            <div class="save-button save-button-edit-profile-photo">
+                        <a name="back" title="Back to Profile" type="button" class="back-input font-fam back-save-buttons" value="Back">Back</a>
+                        <a title="Save Profile Data" id="editProfileSave" name="save" type="submit" class="save-submit-input font-fam back-save-buttons disabled-save-buttons" value="Save" onclick="UpdateUserDetails(event); ">Save</a>
+                    </div>
 
-                        <input type="text"  name="phone_number" class="profile-all-inputs-option edit-profile-mutual-input" oninput="addPlusPrefix(this);" maxlength="255" id="id_phone_number" data-intl-tel-input-id="0" placeholder="+383">                       
 
-                <div class="save-button save-button-edit-profile-photo">
-                            <a name="back" title="Back to Profile" type="button" class="back-input font-fam back-save-buttons" value="Back">Back</a>
-                            <a title="Save Profile Data" id="editProfileSave" name="save" type="submit" class="save-submit-input font-fam back-save-buttons disabled-save-buttons" value="Save" onclick="UpdateUserDetails(event); ">Save</a>
-                        </div>
-
-
-            </form>
-    </div>
+        </form>
+</div>
 </div>
 
 <!-- edit cover -->

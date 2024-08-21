@@ -9,6 +9,10 @@ from rangefilter.filters import DateRangeFilter, DateTimeRangeFilter, NumericRan
 #
 # for model_name, model in app.models.items():
 #     admin.site.register(model)
+admin.site.register(UserJobAppointments)
+admin.site.register(UserJobInterview)
+admin.site.register(Program)
+admin.site.register(UserJobPayment)
 from django.utils.translation import ngettext
 @admin.register(Country)
 class CountryUser(admin.ModelAdmin):

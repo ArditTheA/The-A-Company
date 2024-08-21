@@ -1,9 +1,36 @@
+.job-screnning-question {
+    width: 15px;
+    height: 15px;
+    float: right;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
 .duration-buttons {
     border: 1px solid #D4D5D6;
-    width: 120px;
+    width: 120px; 
     text-align: center;
     color: #858585;
     border-radius: 25px;
+}
+#id_country_j {
+    background-position: calc(100% - 10px);
+}
+select {
+    /* Remove default arrow icon */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    
+    /* Add a custom background and padding to show a custom icon or style */
+    background-image: url('../img/dropdown-icon.svg');
+    background-repeat: no-repeat;
+    background-position: calc(100% - 15px) center;
+    background-color: white;
+    height: 40px !important;
+}
+
+.mutual-inputs {
+    transition: border 0.8s ease;
 }
 
 .main-divs-color {
@@ -25,18 +52,15 @@
 }
 
 .interview-distance-between-div-img {
-    margin-left: 10px;
-}
-.mutual-inputs {
-    transition: border 0.8s ease;
+    margin-left: 5px;
 }
 
 .addedItemsContainer {
     width: 100% !important;
 }
 .third-additional-feature {
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 30px; 
+    padding-bottom: 30px; 
     font-size: 18px;
 }
 option {
@@ -52,10 +76,10 @@ option {
     margin-right: -60px;
 }
 .first-job-description-post-a-job-div {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    border-bottom: 40px;
-    margin-left: 30px;
+    padding-top: 20px; 
+    padding-bottom: 20px; 
+    border-bottom: 40px; 
+    margin-left: 30px; 
     color: #D4D5D6;
     pointer-events: none;
 }
@@ -63,28 +87,31 @@ option {
 .under-successfully-applied-form {
     width: 508px !important;
 }
-
+.inputs-main-div-style {
+    margin-bottom: 20px;
+    width: 100%;
+}
 
 .successfully-applied-content-div {
     padding: 30px;
 }
 
 .program-duration-form {
-    background-color: white;
-    margin: auto;
-    width: max-content;
+    background-color: white; 
+    margin: auto; 
+    width: max-content; 
     border-radius: 40px;
 }
 .under-program-duration-form {
-    background-color: white;
+    background-color: white; 
     border-width: 100%;
-    margin: auto;
-    width: max-content;
-    border-radius: 40px;
-    border-bottom-left-radius: 40px;
-    border-bottom-right-radius: 40px;
-    border-bottom: 1px solid #f0f0f0;
-    border-left: 1px solid #f0f0f0;
+    margin: auto; 
+    width: max-content; 
+    border-radius: 40px; 
+    border-bottom-left-radius: 40px; 
+    border-bottom-right-radius: 40px; 
+    border-bottom: 1px solid #f0f0f0; 
+    border-left: 1px solid #f0f0f0; 
     border-right: 1px solid #f0f0f0;
 }
 
@@ -93,41 +120,45 @@ option {
     flex-wrap: wrap; /* Allow wrapping to multiple rows if needed */
     justify-content: flex-start; /* Align items to the start of each row */
   }
-
+  
 .added-items-container {
     display: flex;
     flex-wrap: wrap;
 }
+.contact-information-mutual-stats {
+    width: 100%;
+}
 
 .choose-duration-buttons {
-    border-radius: 40px;
+    border-radius: 40px; 
     padding-top: 8px;
     padding-bottom: 8px;
 }
 .post-a-job-under-div {
-    border-bottom-left-radius: 40px;
-    border-bottom-right-radius: 40px;
-    border-bottom: 1px solid #f0f0f0;
-    border-left: 1px solid #f0f0f0;
+    border-bottom-left-radius: 40px; 
+    border-bottom-right-radius: 40px; 
+    border-bottom: 1px solid #f0f0f0; 
+    border-left: 1px solid #f0f0f0; 
     border-right: 1px solid #f0f0f0;
 }
 
 .reserve-form {
     border-radius: 40px;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 .contact-information-form {
     background-color: white;
-    margin: auto;
-    width: max-content;
+    margin: auto; 
+    width: max-content; 
     border-radius: 40px;
 }
 .under-c-i-f {
-    background-color: white;
-    border-width: 100%;
-    margin: auto;
-    width: max-content;
-    border-radius: 40px;
+    background-color: white; 
+    border-width: 100%; 
+    margin: auto; 
+    width: max-content; 
+    border-radius: 40px; 
     border-bottom-left-radius: 40px;
     border-bottom-right-radius: 40px;
     border-bottom: 1px solid #f0f0f0;
@@ -135,37 +166,37 @@ option {
     border-right: 1px solid #f0f0f0;
 }
 .contact-information-div {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    border-bottom: 40px;
-    margin-left: 30px;
+    padding-top: 20px; 
+    padding-bottom: 20px; 
+    border-bottom: 40px; 
+    margin-left: 30px; 
     color: #D4D5D6;
 }
 .first-screening-question-div {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    border-bottom: 40px;
-    margin-left: 30px;
+    padding-top: 20px; 
+    padding-bottom: 20px; 
+    border-bottom: 40px; 
+    margin-left: 30px; 
     color: #D4D5D6;
 }
 .first-payment-div {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    border-bottom: 40px;
-    margin-left: 30px;
+    padding-top: 20px; 
+    padding-bottom: 20px; 
+    border-bottom: 40px; 
+    margin-left: 30px; 
     color: #D4D5D6;
 }
 .choose-duration-title {
-    margin-top: 30px;
+    margin-top: 30px; 
     font-size: 16px;
 }
 .second-inputs-div {
-    display: flex;
+    display: flex; 
     flex-direction: column;
     width: 446px;
 }
 .duration-buttons-div, .duration-buttons-div-2 {
-    display: flex;
+    display: flex; 
     justify-content: space-between;
     margin-top: 20px;
 }
@@ -181,16 +212,16 @@ option {
     padding-bottom: 12px;
 }
 .contact-information-third-page {
-    color: black;
-    font-size: 18px;
-    padding-top: 30px;
+    color: black; 
+    font-size: 18px; 
+    padding-top: 30px; 
     padding-bottom: 15px;
 }
 .over-duration-buttons {
     padding-right: 40px;
 }
 .contact-information-title {
-    font-size: 18px;
+    font-size: 18px; 
     margin-bottom: 30px;
     margin-top: 30px;
 }
@@ -201,8 +232,8 @@ option {
     color: white;
 }
 .choose-starting-month-div {
-    color: black;
-    font-size: 16px;
+    color: black; 
+    font-size: 16px; 
     margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -250,18 +281,27 @@ option {
     color: white;
 } */
 .first-next-button, #next-button, .start-trial-button, #additional-feature-submit-button, .next-button-job-description, .submit-button {
-    background-color: #1877f2;
     /* background-color: #D4D5D6; */
+    background-color: #1877F2;
     color: white;
+}
+
+#id_email {
+    width: 100%;
+}
+
+.input-container {
+    position: relative;
+    margin-bottom: 20px;
 }
 .start-trial-button {
     padding: 10px 120px;
 }
 .additional-feature-form-main-div {
-    background-color: white;
-    margin: auto;
-    width: max-content;
-    border-radius: 40px;
+    background-color: white; 
+    margin: auto; 
+    width: max-content; 
+    border-radius: 40px; 
     width: 508px;
 }
     .first-second-buttons {
@@ -301,7 +341,7 @@ input[type="number"]:hover::-webkit-inner-spin-button {
 
 input[type="number"]:focus::-webkit-inner-spin-button,
 input[type="number"]:focus::-webkit-outer-spin-button,
-input[type="number"]:active::-webkit-inner-spin-button,                                          j
+input[type="number"]:active::-webkit-inner-spin-button,                                          j     
 input[type="number"]:active::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
@@ -314,33 +354,26 @@ input[type="number"]:active::-webkit-outer-spin-button {
     cursor: pointer !important;
 }
 .second-main-program-duration-form {
-    background-color: white;
-    padding: 30px;
-    border-width: 100%;
-    margin: auto;
-    width: max-content;
-    border-radius: 40px;
-    border-bottom-left-radius: 40px;
-    border-bottom-right-radius: 40px;
-    border-bottom: 1px solid #f0f0f0;
-    border-left: 1px solid #f0f0f0;
+    background-color: white; 
+    padding: 30px; 
+    border-width: 100%; 
+    margin: auto; 
+    width: max-content; 
+    border-radius: 40px; 
+    border-bottom-left-radius: 40px; 
+    border-bottom-right-radius: 40px; 
+    border-bottom: 1px solid #f0f0f0; 
+    border-left: 1px solid #f0f0f0; 
     border-right: 1px solid #f0f0f0;
 }
 .program-duration-div {
     color: black;
-    font-size: 18px;
-    margin-left: 31px;
-    padding-top: 30px;
+    font-size: 18px; 
+    margin-left: 31px; 
+    padding-top: 30px; 
     padding-bottom: 15px;
 }
 
-.select-arrow {
-    -webkit-appearance: menulist-button;
-    -moz-appearance: menulist-button;
-    appearance: menulist-button;
-    background-repeat: no-repeat;
-    padding-right: 20px; /* Adjust padding to accommodate the arrow */
-}
 
 select:focus {
     outline: none;
@@ -353,12 +386,11 @@ select:focus {
 }
 .select-arrow::-webkit-menulist-button {
     color: rgba(0, 0, 0, 0);
-    opacity: 1;
     background-repeat: no-repeat;
     background-position: 100% center;
     cursor: pointer;
-    margin-right: 15px;
-  }
+    margin-right: 30px;
+}
 
 
 .program-duration-title {
@@ -373,11 +405,11 @@ input {
 }
 
 .job-description-third-page-div {
-    border-width: 100%;
-    padding-left: 31px;
+    border-width: 100%; 
+    padding-left: 31px; 
     margin: auto;
-    border-top-left-radius: 40px;
-    border-top-right-radius: 40px;
+    border-top-left-radius: 40px; 
+    border-top-right-radius: 40px; 
     border-top: 1px solid #f0f0f0;
 }
 .job-description-third-page {
@@ -390,10 +422,10 @@ input {
 }
 
 .screening-question-form {
-    background-color: white;
-    margin: auto;
-    width: max-content;
-    border-radius: 40px;
+    background-color: white; 
+    margin: auto; 
+    width: max-content; 
+    border-radius: 40px; 
 }
 
 .add-question-button {
@@ -418,18 +450,18 @@ input {
 }
 
 .program-duration-third-page {
-    color: black;
+    color: black; 
     font-size: 18px;
-    margin-left: 31px;
-    padding-top: 30px;
+    margin-left: 31px; 
+    padding-top: 30px; 
     padding-bottom: 15px;
 }
 .contact-information-div-third-page {
-    border-width: 100%;
-    padding-left: 31px;
-    margin: auto;
-    border-top-left-radius: 40px;
-    border-top-right-radius: 40px;
+    border-width: 100%; 
+    padding-left: 31px; 
+    margin: auto; 
+    border-top-left-radius: 40px; 
+    border-top-right-radius: 40px; 
     border-top: 1px solid #f0f0f0;
 }
 
@@ -467,9 +499,15 @@ input {
     margin-right: 10px;
   }
 
+  .form-control {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-repeat: no-repeat;
+  }
 
 
-  #screening-question-select-options {
+  .screening-question-select-options {
     height: auto;
     border-color: #9E9E9E;
     width: 446px;
@@ -478,8 +516,6 @@ input {
     padding: 10px;
     outline: none;
     font-size: 16px;
-    padding-right: 20px;
-    background-position: 5px center;
   }
 
   select {
@@ -496,7 +532,7 @@ input {
     background-size: 12px;
     padding-right: 20px !important;
   } */
-
+  
 
 .third-next-button-2 {
     background-color: #1877F2 !important;
@@ -519,20 +555,28 @@ input {
 }
 
 .apply-name-surname, .start-end-date {
-    padding: 10px 0px 10px 10px;
+    padding-left: 10px;
     border: 1px solid #D4D5D6;
     border-radius: 40px;
     width: 100%;
     color: #858585;
+    height: 40px;
+    box-sizing: border-box;
 }
 .apply-first-name, .start-date-input {
     margin-right: 20px;
 }
+.parent-div-first-name {
+    width: 100%;
+    margin-right: 20px;
+}
 .contact-information-mutual-stats, .add-question-button {
-    border: 1px solid #D4D5D6;
-    padding: 10px 0px 10px 10px;
+    border: 1px solid #D4D5D6; 
+    padding-left: 10px; 
     border-radius: 40px;
     color: #858585;
+    height: 40px;
+    box-sizing: border-box;
 }
 /* .contact-information-div {
     width: 434px;
@@ -546,9 +590,9 @@ input {
 }
 .first-and-last-name {
     display: flex;
-    justify-content: space-between;
-    width: 100%;
-}
+    justify-content: space-between; 
+    width: 446px;
+}  
 /* .button-effect:after {
     content: "";
     display: block;
@@ -562,7 +606,7 @@ input {
     transition: all 0.5s;
     box-shadow: 0 0 10px 40px white;
   }
-
+  
   .button-effect:active:after {
     box-shadow: 0 0 0 0 white;
     position: absolute;
@@ -570,7 +614,7 @@ input {
     opacity: 1;
     transition: 0s;
   } */
-
+  
   .animated {
     border-radius: 4em;
     transition: all 0.3s;
@@ -582,12 +626,12 @@ input {
   }
 
   .animated:active::after{
-
+    
   }
 
   .animated {
     animation: shake 0.7s ease;
-
+    
   }
   input {
     font-size: 16px;
@@ -595,7 +639,7 @@ input {
     color: #858585;
   }
 
-
+  
   @keyframes shake {
     0% { transform: translateX(0); }
     10%, 90% { transform: translateX(-1.5px); }
@@ -648,12 +692,12 @@ input {
 } */
 .program-duration-under-div, .post-a-job-under-div {
     width: max-content;
-    background-color: white;
-    border-width: 100%;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-bottom: 30px;
-    margin: auto;
+    background-color: white; 
+    border-width: 100%; 
+    padding-left: 30px; 
+    padding-right: 30px; 
+    padding-bottom: 30px; 
+    margin: auto; 
 }
 
 .first-and-last-name {
@@ -662,8 +706,8 @@ input {
 
 .program-duration-under-div {
     border-radius: 40px;
-    border-top-left-radius: 40px;
-    border-top-right-radius: 40px;
+    border-top-left-radius: 40px; 
+    border-top-right-radius: 40px; 
     border: 1px solid #f0f0f0;
 }
 
@@ -676,9 +720,9 @@ input {
 }
 .job-details-div {
     color: black;
-    font-size: 18px;
-    margin-left: 30px;
-    padding-top: 30px;
+    font-size: 18px; 
+    margin-left: 30px; 
+    padding-top: 30px; 
     padding-bottom: 20px;
     cursor: auto;
 }
@@ -686,21 +730,20 @@ input {
     width: 446px;
 }
 .third-page-job-details-discription {
-    color: black;
-    font-size: 18px;
-    margin-left: 30px;
-    padding-top: 30px;
+    color: black; 
+    font-size: 18px; 
+    margin-left: 30px; 
+    padding-top: 30px; 
     padding-bottom: 15px;
 }
 
-.scroll {
-    width: calc(100% - 40px);
+.scroll, .scroll-post-job {
     background-color: white;
     border-radius: 40px;
     resize: none;
     border: 1px solid #f0f0f0;
     font-size: 16px;
-    color: #757575;
+    color: #858585;
     padding-left: 10px;
     margin: auto;
     outline: none;
@@ -708,6 +751,15 @@ input {
     border-radius: 30px !important;
     height: 280px;
 }
+.scroll-post-job {
+    width: 100%;
+    /* width: calc(100% - 40px); */
+}
+
+.scroll {
+    width: calc(100% - 40px);
+}
+
 .job-description-third-page-div {
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
@@ -716,34 +768,49 @@ input {
     padding-top: 30px;
     font-size: 18px;
 }
+.margin-right-job-interview-divs {
+    margin-right: 15px;
+}
+
+#job-interview-div {
+    display: flex; 
+    justify-content: space-between; 
+    padding-left: 30px; 
+    padding-right: 30px;
+}
+.job-interview-input-elements {
+    border-radius: 40px;
+    border: 1px solid #D4D5D6;
+}
 
 .second-screening-question-div {
     pointer-events: none;
-    border-bottom: 40px;
-    margin-left: 30px;
+    border-bottom: 40px; 
+    margin-left: 30px; 
     color: #D4D5D6;
 }
 .third-form-question {
     padding-bottom: 20px;
-    padding-top: 30px;
+    padding-top: 20px;
 }
 .third-payment-div {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    border-bottom: 40px;
-    margin-left: 30px;
+    padding-top: 20px; 
+    padding-bottom: 20px; 
+    border-bottom: 40px; 
+    margin-left: 30px; 
     color: #D4D5D6;
 }
 .screening-question-only-form {
     border-width: 100%;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 30px; 
+    padding-right: 30px; 
     margin: auto;
-    border-radius: 40px;
-    border-top-left-radius: 40px;
-    border-top-right-radius: 40px;
+    border-radius: 40px; 
+    border-top-left-radius: 40px; 
+    border-top-right-radius: 40px; 
     border: 1px solid #f0f0f0;
 }
+
 
 .screening-question-only-under-form {
     border-bottom-left-radius: 40px;
@@ -757,9 +824,9 @@ input {
     padding-right: 30px;
 }
 .meet-with-us-sq-page {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    border-bottom: 40px;
+    padding-top: 20px; 
+    padding-bottom: 20px; 
+    border-bottom: 40px; 
     color: #D4D5D6;
 }
 .logo-label {
@@ -776,6 +843,7 @@ input {
     outline: none;
     color: white;
     border: none;
+    height: 40px;
 }
 .meet-with-us-under-form {
     border-radius: 40px !important;
@@ -803,7 +871,7 @@ input {
 /* .upload-file-content-div {
     margin-left: 33px !important;
     } */
-
+    
 
 /* .months-div-2 {
     display: flex;
@@ -851,7 +919,7 @@ input {
     .additional-feature-form-main-div {
         width: 488px;
     }
-
+    
     /* .months-div {
         width: 435px;
         margin-right: -5px !important;
@@ -859,10 +927,40 @@ input {
 }
 
 @media screen and (max-width: 480px) {
-
+    .start-end-date {
+        height: 36px;
+    }    
+    select {
+        height: 36px !important; 
+    }
+    select {
+        background-position: calc(100% - 10px) center;
+    }
+    .first-and-last-name {
+        width: 100%;
+    }
     .successfully-applied-div {
         font-size: 16px;
     }
+    .parent-div-first-name {
+        margin-bottom: 20px;
+    }
+    .icon {
+        right: 15px;
+        height: 18px;
+        width: auto;
+    }
+
+    .scroll-post-job {
+        width: 100%;
+        /* width: calc(100% - 41px); */
+    }
+
+    .third-additional-feature-main-div {
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+
     .screening-question-only-under-form {
         padding-bottom: 20px;
         border-bottom-left-radius: 20px;
@@ -894,13 +992,29 @@ input {
     }
     .reserve-form {
         margin-top: 10px !important;
+        margin-bottom: 10px;
     }
     .second-screening-question-div {
         margin-left: 20px;
     }
     input, .contact-information-mutual-stats {
-        padding-top: 8px !important;
-        padding-bottom: 8px !important;
+        height: fit-content;
+    }
+    input, .contact-information-mutual-stats {
+        height: 36px !important;
+    }
+
+    input[type="checkbox"] {
+        height: auto !important;
+    }
+    select.screening-question-select-options.screening-question-select-options {
+        padding-top: 8.4px !important;
+        padding-bottom: 8.4px !important;
+        height: auto !important;
+    }
+    
+    .upload-file-div {
+        height: 36px;
     }
     .second-inputs-div {
         width: 100%;
@@ -908,9 +1022,7 @@ input {
     .under-successfully-applied-form {
         width: calc(100% - 20px) !important;
     }
-    .profileHeader {
-        display: none;
-    }
+    
     .post-a-job-under-div {
         border-bottom-left-radius: 20px;
         border-bottom-right-radius: 20px;
@@ -940,7 +1052,7 @@ input {
     .second-main-program-duration-form {
         width: calc(100% - 40px);
         padding: 20px;
-        border-top-left-radius: 20px;
+        border-top-left-radius: 20px;        
         border-top-right-radius: 20px;
         border-bottom-right-radius: 30px;
         border-bottom-left-radius: 30px;
@@ -949,7 +1061,7 @@ input {
     }
     .duration-buttons {
         width: 120px;
-        font-size: 14px;
+        font-size: 16px;
         border-radius: 15px !important;
         /* margin-right: 0px; */
     }
@@ -957,8 +1069,8 @@ input {
         font-size: 16px;
     }
     .choose-duration-title, .choose-starting-month-div {
-        margin-top: 20px;
-        font-size: 14px;
+        margin-top: 20px; 
+        font-size: 16px;
     }
     .font-size-18px-16px, .job-details-div {
         font-size: 16px;
@@ -967,13 +1079,13 @@ input {
         padding-top: 10px;
         padding-bottom: 10px;
     }
-    #screening-question-select-options {
+    .screening-question-select-options {
         width: 100%;
     }
     .first-second-buttons {
         /* margin-right: 40px; */
     }
-
+    
         .duration-buttons-div {
         width: 100%;
         /* display: flex; */
@@ -1013,10 +1125,10 @@ input {
         width: 100%;
     }
     .program-duration-under-div {
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
+        border-top-left-radius: 20px; 
+        border-top-right-radius: 20px; 
         border-radius: 20px;
-    }
+    }    
     .job-details-div {
         padding-top: 20px;
     }
@@ -1036,7 +1148,7 @@ input {
     }
 
     .contact-information-title {
-        font-size: 16px;
+        font-size: 16px; 
         margin-bottom: 20px;
     }
     .submit-button, .back-button {
@@ -1053,16 +1165,13 @@ input {
         border-top-left-radius: 20px;
     }
     .third-form-question {
-        padding-top: 0px;
-    }
-    #screening-question-select-options {
-        padding: 8px;
-    }
-    .program-duration-third-page, .contact-information-third-page, .sq-meet-with-us {
         padding-top: 20px;
     }
-    .screening-question-third-page {
-        padding-bottom: 20px;
+    /* .screening-question-select-options {
+        padding: 8px 8px 8px 10px;
+    } */
+    .program-duration-third-page, .contact-information-third-page, .sq-meet-with-us {
+        padding-top: 20px;
     }
     .program-duration-third-page {
         margin-left: 20px;
@@ -1071,8 +1180,8 @@ input {
         padding-left: 20px;
     }
     .screening-question-only-form {
-        padding-left: 20px;
-        padding-right: 20px;
+        padding-left: 20px; 
+        padding-right: 20px; 
         border-radius: 20px;
     }
     .job-details-div {
@@ -1116,7 +1225,7 @@ input {
         border-bottom-right-radius: 20px;
     }
     .add-question-button {
-        font-size: 14px;
+        font-size: 16px;
     }
     .contact-information-title {
         margin-top: 0px;
@@ -1128,24 +1237,25 @@ input {
     .start-end-date {
         box-sizing: border-box;
     }
-    .start-date-input {
-        margin-bottom: 20px;
+    .end-date-input {
+        margin-top: 20px;
     }
     .apply-name-surname{
+        height: 36px;
         box-sizing: border-box;
     }
-    .country-margin-bottom {
-        margin-bottom: 20px;
-    }
     .logo-input-div {
-        font-size: 14px;
+        font-size: 16px;
+    }
+    .add-question-button {
+        padding: 8px 22px 8px 10px;
     }
     .first-job-details {
         margin-left: 20px !important;
     }
-    .apply-first-name {
+    /* .apply-first-name {
         margin-bottom: 20px;
-    }
+    } */
     .contact-information-div-third-page {
         border-top-left-radius: 20px;
         border-top-right-radius: 20px;

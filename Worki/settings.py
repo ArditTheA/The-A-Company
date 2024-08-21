@@ -11,10 +11,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '0x-zrhf@)(t)%-630q&s&9g_c^lvh_9cehy@7vx==@bxgn_s_='
+STRIPE_SECRET_KEY = 'sk_test_51MfP4FAWWrYDd3Ex3UdXVUsgjFblWSAiI8yvsEPm83iAlH1LaWGnS9fquylP0AknVsr7HfKs6m3wsArtQgVFaliw00QqQKsitp'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = False
+DEBUG = True
 
 
 CACHES = {
@@ -62,6 +63,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
+
     'filters',
     'resetpassword',
     'Match',
@@ -71,7 +73,6 @@ INSTALLED_APPS = [
     'stripe',
     'googleOauth',
     'landingpage',
-
     # 3party login providers
     'allauth',
     'allauth.account',
@@ -102,6 +103,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
     'accounts.middleware.SetCookieMiddleware',
 ]
 
@@ -119,6 +121,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+
         },
     },
 ]
@@ -131,7 +134,7 @@ WSGI_APPLICATION = 'Worki.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'db2.sqlite3'),
     }
 }
 

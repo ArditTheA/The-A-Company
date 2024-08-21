@@ -294,7 +294,11 @@ class Application(models.Model):
     ApplicantStatDate = models.DateTimeField(null=True,blank=True)
     meetWithUs = models.CharField(max_length=1000,blank=True,null=True)
     meetWithUsLink = models.CharField(max_length=1000,blank=True,null=True)
-
+    firstPaymentDone = models.BooleanField(default=False)
+    secondPaymentDone = models.BooleanField(default=False)
+    thirdPaymentDone = models.BooleanField(default=False)
+    # meetWithUsDiv = models.Charfield(max_length=1000,blank=True,null=True)
+    # calendlyDiv = models.CharField(max_length=1000,blank=True,null=True)
     def __str__(self):
         return f"{self.job_id} | {self.user_id} | {self.apply_date}"
 
@@ -305,3 +309,41 @@ class Application(models.Model):
             self.ApplicantStatDate = self.ApplicantStatDate or datetime.now()
 
         super().save(*args, **kwargs)
+
+class UserJobAppointments(models.Model):
+    job = models.ForeignKey(Jobs,on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
+    meetingDate = models.CharField(max_length=1000,blank=True,null=True)
+    meetingTime = models.CharField(max_length=1000,blank=True,null=True)
+    meetingLink = models.CharField(max_length=1000,blank=True,null=True)
+    meetingDone = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.job_id} | {self.user_id}"
+
+class UserJobInterview(models.Model):
+    job = models.ForeignKey(Jobs,on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
+    interviewDate = models.CharField(max_length=1000,blank=True,null=True)
+    interviewTime = models.CharField(max_length=1000,blank=True,null=True)
+    interviewLink = models.CharField(max_length=1000,blank=True,null=True)
+    interviewDone = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Interview | {self.job_id} | {self.user_id}"
+
+class UserJobPayment(models.Model):
+    job = models.ForeignKey(Jobs,on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
+    paymentAmount = models.CharField(max_length=1000,blank=True,null=True)
+    paymentLink = models.CharField(max_length=1000,blank=True,null=True)
+    
+    def __str__(self):
+        return f"{self.job_id} | {self.user_id}"
+
+class Program(models.Model):
+    name = models.CharField(max_length=1000,blank=True,null=True)
+    price  = models.IntegerField(default=200)
+
+    def __str__(self):
+        return self.name

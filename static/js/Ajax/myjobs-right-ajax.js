@@ -53,6 +53,8 @@ window.addEventListener('load', function() {
 
     async function getMyJobs(id,show=0) {
 
+        console.log("getMyJobs2")
+
         var elements = document.getElementsByClassName('pixel'); // get all elements
 
         for(var i = 0; i < elements.length; i++){
@@ -63,7 +65,7 @@ window.addEventListener('load', function() {
         $("#current-job-id").val(id)
 
 
-        let response = await fetch('/my-jobs/get-job-details/',{
+        var response = await fetch('/my-jobs/get-job-details/',{
 
             method: "get",
 
@@ -76,7 +78,65 @@ window.addEventListener('load', function() {
         }
 
         );
-        let data = await response.json();
+
+        let data =  await response.json();
+        if(data["StatusApp"] === "Qualified"){
+
+        if (data["user_document"] === 4) {
+            document.querySelectorAll(".phase").forEach(element => {
+                element.style.display = "block";
+                
+            });
+            if (data["phase_second_main"] != 2) {
+                document.querySelectorAll(".second-progress-phase_myjobs").forEach(element => {
+                    element.style.display = "block";
+                    
+                });
+            }
+            
+        }
+        else {
+            document.querySelectorAll(".progress-phase_myjobs").forEach(element => {
+                element.style.display = "block";
+                
+            });
+            document.querySelectorAll(".second-progress-phase_myjobs").forEach(element => {
+                element.style.display = "none";
+                
+            });        
+
+        }
+        if (data["phase_second_main"] === 2) {
+            if (data["user_document"] === 4) {
+            document.querySelectorAll(".phase_two").forEach(element => {
+                element.style.display = "block";
+            });
+        }
+        else {
+            document.querySelectorAll(".phase_two").forEach(element => {
+                element.style.display = "none";
+            });
+            document.querySelectorAll(".second-progress-phase_myjobs").forEach(element => {
+                element.style.display = "none";
+                
+            });
+        }
+        
+}
+        }
+    else {
+        document.querySelectorAll(".phase").forEach(element => {
+            element.style.display = "none";
+        });
+        document.querySelectorAll(".phase_two").forEach(element => {
+            element.style.display = "none";
+        });
+        document.querySelectorAll(".second-progress-phase_myjobs").forEach(element => {
+            element.style.display = "none";
+            
+        });
+    }
+
         if (show === 1) {
             $(".application-update-form-content").css("display","none");
             $(".documents-for-work-permit-form-content").css("display","block");
@@ -94,10 +154,16 @@ window.addEventListener('load', function() {
         if(data["StatusApp"]){
             if(data["StatusApp"] != "Qualified"){
                 
-                $(".second-screening-question-div").removeClass("divs-pointer-event-auto");
+                $(".second-screening-question-div").css("pointer-events", "none");
+                document.querySelectorAll(".block-this").forEach(newElement => {
+                    newElement.style.display = "none";
+                })
 
             }else{
-                $(".second-screening-question-div").addClass("divs-pointer-event-auto");
+                $(".second-screening-question-div").css("pointer-events", "auto");
+                document.querySelectorAll(".block-this").forEach(newElement => {
+                    newElement.style.display = "block";
+                })
             }
         }
         $("#user_id").val(data["userid"]);
@@ -119,7 +185,7 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
         var newDiv = '<input type="hidden" id="applicantID">';
         if (data["passaportExists"] === true) {
             if(data["passaportStatus"] === "A"){
-                newDiv1 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
+                newDiv1 = '<div class="" style="padding-bottom: 20px";>' + '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 5px;">' +
                 '<div class="docs-nike-fails" style="display: flex;">' +
                 '<div id="passport" class="main-divs-color mutual-titles-color blue-text">Passport</div>' +
                 
@@ -129,7 +195,9 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
                 '</div>' +
                 '<img data-number="1" data-document-id="1" title="Download Passport" onclick="getDocument(this)" class="passport-img open-popup downloadImg" src="/static/img/documents-second-icon.svg" alt="">' +
                  
-                '</div>';
+                '</div>' +
+                '<div style="width: calc(100% - 40px);" class="main-divs-color mutual-titles-color">Government issued travel document</div>' +
+                '</div';
             }else if(data["passaportStatus"] === "R"){
                 newDiv1 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
                 '<div class="docs-nike-fails" style="display: flex;">' +
@@ -141,7 +209,9 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
                 '</div>' +
                 '<img data-number="1" title="Upload Passport" onclick="openPopUp(this)" class="passport-img open-popup" src="/static/img/documents-icon.svg" alt="">' +
                  
-                '</div>';
+                '</div>' +
+                '<div style="width: calc(100% - 40px);" class="main-divs-color mutual-titles-color">Government issued travel document</div>' +
+                '</div';
             }else{
                 newDiv1 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
                 '<div class="docs-nike-fails" style="display: flex;">' +
@@ -156,8 +226,8 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
                 '</div>';
             }
         } else {
-            newDiv1 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
-                '<div class="docs-nike-fails" style="display: flex;">' +
+            newDiv1 = '<div class="" style="padding-bottom: 20px";>' + '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 6px;">' +
+            '<div class="docs-nike-fails" style="display: flex;">' +
                 '<div id="passport" class="main-divs-color mutual-titles-color">Passport</div>' +
                 '<img style="display: none;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
                 '<img style="display: none;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
@@ -167,22 +237,26 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
                 '<img class="img-done" src="/static/img/before-done-img.svg">' +
                 '<img class="img-fail" src="/static/img/img-fail.svg">' +
                 '</div>' +
+                '</div>' +
+                '<div style="width: calc(100% - 40px);" class="main-divs-color mutual-titles-color">Government issued travel document</div>' +
                 '</div>';
-        }
+            }
 
         if (data["studentStatusExists"] === true) {
             if(data["studentStatus"] === "A"){
-            newDiv2 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
-                    '<div class="docs-nike-fails" style="display: flex;">' +
+                newDiv2 = '<div class="" style="padding-bottom: 20px";>' + '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 5px;">' +
+                '<div class="docs-nike-fails" style="display: flex;">' +
                     '<div id="passport" class="main-divs-color mutual-titles-color blue-text">Student Status</div>' +
                     '<img style="display: block;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
                     '<img style="display: none;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
                     '</div>' +
                     '<img data-number="2" title="Download Student Status" onclick="getDocument(this)" class="open-popup" src="/static/img/documents-second-icon.svg" alt="">' +
                     
-                    '</div>';
-            }else if(data["studentStatus"] === "R"){
-                newDiv2 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
+                    '</div>' +
+                    '<div class="main-divs-color mutual-titles-color" style="width: calc(100% - 40px);">Official confirmation of enrollment in a university</div>' +
+                    '</div';
+                }else if(data["studentStatus"] === "R"){
+                    newDiv2 = '<div class="" style="padding-bottom: 20px";>' + '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 5px;">' +
                     '<div class="docs-nike-fails" style="display: flex;">' +
                     '<div id="passport" class="main-divs-color mutual-titles-color ">Student Status</div>' +
                     '<img style="display: none;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
@@ -190,8 +264,11 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
                     '</div>' +
                     '<img data-number="2" title="Upload Student Status" class="open-popup" onclick="openPopUp(this)" src="/static/img/documents-icon.svg" alt="">' +
                     
-                    '</div>';
-            }else{
+                    '</div>' +
+                        '<div class="main-divs-color mutual-titles-color" style="width: calc(100% - 40px);">Official confirmation of enrollment in a university</div>' +
+                    '</div';
+                    
+                }else{
                 newDiv2 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
                     '<div class="docs-nike-fails" style="display: flex;">' +
                     '<div id="passport" class="main-divs-color mutual-titles-color blue-text">Student Status</div>' +
@@ -203,20 +280,23 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
                     '</div>';
             }
         }else{
-            newDiv2 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
-                    '<div class="docs-nike-fails" style="display: flex;">' +
+            newDiv2 = '<div class="" style="padding-bottom: 20px;">' +'<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 6px;">' +
+            '<div class="docs-nike-fails" style="display: flex;">' +
                     '<div id="passport" class="main-divs-color mutual-titles-color">Student Status</div>' +
                     '<img style="display: none;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
                     '<img style="display: none;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
                     '</div>' +
                     '<img data-number="2" title="Upload Student Status" class="open-popup" onclick="openPopUp(this)" src="/static/img/documents-icon.svg" alt="">' +
                     
+                    '</div>' +
+                    '</div>' +
+                    '<div style="width: calc(100% - 40px);" class="main-divs-color mutual-titles-color">Government issued travel document</div>' +
                     '</div>';
-        }
+            }
 
         if (data["certificateOfEnrolmentExists"] === true) {
             if(data["certificateStatus"] === "A"){
-                newDiv3 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
+                newDiv3 = '<div class="" style="padding-bottom: 20px";>' + '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 5px;">' +
                 '<div class="docs-nike-fails" style="display: flex;">' +
                 '<div class="main-divs-color mutual-titles-color blue-text">Certificate of Enrolment</div>' +
                 '<img style="display: block;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
@@ -224,29 +304,33 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
                 '</div>' +   
                 '<img data-number="3" title="Download Certificate of Enrolment" class="open-popup" onclick="getDocument(this)"  src="/static/img/documents-second-icon.svg" alt="">' +
                 
-            '</div>';
-            }else if(data["certificateStatus"] === "R"){
-                newDiv3 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
-                        '<div class="docs-nike-fails" style="display: flex;">' +
+            '</div>' +
+            '<div class="main-divs-color mutual-titles-color" style="width: calc(100% - 40px);">Official document from ZAV signed and sealed by university</div>' +
+            '</div';
+        }else if(data["certificateStatus"] === "R"){
+            newDiv3 = '<div class="" style="padding-bottom: 20px";>' + '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 5px;">' +
+            '<div class="docs-nike-fails" style="display: flex;">' +
                         '<div class="main-divs-color mutual-titles-color ">Certificate of Enrolment</div>' +
                         '<img style="display: none;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
                         '<img style="display: block;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
                         '</div>' +   
                         '<img data-number="3" title="Upload Certificate of Enrolment" onclick="openPopUp(this)" class="open-popup"  src="/static/img/documents-icon.svg" alt="">' +
                         
-                    '</div>';
-            }
+                    '</div>' +
+                    '<div class="main-divs-color mutual-titles-color" style="width: calc(100% - 40px);">Official document from ZAV signed and sealed by university</div>' +
+                    '</div';
+                }
             else{
-            newDiv3 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
-                        '<div class="docs-nike-fails" style="display: flex;">' +
+                newDiv3 = '<div class="" style="padding-bottom: 20px";>' + '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 5px;">' +
+                '<div class="docs-nike-fails" style="display: flex;">' +
                         '<div class="main-divs-color mutual-titles-color blue-text">Certificate of Enrolment</div>' +
                         '<img style="display: none;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
                         '<img style="display: none;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
                         '</div>' +   
                         '<img data-number="3" title="Download Certificate of Enrolment" class="open-popup" onclick="getDocument(this)"  src="/static/img/documents-second-icon.svg" alt="">' +
                         
-                    '</div>';
-            }
+                        '</div>';
+                }
         }else{
             newDiv3 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
                         '<div class="docs-nike-fails" style="display: flex;">' +
@@ -256,23 +340,29 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
                         '</div>' +   
                         '<img data-number="3" title="Upload Certificate of Enrolment" onclick="openPopUp(this)" class="open-popup"  src="/static/img/documents-icon.svg" alt="">' +
                         
-                    '</div>';
+                        '</div>' +
+                        '</div>' +
+                    '<div class="main-divs-color mutual-titles-color" style="width: calc(100% - 40px);">Official document from ZAV signed and sealed by university</div>' +
+                    '</div>'
         }
 
         if (data["studentIdExists"] === true){
             if(data["studentIdStatus"]==="A"){
-                newDiv4 =  '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
-                            '<div class="docs-nike-fails" style="display: flex;">' +
+                newDiv4 = '<div class="" style="";>' + '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 5px;">' +
+                '<div class="docs-nike-fails" style="display: flex;">' +
                             '<div class="main-divs-color mutual-titles-color blue-text">Student ID</div>' +
                             '<img style="display: block;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
                             '<img style="display: none;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
                             '</div>' +
                             '<img data-number="4" title="Download Student ID" onclick="getDocument(this)" class="open-popup" src="/static/img/documents-second-icon.svg" alt="">' +
                             
-                        '</div>';
-            }
+                            '</div>' +
+                            '<div style="width: calc(100% - 40px);" class="main-divs-color mutual-titles-color">Official identification card issued by a university</div>' +
+                            '</div';
+                    }
+                    
             else if(data["studentIdStatus"] === "R"){
-                newDiv4 =  '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
+                newDiv4 = '<div class="" style="padding-bottom: 20px";>' + '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 5px;">' +
                             '<div class="docs-nike-fails" style="display: flex;">' +
                             '<div class="main-divs-color mutual-titles-color ">Student ID</div>' +
                             '<img style="display: none;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
@@ -280,7 +370,10 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
                             '</div>' +
                             '<img data-number="4" title="Upload Student ID" class="open-popup" onclick="openPopUp(this)" src="/static/img/documents-icon.svg" alt="">' +
                             
-                        '</div>';
+                        '</div>' +
+                        '<div style="width: calc(100% - 40px);" class="main-divs-color mutual-titles-color">Official identification card issued by a university</div>' +
+                        '</div';
+        
             }
             else{
                 newDiv4 =  '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
@@ -295,7 +388,7 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
             }
             
         }else{
-            newDiv4 =  '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
+            newDiv4 = '<div class="" style="";>' + '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 5px;">' +
             '<div class="docs-nike-fails" style="display: flex;">' +
             '<div class="main-divs-color mutual-titles-color">Student ID</div>' +
             '<img style="display: none;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
@@ -306,172 +399,174 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
             '<img class="img-done" src="/static/img/before-done-img.svg">' +
             '<img class="img-fail" src="/static/img/img-fail.svg">'
              +
-        '</div>'
-        '</div>';
-        }
+             '</div>' +
+             '</div>' +
+             '<div style="width: calc(100% - 40px);" class="main-divs-color mutual-titles-color">Official identification card issued by a university</div>' +
+             '</div';
+ }
 
 
-        if(data["photoExists"] === true){
-            if(data["photoStatus"] === "A"){
-                var newDiv5 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
-                                '<div class="docs-nike-fails" style="display: flex;">' +
-                                '<div class="main-divs-color mutual-titles-color blue-text">Photo</div>' +
-                                '<img style="display: block;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
-                                '<img style="display: none;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
-                                '</div>' +
-                                '<img data-number="5" title="Download Photo" class="open-popup" onclick="getDocument(this)" src="/static/img/documents-second-icon.svg" alt="">' +
+        // if(data["photoExists"] === true){
+        //     if(data["photoStatus"] === "A"){
+        //         var newDiv5 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
+        //                         '<div class="docs-nike-fails" style="display: flex;">' +
+        //                         '<div class="main-divs-color mutual-titles-color blue-text">Photo</div>' +
+        //                         '<img style="display: block;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
+        //                         '<img style="display: none;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
+        //                         '</div>' +
+        //                         '<img data-number="5" title="Download Photo" class="open-popup" onclick="getDocument(this)" src="/static/img/documents-second-icon.svg" alt="">' +
                             
                             
-                        '</div>';
-            }
-            else if(data["photoStatus"] === "R"){
-                var newDiv5 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
-                                '<div class="docs-nike-fails" style="display: flex;">' +
-                                '<div class="main-divs-color mutual-titles-color">Photo</div>' +
-                                '<img style="display: none;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
-                                '<img style="display: block;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
-                                '</div>' +
-                                '<img data-number="5" title="Upload Photo" class="open-popup" onclick="openPopUp(this)" src="/static/img/documents-icon.svg" alt="">' +
+        //                 '</div>';
+        //     }
+        //     else if(data["photoStatus"] === "R"){
+        //         var newDiv5 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
+        //                         '<div class="docs-nike-fails" style="display: flex;">' +
+        //                         '<div class="main-divs-color mutual-titles-color">Photo</div>' +
+        //                         '<img style="display: none;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
+        //                         '<img style="display: block;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
+        //                         '</div>' +
+        //                         '<img data-number="5" title="Upload Photo" class="open-popup" onclick="openPopUp(this)" src="/static/img/documents-icon.svg" alt="">' +
                             
                             
-                        '</div>';
-            }else{
-                var newDiv5 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
-                                '<div class="docs-nike-fails" style="display: flex;">' +
-                                '<div class="main-divs-color mutual-titles-color blue-text">Photo</div>' +
-                                '<img style="display: none;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
-                                '<img style="display: none;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
-                                '</div>' +
-                                '<img data-number="5" title="Download Photo" class="open-popup" onclick="getDocument(this)" src="/static/img/documents-second-icon.svg" alt="">' +
+        //                 '</div>';
+        //     }else{
+        //         var newDiv5 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
+        //                         '<div class="docs-nike-fails" style="display: flex;">' +
+        //                         '<div class="main-divs-color mutual-titles-color blue-text">Photo</div>' +
+        //                         '<img style="display: none;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
+        //                         '<img style="display: none;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
+        //                         '</div>' +
+        //                         '<img data-number="5" title="Download Photo" class="open-popup" onclick="getDocument(this)" src="/static/img/documents-second-icon.svg" alt="">' +
                             
                             
-                        '</div>';
-            }
+        //                 '</div>';
+        //     }
             
-        }else{
-            var newDiv5 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
-                                '<div class="docs-nike-fails" style="display: flex;">' +
-                                '<div class="main-divs-color mutual-titles-color">Photo</div>' +
-                                '<img style="display: none;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
-                                '<img style="display: none;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
-                                '</div>' +
-                            '<img data-number="5" title="Upload Photo" class="open-popup" onclick="openPopUp(this)" src="/static/img/documents-icon.svg" alt="">' +
-                            '<div class="div_replacement" style="display: none; justify-content: space-between; ">' +
-                                '<img class="img-done" src="/static/img/before-done-img.svg">' +
-                                '<img class="img-fail" src="/static/img/img-fail.svg">'
-                                 +
-                            '</div>'
+        // }else{
+        //     var newDiv5 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
+        //                         '<div class="docs-nike-fails" style="display: flex;">' +
+        //                         '<div class="main-divs-color mutual-titles-color">Photo</div>' +
+        //                         '<img style="display: none;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
+        //                         '<img style="display: none;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
+        //                         '</div>' +
+        //                     '<img data-number="5" title="Upload Photo" class="open-popup" onclick="openPopUp(this)" src="/static/img/documents-icon.svg" alt="">' +
+        //                     '<div class="div_replacement" style="display: none; justify-content: space-between; ">' +
+        //                         '<img class="img-done" src="/static/img/before-done-img.svg">' +
+        //                         '<img class="img-fail" src="/static/img/img-fail.svg">'
+        //                          +
+        //                     '</div>'
                             
-                        '</div>';
+        //                 '</div>';
 
-        }
-        url = "/download-cv/"+id    
+        // }
+        // url = "/download-cv/"+id    
         
-        if(data["ResumeStatus"] === "A"){
-            var newDiv6 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
-            '<div class="docs-nike-"fails" style="display: flex;">' +
-                '<div class="main-divs-color mutual-titles-color blue-text">Resume</div>' +
-                '<img style="display:;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
-                '<img style="display: none;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
-                '</div>' +
-                '<a href="' + url + '"><img data-number="6" title="Download Resume" class="open-popup" src="/static/img/documents-second-icon.svg" alt=""></a>' +
-            '<div class="div_replacement" style="display: none; justify-content: space-between; ">' +
-                '<img class="img-done" src="/static/img/nike-img-done.svg" onclick="penndingFunction(6);">' +
-                '<img class="img-fail" src="/static/img/img-fail.svg" onclick="RefuseFunction(6);">'
-                    +
-                '</div>'
-            '</div>';
-        }else if(data["ResumeStatus"] === "R"){
-            var newDiv6 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
-            '<div class="docs-nike-"fails" style="display: flex;">' +
-                '<div class="main-divs-color mutual-titles-color">Resume</div>' +
-                '<img style="display: none;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
-                '<img style="display: ;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
-                '</div>' +
-                '<a href="' + url + '"><img data-number="6" title="Download Resume" class="open-popup" src="/static/img/documents-second-icon.svg" alt=""></a>' +
-            '<div class="div_replacement" style="display: none; justify-content: space-between; ">' +
-                '<img class="img-done" src="/static/img/before-done-img.svg" onclick="ApproveFunction(6);">' +
-                '<img class="img-fail" src="/static/img/fail-red.svg" onclick="penndingFunction(6);">'
-                    +
-                '</div>'
-            '</div>';
-        }
-        else{
-            var newDiv6 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
-            '<div class="docs-nike-"fails" style="display: flex;">' +
-                '<div class="main-divs-color mutual-titles-color blue-text">Resume</div>' +
-                '<img style="display: none;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
-                '<img style="display: none;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
-                '</div>' +
-            '<a href="' + url + '"><img data-number="6" title="Download Resume" class="open-popup" src="/static/img/documents-second-icon.svg" alt=""></a>' +
-            '<div class="div_replacement" style="display: none; justify-content: space-between; ">' +
-                '<img class="img-done" src="/static/img/before-done-img.svg" onclick="ApproveFunction(6);">' +
-                '<img class="img-fail" src="/static/img/img-fail.svg" onclick="RefuseFunction(6);">'
-                    +
-                '</div>'
-            '</div>';
-        }
-        if(data["serviceContractExists"] === true){
-            if(data["serviceContractStatus"] === "A"){
-                var newDiv7 = '<div class="main-div-docs" style="display: flex; justify-content: space-between;  ">' +
-                '<div class="docs-nike-fails" style="display: flex;">' +
-                '<div class="main-divs-color mutual-titles-color blue-text">Service Contract</div>' +
-                '<img style="display: ;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
-                '<img style="display: none;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
-                '</div>' +  
-                '<img data-number="7" title="Download Service Contract" onclick="getDocument(this)" class="open-popup" src="/static/img/documents-second-icon.svg" alt="">' +
+        // if(data["ResumeStatus"] === "A"){
+        //     var newDiv6 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
+        //     '<div class="docs-nike-"fails" style="display: flex;">' +
+        //         '<div class="main-divs-color mutual-titles-color blue-text">Resume</div>' +
+        //         '<img style="display:;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
+        //         '<img style="display: none;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
+        //         '</div>' +
+        //         '<a href="' + url + '"><img data-number="6" title="Download Resume" class="open-popup" src="/static/img/documents-second-icon.svg" alt=""></a>' +
+        //     '<div class="div_replacement" style="display: none; justify-content: space-between; ">' +
+        //         '<img class="img-done" src="/static/img/nike-img-done.svg" onclick="penndingFunction(6);">' +
+        //         '<img class="img-fail" src="/static/img/img-fail.svg" onclick="RefuseFunction(6);">'
+        //             +
+        //         '</div>'
+        //     '</div>';
+        // }else if(data["ResumeStatus"] === "R"){
+        //     var newDiv6 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
+        //     '<div class="docs-nike-"fails" style="display: flex;">' +
+        //         '<div class="main-divs-color mutual-titles-color">Resume</div>' +
+        //         '<img style="display: none;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
+        //         '<img style="display: ;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
+        //         '</div>' +
+        //         '<a href="' + url + '"><img data-number="6" title="Download Resume" class="open-popup" src="/static/img/documents-second-icon.svg" alt=""></a>' +
+        //     '<div class="div_replacement" style="display: none; justify-content: space-between; ">' +
+        //         '<img class="img-done" src="/static/img/before-done-img.svg" onclick="ApproveFunction(6);">' +
+        //         '<img class="img-fail" src="/static/img/fail-red.svg" onclick="penndingFunction(6);">'
+        //             +
+        //         '</div>'
+        //     '</div>';
+        // }
+        // else{
+        //     var newDiv6 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 20px;">' +
+        //     '<div class="docs-nike-"fails" style="display: flex;">' +
+        //         '<div class="main-divs-color mutual-titles-color blue-text">Resume</div>' +
+        //         '<img style="display: none;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
+        //         '<img style="display: none;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
+        //         '</div>' +
+        //     '<a href="' + url + '"><img data-number="6" title="Download Resume" class="open-popup" src="/static/img/documents-second-icon.svg" alt=""></a>' +
+        //     '<div class="div_replacement" style="display: none; justify-content: space-between; ">' +
+        //         '<img class="img-done" src="/static/img/before-done-img.svg" onclick="ApproveFunction(6);">' +
+        //         '<img class="img-fail" src="/static/img/img-fail.svg" onclick="RefuseFunction(6);">'
+        //             +
+        //         '</div>'
+        //     '</div>';
+        // }
+        // if(data["serviceContractExists"] === true){
+        //     if(data["serviceContractStatus"] === "A"){
+        //         var newDiv7 = '<div class="main-div-docs" style="display: flex; justify-content: space-between;  ">' +
+        //         '<div class="docs-nike-fails" style="display: flex;">' +
+        //         '<div class="main-divs-color mutual-titles-color blue-text">Service Contract</div>' +
+        //         '<img style="display: ;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
+        //         '<img style="display: none;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
+        //         '</div>' +  
+        //         '<img data-number="7" title="Download Service Contract" onclick="getDocument(this)" class="open-popup" src="/static/img/documents-second-icon.svg" alt="">' +
                 
 
-            '</div>';
-            }else if(data["serviceContractStatus"] === "R"){
+        //     '</div>';
+        //     }else if(data["serviceContractStatus"] === "R"){
             
-                var newDiv7 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; ">' +
-                '<div class="docs-nike-fails" style="display: flex;">' +
-                '<div class="main-divs-color mutual-titles-color ">Service Contract</div>' +
-                '<img style="display: none;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
-                '<img style="display: ;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
-                '</div>' +  
-                '<img data-number="7" title="Upload Service Contract"  class="open-popup" onclick="openPopUp(this)" src="/static/img/documents-icon.svg" alt="">' +
+        //         var newDiv7 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; ">' +
+        //         '<div class="docs-nike-fails" style="display: flex;">' +
+        //         '<div class="main-divs-color mutual-titles-color ">Service Contract</div>' +
+        //         '<img style="display: none;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
+        //         '<img style="display: ;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
+        //         '</div>' +  
+        //         '<img data-number="7" title="Upload Service Contract"  class="open-popup" onclick="openPopUp(this)" src="/static/img/documents-icon.svg" alt="">' +
                 
 
-                '</div>';
-            }else{
-                var newDiv7 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; ">' +
-                '<div class="docs-nike-fails" style="display: flex;">' +
-                '<div class="main-divs-color mutual-titles-color blue-text">Service Contract</div>' +
-                '<img style="display: none;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
-                '<img style="display: none;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
-                '</div>' +  
-                '<img data-number="7" title="Download Service Contract" onclick="getDocument(this)" class="open-popup" src="/static/img/documents-second-icon.svg" alt="">' +
+        //         '</div>';
+        //     }else{
+        //         var newDiv7 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; ">' +
+        //         '<div class="docs-nike-fails" style="display: flex;">' +
+        //         '<div class="main-divs-color mutual-titles-color blue-text">Service Contract</div>' +
+        //         '<img style="display: none;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
+        //         '<img style="display: none;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
+        //         '</div>' +  
+        //         '<img data-number="7" title="Download Service Contract" onclick="getDocument(this)" class="open-popup" src="/static/img/documents-second-icon.svg" alt="">' +
                 
 
-            '</div>';
-            }
-        }
+        //     '</div>';
+        //     }
+        // }
             
-            else {
-                var newDiv7 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; ">' +
-                '<div class="docs-nike-fails" style="display: flex;">' +
-                '<div class="main-divs-color mutual-titles-color">Service Contract</div>' +
-                '<img style="display: none;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
-                '<img style="display: none;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
-                '</div>' +   
-                '<img data-number="7" title="Upload Service Contract"  class="open-popup" onclick="openPopUp(this)" src="/static/img/documents-icon.svg" alt="">' +
+        //     else {
+        //         var newDiv7 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; ">' +
+        //         '<div class="docs-nike-fails" style="display: flex;">' +
+        //         '<div class="main-divs-color mutual-titles-color">Service Contract</div>' +
+        //         '<img style="display: none;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
+        //         '<img style="display: none;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
+        //         '</div>' +   
+        //         '<img data-number="7" title="Upload Service Contract"  class="open-popup" onclick="openPopUp(this)" src="/static/img/documents-icon.svg" alt="">' +
                 
-            '</div>'
-                }
+        //     '</div>'
+        //         }
         
         
         $('#documentList').empty();
         // Append the new div elements to the documentList
-        $('#documentList').append(newDiv,newDiv1,newDiv2,newDiv3,newDiv4,newDiv5,newDiv6,newDiv7);
+        $('#documentList').append(newDiv,newDiv1,newDiv2,newDiv3,newDiv4);
 
 
         var newDiv8 = ""
         var newDiv9 = ""
         if(data["jobOfferExists"] === true){
             if(data["jobOfferStatus"] === "A"){
-                var newDiv8 = '<div class="main-div-docs" style="display: flex; justify-content: space-between;padding-bottom: 20px; ">' +
+                var newDiv8 = '<div class="" style="padding-bottom: 20px";>' + '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 5px;">' +
                 '<div class="docs-nike-fails" style="display: flex;">' +
                 '<div class="main-divs-color mutual-titles-color blue-text">Job Offer</div>' +
                 '<img style="display: ;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
@@ -517,7 +612,7 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
         }
         if(data["workPermitExists"] === true){
             if(data["workPermitStatus"] === "A"){
-                var newDiv9 = '<div class="main-div-docs" style="display: flex; justify-content: space-between; ">' +
+                var newDiv9 = '<div class="" style="";>' + '<div class="main-div-docs" style="display: flex; justify-content: space-between; padding-bottom: 5px;">' +
                 '<div class="docs-nike-fails" style="display: flex;">' +
                 '<div class="main-divs-color mutual-titles-color blue-text">Work Permit</div>' +
                 '<img style="display: ;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
@@ -534,7 +629,7 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
                 '<div class="main-divs-color mutual-titles-color ">Work Permit</div>' +
                 '<img style="display: none;" class="img-after-done" src="/static/img/nike-img-done.svg" alt="">' +
                 '<img style="display: ;" class="img-after-failed" src="/static/img/fail-red.svg" alt="">' +
-                '</div>' +  
+                '</div>' +
                 '<img data-number="9" title="Upload Work Permit"  class="open-popup" onclick="openPopUp(this)" src="/static/img/documents-icon.svg" alt="">' +
                 
 
@@ -569,9 +664,6 @@ var beforeNewDiv2 = '<img class="imgs-three-dots-zip-img img-zip-download" style
         $("#parent-img-zip2").empty();
         $("#parent-img-zip2").append(beforeNewDiv1)
         $('#recdocumentList').append(newDiv8,newDiv9);
-
-        
-
 
 
         var mainJobs = false;

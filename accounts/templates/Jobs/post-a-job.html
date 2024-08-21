@@ -16,7 +16,7 @@
 
 
     <form class="postAJobForm"  id="form-id" method="post" enctype="multipart/form-data" action="{% url 'addJob'%}" >
-                {% csrf_token %}
+                {% csrf_n %}
         {{ job_question_formset.management_form }}
 
 

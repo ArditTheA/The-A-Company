@@ -50,9 +50,12 @@
                <div class="post-a-job-under-div">
 
                   <div class="inputs-div second-inputs-div">
-                    
+                     <div class="inputs-main-div-style">
                      {{job_form.job_title}}
+                     </div>
+                     <div class="inputs-main-div-style">
                      {{job_form.company}}
+                     </div>
                      <div class="inputs-div contact-information-margin-bottom first-and-last-name" style="display: flex;">
                         
                         <select name="country_j" id="id_country_j" class="apply-first-name inputs-job-details apply-name-surname all-inputs mutual-input country-margin-bottom">
@@ -63,8 +66,11 @@
                         
                         <input placeholder="City" value="{{job_form.city_j.value}}" name="city_j" id="id_city_j" class="apply-last-name inputs-job-details apply-name-surname all-inputs mutual-input"></input>
                      </div>
-                     <input type="number" name="salary_per_hour"id="id_salary_per_hour" value="{{job_form.salary_per_hour.value}}" placeholder="Salary per hour" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input" oninput="displaySalary()" onkeydown="handlePlaceholder(event)">
-                     <select class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input" name="tips" id="id_tips">
+                     <div class="inputs-main-div-style">
+                     <input type="number" name="salary_per_hour"id="id_salary_per_hour" value="{{job_form.salary_per_hour.value}}" placeholder="Salary per hour" class="all-inputs inputs-job-details contact-information-mutual-stats mutual-input" oninput="displaySalary()" onkeydown="handlePlaceholder(event)">
+                     </div>
+                  <div class="inputs-main-div-style">
+                     <select class="all-inputs inputs-job-details contact-information-mutual-stats mutual-input" name="tips" id="id_tips">
                         <option  style="display: none;" value="">Tips</option>
                         {% if job_form.tips.value  %}
                         <option value="Yes" selected>Yes</option>
@@ -74,8 +80,9 @@
                         <option value="No" selected>No</option>
                         {% endif %}
                      </select>
-                     
-                     <select class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input" name="type_of_work" id="id_type_of_work">
+                  </div>
+                  <div class="inputs-main-div-style">
+                     <select class="all-inputs inputs-job-details contact-information-mutual-stats mutual-input" name="type_of_work" id="id_type_of_work">
                         <option disabled  style="display: none;" value="">Type of Work</option>
                         {% if job_form.type_of_work.value == "Full Time" %}
                         <option value="Full Time" selected>Full Time</option>
@@ -86,18 +93,25 @@
 
                         {% endif %}
                      </select>
-                     <input type="number" name="hour_per_work" id="id_hour_per_work" value="{{job_form.hour_per_work.value}}" placeholder="Hours per week" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input"></input>
+                  </div>
+                  <div class="inputs-main-div-style">
+                     <input type="number" name="hour_per_work" id="id_hour_per_work" value="{{job_form.hour_per_work.value}}" placeholder="Hours per week" class="all-inputs inputs-job-details contact-information-mutual-stats mutual-input"></input>
+                  </div>
                      <div class="inputs-div contact-information-margin-bottom first-and-last-name">
-                        
+                     <div style="width: 100%; margin-right: 20px;">
                         <input id="id_start_date"  class="start-date-input date-of-birth-input inputs-job-details start-end-date all-inputs mutual-input"
                            name="start_date" onchange="checkForm();checkStartDate();" value='{{ job_form.start_date.value|date:"d/m/Y" }}' type="text" maxlength="10"
                            placeholder="Start Date (dd/mm/yyyy)" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
+                     </div>
+                     <div style="width: 100%;">
                         <input id="id_end_date" class="end-date-input date-of-birth-input inputs-job-details start-end-date all-inputs mutual-input"
                            name="end_date" onchange="checkForm();checkStartDate();" value='{{ job_form.end_date.value|date:"d/m/Y" }}' type="text" maxlength="10"
                            placeholder="End Date (dd/mm/yyyy)" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
+                        </div>
                      </div>
                      <!-- <input type="text" placeholder="Housing" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input"></input> -->
-                     <select name="housing" id="id_housing" style="" class="custom-select contact-information-margin-bottom contact-information-mutual-stats mutual-input inputs-job-details">
+                     <div class="inputs-main-div-style">
+                     <select name="housing" id="id_housing" style="" class="custom-select contact-information-mutual-stats mutual-input inputs-job-details">
                         <option disabled  style="display: none;" value="">Housing</option>
                         {% if job_form.housing.value == "Provided" %}
                         <option value="Provided" selected>Yes</option>
@@ -107,8 +121,12 @@
                         <option value="Not provided" selected>No</option>
                         {% endif %}
                      </select>
-                     <input type="number" value="{{job_form.housing_cost_per_week.value}}" name="housing_cost_per_week" id="id_housing_cost_per_week" placeholder="Housing cost per week" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input"></input>
-                     <select name="program" id="id_program" class="custom-select contact-information-margin-bottom contact-information-mutual-stats mutual-input inputs-job-details">
+                  </div>
+                  <div class="inputs-main-div-style">
+                     <input type="number" value="{{job_form.housing_cost_per_week.value}}" name="housing_cost_per_week" id="id_housing_cost_per_week" placeholder="Housing cost per week" class="all-inputs inputs-job-details contact-information-mutual-stats mutual-input"></input>
+                  </div>
+                  <div class="inputs-main-div-style">
+                     <select name="program" id="id_program" class="custom-select contact-information-mutual-stats mutual-input inputs-job-details">
 
                         <option disabled  style="display: none;" value="">Program</option>
                         {% if job_form.program.value == "Ausbildung" %}
@@ -145,8 +163,11 @@
                         {% endif %}
                         
                      </select>
+                  </div>
                      <input type="hidden" name="programCost" id="id_programCost" value="{{job_form.programCost.value}}">
-                     <input type="text"  value='{{ formatted_value}}' id="programCost" oninput="changeProgramValue()" placeholder="Program cost" class="all-inputs inputs-job-details contact-information-margin-bottom contact-information-mutual-stats mutual-input"></input>
+                     <div class="inputs-main-div-style">
+                     <input type="text"  value='{{ formatted_value}}' id="programCost" oninput="changeProgramValue()" placeholder="Program cost" class="all-inputs inputs-job-details contact-information-mutual-stats mutual-input"></input>
+                     </div>
                      <div class="div-of-changed-picture">
                         <label for="id_logo">
                            <div class="input-form">
@@ -589,7 +610,6 @@
 
    function PostJob(){
 
-   document.getElementById('form-id').submit();
    }
    document.getElementById('additional-feature-submit-button').addEventListener('click', handleClick);
 

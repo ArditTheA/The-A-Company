@@ -34,10 +34,15 @@ select {
 }
 
 .main-divs-color {
+    color: black;
+}
+.date-time-color {
     color: #858585;
 }
+.description-divs-color {
+    color: #858585 !important;
+}
 .divs-pointer-event-auto {
-    pointer-events: visible !important;
     cursor: pointer;
 }
 .second-color-of-divs {
@@ -87,7 +92,10 @@ option {
 .under-successfully-applied-form {
     width: 508px !important;
 }
-
+.inputs-main-div-style {
+    margin-bottom: 20px;
+    width: 100%;
+}
 
 .successfully-applied-content-div {
     padding: 30px;
@@ -121,6 +129,9 @@ option {
 .added-items-container {
     display: flex;
     flex-wrap: wrap;
+}
+.contact-information-mutual-stats {
+    width: 100%;
 }
 
 .choose-duration-buttons {
@@ -762,9 +773,40 @@ input {
     padding-top: 30px;
     font-size: 18px;
 }
+.margin-right-job-interview-divs {
+    margin-right: 40px;
+}
+.job-interview-input-elements {
+    border-radius: 40px;
+    border: 1px solid #D4D5D6;
+    height: 35px;
+    margin-left: 10px;
+    padding-left: 10px;
+}
+
+.img-done, .img-after-done {
+    cursor: pointer;
+}
+
+#job-interview-div {
+    display: flex; 
+    justify-content: space-between; 
+}
+#start-work-div {
+    display: flex;
+}
+
+#start-work-date {
+    width: 130px;
+}
+
+.meet-with-us-div {
+    pointer-events: visible !important;
+    cursor: pointer;
+}
 
 .second-screening-question-div {
-    pointer-events: none;
+    /* pointer-events: none; */
     border-bottom: 40px; 
     margin-left: 30px; 
     color: #D4D5D6;
@@ -774,10 +816,7 @@ input {
     padding-top: 20px;
 }
 .third-payment-div {
-    padding-top: 20px; 
-    padding-bottom: 20px; 
     border-bottom: 40px; 
-    margin-left: 30px; 
     color: #D4D5D6;
 }
 .screening-question-only-form {
@@ -978,19 +1017,16 @@ input {
         margin-left: 20px;
     }
     input, .contact-information-mutual-stats {
-        height: fit-content;
-    }
-    input, .contact-information-mutual-stats {
-        height: 36px !important;
+        height: 36px;
     }
 
     input[type="checkbox"] {
         height: auto !important;
     }
-    select.screening-question-select-options.screening-question-select-options {
+    #id_country {
+        height: auto !important;
         padding-top: 8.4px !important;
         padding-bottom: 8.4px !important;
-        height: auto !important;
     }
     
     .upload-file-div {
@@ -1217,15 +1253,12 @@ input {
     .start-end-date {
         box-sizing: border-box;
     }
-    .start-date-input { 
-        margin-bottom: 20px;
+    .end-date-input {
+        margin-top: 20px;
     }
     .apply-name-surname{
         height: 36px;
         box-sizing: border-box;
-    }
-    .country-margin-bottom {
-        margin-bottom: 20px;
     }
     .logo-input-div {
         font-size: 16px;

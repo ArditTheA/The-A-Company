@@ -12,8 +12,11 @@
 <style>
 
 
-        #countrySelect {
+        #id_country {
             margin-top: 20px;
+        }
+        .iti {
+            width: 100%;
         }
 
         .iti__selected-flag {
@@ -26,8 +29,8 @@
     <form class="reserveForm" id="answerForm"  method="POST">
     {% csrf_token %}
 
-<div id="reserve-form" class=" second-reserve-form reserve-form" method="POST">
-    <div class="contact-information-form">
+    <div id="reserve-form" class=" second-reserve-form reserve-form" method="POST">
+        <div class="contact-information-form">
         <div class="under-c-i-f" style="">
         <div class="second-under-c-i-f under-c-i-f">
             <div class="program-duration-main-div" style="">
@@ -37,7 +40,7 @@
 
         <div class="contact-information-title">Contact Information</div>
         <div class="inputs-div contact-information-margin-bottom first-and-last-name" style="display: flex;">
-            <div class="parent-div-first-last-name parent-div-first-name" style="">
+            <div class="parent-div-first-last-name parent-div-first-name" style="width: 100%; margin-right: 20px;">
             <input style="" name="first_name" placeholder="First Name" {% if user.first_name %}value="{{user.first_name}}"{% endif%} id="id_first_name" class="apply-first-name apply-name-surname all-inputs mutual-input"></input>
             </div>
             <div class="parent-div-first-last-name parent-div-last-name" style="width: 100%;">
@@ -48,25 +51,19 @@
             <div class="input-container">
             <input type="email" name="email" id="id_email" placeholder="Email" value="{{user.email}}" class="all-inputs mutual-input contact-information-mutual-stats" required>
             </div>
-            <!-- <input placeholder="Date of Birth" class="all-inputs contact-information-mutual-stats contact-information-margin-bottom mutual-input date-of-birth-input" style=""></input> -->
-<!--            <input type="tel" placeholder="Phone Number" name="phone_number" {% if user.phone_number %} value="{{user.phone_number}}" {% endif %} pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="all-inputs2 contact-information-mutual-stats contact-information-margin-bottom mutual-input" required>-->
-
-            <input type="tel" name="phone_number" id="phone-input" data-intl-tel-input-id="0" style="width:100%;margin-bottom:40px;" oninput="addPlusPrefix(this);" class="all-inputs2 contact-information-mutual-stats contact-information-margin-bottom mutual-input"  placeholder="Phone number">
-            <div class="contact-information-margin-bottom"></div>
-
-
-<!--                   <input type="tel"  id="phone-input" style="width:100%;" placeholder="Phone number">-->
-
+            <div style="width: 100%;">
+            <input type="tel" name="phone_number" id="phone-input" style="width:100%;" oninput="addPlusPrefix(this);" class="all-inputs2 contact-information-mutual-stats contact-information-margin-bottom mutual-input"  placeholder="Phone number">
+            </div>
+            </div>
             <select name="country" id="id_country" class="all-inputs contact-information-mutual-stats mutual-input">
                <option value="" disabled selected>Select a Country</option>
-
             </select>
+            <div class="back-and-next-buttons" style="width: 100%; display: flex; justify-content: space-between;">
+                <a href="{% url 'home' %}" class="btn back-button next-none contact-information-back-button" style="">Back</a>
+                <a id="next-button" class="next-button btn submit-button next-none" style="" >Next</a>
+            </div>
         </div>
                                                                                                                                             
-        <div class="back-and-next-buttons" style="width: 100%; display: flex; justify-content: space-between;">
-            <a href="{% url 'home' %}" class="btn back-button next-none contact-information-back-button" style="">Back</a>
-            <a id="next-button" class="next-button btn submit-button next-none" style="" >Next</a>
-        </div>
     </div>
     <div class="second-screening-question-div" style="padding-top: 20px; padding-bottom: 20px; border-bottom: 40px; margin-left: 30px; color: #D4D5D6;">
         <div class="screening-questions-title second-screening-question mutual-font-size-18px">Screening Questions</div>
@@ -76,7 +73,6 @@
 
 </div>
 
-</div>
 </div>
 <div class="third-reserve-form reserve-form" style="display: none;">
     <div class="program-duration-form screening-question-form">
@@ -127,7 +123,7 @@
 
 <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-<script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/theacompany/green-card?hide_event_type_details=1&hide_gdpr_banner=1', text: 'Schedule time with me', color: '#0069ff', textColor: '#ffffff', branding: true }); }</script>
+<!-- <script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/theacompany/green-card?hide_event_type_details=1&hide_gdpr_banner=1', text: 'Schedule time with me', color: '#0069ff', textColor: '#ffffff', branding: true }); }</script> -->
 <!-- Calendly badge widget end -->
 
     <script>

@@ -1,10 +1,11 @@
-
 import requests
-
-from django.http import JsonResponse,HttpResponse
+import stripe
+from django.http import JsonResponse,HttpResponse, HttpResponseRedirect
+import os
 from django.views.generic import View
 from django.shortcuts import HttpResponse
 from urllib import request
+from flask import Flask, jsonify, redirect, request
 from django.contrib.auth import login
 from django.contrib.auth import views as auth_views
 from django.shortcuts import redirect, render, get_object_or_404
@@ -21,12 +22,15 @@ from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from google.oauth2.gdch_credentials import ServiceAccountCredentials
 from oauthlib.oauth2 import OAuth2Error
+from django.conf import settings
 
 from accounts.forms import *
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 import itertools
 from filters.models import Search, UserCountry, UserCity, UserUni
+
+import json
 
 import locale
 
@@ -312,7 +316,7 @@ def newregister(request):
             if next_url:
                 return redirect(next_url)  # Redirect to the URL specified in 'next'
             return redirect('home')
-
+            
     else:
         form = NewRegisterForm()
 
@@ -880,12 +884,20 @@ class RecruiterClosedJobs(View):
 
         return render(request, "Recruiter/index.html", dict(job=job, check=check,jpk=1,checkMainJobs=checkMainJobs))
 
+# def mySum(x):
+#     total = 0
+#     for i in range(x + 1):
+#         total += i
+#     return total
+# print(mySum(3))
+# x = [2, 3, 4]
+# def TwoElementsEqual(x, y):
+#     for firstElement in x:
+#         if firstElement == y:
+#             return True
+#     return False
 
-
-
-
-class getAppliantMetting():
-    print("test")
+# print(TwoElementsEqual(x, 2))
 
 from documents.forms import DocumentForm
 from documents.views import *
@@ -1424,6 +1436,7 @@ def ApplySuc(request):
     return render(request,"MainJobs/apply.html")
 
 
+
 @login_required
 def applyForJob2(request, pk):
     country = Country.objects.all()
@@ -1509,7 +1522,6 @@ def applyForJob3(request, pk):
                         'user': request.user,
                         "job": job,
                         "date": dataa,
-
                     }
                     email = render_to_string(email_template_applicant, c)
 
@@ -1671,3 +1683,224 @@ def applyForJob(request, pk):
         return render(request, "ProfileSetup/mainInfo.html",{"form": form, "country": country, "city": city, "birth": birth})
     return render(request, "MainJobs/apply.html")
 
+def userJobPayment(request):
+    if request.method == 'POST':
+        userr_id = request.POST.get('user_id')
+        jobb_id = request.POST.get('job_id')
+        paymentAmount = request.POST.get('paymentAmount')
+        paymentLink = request.POST.get('paymentLink')
+
+        # Try to fetch the existing UserJobPayment entry
+        try:
+            user_job_payment = UserJobPayment.objects.get(job_id=jobb_id, user_id=userr_id)
+            # Update the existing entry
+            user_job_payment.paymentAmount = paymentAmount
+            user_job_payment.paymentLink = paymentLink
+            user_job_payment.save()
+            return JsonResponse({'status': 'updated'}, status=200)
+        except UserJobPayment.DoesNotExist:
+            # Create a new entry if not found
+            new_user_job_payment = UserJobPayment(job_id=jobb_id, user_id=userr_id, paymentAmount=paymentAmount, paymentLink=paymentLink)
+            new_user_job_payment.save()
+            return JsonResponse({'status': 'created'}, status=201)
+
+    return JsonResponse({'error': 'Invalid request'}, status=400)
+
+def userJobAppointments(request):
+    if request.method == 'POST':
+        userr_id = request.POST.get('user_id')
+        jobb_id = request.POST.get('job_id')
+        meetingDate = request.POST.get('meetingDate')
+        meetingTime = request.POST.get('meetingTime')
+        meetingLink = request.POST.get('meetingLink')
+
+        object = UserJobAppointments(job_id=jobb_id, user_id=userr_id, meetingDate=meetingDate, meetingTime=meetingTime, meetingLink=meetingLink)
+        object.save()
+        return HttpResponse(status=201)
+
+def user_job_appointments_finished(request):
+    if request.method == 'POST':
+        userr_id = request.POST.get('user_id')
+        jobb_id = request.POST.get('job_id')
+
+        object = UserJobAppointments.objects.get(job_id=jobb_id, user_id=userr_id)
+        object.meetingDone = True
+        object.save()
+        return HttpResponse(status=201)
+
+def user_job_appointments_pending(request):
+    if request.method == 'POST':
+        userr_id = request.POST.get('user_id')
+        jobb_id = request.POST.get('job_id')
+
+        object = UserJobAppointments.objects.get(job_id=jobb_id, user_id=userr_id)
+        object.meetingDone = False
+        object.save()
+        return HttpResponse(status=201)
+
+def userJobInterview(request):
+    if request.method == 'POST':
+        userr_id = request.POST.get('user_id')
+        jobb_id = request.POST.get('job_id')
+        interviewDate = request.POST.get('interviewDate')
+        interviewTime = request.POST.get('interviewTime')
+        interviewLink = request.POST.get('interviewLink')
+
+        object = UserJobInterview(job_id=jobb_id, user_id=userr_id, interviewDate=interviewDate, interviewTime=interviewTime, interviewLink=interviewLink)
+        object.save()
+        return HttpResponse(status=201)
+
+def userJobInterviewUpdate(request):
+    if request.method == 'POST':
+        userr_id = request.POST.get('user_id')
+        jobb_id = request.POST.get('job_id')
+        interviewDate = request.POST.get('interviewDate')
+        interviewTime = request.POST.get('interviewTime')
+        interviewLink = request.POST.get('interviewLink')
+        
+        object = UserJobInterview.objects.get(job_id=jobb_id, user_id=userr_id)
+        object.interviewDate = interviewDate
+        object.interviewTime = interviewTime
+        object.interviewLink = interviewLink
+        object.save()
+        return HttpResponse(status=201)
+
+def job_interview_finished(request):
+    if request.method == 'POST':
+        userr_id = request.POST.get('user_id')
+        jobb_id = request.POST.get('job_id')
+
+        object = UserJobInterview.objects.get(job_id=jobb_id, user_id=userr_id)
+        object.interviewDone = True
+        object.save()
+        return HttpResponse(status=201)
+
+def job_interview_pending(request):
+    if request.method == 'POST':
+        userr_id = request.POST.get('user_id')
+        jobb_id = request.POST.get('job_id')
+
+        object = UserJobInterview.objects.get(job_id=jobb_id, user_id=userr_id)
+        object.interviewDone = False
+        object.save()
+        return HttpResponse(status=201)
+def CreateCheckoutSession(request):
+    stripe.api_key = "sk_test_51MfP4FAWWrYDd3Ex3UdXVUsgjFblWSAiI8yvsEPm83iAlH1LaWGnS9fquylP0AknVsr7HfKs6m3wsArtQgVFaliw00QqQKsitp"
+    # print(settings.STRIPE_SECRET_KEY)
+    YOUR_DOMAIN = 'http://localhost:8000'
+    if request.method == 'POST':
+        body_unicode = request.body.decode('utf-8')
+        body_data = json.loads(body_unicode)
+        user_id = body_data['user_id']
+        job_id = body_data['job_id']
+        amount = "40000"
+        allPaymentsDone = False
+        firstPaymentDoneandSecondFalse = False
+        application = Application.objects.get(job_id_id=job_id, user_id_id=user_id)
+        if application.firstPaymentDone and application.secondPaymentDone and application.thirdPaymentDone:
+            allPaymentsDone = True
+        elif application.firstPaymentDone and application.secondPaymentDone:
+            amount = "80000"
+        elif application.firstPaymentDone:
+            firstPaymentDoneandSecondFalse = True
+            amount = "80000"
+            print(amount + amount + amount)
+        application.save()
+
+        session = stripe.checkout.Session.create(
+            ui_mode = 'embedded',
+            line_items=[
+                {
+                    'price_data': {
+                        'currency': 'usd',
+                        'unit_amount': int(amount),
+                        'product_data': {
+                            'name': "Ardit",
+                        },
+                        'tax_behavior': 'exclusive',
+                    },
+                    'quantity': 1,
+                },
+            ],
+            mode='payment',
+            return_url=YOUR_DOMAIN + '/return?session_id={CHECKOUT_SESSION_ID}',
+            automatic_tax={'enabled': True},
+            payment_intent_data={
+                'metadata': {
+                    'user_id': user_id,  # Custom user ID from your application
+                    'job_id': job_id,
+                    'amount': amount,  # Custom order ID or any other information
+                }
+            }
+
+
+        )
+
+        return JsonResponse({'clientSecret': session.client_secret} )
+        print("Ardit")
+
+def session_status(request):
+    if request.method == "GET":
+        session = stripe.checkout.Session.retrieve(request.GET.get('session_id'))
+
+        return JsonResponse({'status': session.status, 'customer_email': session.customer_details.email})
+
+def return_page(request):
+    return render(request, "return.html")
+
+endpoint_secret = 'whsec_0fe9662db59ca2915993f14a612674c696a16c72d3043cd45162494602246744'
+def stripe_webhook(request):
+    print("stripe_webhook")
+    payload = request.body
+    sig_header = request.META['HTTP_STRIPE_SIGNATURE']
+    event = None
+
+    try:
+        event = stripe.Webhook.construct_event(
+        payload, sig_header, endpoint_secret
+        )
+    except ValueError as e:
+        # Invalid payload
+        return HttpResponse(status=400)
+    except stripe.error.SignatureVerificationError as e:
+        # Invalid signature
+        return HttpResponse(status=400)
+
+    if event['type'] == 'payment_intent.succeeded':
+        print("Ardit")
+        payment_intent = event['data']['object']  # The payment intent data
+        print(payment_intent)
+        user_id = payment_intent.get('metadata', {}).get('user_id')
+        job_id = payment_intent.get('metadata', {}).get('job_id')
+        amount = payment_intent.get('metadata', {}).get('amount')
+        print(Application)
+
+        # print('payment_intent.succeeded')
+        # print(user_id)
+        # print(job_id)
+
+        if user_id:
+            # Insert or update your database here with the user_id
+            print(f'Payment was successful for user ID {user_id}.')
+            application = Application.objects.get(job_id_id=job_id, user_id_id=user_id)
+            if amount == '40000':
+                application.firstPaymentDone = True
+            elif amount == '80000':
+                application.secondPaymentDone = True
+            elif amount == '80000':
+                application.thirdPaymentDone = True
+            else:
+                print("20000" + "account")
+            application.save()
+            # Example: insert_payment_to_db(user_id, payment_intent)
+        else:
+            print('User ID not found in payment intent metadata.')
+
+    # Passed signature verification
+    return HttpResponse(status=200)
+
+if __name__ == '__main__':
+    app.run(port=4242)
+
+
+    # return redirect(checkout_session.url, code=303)

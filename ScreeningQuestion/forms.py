@@ -9,9 +9,9 @@ class JobForm(forms.ModelForm):
         widgets = {
 
             "job_title": forms.TextInput(
-                attrs={'class': 'name-input mutual-stats font-fam next-none', "onchange": "checkForm()"}),
+                attrs={'class': 'all-inputs inputs-job-details contact-information-mutual-stats', "onchange": "checkForm()", "placeholder": "Job Title"}),
             "company": forms.TextInput(
-                attrs={'class': 'name-input mutual-stats font-fam next-none', "onchange": "checkForm()"}),
+                attrs={'class': 'all-inputs inputs-job-details contact-information-mutual-stats mutual-input', "onchange": "checkForm()", "placeholder": "Company"}),
             "start_date": forms.DateInput(
                 attrs={"class": "start-date-input mutual-stats font-fam next-none", "type": "date",
                        "onchange": "checkForm()"}),

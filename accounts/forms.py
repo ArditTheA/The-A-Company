@@ -154,7 +154,7 @@ from django.contrib.auth import get_user_model
 class NewRegisterForm(UserCreationForm):
     password1 = forms.CharField(
         label="Password",
-        widget=forms.PasswordInput(attrs={"class": "input-text password-input font-fam create-account", "placeholder": "Password", "id": "create_account_password"})
+        widget=forms.PasswordInput(attrs={"class": "input-text password-input font-fam create-account", "value": "", "placeholder": "Password", "id": "create_account_password"})
     )
 
     class Meta:
@@ -163,7 +163,7 @@ class NewRegisterForm(UserCreationForm):
         widgets = {
             "first_name": forms.TextInput(attrs={"class": "input-text name-surname-width name-input font-fam create-account", "placeholder": "First Name"}),
             "last_name": forms.TextInput(attrs={"class": "input-text name-surname-width surname-input font-fam create-account", "placeholder": "Last Name"}),
-            "email": forms.TextInput(attrs={"class": "input-text email-input font-fam create-account", "placeholder ": "Email", "id": "email_create_account"}),
+            "email": forms.TextInput(attrs={"class": "input-text email-input font-fam create-account", "placeholder ": "Email", "value": "", "id": "email_create_account"}),
             
         }
     def __init__(self, *args, **kwargs):
@@ -219,11 +219,11 @@ class editjob(ModelForm):
         model = Jobs
         fields = "__all__"
         widgets = {
-            "job_title": forms.TextInput(attrs={'class': 'all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom',"placeholder":"Job Title"}),
-            "company": forms.TextInput(attrs={'class': 'all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input',"placeholder":"Company"}),
+            "job_title": forms.TextInput(attrs={'class': 'all-inputs inputs-job-details contact-information-mutual-stats',"placeholder":"Job Title"}),
+            "company": forms.TextInput(attrs={'class': 'all-inputs inputs-job-details contact-information-mutual-stats mutual-input',"placeholder":"Company"}),
             
             "city_j":forms.TextInput(attrs={'class':"apply-last-name inputs-job-details apply-name-surname all-inputs mutual-input"}),
-            "salary_per_hour": forms.NumberInput(attrs={'class': 'all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input'}),
+            "salary_per_hour": forms.NumberInput(attrs={'class': 'all-inputs inputs-job-details contact-information-mutual-stats mutual-input'}),
             
             "housing_cost_per_week": forms.NumberInput(attrs={'class': 'name-input mutual-stats font-fam  next-none'}),
             "programCost": forms.NumberInput(attrs={'class': 'name-input mutual-stats font-fam next-none'}),

@@ -2,7 +2,7 @@ const inputFields = Array.from(document.querySelectorAll('.mutual-input'));
 const myButton = document.getElementById('next-button');
 const phoneNumber = document.getElementById("phone-input");
 const emailAddressInput = document.getElementById('id_email');
-const select_country_mutual = document.getElementById('id_country')
+const select_country_mutual = document.getElementById('id_country');
 var second_reserve_form_next = document.querySelector(".second-reserve-form");
 var third_reserve_form_next = document.querySelector(".third-reserve-form");
 var screening_question_div_1 = document.querySelector(".first-screening-question-div");
@@ -33,12 +33,13 @@ var myDisableClickFunction = function() {
         errorDiv.classList.add('error-message');
         errorDiv.style.color = "red";
         errorDiv.style.fontSize = "14px";
-        errorDiv.style.marginTop = "4px";
-        input.parentNode.insertBefore(errorDiv, input.nextSibling);
+        errorDiv.style.marginTop = "0px";
+        input.parentNode.parentNode.insertBefore(errorDiv, input.parentNode.nextSibling);
       } else {
         input.style.border = "0.5px solid red";
         input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
         errorDiv.textContent = 'This field is required';
+        errorDiv.style.marginTop = "4px";
 
       }
     } else {
@@ -53,16 +54,17 @@ var myDisableClickFunction = function() {
         } else {
         }
       }
+      if (input.id === "phone-input") {
+        if (input.value.length < 12) {
+          input.style.border = "0.5px solid red";
+          input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+          errorDiv.textContent = 'This field is incorrect';
+          errorDiv.style.marginTop = "4px";
+        }
+    }
       
     }
 
-    if (input.id === "phone-input") {
-      if (input.value.length < 12) {
-        input.style.border = "0.5px solid red";
-        input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
-        errorDiv.textContent = 'This field is incorrect';
-      }
-    }
 
     input.addEventListener('focus', function() {
       const errorDivId = input.id + '-error-message';
@@ -70,6 +72,7 @@ var myDisableClickFunction = function() {
       input.style.border = "1px solid #1877f2";
       input.style.boxShadow = "0 0 5px rgba(0, 0, 0, 0.1)";
       errorDiv.textContent = '';
+      errorDiv.style.marginTop = "0px";
     });
 
     input.addEventListener('blur', function() {
@@ -82,11 +85,17 @@ var myDisableClickFunction = function() {
         errorDiv.classList.add('error-message');
         errorDiv.style.color = "red";
         errorDiv.style.fontSize = "14px";
-        errorDiv.style.marginTop = "4px";
-        input.parentNode.insertBefore(errorDiv, input.nextSibling);
+        if (input.id !== "phone-input") {
+          input.parentNode.insertBefore(errorDiv, input.nextSibling);
+
+        }
+        else {
+          input.parentNode.parentNode.insertBefore(errorDiv, input.parentNode.nextSibling);
+        }
         input.style.border = "0.5px solid red";
         input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
         errorDiv.textContent = 'This field is required';
+        errorDiv.style.marginTop = "0px";
     }
       else {
         input.style.border = "0.5px solid red";
@@ -96,6 +105,7 @@ var myDisableClickFunction = function() {
 
       if (input.id !== "id_email") {
         if (input.value.trim() === "") {
+            errorDiv.style.marginTop = "4px";
 
         }
         else {
@@ -103,12 +113,14 @@ var myDisableClickFunction = function() {
           input.style.border = "";
           input.style.boxShadow = "";
           errorDiv.textContent = '';
+          errorDiv.style.marginTop = "0px";
           }
           else {
               if (input.value.length < 12) {
                 input.style.border = "0.5px solid red";
                 input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
                 errorDiv.textContent = 'This field is incorrect';
+                errorDiv.style.marginTop = "4px";
               }
               else {
                 input.style.border = "";
@@ -125,15 +137,18 @@ var myDisableClickFunction = function() {
             input.style.border = "0.5px solid red";
             input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
             errorDiv.textContent = 'This email is invalid';
+            errorDiv.style.marginTop = "4px";
           } else {
             input.style.border = "0.5px solid red";
             input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
             errorDiv.textContent = 'This field is required';
+            errorDiv.style.marginTop = "4px";
           }
         } else {
           input.style.border = "";
           input.style.boxShadow = "";
           errorDiv.textContent = '';
+          errorDiv.style.marginTop = "0px";
         }
       }
     });

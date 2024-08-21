@@ -21,6 +21,7 @@ def user_directory_path(instance, filename):
     docPath = instance.user.first_name+"_"+instance.user.last_name+"_Documents_For_Work_Permit"
     workPath = instance.user.first_name+"_"+instance.user.last_name+"_Your_Work_Permit_is_Here"
     if (document =="Passaport" or document == "Student status" or document=="Certificate of Enrolment" or document=="Student ID" or document == "Photo" or document=="Resume" or document == "Service contract"):
+        
         return os.path.join(email,docPath,new_filename)
     else:
         return os.path.join( email,workPath, new_filename)

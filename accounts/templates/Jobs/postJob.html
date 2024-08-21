@@ -38,7 +38,7 @@
 
    {{ job_question_formset.management_form }}
 
-   <div  class=" second-reserve-form reserve-form first-post-a-job-form" style="">
+   <div class=" second-reserve-form reserve-form first-post-a-job-form" style="">
       <div class="contact-information-form">
          <div class="under-c-i-f">
             <div class="second-under-c-i-f under-c-i-f">
@@ -56,71 +56,99 @@
                         {{job_form.user_id}}
                         {{job_form.applicant}}
                      </div>
-                     <input type="text" name="job_title" id="id_job_title" placeholder="Job title" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom" required></input>
-                     <input type="text" name="company" id="id_company" placeholder="Company" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input"></input>
-                     <div class="inputs-div contact-information-margin-bottom first-and-last-name" style="display: flex;">
-                        <select name="country_j" id="id_country_j" class="apply-first-name inputs-job-details apply-name-surname all-inputs mutual-input country-margin-bottom">
-                           <option value=""  selected>Select a Country</option>
-            
+                     <div class="inputs-main-div-style">
+                        <input type="text" name="job_title" id="id_job_title" placeholder="Job title" class="all-inputs inputs-job-details contact-information-mutual-stats" required></input>
+                        </div>
+                        <div class="inputs-main-div-style">
+                        <input type="text" name="company" id="id_company" placeholder="Company" class="all-inputs inputs-job-details contact-information-mutual-stats mutual-input"></input>
+                        </div>
+                        <div class="inputs-div first-and-last-name" style="display: flex; width: 100%; justify-content: space-between;">
+                           <div style="width: 100%; margin-right: 20px; margin-bottom: 20px;">
+                           <select name="country_j" id="id_country_j" class="apply-first-name inputs-job-details apply-name-surname all-inputs mutual-input country-margin-bottom" style="margin-right: 20px;">
+                              <option value=""  selected>Select a Country</option>
+               
+                           </select>
+                        </div>
+                        <div class="inputs-main-div-style" style="width: 100%;">
+                           <!-- <input placeholder="City" class="apply-last-name inputs-job-details apply-name-surname all-inputs mutual-input"></input> -->
+                           <input placeholder="City" name="city_j" id="id_city_j" class="apply-last-name inputs-job-details apply-name-surname all-inputs mutual-input"></input>
+                        </div>
+                        </div>
+                        <div class="inputs-main-div-style">
+                        <input type="number" name="salary_per_hour"id="id_salary_per_hour" placeholder="Salary per hour" class="all-inputs inputs-job-details contact-information-mutual-stats mutual-input" oninput="displaySalary()" onkeydown="handlePlaceholder(event)">
+                        </div>
+                        <div class="inputs-main-div-style">
+                        <select class="all-inputs inputs-job-details contact-information-mutual-stats mutual-input" name="tips" id="id_tips">
+                           <option  selected style="display: none;" value="">Tips</option>
+                           <option value="Yes">Yes</option>
+                           <option value="No">No</option>
                         </select>
-                        <!-- <input placeholder="City" class="apply-last-name inputs-job-details apply-name-surname all-inputs mutual-input"></input> -->
-                        <input placeholder="City" name="city_j" id="id_city_j" class="apply-last-name inputs-job-details apply-name-surname all-inputs mutual-input"></input>
+                        </div>
+                        <div class="inputs-main-div-style">
+                        <select class="all-inputs inputs-job-details contact-information-mutual-stats mutual-input" name="type_of_work" id="id_type_of_work">
+                           <option disabled selected style="display: none;" value="">Type of Work</option>
+                           <option value="Full Time">Full Time</option>
+                           <option value="Part Time">Part Time</option>
+                        </select>
                      </div>
-                     <input type="number" name="salary_per_hour"id="id_salary_per_hour" placeholder="Salary per hour" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input" oninput="displaySalary()" onkeydown="handlePlaceholder(event)">
-                     <select class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input" name="tips" id="id_tips">
-                        <option  selected style="display: none;" value="">Tips</option>
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
-                     </select>
-                     <select class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input" name="type_of_work" id="id_type_of_work">
-                        <option disabled selected style="display: none;" value="">Type of Work</option>
-                        <option value="Full Time">Full Time</option>
-                        <option value="Part Time">Part Time</option>
-                     </select>
-                     <input type="number" name="hour_per_work" id="id_hour_per_work" placeholder="Hours per week" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input"></input>
-                     <div class="inputs-div contact-information-margin-bottom first-and-last-name">
-                        <input id="id_start_date" class="start-date-input date-of-birth-input inputs-job-details start-end-date all-inputs mutual-input"
-                           name="start_date" onchange="checkForm();checkStartDate();" value="" type="text" maxlength="10"
-                           placeholder="Start Date (dd/mm/yyyy)" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
-                        <input id="id_end_date" class="end-date-input date-of-birth-input inputs-job-details start-end-date all-inputs mutual-input"
-                           name="end_date" onchange="checkForm();checkStartDate();" value="" type="text" maxlength="10"
-                           placeholder="End Date (dd/mm/yyyy)" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
+                     <div class="inputs-main-div-style">
+                        <input type="number" name="hour_per_work" id="id_hour_per_work" placeholder="Hours per week" class="all-inputs inputs-job-details contact-information-mutual-stats mutual-input"></input>
                      </div>
-                     <!-- <input type="text" placeholder="Housing" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input"></input> -->
-                     <select name="housing" id="id_housing" style="" class="custom-select contact-information-margin-bottom contact-information-mutual-stats mutual-input inputs-job-details">
-                        <option disabled selected style="display: none;" value="">Housing</option>
-                        <option value="Provided">Yes</option>
-                        <option value="Not provided">No</option>
-                     </select>
-                     <input type="number" name="housing_cost_per_week" id="id_housing_cost_per_week" placeholder="Housing cost per week" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input"></input>
-                     <select name="program" id="id_program" class="custom-select contact-information-margin-bottom contact-information-mutual-stats mutual-input inputs-job-details">
-
-                        <option disabled selected style="display: none;" value="">Program</option>
-                        <option value="Ausbildung">Ausbildung</option>
-                        <option value="Internship">Internship</option>
-                        <option value="Work and Travel">Work and Travel</option>
-                        <option value="Trainee">Trainee</option>
-                        <option value="Temporary Employment">Temporary Employment</option>
-                     </select>
-                     <input type="hidden" name="programCost" id="id_programCost" >
-                     <input type="text"   id="programCost" oninput="changeProgramValue()" placeholder="Program cost" class="all-inputs inputs-job-details contact-information-margin-bottom contact-information-mutual-stats mutual-input"></input>
-                                          <div class="div-of-changed-picture">
-                        <label for="id_logo">
-                           <div class="input-form">
-                              <div style="cursor: pointer; display: flex; align-items: center;" class="upload-file-div logo-input-main-div">
-                                 <div class="logo-input-div">Logo</div>
-                                 <img class="icon" src="{% static 'img/UploadLogoWhite.svg'%}" alt="">
-                              </div>
+                        <div class="inputs-div contact-information-margin-bottom first-and-last-name">
+                           <div style="width: 100%; margin-right: 20px;">
+                           <input id="id_start_date" class="start-date-input date-of-birth-input inputs-job-details start-end-date all-inputs mutual-input"
+                              name="start_date" onchange="checkForm();checkStartDate();" value="" type="text" maxlength="10"
+                              placeholder="Start Date (dd/mm/yyyy)" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
                            </div>
-                        </label>
-                        <input style="display: none;" class name="logo" accept="image/*" id="id_logo" type="file"/>
+                           <div style="width: 100%">
+                           <input id="id_end_date" class="end-date-input date-of-birth-input inputs-job-details start-end-date all-inputs mutual-input"
+                              name="end_date" onchange="checkForm();checkStartDate();" value="" type="text" maxlength="10"
+                              placeholder="End Date (dd/mm/yyyy)" required="" oninput="this.value = MMDDYYYY(this.value, event)" />
+                           </div>
+                        </div>
+                        <!-- <input type="text" placeholder="Housing" class="all-inputs inputs-job-details contact-information-mutual-stats contact-information-margin-bottom mutual-input"></input> -->
+                        <div class="inputs-main-div-style">
+                        <select name="housing" id="id_housing" style="" class="custom-select contact-information-mutual-stats mutual-input inputs-job-details">
+                           <option disabled selected style="display: none;" value="">Housing</option>
+                           <option value="Provided">Yes</option>
+                           <option value="Not provided">No</option>
+                        </select>
+                        </div>
+                        <div class="inputs-main-div-style">
+                        <input type="number" name="housing_cost_per_week" id="id_housing_cost_per_week" placeholder="Housing cost per week" class="all-inputs inputs-job-details contact-information-mutual-stats mutual-input"></input>
+                        </div>
+                        <div class="inputs-main-div-style">
+                        <select name="program" id="id_program" class="custom-select contact-information-mutual-stats mutual-input inputs-job-details">
+                           <option disabled selected style="display: none;" value="">Program</option>
+                           <option value="Ausbildung">Ausbildung</option>
+                           <option value="Internship">Internship</option>
+                           <option value="Work and Travel">Work and Travel</option>
+                           <option value="Trainee">Trainee</option>
+                           <option value="Temporary Employment">Temporary Employment</option>
+                        </select>
                      </div>
-                     <!-- <input placeholder="Student Status" class="all-inputs contact-information-mutual-stats mutual-input" style="border: 1px solid #D4D5D6; width: 434px; padding: 10px 0px 10px 10px; border-radius: 40px;"></input> -->
-                  </div>
-                  <div class="back-and-next-buttons" style="width: 100%; display: flex; justify-content: space-between;">
-                     <a  href="{% url 'postedJob' %}" class=" back-button next-none contact-information-back-button">Back</a>
-                     <a id="first-next-button-job-details" class="first-next-button  submit-button next-none">Next</a>
-                  </div>
+                        <input type="hidden" name="programCost" id="id_programCost">
+                        <div class="inputs-main-div-style">
+                        <input type="text" id="programCost" oninput="changeProgramValue()" placeholder="Program cost" class="all-inputs inputs-job-details contact-information-mutual-stats mutual-input"></input>
+                        </div>
+                                             <div class="div-of-changed-picture">
+                           <label for="id_logo">
+                              <div class="input-form">
+                                 <div style="cursor: pointer; display: flex; align-items: center;" class="upload-file-div logo-input-main-div">
+                                    <div class="logo-input-div">Logo</div>
+                                    <img class="icon" src="{% static 'img/UploadLogoWhite.svg'%}" alt="">
+                                 </div>
+                              </div>
+                           </label>
+                           <input style="display: none;" class="inputs-job-details" name="logo" accept="image/*" id="id_logo" type="file"/>
+                        </div>
+                        <!-- <input placeholder="Student Status" class="all-inputs contact-information-mutual-stats mutual-input" style="border: 1px solid #D4D5D6; width: 434px; padding: 10px 0px 10px 10px; border-radius: 40px;"></input> -->
+                     </div>
+                     <div class="back-and-next-buttons" style="width: 100%; display: flex; justify-content: space-between;">
+                        <a  href="{% url 'postedJob' %}" class=" back-button next-none contact-information-back-button">Back</a>
+                        <a id="first-next-button-job-details" class="first-next-button  submit-button next-none">Next</a>
+                     </div>   
+                        <!-- <input placeholder="Student Status" class="all-inputs contact-information-mutual-stats mutual-input" style="border: 1px solid #D4D5D6; width: 434px; padding: 10px 0px 10px 10px; border-radius: 40px;"></input> -->
                </div>
                <div class="first-job-description-post-a-job" style="padding-top: 20px; padding-bottom: 20px; border-bottom: 40px; margin-left: 30px; color: #D4D5D6;">
                   <div class="second-screening-question mutual-font-size-18px font-size-18px-16px">Job Description</div>
@@ -164,7 +192,9 @@
          </div>
          <div class="third-additional-feature-main-div">
             <div class="third-additional-feature font-size-18px-16px">Additional Feature</div>
-            <input type="number" id="id_positionLeft" name="positionLeft" placeholder="Number of Positions" class="all-inputs contact-information-mutual-stats contact-information-margin-bottom positions-deadline-date-inputs"></input>
+            <div class="inputs-main-div-style">
+            <input type="number" id="id_positionLeft" name="positionLeft" placeholder="Number of Positions" class="all-inputs contact-information-mutual-stats positions-deadline-date-inputs"></input>
+            </div>
             <!-- <input type="text" placeholder="Deadline Date" class="all-inputs contact-information-mutual-stats input-deadline-date positions-deadline-date-inputs"></input> -->
             <input id="id_deadline_date" class="positions-deadline-date-inputs date-of-birth-input start-end-date all-inputs mutual-input"
                name="deadline" onchange="checkForm();checkStartDate();" value="" type="tel" maxlength="10"
@@ -319,7 +349,6 @@
 
    function PostJob(){
 
-   document.getElementById('form-id').submit();
    }
    document.getElementById('additional-feature-submit-button').addEventListener('click', handleClick);
 

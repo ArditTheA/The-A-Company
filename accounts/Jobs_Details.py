@@ -71,7 +71,7 @@ class getJobDetails(View):
         end_date = format(end_date, "%d/%m/%Y")
         app = (str(applicant))
         locale.setlocale(locale.LC_ALL, '')  # set the locale to the user's default
-        programCost = locale.format("%d", programCost, grouping=True)
+        # programCost = locale.format("%d", programCost, grouping=True)
         return JsonResponse(
                     dict(description=description, title=title, applicant=app, city_j=city_j, country=country,
                          start_date=start_date,SDate=SDate,EDate=EDate,hasApply=hasApply,applyDate=hasApplyDate,applyDateTime=applyDateTime,
@@ -334,11 +334,36 @@ class getMyJobsDetails(View):
 
         meetingTime = Application.objects.filter(job_id=post_id).filter(
                     user_id=request.user).values_list("meetWithUs", flat=True).first()
+        meetWithUsDiv = Application.objects.filter(job_id=post_id).filter(
+            user_id=request.user).values_list(flat=True).first()
         meetingLink = Application.objects.filter(job_id=post_id).filter(
                     user_id=request.user).values_list("meetWithUsLink", flat=True).first()
         StatusApp = Application.objects.filter(job_id=post_id,user_id=request.user).values_list("ApplicantStat",flat=True).first()
-
-              
+        user_document = documents_users.objects.filter(
+                user_id=request.user,
+                status="A"
+            ).exclude(
+                id_document__name__icontains="Photo"
+            ).exclude(
+                id_document__name__icontains="Service contract"
+            ).exclude(
+                id_document__name__icontains="Resume"
+            ).exclude(
+                id_document__name__icontains="Job Offer"
+            ).exclude(
+                id_document__name__icontains="Work Permit"
+            ).count()
+        phase_second = documents_users.objects.filter(
+                user_id=request.user,
+                status="A",
+                id_document__name__icontains="Job Offer"
+            ).count()
+        phase_second_second = documents_users.objects.filter(
+                user_id=request.user,
+                status="A",
+                id_document__name__icontains="Work Permit"
+            ).count()
+        phase_second_main = phase_second + phase_second_second
         city_j = Jobs.objects.filter(
                     id=post_id).values_list("city_j").first()
         country = Jobs.objects.filter(
@@ -370,8 +395,12 @@ class getMyJobsDetails(View):
         serviceContractStatus = documents_users.objects.filter(user_id=request.user, id_document__name__icontains="Service contract").values_list("status",flat=True).first()
         jobOfferStatus = documents_users.objects.filter(user_id=request.user, id_document__name__icontains="Job Offer").values_list("status",flat=True).first()
         workPermitStatus = documents_users.objects.filter(user_id=request.user, id_document__name__icontains="Work Permit").values_list("status",flat=True).first()
-        
-        
+        usersWithAppointmentsList = list(UserJobAppointments.objects.filter(job_id=post_id, user_id=request.user).values())
+        usersWithAppointments = usersWithAppointmentsList[0] if len(usersWithAppointmentsList) > 0 else {}
+        applicationDetails = Application.objects.filter(job_id_id=post_id, user_id_id=request.user).values()[0]
+        usersJobInterviewDetailsList = list(UserJobInterview.objects.filter(job_id=post_id, user_id=request.user).values())
+        usersJobInterviewDetails = usersJobInterviewDetailsList[0] if len(usersJobInterviewDetailsList) > 0 else {}
+    
         hasApply =  True    
         ApplicantStatDate = ""
         ApplicantStatDateTime = ""
@@ -386,13 +415,13 @@ class getMyJobsDetails(View):
         return JsonResponse(
                     dict(passaportStatus=passaportStatus,workPermitStatus=workPermitStatus,jobOfferStatus=jobOfferStatus,serviceContractStatus=serviceContractStatus,ResumeStatus=ResumeStatus,photoStatus=photoStatus,studentIdStatus=studentIdStatus,certificateStatus=certificateStatus,studentStatus=studentStatus,description=description,hasApply=hasApply,applyDate=applyDate,applyDateTime=applyDateTime, title=title, city_j=city_j, country=country, start_date=start_date,
                          salary=salary, hourWeek=hourWeek, company=company, end_date=end_date,StatusApp=StatusApp,
-                         typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,useremail=useremail,
+                         typeOfWork=typeOfWork,user_document=user_document, meetWithUsDiv=meetWithUsDiv, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,useremail=useremail,
                          program=program, programCost=programCost,SDate=SDate,EDate=EDate,checkMainJobs=checkMainJobs,
-                         posted=posted, post_id=post_id, applied=applied, appNo=appNo,meetingTime=meetingTime,meetingLink=meetingLink,
+                         posted=posted, post_id=post_id,phase_second_main=phase_second_main, applied=applied, appNo=appNo,meetingTime=meetingTime,meetingLink=meetingLink,
                          passaportExists=passaportExists,studentStatusExists=studentStatusExists,certificateOfEnrolmentExists=certificateOfEnrolmentExists,
                          studentIdExists=studentIdExists,photoExists=photoExists,serviceContractExists=serviceContractExists,jobOfferExists=jobOfferExists,
-                         workPermitExists=workPermitExists,userid=request.user.id,ApplicantStatDateTime=ApplicantStatDateTime,ApplicantStatDate=ApplicantStatDate
-                         ), safe=True)
+                         workPermitExists=workPermitExists,userid=request.user.id,ApplicantStatDateTime=ApplicantStatDateTime,ApplicantStatDate=ApplicantStatDate, usersWithAppointments=usersWithAppointments, usersJobInterviewDetails=usersJobInterviewDetails,
+                         applicationDetails=applicationDetails), safe=True)
     
 
 
@@ -450,7 +479,6 @@ def recruiterAllJobs(request):
     
     return render(request, "Recruiter/index.html", dict(job=job,checkMainJobs=checkMainJobs,filterJobs=filterJobs))
 
-
 class recruiterJobDetails(View):
     def get(self,request):
         post_id = request.headers.get("text")
@@ -498,7 +526,7 @@ class recruiterJobDetails(View):
         appNo = Jobs.objects.get(id=post_id).applicant.count()
         appNo = "{:,}".format(appNo)
         locale.setlocale(locale.LC_ALL, '')  # set the locale to the user's default
-        programCost = locale.format("%d", programCost, grouping=True)
+        # programCost = locale.format("%d", programCost, grouping=True)
 
         return JsonResponse(
                     dict(description=description, title=title, city_j=city_j, country=country, start_date=start_date,
@@ -506,3 +534,10 @@ class recruiterJobDetails(View):
                          typeOfWork=typeOfWork, hourPerWork=hourPerWork, housing=housing, housingCost=housingCost,
                          program=program, programCost=programCost, SDate=SDate, EDate=EDate,
                          posted=posted, appNo=appNo, post_id=post_id, hasApply=False))
+
+
+n = 0
+
+while n < 5:
+    print(n)
+    n = n + 1

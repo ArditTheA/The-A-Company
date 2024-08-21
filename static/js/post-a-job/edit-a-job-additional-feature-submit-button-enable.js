@@ -37,24 +37,113 @@ screening_question_div.style.pointerEvents = "none";
 //     reserve_form_next.style.display = "none";
 // }
 
+var myDisableSecondClickFunction = function() {
+  additional_feature_inputFields.forEach(input => {
+    const errorDivId = input.id + '-error-message';
+    let errorDiv = document.getElementById(errorDivId);
 
-function validateEmail() {
-  var emailInput = document.getElementById("emailInput");
-  var email = emailInput.value;
+    if (input.value.trim() === '') {
+      if (!errorDiv) {
+        errorDiv = document.createElement('div');
+        errorDiv.id = errorDivId;
+        errorDiv.classList.add('error-message');
+        errorDiv.style.color = "red";
+        errorDiv.style.fontSize = "14px";
+        errorDiv.style.marginTop = "0px";
+        input.parentNode.insertBefore(errorDiv, input.nextSibling);
+      } else {
+        input.style.border = "0.5px solid red";
+        input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+        errorDiv.textContent = 'This field is required';
+        errorDiv.style.marginTop = "4px";
 
-  if (email === "") {
-    alert("Please enter an email address.");
-  } else if (!isValidEmail(email)) {
-    alert("Please enter a valid email address.");
-  } else {
-    alert("Email is valid: " + email);
-  }
-}
+      }
+    } else {
 
-function isValidEmail(email) {
-  var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-}
+      if (input.id === 'id_deadline') {
+        const deadlineDateValue = document.getElementById('id_deadline').value.trim();
+        const isDeadlineDateValid = /^\d{2}\/\d{2}\/\d{4}$/.test(deadlineDateValue);
+  
+        if (!isDeadlineDateValid) {
+          input.style.border = "0.5px solid red";
+          input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+          errorDiv.textContent = 'This email is invalid';
+        } else {
+        }
+      }      
+    }
+
+
+    input.addEventListener('focus', function() {
+      const errorDivId = input.id + '-error-message';
+      let errorDiv = document.getElementById(errorDivId);
+      input.style.border = "1px solid #1877f2";
+      input.style.boxShadow = "0 0 5px rgba(0, 0, 0, 0.1)";
+      errorDiv.textContent = '';
+      errorDiv.style.marginTop = "0px";
+    });
+
+    input.addEventListener('blur', function() {
+      const errorDivId = input.id + '-error-message';
+      let errorDiv = document.getElementById(errorDivId);
+      
+      if (!errorDiv) {
+        errorDiv = document.createElement('div');
+        errorDiv.id = errorDivId;
+        errorDiv.classList.add('error-message');
+        errorDiv.style.color = "red";
+        errorDiv.style.fontSize = "14px";
+        input.parentNode.insertBefore(errorDiv, input.nextSibling);
+        input.style.border = "0.5px solid red";
+        input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+        errorDiv.textContent = 'This field is required';
+        errorDiv.style.marginTop = "0px";
+    }
+      else {
+        input.style.border = "0.5px solid red";
+        input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+        errorDiv.textContent = 'This field is required';
+      }
+
+      if (input.id !== "id_deadline") {
+        if (input.value.trim() === "") {
+            errorDiv.style.marginTop = "4px";
+
+        }
+        else {
+          input.style.border = "";
+          input.style.boxShadow = "";
+          errorDiv.textContent = '';
+          errorDiv.style.marginTop = "0px";
+        }
+      } else {
+        const deadlineDateValue = document.getElementById('id_deadline').value.trim();
+        const isDeadlineDateValid = /^\d{2}\/\d{2}\/\d{4}$/.test(deadlineDateValue);
+      if (!isDeadlineDateValid) {
+          if (input.value.trim() !== "") {
+            input.style.border = "0.5px solid red";
+            input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+            errorDiv.textContent = 'This email is invalid';
+            errorDiv.style.marginTop = "4px";
+          } else {
+            input.style.border = "0.5px solid red";
+            input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+            errorDiv.textContent = 'This field is required';
+            errorDiv.style.marginTop = "4px";
+          }
+        } else {
+          input.style.border = "";
+          input.style.boxShadow = "";
+          errorDiv.textContent = '';
+          errorDiv.style.marginTop = "0px";
+        }
+      }
+    });
+
+  });
+};
+
+myDisableSecondClickFunction();
 
 function checkInputs() {
   // const emailInput = document.getElementById('email-input');
@@ -74,6 +163,9 @@ function checkInputs() {
   if (post_a_job_submitButton.disabled === false) {
     // isValidEmail(email);
     post_a_job_submitButton.classList.add("second-next-button");
+    post_a_job_submitButton.removeEventListener("click", myDisableSecondClickFunction);
+    addSubmitPostAJobListeners();
+
     // myButton.addEventListener("click", myClickFunction);
     // // payment_div.style.cursor = "pointer";
     // // payment_div_1.style.cursor = "pointer";
@@ -89,6 +181,9 @@ function checkInputs() {
 
   }
   else {
+    post_a_job_submitButton.addEventListener("click", myDisableSecondClickFunction);
+    post_a_job_submitButton.removeEventListener("click", submitPostAJobFormHandler);
+
     post_a_job_submitButton.classList.remove("second-next-button");
     // myButton.removeEventListener("click", myClickFunction);
     // screening_question_1.removeEventListener("click", myPaymentFunction);
@@ -99,8 +194,18 @@ function checkInputs() {
   }
 }
 
+function addSubmitPostAJobListeners() {
+  // Add listeners responsible for form submission and UI changes
+  post_a_job_submitButton.addEventListener("click", submitPostAJobFormHandler);
+}
+
+function submitPostAJobFormHandler() {
+  document.getElementById('form-id').submit();
+}
+
 additional_feature_inputFields.forEach(input => input.addEventListener('input', checkInputs));
 
+checkInputs();
 // const inputFields = document.querySelectorAll('input');
 // const myButton = document.getElementById('next-button');
 

@@ -9,6 +9,7 @@ from django.urls import path,include
 from .profile_ajax import *
 from .landingPages import  *
 from .Jobs_Details import *
+from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
 
@@ -86,10 +87,19 @@ urlpatterns = [
     path("Job/open/<int:pk>",OpenJob,name="openJob"),
     path("camera",testQR),
 
+    path("user_job_appointments/", csrf_exempt(userJobAppointments), name="user_job_appointments"),
+    path("user_job_appointments/finished/", csrf_exempt(user_job_appointments_finished), name="user_job_appointments_finished" ),
+    path("user_job_appointments/pending/", csrf_exempt(user_job_appointments_pending), name="user_job_appointments_pending"),
+    path("create-checkout-session/", csrf_exempt(CreateCheckoutSession), name="create-checkout-session"),
+    path("session-status/", csrf_exempt(session_status), name="session-status"),
+    path("webhooks/stripe/", csrf_exempt(stripe_webhook), name='stripe-webhook'),
+    path("return/", return_page, name="return-page"),
 
-
-
-
+    path("user_job_interview/", csrf_exempt(userJobInterview), name="user_job_interview"),
+    path("user_job_interview/update/", csrf_exempt(userJobInterviewUpdate), name="user_job_interview_update"),
+    path("user_job_interview/finished/", csrf_exempt(job_interview_finished), name="job_interview_finished"),
+    path("user_job_interview/pending/", csrf_exempt(job_interview_pending), name="job_interview_pending"),
+    path("payment/update/", csrf_exempt(userJobPayment), name="payment_update"),
     path('testt/',sentNQualifiedEmail)
 ]
 

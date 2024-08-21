@@ -17,6 +17,144 @@ const firstJobDescriptionClickFunction = function() {
     firstPostAJobForm.style.display = "none";
     secondPostAJobForm.style.display = "block";
   }
+
+  var myDisableClickFunction = function() {
+    job_details_inputFields.forEach(input => {
+      const errorDivId = input.id + '-error-message';
+      let errorDiv = document.getElementById(errorDivId);
+  
+      if (input.value.trim() === '') {
+        if (!errorDiv) {
+          errorDiv = document.createElement('div');
+          errorDiv.id = errorDivId;
+          errorDiv.classList.add('error-message');
+          errorDiv.style.color = "red";
+          errorDiv.style.fontSize = "14px";
+          errorDiv.style.marginTop = "0px";
+          input.parentNode.insertBefore(errorDiv, input.nextSibling);
+        } else {
+          input.style.border = "0.5px solid red";
+          input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+          errorDiv.textContent = 'This field is required';
+          errorDiv.style.marginTop = "4px";
+  
+        }
+      } else {
+        if (input.id === 'id_email') {
+          const emailValue_second = input.value.trim();
+          const isEmailValid_second = /^[^\s@]+(\.[^\s@]+)*@[^\s@]+\.[^\s@]+$/.test(emailValue_second);
+  
+          if (!isEmailValid_second) {
+            input.style.border = "0.5px solid red";
+            input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+            errorDiv.textContent = 'This email is invalid';
+          } else {
+          }
+        }
+        
+      }
+  
+  
+      input.addEventListener('focus', function() {
+        const errorDivId = input.id + '-error-message';
+        let errorDiv = document.getElementById(errorDivId);
+        input.style.border = "1px solid #1877f2";
+        input.style.boxShadow = "0 0 5px rgba(0, 0, 0, 0.1)";
+        errorDiv.textContent = '';
+        errorDiv.style.marginTop = "0px";
+      });
+  
+      input.addEventListener('blur', function() {
+        const errorDivId = input.id + '-error-message';
+        let errorDiv = document.getElementById(errorDivId);
+        
+        if (!errorDiv) {
+          errorDiv = document.createElement('div');
+          errorDiv.id = errorDivId;
+          errorDiv.classList.add('error-message');
+          errorDiv.style.color = "red";
+          errorDiv.style.fontSize = "14px";
+          input.parentNode.insertBefore(errorDiv, input.nextSibling);
+          input.style.border = "0.5px solid red";
+          input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+          errorDiv.textContent = 'This field is required';
+          errorDiv.style.marginTop = "0px";
+      }
+        else {
+          input.style.border = "0.5px solid red";
+          input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+          errorDiv.textContent = 'This field is required';
+        }
+  
+        if (input.id !== "id_start_date" && input.id !== "id_end_date") {
+          if (input.value.trim() === "") {
+              errorDiv.style.marginTop = "4px";
+  
+          }
+          else {
+            input.style.border = "";
+            input.style.boxShadow = "";
+            errorDiv.textContent = '';
+            errorDiv.style.marginTop = "0px";
+          }
+        } else {
+          const startDateValue = document.getElementById('id_start_date').value.trim();
+          const endDateValue = document.getElementById('id_end_date').value.trim();
+          const isStartDateValid = /^\d{2}\/\d{2}\/\d{4}$/.test(startDateValue);
+          const isEndDateValid = /^\d{2}\/\d{2}\/\d{4}$/.test(endDateValue);
+          if (input.id === "id_start_date") {
+          if (!isStartDateValid) {
+            if (input.value.trim() !== "") {
+              input.style.border = "0.5px solid red";
+              input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+              errorDiv.textContent = 'This email is invalid';
+            } else {
+              input.style.border = "0.5px solid red";
+              input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+              errorDiv.textContent = 'This field is required';
+            }
+          }
+          else {
+            input.style.border = "";
+            input.style.boxShadow = "";
+            errorDiv.textContent = '';
+          }
+        }
+          else if (input.id === "id_end_date") {
+            if (!isEndDateValid) {
+            if (input.value.trim() !== "") {
+              input.style.border = "0.5px solid red";
+              input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+              errorDiv.textContent = 'This email is invalid';
+            } else {
+              input.style.border = "0.5px solid red";
+              input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
+              errorDiv.textContent = 'This field is required';
+            }
+          }
+          else {
+            input.style.border = "";
+            input.style.boxShadow = "";
+            errorDiv.textContent = '';
+          }
+
+          }
+          
+        }
+      });
+  
+  
+  
+      input.addEventListener('input', function() {
+        if (input !== emailAddressInput) {
+          // Update the value with the first letter uppercase
+          input.value = input.value.charAt(0).toUpperCase() + input.value.slice(1);
+        }
+      });
+    });
+  };
+  
+myDisableClickFunction();
   
 function checkInputs() {
 
@@ -27,59 +165,37 @@ function checkInputs() {
   const allJobDetailsInputsFilled = job_details_inputFields.every(input => input.value.trim() !== '');
   const isFileUploaded = idLogo.files.length > 0;
 
-
-
   const startDateValue = document.getElementById('id_start_date').value.trim();
   const endDateValue = document.getElementById('id_end_date').value.trim();
   const isStartDateValid = /^\d{2}\/\d{2}\/\d{4}$/.test(startDateValue);
   const isEndDateValid = /^\d{2}\/\d{2}\/\d{4}$/.test(endDateValue);
 
-  // Add an event listener to the file input element
-  // fileInput2.addEventListener('change', function() {
-  //   // Get the selected file
-  //   var file2 = fileInput2.files[0];
-  
-  //   // Create a FileReader object to read the file
-  //   var reader2 = new FileReader();
-
-  //   // Set the callback function when the file is loaded
-  //   reader2.onload = function(e) {
-  //     // Update the image source with the data URL of the selected file
-  //     main_profile_picture2.src = e.target.result;
-  //   };
-  
-  //   // Read the selected file as a data URL
-  //   reader2.readAsDataURL(file2);
-  // });
-  
-  // const hasDomainExtension = emailValue.endsWith('.com') || emailValue.endsWith('.cn') || emailValue.endsWith('.xyz') || emailValue.endsWith('.net') // Modify as needed
-  // const domainExtensionPattern = /\.(?:[a-zA-Z]{2,}|[^\s.]{2,})$/;
-  // const hasDomainExtension = domainExtensionPattern.test(emailValue);
-
-  // post_a_job_firstNextButton.disabled = !allJobDetailsInputsFilled;
-  
-  post_a_job_firstNextButton.disabled = !allJobDetailsInputsFilled || !isStartDateValid || !isEndDateValid || !isFileUploaded;
+   
+  nextButtonJobDetails.disabled = !allJobDetailsInputsFilled || !isStartDateValid || !isEndDateValid || !isFileUploaded;
 
 //   post_a_job_firstNextButton.disabled = !allJobDetailsInputsFilled || fileInput.files.length === 0;
 
-  
-  if (post_a_job_firstNextButton.disabled === false) {
+
+  if (nextButtonJobDetails.disabled === false) {
+    var nextButtonJobDetails = document.getElementById('first-next-button-job-details')
 
     // isValidEmail(email);
-    post_a_job_firstNextButton.classList.add("second-next-button");
+    nextButtonJobDetails.classList.add("second-next-button");
     first_job_description_post_a_job.style.pointerEvents = "auto";
     first_job_description_post_a_job.style.cursor = "pointer";
-
+    nextButtonJobDetails.removeEventListener("click", myDisableClickFunction);
     first_job_description_post_a_job.addEventListener("click", firstJobDescriptionClickFunction);
-    post_a_job_firstNextButton.addEventListener("click", firstNextClickFunction);
+    nextButtonJobDetails.addEventListener("click", firstNextClickFunction);
 
-    
   }
 
   else {
-    post_a_job_firstNextButton.classList.remove("second-next-button");
+    var nextButtonJobDetails = document.getElementById('first-next-button-job-details')
+    nextButtonJobDetails.addEventListener("click", myDisableClickFunction);
+    
+    nextButtonJobDetails.classList.remove("second-next-button");
     first_job_description_post_a_job.removeEventListener("click", firstJobDescriptionClickFunction);
-    post_a_job_firstNextButton.removeEventListener("click", firstNextClickFunction);
+    nextButtonJobDetails.removeEventListener("click", firstNextClickFunction);
     first_job_description_post_a_job.style.pointerEvents = "none";
 
   }
@@ -89,6 +205,7 @@ function checkInputs() {
 }
 
 job_details_inputFields.forEach(input => input.addEventListener('input', checkInputs));
+
 
 // const inputFields = document.querySelectorAll('input');
 // const myButton = document.getElementById('next-button');

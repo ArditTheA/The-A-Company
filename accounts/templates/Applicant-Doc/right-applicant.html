@@ -1,14 +1,1172 @@
 {% load static %}
 
+<style>
+    .phases-state, .phase-meet-with-us, .phase-payment {
+        color:white;
+        padding: 3px 12px;
+        border-radius: 40px;
+    }
+    .in-progress-background-color-phase {
+        background-color: #F5C330;
+    }
+    .background-color-completed-phases {
+        background-color: #1877f2;
+    }
+
+    .margin-top-phase {
+        margin-top: 30px;
+    }
+
+    @media screen and (max-width: 480px) {
+        .margin-top-phase {
+        margin-top: 15px;
+    }
+    .margin-top-under-x {
+        margin-top: 0px !important;
+    }
+    }
+</style>
+
 <div class="right-jobs-main-div applied-posted-right-main-div-mobile" style="">
     <div class="right-jobs right-applicants" style="display: block;">
-    <div class="mutual-form-stats application-update-form-content" style="">
+        <div class="mutual-form-stats payment-form-content" style="width: calc(100% - 50px); margin-left: 10px; display: none;">
+            <div class="payment-under-form-content" style="background-color: white; margin: auto; border-radius: 40px;">  
+                <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; margin: auto; border-radius: 40px; border-top-left-radius: 40px; border-top-right-radius: 40px; border: 1px solid #f0f0f0;">         
+                    <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                        <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                            <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                    <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                        <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                            <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                                <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                                    <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                                        <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+
+                            <div class="application-update-div">
+                                <div style="display: flex; align-items: flex-start;">
+                                    <div style="margin-right: 15px;"
+                                        class="contact-information-third-page pd-ci-cursor font-size-18px-16px">
+                                        Application Update</div>
+                                    <div
+                                        class="completed-application-update-phase  phases-state margin-top-phase background-color-completed-phases">
+                                        Completed
+                                    </div>
+                                </div>
+                            </div> 
+                                        <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -30px; border-radius: 40px; border-top-left-radius: 40px; border-top-right-radius: 40px; border: 1px solid #f0f0f0;">
+                                <div class="meet-with-us-div">
+                                <div style="display: flex; align-items: flex-start;">
+                                <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Meet With Us</div>
+                                <div style="display: none; margin-top: 30px;" class="block-this completed-meet-with-us-phase  phases-state background-color-completed-phases">
+                                    Completed
+                                </div>
+                                <div style="display: none" class="in-progress-meet-with-us-phase phases-state">
+                                    In Progress
+                                </div>                
+                                </div>
+                            </div>   
+                            <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; padding-bottom: 30px; width: 100%; margin-left: -30px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0;">
+                            <!-- <div style="display: flex; align-items: flex-start;">
+                                <div style="padding-top: 30px; padding-bottom: 30px; font-size: 18px; margin-right: 15px;" class="finished-specific-payment"></div>
+                            <div style="display: none; margin-top: 30px;"
+                                class="completed-payment-phase background-color-phases phases-state">
+                                Completed
+                            </div>
+                        </div> -->
+                        <!-- <div style="display: flex; justify-content: space-between; align-items: center;"> -->
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <div style="display: flex; align-items: flex-start;">
+                            <div style="padding-top: 30px; padding-bottom: 30px; font-size: 18px;">Payment</div>
+                            <div style="display: flex; align-items: flex-start;">
+                                    <!-- <div style="padding-bottom: 30px; font-size: 18px; margin-right: 15px;" class="finished-specific-payment"></div> -->
+                                <div style="display: none; margin-top: 30px;"
+                                    class="completed-payment-phase background-color-phases phases-state">
+                                    Completed
+                                </div>
+                            </div>
+                            </div>
+                            </div>
+                        <!-- </div> -->
+                        <div style="padding-bottom: 20px;">Work and Travel</div>
+                        <div id="payment-amount-and-link-div">
+                        <div style="display: flex; justify-content: space-between; padding-bottom: 20px;">
+                            <div class="description-divs-color">First Payment</div>
+                            <div id="first_payment_amount" class="second-color-of-divs">€400.00</div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <div class="description-divs-color">Payment link</div>
+                            <div id="first_payment_link" class="second-color-of-divs">Stripe</div>
+                        </div>
+                        <div>
+                            <!-- <img id="edit-payment-amount-and-link" title="Edit Payment Amount and Link" class="imgs-three-dots-zip-img three-dots-document" style="" src="/static/img/Three-dots.svg"> -->
+                             <div id="edit-payment-amount-and-link"></div>
+                        </div>
+                        <div>
+                            <!-- <img style="display: none;" id="save-edit-payment-amount-and-link" title="Edit Payment Amount and Link" class="imgs-three-dots-zip-img three-dots-document save-edit-payment-amount-and-link" style="" src="/static/img/Three-dots.svg"> -->
+                             <div id="save-edit-payment-amount-and-link"></div>
+                        </div>
+                        </div>
+                        <!-- <img style="display: none;" id="save-edit-payment-amount-and-link" title="Edit Payment Amount and Link" class="imgs-three-dots-zip-img three-dots-document" style="" src="/static/img/Three-dots.svg"> -->
+                        </div>
+            </div>
+            <div class="job-interview-div second-screening-question-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+                <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Job Interview</div>
+                <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+                    Completed
+                </div>
+                <div style="display: none" class="in-progress-payment-phase phases-state">
+                    In Progress
+                </div>
+                        </div>
+                    </div>
+            <div class="job-offer-div second-screening-question-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+                <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Sign the Job Offer</div>
+                <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+                    Completed
+                </div>
+                <div style="display: none" class="in-progress-payment-phase phases-state">
+                    In Progress
+                </div>
+                        </div>
+            </div>
+            <div class="second-payment-div second-screening-question-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+                <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Payment</div>
+                <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+                    Completed
+                </div>
+                <div style="display: none" class="in-progress-payment-phase phases-state">
+                    In Progress
+                </div>
+                        </div>
+            </div>
+            <div class="second-screening-question-div documents-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center; pointer-events: auto;">
+                <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Documents for Work Permit</div>
+                <div style="display: none" class="completed-phase completed-documents-for-work-permit-phase phases-state background-color-completed-phases">
+                    Completed
+                </div>
+                <div style="display: none" class="in-progress-documents-for-work-permit-phase phases-state">
+                    In Progress
+                </div>
+                        </div>
+            </div>
+            <div class="second-screening-question-div work-permit-div" style="padding-top: 20px; padding-bottom: 20px; display: flex; cursor: pointer; align-items: center; margin-left: 0px;">
+                <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Your Work Permit is here</div>
+                
+                <div style="display: none;" class="second-completed-phase phases-state completed-your-work-permit-phase background-color-completed-phases">Completed</div>
+                <div style="display: none" class="in-progress-your-work-permit-phase phases-state">
+                    In Progress
+                </div>
+            </div>
+            </div>
+            <div class="third-payment-div second-screening-question-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+                <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Payment</div>
+                <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+                    Completed
+                </div>
+                <div style="display: none" class="in-progress-payment-phase phases-state">
+                    In Progress
+                </div>
+                        </div>
+            </div>
+            <div class="documents-for-us-embassy-div second-screening-question-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+                <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Documents for U.S. Embassy</div>
+                <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+                    Completed
+                </div>
+                <div style="display: none" class="in-progress-payment-phase phases-state">
+                    In Progress
+                </div>
+                        </div>
+            </div>
+            <div class="your-j1-visa-is-here-div second-screening-question-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+                <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Your J1 Visa is here</div>
+                <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+                    Completed
+                </div>
+                <div style="display: none" class="in-progress-payment-phase phases-state">
+                    In Progress
+                </div>
+                        </div>
+            </div>
+            <div class="start-work-div second-screening-question-div payment-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+                <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Start Work</div>
+                <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+                    Completed
+                </div>
+                <div style="display: none" class="in-progress-payment-phase phases-state">
+                    In Progress
+                </div>
+                        </div>
+            </div>
+
+            </div>
+            </div>
+    </div>
+    </div>
+        <div class="mutual-form-stats meet-us-form-content" style="display: none;">
+            <div class="payment-under-form-content" style="background-color: white; margin: auto; border-radius: 40px;">
+                <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; margin: auto; border-radius: 40px; border-top-left-radius: 40px; border-top-right-radius: 40px; border: 1px solid #f0f0f0;">         
+                    <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                        <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                            <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                    <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                        <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                            <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                                <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                                    <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+
+                                    <div class="application-update-div">
+                                    
+                                        <div style="display: flex; align-items: flex-start;">
+                                            <div style="margin-right: 15px;"
+                                                class="contact-information-third-page pd-ci-cursor font-size-18px-16px">
+                                                Application Update</div>
+                                            <div
+                                                class="completed-application-update-phase  phases-state margin-top-phase background-color-completed-phases">
+                                                Completed
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div
+                                    style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; padding-bottom: 30px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0; border-bottom: none;">    
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div style="display: flex; align-items: flex-start;">
+                    <div style="padding-top: 29px; padding-bottom: 20px; font-size: 18px; margin-right: 15px;">Meet With Us</div>
+                    <div style="display: none; margin-top: 29px;" class="block-this completed-meet-with-us-phase  phases-state background-color-completed-phases">
+                        Completed
+                    </div>
+                    <div style="display: none" class="in-progress-meet-with-us-phase phases-state">
+                        In Progress
+                    </div>
+                    </div>
+                    <img id="edit-date-time-meeting" title="Edit Meeting Date and Time" class="imgs-three-dots-zip-img three-dots-document" style="" src="/static/img/Three-dots.svg">    
+                    </div>
+                    <div style="padding-bottom: 20px;">Interview</div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <!-- <div style="display: flex;">
+                            <img src="../img/interview-date-icon.svg" alt="">
+                            <div class="main-divs-color interview-distance-between-div-img"><span id="" >21/04/2024</span></div>
+                        </div>
+                        <div style="display: flex;">
+                            <img src="../img/interview-time-icon.svg" alt="">
+                            <div class="main-divs-color interview-distance-between-div-img">10:30 am</div>
+                        </div>
+                        <div style="display: flex;">
+                            <img src="../img/interview-link-icon.svg" alt="">
+                            <div class="second-color-of-divs interview-distance-between-div-img interview-link-div">Interview link</div>
+                        </div> -->
+                        <!-- Calendly inline widget begin -->
+<!-- Calendly inline widget begin -->
+<!-- Calendly inline widget begin -->
+<div id="meet-with-us" style="display: flex; width: 100%;">
+</div>
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<!-- Calendly inline widget end -->            
+
+
+
+
+                    </div>
+                    </div>
+                </div>
+                    <div class="payment-div second-screening-question-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+                        <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Payment</div>
+                        <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+                            Completed
+                        </div>
+                        <div style="display: none" class="in-progress-payment-phase phases-state">
+                            In Progress
+                        </div>
+                                </div>
+                                </div>
+                                <div class="job-interview-div second-screening-question-div payment-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+                                    <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Job interview</div>
+                                    <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+                                        Completed
+                                    </div>
+                                    <div style="display: none" class="in-progress-payment-phase phases-state">
+                                        In Progress
+                                    </div>
+                                            </div>
+                                            
+                    
+            </div>
+            <div class="job-offer-div second-screening-question-div job-offer-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+                <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Sign the Job Offer</div>
+                <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+                    Completed
+                </div>
+                <div style="display: none" class="in-progress-payment-phase phases-state">
+                    In Progress
+                </div>
+                        </div>
+            </div>
+            <div class="second-payment-div second-screening-question-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+                <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Payment</div>
+                <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+                    Completed
+                </div>
+                <div style="display: none" class="in-progress-payment-phase phases-state">
+                    In Progress
+                </div>
+                        </div>
+</div>
+            <div class="second-screening-question-div documents-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center; pointer-events: auto;">
+                <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Documents for Work Permit</div>
+                <div style="display: none" class="completed-phase completed-documents-for-work-permit-phase phases-state background-color-completed-phases">
+                    Completed
+                </div>
+                <div style="display: none" class="in-progress-documents-for-work-permit-phase phases-state">
+                    In Progress
+                </div>
+                        </div>
+            </div>
+            <div class="second-screening-question-div work-permit-div" style="padding-top: 20px; padding-bottom: 20px; display: flex; margin-left: 0px; cursor: pointer; align-items: center;">
+                <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Your Work Permit is here</div>
+                
+                <div style="display: none;" class="second-completed-phase phases-state completed-your-work-permit-phase background-color-completed-phases">Completed</div>
+                <div style="display: none" class="in-progress-your-work-permit-phase phases-state">
+                    In Progress
+                </div>
+
+            </div>
+    </div>
+    <div class="third-payment-div second-screening-question-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+        <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Payment</div>
+        <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+            Completed
+        </div>
+        <div style="display: none" class="in-progress-payment-phase phases-state">
+            In Progress
+        </div>
+                </div>
+    </div>
+    <div class="documents-for-us-embassy-div second-screening-question-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+        <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Documents for U.S. Embassy</div>
+        <div style="display: none" class="completed-documents-for-embassy-phase phase-documents-for-embassy background-color-completed-phases">
+            Completed
+        </div>
+        <div style="display: none" class="in-progress-payment-phase phases-state">
+            In Progress
+        </div>
+                </div>
+</div>
+<div class="your-j1-visa-is-here-div second-screening-question-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+    <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Your J1 Visa is here</div>
+    <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+        Completed
+    </div>
+    <div style="display: none" class="in-progress-payment-phase phases-state">
+        In Progress
+    </div>
+            </div>
+</div>
+<div class="second-screening-question-div start-work-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; display: flex; align-items: center;">
+    <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Start Work</div>
+    <div style="display: none" class="completed-start-work-phase phase-start-work background-color-completed-phases">
+        Completed
+    </div>
+    <div style="display: none" class="in-progress-payment-phase phases-state">
+        In Progress
+    </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="job-interview-form-content mutual-form-stats" style="display: none; background: white; border-radius: 40px;"> -->
+        <!-- <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: flex-start;">
+        <div style="padding-top: 29px; padding-bottom: 20px; font-size: 18px; margin-right: 15px;">Job Interview</div>
+        <div style="display: none; margin-top: 29px;" class="block-this completed-job-interview-phase  phases-state background-color-completed-phases">
+            Completed
+        </div>
+        <div style="display: none" class="in-progress-job-interview-phase phases-state">
+            In Progress
+        </div>
+        </div>
+        <img id="edit-date-time-interview" title="Edit Interview Date and Time" class="imgs-three-dots-zip-img three-dots-document" style="" src="/static/img/Three-dots.svg">    
+        </div>
+<div style="padding-bottom: 20px;">Interview</div>
+        <div id="job-interview-div" style="">
+                    <div class="margin-right-job-interview-divs" style="display: flex;">
+                    <div>
+                    <img class="" src="/static/img/interview-date-icon.svg" alt="Interview Date Icon">
+                    </div>
+                    <div>
+                    <input placeholder="Date" class="interview-distance-between-div-img" id="job-interview-date">
+                    </div>
+                    </div>
+                    <div style="display: flex;" class="margin-right-job-interview-divs">
+                    <div>
+                    <img src="/static/img/interview-time-icon.svg" alt="Interview Time Icon">
+                    </div>
+                    <div>
+                    <input placeholder="Time" class="interview-distance-between-div-img" id="job-interview-time">
+                    </div>
+                </div>
+                    <div style="display: flex;" class="margin-right-job-interview-divs">
+                    <div>
+                    <img src="/static/img/interview-link-icon.svg" alt="Interview Link Icon">
+                    </div>
+                    <div>
+                    <input placeholder="URL" class="job-interview-link" id="job-interview-link">
+                    </div>
+                    </div>
+            <input type="date" id="job-interview-date">
+            <input type="time" id="job-interview-time">
+            <div class="job-interview-link" id="job-interview-link">Interview link</div> -->
+            <!-- <div>
+                <div id="job-interview-button">Save</div>
+            </div>
+        </div>
+        <div id="job-interview-edit-button" style="display: none;">Edit</div>
+        <div id="job-interview-save-edit-button" style="display: none;">Save edit</div> -->
+    <!-- </div> -->
+     
+    <div class="job-interview-form-content mutual-form-stats" style="display: none; background: white; border-radius: 40px;">
+        <div class="payment-under-form-content" style="background-color: white; margin: auto; border-radius: 40px;">  
+            <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; margin: auto; border-radius: 40px; border-top-left-radius: 40px; border-top-right-radius: 40px; border: 1px solid #f0f0f0;">         
+                <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                    <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                        <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                            <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                    <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                        <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                            <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                                <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                                    <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+
+                        <div class="application-update-div">
+                            <div style="display: flex; align-items: flex-start;">
+                                <div style="margin-right: 15px;"
+                                    class="contact-information-third-page pd-ci-cursor font-size-18px-16px">
+                                    Application Update</div>
+                                <div
+                                    class="completed-application-update-phase  phases-state margin-top-phase background-color-completed-phases">
+                                    Completed
+                                </div>
+                            </div>
+                        </div>
+                                    <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -31px; border-radius: 40px; border-top-left-radius: 40px; border-top-right-radius: 40px; border: 1px solid #f0f0f0;">
+                            <div class="meet-with-us-div">
+                            <div style="display: flex; align-items: flex-start;">
+                            <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Meet With Us</div>
+                            <div style="display: none; margin-top: 30px;" class="block-this completed-meet-with-us-phase  phases-state background-color-completed-phases">
+                                Completed
+                            </div>
+                            <div style="display: none" class="in-progress-meet-with-us-phase phases-state">
+                                In Progress
+                            </div>                
+                            </div>
+                        </div>   
+                        <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -31px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0;">
+                            <div class="payment-div">
+                                <div style="display: flex; align-items: flex-start;">
+                                <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Payment</div>
+                                <div style="display: none; margin-top: 30px;" class="completed-payment-phase background-color-phases phases-state">
+                                Completed
+                            </div>
+                                <div style="display: none" class="in-progress-payment-phase phases-state">
+                                    In Progress
+                                </div>                
+                                </div>
+                            </div>   
+                            <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; padding-bottom: 30px; width: 100%; margin-left: -31px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: flex-start;">
+        <div style="padding-top: 29px; padding-bottom: 20px; font-size: 18px; margin-right: 15px;">Job Interview</div>
+        <div style="display: none; margin-top: 29px;" class="completed-job-interview-phase  phases-state background-color-completed-phases">
+            Completed
+        </div>
+        <div style="display: none" class="in-progress-job-interview-phase phases-state">
+            In Progress
+        </div>
+        </div>
+        <img id="edit-date-time-interview" title="Edit Interview Date and Time" class="imgs-three-dots-zip-img three-dots-document" style="" src="/static/img/Three-dots.svg">    
+        </div>
+<div style="padding-bottom: 20px;">Interview</div>
+        <div id="job-interview-div" style="">
+                    <div class="margin-right-job-interview-divs" style="display: flex;">
+                    <div>
+                    <img class="" src="/static/img/interview-date-icon.svg" alt="Interview Date Icon">
+                    </div>
+                    <div>
+                    <input placeholder="Date" class="interview-distance-between-div-img" id="job-interview-date">
+                    </div>
+                    </div>
+                    <div style="display: flex;" class="margin-right-job-interview-divs">
+                    <div>
+                    <img src="/static/img/interview-time-icon.svg" alt="Interview Time Icon">
+                    </div>
+                    <div>
+                    <input placeholder="Time" class="interview-distance-between-div-img" id="job-interview-time">
+                    </div>
+                </div>
+                    <div style="display: flex;" class="margin-right-job-interview-divs">
+                    <div>
+                    <img src="/static/img/interview-link-icon.svg" alt="Interview Link Icon">
+                    </div>
+                    <div>
+                    <input placeholder="URL" class="job-interview-link" id="job-interview-link">
+                    </div>
+                    </div>
+            <input type="date" id="job-interview-date">
+            <input type="time" id="job-interview-time">
+            <div class="job-interview-link" id="job-interview-link">Interview link</div>
+            <div>
+                <div id="job-interview-button">Save</div>
+            </div>
+        </div>
+        <div id="job-interview-edit-button" style="display: none;">Edit</div>
+        <div id="job-interview-save-edit-button" style="display: none;">Save edit</div>
+    </div>
+        </div>
+                </div>
+        <div class="job-offer-div second-screening-question-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+            <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Sign the Job Offer</div>
+            <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+                Completed
+            </div>
+            <div style="display: none" class="in-progress-payment-phase phases-state">
+                In Progress
+            </div>
+                    </div>
+        </div>
+        <div class="second-payment-div second-screening-question-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+            <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Payment</div>
+            <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+                Completed
+            </div>
+            <div style="display: none" class="in-progress-payment-phase phases-state">
+                In Progress
+            </div>
+                    </div>
+        </div>
+        <div class="second-screening-question-div documents-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center; pointer-events: auto;">
+            <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Documents for Work Permit</div>
+            <div style="display: none" class="completed-phase completed-documents-for-work-permit-phase phases-state background-color-completed-phases">
+                Completed
+            </div>
+            <div style="display: none" class="in-progress-documents-for-work-permit-phase phases-state">
+                In Progress
+            </div>
+                    </div>
+        </div>
+        <div class="second-screening-question-div work-permit-div" style="padding-top: 20px; padding-bottom: 20px; display: flex; cursor: pointer; align-items: center; margin-left: 0px;">
+            <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Your Work Permit is here</div>
+            
+            <div style="display: none;" class="second-completed-phase phases-state completed-your-work-permit-phase background-color-completed-phases">Completed</div>
+            <div style="display: none" class="in-progress-your-work-permit-phase phases-state">
+                In Progress
+            </div>
+        </div>
+        </div>
+        <div class="third-payment-div second-screening-question-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+            <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Payment</div>
+            <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+                Completed
+            </div>
+            <div style="display: none" class="in-progress-payment-phase phases-state">
+                In Progress
+            </div>
+                    </div>
+        </div>
+        <div class="documents-for-us-embassy-div second-screening-question-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+            <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Documents for U.S. Embassy</div>
+            <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+                Completed
+            </div>
+            <div style="display: none" class="in-progress-payment-phase phases-state">
+                In Progress
+            </div>
+                    </div>
+        </div>
+        <div class="your-j1-visa-is-here-div second-screening-question-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+            <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Your J1 Visa is here</div>
+            <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+                Completed
+            </div>
+            <div style="display: none" class="in-progress-payment-phase phases-state">
+                In Progress
+            </div>
+                    </div>
+        </div>
+        <div class="start-work-div second-screening-question-div payment-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+            <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Start Work</div>
+            <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+                Completed
+            </div>
+            <div style="display: none" class="in-progress-payment-phase phases-state">
+                In Progress
+            </div>
+                    </div>
+        </div>
+
+        </div>
+        </div>
+</div>
+</div>
+</div>
+<div class="sign-the-job-offer-form-content mutual-form-stats" style="display: none; background: white; border-radius: 40px;">
+    <div class="payment-under-form-content" style="background-color: white; margin: auto; border-radius: 40px;">  
+        <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; margin: auto; border-radius: 40px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-bottom: 1px solid #f0f0f0;">         
+            <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -31px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top-left-radius: 40px; border-top-right-radius: 40px; border: 1px solid #f0f0f0;">
+                <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -31px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top-left-radius: 40px; border-top-right-radius: 40px; border: 1px solid #f0f0f0;">
+                    <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                        <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                            <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                    <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                        <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                            <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                                <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+
+                    <div class="application-update-div">
+                        <div style="display: flex; align-items: flex-start;">
+                            <div style="margin-right: 15px;"
+                                class="contact-information-third-page pd-ci-cursor font-size-18px-16px">
+                                Application Update</div>
+                            <div
+                                class="completed-application-update-phase  phases-state margin-top-phase background-color-completed-phases">
+                                Completed
+                            </div>
+                        </div>
+                    </div>
+                                <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -30px; border-top-left-radius: 40px; border-radius: 40px; border: 1px solid #f0f0f0;">
+                        <div class="meet-with-us-div">
+                        <div style="display: flex; align-items: flex-start;">
+                        <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Meet With Us</div>
+                        <div style="display: none; margin-top: 30px;" class="block-this completed-meet-with-us-phase  phases-state background-color-completed-phases">
+                            Completed
+                        </div>
+                        <div style="display: none" class="in-progress-meet-with-us-phase phases-state">
+                            In Progress
+                        </div>                
+                        </div>
+                    </div>   
+                    <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -30px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0;">
+                        <div class="payment-div">
+                            <div style="display: flex; align-items: flex-start;">
+                            <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Payment</div>
+                            <div style="display: none; margin-top: 30px;" class="completed-payment-phase background-color-phases phases-state">
+                            Completed
+                        </div>
+                            <div style="display: none" class="in-progress-payment-phase phases-state">
+                                In Progress
+                            </div>                
+                            </div>
+                        </div>  
+                        <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -30px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0;">
+                            <div class="job-interview-div">
+                                <div style="display: flex; align-items: flex-start;">
+                                <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Job Interview</div>
+                                <div style="display: none; margin-top: 30px;" class="completed-job-interview-phasebackground-color-phases phases-state">
+                                Completed
+                            </div>
+                                <div style="display: none" class="in-progress-job-interview-phase phases-state">
+                                    In Progress
+                                </div>                
+                                </div>
+                            </div>    
+                            <div class="documents-border-div documents-under-main-border-div" style="">
+                                <img class="myjob-right-exit job-right-exit " title="Exit" style=""
+                                src="{% static 'img/Applicant/close(2).png' %}" onclick="closeButton()" alt="">
+                                <div class="div-title-documents-zip-icon">
+                            <div style="display: flex; align-items: flex-start;">
+                            <div style="margin-right: 15px;" class="work-permit-title">Sign the Job Offer</div>
+                            <div style="display: none; margin-top: 30px;" class="second-completed-phase phases-state completed-your-work-permit-phase background-color-completed-phases">Completed</div>
+                            <div style="display: none; margin-top: 30px;" class="in-progress-your-work-permit-phase phases-state">
+                                In Progress
+                            </div>
+                            </div>
+                            <div class="parent-img-zip mutual-three-dots-imgs" id="parent-imgZip2">
+                            </div>
+                        </div>
+                            <div id="jobofferdocumentList" class="document-images">
+                                
+                            </div>
+                    </div>
+    </div>
+            </div>
+    <div class="second-payment-div second-screening-question-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+        <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Payment</div>
+        <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+            Completed
+        </div>
+        <div style="display: none" class="in-progress-payment-phase phases-state">
+            In Progress
+        </div>
+                </div>
+    </div>
+    <div class="second-screening-question-div documents-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center; pointer-events: auto;">
+        <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Documents for Work Permit</div>
+        <div style="display: none" class="completed-phase completed-documents-for-work-permit-phase phases-state background-color-completed-phases">
+            Completed
+        </div>
+        <div style="display: none" class="in-progress-documents-for-work-permit-phase phases-state">
+            In Progress
+        </div>
+                </div>
+    </div>
+    <div class="second-screening-question-div work-permit-div" style="padding-top: 20px; padding-bottom: 20px; display: flex; cursor: pointer; align-items: center; margin-left: 0px;">
+        <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Your Work Permit is here</div>
+        
+        <div style="display: none;" class="second-completed-phase phases-state completed-your-work-permit-phase background-color-completed-phases">Completed</div>
+        <div style="display: none" class="in-progress-your-work-permit-phase phases-state">
+            In Progress
+        </div>
+    </div>
+    </div>
+    <div class="third-payment-div second-screening-question-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+        <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Payment</div>
+        <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+            Completed
+        </div>
+        <div style="display: none" class="in-progress-payment-phase phases-state">
+            In Progress
+        </div>
+                </div>
+    </div>
+    <div class="documents-for-us-embassy-div second-screening-question-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+        <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Documents for U.S. Embassy</div>
+        <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+            Completed
+        </div>
+        <div style="display: none" class="in-progress-payment-phase phases-state">
+            In Progress
+        </div>
+                </div>
+    </div>
+    <div class="your-j1-visa-is-here-div second-screening-question-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+        <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Your J1 Visa is here</div>
+        <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+            Completed
+        </div>
+        <div style="display: none" class="in-progress-payment-phase phases-state">
+            In Progress
+        </div>
+                </div>
+    </div>
+    <div class="start-work-div second-screening-question-div payment-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+        <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Start Work</div>
+        <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+            Completed
+        </div>
+        <div style="display: none" class="in-progress-payment-phase phases-state">
+            In Progress
+        </div>
+                </div>
+    </div>
+
+    </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="mutual-form-stats second-payment-form-content" style="width: calc(100% - 50px); margin-left: 10px; display: none;">
+    <div class="payment-under-form-content" style="background-color: white; margin: auto; border-radius: 40px;">  
+        <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; margin: auto; border-radius: 40px; border-top-left-radius: 40px; border-top-right-radius: 40px; border: 1px solid #f0f0f0;">         
+            <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                    <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                        <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                            <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                    <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+
+                    <div class="application-update-div">
+                        <div style="display: flex; align-items: flex-start;">
+                            <div style="margin-right: 15px;"
+                                class="contact-information-third-page pd-ci-cursor font-size-18px-16px">
+                                Application Update</div>
+                            <div
+                                class="completed-application-update-phase  phases-state margin-top-phase background-color-completed-phases">
+                                Completed
+                            </div>
+                        </div>
+                    </div>
+                                <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -30px; border-radius: 40px; border-top-left-radius: 40px; border-top-right-radius: 40px; border: 1px solid #f0f0f0;">
+                        <div class="meet-with-us-div">
+                        <div style="display: flex; align-items: flex-start;">
+                        <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Meet With Us</div>
+                        <div style="display: none; margin-top: 30px;" class="block-this completed-meet-with-us-phase  phases-state background-color-completed-phases">
+                            Completed
+                        </div>
+                        <div style="display: none" class="in-progress-meet-with-us-phase phases-state">
+                            In Progress
+                        </div>                
+                        </div>
+                    </div>   
+                    <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -30px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-bottom: none;">
+                        <div class="payment-div">
+                            <div style="display: flex; align-items: flex-start;">
+                            <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Payment</div>
+                            <div style="display: none; margin-top: 30px;" class="completed-payment-phase background-color-phases phases-state">
+                            Completed
+                        </div>
+                            <div style="display: none" class="in-progress-payment-phase phases-state">
+                                In Progress
+                            </div>                
+                            </div>
+                        </div>
+                    <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -30px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-bottom: none;">
+                        <div class="job-interview-div">
+                            <div style="display: flex; align-items: flex-start;">
+                            <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Job Interview</div>
+                            <div style="display: none; margin-top: 30px;" class="completed-job-interview-phase background-color-phases phases-state">
+                            Completed
+                        </div>
+                            <div style="display: none" class="in-progress-interview-phase phases-state">
+                                In Progress
+                            </div>                
+                            </div>
+                        </div>
+                        <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -30px; border-radius: 40px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-bottom: none;">
+                            <div class="job-offer-div">
+                                <div style="display: flex; align-items: flex-start;">
+                                <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Sign the Job Offer</div>
+                                <div style="display: none; margin-top: 30px;" class="completed-job-offer-phase background-color-phases phases-state">
+                                Completed
+                            </div>
+                                <div style="display: none" class="in-progress-job-offer-phase phases-state">
+                                    In Progress
+                                </div>                
+                                </div>
+                            </div>   
+
+                    <div style="border-width: 100%; padding-left: 30px; padding-right: 30px;  padding-bottom: 30px; width: 100%; margin-left: -30px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0;">
+                    <!-- <div style="display: flex; align-items: flex-start;">
+                        <div style="padding-top: 30px; padding-bottom: 30px; font-size: 18px; margin-right: 15px;" class="finished-specific-payment"></div>
+                    <div style="display: none; margin-top: 30px;"
+                        class="completed-payment-phase background-color-phases phases-state">
+                        Completed
+                    </div>
+                </div> -->
+                <!-- <div style="display: flex; justify-content: space-between; align-items: center;"> -->
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <div style="display: flex; align-items: flex-start;">
+                    <div style="padding-top: 30px; padding-bottom: 30px; font-size: 18px;">Payment</div>
+                    <div style="display: flex; align-items: flex-start;">
+                            <!-- <div style="padding-bottom: 30px; font-size: 18px; margin-right: 15px;" class="finished-specific-payment"></div> -->
+                        <div style="display: none; margin-top: 30px;"
+                            class="completed-payment-phase background-color-phases phases-state">
+                            Completed
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                <!-- </div> -->
+                <div style="padding-bottom: 20px;">Work and Travel</div>
+                <div id="payment-amount-and-link-div">
+                <div style="display: flex; justify-content: space-between; padding-bottom: 20px;">
+                    <div class="description-divs-color">First Payment</div>
+                    <div id="first_payment_amount" class="second-color-of-divs">€800.00</div>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <div class="description-divs-color">Payment link</div>
+                    <div id="second__payment_link" class="second-color-of-divs">Stripe</div>
+                </div>
+                <div>
+                    <!-- <img id="edit-payment-amount-and-link" title="Edit Payment Amount and Link" class="imgs-three-dots-zip-img three-dots-document" style="" src="/static/img/Three-dots.svg"> -->
+                     <div id="edit-second-payment-amount-and-link"></div>
+                </div>
+                <div>
+                    <!-- <img style="display: none;" id="save-edit-payment-amount-and-link" title="Edit Payment Amount and Link" class="imgs-three-dots-zip-img three-dots-document save-edit-payment-amount-and-link" style="" src="/static/img/Three-dots.svg"> -->
+                     <div id="save-second-edit-payment-amount-and-link"></div>
+                </div>
+                </div>
+                <!-- <img style="display: none;" id="save-edit-payment-amount-and-link" title="Edit Payment Amount and Link" class="imgs-three-dots-zip-img three-dots-document" style="" src="/static/img/Three-dots.svg"> -->
+                </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="second-screening-question-div documents-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center; pointer-events: auto;">
+        <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Documents for Work Permit</div>
+        <div style="display: none" class="completed-phase completed-documents-for-work-permit-phase phases-state background-color-completed-phases">
+            Completed
+        </div>
+        <div style="display: none" class="in-progress-documents-for-work-permit-phase phases-state">
+            In Progress
+        </div>
+                </div>
+    </div>
+    <div class="second-screening-question-div work-permit-div" style="padding-top: 20px; padding-bottom: 20px; display: flex; cursor: pointer; align-items: center; margin-left: 0px;">
+        <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Your Work Permit is here</div>
+        
+        <div style="display: none;" class="second-completed-phase phases-state completed-your-work-permit-phase background-color-completed-phases">Completed</div>
+        <div style="display: none" class="in-progress-your-work-permit-phase phases-state">
+            In Progress
+        </div>
+    </div>
+    </div>
+    <div class="third-payment-div second-screening-question-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+        <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Payment</div>
+        <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+            Completed
+        </div>
+        <div style="display: none" class="in-progress-payment-phase phases-state">
+            In Progress
+        </div>
+                </div>
+    </div>
+    <div class="documents-for-us-embassy-div second-screening-question-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+        <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Documents for U.S. Embassy</div>
+        <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+            Completed
+        </div>
+        <div style="display: none" class="in-progress-payment-phase phases-state">
+            In Progress
+        </div>
+                </div>
+    </div>
+    <div class="your-j1-visa-is-here-div second-screening-question-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+        <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Your J1 Visa is here</div>
+        <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+            Completed
+        </div>
+        <div style="display: none" class="in-progress-payment-phase phases-state">
+            In Progress
+        </div>
+                </div>
+    </div>
+    <div class="start-work-div second-screening-question-div payment-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+        <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Start Work</div>
+        <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+            Completed
+        </div>
+        <div style="display: none" class="in-progress-payment-phase phases-state">
+            In Progress
+        </div>
+                </div>
+    </div>
+
+    </div>
+    </div>
+</div>
+</div>
+<div class="mutual-form-stats third-payment-form-content" style="width: calc(100% - 50px); margin-left: 10px; display: none;">
+    <div class="payment-under-form-content" style="background-color: white; margin: auto; border-radius: 40px;">  
+        <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; margin: auto; border-radius: 40px; border-top-left-radius: 40px; border-top-right-radius: 40px; border: 1px solid #f0f0f0;">         
+            <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                    <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                        <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+
+                    <div class="application-update-div">
+                        <div style="display: flex; align-items: flex-start;">
+                            <div style="margin-right: 15px;"
+                                class="contact-information-third-page pd-ci-cursor font-size-18px-16px">
+                                Application Update</div>
+                            <div
+                                class="completed-application-update-phase  phases-state margin-top-phase background-color-completed-phases">
+                                Completed
+                            </div>
+                        </div>
+                    </div>
+                                <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -30px; border-radius: 40px; border-top-left-radius: 40px; border-top-right-radius: 40px; border: 1px solid #f0f0f0;">
+                        <div class="meet-with-us-div">
+                        <div style="display: flex; align-items: flex-start;">
+                        <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Meet With Us</div>
+                        <div style="display: none; margin-top: 30px;" class="block-this completed-meet-with-us-phase  phases-state background-color-completed-phases">
+                            Completed
+                        </div>
+                        <div style="display: none" class="in-progress-meet-with-us-phase phases-state">
+                            In Progress
+                        </div>                
+                        </div>
+                    </div>   
+                    <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -30px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-bottom: none;">
+                        <div class="payment-div">
+                            <div style="display: flex; align-items: flex-start;">
+                            <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Payment</div>
+                            <div style="display: none; margin-top: 30px;" class="completed-payment-phase background-color-phases phases-state">
+                            Completed
+                        </div>
+                            <div style="display: none" class="in-progress-payment-phase phases-state">
+                                In Progress
+                            </div>                
+                            </div>
+                        </div>
+                    <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -30px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-bottom: none;">
+                        <div class="job-interview-div">
+                            <div style="display: flex; align-items: flex-start;">
+                            <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Job Interview</div>
+                            <div style="display: none; margin-top: 30px;" class="completed-job-interview-phase background-color-phases phases-state">
+                            Completed
+                        </div>
+                            <div style="display: none" class="in-progress-interview-phase phases-state">
+                                In Progress
+                            </div>                
+                            </div>
+                        </div>
+                        <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -30px; border-radius: 40px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-bottom: none;">
+                            <div class="job-offer-div">
+                                <div style="display: flex; align-items: flex-start;">
+                                <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Sign the Job Offer</div>
+                                <div style="display: none; margin-top: 30px;" class="completed-job-offer-phase background-color-phases phases-state">
+                                Completed
+                            </div>
+                                <div style="display: none" class="in-progress-job-offer-phase phases-state">
+                                    In Progress
+                                </div>                
+                                </div>
+                            </div>
+                            <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -30px; border-radius: 40px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-bottom: none;">
+                                <div class="second-payment-div">
+                                    <div style="display: flex; align-items: flex-start;">
+                                    <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Payment</div>
+                                    <div style="display: none; margin-top: 30px;" class="completed-payment-phase background-color-phases phases-state">
+                                    Completed
+                                </div>
+                                    <div style="display: none" class="in-progress-payment-phase phases-state">
+                                        In Progress
+                                    </div>                
+                                    </div>
+                                </div>   
+                            <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -30px; border-radius: 40px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-bottom: none;">
+                                <div class="documents-div">
+                                    <div style="display: flex; align-items: flex-start;">
+                                    <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Documents for Work Permit</div>
+                                    <div style="display: none; margin-top: 30px;" class="completed-documents-for-work-permit-phase background-color-phases phases-state">
+                                    Completed
+                                </div>
+                                    <div style="display: none" class="in-progress-documents-for-work-permit-phase phases-state">
+                                        In Progress
+                                    </div>                
+                                    </div>
+                                </div>   
+                                <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -30px; border-radius: 40px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-bottom: none;">
+                                    <div class="work-permit-div">
+                                        <div style="display: flex; align-items: flex-start;">
+                                        <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Your Work Permit is here</div>
+                                        <div style="display: none; margin-top: 30px;" class="completed-your-work-permit-phase background-color-phases phases-state">
+                                        Completed
+                                    </div>
+                                        <div style="display: none" class="in-progress-your-work-permit-phase phases-state">
+                                            In Progress
+                                        </div>                
+                                        </div>
+                                    </div>   
+              
+
+                    <div style="border-width: 100%; padding-left: 30px; padding-right: 30px;  padding-bottom: 30px; width: 100%; margin-left: -30px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0;">
+                    <!-- <div style="display: flex; align-items: flex-start;">
+                        <div style="padding-top: 30px; padding-bottom: 30px; font-size: 18px; margin-right: 15px;" class="finished-specific-payment"></div>
+                    <div style="display: none; margin-top: 30px;"
+                        class="completed-payment-phase background-color-phases phases-state">
+                        Completed
+                    </div>
+                </div> -->
+                <!-- <div style="display: flex; justify-content: space-between; align-items: center;"> -->
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <div style="display: flex; align-items: flex-start;">
+                    <div style="padding-top: 30px; padding-bottom: 30px; font-size: 18px;">Payment</div>
+                    <div style="display: flex; align-items: flex-start;">
+                            <!-- <div style="padding-bottom: 30px; font-size: 18px; margin-right: 15px;" class="finished-specific-payment"></div> -->
+                        <div style="display: none; margin-top: 30px;"
+                            class="completed-payment-phase background-color-phases phases-state">
+                            Completed
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                <!-- </div> -->
+                <div style="padding-bottom: 20px;">Work and Travel</div>
+                <div id="payment-amount-and-link-div">
+                <div style="display: flex; justify-content: space-between; padding-bottom: 20px;">
+                    <div class="description-divs-color">Third Payment</div>
+                    <div id="second_payment_amount" class="second-color-of-divs">€800.00</div>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <div class="description-divs-color">Payment link</div>
+                    <div id="third_payment_link" class="second-color-of-divs">Stripe</div>
+                </div>
+                <div>
+                    <!-- <img id="edit-payment-amount-and-link" title="Edit Payment Amount and Link" class="imgs-three-dots-zip-img three-dots-document" style="" src="/static/img/Three-dots.svg"> -->
+                     <div id="edit-third-payment-amount-and-link"></div>
+                </div>
+                <div>
+                    <!-- <img style="display: none;" id="save-edit-payment-amount-and-link" title="Edit Payment Amount and Link" class="imgs-three-dots-zip-img three-dots-document save-edit-payment-amount-and-link" style="" src="/static/img/Three-dots.svg"> -->
+                     <div id="save-third-edit-payment-amount-and-link"></div>
+                </div>
+                </div>
+                <!-- <img style="display: none;" id="save-edit-payment-amount-and-link" title="Edit Payment Amount and Link" class="imgs-three-dots-zip-img three-dots-document" style="" src="/static/img/Three-dots.svg"> -->
+                </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    
+    <div class="documents-for-us-embassy-div second-screening-question-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+        <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Documents for U.S. Embassy</div>
+        <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+            Completed
+        </div>
+        <div style="display: none" class="in-progress-payment-phase phases-state">
+            In Progress
+        </div>
+                </div>
+    </div>
+    <div class="your-j1-visa-is-here-div second-screening-question-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+        <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Your J1 Visa is here</div>
+        <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+            Completed
+        </div>
+        <div style="display: none" class="in-progress-payment-phase phases-state">
+            In Progress
+        </div>
+                </div>
+    </div>
+    <div class="start-work-div second-screening-question-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+        <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Start Work</div>
+        <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+            Completed
+        </div>
+        <div style="display: none" class="in-progress-payment-phase phases-state">
+            In Progress
+        </div>
+                </div>
+    </div>
+
+    </div>
+    </div>
+</div>
+</div>
+
+<div class="mutual-form-stats application-update-form-content" style="display: none;">
             <div class="payment-under-form-content" style="">
                 <div class="mutual-pages-stats only-application-update-style" style="">
+                    <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                        <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                            <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                    <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                        <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                            <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                                <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                                    <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                  
                 <div class="mutual-pages-stats only-under-application-update-style" style="">
                     <img class="myjob-right-exit" title="Exit" style=""
-                    src="{% static 'img/Applicant/close(2).png' %}" onclick="closeButton()"  alt="">    
-                    <div class="application-update-title" style="">Application Update</div>
+                    src="{% static 'img/Applicant/close(2).png' %}" onclick="closeButton()"  alt="">
+                    <div style="display: flex; align-items: flex-start;">
+                    <div style="margin-right: 15px; margin-left: 0px;" class="application-update-title" style="">Application Update</div>
+                    <div style="display: none; margin-top: 30px;" class="block-this completed-application-update-phase  phases-state background-color-completed-phases">
+                        Completed
+                    </div>
+                    <div style="display: none" class="in-progress-application-update-phase phases-state">
+                        In Progress
+                    </div>    
+                    </div>
                     <div class="applied-on-date mutual-padding-applied">
                         <div style="padding-bottom: 20px;">Applied on:</div>
                         <div class="" style="display: flex;">
@@ -22,7 +1180,9 @@
                         </div>
                 </div>
                 <div class="applied-on-date">
-                    <div style="padding-bottom: 20px;"><span id="Stat" ></span>:</div>
+                    <div style="display: flex;">
+                    <div style="padding-bottom: 20px; margin-right: 20px;"><span id="Stat" ></span>:</div>
+                    </div>
                     <div class="" style="display: flex;">
                         <div class="applied-qualified-margin-right" style="display: flex;">
                             <img src="{% static 'img/interview-date-icon.svg' %}" alt="">
@@ -36,63 +1196,972 @@
                 </div>
 
             </div>
-            <div class="second-screening-question-div documents-div divs-pointer-event-auto" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px;">
-                <div class="screening-questions-title second-screening-question mutual-font-size-18px">Documents for Work Permit</div>
-            </div>
-            </div>
-            <div class="second-screening-question-div work-permit-div divs-pointer-event-auto" style="padding-top: 20px; padding-bottom: 20px;">
-                <div class="screening-questions-title second-screening-question mutual-font-size-18px">Your Work Permit is here</div>
+            <div class="second-screening-question-div meet-with-us-div"
+            style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+            <div style="margin-right: 15px;"
+                class="screening-questions-title second-screening-question mutual-font-size-18px">
+                Meet With Us</div>
+            <div style="display: none;"
+                class="completed-meet-with-us-phase phase-meet-with-us background-color-completed-phases">
+                Completed
             </div>
         </div>
-    </div>
-    <div class="mutual-form-stats documents-for-work-permit-form-content" style="display: none;">
-        <div class="payment-under-form-content" style="">
-            <div class="documents-border-div documents-main-border-div">
-                <div class="application-update-div">
-                    <div class="contact-information-third-page pd-ci-cursor font-size-18px-16px">Application Update</div>
-                </div>
-            <div class="documents-border-div documents-under-main-border-div" style="">
-                <img class="myjob-right-exit" title="Exit" style=""
-                src="{% static 'img/Applicant/close(2).png' %}"  onclick="closeButton()" alt="">
-                <div class="div-title-documents-zip-icon">
-                <div class="title_documents" style="">Documents for Work Permit</div>
-                <div class="parent-img-zip mutual-three-dots-imgs">
-                </div>
-                </div>
-                <div id="documentList" class="document-images" style="">
-                </div>
-    </div>
-        <div class="second-screening-question-div work-permit-div divs-pointer-event-auto" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px;">
-            <div class="screening-questions-title second-screening-question mutual-font-size-18px">Your Work Permit is here</div>
         </div>
+        <div class="second-screening-question-div payment-div divs-pointer-event-auto"
+        style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+        <div style="margin-right: 15px;"
+            class="screening-questions-title second-screening-question mutual-font-size-18px">
+            Payment</div>
+        <div style="display: none;"
+            class="completed-payment-phase phase-payment background-color-completed-phases">
+            Completed
+        </div>
+    </div>
+    </div>
+    <div class="second-screening-question-div job-interview-div divs-pointer-event-auto"
+    style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+    <div style="margin-right: 15px;"
+        class="screening-questions-title second-screening-question mutual-font-size-18px">
+        Job Interview</div>
+    <div style="display: none;"
+        class="completed-job-interview-phase phase-job-interview background-color-completed-phases">
+        Completed
     </div>
 </div>
+</div>
+<div class="second-screening-question-div job-offer-div divs-pointer-event-auto"
+style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+<div style="margin-right: 15px;"
+    class="screening-questions-title second-screening-question mutual-font-size-18px">
+    Sign the job offer</div>
+<div style="display: none;"
+    class="completed-job-offer-phase phase-job-offer background-color-completed-phases">
+    Completed
+</div>
+</div>
+</div>
+<div class="second-screening-question-div second-payment-div divs-pointer-event-auto"
+style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+<div style="margin-right: 15px;"
+    class="screening-questions-title second-screening-question mutual-font-size-18px">
+    Payment</div>
+<div style="display: none;"
+    class="completed-payment-phase phase-payment background-color-completed-phases">
+    Completed
+</div>
+</div>
+</div>
+            <div class="second-screening-question-div documents-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center; pointer-events: auto;">
+                <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Documents for Work Permit</div>
+                <div style="display: none" class="completed-phase phases-state completed-documents-for-work-permit-phase background-color-completed-phases">
+                    Completed
+                </div>
+                <div style="display: none" class="in-progress-documents-for-work-permit-phase phases-state">
+                    In Progress
+                </div>
+                        </div>
+            </div>
+            <div class="second-screening-question-div work-permit-div" style="padding-top: 20px; margin-left: 0px; padding-bottom: 20px; display: flex; cursor: pointer; align-items: center;">
+                <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Your Work Permit is here</div>
+                
+                <div style="display: none;" class="second-completed-phase phases-state completed-your-work-permit-phase background-color-completed-phases">Completed</div>
+                <div style="display: none" class="in-progress-your-work-permit-phase phases-state">
+                    In Progress
+                </div>
+
+            </div>
+        </div>
+        <div class="second-screening-question-div third-payment-div divs-pointer-event-auto"
+        style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+        <div style="margin-right: 15px;"
+            class="screening-questions-title second-screening-question mutual-font-size-18px">
+            Payment</div>
+        <div style="display: none;"
+            class="completed-payment-phase phase-payment background-color-completed-phases">
+            Completed
+        </div>
+    </div>
+    </div>
+    <div class="second-screening-question-div documents-for-us-embassy-div divs-pointer-event-auto"
+    style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+    <div style="margin-right: 15px;"
+        class="screening-questions-title second-screening-question mutual-font-size-18px">
+        Documents for U.S. Embassy</div>
+    <div style="display: none;"
+        class="completed-documents-for-embassy-phase phase-documents-for-embassy background-color-completed-phases">
+        Completed
+    </div>
+</div>
+</div>
+<div class="second-screening-question-div your-j1-visa-is-here-div divs-pointer-event-auto"
+style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+<div style="margin-right: 15px;"
+    class="screening-questions-title second-screening-question mutual-font-size-18px">
+    Your J1 Visa is here</div>
+<div style="display: none;"
+    class="completed-your-j1-visa-is-here-phase phase-your-j1-visa-is-here background-color-completed-phases">
+    Completed
+</div>
+</div>
+</div>
+<div class="second-screening-question-div start-work-div divs-pointer-event-auto"
+style="padding-top: 20px; padding-bottom: 20px; display: flex; align-items: center;">
+<div style="margin-right: 15px;"
+    class="screening-questions-title second-screening-question mutual-font-size-18px">
+    Start Work</div>
+<div style="display: none;"
+    class="completed-start-work-phase phase-start-work background-color-completed-phases">
+    Completed
+</div>
+</div>
+</div>
+</div>
+
+<div class="documents-for-work-permit-form-content mutual-form-stats" style="display: none; background: white; border-radius: 40px;">
+    <div class="payment-under-form-content" style="background-color: white; margin: auto; border-radius: 40px;">  
+        <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; margin: auto; border-radius: 40px; border-top-left-radius: 40px; border-top-right-radius: 40px; border: 1px solid #f0f0f0;">         
+            <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                    <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                        <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                            <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                    <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                        <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+
+                    <div class="application-update-div">
+                        <div style="display: flex; align-items: flex-start;">
+                            <div style="margin-right: 15px;"
+                                class="contact-information-third-page pd-ci-cursor font-size-18px-16px">
+                                Application Update</div>
+                            <div
+                                class="completed-application-update-phase  phases-state margin-top-phase background-color-completed-phases">
+                                Completed
+                            </div>
+                        </div>
+                    </div>
+                                <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -31px; border-top-left-radius: 40px; border-radius: 40px; border: 1px solid #f0f0f0;">
+                        <div class="meet-with-us-div">
+                        <div style="display: flex; align-items: flex-start;">
+                        <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Meet With Us</div>
+                        <div style="display: none; margin-top: 30px;" class="block-this completed-meet-with-us-phase  phases-state background-color-completed-phases">
+                            Completed
+                        </div>
+                        <div style="display: none" class="in-progress-meet-with-us-phase phases-state">
+                            In Progress
+                        </div>                
+                        </div>
+                    </div>   
+                    <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -31px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0;">
+                        <div class="payment-div">
+                            <div style="display: flex; align-items: flex-start;">
+                            <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Payment</div>
+                            <div style="display: none; margin-top: 30px;" class="completed-payment-phase background-color-phases phases-state">
+                            Completed
+                        </div>
+                            <div style="display: none" class="in-progress-payment-phase phases-state">
+                                In Progress
+                            </div>                
+                            </div>
+                        </div>  
+                        <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -31px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0;">
+                            <div class="job-interview-div">
+                                <div style="display: flex; align-items: flex-start;">
+                                <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Job Interview</div>
+                                <div style="display: none; margin-top: 30px;" class="completed-job-interview-phasebackground-color-phases phases-state">
+                                Completed
+                            </div>
+                                <div style="display: none" class="in-progress-job-interview-phase phases-state">
+                                    In Progress
+                                </div>                
+                                </div>
+                            </div>   
+                            <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -30px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0; border-bottom: 0px;">
+                                <div class="job-offer-div">
+                                    <div style="display: flex; align-items: flex-start;">
+                                    <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Sign the Job Offer</div>
+                                    <div style="display: none; margin-top: 30px;" class="completed-job-interview-phasebackground-color-phases phases-state">
+                                    Completed
+                                </div>
+                                    <div style="display: none" class="in-progress-job-interview-phase phases-state">
+                                        In Progress
+                                    </div>                
+                                    </div>
+                                </div>   
+                                <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -30px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0; border-bottom: 0px;">
+                                    <div class="second-payment-div">
+                                        <div style="display: flex; align-items: flex-start;">
+                                        <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Payment</div>
+                                        <div style="display: none; margin-top: 30px;" class="completed-job-interview-phasebackground-color-phases phases-state">
+                                        Completed
+                                    </div>
+                                        <div style="display: none" class="in-progress-job-interview-phase phases-state">
+                                            In Progress
+                                        </div>                
+                                        </div>
+                                    </div>       
+<div class="documents-border-div documents-under-main-border-div" style="">
+    <img class="myjob-right-exit" title="Exit" style=""
+    src="{% static 'img/Applicant/close(2).png' %}"  onclick="closeButton()" alt="">
+    <div class="div-title-documents-zip-icon">
+    <div style="display: flex; align-items: flex-start;">
+    <div class="title_documents" style="margin-right: 15px;">Documents for Work Permit</div>
+    <div style="display: none; margin-top: 30px;" class="completed-phase completed-documents-for-work-permit-phase phases-state background-color-completed-phases">
+        Completed
+    </div>
+    <div style="display: none; margin-top: 30px;" class="in-progress-documents-for-work-permit-phase phases-state">
+        In Progress
+    </div>
+    </div>
+    <div class="parent-img-zip mutual-three-dots-imgs">
+    </div>
+    </div>
+    <div id="documentList" class="document-images" style="">
+    </div>
+</div>
+</div>
+</div>
+</div>
+            </div>
+    <div class="second-screening-question-div work-permit-div" style="padding-top: 20px; padding-bottom: 20px; display: flex; cursor: pointer; align-items: center; margin-left: 0px;">
+        <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Your Work Permit is here</div>
+        
+        <div style="display: none;" class="second-completed-phase phases-state completed-your-work-permit-phase background-color-completed-phases">Completed</div>
+        <div style="display: none" class="in-progress-your-work-permit-phase phases-state">
+            In Progress
+        </div>
+    </div>
+    </div>
+    <div class="third-payment-div second-screening-question-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+        <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Payment</div>
+        <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+            Completed
+        </div>
+        <div style="display: none" class="in-progress-payment-phase phases-state">
+            In Progress
+        </div>
+                </div>
+    </div>
+    <div class="documents-for-us-embassy-div second-screening-question-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+        <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Documents for U.S. Embassy</div>
+        <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+            Completed
+        </div>
+        <div style="display: none" class="in-progress-payment-phase phases-state">
+            In Progress
+        </div>
+                </div>
+    </div>
+    <div class="your-j1-visa-is-here-div second-screening-question-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+        <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Your J1 Visa is here</div>
+        <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+            Completed
+        </div>
+        <div style="display: none" class="in-progress-payment-phase phases-state">
+            In Progress
+        </div>
+                </div>
+    </div>
+    <div class="start-work-div second-screening-question-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+        <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Start Work</div>
+        <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+            Completed
+        </div>
+        <div style="display: none" class="in-progress-payment-phase phases-state">
+            In Progress
+        </div>
+                </div>
     </div>
 
-    <div class="mutual-form-stats your-work-permit-is-here-form-content" style="display: none;">
-        <div class="payment-under-form-content">
-                <div class="documents-border-div">
+    </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- <div class="documents-border-div documents-under-main-border-div" style="">
+    <img class="myjob-right-exit job-right-exit " title="Exit" style=""
+    src="{% static 'img/Applicant/close(2).png' %}" onclick="closeButton()" alt="">
+    <div class="div-title-documents-zip-icon">
+<div style="display: flex; align-items: flex-start;">
+<div style="margin-right: 15px;" class="work-permit-title">Your Work Permit is Here</div>
+<div style="display: none; margin-top: 30px;" class="second-completed-phase phases-state completed-your-work-permit-phase background-color-completed-phases">Completed</div>
+<div style="display: none; margin-top: 30px;" class="in-progress-your-work-permit-phase phases-state">
+    In Progress
+</div>
+</div>
+<div class="parent-img-zip mutual-three-dots-imgs" id="parent-img-zip2">
+</div>
+</div>
+<div id="recdocumentList" class="document-images">
+    
+</div>
+</div> -->
+
+<div class="your-work-permit-is-here-form-content mutual-form-stats" style="display: none; background: white; border-radius: 40px;">
+    <div class="payment-under-form-content" style="background-color: white; margin: auto; border-radius: 40px;">  
+        <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; margin: auto; border-radius: 40px; border-top-left-radius: 40px; border-top-right-radius: 40px; border: 1px solid #f0f0f0;">         
+            <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                    <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                        <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                            <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                    <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                                        <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+
                     <div class="application-update-div">
-                        <div class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Application Update</div>
-                    </div>        
-                <div class="documents-div docs-work-permit-page-border mutual-pages-stats">
-                    <div class="contact-information-third-page pd-ci-cursor font-size-18px-16px">Documents for Work Permit</div>
-                </div>
-                <div class="documents-border-div documents-under-main-border-div">
-                    <img class="myjob-right-exit job-right-exit " title="Exit" style=""
-                    src="{% static 'img/Applicant/close(2).png' %}" onclick="closeButton()" alt="">
-                    <div class="div-title-documents-zip-icon">
-                <div class="work-permit-title">Your Work Permit is Here</div>
-                <div class="parent-img-zip mutual-three-dots-imgs" id="parent-img-zip2">
-                </div>
+                        <div style="display: flex; align-items: flex-start;">
+                            <div style="margin-right: 15px;"
+                                class="contact-information-third-page pd-ci-cursor font-size-18px-16px">
+                                Application Update</div>
+                            <div
+                                class="completed-application-update-phase  phases-state margin-top-phase background-color-completed-phases">
+                                Completed
+                            </div>
+                        </div>
+                    </div>
+                                <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -31px; border-top-left-radius: 40px; border-radius: 40px; border: 1px solid #f0f0f0;">
+                        <div class="meet-with-us-div">
+                        <div style="display: flex; align-items: flex-start;">
+                        <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Meet With Us</div>
+                        <div style="display: none; margin-top: 30px;" class="block-this completed-meet-with-us-phase  phases-state background-color-completed-phases">
+                            Completed
+                        </div>
+                        <div style="display: none" class="in-progress-meet-with-us-phase phases-state">
+                            In Progress
+                        </div>                
+                        </div>
+                    </div>   
+                    <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -31px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0;">
+                        <div class="payment-div">
+                            <div style="display: flex; align-items: flex-start;">
+                            <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Payment</div>
+                            <div style="display: none; margin-top: 30px;" class="completed-payment-phase background-color-phases phases-state">
+                            Completed
+                        </div>
+                            <div style="display: none" class="in-progress-payment-phase phases-state">
+                                In Progress
+                            </div>                
+                            </div>
+                        </div>  
+                        <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -31px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0;">
+                            <div class="job-interview-div">
+                                <div style="display: flex; align-items: flex-start;">
+                                <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Job Interview</div>
+                                <div style="display: none; margin-top: 30px;" class="completed-job-interview-phasebackground-color-phases phases-state">
+                                Completed
+                            </div>
+                                <div style="display: none" class="in-progress-job-interview-phase phases-state">
+                                    In Progress
+                                </div>                
+                                </div>
+                            </div>   
+                            <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -31px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0; border-bottom: 0px;">
+                                <div class="job-offer-div">
+                                    <div style="display: flex; align-items: flex-start;">
+                                    <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Sign the Job Offer</div>
+                                    <div style="display: none; margin-top: 30px;" class="completed-job-interview-phasebackground-color-phases phases-state">
+                                    Completed
+                                </div>
+                                    <div style="display: none" class="in-progress-job-interview-phase phases-state">
+                                        In Progress
+                                    </div>                
+                                    </div>
+                                </div>   
+                                <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -31px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0; border-bottom: 0px;">
+                                    <div class="second-payment-div">
+                                        <div style="display: flex; align-items: flex-start;">
+                                        <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Payment</div>
+                                        <div style="display: none; margin-top: 30px;" class="completed-job-interview-phasebackground-color-phases phases-state">
+                                        Completed
+                                    </div>
+                                        <div style="display: none" class="in-progress-job-interview-phase phases-state">
+                                            In Progress
+                                        </div>                
+                                        </div>
+                                    </div>
+                                    <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -30px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0; border-bottom: 0px;">  
+                                        <div class="documents-div">
+                                            <div style="display: flex; align-items: flex-start;">
+                                            <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Documents for Work Permit</div>
+                                            <div style="display: none; margin-top: 30px;" class="background-color-phases phases-state">
+                                            Completed
+                                        </div>
+                                            <div style="display: none" class="in-progress-job-interview-phase phases-state">
+                                                In Progress
+                                            </div>                
+                                            </div>
+                                        </div>    
+<div class="documents-border-div documents-under-main-border-div" style="">
+    <img class="myjob-right-exit job-right-exit " title="Exit" style=""
+    src="{% static 'img/Applicant/close(2).png' %}" onclick="closeButton()" alt="">
+    <div class="div-title-documents-zip-icon">
+<div style="display: flex; align-items: flex-start;">
+<div style="margin-right: 15px;" class="work-permit-title">Your Work Permit is Here</div>
+<div style="display: none; margin-top: 30px;" class="second-completed-phase phases-state completed-your-work-permit-phase background-color-completed-phases">Completed</div>
+<div style="display: none; margin-top: 30px;" class="in-progress-your-work-permit-phase phases-state">
+    In Progress
+</div>
+</div>
+<div class="parent-img-zip mutual-three-dots-imgs" id="parent-img-zip2">
+</div>
+</div>
+<div id="recdocumentList" class="document-images">
+    
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
             </div>
-                <div id="recdocumentList" class="document-images">
-                    
+    <div class="third-payment-div second-screening-question-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+        <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Payment</div>
+        <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+            Completed
+        </div>
+        <div style="display: none" class="in-progress-payment-phase phases-state">
+            In Progress
+        </div>
                 </div>
+    </div>
+    <div class="documents-for-us-embassy-div second-screening-question-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+        <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Documents for U.S. Embassy</div>
+        <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+            Completed
+        </div>
+        <div style="display: none" class="in-progress-payment-phase phases-state">
+            In Progress
+        </div>
+                </div>
+    </div>
+    <div class="your-j1-visa-is-here-div second-screening-question-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+        <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Your J1 Visa is here</div>
+        <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+            Completed
+        </div>
+        <div style="display: none" class="in-progress-payment-phase phases-state">
+            In Progress
+        </div>
+                </div>
+    </div>
+    <div class="start-work-div second-screening-question-div payment-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+        <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Start Work</div>
+        <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+            Completed
+        </div>
+        <div style="display: none" class="in-progress-payment-phase phases-state">
+            In Progress
+        </div>
+                </div>
+    </div>
+
+    </div>
+    </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <div class="documents-for-us-embassy-form-content mutual-form-stats" style="display: none; background: white; border-radius: 40px;">
+        <div class="payment-under-form-content" style="background-color: white; margin: auto; border-radius: 40px;">  
+            <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; margin: auto; border-radius: 40px; border-top-left-radius: 40px; border-top-right-radius: 40px; border: 1px solid #f0f0f0;">         
+                <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+                    <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+    
+                        <div class="application-update-div">
+                            <div style="display: flex; align-items: flex-start;">
+                                <div style="margin-right: 15px;"
+                                    class="contact-information-third-page pd-ci-cursor font-size-18px-16px">
+                                    Application Update</div>
+                                <div
+                                    class="completed-application-update-phase  phases-state margin-top-phase background-color-completed-phases">
+                                    Completed
+                                </div>
+                            </div>
+                        </div>
+                                    <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -31px; border-radius: 40px; border-top-left-radius: 40px; border-top-right-radius: 40px; border: 1px solid #f0f0f0;">
+                            <div class="meet-with-us-div">
+                            <div style="display: flex; align-items: flex-start;">
+                            <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Meet With Us</div>
+                            <div style="display: none; margin-top: 30px;" class="block-this completed-meet-with-us-phase  phases-state background-color-completed-phases">
+                                Completed
+                            </div>
+                            <div style="display: none" class="in-progress-meet-with-us-phase phases-state">
+                                In Progress
+                            </div>                
+                            </div>
+                        </div>   
+                        <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -31px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0; border-bottom: none;">
+                            <div class="payment-div">
+                                <div style="display: flex; align-items: flex-start;">
+                                <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Payment</div>
+                                <div style="display: none; margin-top: 30px;" class="completed-payment-phase background-color-phases phases-state">
+                                Completed
+                            </div>
+                                <div style="display: none" class="in-progress-payment-phase phases-state">
+                                    In Progress
+                                </div>                
+                                </div>
+                            </div>
+                            <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -31px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0; border-bottom: none;">
+                                <div class="job-interview-div">
+                                    <div style="display: flex; align-items: flex-start;">
+                                    <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Job Interview</div>
+                                    <div style="display: none; margin-top: 30px;" class="completed-job-interview-phase background-color-phases phases-state">
+                                    Completed
+                                </div>
+                                    <div style="display: none" class="in-progress-payment-phase phases-state">
+                                        In Progress
+                                    </div>                
+                                    </div>
+                                </div>
+                                <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -31px; border-radius: 40px; border: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0;">
+                                    <div class="job-offer-div">
+                                        <div style="display: flex; align-items: flex-start;">
+                                        <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Sign the Job Offer</div>
+                                        <div style="display: none; margin-top: 30px;" class="completed-job-offer-phase background-color-phases phases-state">
+                                        Completed
+                                    </div>
+                                        <div style="display: none" class="in-progress-payment-phase phases-state">
+                                            In Progress
+                                        </div>                
+                                        </div>
+                                    </div>
+                                    <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -31px; border-radius: 40px; border: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0;">
+                                        <div class="second-payment-div">
+                                            <div style="display: flex; align-items: flex-start;">
+                                            <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Payment</div>
+                                            <div style="display: none; margin-top: 30px;" class="completed-payment-phase background-color-phases phases-state">
+                                            Completed
+                                        </div>
+                                            <div style="display: none" class="in-progress-payment-phase phases-state">
+                                                In Progress
+                                            </div>                
+                                            </div>
+                                        </div>
+                                        <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -31px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0; border-bottom: none;">        
+                                        <div class="documents-div">
+                                            <div style="display: flex; align-items: flex-start;">
+                                            <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Documents for Work Permit</div>
+                                            <div style="display: none; margin-top: 30px;" class="completed-documents-for-work-permit-phase background-color-phases phases-state">
+                                            Completed
+                                        </div>
+                                            <div style="display: none" class="in-progress-documents-for-work-permit-phase phases-state">
+                                                In Progress
+                                            </div>                
+                                            </div>
+                                        </div>
+                                        <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -31px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0; border-bottom: none;">        
+                                            <div class="work-permit-div">
+                                                <div style="display: flex; align-items: flex-start;">
+                                                <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Your Work Permit is here</div>
+                                                <div style="display: none; margin-top: 30px;" class="completed-your-work-permit-phase background-color-phases phases-state">
+                                                Completed
+                                            </div>
+                                                <div style="display: none" class="in-progress-your-work-permit-phase phases-state">
+                                                    In Progress
+                                                </div>                
+                                                </div>
+                                            </div>    
+                            <div class="documents-border-div documents-main-border-div" style="width: 100%; margin-left: -31px;">
+                                <div class="third-payment-div">
+                                    <div style="display: flex; align-items: flex-start;">
+                                    <div style="margin-right: 15px; margin-left: 0px;" class="contact-information-third-page pd-ci-cursor font-size-18px-16px">Payment</div>
+                                    <div style="display: none; margin-top: 30px;" class="completed-payment-phase  phases-state background-color-completed-phases">
+                                        Completed
+                                    </div>
+                                </div>
+                                </div>
+                            <div class="documents-border-div documents-under-main-border-div" style="border-bottom: 0px;">
+                                <img class="myjob-right-exit" title="Exit" style=""
+                                src="{% static 'img/Applicant/close(2).png' %}"  onclick="closeButton()" alt="">
+                                <div class="div-title-documents-zip-icon">
+                                <div style="display: flex; align-items: flex-start;">
+                                <div class="title_documents" style="margin-right: 15px;">Documents for U.S. Embassy</div>
+                                <div style="display: none; margin-top: 30px;" class="completed-phase completed-documents-for-work-permit-phase phases-state background-color-completed-phases">
+                                    Completed
+                                </div>
+                                <div style="display: none; margin-top: 30px;" class="in-progress-documents-for-work-permit-phase phases-state">
+                                    In Progress
+                                </div>
+                                </div>
+                                <div class="parent-img-zip mutual-three-dots-imgs visa-documents-parent-img-zip">
+                                </div>
+                                </div>
+                                <div id="usEmbassydocumentList" class="document-images" style="">
+                                </div>
+                    </div>
+                        </div>
+                </div>
+                </div>
+        <div class="your-j1-visa-is-here-div second-screening-question-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+            <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Your J1 Visa is here</div>
+            <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+                Completed
+            </div>
+            <div style="display: none" class="in-progress-payment-phase phases-state">
+                In Progress
+            </div>
+                    </div>
+        </div>
+        <div class="start-work-div second-screening-question-div payment-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+            <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Start Work</div>
+            <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+                Completed
+            </div>
+            <div style="display: none" class="in-progress-payment-phase phases-state">
+                In Progress
+            </div>
+                    </div>
+        </div>
+    
         </div>
         </div>
     </div>
     </div>
+</div>
+</div>
+</div>
+</div>
+    <div class="your-j1-visa-is-here-form-content mutual-form-stats" style="display: none; background: white; border-radius: 40px;">
+        <div class="payment-under-form-content" style="background-color: white; margin: auto; border-radius: 40px;">  
+            <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; margin: auto; border-radius: 40px; border-top-left-radius: 40px; border-top-right-radius: 40px; border: 1px solid #f0f0f0;">         
+                <div style="border-width: 100%; padding-right: 30px; width: 100%; margin-left: -31px; padding-left: 30px; border-radius: 40px; border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; border-top: 0px !important; border: 1px solid #f0f0f0;">
+    
+                        <div class="application-update-div">
+                            <div style="display: flex; align-items: flex-start;">
+                                <div style="margin-right: 15px;"
+                                    class="contact-information-third-page pd-ci-cursor font-size-18px-16px">
+                                    Application Update</div>
+                                <div
+                                    class="completed-application-update-phase  phases-state margin-top-phase background-color-completed-phases">
+                                    Completed
+                                </div>
+                            </div>
+                        </div>
+                                    <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -31px; border-radius: 40px; border-top-left-radius: 40px; border-top-right-radius: 40px; border: 1px solid #f0f0f0;">
+                            <div class="meet-with-us-div">
+                            <div style="display: flex; align-items: flex-start;">
+                            <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Meet With Us</div>
+                            <div style="display: none; margin-top: 30px;" class="block-this completed-meet-with-us-phase  phases-state background-color-completed-phases">
+                                Completed
+                            </div>
+                            <div style="display: none" class="in-progress-meet-with-us-phase phases-state">
+                                In Progress
+                            </div>                
+                            </div>
+                        </div>   
+                        <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -31px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0; border-bottom: none;">
+                            <div class="payment-div">
+                                <div style="display: flex; align-items: flex-start;">
+                                <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Payment</div>
+                                <div style="display: none; margin-top: 30px;" class="completed-payment-phase background-color-phases phases-state">
+                                Completed
+                            </div>
+                                <div style="display: none" class="in-progress-payment-phase phases-state">
+                                    In Progress
+                                </div>                
+                                </div>
+                            </div>
+                            <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -31px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0; border-bottom: none;">
+                                <div class="job-interview-div">
+                                    <div style="display: flex; align-items: flex-start;">
+                                    <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Job Interview</div>
+                                    <div style="display: none; margin-top: 30px;" class="completed-job-interview-phase background-color-phases phases-state">
+                                    Completed
+                                </div>
+                                    <div style="display: none" class="in-progress-payment-phase phases-state">
+                                        In Progress
+                                    </div>                
+                                    </div>
+                                </div>
+                                <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -31px; border-radius: 40px; border: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0;">
+                                    <div class="job-offer-div">
+                                        <div style="display: flex; align-items: flex-start;">
+                                        <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Sign the Job Offer</div>
+                                        <div style="display: none; margin-top: 30px;" class="completed-job-offer-phase background-color-phases phases-state">
+                                        Completed
+                                    </div>
+                                        <div style="display: none" class="in-progress-payment-phase phases-state">
+                                            In Progress
+                                        </div>                
+                                        </div>
+                                    </div>
+                                    <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -31px; border-radius: 40px; border: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0;">
+                                        <div class="second-payment-div">
+                                            <div style="display: flex; align-items: flex-start;">
+                                            <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Payment</div>
+                                            <div style="display: none; margin-top: 30px;" class="completed-payment-phase background-color-phases phases-state">
+                                            Completed
+                                        </div>
+                                            <div style="display: none" class="in-progress-payment-phase phases-state">
+                                                In Progress
+                                            </div>                
+                                            </div>
+                                        </div>
+                                        <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -31px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0; border-bottom: none;">        
+                                        <div class="documents-div">
+                                            <div style="display: flex; align-items: flex-start;">
+                                            <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Documents for Work Permit</div>
+                                            <div style="display: none; margin-top: 30px;" class="completed-documents-for-work-permit-phase background-color-phases phases-state">
+                                            Completed
+                                        </div>
+                                            <div style="display: none" class="in-progress-documents-for-work-permit-phase phases-state">
+                                                In Progress
+                                            </div>                
+                                            </div>
+                                        </div>
+                                        <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -31px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0; border-bottom: none;">        
+                                            <div class="work-permit-div">
+                                                <div style="display: flex; align-items: flex-start;">
+                                                <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Your Work Permit is here</div>
+                                                <div style="display: none; margin-top: 30px;" class="completed-your-work-permit-phase background-color-phases phases-state">
+                                                Completed
+                                            </div>
+                                                <div style="display: none" class="in-progress-your-work-permit-phase phases-state">
+                                                    In Progress
+                                                </div>                
+                                                </div>
+                                            </div>
+                                            <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -31px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0; border-bottom: none;">
+                                                <div class="third-payment-div">
+                                                    <div style="display: flex; align-items: flex-start;">
+                                                    <div style="margin-right: 15px; margin-left: 0px;" class="contact-information-third-page pd-ci-cursor font-size-18px-16px">Payment</div>
+                                                    <div style="display: none; margin-top: 30px;" class="completed-payment-phase  phases-state background-color-completed-phases">
+                                                        Completed
+                                                    </div>
+                                                </div>
+                                                </div>                         
+                            <div class="documents-border-div documents-main-border-div" style="width: 100%; margin-left: -31px;">
+                                <div class="documents-for-us-embassy-div">
+                                    <div style="display: flex; align-items: flex-start;">
+                                    <div style="margin-right: 15px; margin-left: 0px;" class="contact-information-third-page pd-ci-cursor font-size-18px-16px">Documents for U.S. Embassy</div>
+                                    <div style="display: none; margin-top: 30px;" class="completed-documents-for-embassy-phase  phases-state background-color-completed-phases">
+                                        Completed
+                                    </div>
+                                </div>
+                                </div>
+                            <div class="documents-border-div documents-under-main-border-div" style="border-bottom: 0px;">
+                                <img class="myjob-right-exit" title="Exit" style=""
+                                src="{% static 'img/Applicant/close(2).png' %}"  onclick="closeButton()" alt="">
+                                <div class="div-title-documents-zip-icon">
+                                <div style="display: flex; align-items: flex-start;">
+                                <div class="title_documents" style="margin-right: 15px;">Your J1 Visa is here</div>
+                                <div style="display: none; margin-top: 30px;" class="completed-phase completed-documents-for-work-permit-phase phases-state background-color-completed-phases">
+                                    Completed
+                                </div>
+                                <div style="display: none; margin-top: 30px;" class="in-progress-documents-for-work-permit-phase phases-state">
+                                    In Progress
+                                </div>
+                                </div>
+                                <div class="parent-img-zip mutual-three-dots-imgs your-j1-visa-is-here-parent-img-zip">
+                                </div>
+                                </div>
+                                <div id="yourJ1VisaIsHeredocumentList" class="document-images" style="">
+                                </div>
+                    </div>
+                        </div>
+                </div>
+                </div>
+        <div class="start-work-div second-screening-question-div divs-pointer-event-auto phase" style="padding-top: 20px; padding-bottom: 20px; margin-left: 0px; display: flex; align-items: center;">
+            <div style="margin-right: 15px;" class="screening-questions-title second-screening-question mutual-font-size-18px">Start Work</div>
+            <div style="display: none" class="completed-payment-phase phase-payment background-color-completed-phases">
+                Completed
+            </div>
+            <div style="display: none" class="in-progress-payment-phase phases-state">
+                In Progress
+            </div>
+                    </div>
+        </div>
+    
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="start-work-form-content mutual-form-stats" style="display: none; background: white; border-radius: 40px;">
+    <div class="payment-under-form-content" style="background-color: white; margin: auto; border-radius: 40px;">  
+        <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; margin: auto; border-radius: 40px; border-top-left-radius: 40px; border-top-right-radius: 40px; border: 1px solid #f0f0f0;">         
+
+                    <div class="application-update-div">
+                        <div style="display: flex; align-items: flex-start;">
+                            <div style="margin-right: 15px;"
+                                class="contact-information-third-page pd-ci-cursor font-size-18px-16px">
+                                Application Update</div>
+                            <div
+                                class="completed-application-update-phase  phases-state margin-top-phase background-color-completed-phases">
+                                Completed
+                            </div>
+                        </div>
+                    </div>
+                                <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -31px; border-radius: 40px; border-top-left-radius: 40px; border-top-right-radius: 40px; border: 1px solid #f0f0f0;">
+                        <div class="meet-with-us-div">
+                        <div style="display: flex; align-items: flex-start;">
+                        <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Meet With Us</div>
+                        <div style="display: none; margin-top: 30px;" class="block-this completed-meet-with-us-phase  phases-state background-color-completed-phases">
+                            Completed
+                        </div>
+                        <div style="display: none" class="in-progress-meet-with-us-phase phases-state">
+                            In Progress
+                        </div>                
+                        </div>
+                    </div>   
+                    <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -31px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0; border-bottom: none;">
+                        <div class="payment-div">
+                            <div style="display: flex; align-items: flex-start;">
+                            <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Payment</div>
+                            <div style="display: none; margin-top: 30px;" class="completed-payment-phase background-color-phases phases-state">
+                            Completed
+                        </div>
+                            <div style="display: none" class="in-progress-payment-phase phases-state">
+                                In Progress
+                            </div>                
+                            </div>
+                        </div>
+                        <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -31px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0; border-bottom: none;">
+                            <div class="job-interview-div">
+                                <div style="display: flex; align-items: flex-start;">
+                                <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Job Interview</div>
+                                <div style="display: none; margin-top: 30px;" class="completed-job-interview-phase background-color-phases phases-state">
+                                Completed
+                            </div>
+                                <div style="display: none" class="in-progress-payment-phase phases-state">
+                                    In Progress
+                                </div>                
+                                </div>
+                            </div>
+                            <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -31px; border-radius: 40px; border: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0;">
+                                <div class="job-offer-div">
+                                    <div style="display: flex; align-items: flex-start;">
+                                    <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Sign the Job Offer</div>
+                                    <div style="display: none; margin-top: 30px;" class="completed-job-offer-phase background-color-phases phases-state">
+                                    Completed
+                                </div>
+                                    <div style="display: none" class="in-progress-payment-phase phases-state">
+                                        In Progress
+                                    </div>                
+                                    </div>
+                                </div>
+                                <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -31px; border-radius: 40px; border: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0;">
+                                    <div class="second-payment-div">
+                                        <div style="display: flex; align-items: flex-start;">
+                                        <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Payment</div>
+                                        <div style="display: none; margin-top: 30px;" class="completed-payment-phase background-color-phases phases-state">
+                                        Completed
+                                    </div>
+                                        <div style="display: none" class="in-progress-payment-phase phases-state">
+                                            In Progress
+                                        </div>                
+                                        </div>
+                                    </div>
+                                    <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -31px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0; border-bottom: none;">        
+                                    <div class="documents-div">
+                                        <div style="display: flex; align-items: flex-start;">
+                                        <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Documents for Work Permit</div>
+                                        <div style="display: none; margin-top: 30px;" class="completed-documents-for-work-permit-phase background-color-phases phases-state">
+                                        Completed
+                                    </div>
+                                        <div style="display: none" class="in-progress-documents-for-work-permit-phase phases-state">
+                                            In Progress
+                                        </div>                
+                                        </div>
+                                    </div>
+                                    <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -31px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0; border-bottom: none;">        
+                                        <div class="work-permit-div">
+                                            <div style="display: flex; align-items: flex-start;">
+                                            <div style="margin-right: 15px;" class="contact-information-third-page application-update-under-div pd-ci-cursor font-size-18px-16px">Your Work Permit is here</div>
+                                            <div style="display: none; margin-top: 30px;" class="completed-your-work-permit-phase background-color-phases phases-state">
+                                            Completed
+                                        </div>
+                                            <div style="display: none" class="in-progress-your-work-permit-phase phases-state">
+                                                In Progress
+                                            </div>                
+                                            </div>
+                                        </div>
+                                        <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -31px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0; border-bottom: none;">
+                                            <div class="third-payment-div">
+                                                <div style="display: flex; align-items: flex-start;">
+                                                <div style="margin-right: 15px; margin-left: 0px;" class="contact-information-third-page pd-ci-cursor font-size-18px-16px">Payment</div>
+                                                <div style="display: none; margin-top: 30px;" class="completed-payment-phase  phases-state background-color-completed-phases">
+                                                    Completed
+                                                </div>
+                                            </div>
+                                            </div>
+                                            <div style="border-width: 100%; padding-left: 30px; padding-right: 30px; width: 100%; margin-left: -31px; border-top-left-radius: 40px; border-top-right-radius: 40px; border-top: 1px solid #f0f0f0; border-right: 1px solid #f0f0f0; border-left: 1px solid #f0f0f0; border-bottom: none;">          
+                                                <div class="documents-for-us-embassy-div">
+                                                    <div style="display: flex; align-items: flex-start;">
+                                                    <div style="margin-right: 15px; margin-left: 0px;" class="contact-information-third-page pd-ci-cursor font-size-18px-16px">Documents for U.S. Embassy</div>
+                                                    <div style="display: none; margin-top: 30px;" class="completed-documents-for-embassy-phase  phases-state background-color-completed-phases">
+                                                        Completed
+                                                    </div>
+                                                </div>
+                                                </div>                                 
+                        <div class="documents-border-div documents-main-border-div" style="width: 100%; margin-left: -31px;">
+                            <div class="your-j1-visa-is-here-div">
+                                <div style="display: flex; align-items: flex-start;">
+                                <div style="margin-right: 15px; margin-left: 0px;" class="contact-information-third-page pd-ci-cursor font-size-18px-16px">Your J1 Visa is here</div>
+                                <div style="display: none; margin-top: 30px;" class="completed-your-j1-visa-is-here-phase  phases-state background-color-completed-phases">
+                                    Completed
+                                </div>
+                            </div>
+                            </div>
+                        <div class="documents-border-div documents-under-main-border-div" style="border-bottom: 0px;">
+                            <div style="display: flex; align-items: center; justify-content: space-between;">
+                                <div style="display: flex; align-items: flex-start;">
+                            <div class="contact-information-third-page font-size-18px-16px" style="padding-top: 30px; font-size: 18px;">Start Work</div>
+                            <div style="display: flex; align-items: flex-start;">
+                                    <!-- <div style="padding-bottom: 30px; font-size: 18px; margin-right: 15px;" class="finished-specific-payment"></div> -->
+                                <div style="display: none; margin-top: 30px;"
+                                    class="completed-payment-phase background-color-phases phases-state">
+                                    Completed
+                                </div>
+                            </div>
+                            </div>
+                            <img id="edit-start-work-date" title="Edit Start Work Date" class="imgs-three-dots-zip-img three-dots-document" style="" src="/static/img/Three-dots.svg">
+                            </div>
+        <div id="start-work-div" style="">
+                    <div style="display: flex; align-items: center;" class="margin-right-job-interview-divs" style="display: flex;">
+                    <div>
+                    <img class="" src="/static/img/interview-date-icon.svg" alt="Interview Date Icon">
+                    </div>
+                    <div>
+                    <input placeholder="Date" class="interview-distance-between-div-img job-interview-input-elements" id="start-work-date">
+                    </div>
+                    </div>
+            <!-- <input type="date" id="job-interview-date">
+            <input type="time" id="job-interview-time">
+            <div class="job-interview-link" id="job-interview-link">Interview link</div> -->
+            <!-- <div>
+                <div id="job-interview-button">Save</div>
+            </div> -->
+        </div>
+                </div>
+                </div>
+                    </div>
+            </div>
+            </div>
+
+    </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    
     
     <div>
         <div class="job-right-details">

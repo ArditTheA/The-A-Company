@@ -1,3 +1,4 @@
+
 from datetime import date
 
 from allauth import socialaccount
@@ -5,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
 from django.views import View
+from django.core import serializers
 from datetime import date, timedelta
 from accounts.models import *
 from Applicant.models import *
@@ -27,13 +29,48 @@ class UsersReq(View):
         Status = Application.objects.filter(job_id=jpk).filter(user_id=userid).values_list("ApplicantStat",flat=True).first()
         newDic["Status"] = str(Status)
 
+        user_document = documents_users.objects.filter(
+                user_id=userid,
+                status="A"
+            ).exclude(
+                id_document__name__icontains="Photo"
+            ).exclude(
+                id_document__name__icontains="Service contract"
+            ).exclude(
+                id_document__name__icontains="Resume"
+            ).exclude(
+                id_document__name__icontains="Job Offer"
+            ).exclude(
+                id_document__name__icontains="Work Permit"
+            ).count()
+
+        job_offer_count = documents_users.objects.filter(
+                user_id=userid,
+                status="A",
+                id_document__name__icontains="Job Offer"
+            ).count()
+        work_permit_count = documents_users.objects.filter(
+                user_id=userid,
+                status="A",
+                id_document__name__icontains="Work Permit"
+            ).count()
+
+        two_last_documents = job_offer_count + work_permit_count
+
+        exists = Application.objects.filter(job_id=jpk, user_id=userid, ApplicantStat="Qualified").exists()
+        existsN = Application.objects.filter(job_id=jpk, user_id=userid, ApplicantStat="Not qualified").exists()
+        newDic["phaseOneCompleted"] = (user_document == 4)
+        newDic["phaseTwoCompleted"] = (two_last_documents == 2)
+        newDic["isQualified"] = exists
+        newDic["isNotQualified"] = existsN
         meetingTime = Application.objects.filter(job_id=jpk).filter(
                         user_id=request.user).values_list("meetWithUs", flat=True).first()
         meetingLink = Application.objects.filter(job_id=jpk).filter(
                         user_id=request.user).values_list("meetWithUsLink", flat=True).first()
         newDic["meetingTime"] = meetingTime
         newDic["meetingLink"] = meetingLink
-
+        # newDic["meetWithUsDiv"] = meetWithUsDiv
+        # newDic["calendlyDiv"] = calendlyDiv
         if user.city == None:
             newDic["city"] = user.country
         else:
@@ -113,6 +150,9 @@ class UsersReq(View):
         serviceContractExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Service contract").exists()
         jobOfferExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Job Offer").exists()
         workPermitExists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Work Permit").exists()
+        DS2019Exists = documents_users.objects.filter(user_id=userid,id_document__name__icontains="DS 2019").exists()
+        DS160ConfirmationExists = documents_users.objects.filter(user_id = userid, id_document__name__icontains="DS-160 Confirmation").exists()
+        SevisFeePaymentReceiptExists = documents_users.objects.filter(user_id = userid, id_document__name__icontains="Sevis Fee Payment Receipt").exists()
 
         if(passaportExists):
             passaportStatus = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Passport").values_list('status', flat=True).first()
@@ -138,9 +178,17 @@ class UsersReq(View):
         if(workPermitExists):
             workPermitStatus = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Work Permit").values_list("status",flat=True).first()
             newDic["workPermitStatus"]=workPermitStatus
-                        
+        if(DS2019Exists):
+            DS2019Status = documents_users.objects.filter(user_id=userid,id_document__name__icontains="DS 2019").values_list("status",flat=True).first()
+            newDic["DS2019Status"]=DS2019Status
+            print("PassportExists")
+        if(DS160ConfirmationExists):
+            DS160ConfirmationStatus = documents_users.objects.filter(user_id=userid,id_document__name__icontains="DS-160 Confirmation").values_list("status",flat=True).first()
+            newDic["DS160ConfirmationStatus"] = DS160ConfirmationStatus
+        if (SevisFeePaymentReceiptExists):
+            SevisFeePaymentReceiptStatus = documents_users.objects.filter(user_id=userid,id_document__name__icontains="Sevis Fee Payment Receipt").values_list("status",flat=True).first()
+            newDic["SevisFeePaymentReceiptStatus"] = SevisFeePaymentReceiptStatus
         resume_exists = documents_users.objects.filter(user_id=userid, id_document__name__icontains="Resume").exists()
-
                     # If no resume document exists, create a new one
                     
         if Application.objects.filter(job_id=jpk, user_id=userid, ApplicantStat="Qualified").exists():
@@ -175,8 +223,22 @@ class UsersReq(View):
         newDic["serviceContractExists"] = serviceContractExists
         newDic["jobOfferExists"] = jobOfferExists
         newDic["workPermitExists"] = workPermitExists
-        return HttpResponse(json.dumps(newDic), content_type='application/json; charset=utf8')
+        newDic["DS2019Exists"] = DS2019Exists
+        newDic["DS160ConfirmationExists"] = DS160ConfirmationExists
+        newDic["SevisFeePaymentReceiptExists"] = SevisFeePaymentReceiptExists
+        print(jpk, userid)
+        usersWithAppointmentsList = list(UserJobAppointments.objects.filter(job_id=jpk, user_id=userid).values())
+        usersWithAppointments = usersWithAppointmentsList[0] if len(usersWithAppointmentsList) > 0 else {}
+        newDic["usersWithAppointments"] = usersWithAppointments
+        
+        usersJobInterviewDetailsList = list(UserJobInterview.objects.filter(job_id=jpk, user_id=userid).values())
+        usersJobInterviewDetails = usersJobInterviewDetailsList[0] if len(usersJobInterviewDetailsList) > 0 else {}
+        newDic["usersJobInterviewDetails"] = usersJobInterviewDetails
 
+        UsersJobsPaymentsDetailsList = list(UserJobPayment.objects.filter(job_id=jpk, user_id=userid).values())
+        usersJobsPaymentsDetails = UsersJobsPaymentsDetailsList[0] if len(UsersJobsPaymentsDetailsList) > 0 else {}
+        newDic["usersJobsPaymentsDetails"] = usersJobsPaymentsDetails
+        return HttpResponse(json.dumps(newDic), content_type='application/json; charset=utf8')
 
 
 def getApplicant(request,pk):
@@ -186,31 +248,87 @@ def getApplicant(request,pk):
     NoApplicant=Application.objects.filter(job_id=pk).count()
     NoApplicantQualified = Application.objects.filter(job_id=pk,ApplicantStat="Qualified").count()
     NoApplicantNQualified = Application.objects.filter(job_id=pk,ApplicantStat="Not qualified").count()
-    applications = Application.objects.filter(job_id=pk)
+    applications = Application.objects.filter(job_id=pk).exclude(ApplicantStat="Not qualified")
     user_ids = applications.values_list('user_id', flat=True).distinct()
     userWorkPermit = 0
     ready_users_count = 0
     usersOnDocForWorkPermit = 0
+    display_statuses = {}
+    print(user_ids)
+
     if CurrentUser==JobOwner.user_id or request.user.is_staff:
         users = Application.objects.filter(job_id=jpk)
+        user_document_list = {}
         for user_id in user_ids:
             user_documents_count = documents_users.objects.filter(
                     id_document__in=documents_list.objects.all(),
                     user_id=user_id
                 ).count()
             user_document = documents_users.objects.filter(
-                    id_document__in=documents_list.objects.all(),
-                    user_id=user_id,status = "A"
-                ).count()
-            if user_documents_count > 1 and user_documents_count <= 9:
-                if user_document >= 7 and user_document <= 9:
-                    userWorkPermit += 1
-                else:
-                    usersOnDocForWorkPermit +=1
+                user_id=user_id,
+                status="A"
+            ).exclude(
+                id_document__name__icontains="Photo"
+            ).exclude(
+                id_document__name__icontains="Service contract"
+            ).exclude(
+                id_document__name__icontains="Resume"
+            ).exclude(
+                id_document__name__icontains="Job Offer"
+            ).exclude(
+                id_document__name__icontains="Work Permit"
+            ).count()
+            user_documents = documents_users.objects.filter(
+                user_id=user_id,
+            ).exclude(
+                id_document__name__icontains="Job Offer"
+            ).exclude(
+                id_document__name__icontains="Work Permit"
+            ).order_by('id_document_id')
+            documents = serializers.serialize('json', user_documents)
+            job_offer_count = documents_users.objects.filter(
+                user_id=user_id,
+                status="A",
+                id_document__name__icontains="Job Offer"
+            ).count()
+            work_permit_count = documents_users.objects.filter(
+                user_id=user_id,
+                status="A",
+                id_document__name__icontains="Work Permit"
+            ).count()
+            job_offer_and_work_permit_count = documents_users.objects.filter(
+                user_id=user_id,
+                status="A",
+                id_document__name__icontains="Job Offer"
+            ).filter(
+                id_document__name__icontains="Work Permit"
+            )
+
+            two_last_documents = job_offer_count + work_permit_count
+            second_documents = serializers.serialize('json', job_offer_and_work_permit_count)
+            display_completed_phase = "none"
+            display_completed_second_phase = "none"
+            work_permit_is_here = "none"
+            if user_document == 4:
+                display_completed_phase = "block"
+                work_permit_is_here = "auto"
+                userWorkPermit += 1
+
+            else:
+                display_completed_second_phase = "none"
+                usersOnDocForWorkPermit += 1
             
+            if two_last_documents == 2:
+                if user_document == 4:
+                    display_completed_second_phase = "block"
+                else:
+                    display_completed_second_phase = "none"
+
+
         q = "All"
         app = False
-        return render(request,"Applicant-Doc/index.html",dict(users=users,q=q,app=app,jpk=jpk,NoApplicant=NoApplicant,ready_users_count=ready_users_count,usersOnDocForWorkPermit=usersOnDocForWorkPermit,userWorkPermit=userWorkPermit,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified,))
+
+        return render(request,"Applicant-Doc/index.html",dict(users=users,display_statuses=display_statuses,q=q,app=app,jpk=jpk,NoApplicant=NoApplicant,ready_users_count=ready_users_count,usersOnDocForWorkPermit=usersOnDocForWorkPermit,userWorkPermit=userWorkPermit,NoApplicantQualified=NoApplicantQualified,display_completed_phase=display_completed_phase,NoApplicantNQualified=NoApplicantNQualified, display_completed_second_phase=display_completed_second_phase,work_permit_is_here=work_permit_is_here, documents=documents, second_documents=second_documents, user_document_list=user_document_list))
     
     return render(request,"Applicant-Doc/index.html",dict(NoApplicant=NoApplicant,ready_users_count=ready_users_count,usersOnDocForWorkPermit=usersOnDocForWorkPermit,userWorkPermit=userWorkPermit,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified,))
 
@@ -232,15 +350,68 @@ def getApplicantQualified(request,pk):
         for user_id in user_ids:
             user_documents_count = documents_users.objects.filter(
                     id_document__in=documents_list.objects.all(),
-                    user_id=user_id,status="A"
+                    user_id=user_id
                 ).count()
-            if user_documents_count > 1 and user_documents_count < 7:
-                usersOnDocForWorkPermit +=1
-            elif user_documents_count >= 7 and user_documents_count <= 9:
-                userWorkPermit += 1 
+
+            user_document = documents_users.objects.filter(
+                user_id=user_id,
+                status="A"
+            ).exclude(
+                id_document__name__icontains="Job Offer"
+            ).exclude(
+                id_document__name__icontains="Work Permit"
+            ).count()
+            user_documents = documents_users.objects.filter(
+                user_id=user_id,
+            ).exclude(
+                id_document__name__icontains="Job Offer"
+            ).exclude(
+                id_document__name__icontains="Work Permit"
+            ).order_by('id_document_id')
+            documents = serializers.serialize('json', user_documents)
+            job_offer_count = documents_users.objects.filter(
+                user_id=user_id,
+                status="A",
+                id_document__name__icontains="Job Offer"
+            ).count()
+            work_permit_count = documents_users.objects.filter(
+                user_id=user_id,
+                status="A",
+                id_document__name__icontains="Work Permit"
+            ).count()
+            job_offer_and_work_permit_count = documents_users.objects.filter(
+                user_id=user_id,
+                status="A",
+                id_document__name__icontains="Job Offer"
+            ).filter(
+                id_document__name__icontains="Work Permit"
+            )
+
+            two_last_documents = job_offer_count + work_permit_count
+            second_documents = serializers.serialize('json', job_offer_and_work_permit_count)
+            display_completed_phase = "none"
+            display_completed_second_phase = "none"
+            work_permit_is_here = "none"
+            if user_documents_count > 1 and user_documents_count <= 9:
+                if user_document == 4:
+                    display_completed_phase = "block"
+                    work_permit_is_here = "auto"
+                    if (job_offer_count <= 0 or work_permit_count <= 0):
+                        userWorkPermit += 1
+                else:
+                    display_completed_second_phase = "none"
+                    usersOnDocForWorkPermit += 1
+                    job_offer_count <= 0 and work_permit_count <= 0
+
+                if two_last_documents == 2:
+                    if user_document == 4:
+                         display_completed_second_phase = "block"
+                    else:
+                        display_completed_second_phase = "none"
+       
         q = "Q"
         app = False
-        return render(request,"Applicant-Doc/index.html",dict(users=users,q=q,app=app,jpk=jpk,NoApplicant=NoApplicant,ready_users_count=ready_users_count,usersOnDocForWorkPermit=usersOnDocForWorkPermit,userWorkPermit=userWorkPermit,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified,))
+        return render(request,"Applicant-Doc/index.html",dict(users=users,q=q,app=app,jpk=jpk,NoApplicant=NoApplicant,ready_users_count=ready_users_count,usersOnDocForWorkPermit=usersOnDocForWorkPermit,userWorkPermit=userWorkPermit,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified,display_completed_phase=display_completed_phase,display_completed_second_phase=display_completed_second_phase,work_permit_is_here=work_permit_is_here, documents = documents, second_documents = second_documents))
     
     return render(request,"Applicant-Doc/index.html",dict(NoApplicant=NoApplicant,ready_users_count=ready_users_count,usersOnDocForWorkPermit=usersOnDocForWorkPermit,userWorkPermit=userWorkPermit,NoApplicantQualified=NoApplicantQualified,NoApplicantNQualified=NoApplicantNQualified,))
 
@@ -508,9 +679,10 @@ class getAppPhase(View):
                         newDic["lname"] = user.last_name
                         newDic["email"]= user.email
                         newDic["phone"] = user.phone_number
-
+                        newDic["country"] = user.country
                         Status = Application.objects.filter(job_id=jpk).filter(user_id=userid).values_list("ApplicantStat",flat=True).first()
                         newDic["Status"]=str(Status)
+
                         if user.city == None:
                             newDic["city"] = user.country
                         else:
@@ -523,12 +695,11 @@ class getAppPhase(View):
                         if ApplicantStatDate:
                             newDic["ApplicantStatDate"] =format(ApplicantStatDate, "%d/%m/%Y")
                             newDic["ApplicantStatDateTime"]= format(ApplicantStatDate,"%H:%M")
-                        ########### User Experience ##########
-                        count =0
+                        ########### User Experience ##########d
+                        count = 0
                         uExp = UserExperiece.objects.filter(user_id=userid)
                         uExpCount = UserExperiece.objects.filter(user_id=userid).count()
                         newDic["userExpCount"]=uExpCount
-
                         for i in uExp:
                             title = "title"+str(count)
                             newDic[title]=i.title
@@ -591,7 +762,7 @@ class getAppPhase(View):
 
                     app=True
                     q="All"
-                    return render(request, "Applicant-Doc/index.html", dict(users=users,q=q,app=app,phase=phase,subphase=subphase,us=detailUser,uExp=ExpUser,uEdu=EduUser,uLang = LangUser,jpk=jpk,uid=uid,getSub=getSub))
+                    return render(request, "Applicant-Doc/index.html", dict(users=users, q=q,app=app,phase=phase,subphase=subphase,us=detailUser,uExp=ExpUser,uEdu=EduUser,uLang = LangUser,jpk=jpk,uid=uid,getSub=getSub))
                 else:
                     q = "All"
 

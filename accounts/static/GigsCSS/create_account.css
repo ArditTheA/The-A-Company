@@ -125,6 +125,7 @@ body {
 
 .second-paragraph, .sign-up-submit-input {
     text-align: center;
+    font-weight: normal !important;
 }
 
 .sign-up-google {
@@ -179,7 +180,9 @@ body {
 }
 
 .incorrect-div {
+    font-size: 14px;
     padding-left: 10px;
+    margin-top: -16px;
     margin-bottom: 20px;
     color: #FF0000;
 
@@ -274,9 +277,6 @@ body {
         padding: 10px;
     }
 
-    .create-account-first-name-surname {
-        display: block;
-    }
     .create-account-container {
         margin-top: 0px;
     }
@@ -287,10 +287,6 @@ body {
     #togglePassword {
         position: absolute;
         right: 15px;
-    }
-
-    .first-name-form-div {
-        margin-bottom: 20px;
     }
 
     .create-account-container {

@@ -23,8 +23,23 @@ select {
 }
 
 .divs-pointer-event-auto {
-    pointer-events: visible !important;
+    pointer-events: none;
     cursor: pointer;
+}
+.job-interview-input-elements {
+    border-radius: 40px;
+    border: 1px solid #D4D5D6;
+}
+
+#job-interview-div {
+    display: flex; 
+    justify-content: space-between; 
+    padding-left: 30px; 
+    padding-right: 30px;
+}
+
+.margin-right-job-interview-divs {
+    margin-right: 15px;
 }
 .second-color-of-divs {
     color: #1877F2;

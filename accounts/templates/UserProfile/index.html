@@ -186,11 +186,18 @@ label_e.forEach(function(label) {
           errorDiv.classList.add('error-message');
           errorDiv.style.color = "red";
           errorDiv.style.fontSize = "14px";
-          input.parentNode.insertBefore(errorDiv, input.nextSibling);
           input.style.border = "0.5px solid red";
           input.style.boxShadow = "0 0 3px rgba(255, 0, 0, 0.5)";
           errorDiv.textContent = 'This field is required';
           errorDiv.style.marginTop = "0px";
+          if (input.id !== "id_phone_number") {
+            input.parentNode.insertBefore(errorDiv, input.nextSibling);
+
+          }
+          else {
+            input.parentNode.parentNode.insertBefore(errorDiv, input.parentNode.nextSibling);
+
+          }
       }
         else {
           input.style.border = "0.5px solid red";

@@ -53,6 +53,8 @@ window.addEventListener('load', function() {
 
     async function recruiterJobs(id) {
 
+        console.log("recruiterJobs")
+
         var elements = document.getElementsByClassName('pixel'); // get all elements
 
         for(var i = 0; i < elements.length; i++){

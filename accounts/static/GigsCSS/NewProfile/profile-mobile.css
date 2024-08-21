@@ -193,10 +193,6 @@ input[type=text], input[type=date]  {
     padding: 0px ;
 }
 
-.first-and-last-name-div {
-    flex-direction: column;
-}
-
 .add-and-edit-experience {
     padding-top: 20px !important;
     padding-right: 20px !important;
@@ -512,7 +508,7 @@ input[type=text], input[type=date]  {
     }
 
     .save-button {
-        padding-top: 0px !important;
+        padding-top: 30px !important;
     }
     .under-container {
     }
@@ -527,10 +523,5 @@ input[type=text], input[type=date]  {
         width: auto;
         margin-left: 10px;
     }
-
-    
-
-
- 
 
 }

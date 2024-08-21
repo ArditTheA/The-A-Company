@@ -93,90 +93,160 @@ function ChangeDiv() {
 </script>
 
 <script>
-    function penndingFunction(id){
-        console.log("approved: "+$("#user_id").val());
+    let documents_json = JSON.parse('{{ documents | safe }}');
+    let phase_documents = JSON.parse('{{ second_documents | safe }}');
+    let total_documents_count = parseInt('{{total_documents_count}}');
+    let documents = documents_json.map(document => document.fields.status);
+    let phase_documents_status = phase_documents.map(document => document.fields.status);
+    console.log(documents)
+    // console.log("Initial total count: " + total_documents_count)
+    function penndingFunction(id) {
+        const oneAndOnlyA = documents.filter(document => document === "R");
+        let alreadyNotApproved = false;
+        if (oneAndOnlyA.length === 1 && oneAndOnlyA[0] === documents[id-1]) {
+            alreadyNotApproved = true
+        }
+        documents[id-1] = "P"
+        phase_documents_status[id-1] = "P"
+        console.log("approved: " + $("#user_id").val());
         var user_id = $("#user_id").val();
         var document_id = id;
         $.ajax({
             type: "POST",
             url: '/return_pennding_document/',
             data: {
-                document_id : document_id,
-                user_id:user_id,
+                document_id: document_id,
+                user_id: user_id,
                 csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
 
             },
-            success: function(response) {
-                   
+            success: function (response) {
                 var secondArgumentValue = 1;
-                if ($('#document_id').val() == 8 || $('#document_id').val() == 9) {
+                if (id >= 8) {
                     // If mydocument_id is 4 or 5, set the second argument to 2
                     secondArgumentValue = 2;
                 }
-                    getUser(user_id,secondArgumentValue);
-                    // Rest of your success handling code
-                },
-                error: function(xhr, textStatus, errorThrown) {
-                    console.log("Error:", textStatus, errorThrown);
-                    // Handle the error
+                getUser(user_id, secondArgumentValue);
+                // Rest of your success handling code
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log("Error:", textStatus, errorThrown);
+                // Handle the error
+            },
+            complete: function () {
+                console.log(documents)
+                const oneAndOnly = documents.filter(document => document === "R" || document === "P").length === 1;
+                const PoneAndOnly = documents.filter(document => document === "P").length === 2;
+                const oneAndOnlyR = documents.filter(document => document === "R").length === 1;
+                const RoneAndOnly = documents.filter(document => document === "R").length === 0;
+
+
+                // const phase_oneAndOnly = phase_documents.filter(document => document === "P" || document === "R").length === 1;
+
+                if (alreadyNotApproved) {
+                    return;
                 }
-                });
+                else if (oneAndOnly) {
+                    // getUser(user_id);
+                }
+                // if (phase_oneAndOnly) {
+                //     window.location.reload();
+                // }
+            }
+        });
     };
-    function ApproveFunction(id){
-        console.log("approved: "+$("#user_id").val());
+    function ApproveFunction(id) {
+        documents[id-1] = "A"
+        phase_documents_status[id-1] = "A"
+        console.log("approved: " + $("#user_id").val());
+        approvedCalled = true;
         var user_id = $("#user_id").val();
         var document_id = id;
         $.ajax({
             type: "POST",
             url: '/approve_document_user/',
             data: {
-                document_id : document_id,
-                user_id:user_id,
+                document_id: document_id,
+                user_id: user_id,
                 csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
 
             },
-            success: function(response) {
+            success: function (response) {
                 var secondArgumentValue = 1;
                 if (document_id == 8 || document_id == 9) {
                     // If mydocument_id is 4 or 5, set the second argument to 2
                     secondArgumentValue = 2;
                 }
-                    getUser(user_id,secondArgumentValue);
-                    // Rest of your success handling code
-                },
-                error: function(xhr, textStatus, errorThrown) {
-                    console.log("Error:", textStatus, errorThrown);
-                    // Handle the error
-                }
-                });
+                getUser(user_id, secondArgumentValue);
+                // Rest of your success handling code
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log("Error:", textStatus, errorThrown);
+                // Handle the error
+            },
+            complete: function () {
+                console.log(documents)
+                console.log(phase_documents_status)
+                if (documents.every(document => document === "A")) {
+                    // getUser(user_id);
+                    
+                };
+                // if (phase_documents_status.every(document => document === "A")) {
+                //     window.location.reload();
+                // };
+            }
+        });
+
     };
-    function RefuseFunction(id){
-        console.log("approved: "+$("#user_id").val());
+    function RefuseFunction(id) {
+        const oneAndOnlyA = documents.filter(document => document === "P");
+        let alreadyNotApproved = false;
+        if (oneAndOnlyA.length === 1 && oneAndOnlyA[0] === documents[id-1]) {
+            alreadyNotApproved = true
+        }
+        documents[id-1] = "R"
+        phase_documents_status[id-1] = "R"
+        console.log("approved: " + $("#user_id").val());
         var user_id = $("#user_id").val();
         var document_id = id;
         $.ajax({
             type: "POST",
             url: '/refused_document_user/',
             data: {
-                document_id : document_id,
-                user_id:user_id,
+                document_id: document_id,
+                user_id: user_id,
                 csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
 
             },
-            success: function(response) {
+            success: function (response) {
                 var secondArgumentValue = 1;
-                if ($('#document_id').val() == 8 || $('#document_id').val() == 9) {
+                if (id >= 8) {
                     // If mydocument_id is 4 or 5, set the second argument to 2
                     secondArgumentValue = 2;
                 }
-                getUser(user_id,secondArgumentValue);
-                    // Rest of your success handling code
-                },
-                error: function(xhr, textStatus, errorThrown) {
-                    console.log("Error:", textStatus, errorThrown);
-                    // Handle the error
+                getUser(user_id, secondArgumentValue);
+                // Rest of your success handling code
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                console.log("Error:", textStatus, errorThrown);
+                // Handle the error
+            },
+            complete: function () {
+                console.log(documents);
+                const oneAndOnly = documents.filter(document => document === "R" || document === "P").length === 1;
+                // const phase_oneAndOnly = phase_documents.filter(document => document === "P" || document === "R").length === 1;
+
+                if (alreadyNotApproved) {
+                    return;
                 }
-                });
+                else if (oneAndOnly) {
+                    // window.location.reload();
+                }
+                // if (phase_oneAndOnly) {
+                //     window.location.reload();
+                // }
+            }
+        });
     };
     function getDocument(element) {
         const dataNumber = element.getAttribute('data-number');

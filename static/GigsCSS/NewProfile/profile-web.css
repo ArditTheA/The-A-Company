@@ -686,6 +686,10 @@ body {
     outline: none;
 }
 
+.profile-inputs-main-div-style {
+    margin-bottom: 20px;
+}
+
 .password-input::placeholder {
     color: #9E9E9E;
 }
@@ -800,7 +804,7 @@ input::placeholder {
 }
 
 .save-button {
-    padding-top: 20px; /* 10px + 20px (margin-bottom of city input) = 30px */
+    padding-top: 30px; /* 10px + 20px (margin-bottom of city input) = 30px */
 }
 .edit-profile-cover-photo-title {
     text-align: left;
@@ -969,6 +973,7 @@ input::placeholder {
     border-radius: 30px;
     cursor: pointer;
 }
+
 
 .save-cover {
     font-size: 16px;

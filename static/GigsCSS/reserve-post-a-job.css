@@ -37,7 +37,6 @@ select {
     color: #858585;
 }
 .divs-pointer-event-auto {
-    pointer-events: visible !important;
     cursor: pointer;
 }
 .second-color-of-divs {
@@ -87,7 +86,10 @@ option {
 .under-successfully-applied-form {
     width: 508px !important;
 }
-
+.inputs-main-div-style {
+    margin-bottom: 20px;
+    width: 100%;
+}
 
 .successfully-applied-content-div {
     padding: 30px;
@@ -121,6 +123,9 @@ option {
 .added-items-container {
     display: flex;
     flex-wrap: wrap;
+}
+.contact-information-mutual-stats {
+    width: 100%;
 }
 
 .choose-duration-buttons {
@@ -763,6 +768,27 @@ input {
     font-size: 18px;
 }
 
+.meet-with-us-div {
+    pointer-events: visible !important;
+}
+.job-interview-input-elements {
+    border-radius: 40px;
+    border: 1px solid #D4D5D6;
+    height: 25px;
+}
+
+
+.margin-right-job-interview-divs {
+    margin-right: 15px;
+}
+
+#job-interview-div {
+    display: flex; 
+    justify-content: space-between; 
+    padding-left: 30px; 
+    padding-right: 30px;
+}
+
 .second-screening-question-div {
     pointer-events: none;
     border-bottom: 40px; 
@@ -978,19 +1004,16 @@ input {
         margin-left: 20px;
     }
     input, .contact-information-mutual-stats {
-        height: fit-content;
-    }
-    input, .contact-information-mutual-stats {
-        height: 36px !important;
+        height: 36px;
     }
 
     input[type="checkbox"] {
         height: auto !important;
     }
-    select.screening-question-select-options.screening-question-select-options {
+    #id_country {
+        height: auto !important;
         padding-top: 8.4px !important;
         padding-bottom: 8.4px !important;
-        height: auto !important;
     }
     
     .upload-file-div {
@@ -1217,15 +1240,12 @@ input {
     .start-end-date {
         box-sizing: border-box;
     }
-    .start-date-input { 
-        margin-bottom: 20px;
+    .end-date-input {
+        margin-top: 20px;
     }
     .apply-name-surname{
         height: 36px;
         box-sizing: border-box;
-    }
-    .country-margin-bottom {
-        margin-bottom: 20px;
     }
     .logo-input-div {
         font-size: 16px;
