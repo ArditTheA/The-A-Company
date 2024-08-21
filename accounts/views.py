@@ -1704,6 +1704,7 @@ def userJobPayment(request):
             new_user_job_payment.save()
             return JsonResponse({'status': 'created'}, status=201)
 
+
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
 def userJobAppointments(request):
